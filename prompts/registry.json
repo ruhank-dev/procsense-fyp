@@ -361,6 +361,21 @@
       "gateway": false
     },
     {
+      "id": "orders.kind",
+      "version": 4,
+      "role": "live",
+      "file": "orders/kind_v4.txt",
+      "sha256": "72892a22467fb510292b6d6831e6ec895b8d0cb1f80eac8e4e0c701cd037f5ea",
+      "schema": null,
+      "variables": [
+        "heard"
+      ],
+      "num_predict": 30,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
+    },
+    {
       "id": "orders.map",
       "version": 4,
       "role": "live",
@@ -374,6 +389,22 @@
       "num_predict": 60,
       "think": false,
       "gateway": false
+    },
+    {
+      "id": "orders.map",
+      "version": 5,
+      "role": "live",
+      "file": "orders/map_v5.txt",
+      "sha256": "89b69f3cc35679062f1d7133f0039aec24ff8a1f2460f8a5c2ef27661027cf6a",
+      "schema": null,
+      "variables": [
+        "heard",
+        "items"
+      ],
+      "num_predict": 60,
+      "think": false,
+      "gateway": false,
+      "scope": "cloud"
     },
     {
       "id": "judge.scenario",

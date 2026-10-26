@@ -1,0 +1,455 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Sixth set of spoken-order paraphrases, written by an AI assistant on 25 Oct 2026 (UTC) BEFORE any row was run through any mapper, after the prompt work on the development sets 1 to 3 was finished. Synthetic, not independent. Frozen: scored once per model. 'none' lines are not orders; several mention a test or a person.",
+ "rows": [
+  {
+   "id": "OX001",
+   "text": "can we see her full blood picture",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX002",
+   "text": "I would like the inflammation level checked",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX003",
+   "text": "what are his sodium and potassium and kidney function",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX004",
+   "text": "send off the liver profile please",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX005",
+   "text": "a long term sugar control marker",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX006",
+   "text": "does his blood clot normally, I want a coag screen",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX007",
+   "text": "get her blood typed in case she needs a transfusion",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX008",
+   "text": "lactate and blood cultures, she looks septic",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX009",
+   "text": "quick finger prick sugar now",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX010",
+   "text": "test a sample of his water with a dipstick",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX011",
+   "text": "is she pregnant, do a test",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX012",
+   "text": "put him on a heart tracing",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX013",
+   "text": "a plain film of the chest",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX014",
+   "text": "scan her tummy with the probe",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX015",
+   "text": "I need a cross sectional scan of the abdomen",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX016",
+   "text": "arrange magnetic resonance imaging",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX017",
+   "text": "image the bile ducts with an MR scan",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX018",
+   "text": "check the pancreatic enzyme",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX019",
+   "text": "how is the thyroid working",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX020",
+   "text": "iron stores please",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX021",
+   "text": "mast cell marker after the reaction",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX022",
+   "text": "screen him for sleep apnoea with the questionnaire",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX023",
+   "text": "work out her body mass index",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OX024",
+   "text": "give a gram of paracetamol through the drip",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX025",
+   "text": "ibuprofen type of painkiller",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX026",
+   "text": "morphine for severe pain",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX027",
+   "text": "she feels sick, give her an anti sickness drug",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX028",
+   "text": "run in a litre of fluid",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX029",
+   "text": "the pre operative antibiotic dose",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX030",
+   "text": "start the antibiotics for the infection",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX031",
+   "text": "adrenaline now, she is in anaphylaxis",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX032",
+   "text": "a sugary drink for the low sugar",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX033",
+   "text": "treat the high potassium",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX034",
+   "text": "ten percent dextrose into the vein",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX035",
+   "text": "reverse the opioid with naloxone",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX036",
+   "text": "put him on oxygen by mask",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX037",
+   "text": "begin the sepsis six",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX038",
+   "text": "cover her with hydrocortisone, she is on long term steroids",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX039",
+   "text": "an injection to prevent clots in the legs",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OX040",
+   "text": "hold his diabetes tablet metformin this morning",
+   "kind": "home_medicine",
+   "target": "metformin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OX041",
+   "text": "he should not take the anticoagulant today",
+   "kind": "home_medicine",
+   "target": "anticoagulant",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OX042",
+   "text": "skip her insulin dose",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OX043",
+   "text": "no ramipril before the operation",
+   "kind": "home_medicine",
+   "target": "ramipril",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OX044",
+   "text": "send him round to plain film",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX045",
+   "text": "she needs to go to the CT department",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX046",
+   "text": "take her to the ultrasound room",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX047",
+   "text": "bring him up to the operating theatre",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX048",
+   "text": "return her to her bed on the ward",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX049",
+   "text": "to the MRI suite please",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OX050",
+   "text": "page the surgical registrar",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OX051",
+   "text": "I want the anaesthetist here now",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OX052",
+   "text": "get my senior over",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OX053",
+   "text": "can a nurse come to the bedside",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OX054",
+   "text": "I need a porter for transport",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OX055",
+   "text": "the x ray machine broke down yesterday",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX056",
+   "text": "she told me the nurse brought her tea",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX057",
+   "text": "do you know where the canteen is",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX058",
+   "text": "the surgeon is running late today",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX059",
+   "text": "last week the potassium was a bit high",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX060",
+   "text": "I am worried about getting this wrong",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX061",
+   "text": "what time does the list start",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX062",
+   "text": "the porter said the lift is out of order",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX063",
+   "text": "morphine makes me feel sleepy, my patient said",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OX064",
+   "text": "tell me about the weather",
+   "kind": null,
+   "target": null,
+   "intent": null
+  }
+ ]
+}

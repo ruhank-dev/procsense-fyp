@@ -1,0 +1,455 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Eighth set of spoken-order paraphrases, written by an AI assistant on 25 Oct 2026 (UTC) after the prompt and note work that followed sets 6 and 7 and before any row was run through any mapper. Synthetic, not independent. Frozen: scored once per model. 'none' lines are not orders; several mention a test or a person.",
+ "rows": [
+  {
+   "id": "OZ001",
+   "text": "get me her full blood count",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ002",
+   "text": "how raised is the C reactive protein",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ003",
+   "text": "send urea and electrolytes",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ004",
+   "text": "has the liver been damaged, check the enzymes and bilirubin",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ005",
+   "text": "glycated haemoglobin please",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ006",
+   "text": "send a coagulation screen, he is on a blood thinner",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ007",
+   "text": "make sure a group and save is in the lab before surgery",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ008",
+   "text": "I would like cultures and lactate before antibiotics",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ009",
+   "text": "what is his capillary glucose right now",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ010",
+   "text": "could we have a urine dip",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ011",
+   "text": "rule out pregnancy with a urine test",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ012",
+   "text": "twelve lead ECG now",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ013",
+   "text": "chest radiograph please",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ014",
+   "text": "an ultrasound of the right upper quadrant",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ015",
+   "text": "get a CT scan of his abdomen and pelvis",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ016",
+   "text": "she needs an MRI of the spine",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ017",
+   "text": "arrange a cholangiogram by MR",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ018",
+   "text": "a serum lipase for the abdominal pain",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ019",
+   "text": "thyroid stimulating hormone level",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ020",
+   "text": "send a ferritin for the anaemia",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ021",
+   "text": "send a mast cell tryptase",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ022",
+   "text": "complete the STOP BANG questionnaire",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ023",
+   "text": "calculate her BMI",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OZ024",
+   "text": "one gram of intravenous paracetamol",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ025",
+   "text": "give him some ibuprofen",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ026",
+   "text": "an opioid for the severe pain, morphine or similar",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ027",
+   "text": "cyclizine, she keeps retching",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ028",
+   "text": "start intravenous fluids, Hartmann's",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ029",
+   "text": "prophylactic antibiotic at induction",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ030",
+   "text": "treat the chest infection with antibiotics",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ031",
+   "text": "adrenaline 0.5 milligrams intramuscular for the anaphylaxis",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ032",
+   "text": "get him a glucose drink for the hypo",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ033",
+   "text": "treat the potassium of seven with calcium gluconate and insulin",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ034",
+   "text": "intravenous glucose, he is drowsy and hypoglycaemic",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ035",
+   "text": "give naloxone, his breathing is slow from the opioid",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ036",
+   "text": "put oxygen on, fifteen litres",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ037",
+   "text": "begin the sepsis six pathway",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ038",
+   "text": "she takes prednisolone, give hydrocortisone cover",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ039",
+   "text": "enoxaparin to prevent thrombosis",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OZ040",
+   "text": "metformin must be held on the morning of surgery",
+   "kind": "home_medicine",
+   "target": "metformin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OZ041",
+   "text": "stop the anticoagulation before the procedure",
+   "kind": "home_medicine",
+   "target": "anticoagulant",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OZ042",
+   "text": "do not give the insulin this morning",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OZ043",
+   "text": "the ramipril should not be taken today",
+   "kind": "home_medicine",
+   "target": "ramipril",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OZ044",
+   "text": "send the patient to X ray",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ045",
+   "text": "take her to the CT department",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ046",
+   "text": "she is going to the ultrasound department now",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ047",
+   "text": "transfer him to the operating theatre",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ048",
+   "text": "take him back to the ward",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ049",
+   "text": "the patient has to go to MRI",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OZ050",
+   "text": "get the consultant surgeon",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ051",
+   "text": "bleep the anaesthetist urgently",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ052",
+   "text": "I need to escalate to my senior",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ053",
+   "text": "a nurse is needed in bay two",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ054",
+   "text": "please call a porter",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OZ055",
+   "text": "the CT scanner was out of order last week",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ056",
+   "text": "somebody said the senior was on holiday",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ057",
+   "text": "I think the porter has gone for his break",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ058",
+   "text": "he takes metformin every day as far as I know",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ059",
+   "text": "the ward is quite cold today",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ060",
+   "text": "what is the date today",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ061",
+   "text": "I did not enjoy that lecture on the heart",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ062",
+   "text": "the anaesthetist has a lovely voice",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ063",
+   "text": "the potassium was fine last time",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OZ064",
+   "text": "this simulation is quite realistic",
+   "kind": null,
+   "target": null,
+   "intent": null
+  }
+ ]
+}

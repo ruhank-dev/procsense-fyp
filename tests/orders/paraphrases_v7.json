@@ -1,0 +1,455 @@
+{
+ "synthetic": true,
+ "independent": false,
+ "note": "Seventh set of spoken-order paraphrases, written by an AI assistant on 25 Oct 2026 (UTC) after the prompt and note work that followed the scoring of set 6 and before any row was run through any mapper. Synthetic, not independent. Frozen: scored once per model. 'none' lines are not orders; several mention a test or a person.",
+ "rows": [
+  {
+   "id": "OY001",
+   "text": "I would like a haemoglobin and white count on her",
+   "kind": "test",
+   "target": "fbc",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY002",
+   "text": "has the inflammatory marker gone up",
+   "kind": "test",
+   "target": "crp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY003",
+   "text": "check how his kidneys and electrolytes are",
+   "kind": "test",
+   "target": "u_and_e",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY004",
+   "text": "I want to know about his liver function",
+   "kind": "test",
+   "target": "lft",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY005",
+   "text": "has his diabetes been well controlled lately, the three month marker",
+   "kind": "test",
+   "target": "hba1c",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY006",
+   "text": "is there a bleeding tendency, check the clotting",
+   "kind": "test",
+   "target": "clotting",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY007",
+   "text": "she may need blood so please get a sample grouped and saved",
+   "kind": "test",
+   "target": "group_and_save",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY008",
+   "text": "take blood cultures and a lactate",
+   "kind": "test",
+   "target": "lactate_cultures",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY009",
+   "text": "prick his finger and read the sugar",
+   "kind": "test",
+   "target": "glucose_fingerprick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY010",
+   "text": "dip his urine",
+   "kind": "test",
+   "target": "urine_dipstick",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY011",
+   "text": "could she be pregnant, test it",
+   "kind": "test",
+   "target": "pregnancy",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY012",
+   "text": "get a heart trace on him",
+   "kind": "test",
+   "target": "ecg",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY013",
+   "text": "I want a chest film",
+   "kind": "test",
+   "target": "chest_xray",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY014",
+   "text": "scan the abdomen with ultrasound",
+   "kind": "test",
+   "target": "ultrasound",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY015",
+   "text": "request a CT of the abdomen",
+   "kind": "test",
+   "target": "ct",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY016",
+   "text": "book an MRI scan",
+   "kind": "test",
+   "target": "mri",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY017",
+   "text": "we need an MRCP to see the ducts",
+   "kind": "test",
+   "target": "mrcp",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY018",
+   "text": "is the pancreas inflamed, send a lipase",
+   "kind": "test",
+   "target": "lipase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY019",
+   "text": "is her thyroid overactive or underactive",
+   "kind": "test",
+   "target": "tsh",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY020",
+   "text": "how much iron does she store",
+   "kind": "test",
+   "target": "ferritin",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY021",
+   "text": "check tryptase, I think that was anaphylaxis",
+   "kind": "test",
+   "target": "tryptase",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY022",
+   "text": "do the sleep apnoea screening score",
+   "kind": "test",
+   "target": "stopbang",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY023",
+   "text": "what is her weight relative to her height",
+   "kind": "test",
+   "target": "bmi",
+   "intent": "ORDER_TEST"
+  },
+  {
+   "id": "OY024",
+   "text": "paracetamol into the vein for his pain",
+   "kind": "medicine",
+   "target": "TR-PARACETAMOL",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY025",
+   "text": "an anti inflammatory such as diclofenac",
+   "kind": "medicine",
+   "target": "TR-NSAID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY026",
+   "text": "give some morphine",
+   "kind": "medicine",
+   "target": "TR-OPIOID",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY027",
+   "text": "ondansetron for the nausea",
+   "kind": "medicine",
+   "target": "TR-ANTIEMETIC",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY028",
+   "text": "hang a bag of saline",
+   "kind": "medicine",
+   "target": "TR-IV-FLUIDS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY029",
+   "text": "give the antibiotic before the incision",
+   "kind": "medicine",
+   "target": "TR-ABX-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY030",
+   "text": "start broad spectrum antibiotics for the sepsis",
+   "kind": "medicine",
+   "target": "TR-ABX-S2",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY031",
+   "text": "give adrenaline intramuscularly",
+   "kind": "medicine",
+   "target": "TR-ADRENALINE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY032",
+   "text": "give him glucose gel, he is hypoglycaemic and awake",
+   "kind": "medicine",
+   "target": "TR-FAST-SUGAR",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY033",
+   "text": "give the hyperkalaemia treatment, calcium and insulin dextrose",
+   "kind": "medicine",
+   "target": "TR-HYPERKALAEMIA",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY034",
+   "text": "dextrose through the drip",
+   "kind": "medicine",
+   "target": "TR-IV-GLUCOSE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY035",
+   "text": "naloxone for the overdose",
+   "kind": "medicine",
+   "target": "TR-NALOXONE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY036",
+   "text": "high flow oxygen please",
+   "kind": "medicine",
+   "target": "TR-OXYGEN",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY037",
+   "text": "start the sepsis bundle now",
+   "kind": "medicine",
+   "target": "TR-SEPSIS-BUNDLE",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY038",
+   "text": "give the stress dose steroids",
+   "kind": "medicine",
+   "target": "TR-STEROID-COVER",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY039",
+   "text": "give the anticlot injection tonight",
+   "kind": "medicine",
+   "target": "TR-VTE-PROPHYLAXIS",
+   "intent": "REQUEST_MEDICATION"
+  },
+  {
+   "id": "OY040",
+   "text": "do not let her have her metformin today",
+   "kind": "home_medicine",
+   "target": "metformin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OY041",
+   "text": "withhold the blood thinner from now",
+   "kind": "home_medicine",
+   "target": "anticoagulant",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OY042",
+   "text": "leave out his morning insulin",
+   "kind": "home_medicine",
+   "target": "insulin",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OY043",
+   "text": "hold the ramipril",
+   "kind": "home_medicine",
+   "target": "ramipril",
+   "intent": "HOLD_MED"
+  },
+  {
+   "id": "OY044",
+   "text": "bring her down to X ray",
+   "kind": "place",
+   "target": "xray",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY045",
+   "text": "move him across to the CT scanner",
+   "kind": "place",
+   "target": "ct",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY046",
+   "text": "wheel him to the ultrasound department",
+   "kind": "place",
+   "target": "ultrasound",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY047",
+   "text": "take her to theatre now",
+   "kind": "place",
+   "target": "theatre",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY048",
+   "text": "return him to the ward",
+   "kind": "place",
+   "target": "ward",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY049",
+   "text": "transfer her into the MRI",
+   "kind": "place",
+   "target": "mri",
+   "intent": "REQUEST_TRANSPORT"
+  },
+  {
+   "id": "OY050",
+   "text": "I need the surgeon at the bedside",
+   "kind": "staff",
+   "target": "surgeon",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY051",
+   "text": "call the anaesthetist",
+   "kind": "staff",
+   "target": "anaesthetist",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY052",
+   "text": "bring in the senior doctor",
+   "kind": "staff",
+   "target": "senior",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY053",
+   "text": "ask a nurse to help",
+   "kind": "staff",
+   "target": "nurse",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY054",
+   "text": "the porter is needed for transport",
+   "kind": "staff",
+   "target": "porter",
+   "intent": "CALL_STAFF"
+  },
+  {
+   "id": "OY055",
+   "text": "the ultrasound room was very busy yesterday",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY056",
+   "text": "the senior told me about the weather",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY057",
+   "text": "I always forget the porter's name",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY058",
+   "text": "she took paracetamol at home before she came",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY059",
+   "text": "the MRI is a long noisy scan, I read",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY060",
+   "text": "what is the name of this ward",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY061",
+   "text": "is lunch at one o'clock",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY062",
+   "text": "the nurse who looked after her was lovely",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY063",
+   "text": "I wonder whether the surgeon enjoyed the conference",
+   "kind": null,
+   "target": null,
+   "intent": null
+  },
+  {
+   "id": "OY064",
+   "text": "her last potassium was normal, I believe",
+   "kind": null,
+   "target": null,
+   "intent": null
+  }
+ ]
+}

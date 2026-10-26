@@ -10,9 +10,9 @@ Specified on 12 October 2026; the status of each feature is derived from the tas
 
 | Status | Features |
 |---|---|
-| Implemented and tested | 42 |
-| Implemented but incompletely tested | 21 |
-| Partially implemented | 2 |
+| Implemented and tested | 43 |
+| Implemented but incompletely tested | 22 |
+| Partially implemented | 0 |
 | Planned | 0 |
 | Blocked | 0 |
 | Deferred | 3 |
@@ -46,7 +46,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | B20 | Anomalies and artefacts (deliberate and realistic) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/%5Bx%5D%20B20.md) |
 | B21 | Result variation (repeats, trends, timing) | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-09 | P1 | [plan](../plans/features/%5Bx%5D%20B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | ai | Implemented and tested | Implemented and tested | PH-18 | P2 | [plan](../plans/features/%5Bx%5D%20B22.md) |
-| B23 | Investigation discovery | deterministic | Implemented but incompletely tested | Planned | PH-04 | P0 | [plan](../plans/features/B23.md) |
+| B23 | Investigation discovery | deterministic | Implemented and tested | Planned | PH-04 | P0 | [plan](../plans/features/%5Bx%5D%20B23.md) |
 | C24 | Patient dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C24.md) |
 | C25 | Nurse dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C25.md) |
 | C26 | Anaesthetist dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C26.md) |
@@ -55,7 +55,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | C29 | Persona system | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | hybrid | Implemented and tested | Implemented and tested | PH-13 | P1 | [plan](../plans/features/%5Bx%5D%20C30.md) |
 | C31 | Voice interaction (end to end) | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C31.md) |
-| C32 | Voice commands | hybrid | Partially implemented | Planned | PH-14 | P1 | [plan](../plans/features/C32.md) |
+| C32 | Voice commands | hybrid | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C32.md) |
 | C33 | Speech-to-text | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | hybrid | Implemented and tested | Implemented and tested | PH-14 | P1 | [plan](../plans/features/%5Bx%5D%20C35.md) |
@@ -85,7 +85,7 @@ Each feature's complete implementation plan (user experience, existing versus mi
 | E57 | LLM serving and benchmark | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-07 | P1 | [plan](../plans/features/%5Bx%5D%20E57.md) |
 | E58 | Retrieval over approved content (RAG) | hybrid | Implemented and tested | Implemented and tested | PH-05 | P1 | [plan](../plans/features/%5Bx%5D%20E58.md) |
 | E60 | P2 small trained classifier | ai | Deferred | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/E60.md) |
-| E61 | Medical LLM benchmark (for example MedGemma) | ai | Partially implemented | Partially implemented | PH-19 | P2 | [plan](../plans/features/E61.md) |
+| E61 | Medical LLM benchmark (for example MedGemma) | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/%5Bx%5D%20E61.md) |
 | E62 | Backend and AI gateway | deterministic | Implemented and tested | Not applicable (deterministic feature) | PH-06 | P1 | [plan](../plans/features/%5Bx%5D%20E62.md) |
 | E63 | On-device speech recognition | ai | Implemented but incompletely tested | Implemented but incompletely tested | PH-19 | P2 | [plan](../plans/features/%5Bx%5D%20E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | ai | Deferred | Deferred | PH-24 | P2 | [plan](../plans/features/E64.md) |
@@ -747,9 +747,9 @@ Problems are revealed by the result, examination or question that discovers them
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | deterministic |
-| Status | Implemented but incompletely tested |
+| Status | Implemented and tested |
 | AI status | Planned |
-| Evidence (what exists) | content/problems/discovery.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json |
+| Evidence (what exists) | content/problems/discovery.json; reports/ai/classifier-bench-synthetic2.json; reports/ai/classifier-holdout-v3.json; reports/ai/classifier-adversarial.json; reports/ai/classifier-guard-only.json; reports/ai/classifier-adversarial-fresh.json; server/generation/skeleton.py; tools/ci/test_generation_skeleton.py; reports/ai/classifier-safety.json; docs/research/classifier_benchmark/safety_gate.md; tests/classifier_challenge_v4/challenge.json; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; reports/ai/speech-evaluation-acceptance.json |
 | Lineage (existing ids) | DT-073; DT-091 |
 | Method | Rules. |
 | LLM-first classification | Not a model task. |
@@ -762,7 +762,7 @@ Problems are revealed by the result, examination or question that discovers them
 | Fallback | n/a |
 | Tests planned | discovery coverage test |
 | Acceptance | Every problem in every case is discoverable. |
-| Blockers | external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md) |
+| Blockers | — |
 | Risks | rule or table drift from content (mitigated by --check builders and tests) |
 | Tasks | p0-case-library-s05; p1-live-scenario-generation-s03 |
 | Phase | PH-04 Block library and composer foundation |
@@ -1001,8 +1001,8 @@ Short spoken commands mapped to verbs (open results, call nurse).
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | hybrid |
-| Status | Partially implemented |
-| AI status | Planned |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
 | Evidence (what exists) | server/orders/grammar.py; tools/ai/eval_orders.py; unity/Assets/Scripts/Voice/PushToTalk.cs; unity/Assets/Scripts/Voice/AsrClient.cs; unity/Assets/Scripts/Voice/VoiceHealth.cs; unity/Assets/Scripts/Voice/TeamConversation.cs; unity/Assets/Tests/EditMode/VoiceClientTests.cs; unity/Assets/Tests/EditMode/SpeechEvaluationTests.cs |
 | Lineage (existing ids) | p1-voice-input-s02 |
 | Method | ASR + deterministic grammar; LLM only for unmatched phrases. |
@@ -1115,7 +1115,7 @@ The acts the speech evaluator reports and how the evidence store weighs them. Bu
 | Kind (AI or deterministic) | deterministic |
 | Status | Implemented but incompletely tested |
 | AI status | Not applicable (deterministic feature) |
-| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; src/ProcSense.Core/Scoring/CommunicationRubric.cs |
+| Evidence (what exists) | content/assessment/mapping.json; src/ProcSense.Core/Scoring/Evidence.cs; content/assessment/taxonomy.json; tools/bench/dataset.py; tests/classifier_synthetic_v2/adversarial_manifest.json; tests/classifier_synthetic_v2/manifest.json; tests/classifier_synthetic_v3/manifest.json; docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md; reports/ai/act-benchmark.json; reports/ai/act-benchmark-test2.json; docs/decisions/ADR-0020-act-recognition-architecture.md; docs/decisions/ADR-0022-context-aware-speech-interpretation.md; docs/decisions/ADR-0025-gemma-first-speech-evaluation.md; src/ProcSense.Core/Scoring/CommunicationRubric.cs; reports/ai/speech-evaluation-acceptance.json |
 | Lineage (existing ids) | p1-ai-language-s06 |
 | Method | Taxonomy + rules. |
 | LLM-first classification | Not a model task. |
@@ -1845,8 +1845,8 @@ Compare a medical model with the general default. MedGemma is gated under Health
 | Field | Value |
 |---|---|
 | Kind (AI or deterministic) | ai |
-| Status | Partially implemented |
-| AI status | Partially implemented |
+| Status | Implemented but incompletely tested |
+| AI status | Implemented but incompletely tested |
 | Evidence (what exists) | tools/ai/model_candidate.py; content/ai/model_candidates.json; tools/ci/test_model_candidate.py; docs/research/model_benchmarks.md |
 | Lineage (existing ids) | p2-ai-extensions-s05 |
 | Method | Benchmark. |

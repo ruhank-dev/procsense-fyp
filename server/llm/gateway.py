@@ -52,6 +52,10 @@ def run(client: client_mod.OllamaClient, prompt_id: str, variables: dict, valida
     for chosen in legs:
         cloud_leg = routing.is_cloud(chosen)
         prompt = prompts.get(prompt_id, version, cloud=cloud_leg)
+        if cloud_leg and version is not None:                                  # a cloud leg uses the newest prompt written for the cloud model even when the caller pins a version for the local one
+            newest = prompts.get(prompt_id, None, cloud=True)
+            if newest.scope == "cloud" and newest.version > prompt.version:
+                prompt = newest
         system, user = prompt.render(**variables)
         schema = caller_schema if caller_schema is not None else prompt.schema
         if cloud_leg and not routing.acquire_cloud(prompt.role):          # the plan allows one cloud request at a time: a live task does not queue behind another, it answers locally

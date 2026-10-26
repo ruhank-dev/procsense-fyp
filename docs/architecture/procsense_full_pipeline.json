@@ -8699,7 +8699,7 @@
    "category": "Data, media and investigations",
    "group": "g_feat_B",
    "kind": "deterministic",
-   "status": "Implemented but incompletely tested",
+   "status": "Implemented and tested",
    "ai_status": "Planned",
    "description": "Problems are revealed by the result, examination or question that discovers them. Built: 29 discovery rules for the 17 P0 cases; P1 and P2 problems pending.",
    "evidence": [
@@ -8713,7 +8713,9 @@
     "tools/ci/test_generation_skeleton.py",
     "reports/ai/classifier-safety.json",
     "docs/research/classifier_benchmark/safety_gate.md",
-    "tests/classifier_challenge_v4/challenge.json"
+    "tests/classifier_challenge_v4/challenge.json",
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
    "lineage": [
     "DT-073",
@@ -8737,9 +8739,7 @@
     "discovery coverage test"
    ],
    "acceptance": "Every problem in every case is discoverable.",
-   "blockers": [
-    "external acceptance: EX-01 (docs/testing/SANNAN_EXTERNAL_TESTING.md)"
-   ],
+   "blockers": [],
    "risks": [
     "rule or table drift from content (mitigated by --check builders and tests)"
    ],
@@ -8816,7 +8816,7 @@
       "id": "B23.c2",
       "name": "Free-text order and question mapper",
       "kind": "AI (LLM)",
-      "status": "Planned",
+      "status": "Deferred",
       "purpose": "Understand phrasing.",
       "method": "Qwen3.5 4B enum classification with confidence.",
       "models": [
@@ -10386,8 +10386,8 @@
    "category": "Dialogue, voice and communication",
    "group": "g_feat_C",
    "kind": "hybrid",
-   "status": "Partially implemented",
-   "ai_status": "Planned",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
    "description": "Short spoken commands mapped to verbs (open results, call nurse).",
    "evidence": [
     "server/orders/grammar.py",
@@ -10460,7 +10460,7 @@
       "id": "C32.c1",
       "name": "Grammar plus LLM fallback",
       "kind": "AI (pretrained + LLM)",
-      "status": "Planned",
+      "status": "Implemented but incompletely tested",
       "purpose": "Commands.",
       "method": "ASR + grammar + enum LLM.",
       "models": [
@@ -11063,7 +11063,8 @@
     "docs/decisions/ADR-0020-act-recognition-architecture.md",
     "docs/decisions/ADR-0022-context-aware-speech-interpretation.md",
     "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
-    "src/ProcSense.Core/Scoring/CommunicationRubric.cs"
+    "src/ProcSense.Core/Scoring/CommunicationRubric.cs",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
    "lineage": [
     "p1-ai-language-s06"
@@ -11123,7 +11124,7 @@
       "id": "C36.c1",
       "name": "Taxonomy and guards",
       "kind": "existing deterministic",
-      "status": "Implemented but incompletely tested",
+      "status": "Deferred",
       "purpose": "Fair credit.",
       "method": "Rules.",
       "models": [],
@@ -15484,8 +15485,8 @@
    "category": "Platform, evaluation and advanced research",
    "group": "g_feat_E",
    "kind": "ai",
-   "status": "Partially implemented",
-   "ai_status": "Partially implemented",
+   "status": "Implemented but incompletely tested",
+   "ai_status": "Implemented but incompletely tested",
    "description": "Compare a medical model with the general default. MedGemma is gated under Health AI Developer Foundations terms.",
    "evidence": [
     "tools/ai/model_candidate.py",
@@ -15553,7 +15554,7 @@
       "id": "E61.c1",
       "name": "Medical LLM benchmark",
       "kind": "AI (pretrained)",
-      "status": "Partially implemented",
+      "status": "Implemented but incompletely tested",
       "purpose": "Compare.",
       "method": "MedGemma 4B under HAI-DEF terms.",
       "models": [

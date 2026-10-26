@@ -1,0 +1,75 @@
+{
+ "model": "gemma4:31b-cloud",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v6": {
+   "file": "paraphrases_v6.json",
+   "rows": 64,
+   "frozen_scored_now": true,
+   "second_look": false,
+   "grammar": {
+    "orders": 54,
+    "correct": 0.111,
+    "wrong": 0.019,
+    "menu": 0.87,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 27,
+    "latency_ms_p95": 48,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "3/16",
+     "place": "1/6",
+     "staff": "0/5",
+     "test": "0/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   },
+   "current": {
+    "orders": 54,
+    "correct": 0.944,
+    "wrong": 0.037,
+    "menu": 0.019,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 0,
+    "clarify_questions_containing_the_right_item": 0,
+    "latency_ms_p50": 1223,
+    "latency_ms_p95": 1759,
+    "by_kind": {
+     "home_medicine": "4/4",
+     "medicine": "14/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "23/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "begin the sepsis six",
+      "wanted": "TR-SEPSIS-BUNDLE",
+      "heard": "lactate_cultures",
+      "intent": "ORDER_TEST"
+     },
+     {
+      "said": "page the surgical registrar",
+      "wanted": "surgeon",
+      "heard": "senior",
+      "intent": "CALL_STAFF"
+     }
+    ]
+   }
+  }
+ }
+}

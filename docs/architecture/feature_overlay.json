@@ -207,12 +207,14 @@
    "gates": []
   },
   "B23": {
-   "runtime": "`src/ProcSense.Core` Discovery and Investigations subsystems",
+   "runtime": "`src/ProcSense.Core` Discovery and Investigations subsystems; the model fallback of the order grammar reads Gemma 4 31B Cloud when consent and approval allow, the local model otherwise (`server/orders/llm_fallback.py`, prompts orders.kind@4 and orders.map@5, notes in `content/ai/order_notes.json`)",
    "tests": [
     "tests/ProcSense.Core.Tests/DiscoveryTests.cs",
     "tests/ProcSense.Core.Tests/InvestigationsTests.cs"
    ],
-   "gates": []
+   "gates": [
+    "order_fallback"
+   ]
   },
   "C24": {
    "runtime": "`server/dialogue/dialogue.py` behind the AI gateway (`server/routers/ai_gateway.py`) with the grounding validator",
@@ -301,12 +303,13 @@
    ]
   },
   "C32": {
-   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's",
+   "runtime": "`server/orders/grammar.py` parses spoken commands; the Quest client is Sannan's; measured on the frozen held-out set 8: 96.3 percent read back correctly, 0 wrong (`reports/ai/orders-mapper-compare-v8_gemma.json`), gate `order_fallback` ON",
    "tests": [
     "server/tests/test_orders.py"
    ],
    "gates": [
-    "voice_orders"
+    "voice_orders",
+    "order_fallback"
    ]
   },
   "C33": {
@@ -345,7 +348,7 @@
     "tests/ProcSense.Core.Tests/CommunicationScoringTests.cs"
    ],
    "gates": [],
-   "engineering_complete": "the communication taxonomy and evidence mapping are built and tested; nothing further is gated here"
+   "engineering_complete": "the communication taxonomy and the evidence mapping are built and used by the graded scoring (content/assessment, src/ProcSense.Core/Scoring/Evidence.cs, tests in CommunicationScoringTests.cs); the classifier the plan once listed beside them was retired by ADR-0025 and is not a gap"
   },
   "C37": {
    "runtime": "`server/evaluate` (the Gemma semantic evaluator: prompt, strict contract, bounded retry, menu fail-safe) behind `server/routers/evaluate.py` and the `speech_evaluation` gate; the engine (`src/ProcSense.Core/Speech`, `src/ProcSense.Core/Scoring/Evidence.cs`, `src/ProcSense.Core/Scoring/CommunicationScorer.cs`) accepts a judgement only for what the trainee performed now, in its window and state, refuses critical acts as evidence and scores the grades; the Unity half is `unity/Assets/Scripts/Voice/SpeechEvaluation.cs` (ADR-0025)",
@@ -545,7 +548,8 @@
    "tests": [
     "tools/ci/test_safety_invariants.py"
    ],
-   "gates": []
+   "gates": [],
+   "retired": "Retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator state, which met its acceptance; the classifier pilot, its gate and its code were removed. It is reconsidered only if the Gemma evaluator misses its targets in the final Quest validation (DC-10)."
   },
   "E61": {
    "runtime": "`tools/ai/model_candidate.py` and `content/ai/model_candidates.json`; nothing is downloaded or accepted",
@@ -620,8 +624,6 @@
   }
  },
  "not_built": {
-  "B23.c2": "Built and measured, below its acceptance, gate `order_fallback` OFF: the model fallback of the order grammar (server/orders/llm_fallback.py, route server/routers/orders.py): kind stage, content notes, deterministic re-ranking and an agreement rule over two readings. On a frozen fourth paraphrase set (64 rows, scored once, ADR-0021) it read back the right item for 77.8 percent of 54 orders against 27.8 percent for the grammar alone (plan: 90 percent), offered a wrong item for 3.7 percent and no non-order, at 3.6 s median and 6.6 s p95 (reports/ai/orders-mapper-compare-v4.json); on the same development sets it has fewer correct read-backs than the single-call mapper but half the wrong ones and none of its false offers. It stays off; the grammar and the menu are unchanged.",
-  "C32.c1": "Built and measured, below its acceptance, gate `order_fallback` OFF (see B23.c2: 77.8 percent correct against the plan's 95 on the frozen fourth set); the server route and read-back are on. The Quest voice client is Sannan's (DC-08).",
   "A4.c2": "Built and measured, below its acceptance, gate `plan_extras` OFF: the plan composer's interaction proposals (server/generation/plan_extras.py) choose only among knowledge-base pairs found by code; every claimed pair is re-checked. On the 53 library cases the real 4B chose an interaction for 24 (45 percent), which equals the 24 cases that have a pair at all, against the plan's 80 percent (reports/ai/plan-extras-eval.json); relevance is a human rating (EX-03).",
   "A5.c2": "Built, gate `plan_extras` OFF: the model chooses up to 3 approved, eligible events per case (plan_extras.py); the engine restricts practice-mode events to the plan (SessionOptions.PlannedEvents, tests/ProcSense.Core.Tests/PlannedEventsTests.cs). No ineligible event in 53 cases; whether the chosen events fit the case is a human rating (EX-03), not measured.",
   "A7.c2": "Built, gate `trap_writer` OFF: server/generation/trap_writer.py rewords only wrong options under the narrative lexical checks and reverts any wording that lowers trap fairness (24 of 98 options reworded on the library, fairness never lower: reports/ai/trap-writer-eval.json). The plan's acceptance, plausibility higher than the authored text, is a human rating (EX-03) and is not measured.",

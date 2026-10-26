@@ -1,0 +1,55 @@
+{
+ "model": "qwen3.5:4b-q4_K_M",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v8": {
+   "file": "paraphrases_v8.json",
+   "rows": 64,
+   "frozen_scored_now": false,
+   "second_look": true,
+   "grammar": {
+    "orders": 54,
+    "correct": 0.315,
+    "wrong": 0.0,
+    "menu": 0.685,
+    "non_orders": 10,
+    "false_offer": 0.1,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 28,
+    "latency_ms_p95": 53,
+    "by_kind": {
+     "home_medicine": "2/4",
+     "medicine": "4/16",
+     "place": "3/6",
+     "staff": "3/5",
+     "test": "5/23"
+    },
+    "wrong_examples": []
+   },
+   "current": {
+    "orders": 54,
+    "correct": 0.907,
+    "wrong": 0.0,
+    "menu": 0.093,
+    "non_orders": 10,
+    "false_offer": 0.2,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 4567,
+    "latency_ms_p95": 7053,
+    "by_kind": {
+     "home_medicine": "3/4",
+     "medicine": "15/16",
+     "place": "6/6",
+     "staff": "4/5",
+     "test": "21/23"
+    },
+    "wrong_examples": []
+   }
+  }
+ }
+}

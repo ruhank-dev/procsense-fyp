@@ -10,6 +10,7 @@ items that still stand between it and final acceptance (`docs/testing/external_t
   Partly built                    a realising step is only partly done
   Owned by others                 a realising step is Sannan's and not yet approved (the engine half may be done)
   Research: trigger not met       analysed on purpose; nothing is built until the trigger holds
+  Retired by decision             an architecture decision removed it on purpose; recorded in the overlay, not unfinished engineering
 
 `--sync-json` writes the same result into the canonical pipeline JSON (feature `status`, capability `status`, and the evidence paths of the reconciliation) so the generated plans and registries stop saying "planned" for what is built;
 `--check` fails when the committed matrix or the JSON differs from what the rules give, or a path in the overlay does not exist, or a feature has no test file. Nothing is ticked here.
@@ -34,7 +35,7 @@ PIPELINE = ROOT / "docs" / "architecture" / "procsense_full_pipeline.json"
 OVERLAY = ROOT / "docs" / "architecture" / "feature_overlay.json"
 FEATURES = ROOT / "content" / "ai" / "features.json"
 OUT = ROOT / "docs" / "architecture" / "feature_implementation_matrix.md"
-RESULT_TO_STATUS = {"Complete": "Implemented and tested", "Engineering complete": "Implemented but incompletely tested", "Built, gated off": "Implemented but incompletely tested", "Engineering complete, gated off": "Implemented but incompletely tested", "Partly built": "Partially implemented",
+RESULT_TO_STATUS = {"Complete": "Implemented and tested", "Engineering complete": "Implemented but incompletely tested", "Built, gated off": "Implemented but incompletely tested", "Engineering complete, gated off": "Implemented but incompletely tested", "Retired by decision": "Deferred", "Partly built": "Partially implemented",
                     "Owned by others": "Planned", "Research: trigger not met": "Deferred"}
 TEST = re.compile(r"(^|/)(test_[^/]*|[^/]*Tests?\.[a-z]+)$|^tests/|/tests/")
 
@@ -83,6 +84,10 @@ def derive(f: dict, ctx: dict) -> dict:
     problems += [f"task {t} has no reconciliation entry" for t in tasks if t not in ctx["entries"]]
     result = result_of(st, unticked_others) if st else "Partly built"
     unbuilt = {k: v for k, v in ctx["notbuilt"].items() if k.split(".")[0] == f["id"]}
+    if ov.get("engineering_complete") and result == "Research: trigger not met":
+        result = "Engineering complete"                     # the only retired steps are a part the plan once listed (the classifier); the feature's own deliverable is built and used
+    if ov.get("retired"):
+        result = "Retired by decision"                          # an architecture decision removed it on purpose: not unfinished engineering
     if result == "Built, gated off" and ov.get("engineering_complete"):
         result = "Engineering complete, gated off"           # everything the team can build and test is done; the gate stays OFF until the human evidence the overlay names exists
     if unbuilt and result in ("Complete", "Engineering complete"):

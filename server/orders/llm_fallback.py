@@ -19,10 +19,10 @@ from dataclasses import dataclass
 from pathlib import Path
 
 try:
-    from llm import gateway
+    from llm import gateway, routing
     from orders.grammar import Entry, TRIGGERS, clean
 except ImportError:
-    from server.llm import gateway
+    from server.llm import gateway, routing
     from server.orders.grammar import Entry, TRIGGERS, clean
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -36,6 +36,15 @@ HOLD_WORDS = TRIGGERS["HOLD_MED"] + ("leave out", "leave off", "left off", "left
 KIND_WORDS = {"test": "test or scan", "medicine": "medicine, fluid or oxygen", "home_medicine": "medicine the patient takes at home", "place": "place to take the patient", "staff": "member of staff"}
 
 
+@functools.lru_cache(maxsize=4)
+def _notes(section: str = "tests") -> dict[str, str]:
+    """What each test is for, in one plain sentence (content/ai/order_notes.json, awaiting clinician review): the model sees it beside the item's name, so a request put as a question reaches the right test."""
+    try:
+        return json.loads((ROOT / "content" / "ai" / "order_notes.json").read_text(encoding="utf-8"))[section]
+    except (OSError, ValueError, KeyError):
+        return {}
+
+
 @functools.lru_cache(maxsize=1)
 def _glosses() -> dict[tuple[str, str], str]:
     """A short note of what each item shows or does, made from the content (nothing typed twice): a test names its kind and what it measures, a medicine the effects the physiology tables give it, a place what can be done there."""
@@ -43,10 +52,16 @@ def _glosses() -> dict[tuple[str, str], str]:
     inv = json.loads((ROOT / "content" / "investigations" / "investigations.json").read_text(encoding="utf-8"))
     for t in inv["tests"]:
         out[("test", t["id"])] = f"{t['kind']} investigation; shows {', '.join(t['analytes'][:5])}" if t.get("analytes") else f"{t['kind']} investigation"
+        if t["id"] in _notes():
+            out[("test", t["id"])] += "; for: " + _notes()[t["id"]]
     tre = json.loads((ROOT / "content" / "treatments.json").read_text(encoding="utf-8"))
     for t in tre["treatments"]:
         eff = [e.replace("EFF-", "").replace("-", " ").lower() for e in t.get("effects", [])]
         out[("medicine", t["id"])] = (f"{t['kind']}; effect: {', '.join(eff)}" if eff else f"{t['kind']} given to the patient")
+    for sid, note in _notes("staff").items():
+        out[("staff", sid)] = note
+    for mid, note in _notes("medicine").items():
+        out[("medicine", mid)] = out.get(("medicine", mid), "") + "; for: " + note
     loc = json.loads((ROOT / "content" / "locations" / "locations.json").read_text(encoding="utf-8"))
     for p in loc["locations"]:
         out[("place", p["id"])] = f"a place; offers {', '.join(p.get('capabilities', [])) or 'care'}"
@@ -74,10 +89,10 @@ def is_hold(text: str) -> bool:
     return any(re.search(rf"(^| ){re.escape(w)}( |$)", text) for w in HOLD_WORDS)
 
 
-def shortlist(text: str, vocab: list[Entry], size: int = LIST_SIZE) -> list[Entry]:
+def shortlist(text: str, vocab: list[Entry], size: int = LIST_SIZE, all_kinds: bool = False) -> list[Entry]:
     """Every item the trainee could mean (tests, medicines, places, staff; the medicines the patient takes at home only when the sentence holds or stops something), one per (kind, target), the closest to the words of
     the text first. The whole list is offered, not only the lexical matches, because a described order ("a trace of his heart") shares no word with its item ("ECG"); the list is about 55 lines, which the live model reads in well under a second."""
-    kinds = KINDS if is_hold(text) else tuple(k for k in KINDS if k != "home_medicine")
+    kinds = KINDS if (all_kinds or is_hold(text)) else tuple(k for k in KINDS if k != "home_medicine")
     words = text.split()
     grams = {" ".join(words[i:i + n]) for n in range(1, 5) for i in range(len(words) - n + 1)} | {text}
     best: dict[tuple[str, str], tuple[float, Entry]] = {}
@@ -156,6 +171,9 @@ class OrderMapper:
         if not r.ok or r.value["kind"] == "NONE":
             return None
         k = r.value["kind"]
+        answered_by = next((a.get("model", "") for a in reversed(r.attempts) if a.get("ok")), "")
+        if routing.is_cloud(answered_by):                               # the large model reads the whole sentence: a home medicine it names stands (the correction below was written for the small local model, which over-predicts them); a place that is also a scan is still a place only when the sentence moves the patient
+            return "test" if k == "place" and not any(w in text for w in MOVES) else k
         if k == "home_medicine" and not is_hold(text):
             k = "medicine"
         if k == "place" and not any(w in text for w in MOVES):
@@ -184,6 +202,8 @@ class OrderMapper:
         kind = self._kind(text) if self.two_stage else None
         if self.two_stage and kind is None:                           # the kind stage is also the guard against turning small talk into an order: tried without it (fifth session, second pass) the share of non-orders offered rose from 0 to 20 percent on a development set for 2 points of recall
             return None
+        if kind == "home_medicine" and not any(e.kind == "home_medicine" for e in pool):
+            pool = shortlist(text, vocab, all_kinds=True)
         ranked = rerank(text, [e for e in pool if kind is None or e.kind == kind] or pool, vocab)[:RERANK_K]
         shown = sorted(ranked, key=lambda e: (e.kind, e.target)) if self.lean else ranked
         detailed = {f"{e.kind}:{e.target}" for e in ranked[:DETAIL_TOP if not self.short else 6]} if self.compact else None

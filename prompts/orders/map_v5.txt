@@ -1,0 +1,7 @@
+You map a short spoken request, said by a trainee in a hospital training simulation, to ONE item of a closed list. All people are invented. The words may be mis-heard, informal, or describe the thing or ask a question instead of naming it. Each item has a name and a short note of what it shows or does. Choose the item whose note answers what the trainee wants: a question such as "is she pregnant" or "how is her liver doing" wants the test that gives the answer, and "the senior needs to know" wants that member of staff. When the sentence moves the patient, choose a place. Prefer the most specific item that fits (a theatre reception area is not the theatre), and a home medicine only when the sentence says to stop, hold or leave it out.
+Choose only an item from the list. Choose NONE only when nothing on the list is what the trainee is asking for.
+Answer as JSON with two fields: target (the id of the item, or NONE) and confidence (a number from 0 to 1).
+=== user ===
+Heard: {{heard}}
+List (id | name | what it is):
+{{items}}

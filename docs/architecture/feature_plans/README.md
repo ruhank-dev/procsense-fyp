@@ -28,7 +28,7 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 | B20 | Anomalies and artefacts (deliberate and realistic) | [[x] B20.md](../../plans/features/%5Bx%5D%20B20.md) |
 | B21 | Result variation (repeats, trends, timing) | [[x] B21.md](../../plans/features/%5Bx%5D%20B21.md) |
 | B22 | Investigation Interpreter (teaching aid) | [[x] B22.md](../../plans/features/%5Bx%5D%20B22.md) |
-| B23 | Investigation discovery | [B23.md](../../plans/features/B23.md) |
+| B23 | Investigation discovery | [[x] B23.md](../../plans/features/%5Bx%5D%20B23.md) |
 | C24 | Patient dialogue | [[x] C24.md](../../plans/features/%5Bx%5D%20C24.md) |
 | C25 | Nurse dialogue | [[x] C25.md](../../plans/features/%5Bx%5D%20C25.md) |
 | C26 | Anaesthetist dialogue | [[x] C26.md](../../plans/features/%5Bx%5D%20C26.md) |
@@ -37,7 +37,7 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 | C29 | Persona system | [[x] C29.md](../../plans/features/%5Bx%5D%20C29.md) |
 | C30 | Context-aware and reactive dialogue | [[x] C30.md](../../plans/features/%5Bx%5D%20C30.md) |
 | C31 | Voice interaction (end to end) | [[x] C31.md](../../plans/features/%5Bx%5D%20C31.md) |
-| C32 | Voice commands | [C32.md](../../plans/features/C32.md) |
+| C32 | Voice commands | [[x] C32.md](../../plans/features/%5Bx%5D%20C32.md) |
 | C33 | Speech-to-text | [[x] C33.md](../../plans/features/%5Bx%5D%20C33.md) |
 | C34 | Text-to-speech | [[x] C34.md](../../plans/features/%5Bx%5D%20C34.md) |
 | C35 | Voice orders and read-back | [[x] C35.md](../../plans/features/%5Bx%5D%20C35.md) |
@@ -65,7 +65,7 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 | E57 | LLM serving and benchmark | [[x] E57.md](../../plans/features/%5Bx%5D%20E57.md) |
 | E58 | Retrieval over approved content (RAG) | [[x] E58.md](../../plans/features/%5Bx%5D%20E58.md) |
 | E60 | P2 small trained classifier | [E60.md](../../plans/features/E60.md) |
-| E61 | Medical LLM benchmark (for example MedGemma) | [E61.md](../../plans/features/E61.md) |
+| E61 | Medical LLM benchmark (for example MedGemma) | [[x] E61.md](../../plans/features/%5Bx%5D%20E61.md) |
 | E62 | Backend and AI gateway | [[x] E62.md](../../plans/features/%5Bx%5D%20E62.md) |
 | E63 | On-device speech recognition | [[x] E63.md](../../plans/features/%5Bx%5D%20E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | [E64.md](../../plans/features/E64.md) |

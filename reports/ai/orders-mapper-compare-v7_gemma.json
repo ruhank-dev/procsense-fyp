@@ -1,0 +1,87 @@
+{
+ "model": "gemma4:31b-cloud",
+ "synthetic": true,
+ "independent": false,
+ "sets": {
+  "v7": {
+   "file": "paraphrases_v7.json",
+   "rows": 64,
+   "frozen_scored_now": true,
+   "second_look": false,
+   "grammar": {
+    "orders": 54,
+    "correct": 0.296,
+    "wrong": 0.037,
+    "menu": 0.667,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 27,
+    "latency_ms_p95": 47,
+    "by_kind": {
+     "home_medicine": "1/4",
+     "medicine": "4/16",
+     "place": "3/6",
+     "staff": "2/5",
+     "test": "6/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "give the antibiotic before the incision",
+      "wanted": "TR-ABX-PROPHYLAXIS",
+      "heard": "TR-ABX-S2",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "give him glucose gel, he is hypoglycaemic and awake",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   },
+   "current": {
+    "orders": 54,
+    "correct": 0.926,
+    "wrong": 0.056,
+    "menu": 0.019,
+    "non_orders": 10,
+    "false_offer": 0.0,
+    "released_without_confirmation": 0,
+    "clarify_questions": 1,
+    "clarify_questions_containing_the_right_item": 1,
+    "latency_ms_p50": 1224,
+    "latency_ms_p95": 1535,
+    "by_kind": {
+     "home_medicine": "4/4",
+     "medicine": "13/16",
+     "place": "6/6",
+     "staff": "5/5",
+     "test": "22/23"
+    },
+    "wrong_examples": [
+     {
+      "said": "book an MRI scan",
+      "wanted": "mri",
+      "heard": "mri",
+      "intent": "REQUEST_TRANSPORT"
+     },
+     {
+      "said": "give the antibiotic before the incision",
+      "wanted": "TR-ABX-PROPHYLAXIS",
+      "heard": "TR-ABX-S2",
+      "intent": "REQUEST_MEDICATION"
+     },
+     {
+      "said": "give him glucose gel, he is hypoglycaemic and awake",
+      "wanted": "TR-FAST-SUGAR",
+      "heard": "TR-IV-GLUCOSE",
+      "intent": "REQUEST_MEDICATION"
+     }
+    ]
+   }
+  }
+ }
+}

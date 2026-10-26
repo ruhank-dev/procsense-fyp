@@ -121,38 +121,26 @@
   "p1-ai-language-s06": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (synthetic only)",
-   "now": "DONE_GATE_OFF",
+   "now": "RESEARCH_NEGATIVE",
+   "retired": true,
    "evidence": [
-    "tests/classifier_synthetic_v2/adversarial_manifest.json",
-    "content/assessment/taxonomy.json",
-    "tests/classifier_synthetic_v2/manifest.json",
-    "tests/classifier_synthetic_v3/manifest.json",
-    "docs/decisions/ADR-0013-classifier-ai-judged-evaluation.md",
-    "reports/ai/act-benchmark.json",
-    "reports/ai/act-benchmark-test2.json",
-    "docs/decisions/ADR-0020-act-recognition-architecture.md"
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
    "measured": "three synthetic sets AI-judged by two configurations of one model (kappa 0.84 to 0.85), frozen, leakage-checked, never called independent; a different-size cross-check labeller (J3, qwen3.5:9b) and four frozen adversarial sets added; the adjudicator is the builder and sided with the intent in nearly every case. 19 Oct (fifth session): the act benchmark (tests/action_bench_v1) scored five approaches on two frozen splits; the retained gate with a widened assertion check credited 0 of 40 critical and 0 of 300 non-assertive sentences on the second split (recall 0.49, precision 0.96); the model-based approaches credited 2 or 3 of 40 critical sentences (reports/ai/act-benchmark*.json, ADR-0020) [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
-   "open": "The classifier safety criteria are NOT met: the frozen set v5 credited 1 of 48 critical sentences; the independent set (EX-01) does not exist. The independent set needs real authors, a second labeller and an adjudicator (docs/research/classifier_benchmark)",
-   "external": "real authors, a second labeller and an adjudicator for the independent set (docs/research/classifier_benchmark)"
+   "open": "Retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator state; the classifier, its gate and its code were removed, so nothing is left to finish. Reopens only if the Gemma evaluator misses its targets in the final Quest validation (DC-10)"
   },
   "p1-ai-language-s07": {
    "owner": "Ruhan",
    "before": "Built 17 Oct (synthetic only)",
-   "now": "DONE_GATE_OFF",
+   "now": "RESEARCH_NEGATIVE",
+   "retired": true,
    "evidence": [
-    "reports/ai/classifier-bench-synthetic2.json",
-    "reports/ai/classifier-holdout-v3.json",
-    "reports/ai/classifier-adversarial.json",
-    "reports/ai/classifier-guard-only.json",
-    "reports/ai/classifier-adversarial-fresh.json",
-    "reports/ai/classifier-safety.json",
-    "docs/research/classifier_benchmark/safety_gate.md",
-    "tests/classifier_challenge_v4/challenge.json"
+    "docs/decisions/ADR-0025-gemma-first-speech-evaluation.md",
+    "reports/ai/speech-evaluation-acceptance.json"
    ],
    "measured": "18 Oct third session: the credit path is the embedding head AND the TF-IDF head naming the same ordinary act, both trained with hard negatives, plus an assertion check (denied, hypothetical, reported, incomplete). Failing set 3/48 credited to 0/48; frozen challenge set v4 (written first, scored once) 5/60 to 0/60 with credited precision 0.853 to 0.962 and 0/12 denials, hypotheticals or reports credited; v3 hold-out credited precision 0.942 to 0.989. Earlier: v2 test scored once TF-IDF 0.816, embeddings 0.792, Qwen 0.654 macro-F1; critical acts credited from speech 0 everywhere. Qwen 4B/9B as classifier are far below the heads and name critical content as ordinary acts (safety_gate.md). Synthetic and AI-judged, not independent [Code and tests of the classifier, cap and gate architecture retired by ADR-0025 on 21 Oct 2026; the measured results are kept as history and their evidence files were removed.]",
-   "open": "The production gate (`classifier`) needs the independent set (EX-01): classifier.independent_evidence is SKIPPED, so the classifier stays OFF; the informational gate classifier_safety passes but switches nothing on. A further change to a head or guard needs a new frozen set (v5)",
-   "external": "people: authors, a second labeller and an adjudicator (EX-01)"
+   "open": "Retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator state; the classifier, its gate and its code were removed, so nothing is left to finish. Reopens only if the Gemma evaluator misses its targets in the final Quest validation (DC-10)"
   },
   "p1-ai-language-s08": {
    "owner": "Ruhan",
@@ -1266,21 +1254,23 @@
     "reports/ai/speech-evaluation-acceptance.json"
    ],
    "measured": "the small trained classifier was built as a pilot and then retired by ADR-0025 (21 Oct 2026): speech is judged by the Gemma evaluator against the simulator's state, which met its acceptance (reports/ai/speech-evaluation-acceptance.json), so a trained classifier has no job to do",
-   "open": "Reopens only if the Gemma evaluator misses its targets in the final Quest validation (DC-10); no classifier code, gate or model is kept"
+   "open": "Reopens only if the Gemma evaluator misses its targets in the final Quest validation (DC-10); no classifier code, gate or model is kept",
+   "retired": true
   },
   "p2-ai-extensions-s05": {
    "owner": "Ruhan",
    "before": "Not started",
-   "now": "BLOCKED",
+   "now": "ENG_DONE",
    "evidence": [
     "tools/ai/model_candidate.py",
     "content/ai/model_candidates.json",
     "tools/ci/test_model_candidate.py",
     "docs/research/model_benchmarks.md"
    ],
-   "measured": "registry and decision rule built (7 tests): a gated model stays unusable until terms are recorded, a switch needs measured parity and a blind rating of 50; official pages read (R-041)",
-   "open": "MedGemma is gated: nothing was accepted on the owner's behalf or downloaded. After the terms are recorded, the runs, the no-advice check and the blind rating remain",
-   "external": "the account holder reading and accepting the MedGemma terms (content/ai/model_candidates.json), then the runs and a blind rating of 50 samples"
+   "measured": "registry and decision rule built (7 tests): a gated model stays unusable until terms are recorded, a switch needs measured parity and a blind rating of 50; on 25 Oct 2026 (UTC) the 4-bit medgemma:4b build was benchmarked b0 to b2 and compared; the result is INCONCLUSIVE, so the production model is unchanged (DT-222)",
+   "open": "The decision needs 50 blind ratings by people and the account holder's own acceptance of the MedGemma terms; until both exist nothing switches",
+   "external": "the account holder reading and accepting the MedGemma terms (content/ai/model_candidates.json) and 50 blind human ratings of the comparison",
+   "implementation": "complete"
   },
   "p2-ai-learning-analytics-s01": {
    "owner": "Ruhan",
