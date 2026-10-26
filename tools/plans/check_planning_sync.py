@@ -50,7 +50,7 @@ def main() -> int:
 
     # files
     PLANS = ARCH.parent / "plans" / "features"
-    plan_files = {(p.stem[4:] if p.stem.startswith("[x] ") else p.stem) for p in PLANS.glob("*.md")} if PLANS.exists() else set()
+    plan_files = {(p.stem[2:].strip() if p.stem.startswith("✅") else p.stem[4:] if p.stem.startswith("[x] ") else p.stem) for p in PLANS.glob("*.md")} if PLANS.exists() else set()
     stray = sorted(p.name for p in (ARCH / "feature_plans").glob("*.md") if p.name != "README.md")
     if stray:
         problems.append(f"files: plan files must live only in docs/plans/features, found in docs/architecture/feature_plans: {stray}")
@@ -112,7 +112,7 @@ def main() -> int:
         found = {i for i in found if i not in ("VR-G", "VR-CM", "VR-D")}
         for i in sorted(found - ids):
             problems.append(f"trace: {d.relative_to(ROOT).as_posix()} cites {i}, which is not in the pipeline JSON")
-        for fid in set(re.findall(r"\b([A-E]\d{1,2})\b(?![.\w-])", text)):
+        for fid in set(re.findall(r"(?<![%\w-])\b([A-E]\d{1,2})\b(?![.\w-])", text)):
             if re.fullmatch(r"[A-E]\d{1,2}", fid) and fid not in feats and int(fid[1:]) >= 1 and d.name != "feature_registry.md":
                 # only flag ids that look like feature ids used as such (A1..E69); ignore other short codes
                 if 1 <= int(fid[1:]) <= 69 and fid[0] in "ABCDE":

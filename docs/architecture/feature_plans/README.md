@@ -6,71 +6,71 @@ Start from the [feature registry](../feature_registry.md), or open one plan:
 
 | ID | Feature | Plan |
 |---|---|---|
-| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | [[x] A1.md](../../plans/features/%5Bx%5D%20A1.md) |
-| A2 | Live dataset-driven scenario generation | [[x] A2.md](../../plans/features/%5Bx%5D%20A2.md) |
-| A3 | Patient profile generation | [[x] A3.md](../../plans/features/%5Bx%5D%20A3.md) |
-| A4 | Mixed (multi-problem) case generation | [[x] A4.md](../../plans/features/%5Bx%5D%20A4.md) |
-| A5 | Dynamic events (selection and generated variants) | [[x] A5.md](../../plans/features/%5Bx%5D%20A5.md) |
-| A6 | Novelty control and scenario fingerprinting | [[x] A6.md](../../plans/features/%5Bx%5D%20A6.md) |
-| A7 | Adversarial (trap) scenario generation for trainees | [[x] A7.md](../../plans/features/%5Bx%5D%20A7.md) |
-| A8 | Branching scenario paths | [[x] A8.md](../../plans/features/%5Bx%5D%20A8.md) |
-| A9 | Scenario quality evaluation (per scenario, in the pipeline) | [[x] A9.md](../../plans/features/%5Bx%5D%20A9.md) |
-| A10 | Validation, repair and rejection | [[x] A10.md](../../plans/features/%5Bx%5D%20A10.md) |
-| A11 | Difficulty control in generation | [[x] A11.md](../../plans/features/%5Bx%5D%20A11.md) |
-| A12 | Recombination of case components | [[x] A12.md](../../plans/features/%5Bx%5D%20A12.md) |
-| A13 | Provenance and reproducibility of generated scenarios | [[x] A13.md](../../plans/features/%5Bx%5D%20A13.md) |
-| B14 | Dataset-driven numeric generation (labs, vitals, trends) | [[x] B14.md](../../plans/features/%5Bx%5D%20B14.md) |
-| B15 | ECG generation and variation | [[x] B15.md](../../plans/features/%5Bx%5D%20B15.md) |
-| B16 | Ultrasound image selection and labelled synthesis | [[x] B16.md](../../plans/features/%5Bx%5D%20B16.md) |
-| B17 | Chest X-ray, CT and MRI selection | [[x] B17.md](../../plans/features/%5Bx%5D%20B17.md) |
-| B18 | Cross-modal consistency | [[x] B18.md](../../plans/features/%5Bx%5D%20B18.md) |
-| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | [[x] B19.md](../../plans/features/%5Bx%5D%20B19.md) |
-| B20 | Anomalies and artefacts (deliberate and realistic) | [[x] B20.md](../../plans/features/%5Bx%5D%20B20.md) |
-| B21 | Result variation (repeats, trends, timing) | [[x] B21.md](../../plans/features/%5Bx%5D%20B21.md) |
-| B22 | Investigation Interpreter (teaching aid) | [[x] B22.md](../../plans/features/%5Bx%5D%20B22.md) |
-| B23 | Investigation discovery | [[x] B23.md](../../plans/features/%5Bx%5D%20B23.md) |
-| C24 | Patient dialogue | [[x] C24.md](../../plans/features/%5Bx%5D%20C24.md) |
-| C25 | Nurse dialogue | [[x] C25.md](../../plans/features/%5Bx%5D%20C25.md) |
-| C26 | Anaesthetist dialogue | [[x] C26.md](../../plans/features/%5Bx%5D%20C26.md) |
-| C27 | Surgeon dialogue | [[x] C27.md](../../plans/features/%5Bx%5D%20C27.md) |
-| C28 | Porter dialogue | [[x] C28.md](../../plans/features/%5Bx%5D%20C28.md) |
-| C29 | Persona system | [[x] C29.md](../../plans/features/%5Bx%5D%20C29.md) |
-| C30 | Context-aware and reactive dialogue | [[x] C30.md](../../plans/features/%5Bx%5D%20C30.md) |
-| C31 | Voice interaction (end to end) | [[x] C31.md](../../plans/features/%5Bx%5D%20C31.md) |
-| C32 | Voice commands | [[x] C32.md](../../plans/features/%5Bx%5D%20C32.md) |
-| C33 | Speech-to-text | [[x] C33.md](../../plans/features/%5Bx%5D%20C33.md) |
-| C34 | Text-to-speech | [[x] C34.md](../../plans/features/%5Bx%5D%20C34.md) |
-| C35 | Voice orders and read-back | [[x] C35.md](../../plans/features/%5Bx%5D%20C35.md) |
-| C36 | Communication acts (taxonomy and evidence mapping) | [[x] C36.md](../../plans/features/%5Bx%5D%20C36.md) |
-| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | [[x] C37.md](../../plans/features/%5Bx%5D%20C37.md) |
-| D38 | AI debrief | [[x] D38.md](../../plans/features/%5Bx%5D%20D38.md) |
-| D39 | Coaching (in-session hints and between-session advice) | [[x] D39.md](../../plans/features/%5Bx%5D%20D39.md) |
-| D40 | Performance pattern analysis | [[x] D40.md](../../plans/features/%5Bx%5D%20D40.md) |
-| D41 | Confidence calibration coach | [[x] D41.md](../../plans/features/%5Bx%5D%20D41.md) |
-| D42 | Clinical Reasoning Fingerprint | [[x] D42.md](../../plans/features/%5Bx%5D%20D42.md) |
-| D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | [[x] D43.md](../../plans/features/%5Bx%5D%20D43.md) |
-| D44 | AI enhancement to adaptive difficulty | [[x] D44.md](../../plans/features/%5Bx%5D%20D44.md) |
-| D45 | Progression tracking | [[x] D45.md](../../plans/features/%5Bx%5D%20D45.md) |
-| D46 | Missed-step explanation | [[x] D46.md](../../plans/features/%5Bx%5D%20D46.md) |
-| D47 | Evidence-based feedback | [[x] D47.md](../../plans/features/%5Bx%5D%20D47.md) |
-| E48 | Patient Digital Twin | [[x] E48.md](../../plans/features/%5Bx%5D%20E48.md) |
-| E49 | Multi-Agent Clinical Simulation Lab | [[x] E49.md](../../plans/features/%5Bx%5D%20E49.md) |
-| E50 | Adversarial generator (red-team for validators and dialogue) | [[x] E50.md](../../plans/features/%5Bx%5D%20E50.md) |
-| E51 | Scenario Quality Evaluator (offline batch) | [[x] E51.md](../../plans/features/%5Bx%5D%20E51.md) |
-| E52 | Investigation analytics | [[x] E52.md](../../plans/features/%5Bx%5D%20E52.md) |
-| E53 | Grounding validator | [[x] E53.md](../../plans/features/%5Bx%5D%20E53.md) |
-| E54 | Context builder and reaction queue | [[x] E54.md](../../plans/features/%5Bx%5D%20E54.md) |
-| E55 | AI evaluation harness and switch-off gate | [[x] E55.md](../../plans/features/%5Bx%5D%20E55.md) |
-| E56 | Difficulty explanation to the trainee | [[x] E56.md](../../plans/features/%5Bx%5D%20E56.md) |
-| E57 | LLM serving and benchmark | [[x] E57.md](../../plans/features/%5Bx%5D%20E57.md) |
-| E58 | Retrieval over approved content (RAG) | [[x] E58.md](../../plans/features/%5Bx%5D%20E58.md) |
+| A1 | AI Scenario Composer (block library, solver, Stage A proposals) | [✅ A1.md](../../plans/features/%E2%9C%85%20A1.md) |
+| A2 | Live dataset-driven scenario generation | [✅ A2.md](../../plans/features/%E2%9C%85%20A2.md) |
+| A3 | Patient profile generation | [✅ A3.md](../../plans/features/%E2%9C%85%20A3.md) |
+| A4 | Mixed (multi-problem) case generation | [✅ A4.md](../../plans/features/%E2%9C%85%20A4.md) |
+| A5 | Dynamic events (selection and generated variants) | [✅ A5.md](../../plans/features/%E2%9C%85%20A5.md) |
+| A6 | Novelty control and scenario fingerprinting | [✅ A6.md](../../plans/features/%E2%9C%85%20A6.md) |
+| A7 | Adversarial (trap) scenario generation for trainees | [✅ A7.md](../../plans/features/%E2%9C%85%20A7.md) |
+| A8 | Branching scenario paths | [✅ A8.md](../../plans/features/%E2%9C%85%20A8.md) |
+| A9 | Scenario quality evaluation (per scenario, in the pipeline) | [✅ A9.md](../../plans/features/%E2%9C%85%20A9.md) |
+| A10 | Validation, repair and rejection | [✅ A10.md](../../plans/features/%E2%9C%85%20A10.md) |
+| A11 | Difficulty control in generation | [✅ A11.md](../../plans/features/%E2%9C%85%20A11.md) |
+| A12 | Recombination of case components | [✅ A12.md](../../plans/features/%E2%9C%85%20A12.md) |
+| A13 | Provenance and reproducibility of generated scenarios | [✅ A13.md](../../plans/features/%E2%9C%85%20A13.md) |
+| B14 | Dataset-driven numeric generation (labs, vitals, trends) | [✅ B14.md](../../plans/features/%E2%9C%85%20B14.md) |
+| B15 | ECG generation and variation | [✅ B15.md](../../plans/features/%E2%9C%85%20B15.md) |
+| B16 | Ultrasound image selection and labelled synthesis | [✅ B16.md](../../plans/features/%E2%9C%85%20B16.md) |
+| B17 | Chest X-ray, CT and MRI selection | [✅ B17.md](../../plans/features/%E2%9C%85%20B17.md) |
+| B18 | Cross-modal consistency | [✅ B18.md](../../plans/features/%E2%9C%85%20B18.md) |
+| B19 | Synthetic evaluation datasets (sessions, utterances, scenarios) | [✅ B19.md](../../plans/features/%E2%9C%85%20B19.md) |
+| B20 | Anomalies and artefacts (deliberate and realistic) | [✅ B20.md](../../plans/features/%E2%9C%85%20B20.md) |
+| B21 | Result variation (repeats, trends, timing) | [✅ B21.md](../../plans/features/%E2%9C%85%20B21.md) |
+| B22 | Investigation Interpreter (teaching aid) | [✅ B22.md](../../plans/features/%E2%9C%85%20B22.md) |
+| B23 | Investigation discovery | [✅ B23.md](../../plans/features/%E2%9C%85%20B23.md) |
+| C24 | Patient dialogue | [✅ C24.md](../../plans/features/%E2%9C%85%20C24.md) |
+| C25 | Nurse dialogue | [✅ C25.md](../../plans/features/%E2%9C%85%20C25.md) |
+| C26 | Anaesthetist dialogue | [✅ C26.md](../../plans/features/%E2%9C%85%20C26.md) |
+| C27 | Surgeon dialogue | [✅ C27.md](../../plans/features/%E2%9C%85%20C27.md) |
+| C28 | Porter dialogue | [✅ C28.md](../../plans/features/%E2%9C%85%20C28.md) |
+| C29 | Persona system | [✅ C29.md](../../plans/features/%E2%9C%85%20C29.md) |
+| C30 | Context-aware and reactive dialogue | [✅ C30.md](../../plans/features/%E2%9C%85%20C30.md) |
+| C31 | Voice interaction (end to end) | [✅ C31.md](../../plans/features/%E2%9C%85%20C31.md) |
+| C32 | Voice commands | [✅ C32.md](../../plans/features/%E2%9C%85%20C32.md) |
+| C33 | Speech-to-text | [✅ C33.md](../../plans/features/%E2%9C%85%20C33.md) |
+| C34 | Text-to-speech | [✅ C34.md](../../plans/features/%E2%9C%85%20C34.md) |
+| C35 | Voice orders and read-back | [✅ C35.md](../../plans/features/%E2%9C%85%20C35.md) |
+| C36 | Communication acts (taxonomy and evidence mapping) | [✅ C36.md](../../plans/features/%E2%9C%85%20C36.md) |
+| C37 | Speech evaluation (Gemma semantic evaluator, engine-scored) | [✅ C37.md](../../plans/features/%E2%9C%85%20C37.md) |
+| D38 | AI debrief | [✅ D38.md](../../plans/features/%E2%9C%85%20D38.md) |
+| D39 | Coaching (in-session hints and between-session advice) | [✅ D39.md](../../plans/features/%E2%9C%85%20D39.md) |
+| D40 | Performance pattern analysis | [✅ D40.md](../../plans/features/%E2%9C%85%20D40.md) |
+| D41 | Confidence calibration coach | [✅ D41.md](../../plans/features/%E2%9C%85%20D41.md) |
+| D42 | Clinical Reasoning Fingerprint | [✅ D42.md](../../plans/features/%E2%9C%85%20D42.md) |
+| D43 | Adaptive difficulty (deterministic Elo ratings and Selector) | [✅ D43.md](../../plans/features/%E2%9C%85%20D43.md) |
+| D44 | AI enhancement to adaptive difficulty | [✅ D44.md](../../plans/features/%E2%9C%85%20D44.md) |
+| D45 | Progression tracking | [✅ D45.md](../../plans/features/%E2%9C%85%20D45.md) |
+| D46 | Missed-step explanation | [✅ D46.md](../../plans/features/%E2%9C%85%20D46.md) |
+| D47 | Evidence-based feedback | [✅ D47.md](../../plans/features/%E2%9C%85%20D47.md) |
+| E48 | Patient Digital Twin | [✅ E48.md](../../plans/features/%E2%9C%85%20E48.md) |
+| E49 | Multi-Agent Clinical Simulation Lab | [✅ E49.md](../../plans/features/%E2%9C%85%20E49.md) |
+| E50 | Adversarial generator (red-team for validators and dialogue) | [✅ E50.md](../../plans/features/%E2%9C%85%20E50.md) |
+| E51 | Scenario Quality Evaluator (offline batch) | [✅ E51.md](../../plans/features/%E2%9C%85%20E51.md) |
+| E52 | Investigation analytics | [✅ E52.md](../../plans/features/%E2%9C%85%20E52.md) |
+| E53 | Grounding validator | [✅ E53.md](../../plans/features/%E2%9C%85%20E53.md) |
+| E54 | Context builder and reaction queue | [✅ E54.md](../../plans/features/%E2%9C%85%20E54.md) |
+| E55 | AI evaluation harness and switch-off gate | [✅ E55.md](../../plans/features/%E2%9C%85%20E55.md) |
+| E56 | Difficulty explanation to the trainee | [✅ E56.md](../../plans/features/%E2%9C%85%20E56.md) |
+| E57 | LLM serving and benchmark | [✅ E57.md](../../plans/features/%E2%9C%85%20E57.md) |
+| E58 | Retrieval over approved content (RAG) | [✅ E58.md](../../plans/features/%E2%9C%85%20E58.md) |
 | E60 | P2 small trained classifier | [E60.md](../../plans/features/E60.md) |
-| E61 | Medical LLM benchmark (for example MedGemma) | [[x] E61.md](../../plans/features/%5Bx%5D%20E61.md) |
-| E62 | Backend and AI gateway | [[x] E62.md](../../plans/features/%5Bx%5D%20E62.md) |
-| E63 | On-device speech recognition | [[x] E63.md](../../plans/features/%5Bx%5D%20E63.md) |
+| E61 | Medical LLM benchmark (for example MedGemma) | [✅ E61.md](../../plans/features/%E2%9C%85%20E61.md) |
+| E62 | Backend and AI gateway | [✅ E62.md](../../plans/features/%E2%9C%85%20E62.md) |
+| E63 | On-device speech recognition | [✅ E63.md](../../plans/features/%E2%9C%85%20E63.md) |
 | E64 | Generative image synthesis (diffusion or GAN) for medical images | [E64.md](../../plans/features/E64.md) |
 | E65 | Fine-tuning an LLM on clinical text | [E65.md](../../plans/features/E65.md) |
-| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | [[x] A66.md](../../plans/features/%5Bx%5D%20A66.md) |
-| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | [[x] D67.md](../../plans/features/%5Bx%5D%20D67.md) |
-| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | [[x] D68.md](../../plans/features/%5Bx%5D%20D68.md) |
-| E69 | AI inference infrastructure and dual-GPU deployment | [[x] E69.md](../../plans/features/%5Bx%5D%20E69.md) |
+| A66 | Scenario knowledge base (relationships learned from cases, walkthrough and datasets) | [✅ A66.md](../../plans/features/%E2%9C%85%20A66.md) |
+| D67 | Trainee learning profile (Bayesian learner model and performance interpreter) | [✅ D67.md](../../plans/features/%E2%9C%85%20D67.md) |
+| D68 | Personalised scenario targeting (policy, objectives for the composer, explanation) | [✅ D68.md](../../plans/features/%E2%9C%85%20D68.md) |
+| E69 | AI inference infrastructure and dual-GPU deployment | [✅ E69.md](../../plans/features/%E2%9C%85%20E69.md) |

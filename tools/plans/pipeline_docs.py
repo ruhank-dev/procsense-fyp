@@ -101,7 +101,11 @@ def implementation_block(f) -> str:
     gate = ", ".join(f"`{g}` {'ON' if v.get('enabled') else 'off'}{' (information only)' if v.get('informational') else ''}" for g, v in r["gates"]) or "none"
     ext = ", ".join(f"[{e}](../../testing/SANNAN_EXTERNAL_TESTING.md#{e.lower()})" for e in r["ext"]) or "none"
     steps = ", ".join(f"{t} ({_CTX['entries'][t]['now'] if t in _CTX['entries'] else '-'})" for t in r["tasks"])
-    return (f"**Implementation result (derived, 18 October 2026): {r['result']}**{(' (deferred by design: ' + ', '.join(r['deferred']) + ')') if r['deferred'] else ''}. Realising steps: {steps}. Where it runs: {ov.get('runtime', '-')}. "
+    done = plan_files.ticked(r["result"])
+    pending = ", ".join(r["ext"])
+    status = ("✅ Complete" if r["result"] == "Complete" and not r["ext"] else f"✅ Engineering complete; external validation pending ({pending})" if done and r["ext"] else "✅ Engineering complete; the switch is OFF until the human evidence named below exists" if done and r["result"].endswith("gated off")
+              else "✅ Complete" if done else f"Not complete: {r['result']}")
+    return (f"**Status: {status}.**\n\n**Implementation result (derived, 18 October 2026): {r['result']}**{(' (deferred by design: ' + ', '.join(r['deferred']) + ')') if r['deferred'] else ''}. Realising steps: {steps}. Where it runs: {ov.get('runtime', '-')}. "
             f"Tests: {', '.join('`' + t + '`' for t in ov.get('tests', [])) or 'none'}. Feature gate: {gate}. External acceptance still needed: {ext}. Full table: [feature_implementation_matrix.md](../../architecture/feature_implementation_matrix.md). "
             "The lists of what exists and what is missing in section 2, and the capability statuses, were written on 12 October 2026 as the specification baseline; the result above is current."
             + _checklist(f, r))
@@ -110,7 +114,7 @@ def implementation_block(f) -> str:
 def _checklist(f, r) -> str:
     """The completion checklist of a plan: engineering (the team's) and the headset or people checks that remain (Sannan's, left unticked until he records them)."""
     done = plan_files.ticked(r["result"])
-    lines = ["", "", "**Completion checklist** (derived; the file name carries `[x] ` when the first line is ticked, see [plan_files.py](../../../tools/plans/plan_files.py)):", "",
+    lines = ["", "", "**Completion checklist** (derived; the file name carries `✅ ` when the first line is ticked, see [plan_files.py](../../../tools/plans/plan_files.py)):", "",
              f"- [{'x' if done else ' '}] Engineering: built, wired and tested by the team ({r['result']}).",
              ] + [f"- [ ] Acceptance still needed: [{e}](../../testing/SANNAN_EXTERNAL_TESTING.md#{e.lower()}) (not recorded as passed)." for e in r["ext"]]
     if r["result"] == "Engineering complete, gated off":
@@ -350,7 +354,7 @@ def main() -> int:
     stale = []
     for f in (n for n in doc["nodes"] if n["type"] == "feature"):           # the plan under its other spelling (ticked or not) is removed
         want = plan_files.plan_name(f["id"], result_of_feature(f))
-        for other in (f"{f['id']}.md", f"{plan_files.PREFIX}{f['id']}.md"):
+        for other in [f"{f['id']}.md", f"{plan_files.PREFIX}{f['id']}.md"] + [f"{p}{f['id']}.md" for p in plan_files.LEGACY_PREFIXES]:
             old = ARCH / PLANS / other
             if other != want and old.exists():
                 if "--check" in sys.argv:
