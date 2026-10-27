@@ -122,6 +122,11 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/render.py --check
 
+  voice-copy:
+    desc: Copy the rendered voice lines (build/voice) into the Unity project for VoicePlayer (unity/Assets/Audio/Voice/Resources/Voice, git-ignored); a line without audio is shown as a subtitle only
+    cmds:
+      - uv run --project tools tools/voice/copy_to_unity.py {{.CLI_ARGS}}
+
   report-experiments:
     desc: Regenerate the experiments chapter of the report (docs/report/experiments.md) from the phase READMEs
     cmds:
