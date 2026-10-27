@@ -111,6 +111,12 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return SceneManager.LoadSceneAsync("Boot");
             for (int i = 0; i < 30; i++) yield return null;
+            // The room loads additively and teleport is refused while it is Busy: wait for it instead of racing a fixed frame budget.
+            var rooms = Object.FindAnyObjectByType<RoomLoader>();
+            int extra = 0;
+            float end = Time.realtimeSinceStartup + 20;
+            while (rooms != null && rooms.Busy && Time.realtimeSinceStartup < end) { extra++; yield return null; }
+            if (extra > 0) Debug.Log($"[ComfortTests] room needed {extra} frames beyond the fixed 30 to finish loading");
             SimulationHost.Instance.AutoTick = false;
         }
         private static IEnumerator Idle(SafeTeleportProvider provider)
