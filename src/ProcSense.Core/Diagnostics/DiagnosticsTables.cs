@@ -10,11 +10,11 @@ namespace ProcSense.Core.Diagnostics
     /// <summary>content/diagnostics/diagnostics.json (tools/content/build_diagnostics.py): how samples go to the laboratory, and the nurse's prompt about tubes left at the bedside.</summary>
     public sealed class DiagnosticsTables
     {
-        public static readonly DiagnosticsTables Empty = new DiagnosticsTables(new List<DispatchWay>(), 0, false, "");
+        public static readonly DiagnosticsTables Empty = new DiagnosticsTables(new List<DispatchWay>(), 0, false, "", 10);
 
-        public DiagnosticsTables(IReadOnlyList<DispatchWay> dispatch, double promptAfterMinutes, bool promptBeginnerOnly, string promptText)
+        public DiagnosticsTables(IReadOnlyList<DispatchWay> dispatch, double promptAfterMinutes, bool promptBeginnerOnly, string promptText, double waitOverlaySeconds = 10)
         {
-            Dispatch = dispatch; PromptAfterMinutes = promptAfterMinutes; PromptBeginnerOnly = promptBeginnerOnly; PromptText = promptText;
+            Dispatch = dispatch; PromptAfterMinutes = promptAfterMinutes; PromptBeginnerOnly = promptBeginnerOnly; PromptText = promptText; WaitOverlaySeconds = waitOverlaySeconds;
         }
 
         public IReadOnlyList<DispatchWay> Dispatch { get; }
@@ -25,6 +25,9 @@ namespace ProcSense.Core.Diagnostics
         /// <summary>The prompt is the beginner safety net: practice mode at the beginner level only, never in assessment.</summary>
         public bool PromptBeginnerOnly { get; }
         public string PromptText { get; }
+
+        /// <summary>Seconds the full waiting overlay stays on screen when the patient goes behind a door (p0-diagnostic-transitions-s06); then it shrinks to a corner note. Tuned with testers (EXP-DT-1).</summary>
+        public double WaitOverlaySeconds { get; }
 
         public DispatchWay? Way(string id) => Dispatch.FirstOrDefault(d => d.Id == id);
 
@@ -53,9 +56,14 @@ namespace ProcSense.Core.Diagnostics
             if (rule.Str("default") != "now" || rule.Str("later") != "later") throw new ContentException(root.Sub("send_rule") + ": the engine knows the values now and later only");
             rule.Str("ref");
             rule.Finish();
+            var overlay = root.Obj("wait_overlay");
+            double seconds = overlay.Num("seconds");
+            if (seconds < 0) throw new ContentException(root.Sub("wait_overlay") + ".seconds: must not be negative");
+            overlay.Str("note");
+            overlay.Finish();
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");
             root.Finish();
-            return new DiagnosticsTables(ways, after, beginner, text);
+            return new DiagnosticsTables(ways, after, beginner, text, seconds);
         }
     }
 }

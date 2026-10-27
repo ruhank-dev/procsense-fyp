@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using ProcSense.Core.Actions;
 using ProcSense.Core.Content;
@@ -37,6 +38,16 @@ namespace ProcSense.Core.Tests
             Assert.Equal((2.0, false), (t.Way("tube_station")!.TransitMinutes, t.Way("tube_station")!.Porter));
             Assert.True(t.Way("porter")!.Porter);
             Assert.Equal((10.0, true), (t.PromptAfterMinutes, t.PromptBeginnerOnly));
+            Assert.Equal(10.0, t.WaitOverlaySeconds);                                     // the waiting overlay's on-screen time (p0-diagnostic-transitions-s06)
+        }
+
+        [Fact]
+        public void The_waiting_overlay_time_comes_from_content_and_must_not_be_negative()
+        {
+            string json = File.ReadAllText(Path.Combine(TestCase.ContentRoot, "diagnostics", "diagnostics.json"));
+            Assert.Equal(25.0, DiagnosticsTables.Parse(json.Replace("\"seconds\": 10,", "\"seconds\": 25,")).WaitOverlaySeconds);
+            var e = Assert.Throws<ContentException>(() => DiagnosticsTables.Parse(json.Replace("\"seconds\": 10,", "\"seconds\": -1,")));
+            Assert.Contains("wait_overlay.seconds", e.Message);
         }
 
         [Fact]
