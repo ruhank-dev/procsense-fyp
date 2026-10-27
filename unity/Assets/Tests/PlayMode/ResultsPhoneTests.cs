@@ -83,6 +83,7 @@ namespace ProcSense.Tests.PlayMode
                 _host.Apply(new SimAction(step.Action.Verb, "patient", Channel.Vr, step.Action.Params.ToDictionary(kv => kv.Key, kv => kv.Value)));
             }
             Assert.AreEqual(2, views);
+            Snapshots.Photograph(results.Canvas, Snapshots.Out("results-repeat.png"));
             var body = results.BodyText;
             StringAssert.Contains("Potassium (repeat): 4.6 mmol/L", body);
             Assert.Less(body.IndexOf("6.4"), body.IndexOf("4.6"), "the first sample above, the repeat below");
@@ -96,6 +97,7 @@ namespace ProcSense.Tests.PlayMode
             Host("STK-S1-C");
             var results = Make<ResultsView>("results");
             var phone = Make<PhoneView>("phone");
+            phone.transform.position = new Vector3(3f, 0f, 0f);                     // beside the viewer, so their pictures do not overlap
             foreach (var verb in new[] { "introduce_self", "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.IsTrue(Do(verb).Accepted, verb);
             Assert.IsTrue(Do("order_investigation", ("test", "u_and_e")).Accepted);
             Assert.IsTrue(Do("take_sample", ("test", "u_and_e"), ("tube", "serum_gold")).Accepted);
@@ -129,6 +131,7 @@ namespace ProcSense.Tests.PlayMode
             results.RenderNow();
             Assert.IsFalse(results.AcknowledgeEnabled);
 
+            Snapshots.Photograph(phone.Canvas, Snapshots.Out("phone-read-back.png"));
             CollectionAssert.Contains(phone.ReadBack(choices.FindIndex(c => c.Exact)).Effects, "readback:correct");
             Assert.AreEqual("READ_BACK", phone.State);
             results.RenderNow();

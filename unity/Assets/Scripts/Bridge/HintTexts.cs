@@ -45,6 +45,10 @@ namespace ProcSense.VR.Bridge
             { "NOTHING_TO_INTERPRET", "There is nothing to interpret in that result" },
             { "UNKNOWN_INTERPRETATION", "Choose one of the interpretations offered" },
             { "USE_INTERPRET_IMAGING", "Interpret a scan with the imaging choices" },
+            { "MISSING_QUERY", "Type a name, record number or date of birth" },
+            { "MISSING_DOCUMENT", "Choose a document" },
+            { "UNKNOWN_DOCUMENT", "That document is not in this record" },
+            { "NO_IMAGE", "There is no picture with this report" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>
