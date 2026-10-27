@@ -2,7 +2,27 @@
 
 Inspected 11 October 2026 (Asia/Karachi). Unity owner: Sannan. This is a dependency checklist, not a new shared interface or clinical implementation.
 
-## Verified current contract
+## Reassessment — 25 October 2026 (Asia/Karachi)
+
+The original missing-subsystem finding below is historical. The current `Subsystems.Default` registers `TransportSubsystem`, `InvestigationsSubsystem` and `ResultReviewSubsystem`. `ObservableState` now supplies `Location`, `TraineeLocation`, `Transport`, `Investigations` and `Phone`. Core discloses result values/report text only after accepted `view_result`; Unity must not read `Patient.Clinical`, `CaseFile.Results` or report finding/category fields to fill a screen.
+
+Stage 2's first runtime batch uses these existing contracts:
+
+| Request | Parameters | Observable outcome / rejection |
+|---|---|---|
+| `order_investigation` | `test` | `Investigations` test/instance/state; identity, pregnancy and duplicate-order gates stay in Core |
+| `take_sample` | `test`, `tube`, `label` | Blood sampling starts processing without moving the patient; content label/quality rules decide rejection |
+| `perform_bedside_test` | `test` | Existing bedside-test processing; no sample transport invented |
+| `time_skip` | `minutes=1` | Logged clock advance through the normal pipeline; `stopped:<reason>` interrupts the wait |
+| `view_result` | `test` | Accepted opening changes the order to VIEWED and discloses permitted results/report |
+| `acknowledge_result` | `test` | Separate request; critical-call prerequisites can reject it |
+| `answer_phone` | none | `Phone.State`/`Message`; answering does not confirm identity, read back or acknowledge |
+
+All requests use target `patient`, channel `Vr`, and `SimulationHost.Apply`. Catalogue metadata (test definitions, tube and label choices) is exposed separately by the host; no patient results are added to that metadata. The UI follows the latest instance of the selected test, clears local state on session replacement, and debounces requests for 0.35 seconds. After integration with the content-driven tablet shell on 27 October, the 11 content tabs and More remain intact; Session is index 12 and Diagnostics is index 13. Callers use the stable session/diagnostics IDs instead of historical numeric indexes. The host catalogue accessors use its current Content package, including follow-up/generated-session paths.
+
+The upstream content-driven Orders tab already supplies a trainee-selected transport/escort/monitoring form; this integration preserves it. Remaining Stage 2 integration: dedicated transport presentation and physical patient transport, specimen dispatch/label props, critical-call identity/read-back/action/note entry, image asset review/provenance binding, printed report delivery/filing and automatic folder/EMR documents. The old proposed `send_samples`/`file_document` and loop event names must still be checked against actual runtime support; do not invent them. Current `take_sample` starts processing immediately, so it does not demonstrate the planned physical dispatch gate. Runtime durations come from Core/content; the one-minute wait button is a trainee-requested clock increment, not a test turnaround rule. No custom ten-second wait overlay or fixture-to-production conversion is claimed.
+
+## Original inspection — 11 October 2026
 
 - `src/ProcSense.Core/Workflow/Subsystems.cs` registers readiness, identity, history, observations and case graph only.
 - `ObservableState` provides location, disclosed identity/history/vitals, goals/decisions and rejection/hint text. It exposes no investigation orders, transport status or released reports.

@@ -13,7 +13,7 @@ Normal batch startup excludes `DevOnly`. Simulator-dependent foundation, room-tr
 
 `CoreInUnityTests` uses the same case-file/identity-fixture content set and checked-in golden expectations as the CLI. It never regenerates expected data during a test, and verifies that changing the canonical log hash is rejected.
 
-The simulator test fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus in batch and interactive tests. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It uses a runtime settings clone; project input settings remain unchanged.
+The simulator test fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus in batch and interactive tests. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It retains the original InputSettings object and temporarily restores only the two focus/input-routing values changed by the fixture, preserving the Editor reference on Play exit.
 
 ## Open and edit
 
@@ -155,9 +155,15 @@ Add/configure the XRI interactable before adding the emitter. Configure the exis
 
 ## Diagnostics development preview
 
+The normal tablet also has a **Diagnostics** tab, after Session. This runtime client uses the existing Core investigation system; the Editor-only preview below remains separate. Select a test, order it after confirming identity, choose the tube and label handling, then collect the sample or perform the bedside test. Core decides acceptance, turnaround and sample quality; blood sampling keeps the patient at bedside. **Wait 1 sim minute** sends a logged Core time-skip and reports attention interruptions. **Open result** reveals only Core-disclosed fields; **Next report page** reads further pages. **Acknowledge result** remains separate and cannot bypass critical-call requirements. **Answer lab phone** answers only; identity/read-back/action/note entry remains a following Stage 2 batch.
+
+Patient location and transport status come from Core. The content-driven Orders tab already provides its transport/escort/monitoring form. Dedicated transport presentation and physical patient movement, specimen dispatch props and printed folder/EMR documents remain pending. Changing sessions clears local selection and feedback. See the [current contract reassessment](diagnostics-contract-handoff.md).
+
 In Play mode, choose **ProcSense > Development > Diagnostics Preview (Play Mode)**. Use Patient trip or Lab sample, then the **Inject** buttons to review the proposed status/report presentation. Inject an attention stop during processing: progression pauses until Resume fixture. Reset or switch route to clear the synthetic report. Close preview or stop Play to remove it. This is an Editor-only fixture, not an operational investigation screen; no Core state, time or log is changed. See [the contract handoff](diagnostics-contract-handoff.md) for the missing runtime dependencies.
 
 ## Validation and work log
+
+If the Editor repeatedly pauses on **Hold on** and its log reports `IPCStream (hubIPCService)` write timeouts, inspect the Windows owner of `Unity-hubIPCService`. During the 25 October verification, the signed-out Unity CLI identity helper held that pipe while Hub logged `EHUBRUNNING` and continued without its Editor IPC server. Stopping that specific helper and restarting Hub restored Hub ownership and released test startup. For this setup, launch the pinned Editor through Hub or its executable, then use `unity command` to connect; avoid repeating the signed-out CLI launch path that created the conflicting helper. Diagnosis and verification evidence are recorded in execution-plan section 49.
 
 Run `task unity-test` from the repository root with this project's Editor closed (or use the live Editor Test Runner). `task unity-build` builds the Quest APK when Android modules are installed.
 

@@ -187,6 +187,8 @@ namespace ProcSense.Tests.PlayMode
             yield return null;
             Assert.That(Mathf.DeltaAngle(yaw, rig.transform.eulerAngles.y), Is.EqualTo(45).Within(0.01f));
             controls.SetTurnAngle(30);
+            RigLocomotionSettings.Apply(rig, true, false);
+            Assert.AreEqual(30, snap.turnAmount, "Reapplying input setup must preserve the selected comfort angle");
             yaw = rig.transform.eulerAngles.y;
             Assert.IsTrue(controls.Turn(-1));
             yield return null;

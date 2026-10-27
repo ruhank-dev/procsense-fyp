@@ -13,7 +13,8 @@ namespace ProcSense.Tests.PlayMode
         private static Keyboard _keyboard;
         private static Mouse _mouse;
         private static InputSettings _originalSettings;
-        private static InputSettings _testSettings;
+        private static InputSettings.BackgroundBehavior _originalBackground;
+        private static InputSettings.EditorInputBehaviorInPlayMode _originalEditorInput;
 
         // Application startup deliberately excludes developer simulation from batch runs.
         // Tests that exercise simulated input must request their own fixture instead.
@@ -28,18 +29,15 @@ namespace ProcSense.Tests.PlayMode
             // Interactive automation can lose Game-view focus too; keep test input deterministic.
             if (Application.isEditor || Application.isBatchMode)
             {
-                if (_testSettings == null)
+                if (_originalSettings == null)
                 {
                     _originalSettings = InputSystem.settings;
-                    // Input System destroys its transient default when settings are replaced.
-                    // Keep a value-identical backup in that case; persistent assets retain identity.
-                    if (_originalSettings.hideFlags == HideFlags.HideAndDontSave)
-                        _originalSettings = Object.Instantiate(_originalSettings);
-                    _testSettings = Object.Instantiate(_originalSettings);
-                    _testSettings.hideFlags = HideFlags.HideAndDontSave;
-                    _testSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
-                    _testSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
-                    InputSystem.settings = _testSettings;
+                    // Keep the original object alive: the Editor restores that exact
+                    // reference on Play exit. Replacing a transient default destroys it.
+                    _originalBackground = _originalSettings.backgroundBehavior;
+                    _originalEditorInput = _originalSettings.editorInputBehaviorInPlayMode;
+                    _originalSettings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
+                    _originalSettings.editorInputBehaviorInPlayMode = InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
                 }
                 // The sample overlay reads its keyboard/mouse bindings in Start, even in batch.
                 // Supply test-owned devices before enabling the simulator; never depend on hardware.
@@ -57,19 +55,19 @@ namespace ProcSense.Tests.PlayMode
 
         public static IEnumerator Cleanup()
         {
-            if (_keyboard == null && _mouse == null && _testSettings == null) yield break;
+            if (_keyboard == null && _mouse == null && _originalSettings == null) yield break;
             var scene = SceneManager.GetSceneByName("DevOnly");
             // Unsubscribe the sample overlay before removing its binding devices.
             if (scene.isLoaded) yield return SceneManager.UnloadSceneAsync(scene);
             if (_keyboard != null) InputSystem.RemoveDevice(_keyboard);
             if (_mouse != null) InputSystem.RemoveDevice(_mouse);
             _keyboard = null; _mouse = null;
-            if (_testSettings != null)
+            if (_originalSettings != null)
             {
-                InputSystem.settings = _originalSettings;
+                _originalSettings.backgroundBehavior = _originalBackground;
+                _originalSettings.editorInputBehaviorInPlayMode = _originalEditorInput;
                 Assert.AreSame(_originalSettings, InputSystem.settings, "Restore the pre-test input configuration");
-                // Input System owns/destroys the HideAndDontSave test clone on replacement.
-                _originalSettings = null; _testSettings = null;
+                _originalSettings = null;
             }
         }
     }
