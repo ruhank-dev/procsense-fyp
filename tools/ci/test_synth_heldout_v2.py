@@ -49,7 +49,13 @@ class Frozen(unittest.TestCase):
         self.assertEqual(stats["exact_copies"] + stats["near_copies"], 0)
         man = j(SET / "manifest.json")
         self.assertIn(man["dataset_sha256"], {hashlib.sha256((SET / "dataset.jsonl").read_bytes()).hexdigest(), sha(SET / "dataset.jsonl")})          # a Windows checkout may hold CRLF
-        self.assertIn(man["utterances_sha256"], {hashlib.sha256((SET / "utterances.json").read_bytes()).hexdigest(), sha(SET / "utterances.json")})
+        # The manifest's utterances hash was taken when the set was built; the file was then rewritten with the same sentences in another
+        # layout before the pre-run lock (eval_config.json, frozen before the single scored run) recorded it. Accept either frozen hash, and
+        # only if every sentence still equals the frozen dataset (dataset.jsonl matches the manifest above), so no sentence can change.
+        frozen = {man["utterances_sha256"], j(SET / "eval_config.json")["data_sha256"]["utterances.json"]}
+        self.assertTrue(frozen & {hashlib.sha256((SET / "utterances.json").read_bytes()).hexdigest(), sha(SET / "utterances.json")}, "utterances.json changed after the freeze")
+        rows = {r["id"]: r["utterance"] for r in map(json.loads, (SET / "dataset.jsonl").read_text(encoding="utf-8").splitlines())}
+        self.assertEqual(utt, rows, "a sentence differs from the frozen dataset")
 
     def test_the_partial_credit_addendum_is_whole_and_new(self):
         rows = [json.loads(l) for l in (SET / "partial_credit.jsonl").read_text(encoding="utf-8").splitlines()]
