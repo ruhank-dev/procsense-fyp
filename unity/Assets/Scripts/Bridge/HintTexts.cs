@@ -49,6 +49,10 @@ namespace ProcSense.VR.Bridge
             { "MISSING_DOCUMENT", "Choose a document" },
             { "UNKNOWN_DOCUMENT", "That document is not in this record" },
             { "NO_IMAGE", "There is no picture with this report" },
+            { "NOT_DELIVERED", "That report has not been delivered yet" },
+            { "ALREADY_FILED", "That report is already in the folder" },
+            { "NOT_A_PRINTOUT", "Only a printed result goes in the report pocket" },
+            { "NOT_IN_FOLDER", "That document is not in the folder" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>

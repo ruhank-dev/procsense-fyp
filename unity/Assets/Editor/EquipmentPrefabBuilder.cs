@@ -174,6 +174,7 @@ namespace ProcSense.EditorTools
             UiKit.Label(label.transform,"Title","PATIENT NOTES\nGrab • Trigger to open",new Vector2(20,20),new Vector2(520,180),38,TextAlignmentOptions.Center,Color.black);
             label.transform.SetParent(cover,true);
             root.AddComponent<NotesFolderInteraction>().ConfigureFolder(cover,page.gameObject);
+            root.AddComponent<ProcSense.VR.Records.Folder.FolderController>();   // pages, page turns and the report pocket (p0-patient-records-emr-s02)
         }
     }
 }
