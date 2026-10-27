@@ -1,0 +1,21 @@
+{
+  "accessNotice": "Patients and staff only — wait for the result",
+  "noSession": "No simulation session",
+  "noTransport": "No transport to this destination",
+  "patient": "Patient: {location}",
+  "transport": "{destination}: {state}",
+  "mode": "Mode: {mode}",
+  "escort": "Escort: {escort}",
+  "monitoring": "Monitoring: {monitoring}; oxygen: {oxygen}",
+  "arrival": "Expected arrival: {time}",
+  "oxygenYes": "yes",
+  "oxygenNo": "no",
+  "laboratoryHint": "Sample transport is separate from patient transport.",
+  "labOrders": "Lab orders (latest first):",
+  "noLabOrders": "No blood tests ordered",
+  "ct": "CT SCAN",
+  "ultrasound": "IMAGING\nULTRASOUND",
+  "xray": "X-RAY",
+  "lab": "LABORATORY",
+  "mri": "MRI / MRCP"
+}
