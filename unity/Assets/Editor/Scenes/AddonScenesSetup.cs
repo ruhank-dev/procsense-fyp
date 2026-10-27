@@ -102,6 +102,7 @@ namespace ProcSense.EditorTools
             handover.transform.SetParent(root, false);
             handover.transform.position = new Vector3(-0.6f, 0f, 1.6f);
             handover.AddComponent<RecoveryHandoverView>();
+            RecoverySetup.Place(root);                                   // monitor, oxygen and suction by the bed (p1-theatre-extension-s04)
             EditorSceneManager.SaveScene(scene, ScenesDir + "/Recovery.unity");
         }
 

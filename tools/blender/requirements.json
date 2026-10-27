@@ -4,5 +4,6 @@
   "bp_cuff": {"script": "monitoring/bp_cuff.py", "body": [0.300, 0.160, 0.003], "triangles": 5000, "materials": 4, "points": ["GRAB_Cuff", "SOCKET_Arm", "ATTACH_Hose"]},
   "vital_signs_monitor": {"script": "monitoring/vital_signs_monitor.py", "body": [0.327, 0.182, 0.288], "triangles": 20000, "materials": 8, "points": ["GRAB_Handle", "SCREEN_Main", "ATTACH_ECG", "ATTACH_SpO2", "ATTACH_NIBP", "ATTACH_Temp"]},
   "iv_pole_pump": {"script": "iv/iv_pole_pump.py", "body": [0.214, 0.124, 0.068], "triangles": 20000, "materials": 8, "points": ["GRAB_Pole", "SCREEN_Pump", "PIVOT_Door", "SOCKET_Bag_1", "SOCKET_Bag_2", "SOCKET_Bag_3", "SOCKET_Bag_4"]},
-  "wristband": {"script": "identity/wristband.py", "body": [0.279, 0.025, 0.001], "triangles": 5000, "materials": 3, "points": ["GRAB_Band", "LABEL_Identity", "SOCKET_Wrist"]}
+  "wristband": {"script": "identity/wristband.py", "body": [0.279, 0.025, 0.001], "triangles": 5000, "materials": 3, "points": ["GRAB_Band", "LABEL_Identity", "SOCKET_Wrist"]},
+  "specimen_container": {"script": "ot/specimen_container.py", "body": [0.033, 0.033, 0.058], "triangles": 2000, "materials": 2, "points": ["COL_Body", "GRAB_Pot", "LABEL_Specimen", "PIVOT_Lid"]}
 }

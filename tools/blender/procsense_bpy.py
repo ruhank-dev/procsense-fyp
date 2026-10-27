@@ -13,6 +13,7 @@ PALETTE = {
     "ScreenOff": ((.009, .023, .029, 1), .05, .24),
     "AccentBlue": ((.025, .25, .35, 1), .15, .35),
     "FabricNavy": ((.014, .04, .085, 1), 0, .9),
+    "PlasticClear": ((.86, .9, .92, .35), 0, .12),    # specimen pot (p1-theatre-extension-s04); Unity needs a transparent material for it
 }
 
 
@@ -40,6 +41,9 @@ def material(name):
     shader.inputs["Base Color"].default_value = color
     shader.inputs["Metallic"].default_value = metal
     shader.inputs["Roughness"].default_value = rough
+    if color[3] < 1:                                   # a see-through plastic (the specimen pot)
+        shader.inputs["Alpha"].default_value = color[3]
+        mat.blend_method = "BLEND"
     return mat
 
 
