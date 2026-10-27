@@ -390,7 +390,7 @@ namespace ProcSense.VR.Views
             UiKit.Label(t, "Label", item?.Label ?? field.Label, new Vector2(20, 0), new Vector2(item != null ? 380 : 170, 44), 17, TextAlignmentOptions.MidlineLeft);
             if (field.Kind == "text")
             {
-                row.Input = MakeInput(t, new Vector2(196, 2), new Vector2(392, 40));
+                row.Input = UiKit.Input(t, new Vector2(196, 2), new Vector2(392, 40));
                 row.Input.onValueChanged.AddListener(v => { _values[RowKey(row)] = v; Sync(); });
             }
             else if (item != null)
@@ -406,30 +406,6 @@ namespace ProcSense.VR.Views
                 UiKit.MakeButton(t, ">", new Vector2(544, 2), new Vector2(44, 40), 20).onClick.AddListener(() => { Step(row, 1); });
             }
             _rows.Add(row);
-        }
-
-        private static TMP_InputField MakeInput(Transform parent, Vector2 topLeft, Vector2 size)
-        {
-            var go = new GameObject("Input", typeof(RectTransform), typeof(Image));
-            go.transform.SetParent(parent, false);
-            go.GetComponent<Image>().color = new Color(0.20f, 0.24f, 0.32f, 1f);
-            var rect = (RectTransform)go.transform;
-            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
-            rect.anchoredPosition = new Vector2(topLeft.x, -topLeft.y);
-            rect.sizeDelta = size;
-            var area = new GameObject("Text Area", typeof(RectTransform), typeof(RectMask2D));
-            area.transform.SetParent(go.transform, false);
-            var areaRect = (RectTransform)area.transform;
-            areaRect.anchorMin = Vector2.zero; areaRect.anchorMax = Vector2.one; areaRect.offsetMin = new Vector2(8, 4); areaRect.offsetMax = new Vector2(-8, -4);
-            var text = new GameObject("Text", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
-            text.transform.SetParent(area.transform, false);
-            var textRect = (RectTransform)text.transform;
-            textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one; textRect.offsetMin = textRect.offsetMax = Vector2.zero;
-            text.fontSize = 17; text.color = UiKit.TextColor; text.alignment = TextAlignmentOptions.MidlineLeft;
-            var input = go.AddComponent<TMP_InputField>();
-            input.textViewport = areaRect;
-            input.textComponent = text;
-            return input;
         }
 
         private IReadOnlyList<TabletOption> OptionsOf(TabletField f) => f.Kind == "state" ? StateOptions(f).ToList() : f.Optional ? new[] { new TabletOption { Value = "", Label = "(not set)" } }.Concat(f.Options).ToList() : f.Options;

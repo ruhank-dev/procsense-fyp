@@ -10,7 +10,7 @@ namespace ProcSense.Core.Records
     public sealed record EmrProfile(string Name, string Dob, string Mrn, string Sex, long Age, IReadOnlyList<Allergy> Allergies, IReadOnlyList<string> Alerts);
     public sealed record EmrNews2Point(string At, int Total);
     public sealed record EmrEpisode(string Reason, IReadOnlyList<string> Documents, IReadOnlyList<EmrNews2Point> News2Trend);
-    public sealed record EmrLabRow(string Test, string Analyte, string Value, string Unit, string Flag, string Comment, string Previous, string At);
+    public sealed record EmrLabRow(string Test, string Analyte, string Value, string Unit, string Flag, string Comment, string Previous, string At, string Range = "", string PreviousWhen = "");
     public sealed record EmrTrendPoint(string At, string Value);
     public sealed record EmrLabs(IReadOnlyList<EmrLabRow> Rows, IReadOnlyList<string> PreviousDocuments, IReadOnlyDictionary<string, IReadOnlyList<EmrTrendPoint>> Trends);
     public sealed record EmrImage(string DocumentId, string Title, string Report, string ImageId, string Notice);
@@ -52,7 +52,7 @@ namespace ProcSense.Core.Records
                 string at = Clock(s, o.ReadyStep);
                 foreach (var r in o.Results)
                 {
-                    rows.Add(new EmrLabRow(o.Label, r.Analyte, r.Value, r.Unit, r.Flag, r.Comment, r.Previous, at));
+                    rows.Add(new EmrLabRow(o.Label, r.Analyte, r.Value, r.Unit, r.Flag, r.Comment, r.Previous, at, r.Range, r.PreviousWhen));
                     if (r.Value.Length == 0) continue;
                     if (!trends.TryGetValue(r.Analyte, out var points)) trends[r.Analyte] = points = new List<EmrTrendPoint>();
                     if (points.Count == 0 && r.Previous.Length > 0) points.Add(new EmrTrendPoint("previous", r.Previous));

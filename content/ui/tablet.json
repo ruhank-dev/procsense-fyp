@@ -1159,6 +1159,169 @@
        "source": "investigations"
       }
      ]
+    },
+    {
+     "label": "Interpret a result",
+     "verb": "interpret_result",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "test",
+       "label": "Test",
+       "kind": "state",
+       "source": "investigations"
+      },
+      {
+       "key": "interpretation",
+       "label": "Interpretation",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "normal",
+         "label": "Normal"
+        },
+        {
+         "value": "abnormal",
+         "label": "Abnormal"
+        },
+        {
+         "value": "artefact",
+         "label": "Artefact (repeat the sample)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "label": "Interpret imaging",
+     "verb": "interpret_imaging",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "test",
+       "label": "Test",
+       "kind": "state",
+       "source": "investigations"
+      },
+      {
+       "key": "category",
+       "label": "The picture is",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "normal",
+         "label": "Normal"
+        },
+        {
+         "value": "positive",
+         "label": "Shows the expected finding"
+        },
+        {
+         "value": "complicated",
+         "label": "Shows a complication"
+        },
+        {
+         "value": "other_diagnosis",
+         "label": "Points to another diagnosis"
+        },
+        {
+         "value": "non_diagnostic",
+         "label": "Not diagnostic (not seen clearly)"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "label": "Acknowledge a result",
+     "verb": "acknowledge_result",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "test",
+       "label": "Test",
+       "kind": "state",
+       "source": "investigations"
+      },
+      {
+       "key": "action",
+       "label": "Action (critical result)",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "repeat_sample",
+         "label": "Repeat the sample"
+        },
+        {
+         "value": "treat_and_repeat",
+         "label": "Treat and repeat"
+        },
+        {
+         "value": "escalate_senior",
+         "label": "Escalate to a senior"
+        },
+        {
+         "value": "order_ecg",
+         "label": "Order an ECG"
+        },
+        {
+         "value": "review_patient",
+         "label": "Review the patient"
+        },
+        {
+         "value": "postpone_surgery",
+         "label": "Postpone the operation"
+        }
+       ],
+       "optional": true
+      },
+      {
+       "key": "note",
+       "label": "Note (critical result)",
+       "kind": "text",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "label": "Answer the phone",
+     "verb": "answer_phone",
+     "params": {},
+     "enabled": "always"
+    },
+    {
+     "label": "Confirm the patient with the caller",
+     "verb": "confirm_patient_on_call",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "name",
+       "label": "Name",
+       "kind": "text"
+      },
+      {
+       "key": "dob",
+       "label": "Date of birth",
+       "kind": "text"
+      }
+     ]
+    },
+    {
+     "label": "Read the values back",
+     "verb": "read_back",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "values",
+       "label": "Values (analyte=value, one per value)",
+       "kind": "text"
+      }
+     ]
     }
    ]
   },

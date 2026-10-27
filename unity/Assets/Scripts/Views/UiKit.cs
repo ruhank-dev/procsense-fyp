@@ -85,6 +85,31 @@ namespace ProcSense.VR.Views
             return button;
         }
 
+        /// <summary>A one-line text field (a tablet form's free text, the note after a critical result).</summary>
+        public static TMP_InputField Input(Transform parent, Vector2 topLeft, Vector2 size)
+        {
+            var go = new GameObject("Input", typeof(RectTransform), typeof(Image));
+            go.transform.SetParent(parent, false);
+            go.GetComponent<Image>().color = new Color(0.20f, 0.24f, 0.32f, 1f);
+            var rect = (RectTransform)go.transform;
+            rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0, 1);
+            rect.anchoredPosition = new Vector2(topLeft.x, -topLeft.y);
+            rect.sizeDelta = size;
+            var area = new GameObject("Text Area", typeof(RectTransform), typeof(RectMask2D));
+            area.transform.SetParent(go.transform, false);
+            var areaRect = (RectTransform)area.transform;
+            areaRect.anchorMin = Vector2.zero; areaRect.anchorMax = Vector2.one; areaRect.offsetMin = new Vector2(8, 4); areaRect.offsetMax = new Vector2(-8, -4);
+            var text = new GameObject("Text", typeof(RectTransform)).AddComponent<TextMeshProUGUI>();
+            text.transform.SetParent(area.transform, false);
+            var textRect = (RectTransform)text.transform;
+            textRect.anchorMin = Vector2.zero; textRect.anchorMax = Vector2.one; textRect.offsetMin = textRect.offsetMax = Vector2.zero;
+            text.fontSize = 17; text.color = TextColor; text.alignment = TextAlignmentOptions.MidlineLeft;
+            var input = go.AddComponent<TMP_InputField>();
+            input.textViewport = areaRect;
+            input.textComponent = text;
+            return input;
+        }
+
         private static RectTransform Place(RectTransform rect, Vector2 topLeft, Vector2 size)
         {
             rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0f, 1f);

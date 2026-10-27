@@ -30,6 +30,21 @@ namespace ProcSense.VR.Bridge
             { "MISSING_SENSOR", "Choose a sensor" },
             { "UNKNOWN_SENSOR", "That sensor is not available" },
             { "SESSION_PAUSED", "The session is paused" },
+            { "NO_CALL", "Nobody is calling" },
+            { "CALL_NOT_ANSWERED", "Answer the phone first" },
+            { "CALL_IDENTITY_FIRST", "Confirm the patient's name and date of birth with the caller first" },
+            { "CALL_READ_BACK_FIRST", "Read the values back to the caller first" },
+            { "WRONG_IDENTITY_ON_CALL", "That is not the patient the caller named" },
+            { "MISSING_VALUES", "Say the values back" },
+            { "MISSING_ACTION", "Choose what you will do about the critical result" },
+            { "UNKNOWN_ACTION", "Choose one of the actions offered" },
+            { "MISSING_NOTE", "Write a note of the call and what you will do" },
+            { "NOT_VIEWED", "Open the result first" },
+            { "VIEW_FIRST", "Open the result first" },
+            { "NOT_READY", "The result is not ready yet" },
+            { "NOTHING_TO_INTERPRET", "There is nothing to interpret in that result" },
+            { "UNKNOWN_INTERPRETATION", "Choose one of the interpretations offered" },
+            { "USE_INTERPRET_IMAGING", "Interpret a scan with the imaging choices" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>

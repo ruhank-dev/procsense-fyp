@@ -140,7 +140,7 @@ The register has 252 rows: 126 completed and 126 open. Each open row is placed i
 | DT-224 | Pending | AI capabilities of the feature plans that no step built or accepted. BUILT on 18 Oct 2026 (fourth session), all gates OFF: A4.c2 interacting-problem p | EX-17; a fresh frozen order set after any change; P3 backlog |
 | DT-225 | Pending | Dependabot pull requests 24 to 27 (artifact actions v7 and v8, test SDK 18.11.0, xunit runner 4.0.1) inspected, not merged: 26 and 27 pass locally (1, | The owner says when to merge (INSTRUCTIONS 6b) |
 | DT-249 | Blocked | Model comparison of the Ollama Cloud semantic reader, BLOCKED 20 Oct 2026: the approved shortlist cannot run on this account (`deepseek-v4.1-flash`: H | The owner (plan, rollout or a different shortlist) and a look at the usage page |
-| DT-254 | Pending | Tablet buttons for the rarer engine actions that no P0 correct path uses (results phone: answer_phone, read_back, confirm_patient_on_call, acknowledge | Abdul Moiz |
+| DT-254 | Pending | Tablet buttons for the rarer engine actions that no P0 correct path uses with the parameters each handler reads: records (open_document, file_document | Abdul Moiz |
 
 ## Later by design: a trigger that has not occurred (customer, scale, release, merge, laptop)
 

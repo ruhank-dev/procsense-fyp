@@ -10,9 +10,9 @@ ones the engine accepts. The short button and field labels that no content table
 Panel order follows the walkthrough steps, so a trainee meets the tabs in the real sequence. The check replays every action of the P0 correct paths
 (tests/golden/*_correct.actions.json) against the tablet: each one must be a button, or a form whose fields accept the action's values.
 
-Field kinds: choice (one option; an optional field may be left unset and is then not sent), text (free text; the trainee says or types it), flags (each item yes or no, sent as one parameter "id:yes,id:no"),
+Field kinds: choice (one option), text (free text; the trainee says or types it), flags (each item yes or no, sent as one parameter "id:yes,id:no"),
 booleans (each item a parameter of its own, "true" or "false"), multi (several options sent as "a,b"), state (filled from what the session shows,
-for example the investigations that have results).
+for example the investigations that have results). A choice or text field marked optional may be left unset and is then not sent.
 """
 from __future__ import annotations
 
@@ -46,6 +46,11 @@ LABELS = {
     "airway": {"mallampati": "Mallampati (look in the mouth)", "mouth_opening": "Mouth opening", "neck": "Neck movement"},
     "stopbang": {"snoring": "Snores loudly", "tired": "Tired in the day", "observed": "Stops breathing in sleep (observed)", "pressure": "High blood pressure",
                  "bmi_over_35": "BMI over 35", "age_over_50": "Age over 50", "neck_over_40": "Neck over 40 cm", "male": "Male"},
+    "interpretations": {"normal": "Normal", "abnormal": "Abnormal", "artefact": "Artefact (repeat the sample)"},
+    "imaging_categories": {"normal": "Normal", "positive": "Shows the expected finding", "complicated": "Shows a complication", "other_diagnosis": "Points to another diagnosis",
+                           "non_diagnostic": "Not diagnostic (not seen clearly)"},
+    "critical_actions": {"repeat_sample": "Repeat the sample", "treat_and_repeat": "Treat and repeat", "escalate_senior": "Escalate to a senior",
+                         "order_ecg": "Order an ECG", "review_patient": "Review the patient", "postpone_surgery": "Postpone the operation"},
     "answers": {"approved": "Answer honestly", "false_reassurance": "Reassure that nothing can go wrong", "dismissive": "Say you will tell them later"},
 }
 SENSORS = [("spo2", "SpO2 probe"), ("nibp_cuff", "BP cuff")]
@@ -161,8 +166,19 @@ def build() -> dict:
                                                         choice("accompany", "You go too", [opt("true", "Yes"), opt("false", "No")]),
                                                         choice("oxygen", "Oxygen", [opt("true", "Yes"), opt("false", "No")])]),
     ]})
+    ordered = {"key": "test", "label": "Test", "kind": "state", "source": "investigations"}
+    critical = load("investigations/critical.json")
+    imaging = load("imaging/imaging.json")
     tabs.append({"id": "results", "label": "Results", "step": 7, "list": "investigations", "entries": [
-        form("View a result", "view_result", [{"key": "test", "label": "Test", "kind": "state", "source": "investigations"}]),
+        form("View a result", "view_result", [ordered]),
+        form("Interpret a result", "interpret_result", [ordered, choice("interpretation", "Interpretation", [opt(i, LABELS["interpretations"][i]) for i in ("normal", "abnormal", "artefact")])]),
+        form("Interpret imaging", "interpret_imaging", [ordered, choice("category", "The picture is", [opt(c, LABELS["imaging_categories"].get(c, c.replace("_", " "))) for c in imaging["categories"]])]),
+        form("Acknowledge a result", "acknowledge_result", [ordered,
+                                                             dict(choice("action", "Action (critical result)", [opt(a, LABELS["critical_actions"].get(a, a.replace("_", " "))) for a in critical["actions"]]), optional=True),
+                                                             dict(text("note", "Note (critical result)"), optional=True)]),
+        button("Answer the phone", "answer_phone"),
+        form("Confirm the patient with the caller", "confirm_patient_on_call", [text("name", "Name"), text("dob", "Date of birth")]),
+        form("Read the values back", "read_back", [text("values", "Values (analyte=value, one per value)")]),
     ]})
     tabs.append({"id": "treat", "label": "Treat", "step": 8, "list": "orders", "entries": [
         form("Check the timing of a treatment", "check_treatment_timing", [choice("treatment", "Treatment", [opt(t["id"], t["label"]) for t in treatments])]),
