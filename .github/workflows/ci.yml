@@ -305,6 +305,9 @@ jobs:
       - name: Ward checklist is up to date (13 items, verify rules)
         run: uv run --project tools tools/content/build_ward.py --check
 
+      - name: Tablet layout is up to date (every P0 correct-path action can be made from the tablet)
+        run: uv run --project tools tools/content/build_tablet.py --check
+
       - name: Sample dispatch is up to date (tube station, porter, beginner prompt)
         run: uv run --project tools tools/content/build_diagnostics.py --check
 

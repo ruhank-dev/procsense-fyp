@@ -13,7 +13,7 @@ namespace ProcSense.EditorTools
         {
             var tablet = Object.FindFirstObjectByType<TabletView>();
             if (tablet == null) { Debug.LogWarning("[ProcSense] No tablet found. Press Play on the application first and wait for the bay to load."); return; }
-            tablet.ShowTab(4);
+            tablet.ShowTab(TabletView.SessionTabId);
             Selection.activeObject = tablet.gameObject;
             SceneView.lastActiveSceneView?.FrameSelected();   // the Scene view looks at the tablet; the Game view shows what the player sees
         }
