@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using ProcSense.Core;
 using ProcSense.Core.Actions;
@@ -34,41 +35,6 @@ namespace ProcSense.Tests.PlayMode
             }
         }
 
-        private static string Out(string name)
-        {
-            string dir = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", "artifacts", "unity"));
-            Directory.CreateDirectory(dir);
-            return Path.Combine(dir, name);
-        }
-
-        private static void Photograph(Canvas canvas, string file)
-        {
-            var camGo = new GameObject("snapshot camera");
-            var cam = camGo.AddComponent<Camera>();
-            cam.orthographic = true;
-            cam.clearFlags = CameraClearFlags.SolidColor;
-            cam.backgroundColor = new Color(0.02f, 0.03f, 0.05f);
-            var rect = (RectTransform)canvas.transform;
-            float width = rect.sizeDelta.x * rect.localScale.x, height = rect.sizeDelta.y * rect.localScale.y;
-            camGo.transform.position = canvas.transform.position - canvas.transform.forward * 1f;   // the canvas is centred on its own position
-            camGo.transform.rotation = canvas.transform.rotation;
-            cam.orthographicSize = height / 2f * 1.04f;
-            cam.aspect = width / height;
-            var texture = new RenderTexture(1800, 1200, 24);
-            cam.targetTexture = texture;
-            cam.Render();
-            cam.targetTexture = null;
-            RenderTexture.active = texture;
-            var picture = new Texture2D(texture.width, texture.height, TextureFormat.RGB24, false);
-            picture.ReadPixels(new Rect(0, 0, texture.width, texture.height), 0, 0);
-            picture.Apply();
-            File.WriteAllBytes(file, picture.EncodeToPNG());
-            RenderTexture.active = null;
-            UnityEngine.Object.DestroyImmediate(texture);
-            UnityEngine.Object.DestroyImmediate(picture);
-            UnityEngine.Object.DestroyImmediate(camGo);
-        }
-
         [UnityTest]
         public IEnumerator The_tablet_tabs_are_drawn_to_pictures_for_a_person_to_look_at()
         {
@@ -98,13 +64,27 @@ namespace ProcSense.Tests.PlayMode
                 yield return null;
                 tablet.ShowTab(0);
                 yield return null;
-                Photograph(tablet.Canvas, Out("tablet-identity.png"));
-                tablet.ShowTab(4);
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-identity.png"));
+                tablet.ShowTab("assess");
+                yield return null;
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-assess.png"));
+                tablet.ShowTab("checklist");
+                yield return null;
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-checklist.png"));
+                tablet.ShowTab("handover");
+                tablet.Buttons.Single(b => b.label == "Escalate (SBAR)").button.onClick.Invoke();
+                yield return null;
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-form-sbar.png"));
+                tablet.ShowTab("orders");
+                tablet.Buttons.Single(b => b.label == "Request transport").button.onClick.Invoke();
+                yield return null;
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-form-transport.png"));
+                tablet.ShowTab(TabletView.SessionTabId);
                 yield return null;
                 yield return tablet.SessionTab.RefreshResults();
                 yield return null;
-                Photograph(tablet.Canvas, Out("tablet-session.png"));
-                Assert.Greater(new FileInfo(Out("tablet-session.png")).Length, 20000, "the picture is not blank");
+                Snapshots.Photograph(tablet.Canvas, Snapshots.Out("tablet-session.png"));
+                Assert.Greater(new FileInfo(Snapshots.Out("tablet-session.png")).Length, 20000, "the picture is not blank");
             }
             finally
             {

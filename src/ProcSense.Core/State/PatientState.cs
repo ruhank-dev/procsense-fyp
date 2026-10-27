@@ -41,7 +41,7 @@ namespace ProcSense.Core.State
     /// One result the trainee can read: the analyte, the value as text, the unit, the normal range, the flag (normal, high, low, abnormal...), the lab's comment, the sample-quality artefact if any
     /// (haemolysed, drip_arm, wrong_tube_edta, mislabelled) and where it came from (case = stated by the case, generated = supplied normal, artefact = changed by how the sample was taken).
     /// </summary>
-    public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin, string Previous = "");
+    public sealed record ResultRecord(string Id, string Analyte, string Value, string Unit, string Range, string Flag, string Comment, string Quality, string Origin, string Previous = "", string PreviousWhen = "");
 
     /// <summary>
     /// The report an imaging test (ultrasound, CT, MRI, MRCP, chest X-ray, ECG) shows: the study, the finding code and its category (kept by the engine, never shown), the plain meaning, the report text, the measurements

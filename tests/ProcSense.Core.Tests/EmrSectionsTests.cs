@@ -76,6 +76,7 @@ namespace ProcSense.Core.Tests
             Assert.True(labs.Trends.ContainsKey("Bilirubin"));
             Assert.Equal("previous", labs.Trends["Bilirubin"][0].At);
             Assert.Equal(2, labs.Trends["Bilirubin"].Count);
+            Assert.Equal(("3-21", "pre-assessment 6 weeks ago"), (bili.Range, bili.PreviousWhen));    // the results viewer shows the range and when the previous value was taken (p0-vr-interaction-ui-s05)
         }
 
         [Fact]

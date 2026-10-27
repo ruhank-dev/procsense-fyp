@@ -42,7 +42,7 @@ namespace ProcSense.Core.Clinical
 
         public GeneratedResults Generate(CaseFile? file, InvestigationDef def, int validCompletedBefore, IReadOnlyDictionary<string, string> sample, string scenario)
         {
-            var records = CaseResults(file, def, validCompletedBefore).Select(r => new ResultRecord(r.Id, InvestigationTables.BaseName(r.Test) + (InvestigationTables.IsRepeat(r.Test) ? " (repeat)" : ""), r.Value, r.Unit, r.NormalRange, r.Flag, r.Comment, r.Quality ?? "", "case", r.Previous?.Value ?? "")).ToList();
+            var records = CaseResults(file, def, validCompletedBefore).Select(r => new ResultRecord(r.Id, InvestigationTables.BaseName(r.Test) + (InvestigationTables.IsRepeat(r.Test) ? " (repeat)" : ""), r.Value, r.Unit, r.NormalRange, r.Flag, r.Comment, r.Quality ?? "", "case", r.Previous?.Value ?? "", r.Previous?.When ?? "")).ToList();
             string note = "";
             if (records.Count == 0)
             {

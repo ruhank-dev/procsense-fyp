@@ -469,7 +469,7 @@ namespace ProcSense.Tests.PlayMode
             var button = Make<Image>("socket proxy");
             button.gameObject.AddComponent<Button>();
             var emitter = button.gameObject.AddComponent<UIButtonEmitter>();
-            emitter.Configure("wait", "patient", fallbackLabel: "Wait a moment");
+            emitter.Configure("explain_delay", "patient", fallbackLabel: "Wait a moment");
             var tablet = Make<TabletView>("tablet");
 
             tablet.RenderNow();
@@ -482,17 +482,17 @@ namespace ProcSense.Tests.PlayMode
         public void Fallbacks_follow_enable_reconfigure_and_destroy_without_removing_builtin_controls()
         {
             var emitter = Make<UIButtonEmitter>("world fallback");
-            emitter.Configure("wait", fallbackLabel: "Wait here");
+            emitter.Configure("explain_delay", fallbackLabel: "Wait here");
             var tablet = Make<TabletView>("tablet");
             tablet.RenderNow();
             var original = tablet.Buttons.Single(b => b.label == "Wait here").button;
-            emitter.Configure("wait", fallbackLabel: "Wait briefly");
+            emitter.Configure("explain_delay", fallbackLabel: "Wait briefly");
             tablet.RenderNow();
             Assert.AreSame(original, tablet.Buttons.Single(b => b.label == "Wait briefly").button);
             emitter.enabled = false;
             tablet.RenderNow();
             Assert.IsFalse(tablet.Buttons.Any(b => b.label == "Wait briefly"));
-            emitter.Configure("wait", fallbackLabel: "New wait");
+            emitter.Configure("explain_delay", fallbackLabel: "New wait");
             Assert.IsEmpty(TabletFallbackRegistry.All, "disabled configuration cannot register an active fallback");
             emitter.enabled = true;
             tablet.RenderNow();
@@ -511,8 +511,8 @@ namespace ProcSense.Tests.PlayMode
         {
             var first = Make<UIButtonEmitter>("first");
             var second = Make<UIButtonEmitter>("second");
-            first.Configure("wait", fallbackLabel: "First wait");
-            second.Configure("wait", fallbackLabel: "Second wait");
+            first.Configure("explain_delay", fallbackLabel: "First wait");
+            second.Configure("explain_delay", fallbackLabel: "Second wait");
             var tablet = Make<TabletView>("tablet");
             tablet.RenderNow();
             Assert.AreEqual(1, tablet.Buttons.Count(b => b.label.EndsWith("wait")));
@@ -530,9 +530,9 @@ namespace ProcSense.Tests.PlayMode
             var first = Make<UIButtonEmitter>("first");
             var second = Make<UIButtonEmitter>("second");
             var third = Make<UIButtonEmitter>("third");
-            first.Configure("wait", "patient", "reason", "a", "Wait");
-            second.Configure("wait", "equipment", "reason", "a", "Wait");
-            third.Configure("wait", "equipment", "reason", "b", "Wait");
+            first.Configure("explain_delay", "patient", "reason", "a", "Wait");
+            second.Configure("explain_delay", "equipment", "reason", "a", "Wait");
+            third.Configure("explain_delay", "equipment", "reason", "b", "Wait");
             var tablet = Make<TabletView>("tablet");
             tablet.RenderNow();
             var buttons = tablet.Buttons.Where(b => b.label == "Wait").ToArray();
@@ -549,14 +549,14 @@ namespace ProcSense.Tests.PlayMode
         public void Stale_fallback_clicks_cannot_fire_removed_or_reconfigured_actions()
         {
             var emitter = Make<UIButtonEmitter>("source");
-            emitter.Configure("wait", fallbackLabel: "Wait");
+            emitter.Configure("explain_delay", fallbackLabel: "Wait");
             var tablet = Make<TabletView>("tablet");
             tablet.RenderNow();
             var oldButton = tablet.Buttons.Single(b => b.label == "Wait").button;
             emitter.Configure("introduce_self", fallbackLabel: "Introduction");
             oldButton.onClick.Invoke(); // Registry changed before next UI update.
             Assert.AreEqual(0, _host.Session.Log.Count);
-            emitter.Configure("wait", fallbackLabel: "Wait");
+            emitter.Configure("explain_delay", fallbackLabel: "Wait");
             emitter.enabled = false;
             oldButton.onClick.Invoke();
             Assert.AreEqual(0, _host.Session.Log.Count);
@@ -586,7 +586,7 @@ namespace ProcSense.Tests.PlayMode
             var room = UnityEngine.SceneManagement.SceneManager.CreateScene("FallbackLifecycleFixture");
             var emitter = Make<XRSelectEmitter>("room emitter");
             UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(emitter.gameObject, room);
-            emitter.Configure("wait", fallbackLabel: "Room wait");
+            emitter.Configure("explain_delay", fallbackLabel: "Room wait");
             yield return null;
             Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Room wait"));
             yield return UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(room);
@@ -600,7 +600,7 @@ namespace ProcSense.Tests.PlayMode
         public void Clearing_registry_invalidates_buttons_and_reenabled_owners_can_register_again()
         {
             var emitter = Make<UIButtonEmitter>("source");
-            emitter.Configure("wait", fallbackLabel: "Wait");
+            emitter.Configure("explain_delay", fallbackLabel: "Wait");
             var tablet = Make<TabletView>("tablet");
             tablet.RenderNow();
             TabletFallbackRegistry.Clear();

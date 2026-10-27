@@ -125,7 +125,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(tablet.SessionTab);
             Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Introduce yourself"), "the four action tabs are unchanged");
             Assert.IsFalse(tablet.Buttons.Any(b => b.label.StartsWith("Finish session")), "the Session tab's buttons are not simulation buttons");
-            tablet.ShowTab(4);
+            tablet.ShowTab(TabletView.SessionTabId);
             yield return null;
             yield return tablet.SessionTab.RefreshResults();
             StringAssert.Contains("T-ab12cd34", tablet.SessionTab.AccountText);
@@ -140,7 +140,7 @@ namespace ProcSense.Tests.PlayMode
         public IEnumerator Without_signing_in_the_tab_says_the_person_is_practising_offline_and_the_results_ask_for_a_sign_in()
         {
             var tablet = MakeTablet();
-            tablet.ShowTab(4);
+            tablet.ShowTab(TabletView.SessionTabId);
             yield return null;
             yield return tablet.SessionTab.RefreshResults();
             StringAssert.Contains("offline", tablet.SessionTab.AccountText);
@@ -161,7 +161,7 @@ namespace ProcSense.Tests.PlayMode
             SessionUploader.Instance.Sync = new SessionSync(new UploadQueue(Path.Combine(_dir, "outbox"), SessionUploader.UnixNow), () => auth, SessionUploader.UnixNow);
             var host = MakeHostWithAnAction();
             var tablet = MakeTablet();
-            tablet.ShowTab(4);
+            tablet.ShowTab(TabletView.SessionTabId);
             for (int i = 0; i < 3; i++) yield return null;
             Assert.IsTrue(tablet.SessionTab.FinishButton.interactable, "there is something to finish");
             tablet.SessionTab.FinishButton.onClick.Invoke();
@@ -182,7 +182,7 @@ namespace ProcSense.Tests.PlayMode
         {
             var host = MakeHostWithAnAction();
             var tablet = MakeTablet();
-            tablet.ShowTab(4);
+            tablet.ShowTab(TabletView.SessionTabId);
             for (int i = 0; i < 3; i++) yield return null;
             tablet.SessionTab.FinishButton.onClick.Invoke();
             Assert.IsTrue(host.Ended);
