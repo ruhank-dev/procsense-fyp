@@ -111,3 +111,28 @@ anchors. Its full visible surface and low rims have colliders; the open space
 between the legs remains open. Reimport later art revisions with the existing
 FBX GUID, rebake only PatientBay and review both sensor attach/remove/return
 flows plus dropped-item contact. Do not rerun the initial sensor/scene builder.
+
+## Realistic hospital bed (frame, blue mattress cover, pillow)
+
+Pinned Blender 4.5.14 and Python only; generated sources and maps are ignored under `unity/Logs/HospitalBed`.
+
+| Script | What it makes |
+| --- | --- |
+| `build_hospital_bed.py` (+ `bed_frame_parts.py`) | Frame FBX in one mesh: moulded boards and rails with open grips, blue inlays, lime tabs, keypad and handset, an open diagonal lift. UVs point at a swatch atlas (`frame_albedo.png`, `frame_metal_smooth.png`), so plastic, painted metal, stainless, rubber and accents keep their own smoothness and metallic value in one draw call. |
+| `build_bed_cover.py` (+ `bed_cover_fields.py`) | Mattress cover mesh (quad-grid top stitched to the wrapped edge) displaced by an irregular fold field, plus baked albedo (smoothness in alpha), normal and occlusion maps and a tileable weave normal. |
+| `build_bed_pillow.py`, `bake_bed_pillow.py` | Pillow by offline cloth simulation (pressure-inflated case with a seam flange, pressed by the real head, neck and hair proxy exported from the patient), then its mesh and maps. Nothing simulates at runtime. |
+| `render_bed_preview.py` | Lit and wireframe Blender previews of what ships. |
+| `HospitalBedUpgrade` (Editor) | Applies the result in place with GUIDs kept: frame FBX, the existing mattress mesh asset (now the cover), the pillow OBJ, textures (ASTC, mipmaps) and three materials. |
+| `HospitalBedReview` (Editor) | Batch camera set (including patient-hidden and low views), patient-to-bed clearance, the renderers near the bed head, and the head proxy export. |
+
+Measured constraints: the patient rests 2.6 mm above the flat cover top (y = 0.700), so folds never rise inside the body footprint
+(`data/patient_bed_footprint.csv`) and the pillow top stays under the measured head underside. The mattress keeps its original
+0.95 x 2.00 m footprint. The head board stands against the oak wall panel face (z = 1.926) and the wall stops end at the upper wall
+plane (z = 1.950). The bed is dynamic and probe-lit, so PatientBay is not rebaked; room lighting is a separate review.
+Run Unity batch jobs with a waiting process and one instance at a time. Editor counts and screenshots do not establish Quest frame time.
+
+### Working order for each new asset (one object at a time)
+References and constraints, plan with numbers, Blender model, geometry inspection (wireframe, manifold and winding checks,
+the validator), materials and textures, Editor import with GUIDs kept, real Unity screenshots from the same cameras as the
+"before" set, objective checks (clearance, neighbouring renderers, tests), optional external design review of a
+reference-versus-ours image, revision, then the owner's approval before the next object.

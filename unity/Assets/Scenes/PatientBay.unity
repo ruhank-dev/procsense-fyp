@@ -8981,7 +8981,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 0f5b465be46380a45b0a9b1b7ca2c3a8, type: 2}
+  - {fileID: 2100000, guid: 0b86cf891f3515a459b0dfeb17559ee5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12525,7 +12525,7 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 422819e2890a8e54e80a3f45de081a80, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 0f5b465be46380a45b0a9b1b7ca2c3a8, type: 2}
+      objectReference: {fileID: 2100000, guid: d5756b9b571b122459b0b4bd08a8b115, type: 2}
     - target: {fileID: 919132149155446097, guid: 422819e2890a8e54e80a3f45de081a80, type: 3}
       propertyPath: m_Name
       value: patient_pillow
