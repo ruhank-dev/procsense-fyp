@@ -29,5 +29,5 @@ Every open row of `docs/deferred-tasks.md` by what it waits for (the full list i
 - DT-155: Check how long the hosting provider keeps request logs (they contain addresses) and state it in server/PRIVACY.md -- needs the hosting provider's published retention; outside the service's control
 - DT-222: MedGemma access: the owner states they accepted the terms themselves as `arceus1rk` on 25 Oct 2026 (recorded as unverifi -- needs the account holder to accept the MedGemma terms and 50 human ratings
 
-Open rows by what they wait for: engineering 4, headset 29, later 7, owner 48, people 38.
+Open rows by what they wait for: engineering 4, headset 32, later 7, owner 49, people 38.
 
