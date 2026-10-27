@@ -53,6 +53,14 @@ namespace ProcSense.VR.Bridge
             { "ALREADY_FILED", "That report is already in the folder" },
             { "NOT_A_PRINTOUT", "Only a printed result goes in the report pocket" },
             { "NOT_IN_FOLDER", "That document is not in the folder" },
+            { "ASK_THE_RIGHT_PERSON", "The team answers that one: ask the right person" },
+            { "ITEM_OUT_OF_ORDER", "Take the checklist in order" },
+            { "SIGN_IN_FIRST", "Finish the Sign In first" },
+            { "CASE_STOPPED", "The case is stopped: resolve the problem first" },
+            { "PHASE_COMPLETE", "That part of the checklist is already complete" },
+            { "ITEMS_OUTSTANDING", "Some checklist items are still outstanding" },
+            { "NOT_ALL_TICKED", "Some ward checklist items are not ticked yet" },
+            { "ALREADY_SIGNED", "That is already signed" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>
