@@ -1,6 +1,7 @@
 using ProcSense.Core.Observation;
 using ProcSense.VR.Bridge;
 using TMPro;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace ProcSense.VR.Views
@@ -56,8 +57,11 @@ namespace ProcSense.VR.Views
             Last = _pending;
             _pending = null;
             _lastRender = Time.unscaledTime;
-            Render(Last);
+            using (RenderMarker.Auto()) Render(Last);
         }
+
+        // every view's drawing under one marker (p0-vr-platform-s07), so the render cost of the state views is one line in a capture
+        private static readonly ProfilerMarker RenderMarker = new ProfilerMarker("ProcSense.Views.Render");
 
         protected abstract void Render(ObservableState state);
 

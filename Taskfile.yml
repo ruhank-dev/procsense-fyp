@@ -177,9 +177,9 @@ tasks:
       - uv run --project tools tools/unity/run_unity.py test
 
   unity-build:
-    desc: Build the Quest APK into artifacts/unity/ProcSense.apk (needs Unity with Android support)
+    desc: Build a Quest APK variant into artifacts/unity/ProcSense-<variant>.apk with its SHA-256 (task unity-build -- dev|demo|study; dev when none; needs Unity with Android support and the Editor closed)
     cmds:
-      - uv run --project tools tools/unity/run_unity.py build
+      - uv run --project tools tools/unity/run_unity.py build {{.CLI_ARGS}}
 
   ci:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
