@@ -35,6 +35,10 @@ namespace ProcSense.VR.Bridge
         /// <summary>The content the running session was built from (the speech interpretation reads the behaviour windows from it).</summary>
         public ContentPackage Content { get; private set; }
         public ObservableState Observable { get; private set; }
+        // Public catalogue metadata only; patient results remain behind ObservableState disclosure.
+        public IReadOnlyList<ProcSense.Core.Clinical.InvestigationDef> InvestigationCatalogue => Content?.Investigations.Tests ?? Array.Empty<ProcSense.Core.Clinical.InvestigationDef>();
+        public IReadOnlyList<string> SampleTubes => Content?.Investigations.Tubes ?? Array.Empty<string>();
+        public IReadOnlyList<string> SampleLabels => Content?.Investigations.Labels ?? Array.Empty<string>();
         public bool Paused { get; private set; }
         public string PauseReason { get; private set; } = "";
 

@@ -15435,6 +15435,70 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3016316000127402481, guid: 507cba28e04383a43a3cded1c077169a, type: 3}
   m_PrefabInstance: {fileID: 1978496803}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1978666852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1978666853}
+  - component: {fileID: 1978666854}
+  m_Layer: 0
+  m_Name: Transport navigation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1978666853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978666852}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2031951021}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1978666854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978666852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
+  m_SerializedVersion: 0
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 1
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.05
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: a9f5e8d92b2a7954f9a8831085968544, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &1988854303
 GameObject:
   m_ObjectHideFlags: 0
@@ -15752,6 +15816,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2031951021}
   - component: {fileID: 2031951020}
+  - component: {fileID: 2031951022}
+  - component: {fileID: 2031951023}
   m_Layer: 0
   m_Name: Connected PatientBay
   m_TagString: Untagged
@@ -15795,8 +15861,38 @@ Transform:
   - {fileID: 529912930}
   - {fileID: 406804166}
   - {fileID: 1874324801}
+  - {fileID: 1978666853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2031951022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031951019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1dbffa2d643af441a1afdb539b92049, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Views.PatientTransportView
+  minInterval: 0.1
+  BayStart: {x: 1.35, y: 0, z: -0.8}
+  CorridorClear: {x: 4.25, y: 0, z: -0.8}
+  BedsidePatient: {fileID: 2071650337}
+--- !u!114 &2031951023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2031951019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f461ce8ca10614b8fa8107cb683326, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Views.TransportAccompanyView
+  minInterval: 0.1
 --- !u!1001 &2039389254
 PrefabInstance:
   m_ObjectHideFlags: 0

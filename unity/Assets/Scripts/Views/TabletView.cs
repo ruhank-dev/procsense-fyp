@@ -16,14 +16,14 @@ namespace ProcSense.VR.Views
 {
     /// <summary>
     /// The hand-held tablet (p0-vr-interaction-ui-s03): the tabs of content/ui/tablet.json in walkthrough order (Admission, Ask, Known, Assess, Orders, Results,
-    /// Treat, Consent, Checklist, Handover, Debrief), then More (a button for every VR gesture without one, the tablet fallback) and Session. A button sends one
+    /// Treat, Consent, Checklist, Handover, Debrief), then More (a button for every VR gesture without one, the tablet fallback), Session and runtime Diagnostics. A button sends one
     /// action through an emitter; a form collects its fields and sends one action. Every label and choice comes from content; which buttons are enabled
     /// depends only on the ObservableState. A refused action shows a short hint and changes nothing on screen. Practice mode adds the hint chip and the list
     /// of outstanding goals (Debrief tab); assessment shows neither.
     /// </summary>
     public class TabletView : StateView
     {
-        public const string MoreTab = "more", SessionTabId = "session";
+        public const string MoreTab = "more", SessionTabId = "session", DiagnosticsTabId = "diagnostics";
         private const int PerPage = 12, FormRows = 6;
         private static readonly Vector2 Size = new Vector2(900, 600);
 
@@ -53,7 +53,7 @@ namespace ProcSense.VR.Views
         private readonly List<Row> _rows = new List<Row>();
         private readonly Dictionary<string, string> _values = new Dictionary<string, string>(StringComparer.Ordinal);
         private TMP_Text _clock, _hint, _chip, _subtitle, _note, _sideTitle, _side, _pageLabel, _formTitle, _formPageLabel;
-        private GameObject _sessionRoot, _noteRoot, _sideRoot, _formRoot, _paging;
+        private GameObject _sessionRoot, _diagnosticsRoot, _noteRoot, _sideRoot, _formRoot, _paging;
         private FormSendEmitter _send;
         private TabletEntry _form;
         private int _formPage, _tab, _factCount;
@@ -63,6 +63,7 @@ namespace ProcSense.VR.Views
 
         /// <summary>The Session tab (account, uploads, latest results). It is not an action tab and holds no simulation buttons.</summary>
         public SessionTabView SessionTab { get; private set; }
+        public DiagnosticsTabView DiagnosticsTab { get; private set; }
 
         public string ClockText => _clock.text;
         public string HintText => _hint.text;
@@ -165,7 +166,7 @@ namespace ProcSense.VR.Views
             _sideTitle = UiKit.Label(_sideRoot.transform, "SideTitle", "", new Vector2(620, 198), new Vector2(260, 28), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             _side = UiKit.Label(_sideRoot.transform, "Side", "", new Vector2(620, 228), new Vector2(262, 356), 16);
 
-            var tabs = Layout.Tabs.Select(t => (Id: t.Id, Label: t.Label)).Concat(new[] { (Id: MoreTab, Label: "More"), (Id: SessionTabId, Label: "Session") }).ToList();
+            var tabs = Layout.Tabs.Select(t => (Id: t.Id, Label: t.Label)).Concat(new[] { (Id: MoreTab, Label: "More"), (Id: SessionTabId, Label: "Session"), (Id: DiagnosticsTabId, Label: "Diagnostics") }).ToList();
             for (int t = 0; t < tabs.Count; t++)
             {
                 _tabIds.Add(tabs[t].Id);
@@ -173,7 +174,7 @@ namespace ProcSense.VR.Views
                 float width = 880f / perRow;
                 int tab = t;
                 UiKit.MakeButton(root, tabs[t].Label, new Vector2(10 + col * width, 114 + row * 40), new Vector2(width - 4, 36), 17).onClick.AddListener(() => ShowTab(tab));
-                if (tabs[t].Id == SessionTabId) continue;
+                if (tabs[t].Id == SessionTabId || tabs[t].Id == DiagnosticsTabId) continue;
                 var tabRoot = Group(root, "Tab - " + tabs[t].Label);
                 _tabRoots.Add(tabRoot);
                 if (t < Layout.Tabs.Count)
@@ -195,6 +196,9 @@ namespace ProcSense.VR.Views
             _sessionRoot = Group(root, "Tab - Session");
             SessionTab = _sessionRoot.AddComponent<SessionTabView>();
             SessionTab.Build(_sessionRoot.transform);
+            _diagnosticsRoot = Group(root, "Tab - Diagnostics");
+            DiagnosticsTab = _diagnosticsRoot.AddComponent<DiagnosticsTabView>();
+            DiagnosticsTab.Build(_diagnosticsRoot.transform);
             ShowTab(0);
         }
 
@@ -249,6 +253,8 @@ namespace ProcSense.VR.Views
             bool session = _tabIds[_tab] == SessionTabId;
             for (int i = 0; i < _tabRoots.Count; i++) _tabRoots[i].SetActive(i == _tab);
             if (_sessionRoot != null) _sessionRoot.SetActive(session);
+            bool diagnostics = _tabIds[_tab] == DiagnosticsTabId;
+            if (_diagnosticsRoot != null) _diagnosticsRoot.SetActive(diagnostics);
             ShowPage();
             ShowSide();
         }
@@ -291,8 +297,9 @@ namespace ProcSense.VR.Views
         {
             string list = ListOf(_tab);
             bool session = _tabIds[_tab] == SessionTabId;
-            _sideRoot.SetActive(!session && list.Length > 0);
-            _noteRoot.SetActive(!session && list.Length == 0);
+            bool diagnostics = _tabIds[_tab] == DiagnosticsTabId;
+            _sideRoot.SetActive(!session && !diagnostics && list.Length > 0);
+            _noteRoot.SetActive(!session && !diagnostics && list.Length == 0);
             if (Last != null) RenderSide(Last);
         }
 

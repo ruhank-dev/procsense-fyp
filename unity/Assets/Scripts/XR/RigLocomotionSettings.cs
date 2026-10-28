@@ -32,7 +32,8 @@ namespace ProcSense.VR.XR
             foreach (var turn in rig.GetComponentsInChildren<ContinuousTurnProvider>(true)) turn.enabled = false;
             foreach (var turn in rig.GetComponentsInChildren<SnapTurnProvider>(true))
             {
-                turn.turnAmount = 45;
+                // Reapplying controller wiring must preserve a trainee's comfort choice.
+                if (turn.turnAmount != 30 && turn.turnAmount != 45) turn.turnAmount = 45;
                 turn.enableTurnAround = false;
                 turn.enabled = !login;
             }

@@ -13,7 +13,7 @@ Normal batch startup excludes `DevOnly`. Simulator-dependent foundation, room-tr
 
 `CoreInUnityTests` uses the same case-file/identity-fixture content set and checked-in golden expectations as the CLI. It never regenerates expected data during a test, and verifies that changing the canonical log hash is rejected.
 
-The simulator test fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus in batch and interactive tests. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It uses a runtime settings clone; project input settings remain unchanged.
+The simulator test fixture supplies missing keyboard/mouse devices and temporarily routes input without window focus in batch and interactive tests. Teardown unloads its simulator, removes only its own devices and restores the original input configuration. It retains the original InputSettings object and temporarily restores only the two focus/input-routing values changed by the fixture, preserving the Editor reference on Play exit.
 
 ## Open and edit
 
@@ -153,11 +153,27 @@ Dynamic fallback clicks resolve a live source at click time and use that source'
 
 Add/configure the XRI interactable before adding the emitter. Configure the existing Core verb, target and parameters on the emitter and a fallback label as needed. Selection sends one debounced request; release alone sends no clinical action. Equipment-specific detach/administration behavior must be wired explicitly through Core rather than inferred from dropping or animating a prop. The current saved bay remains greybox selection proxies; adapter tests use real XRI manager selection with grab/socket/poke types. Final equipment integration and physical headset acceptance remain later work.
 
+## Diagnostic corridor endpoints
+
+The corridor has restricted CT, imaging/ultrasound, X-ray, laboratory and MRI/MRCP doors. X-ray is at the near end; laboratory and MRI/MRCP are at the far end. Their existing closed walls block walking and inside-anchor teleporting. These are endpoints; diagnostic interiors are not trainee rooms.
+
+Approach from the corridor to see the access notice and a read-only status board. The notice appears once per approach with a five-second cooldown; status remains visible nearby. Imaging boards read Core's destination, stage, chosen mode, escort, monitoring, oxygen and Core-published expected arrival when available. The laboratory board shows observed blood-order status only, including samples held for dispatch; it never reveals result values. Presentation wording is in `Assets/Data/diagnostic-door-presentation.json` for later localisation.
+
+Use the existing Orders transport form to request a journey and Diagnostics to advance Core time. Entering/approaching a restricted door never applies a clinical action. The M2 transport presentation below adds patient/staff motion and a dedicated cancellation control. Device acceptance and final character/equipment art remain pending.
+
+`DiagnosticDoorSetup.Apply()` is a targeted Editor setup for these endpoints, not the prototype-room rebuild. It reuses authored geometry, preserves existing door object identities and furnishings, and changes only the corridor. Do not run any rebuild to open or inspect the bay.
+
 ## Diagnostics development preview
+
+The normal tablet also has a **Diagnostics** tab, after Session. This runtime client uses the existing Core investigation system; the Editor-only preview below remains separate. Select a test, order it after confirming identity, choose the tube and label handling, then collect the sample or perform the bedside test. Core decides acceptance, turnaround and sample quality; blood sampling keeps the patient at bedside. **Wait 1 sim minute** sends a logged Core time-skip and reports attention interruptions. **Open result** reveals only Core-disclosed fields; **Next report page** reads further pages. **Acknowledge result** remains separate and cannot bypass critical-call requirements. **Answer lab phone** answers only; identity/read-back/action/note entry remains a following Stage 2 batch.
+
+Patient location and transport status come from Core. The content-driven Orders tab already provides its transport/escort/monitoring form. Corridor door status presentation is now bound to Core. M2 patient transport is described below; specimen dispatch props and printed folder/EMR documents remain pending. Changing sessions clears local selection and feedback. See the [current contract reassessment](diagnostics-contract-handoff.md).
 
 In Play mode, choose **ProcSense > Development > Diagnostics Preview (Play Mode)**. Use Patient trip or Lab sample, then the **Inject** buttons to review the proposed status/report presentation. Inject an attention stop during processing: progression pauses until Resume fixture. Reset or switch route to clear the synthetic report. Close preview or stop Play to remove it. This is an Editor-only fixture, not an operational investigation screen; no Core state, time or log is changed. See [the contract handoff](diagnostics-contract-handoff.md) for the missing runtime dependencies.
 
 ## Validation and work log
+
+If the Editor repeatedly pauses on **Hold on** and its log reports `IPCStream (hubIPCService)` write timeouts, inspect the Windows owner of `Unity-hubIPCService`. During the 25 October verification, the signed-out Unity CLI identity helper held that pipe while Hub logged `EHUBRUNNING` and continued without its Editor IPC server. Stopping that specific helper and restarting Hub restored Hub ownership and released test startup. For this setup, launch the pinned Editor through Hub or its executable, then use `unity command` to connect; avoid repeating the signed-out CLI launch path that created the conflicting helper. Diagnosis and verification evidence are recorded in execution-plan section 49.
 
 Run `task unity-test` from the repository root with this project's Editor closed (or use the live Editor Test Runner). `task unity-build` builds the Quest APK when Android modules are installed.
 
@@ -289,3 +305,17 @@ views. The blanket is
 removed from the bay. Disable `PatientIdleView` on `MPFB patient` for a static pose.
 Breathing is cosmetic pending a continuous Core respiratory presentation
 contract, not a clinical RR measurement. See [patient idle notes](Tools/MPFB/README.md#fitted-patient-idle).
+
+## M2 patient transport presentation
+
+The saved PatientBay includes `PatientTransportView`, `TransportAccompanyView` and the baked transport navigation surface. The runtime geometry is explicitly labelled **M2 TRANSPORT PROTOTYPE**: walking patient, seated wheelchair or lying trolley, the selected porter/nurse/doctor, and chosen monitoring/oxygen proxies. Monitoring proxies show no invented vital readings. Production Blender equipment, approved animated staff and skeletal push IK remain later character/art work.
+
+Use the existing Orders transport form. The actor leaves the bedside on Core IN_TRANSIT, travels through the collision-safe shared bay door to the matching CT, ultrasound, X-ray or MRI/MRCP threshold, and waits for Core arrival. Only ARRIVED/DONE permits NPC passage and hiding inside. RETURNING brings the actor back; BACK restores the original bedside renderer states. The original patient, idle and sensor interaction objects remain enabled. A Core jump to arrival skips an unfinished outbound visual; a whole-trip jump/reset clears transient actors and selected equipment. No animation or movement completion applies an action, advances time or scores the journey.
+
+The Diagnostics tab has **Cancel transport**, enabled only for Core's cancellable stages. It sends the existing logged `cancel_transport` action. A blocked/unavailable visual route is reported in Diagnostics; moving actors and their pushers stop at physical obstructions and retry. Shared hinges and NPC diagnostic leaves check the trainee's capsule before sweeping. Category B walls remain solid trainee barriers even while the cosmetic leaf opens; opaque thresholds represent the unmodelled interiors. The laboratory remains sample-only. Theatre presentation is a later stage; it has no diagnostic endpoint binding here.
+
+Accompany follows changes in Core's published trainee location, using the existing safe room transitions and teleport fades. It places the trainee on supported corridor floor beside the destination, never inside a diagnostic room, and returns to the bay's safe anchor when Core returns them. Initial/session snapshots never relocate the trainee. Owned room/teleport requests are cancelled on session replacement; a blocked viewing spot leaves normal corridor navigation available.
+
+`TransportSetup.Apply()` is the targeted Editor setup, not the room rebuild. Preserve unsaved scenes before calling it. It collects the three existing rooms' physics geometry, excluding shared moving leaves and the player rig, and writes `Assets/Data/TransportNavMesh.asset` using copied agent-type-0 settings with a 0.34 m bake radius, 1.75 m height and 0.05 m voxels. It does not alter the project's default agent settings. The runtime primary agent uses that type/radius; following staff use the same conservative mesh with 0.20 m avoidance radii. A temporary non-carving player obstacle supports local avoidance. No navigation links or carved obstacles are added. Re-run this targeted bake after changing route geometry; the surface Inspector's default bake uses the project's wider default radius.
+
+Review all three modes to each patient destination, cancellation before/during transit, obstacle removal, Accompany on/off and a session reset. Final art, measured Quest performance and headset comfort remain unaccepted until their own evidence and manual review.

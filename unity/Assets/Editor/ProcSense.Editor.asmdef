@@ -1,7 +1,7 @@
 {
   "name": "ProcSense.Editor",
   "rootNamespace": "ProcSense.EditorTools",
-  "references": ["ProcSense.Core", "ProcSense.VR", "Unity.TextMeshPro", "UnityEngine.UI", "Unity.XR.Interaction.Toolkit", "Unity.XR.CoreUtils", "Unity.XR.Management", "Unity.XR.Management.Editor", "Unity.XR.OpenXR", "Unity.XR.OpenXR.Editor", "Unity.XR.OpenXR.Features.MetaQuestSupport", "Unity.RenderPipelines.Universal.Runtime", "Unity.XR.Interaction.Toolkit.Samples.StarterAssets"],
+  "references": ["ProcSense.Core", "ProcSense.VR", "Unity.TextMeshPro", "UnityEngine.UI", "Unity.XR.Interaction.Toolkit", "Unity.XR.CoreUtils", "Unity.XR.Management", "Unity.XR.Management.Editor", "Unity.XR.OpenXR", "Unity.XR.OpenXR.Editor", "Unity.XR.OpenXR.Features.MetaQuestSupport", "Unity.RenderPipelines.Universal.Runtime", "Unity.XR.Interaction.Toolkit.Samples.StarterAssets", "Unity.AI.Navigation"],
   "includePlatforms": ["Editor"],
   "autoReferenced": false
 }
