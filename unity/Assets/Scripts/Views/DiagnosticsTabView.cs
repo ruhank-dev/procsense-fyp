@@ -15,7 +15,7 @@ namespace ProcSense.VR.Views
     {
         private Transform _root;
         private TMP_Text _title, _status, _report, _feedback;
-        private UnityEngine.UI.Button _order, _collect, _view, _ack, _wait, _answer, _tubeButton, _labelButton;
+        private UnityEngine.UI.Button _order, _collect, _view, _ack, _wait, _answer, _tubeButton, _labelButton, _cancelTransport;
         private int _selection, _tube, _label, _page;
         private ProcSense.Core.Session _session;
         private float _lastClick = float.NegativeInfinity;
@@ -31,7 +31,8 @@ namespace ProcSense.VR.Views
         {
             if (_root != null) return;
             _root = parent;
-            _title = UiKit.Label(parent, "Test", "", new Vector2(16, 196), new Vector2(566, 46), 25);
+            _title = UiKit.Label(parent, "Test", "", new Vector2(16, 196), new Vector2(360, 46), 23);
+            _title.enableAutoSizing = true; _title.fontSizeMin = 18; _title.fontSizeMax = 23;
             Button("Previous test", 16, 244, 174, () => SelectOffset(-1));
             Button("Next test", 202, 244, 174, () => SelectOffset(1));
             _order = Button("Order test", 388, 244, 194, () => Send("order_investigation"));
@@ -44,6 +45,7 @@ namespace ProcSense.VR.Views
             _answer = Button("Answer lab phone", 16, 468, 272, () => Send("answer_phone", false));
             Button("Next report page", 300, 468, 282, () => { _page++; RenderNow(); });
             _feedback = UiKit.Label(parent, "DiagnosticsFeedback", "", new Vector2(16, 524), new Vector2(566, 30), 20, color: UiKit.WarnColor);
+            _cancelTransport = Button("Cancel transport", 388, 196, 194, () => Send("cancel_transport", false));
             UiKit.Panel(parent, "ReportBackground", new Vector2(604, 190), new Vector2(286, 400), UiKit.PanelColor);
             _status = UiKit.Label(parent, "DiagnosticsStatus", "", new Vector2(616, 198), new Vector2(260, 118), 19);
             _report = UiKit.Label(parent, "DisclosedReport", "", new Vector2(616, 322), new Vector2(260, 254), 19);
@@ -140,6 +142,8 @@ namespace ProcSense.VR.Views
             SetText(_title, def == null ? "No investigations available" : def.Label + " · " + def.Kind);
             SetText(_status, "Patient: " + s.Location + "\n" + (s.Transport == null ? "No patient transfer" : s.Transport.State + " → " + s.Transport.To)
                 + "\n" + (order == null ? "Not ordered" : order.State + (order.Ready.Length > 0 ? " · " + order.Ready : "")));
+            var movement = FindAnyObjectByType<PatientTransportView>();
+            if(movement!=null && (movement.Status.Contains("blocked") || movement.Status.Contains("unavailable"))) SetText(_status,_status.text+"\nVisual route "+(movement.Status.Contains("blocked")?"blocked":"unavailable"));
             bool active = !host.Paused && !host.Ended;
             bool pending = order != null && (order.State == "REQUESTED" || order.State == "PROCESSING");
             _order.interactable = active && def != null && !pending;
@@ -148,6 +152,7 @@ namespace ProcSense.VR.Views
             _ack.interactable = active && order?.State == "VIEWED";
             _wait.interactable = active && (s.Investigations.Any(o => o.State == "PROCESSING") || s.Transport != null && s.Transport.State != "BACK" && s.Transport.State != "CANCELLED");
             _answer.interactable = active && s.Phone?.State == "RINGING";
+            _cancelTransport.interactable = active && s.Transport != null && new[] { "REQUESTED", "DELAYED", "PREPARING", "IN_TRANSIT" }.Contains(s.Transport.State);
             _tubeButton.interactable = _labelButton.interactable = active && def?.Kind == "blood";
             SetText(_tubeButton.GetComponentInChildren<TMP_Text>(), "Tube: " + Choice(host.SampleTubes, _tube));
             SetText(_labelButton.GetComponentInChildren<TMP_Text>(), "Label: " + Choice(host.SampleLabels, _label));

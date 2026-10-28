@@ -59,6 +59,14 @@ namespace ProcSense.Tests.PlayMode
             var feedbackRect = (RectTransform)Tab.transform.Find("DiagnosticsFeedback");
             Assert.GreaterOrEqual(-hintRect.anchoredPosition.y, -feedbackRect.anchoredPosition.y + feedbackRect.sizeDelta.y,
                 "The shared refusal hint must be below the pane feedback, with no overlap");
+
+            var cancel = (RectTransform)Tab.GetComponentsInChildren<UnityEngine.UI.Button>(true)
+                .Single(b => b.GetComponentInChildren<TMPro.TMP_Text>()?.text == "Cancel transport").transform;
+            var title = (RectTransform)Tab.transform.Find("Test");
+            Rect Bounds(RectTransform rect) => new Rect(rect.anchoredPosition.x, -rect.anchoredPosition.y, rect.rect.width, rect.rect.height);
+            foreach (var other in new[] { hintRect, feedbackRect, title })
+                Assert.IsFalse(Bounds(cancel).Overlaps(Bounds(other)), "Cancel transport must not overlap " + other.name);
+
             _tablet.ShowTab("orders");
             Assert.IsFalse(Tab.gameObject.activeSelf);
             _tablet.Buttons.Single(b => b.label == "Request transport").button.onClick.Invoke();

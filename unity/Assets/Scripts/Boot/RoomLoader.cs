@@ -112,6 +112,8 @@ namespace ProcSense.VR.Boot
             UpdateLighting();
         }
 
+        public bool CancelPendingTransition() { if (!Busy || _initializing) return false; _cancelled = true; return true; }
+
         public bool RequestRoom(string room)
         {
             if (!isActiveAndEnabled || Busy) return false;
