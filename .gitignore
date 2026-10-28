@@ -87,5 +87,6 @@ Thumbs.db
 /.mcp.json
 
 # rendered voice lines copied in by task voice-copy (p0-voice-audio-s03); whether audio is committed is EXP-FND-1
-/unity/Assets/Audio/Voice/Resources/
-/unity/Assets/Audio/Voice/Resources.meta
+/unity/Assets/Audio/Voice/
+/unity/Assets/Audio/Voice.meta
+/unity/Assets/Audio.meta
