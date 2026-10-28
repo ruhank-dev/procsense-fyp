@@ -6,7 +6,6 @@ using ProcSense.Core.Actions;
 using ProcSense.Core.Location;
 using ProcSense.Core.Observation;
 using ProcSense.VR.Bridge;
-using ProcSense.VR.Scenes;
 using ProcSense.VR.Views;
 using TMPro;
 using UnityEngine;
@@ -14,7 +13,7 @@ using UnityEngine;
 namespace ProcSense.VR.Diagnostics
 {
     /// <summary>
-    /// The waiting overlay of a B-room visit (p0-diagnostic-transitions-s06). When Core says the patient has gone behind a door (a scanner or the X-ray room), a panel says where the patient is and, on the sim
+    /// The waiting overlay of a B-room visit (p0-diagnostic-transitions-s06). When Core says the patient has gone into a room they stay in (a scanner or the X-ray room, from the stay times in content/locations), a panel says where the patient is and, on the sim
     /// clock, about when they will be back, and that the trainee can carry on with other tasks; after the content's wait (content/diagnostics/diagnostics.json, wait_overlay.seconds) it shrinks to a corner note that
     /// stays until the patient is on the way back. A time skip shows a fast-forward note; a result coming back shows "Results are back" (the tablet and the EMR badge say so too). The back time is worked out as Core
     /// does it: from arriving, the stay in that room, the preparation and the trip back (content/locations). Nothing here changes Core.
@@ -94,7 +93,7 @@ namespace ProcSense.VR.Diagnostics
             var t = s.Transport;
             string state = t?.State ?? "";
             if ((state == "REQUESTED" || state == "DELAYED") && _lastState != state && _away.Length == 0) _from = s.Location;
-            bool behindDoor = t != null && (state == "ARRIVED" || state == "DONE") && TransportStaging.HiddenRooms.Contains(t.To);
+            bool behindDoor = t != null && (state == "ARRIVED" || state == "DONE") && BehindDoor(t.To);
             if (behindDoor && _away != t.To)
             {
                 _away = t.To;
@@ -132,6 +131,12 @@ namespace ProcSense.VR.Diagnostics
             _noteText.gameObject.SetActive(true);
             _noteLeft = NoteSeconds;
         }
+
+        /// <summary>
+        /// A room the patient is taken into and kept in for a while (content/locations: a stay time above zero): the scanners and the X-ray room. Sannan's PatientTransportView hides the patient there;
+        /// theatre reception and the theatre have no stay, so a transfer to theatre shows no waiting overlay.
+        /// </summary>
+        public bool BehindDoor(string place) => (_host?.Content?.Locations.Find(place)?.StayMinutes ?? 0) > 0;
 
         // As Core does it (TransportSubsystem): ARRIVED lasts the room's stay, DONE the preparation, then the trip back takes the route's minutes.
         private string Back(string place, string state)

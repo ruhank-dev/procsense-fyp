@@ -71,6 +71,8 @@ namespace ProcSense.Tests.PlayMode
         {
             var w = Overlay();
             Assert.AreEqual(10f, w.WaitSeconds);
+            Assert.IsTrue(new[] { "ultrasound", "xray", "ct", "mri" }.All(w.BehindDoor), "the rooms the patient stays in, from content");
+            Assert.IsFalse(w.BehindDoor("theatre_reception") || w.BehindDoor("corridor") || w.BehindDoor("patient_bay"), "no waiting overlay for these");
             Assert.IsTrue(Do("order_investigation", ("test", "fbc")).Accepted);
             Assert.IsTrue(Do("take_sample", ("test", "fbc"), ("tube", "edta_purple")).Accepted);
             Assert.IsTrue(Do("request_transport", ("to", "ct"), ("mode", "trolley"), ("monitoring", "none"), ("accompany", "false"), ("oxygen", "false")).Accepted);
