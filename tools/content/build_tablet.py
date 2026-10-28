@@ -51,6 +51,10 @@ LABELS = {
                            "non_diagnostic": "Not diagnostic (not seen clearly)"},
     "critical_actions": {"repeat_sample": "Repeat the sample", "treat_and_repeat": "Treat and repeat", "escalate_senior": "Escalate to a senior",
                          "order_ecg": "Order an ECG", "review_patient": "Review the patient", "postpone_surgery": "Postpone the operation"},
+    "concern_topics": {"sepsis": "I am worried about sepsis", "infection": "I am worried about an infection", "deterioration": "The patient is getting worse",
+                       "pain": "The pain is not controlled", "other": "Something else worries me"},
+    "anaesthetist_topics": {"fasting": "Fasting", "temperature": "Temperature", "consent": "Consent", "pregnancy": "Pregnancy", "other": "Something else"},
+    "interpreters": {"trained": "A trained interpreter", "family": "A family member", "child": "The patient's child"},
     "answers": {"approved": "Answer honestly", "false_reassurance": "Reassure that nothing can go wrong", "dismissive": "Say you will tell them later"},
 }
 SENSORS = [("spo2", "SpO2 probe"), ("nibp_cuff", "BP cuff")]
@@ -138,7 +142,7 @@ def build() -> dict:
                  [button("Measure BP", "measure_nibp"), button("Take temperature", "measure_temperature"), button("Count breathing rate", "count_rr"),
                   button("Check alertness", "assess_acvpu"), button("Ask pain score", "ask_pain_score")] +
                  [button("Remove " + l, "detach_sensor", sensor=s) for s, l in SENSORS] +
-                 [button("Ask permission to examine", "ask_exam_permission"),
+                 [button("Ask permission to examine", "ask_exam_permission"), button("Offer a chaperone", "offer_chaperone"),
                   form("Examine", "examine", [choice("region", "Region", [opt(r, region_label(r)) for r in regions])]),
                   button("Murphy's test", "murphy_test"),
                   form("Airway check", "airway_check", [choice("item", "Check", [opt(a, LABELS["airway"].get(a, a)) for a in sorted(airway)])]),
@@ -165,6 +169,7 @@ def build() -> dict:
                                                         choice("monitoring", "Monitoring", [opt(m, LABELS["monitoring"].get(m, m)) for m in loc["transport"]["monitoring_levels"]]),
                                                         choice("accompany", "You go too", [opt("true", "Yes"), opt("false", "No")]),
                                                         choice("oxygen", "Oxygen", [opt("true", "Yes"), opt("false", "No")])]),
+        form("Send the samples", "send_samples", [choice("via", "How", [opt(w["id"], w["label"]) for w in load("diagnostics/diagnostics.json")["dispatch"]])]),
     ]})
     ordered = {"key": "test", "label": "Test", "kind": "state", "source": "investigations"}
     critical = load("investigations/critical.json")
@@ -182,13 +187,19 @@ def build() -> dict:
     ]})
     tabs.append({"id": "treat", "label": "Treat", "step": 8, "list": "orders", "entries": [
         form("Check the timing of a treatment", "check_treatment_timing", [choice("treatment", "Treatment", [opt(t["id"], t["label"]) for t in treatments])]),
+        form("Request fluids", "request_fluids", [choice("type", "Fluid", [opt(t["id"], t["label"]) for t in treatments if t.get("kind") == "fluid"]), dict(text("indication", "For"), optional=True)]),
+        form("Request oxygen", "request_oxygen", [choice("device", "Device", [opt(d["id"], d["label"]) for d in load("treatments.json")["oxygen_devices"]]), dict(text("indication", "For"), optional=True)]),
+        button("Request IV access", "request_iv_access"),
+        form("Hold a home medicine", "hold_medicine", [text("drug", "Medicine (as the patient named it)")]),
+        form("Document a treatment given", "document_treatment", [choice("treatment", "Treatment", [opt(t["id"], t["label"]) for t in treatments])]),
         button("Let a moment pass", "wait"),
         form("Let time pass", "time_skip", [text("minutes", "Minutes")]),
     ]})
     tabs.append({"id": "consent", "label": "Consent", "step": 9, "entries":
                  [button(LABELS["consent"].get(t, t), "consent_discussion", topic=t) for t in consent["topics"]] +
                  [button("Check understanding (teach back)", "teach_back"), button("Check capacity", "check_capacity"),
-                  button("Sign the consent form", "sign_consent"), button("Use the emergency route", "use_emergency_route")]})
+                  button("Sign the consent form", "sign_consent"), button("Use the emergency route", "use_emergency_route"),
+                  form("Ask for an interpreter", "request_interpreter", [choice("who", "Who", [opt(k, LABELS["interpreters"].get(k, k)) for k in consent["interpreters"]])])]})
     who_items = sorted(who["items"], key=lambda i: (who["phases"].index(i["phase"]), i["order"]))
     responses = [opt(r, LABELS["responses"][r]) for r in ("yes", "no", "na")]
     tabs.append({"id": "checklist", "label": "Checklist", "step": 10, "entries":
@@ -206,6 +217,8 @@ def build() -> dict:
              [text(p, LABELS["sbar"].get(p, p)) for p in decision["sbar"]]),
         form("Postpone", "postpone", [text("reason", "Reason")]),
         form("Redirect to another team", "redirect", [text("service", "Team")]),
+        form("Say what worries you", "say_concern", [choice("topic", "Concern", [opt(k, v) for k, v in LABELS["concern_topics"].items()])]),
+        form("Tell the anaesthetist", "tell_anaesthetist", [choice("topic", "About", [opt(k, v) for k, v in LABELS["anaesthetist_topics"].items()])]),
     ]})
     tabs.append({"id": "debrief", "label": "Debrief", "step": 15, "list": "goals", "entries": []})
     return {"version": 1, "note": "Generated by tools/content/build_tablet.py from the content tables; do not edit by hand. Unity draws the tablet from this file (p0-vr-interaction-ui-s03).",

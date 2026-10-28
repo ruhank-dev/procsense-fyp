@@ -62,7 +62,7 @@ namespace ProcSense.Core.Records
 
             return new EmrSections
             {
-                Profile = new EmrProfile(id == null ? "" : (id.Title + " " + id.FullName).Trim(), id?.Dob ?? "", id?.Mrn ?? "", id?.Sex ?? "", id?.Age ?? 0, allergies, alerts),
+                Profile = new EmrProfile(id == null ? "" : (id.Title + " " + id.FullName).Trim(), id?.Dob ?? "", RecordsSubsystem.Printed(id?.Mrn ?? ""), id?.Sex ?? "", id?.Age ?? 0, allergies, alerts),
                 Episode = new EmrEpisode(file?.Presentation.Summary ?? "", emr.Where(d => d.Episode == "current" && d.Tab == "current_episode").Select(d => d.Id).ToList(),
                     c.News2.Select(n => new EmrNews2Point(Clock(s, n.Step), n.Total)).ToList()),
                 Labs = new EmrLabs(rows, emr.Where(d => d.Type == "lab_result").Select(d => d.Id).ToList(),

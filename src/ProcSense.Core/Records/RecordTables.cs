@@ -18,7 +18,7 @@ namespace ProcSense.Core.Records
     public sealed record RecordEntry(string Id, string Type, string Title, string DateOffset, string Body, bool Synthetic, string Ref);
 
     /// <summary>A patient on the ward list who is not the case patient (an authored identity with no clinical history).</summary>
-    public sealed record DistractorPatient(string Id, string Name, string Dob, string Mrn, string Ref);
+    public sealed record DistractorPatient(string Id, string Name, string Dob, string Mrn, string Ref, string Location = "");
 
     /// <summary>content/records/records.json (built by tools/content/build_records.py): document types, the current documents, the type a result becomes, each case's record and the distractor patients.</summary>
     public sealed class RecordTables
@@ -114,7 +114,7 @@ namespace ProcSense.Core.Records
             for (int i = 0; i < rawD.Count; i++)
             {
                 var o = new JsonObj(rawD[i], JsonObj.Index(root.Sub("distractors"), i));
-                distractors.Add(new DistractorPatient(o.Str("id"), o.Str("name"), o.Str("dob"), o.Str("mrn"), o.Str("ref")));
+                distractors.Add(new DistractorPatient(o.Str("id"), o.Str("name"), o.Str("dob"), o.Str("mrn"), o.Str("ref"), o.Str("location")));
                 o.Finish();
             }
             foreach (var r in root.Arr("refs")) if (!(r is string)) throw new ContentException(root.Sub("refs") + ": expected register ids");

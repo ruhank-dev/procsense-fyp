@@ -1,7 +1,7 @@
-id,patient_id,d_name,d_dob,d_mrn,d_note,quote,page,ref
-p1,DIST-01,Hassan Raza,1971-08-02,MR 204117,no clinical history; synthetic,,,SR-3050
-p2,DIST-02,Mariam Siddiqui,1992-11-19,MR 118842,no clinical history; synthetic,,,SR-3051
-p3,DIST-03,Ayesha Khan Malik,1984-03-15,MR 102983,no clinical history; synthetic,,,SR-3052
-p4,DIST-04,Ayesha Kaan,1984-03-14,MR 109238,no clinical history; synthetic,,,SR-3053
-p5,DIST-05,Imran Qureshi,1957-05-30,MR 187764,no clinical history; synthetic,,,SR-3054
-p6,DIST-06,Sana Iqbal,1985-01-26,MR 150731,no clinical history; synthetic,,,SR-3055
+id,patient_id,d_name,d_dob,d_mrn,d_location,d_note,quote,page,ref
+p1,DIST-01,Hassan Raza,1971-08-02,MR 204117,"Ward 6, bed 4",no clinical history; synthetic,,,SR-3050
+p2,DIST-02,Mariam Siddiqui,1992-11-19,MR 118842,"Ward 9, bed 11",no clinical history; synthetic,,,SR-3051
+p3,DIST-03,Ayesha Khan Malik,1984-03-15,MR 102983,"Ward 6, bed 2",no clinical history; synthetic,,,SR-3052
+p4,DIST-04,Ayesha Kaan,1984-03-14,MR 109238,"Day surgery unit, bay 3",no clinical history; synthetic,,,SR-3053
+p5,DIST-05,Imran Qureshi,1957-05-30,MR 187764,"Ward 4, bed 7",no clinical history; synthetic,,,SR-3054
+p6,DIST-06,Sana Iqbal,1985-01-26,MR 150731,"Ward 9, bed 3",no clinical history; synthetic,,,SR-3055

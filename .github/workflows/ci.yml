@@ -308,6 +308,9 @@ jobs:
       - name: Tablet layout is up to date (every P0 correct-path action can be made from the tablet)
         run: uv run --project tools tools/content/build_tablet.py --check
 
+      - name: Source citations are up to date (every source the debrief names has one)
+        run: uv run --project tools tools/content/build_citations.py --check
+
       - name: Sample dispatch is up to date (tube station, porter, beginner prompt)
         run: uv run --project tools tools/content/build_diagnostics.py --check
 

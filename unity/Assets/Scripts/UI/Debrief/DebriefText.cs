@@ -50,7 +50,7 @@ namespace ProcSense.VR.UI.Debrief
         {
             var entries = l.Evidence.Select(n => Entry(s, n)).Where(e => e != null).Select(e => Evidence(s, e)).ToList();
             return l.Sentence + "\n\n" + (entries.Count > 0 ? string.Join("\n", entries) : "No log entry is attached to this item.") +
-                   "\n\nRule: " + (l.RuleId.Length > 0 ? l.RuleId : "-") + "    Source: " + (l.Source.Length > 0 ? l.Source : "-");
+                   "\n\nRule: " + (l.RuleId.Length > 0 ? l.RuleId : "-") + "\nSource: " + (l.Source.Length > 0 ? Citations.For(l.Source) : "-");   // the citation, from content (DT-261)
         }
 
         /// <summary>

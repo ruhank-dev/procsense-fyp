@@ -35,7 +35,7 @@ namespace ProcSense.Core.Tests
                 var e = Start(id).Records!.Sections();
                 var file = Content.CaseFiles[id];
                 Assert.True(e.Profile.Name.Contains(file.Identity.FullName), id);
-                Assert.Equal((file.Identity.Mrn, file.Identity.Dob), (e.Profile.Mrn, e.Profile.Dob));
+                Assert.Equal(("MR " + file.Identity.Mrn, file.Identity.Dob), (e.Profile.Mrn, e.Profile.Dob));       // printed as on the wristband (DT-264)
                 Assert.Equal(file.Allergies.Count, e.Profile.Alerts.Count);
                 Assert.Equal(file.Presentation.Summary, e.Episode.Reason);
                 Assert.Contains("clerking", e.Episode.Documents);
@@ -52,6 +52,25 @@ namespace ProcSense.Core.Tests
         {
             var e = Start("STK-S2-B").Records!.Sections();
             Assert.Contains(e.Profile.Alerts, a => a.StartsWith("Allergy: Penicillin"));
+        }
+
+        [Fact]
+        public void The_ward_list_shows_each_patients_location_and_the_record_number_as_the_wristband_prints_it()   // DT-264
+        {
+            var s = Start("VAR-S1-A");
+            var list = s.Records!.Patients;
+            Assert.All(list, p => Assert.StartsWith("MR ", p.Mrn));
+            Assert.All(list.Where(p => !p.IsCasePatient), p => Assert.NotEqual("", p.Location));
+            var patient = list.Single(p => p.IsCasePatient);
+            Assert.Equal(s.Observable.Wristband!.MrnText, patient.Mrn);
+            Assert.Equal("Patient bay", patient.Location);
+
+            Assert.Contains("match:VAR-S1-A", Do(s, "search_patient", ("query", "102938")).Effects);       // the number alone still finds her
+            Assert.Contains("match:VAR-S1-A", Do(s, "search_patient", ("query", "MR 102938")).Effects);
+
+            Assert.True(Do(s, "request_transport", ("to", "ct"), ("mode", "trolley"), ("monitoring", "none"), ("accompany", "false"), ("oxygen", "false")).Accepted);
+            for (int i = 0; i < 200 && s.Observable.Transport?.State != "ARRIVED"; i++) s.Tick(15);
+            Assert.Equal("CT scanner", s.Records.Patients.Single(p => p.IsCasePatient).Location, true);   // the location follows the session
         }
 
         [Fact]

@@ -79,7 +79,7 @@ namespace ProcSense.VR.Records.Emr
             for (int i = 0; i < ListRows; i++)
             {
                 int row = i;
-                var b = UiKit.MakeButton(root, "", new Vector2(12, 372 + i * 62), new Vector2(300, 56), 15f);
+                var b = UiKit.MakeButton(root, "", new Vector2(12, 372 + i * 62), new Vector2(300, 56), 14f);
                 b.onClick.AddListener(() => { if (row < _shown.Count) Choose(_shown[row].Id); });
                 _patientButtons.Add(b);
             }
@@ -194,11 +194,11 @@ namespace ProcSense.VR.Records.Emr
             {
                 bool used = i < _shown.Count;
                 _patientButtons[i].gameObject.SetActive(used);
-                if (used) _patientButtons[i].GetComponentInChildren<TMP_Text>().text = (_shown[i].Id == SelectedPatient ? "> " : "") + _shown[i].Name + "\n" + _shown[i].Mrn + "   born " + _shown[i].Dob;
+                if (used) _patientButtons[i].GetComponentInChildren<TMP_Text>().text = (_shown[i].Id == SelectedPatient ? "> " : "") + _shown[i].Name + "\n" + _shown[i].Mrn + "   born " + _shown[i].Dob + (_shown[i].Location.Length > 0 ? "\n" + _shown[i].Location : "");   // where the patient is (DT-264)
             }
 
             var patient = records.Patients.FirstOrDefault(p => p.Id == SelectedPatient);
-            _banner.text = patient == null ? "" : patient.Name + "    " + patient.Mrn + "    born " + patient.Dob;
+            _banner.text = patient == null ? "" : patient.Name + "    " + patient.Mrn + "    born " + patient.Dob + (patient.Location.Length > 0 ? "    " + patient.Location : "");   // where the patient is (DT-264)
             bool open = CasePatientOpen;
             foreach (var b in _sectionButtons) b.interactable = open;
 

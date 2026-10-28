@@ -83,6 +83,7 @@ namespace ProcSense.Tests.PlayMode
                 d.Open(line);
                 StringAssert.Contains("#" + line.Evidence[0], d.Drawer.Text, "T-DU1: the drawer shows the log entry " + line.Item);
                 StringAssert.Contains("Rule: " + line.RuleId, d.Drawer.Text);
+                if (Citations.Table.TryGetValue(line.Source, out var cite)) StringAssert.Contains(cite, d.Drawer.Text, "the source's citation, not only its ID (DT-261)");
             }
             Assert.IsTrue(d.Facts.Lines.Where(l => l.Severity != "credit").All(l => l.Evidence.Count > 0), "T-DU1: every item the trainee is told about has its log evidence");
 

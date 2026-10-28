@@ -287,6 +287,7 @@ tasks:
       - uv run --project tools tools/content/build_records.py
       - uv run --project tools tools/content/build_diagnostics.py
       - uv run --project tools tools/content/build_tablet.py
+      - uv run --project tools tools/content/build_citations.py
 
   content-refresh:
     desc: Regenerate every generated content file and document in dependency order (tables, case files, imaging library, review packs, equipment sheets, traceability, manifest); run after any content change
@@ -295,6 +296,7 @@ tasks:
       - uv run --project tools tools/content/build_case_files.py
       - uv run --project tools tools/content/build_records.py
       - uv run --project tools tools/content/build_diagnostics.py
+      - uv run --project tools tools/content/build_citations.py
       - uv run --project tools tools/content/imaging_library.py
       - uv run --project tools tools/content/image_review_pack.py
       - uv run --project tools tools/data/dataset_cards.py

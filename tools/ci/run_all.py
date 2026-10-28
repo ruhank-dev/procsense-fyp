@@ -193,6 +193,7 @@ def main(argv: list[str]) -> int:
         ("theatre readiness stations up to date (12 stations, faults)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_or.py", "--check"])),
         ("ward checklist up to date (13 items, verify rules)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_ward.py", "--check"])),
         ("tablet layout up to date (tabs, buttons and forms from content; every P0 correct-path action can be made from the tablet)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_tablet.py", "--check"])),
+        ("source citations up to date (the register's short citations shipped in content; every source the debrief names has one)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_citations.py", "--check"])),
         ("sample dispatch up to date (tube station, porter, beginner prompt)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_diagnostics.py", "--check"])),
         ("patient record up to date (document types, each case's record, distractor patients)", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_records.py", "--check"])),
         ("deterioration clock and Usman timeline up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/build_deterioration.py", "--check"])),

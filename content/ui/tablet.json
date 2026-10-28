@@ -334,6 +334,12 @@
      "enabled": "always"
     },
     {
+     "label": "Offer a chaperone",
+     "verb": "offer_chaperone",
+     "params": {},
+     "enabled": "always"
+    },
+    {
      "label": "Examine",
      "verb": "examine",
      "params": {},
@@ -1137,6 +1143,29 @@
        ]
       }
      ]
+    },
+    {
+     "label": "Send the samples",
+     "verb": "send_samples",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "via",
+       "label": "How",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "tube_station",
+         "label": "Pneumatic tube station"
+        },
+        {
+         "value": "porter",
+         "label": "Hand to the porter"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -1415,6 +1444,166 @@
      ]
     },
     {
+     "label": "Request fluids",
+     "verb": "request_fluids",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "type",
+       "label": "Fluid",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "TR-IV-FLUIDS",
+         "label": "IV fluids"
+        }
+       ]
+      },
+      {
+       "key": "indication",
+       "label": "For",
+       "kind": "text",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "label": "Request oxygen",
+     "verb": "request_oxygen",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "device",
+       "label": "Device",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "nasal_cannula",
+         "label": "Nasal cannula"
+        },
+        {
+         "value": "simple_mask",
+         "label": "Simple face mask"
+        },
+        {
+         "value": "non_rebreather_mask",
+         "label": "Non-rebreather mask"
+        }
+       ]
+      },
+      {
+       "key": "indication",
+       "label": "For",
+       "kind": "text",
+       "optional": true
+      }
+     ]
+    },
+    {
+     "label": "Request IV access",
+     "verb": "request_iv_access",
+     "params": {},
+     "enabled": "always"
+    },
+    {
+     "label": "Hold a home medicine",
+     "verb": "hold_medicine",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "drug",
+       "label": "Medicine (as the patient named it)",
+       "kind": "text"
+      }
+     ]
+    },
+    {
+     "label": "Document a treatment given",
+     "verb": "document_treatment",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "treatment",
+       "label": "Treatment",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "TR-PARACETAMOL",
+         "label": "Paracetamol"
+        },
+        {
+         "value": "TR-NSAID",
+         "label": "NSAIDs"
+        },
+        {
+         "value": "TR-OPIOID",
+         "label": "Opioids"
+        },
+        {
+         "value": "TR-ANTIEMETIC",
+         "label": "Antiemetics"
+        },
+        {
+         "value": "TR-IV-FLUIDS",
+         "label": "IV fluids"
+        },
+        {
+         "value": "TR-ABX-PROPHYLAXIS",
+         "label": "Preventive antibiotic (planned surgery, higher risk)"
+        },
+        {
+         "value": "TR-ABX-S2",
+         "label": "Broad antibiotics (emergency appendicitis)"
+        },
+        {
+         "value": "TR-STEROID-COVER",
+         "label": "Steroid cover at induction"
+        },
+        {
+         "value": "TR-VTE-PROPHYLAXIS",
+         "label": "Clot prevention (VTE prophylaxis)"
+        },
+        {
+         "value": "TR-ADRENALINE",
+         "label": "Adrenaline (anaphylaxis)"
+        },
+        {
+         "value": "TR-FAST-SUGAR",
+         "label": "Fast-acting sugar (low blood sugar, can swallow)"
+        },
+        {
+         "value": "TR-IV-GLUCOSE",
+         "label": "IV glucose (low blood sugar, cannot swallow)"
+        },
+        {
+         "value": "TR-HYPERKALAEMIA",
+         "label": "Hyperkalaemia treatment"
+        },
+        {
+         "value": "TR-NALOXONE",
+         "label": "Naloxone (opioid overdose)"
+        },
+        {
+         "value": "TR-SEPSIS-BUNDLE",
+         "label": "Sepsis emergency treatment"
+        },
+        {
+         "value": "TR-OXYGEN",
+         "label": "Oxygen"
+        },
+        {
+         "value": "TR-IV-ACCESS",
+         "label": "IV access (cannula)"
+        }
+       ]
+      }
+     ]
+    },
+    {
      "label": "Let a moment pass",
      "verb": "wait",
      "params": {},
@@ -1519,6 +1708,33 @@
      "verb": "use_emergency_route",
      "params": {},
      "enabled": "always"
+    },
+    {
+     "label": "Ask for an interpreter",
+     "verb": "request_interpreter",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "who",
+       "label": "Who",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "trained",
+         "label": "A trained interpreter"
+        },
+        {
+         "value": "family",
+         "label": "A family member"
+        },
+        {
+         "value": "child",
+         "label": "The patient's child"
+        }
+       ]
+      }
+     ]
     }
    ]
   },
@@ -2766,6 +2982,76 @@
        "key": "service",
        "label": "Team",
        "kind": "text"
+      }
+     ]
+    },
+    {
+     "label": "Say what worries you",
+     "verb": "say_concern",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "topic",
+       "label": "Concern",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "sepsis",
+         "label": "I am worried about sepsis"
+        },
+        {
+         "value": "infection",
+         "label": "I am worried about an infection"
+        },
+        {
+         "value": "deterioration",
+         "label": "The patient is getting worse"
+        },
+        {
+         "value": "pain",
+         "label": "The pain is not controlled"
+        },
+        {
+         "value": "other",
+         "label": "Something else worries me"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "label": "Tell the anaesthetist",
+     "verb": "tell_anaesthetist",
+     "params": {},
+     "enabled": "always",
+     "fields": [
+      {
+       "key": "topic",
+       "label": "About",
+       "kind": "choice",
+       "options": [
+        {
+         "value": "fasting",
+         "label": "Fasting"
+        },
+        {
+         "value": "temperature",
+         "label": "Temperature"
+        },
+        {
+         "value": "consent",
+         "label": "Consent"
+        },
+        {
+         "value": "pregnancy",
+         "label": "Pregnancy"
+        },
+        {
+         "value": "other",
+         "label": "Something else"
+        }
+       ]
       }
      ]
     }

@@ -24,13 +24,14 @@ rec("C.hba1c", "HbA1c 58 mmol/mol (2 months ago)", "VAR-S1-C", "lab_result", "Pr
     "HbA1c 58 mmol/mol, taken 2 months ago.")
 rec("D.egfr", "Kidney function eGFR 68.", "VAR-S1-D", "lab_result", "Kidney function", "not stated in the book", "eGFR 68", "Kidney function: eGFR 68.")
 
-dis = Table("emr_distractors", 3050, ["patient_id", "d_name", "d_dob", "d_mrn", "d_note"], "EMR distractor patient", "Authored synthetic identities (no clinical content)", size=20)
+dis = Table("emr_distractors", 3050, ["patient_id", "d_name", "d_dob", "d_mrn", "d_location", "d_note"], "EMR distractor patient", "Authored synthetic identities (no clinical content)", size=20)
 NOTE = ("Authored synthetic identity so that searching for the right patient is a real task. The name, date of birth and number are invented and belong to no real person; "
-        "there is no clinical history.")
-for i, (name, dob, mrn) in enumerate((("Hassan Raza", "1971-08-02", "MR 204117"), ("Mariam Siddiqui", "1992-11-19", "MR 118842"), ("Ayesha Khan Malik", "1984-03-15", "MR 102983"),
-                                      ("Ayesha Kaan", "1984-03-14", "MR 109238"), ("Imran Qureshi", "1957-05-30", "MR 187764"), ("Sana Iqbal", "1985-01-26", "MR 150731")), start=1):
+        "there is no clinical history. The ward and bed are invented too, so the EMR ward list shows where each patient is (DT-264).")
+for i, (name, dob, mrn, where) in enumerate((("Hassan Raza", "1971-08-02", "MR 204117", "Ward 6, bed 4"), ("Mariam Siddiqui", "1992-11-19", "MR 118842", "Ward 9, bed 11"),
+                                             ("Ayesha Khan Malik", "1984-03-15", "MR 102983", "Ward 6, bed 2"), ("Ayesha Kaan", "1984-03-14", "MR 109238", "Day surgery unit, bay 3"),
+                                             ("Imran Qureshi", "1957-05-30", "MR 187764", "Ward 4, bed 7"), ("Sana Iqbal", "1985-01-26", "MR 150731", "Ward 9, bed 3")), start=1):
     dis.add_derived(f"p{i}", "ProcSense authored synthetic identities", "", NOTE + (" Deliberately similar to Mrs Ayesha Khan (name or date of birth one digit off): a near-miss on search." if i in (3, 4) else ""),
-                    patient_id=f"DIST-{i:02d}", d_name=name, d_dob=dob, d_mrn=mrn, d_note="no clinical history; synthetic")
+                    patient_id=f"DIST-{i:02d}", d_name=name, d_dob=dob, d_mrn=mrn, d_location=where, d_note="no clinical history; synthetic")
 
 TABLES = [hist, dis]
 OFFICIAL_FILES = {}
