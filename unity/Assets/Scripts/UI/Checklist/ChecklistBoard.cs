@@ -46,7 +46,7 @@ namespace ProcSense.VR.UI.Checklist
         public void Build()
         {
             if (Canvas != null) return;
-            Canvas = UiKit.WorldCanvas("WHO board", transform, new Vector2(1100, 860), 0.001f);
+            Canvas = UiKit.WorldCanvas("WHO board", transform, new Vector2(1100, 860), 0.0013f);
             var root = Canvas.transform;
             _send = gameObject.AddComponent<FormSendEmitter>();
             var tabs = new[] { ("sign_in", "Sign In"), ("time_out", "Time Out"), ("extension", "ProcSense checks") };

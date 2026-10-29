@@ -39,7 +39,7 @@ namespace ProcSense.VR.UI.Checklist
         public void Build()
         {
             if (Canvas != null) return;
-            Canvas = UiKit.WorldCanvas("Ward checklist", transform, new Vector2(900, 1000), 0.0008f);
+            Canvas = UiKit.WorldCanvas("Ward checklist", transform, new Vector2(900, 1000), 0.001f);
             var root = Canvas.transform;
             _send = gameObject.AddComponent<FormSendEmitter>();
             for (int i = 0; i < RowCount; i++)

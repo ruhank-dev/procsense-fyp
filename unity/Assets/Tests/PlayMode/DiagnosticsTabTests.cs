@@ -46,8 +46,8 @@ namespace ProcSense.Tests.PlayMode
         [Test]
         public void Diagnostics_coexists_with_content_tabs_forms_and_session_without_overlapping_notes()
         {
-            Assert.AreEqual(14, _tablet.TabIds.Count);
-            CollectionAssert.AreEqual(new[] { TabletView.SessionTabId, TabletView.DiagnosticsTabId }, _tablet.TabIds.Skip(12).ToArray());
+            Assert.AreEqual(15, _tablet.TabIds.Count);
+            CollectionAssert.AreEqual(new[] { TabletView.SessionTabId, TabletView.DiagnosticsTabId, TabletView.SettingsTabId }, _tablet.TabIds.Skip(12).ToArray());
             Assert.IsTrue(Tab.gameObject.activeInHierarchy);
             Assert.IsFalse(_tablet.Canvas.transform.Find("Clerking note").gameObject.activeSelf);
             Assert.IsFalse(_tablet.Canvas.transform.Find("Side list").gameObject.activeSelf);
