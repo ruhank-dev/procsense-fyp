@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ProcSense.VR.Audio;
-using ProcSense.VR.Diagnostics;
 using ProcSense.VR.Records.Emr;
 using ProcSense.VR.Records.Folder;
 using ProcSense.VR.UI.Checklist;
@@ -13,7 +12,7 @@ namespace ProcSense.EditorTools
 {
     /// <summary>
     /// Puts the panels that are not placed in any scene yet (DT-266) around the player during Play, so they can be tried in the Editor before Sannan places them for good: the EMR shell, the results
-    /// viewer and the critical-result phone, the WHO board and the ward checklist, the debrief, the waiting overlay, the voice player with its subtitles, and a report tray on the bay's desk. They exist
+    /// viewer and the critical-result phone, the WHO board and the ward checklist, the debrief, the voice player with its subtitles, and a report tray on the bay's desk. They exist
     /// only while Play lasts (Play mode objects are never saved), so no scene is changed. ProcSense > Review > Place review panels (in Play), or switch on "Place review panels on Play".
     /// </summary>
     [InitializeOnLoad]
@@ -69,7 +68,7 @@ namespace ProcSense.EditorTools
 
         /// <summary>
         /// The panels in a ring around where the player stands, each facing the player: to the left the record (EMR shell) and the results with the phone, ahead the WHO board and the ward checklist,
-        /// to the right the debrief. The waiting overlay and the subtitles follow the camera. Placing again replaces the earlier set. Returns the root (null outside Play).
+        /// to the right the debrief. The subtitles follow the camera (the waiting status is Sannan's DiagnosticWaitOverlay, on the tablet). Placing again replaces the earlier set. Returns the root (null outside Play).
         /// </summary>
         public static GameObject Place()
         {
@@ -102,10 +101,6 @@ namespace ProcSense.EditorTools
             At<DebriefView>("Debrief", 60f, 1.9f, 1.5f);
             At<ReportTray>("Report tray", -10f, 0.9f, 0.85f);
 
-            var hud = new GameObject("Waiting overlay and subtitles");
-            hud.transform.SetParent(root.transform, false);
-            if (cam != null) { hud.transform.SetParent(cam, false); hud.transform.localPosition = new Vector3(0, 0.15f, 1.2f); hud.transform.localRotation = Quaternion.identity; }
-            hud.AddComponent<WaitOverlay>();
             var voice = new GameObject("Voice player");
             voice.transform.SetParent(root.transform, false);
             var player = voice.AddComponent<VoicePlayer>();

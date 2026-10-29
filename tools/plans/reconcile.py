@@ -14,6 +14,7 @@ Status vocabulary (`now`):
   BLOCKED                nothing can be built before the named input (a person, a device, a licence, disk space) exists
   RESEARCH_NEGATIVE      a research step whose trigger was analysed and is not met; the analysis is the deliverable
   APPROVED               a P0 step the owner ticked under the earlier rule (generated, no entry needed); it was not re-audited against its acceptance criteria here
+  ASSIGNED               a front-end step handed to Ruhan or Moiz in the split confirmed on 29 Oct 2026 (docs/plans/frontend/front_end_load_distribution.md), not started yet; no evidence until it is
   NOT_RUHAN              owned by someone else; listed so the table is complete, not reconciled here; its acceptance is listed for them in docs/testing/SANNAN_EXTERNAL_TESTING.md
 Standard library only.
 """
@@ -31,8 +32,8 @@ ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "docs" / "plans" / "reconciliation.json"
 OUT = ROOT / "docs" / "plans" / "task-reconciliation.md"
 IMPL_OK = ("DONE", "ENG_DONE")                      # a status that can carry `"implementation": "complete"`
-STATUSES = {"APPROVED", "DONE", "DONE_GATE_OFF", "ENG_DONE", "PARTLY", "BLOCKED", "RESEARCH_NEGATIVE", "NOT_RUHAN"}
-LABEL = {"APPROVED": "Approved by the owner (earlier rule)", "DONE": "Done", "DONE_GATE_OFF": "Done, feature off", "ENG_DONE": "Engineering done, external acceptance pending", "PARTLY": "Partly done", "BLOCKED": "Blocked", "RESEARCH_NEGATIVE": "Analysed, trigger not met", "NOT_RUHAN": "Not Ruhan's"}
+STATUSES = {"APPROVED", "DONE", "DONE_GATE_OFF", "ENG_DONE", "PARTLY", "BLOCKED", "RESEARCH_NEGATIVE", "NOT_RUHAN", "ASSIGNED"}
+LABEL = {"APPROVED": "Approved by the owner (earlier rule)", "DONE": "Done", "DONE_GATE_OFF": "Done, feature off", "ENG_DONE": "Engineering done, external acceptance pending", "PARTLY": "Partly done", "BLOCKED": "Blocked", "RESEARCH_NEGATIVE": "Analysed, trigger not met", "ASSIGNED": "Assigned in the front-end split, not started", "NOT_RUHAN": "Not Ruhan's"}
 
 
 def steps() -> dict[str, dict]:
@@ -77,7 +78,7 @@ def problems(found: dict[str, dict], data: dict) -> list[str]:
             out.append(f"{s}: `implementation: complete` is only for DONE or ENG_DONE, not {e['now']}")
         if e["now"] == "ENG_DONE" and e.get("implementation") == "complete" and not e.get("external"):
             out.append(f"{s}: an implemented step awaiting external acceptance must say what it needs")
-        if e["now"] != "NOT_RUHAN" and not e.get("evidence"):
+        if e["now"] not in ("NOT_RUHAN", "ASSIGNED") and not e.get("evidence"):
             out.append(f"{s}: no evidence listed")
     return out
 

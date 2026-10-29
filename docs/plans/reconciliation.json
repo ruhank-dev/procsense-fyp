@@ -1037,11 +1037,16 @@
    "implementation": "complete"
   },
   "p1-theatre-extension-s04": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started (3D assets)",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/EditMode/RecoverySetupTests.cs",
+    "tools/blender/assets/ot/specimen_container.py"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 188); Unity EditMode and PlayMode suites pass",
+   "open": "the Unity import of the container (DT-267); the headset check",
+   "external": "Sannan: the Unity import of the container (DT-267) and the headset check of the labelling"
   },
   "p1-voice-input-s01": {
    "owner": "Ruhan",
@@ -1418,84 +1423,84 @@
    "ci_note": "Unity EditMode (75 of 75) and PlayMode (110 passed, 1 skipped for a live service) run locally in batch mode on 19 Oct 2026 by the engineer on the desktop, without a headset; GitHub Actions does not run Unity"
   },
   "p0-blender-equipment-s06": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s07": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s08": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s09": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s10": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s11": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s12": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s13": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s14": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s15": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-characters-s01": {
    "owner": "Sannan",
@@ -1611,12 +1616,15 @@
    "implementation": "complete"
   },
   "p0-diagnostic-transitions-s06": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/DiagnosticWaitOverlayTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision rows 184, 191 (Sannan's DiagnosticWaitOverlay kept)); Unity EditMode and PlayMode suites pass",
+   "open": "EXP-DT-1 wait length with testers; DT-265 return time from Core",
+   "external": "testers: EXP-DT-1 (the wait length); Ruhan: the return time from Core (DT-265)"
   },
   "p0-environment-rooms-s02": {
    "owner": "Sannan",
@@ -1733,12 +1741,12 @@
    "open": ""
   },
   "p0-evaluation-performance-s06": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-evaluation-performance-s07": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1776,20 +1784,27 @@
    "external": "the owner (outline review) and Sannan (headset demo recording, EX-DEMO)"
   },
   "p0-patient-records-emr-s02": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/FolderTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 179); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-EMR headset check; the report tray on the desk (DT-266)",
+   "external": "Sannan: the Quest headset check UX-P0-EMR (page turns, the report pocket)"
   },
   "p0-patient-records-emr-s03": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/EmrShellTests.cs",
+    "unity/Assets/Tests/EditMode/EmrSearchTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 177, 190); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-EMR headset check; the shell on SCREEN_EMR (DT-266)",
+   "external": "Sannan: the Quest headset check UX-P0-EMR, after placing the shell on SCREEN_EMR (DT-266)"
   },
   "p0-patient-records-emr-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1827,12 +1842,16 @@
    "implementation": "complete"
   },
   "p0-patient-records-emr-s06": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-patient-records-emr/usability-tasks.md",
+    "docs/plans/p0/p0-patient-records-emr/results.md"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 187); Unity EditMode and PlayMode suites pass",
+   "open": "the usability sessions with testers, then the top three fixes",
+   "external": "testers: the records usability sessions (EXP-REC-1 to 3), run by Moiz with the task script"
   },
   "p0-voice-audio-s01": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1864,12 +1883,15 @@
    "implementation": "complete"
   },
   "p0-voice-audio-s03": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/VoicePlayerTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 183); Unity EditMode and PlayMode suites pass",
+   "open": "EXP-VOX-1 listening; UX-P0-VOICE; the player and the speakers' heads in a scene (DT-266)",
+   "external": "listeners: EXP-VOX-1; Sannan: UX-P0-VOICE"
   },
   "p0-voice-audio-s04": {
    "owner": "Sannan",
@@ -1880,12 +1902,12 @@
    "open": ""
   },
   "p0-voice-audio-s05": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-voice-audio-s06": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1911,28 +1933,36 @@
    "open": ""
   },
   "p0-vr-interaction-ui-s03": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/TabletShellTests.cs",
+    "unity/Assets/Tests/PlayMode/TabletRarerActionsTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 175, 190); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-VRUI headset check",
+   "external": "Sannan: the Quest headset check UX-P0-VRUI"
   },
   "p0-vr-interaction-ui-s04": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-vr-interaction-ui-s05": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/ResultsPhoneTests.cs",
+    "unity/Assets/Tests/EditMode/ResultsTextTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 176); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-VRUI headset check; placing the panels in a scene (DT-266)",
+   "external": "Sannan: the Quest headset check UX-P0-VRUI, after placing the panels (DT-266)"
   },
   "p0-vr-interaction-ui-s06": {
    "owner": "Sannan",
@@ -1951,28 +1981,34 @@
    "open": ""
   },
   "p0-vr-interaction-ui-s08": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/ChecklistBoardTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 181); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-VRUI headset check; placing the boards in theatre (DT-266)",
+   "external": "Sannan: the Quest headset check UX-P0-VRUI, after placing the boards in theatre (DT-266)"
   },
   "p0-vr-interaction-ui-s09": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/DebriefViewTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 182); Unity EditMode and PlayMode suites pass",
+   "open": "T-DU4 read time with testers; UX-P0-VRUI; placing the screen (DT-266)",
+   "external": "testers: T-DU4 (the debrief read in two minutes); Sannan: UX-P0-VRUI"
   },
   "p0-vr-interaction-ui-s10": {
-   "owner": "Sannan",
+   "owner": "Ruhan",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
   },
   "p0-vr-interaction-ui-s11": {
    "owner": "Sannan",
@@ -2021,28 +2057,39 @@
    "ci_note": "Unity EditMode (75 of 75) and PlayMode (110 passed, 1 skipped for a live service) run locally in batch mode on 19 Oct 2026 by the engineer on the desktop, without a headset; GitHub Actions does not run Unity"
   },
   "p0-vr-platform-s06": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/PlayMode/PatientTransportSceneTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision rows 180, 189 (Sannan's PatientTransportView kept)); Unity EditMode and PlayMode suites pass",
+   "open": "UX-P0-VRPLAT device check",
+   "external": "Sannan: the device check UX-P0-VRPLAT"
   },
   "p0-vr-platform-s07": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Tests/EditMode/BuildScriptTests.cs",
+    "docs/RELEASE.md"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 185 (Dev, Demo and Study APKs built 29 Oct)); Unity EditMode and PlayMode suites pass",
+   "open": "the OVR Metrics captures on the Quest (T-Q1, T-Q4); Unity tests in GitHub CI",
+   "external": "the Quest: OVR Metrics captures on the fixed route (T-Q1, T-Q4); a Unity licence for GitHub CI"
   },
   "p0-vr-platform-s08": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/decisions/ADR-0030-unity-cli-editor-bridge.md",
+    "docs/plans/p0/p0-vr-platform/README.md"
+   ],
+   "measured": "built and tested by Moiz on 27-29 Oct 2026 (decision row 186); Unity EditMode and PlayMode suites pass",
+   "open": "ADR-0030 acceptance",
+   "external": "the owner: accepting ADR-0030"
   },
   "p0-scenario-s1-s01": {
    "owner": "Ruhan (headless), Sannan (VR)",

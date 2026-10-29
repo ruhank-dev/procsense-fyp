@@ -1,6 +1,10 @@
 # Front-end load distribution: the open Unity and Blender steps
 
-**Status (27 October 2026):** a proposal by Abdul Moiz, to be confirmed by Ruhan Kamran and Sannan Shakeel. Until it is confirmed the owners in `docs/plans/reconciliation.json` stay as they are (every step below is still listed there under Sannan).
+**Status (29 October 2026):** confirmed by all three (Abdul Moiz, Ruhan Kamran and Sannan Shakeel); proposed by Abdul Moiz on 27 October 2026. The owners in `docs/plans/reconciliation.json` follow this split: Moiz's 13 steps are listed under Moiz and Ruhan's 14 under Ruhan; Sannan's 25 stay under Sannan.
+
+**Working rule:** each person builds only the steps listed under their name below. Before starting a step listed under someone else, ask that person and wait for a yes; a step handed over is moved to its new owner in `reconciliation.json` in the same change. Abdul Moiz has built all 13 of his steps (headset checks and people-run parts remain, see each step) and may take on others' steps the same way, by asking first.
+
+**Overlaps found before the split was confirmed (28 October 2026):** p0-vr-platform-s06 (patient transport) and p0-diagnostic-transitions-s06 (the waiting status) were built twice; Sannan's versions, already in the scenes, were kept (`PatientTransportView`, `DiagnosticWaitOverlay`) and Moiz's removed (decision rows 189 and 191).
 
 **Why:** on 27 October 2026 Ruhan reported that the engine, content, AI and backend work is built and verified ([ruhan-moiz-inventory.md](../ruhan-moiz-inventory.md): unfinished implementation 0). The plan stands at 220 of 279 approved steps. What remains is front-end work (Unity scenes, interaction and UI, Blender equipment, characters) and front-end testing on the Meta Quest 3. This page splits that work across the three members so it can be done in parallel; an agent working on a step reads its row here, then the step file.
 

@@ -11,6 +11,8 @@ namespace ProcSense.VR.Views
     /// <summary>Nonblocking public diagnostic status. Never ticks Core, opens a result or acknowledges a call.</summary>
     public sealed class DiagnosticWaitOverlay : StateView
     {
+        /// <summary>How long the time-skip note stays on screen, from content (wait_overlay.seconds).</summary>
+        public float AdvanceSeconds => (float)(SimulationHost.Instance?.Content?.Diagnostics.WaitOverlaySeconds ?? 10);
         public Canvas Canvas { get; private set; }
         public string LocationText => _location != null ? _location.text : "";
         public string TimingText => _timing != null ? _timing.text : "";
@@ -20,6 +22,7 @@ namespace ProcSense.VR.Views
         private SimulationHost _appliedHost;
         private ProcSense.Core.Session _session;
         private string _interruption = "";
+        private float _advanceUntil;
 
         public void Build()
         {
@@ -45,7 +48,13 @@ namespace ProcSense.VR.Views
             _interruption = AdvanceText = "";
             if (Canvas != null) Canvas.gameObject.SetActive(false);
         }
-        protected override void Update() { BindActions(); base.Update(); }
+        protected override void Update()
+        {
+            BindActions();
+            base.Update();
+            // the time-skip note stays for the content's wait (content/diagnostics/diagnostics.json wait_overlay.seconds, p0-diagnostic-transitions-s06), then the card shows the state again
+            if (AdvanceText.Length > 0 && Time.unscaledTime > _advanceUntil) { AdvanceText = ""; RenderNow(); }
+        }
         private void BindActions()
         {
             var host = SimulationHost.Instance;
@@ -66,6 +75,7 @@ namespace ProcSense.VR.Views
             ResetSession(_appliedHost);
             if (action.Verb != "time_skip" || !outcome.Accepted) return;
             AdvanceText = "Time advanced to " + _appliedHost.Observable.ClockTime;
+            _advanceUntil = Time.unscaledTime + (float)(_appliedHost.Content?.Diagnostics.WaitOverlaySeconds ?? 10);
             _interruption = outcome.Effects.FirstOrDefault(e => e.StartsWith("stopped:", StringComparison.Ordinal))?.Substring(8) ?? "";
             RenderNow();
         }

@@ -127,6 +127,29 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual(1, _host.Session.Log.Count);
             yield return null; Photograph("wait-stopped.png");
         }
+        /// <summary>The real content with a different wait (wait_overlay.seconds), as a content author would set it.</summary>
+        private sealed class Wait : IContentReader
+        {
+            private readonly IContentReader _inner = ProcSense.VR.Content.UnityContentReader.ForThisPlatform();
+            public string ReadText(string path)
+            {
+                var text = _inner.ReadText(path);
+                return path == "diagnostics/diagnostics.json" ? text.Replace("\"seconds\": 10,", "\"seconds\": 1,") : text;
+            }
+        }
+
+        [UnityTest] public IEnumerator The_time_advanced_note_stays_for_the_content_wait_and_then_goes()   // p0-diagnostic-transitions-s06: the on-screen wait comes from content
+        {
+            _host.StartSession("VAR-S1-A", 42, SessionMode.Practice, new Wait());
+            Identity();
+            Assert.IsTrue(_host.Apply(Act("time_skip", ("minutes", "5"))).Accepted);
+            yield return null;
+            Assert.AreEqual(1f, Card.AdvanceSeconds, "the wait comes from content, no code change");
+            StringAssert.Contains("Time advanced", Card.AdvanceText);
+            yield return new WaitForSecondsRealtime(1.5f);
+            yield return null;
+            Assert.AreEqual("", Card.AdvanceText, "gone after the content's wait");
+        }
         [Test] public void New_session_clears_old_ready_and_skip_notifications()
         {
             Blood(); _host.Tick(7200); Card.RenderNow();
