@@ -57,6 +57,13 @@ namespace ProcSense.EditorTools
 
         private static bool Build(BuildVariantSpec v, bool batch)
         {
+            // a Quest build without the OpenXR loader runs as a flat Android window: black in the headset
+            ProjectSetup.EnsureOpenXr();
+            if (!ProjectSetup.AndroidStartsOpenXr())
+            {
+                Debug.LogError("[BuildScript] " + v.Name + " refused: the Android XR settings do not start the OpenXR loader (run ProcSense > Project setup)");
+                return false;
+            }
             CopyContent();
             Directory.CreateDirectory("../artifacts/unity");
             var target = NamedBuildTarget.Android;

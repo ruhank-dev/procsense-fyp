@@ -81,10 +81,35 @@ namespace ProcSense.EditorTools
             AssetDatabase.ImportPackage(found[0], false);
         }
 
-        private static void ConfigureOpenXr()
+        public const string XrSettingsPath = "Assets/XR/XRGeneralSettingsPerBuildTarget.asset";
+
+        /// <summary>
+        /// The Quest build starts OpenXR only if the Android XR settings exist, start the XR manager on start-up and list the OpenXR loader. A fresh clone has none of them (the per-target
+        /// settings were never committed), so they are created here when missing; the build script calls this before every build and refuses a Quest build without the loader.
+        /// </summary>
+        public static void EnsureOpenXr()
         {
-            foreach (var group in new[] { BuildTargetGroup.Android, BuildTargetGroup.Standalone })
+            ConfigureOpenXr(new[] { BuildTargetGroup.Android });   // the Quest only: the Editor's own XR set-up (EditorPlayInput) is left as it is
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>True when the Android build will start OpenXR.</summary>
+        public static bool AndroidStartsOpenXr()
+        {
+            var settings = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(BuildTargetGroup.Android);
+            return settings != null && settings.InitManagerOnStart && settings.AssignedSettings != null
+                   && settings.AssignedSettings.activeLoaders.Any(l => l != null && l.GetType().FullName == "UnityEngine.XR.OpenXR.OpenXRLoader");
+        }
+
+        private static void ConfigureOpenXr() => ConfigureOpenXr(new[] { BuildTargetGroup.Android, BuildTargetGroup.Standalone });
+
+        private static void ConfigureOpenXr(BuildTargetGroup[] groups)
+        {
+            var all = AssetDatabase.LoadAssetAtPath<XRGeneralSettingsPerBuildTarget>(XrSettingsPath);
+            foreach (var group in groups)
             {
+                // create the target's settings and its loader list when a clone has none (the old code skipped the target and left the build without VR)
+                if (all != null && !all.HasManagerSettingsForBuildTarget(group)) all.CreateDefaultManagerSettingsForBuildTarget(group);
                 var perTarget = XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(group);
                 if (perTarget == null) continue;
                 var manager = perTarget.AssignedSettings;
@@ -103,7 +128,7 @@ namespace ProcSense.EditorTools
 
             // Editor Play uses the desktop settings even when Android is the active build target.
             var desktop = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Standalone);
-            if (desktop != null)
+            if (desktop != null && groups.Contains(BuildTargetGroup.Standalone))
             {
                 foreach (var feature in desktop.GetFeatures<OpenXRFeature>())
                 {
