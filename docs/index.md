@@ -47,6 +47,7 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 | [CI.md](CI.md) | Every CI check, what it guards, the command to run it | What CI enforces |
 | [USER_GUIDE.md](USER_GUIDE.md) | Short guide for trainees and teachers: starting, controls, the case flow, end states, debrief, practice and assessment | How to use the app |
 | [RELEASE.md](RELEASE.md) | The release checklist for a Quest APK: variants (Dev, Demo, Study), builds with checksums, the headset performance gate, tags and the release table | How a release is built and recorded |
+| [release/](release/v1.0.md) | One page per release: `v1.0.md` holds the P0 pre-release checks, the clean-machine rebuild sheet (EXP-REL-1), the ten headset runs (EXP-REL-2) and the draft release notes | What a given release needs and what proved it |
 | [ATTRIBUTIONS.md](ATTRIBUTIONS.md) | Credits and sources, generated from the registers (`task attributions`) | Who and what is credited |
 | [TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md) | Branch, merge, `task ci`, direct push to `main` | Team git practice |
 | [previous_prompt.md](previous_prompt.md) | Owner prompt history | What was asked, when |

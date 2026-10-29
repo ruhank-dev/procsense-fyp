@@ -7,10 +7,10 @@ Total: **160** steps. Unfinished implementation: **0**. The voice client `p1-voi
 | Class | Steps |
 |---|---|
 | Completed engineering (done, or a Moiz step approved by the owner) | 78 |
-| Engineering done; only outside acceptance remains | 64 |
+| Engineering done; only outside acceptance remains | 70 |
 | Built and tested; the feature switch is OFF until human evidence exists | 1 |
 | Research trigger not met (nothing to build unless it occurs) | 2 |
-| Assigned in the front-end split of 29 Oct 2026; not started yet (listed, not counted as unfinished) | 13 |
+| Assigned in the front-end split of 29 Oct 2026; not started yet (listed, not counted as unfinished) | 7 |
 | Waiting on a source, a person or a device | 2 |
 | Unfinished implementation | 0 |
 
@@ -97,19 +97,24 @@ Historical statement of 18 October 2026: DONE 70, ENG_DONE 41, DONE_GATE_OFF 4, 
 - `p2-content-extensions-s01` (Ruhan)
 - `p2-content-extensions-s03` (Ruhan)
 
-## Engineering done; only outside acceptance remains (64)
+## Engineering done; only outside acceptance remains (70)
 
 - `p0-blender-equipment-s01` (Ruhan (Core, tools), Sannan (Unity)): Sannan: Unity import of hello_cube (check UX-P0-BLENDER)
 - `p0-blender-equipment-s04` (Ruhan (Core, tools), Sannan (Unity)): the owner and Sannan: approval of the pilot assets (check UX-P0-BLENDER)
+- `p0-blender-equipment-s06` (Moiz): the owner: preview and headset review
+- `p0-blender-equipment-s07` (Moiz): the owner: preview and headset review
+- `p0-blender-equipment-s08` (Moiz): the owner: preview and headset review
 - `p0-diagnostic-transitions-s04` (Ruhan (Core, tools), Sannan (Unity)): Sannan: place the props in the bay and run the headset check (UX-P0-DIAG)
 - `p0-diagnostic-transitions-s05` (Ruhan (Core, tools), Sannan (Unity)): Sannan: place the report prop and run the headset check (UX-P0-DIAG)
 - `p0-diagnostic-transitions-s06` (Moiz): testers: EXP-DT-1 (the wait length); Ruhan: the return time from Core (DT-265)
+- `p0-environment-rooms-s04` (Moiz): Sannan: anchor names and adoption
 - `p0-evaluation-performance-s01` (Moiz): Sannan or Moiz in the headset: one OVR Metrics capture and one fresh session
 - `p0-evaluation-performance-s03` (Moiz): whoever wears the headset each week: the route and task perf-row
 - `p0-evaluation-performance-s04` (Ruhan (Core, tools), Sannan (Unity)): Sannan: the headset check UX-P0-ASSESS
 - `p0-evaluation-performance-s05` (Moiz): supervisor: approval; testers: the study sessions
 - `p0-evaluation-performance-s06` (Moiz): the medical reviewer: the three sittings
 - `p0-evaluation-performance-s07` (Ruhan (Core, tools), Sannan (Unity)): a teammate who has never used ProcSense, with a headset (Sannan arranges it; check UX-P0-GUIDE)
+- `p0-evaluation-performance-s08` (Moiz): a team member: the clean-machine rebuild; Sannan or Moiz: the ten headset runs; the owner: the tag
 - `p0-patient-records-emr-s02` (Moiz): Sannan: the Quest headset check UX-P0-EMR (page turns, the report pocket)
 - `p0-patient-records-emr-s03` (Moiz): Sannan: the Quest headset check UX-P0-EMR, after placing the shell on SCREEN_EMR (DT-266)
 - `p0-patient-records-emr-s04` (Ruhan (Core, tools), Sannan (Unity)): Sannan: UX-P0-EMR
@@ -137,6 +142,7 @@ Historical statement of 18 October 2026: DONE 70, ENG_DONE 41, DONE_GATE_OFF 4, 
 - `p0-vr-interaction-ui-s09` (Moiz): testers: T-DU4 (the debrief read in two minutes); Sannan: UX-P0-VRUI
 - `p0-vr-interaction-ui-s10` (Moiz): Sannan with 3 users: EXP-UI-2 within UX-P0-VRUI
 - `p0-vr-interaction-ui-s11` (Moiz): 5 new users (3 medical students) with Sannan or Moiz observing
+- `p0-vr-interaction-ui-s12` (Moiz): Sannan: the headset run of the three fixtures (UX-P0-VRUI) and the nurse avatar
 - `p0-vr-platform-s06` (Moiz): Sannan: the device check UX-P0-VRPLAT
 - `p0-vr-platform-s07` (Moiz): the Quest: OVR Metrics captures on the fixed route (T-Q1, T-Q4); a Unity licence for GitHub CI
 - `p0-vr-platform-s08` (Moiz): the owner: accepting ADR-0030
@@ -173,11 +179,8 @@ Historical statement of 18 October 2026: DONE 70, ENG_DONE 41, DONE_GATE_OFF 4, 
 - `p2-ai-advanced-simulation-s04` (Ruhan): Reopens with a licensed dataset holding one of those findings, a reviewer and a GPU (DT-212)
 - `p2-ai-advanced-simulation-s05` (Ruhan): Reopens when a gap survives prompt and code remedies and real or approved dialogue exists to learn from (DT-212)
 
-## Assigned in the front-end split of 29 Oct 2026; not started yet (listed, not counted as unfinished) (13)
+## Assigned in the front-end split of 29 Oct 2026; not started yet (listed, not counted as unfinished) (7)
 
-- `p0-blender-equipment-s06` (Moiz): handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started
-- `p0-blender-equipment-s07` (Moiz): handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started
-- `p0-blender-equipment-s08` (Moiz): handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started
 - `p0-blender-equipment-s09` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
 - `p0-blender-equipment-s10` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
 - `p0-blender-equipment-s11` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
@@ -185,9 +188,6 @@ Historical statement of 18 October 2026: DONE 70, ENG_DONE 41, DONE_GATE_OFF 4, 
 - `p0-blender-equipment-s13` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
 - `p0-blender-equipment-s14` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
 - `p0-blender-equipment-s15` (Ruhan): assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started
-- `p0-environment-rooms-s04` (Moiz): handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started
-- `p0-evaluation-performance-s08` (Moiz): handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started
-- `p0-vr-interaction-ui-s12` (Moiz): handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started
 
 ## Waiting on a source, a person or a device (2)
 

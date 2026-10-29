@@ -24,6 +24,8 @@ The running build reports its variant through `ProcSense.VR.Boot.BuildVariant.Na
 
 ## Releases
 
+The P0 release (v1.0) has its own page with the clean-machine rebuild, the ten headset runs and the release notes: [release/v1.0.md](release/v1.0.md).
+
 | Tag | Commit | Variant | SHA-256 | Perf capture | Checked on the Quest by |
 |---|---|---|---|---|---|
 | (none yet) | | | | | |

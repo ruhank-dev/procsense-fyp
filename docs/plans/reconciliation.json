@@ -1425,26 +1425,55 @@
   "p0-blender-equipment-s06": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "tools/blender/assets/identity/allergy_band.py",
+    "tools/blender/assets/identity/report_sheet.py",
+    "tools/blender/assets/identity/consent_form.py",
+    "tools/blender/assets/identity/clipboard_chart.py",
+    "tools/blender/requirements.json",
+    "unity/Assets/Tests/EditMode/EquipmentPropsTests.cs",
+    "unity/Assets/Editor/EquipmentPrefabBuilder.cs"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 202); allergy band, report sheet, imaging printout, consent form with pen, clipboard with chart, and the folder's six pages and report pocket: validator green, imported as prefabs, EditMode tests pass",
+   "open": "the owner's review of the 4-view previews (task blender-preview) and in the headset; the live LABEL_/SCREEN_ surfaces of the new documents wired when their panels use them",
+   "external": "the owner: preview and headset review"
   },
   "p0-blender-equipment-s07": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "tools/blender/assets/monitoring/tympanic_thermometer.py",
+    "tools/blender/assets/monitoring/ecg_machine.py",
+    "tools/blender/assets/monitoring/stethoscope.py",
+    "tools/blender/assets/monitoring/glucose_meter.py",
+    "tools/blender/requirements.json",
+    "unity/Assets/Tests/EditMode/EquipmentPropsTests.cs",
+    "unity/Assets/Editor/EquipmentPrefabBuilder.cs"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 202); thermometer, 12-lead ECG machine with leads and electrodes, stethoscope, glucose meter, and the monitor's alarm light: validator green, imported as prefabs, EditMode tests pass",
+   "open": "the owner's review of the previews and in the headset; the thermometer, ECG and glucose interactions wait for Core actions and their panels",
+   "external": "the owner: preview and headset review"
   },
   "p0-blender-equipment-s08": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "tools/blender/assets/sampling/blood_collection_set.py",
+    "tools/blender/assets/sampling/specimen_tube_rack.py",
+    "tools/blender/assets/sampling/blood_culture_bottles.py",
+    "tools/blender/assets/sampling/urine_kit.py",
+    "tools/blender/assets/sampling/sharps_bin.py",
+    "tools/blender/assets/sampling/tube_station.py",
+    "tools/blender/requirements.json",
+    "unity/Assets/Tests/EditMode/EquipmentPropsTests.cs",
+    "unity/Assets/Editor/EquipmentPrefabBuilder.cs"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 202); blood collection set with the tourniquet in two states, the five tube types in a rack, culture bottles, urine kit, sharps bin and tube station: validator green, imported as prefabs, EditMode tests pass",
+   "open": "the owner's review of the previews and in the headset; the tube station's sizes are design sizes for the realism review; placing the props in the rooms is Sannan's",
+   "external": "the owner: preview and headset review"
   },
   "p0-blender-equipment-s09": {
    "owner": "Ruhan",
@@ -1645,10 +1674,16 @@
   "p0-environment-rooms-s04": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Editor/Rooms/RoomManifests.cs",
+    "unity/Assets/Data/Rooms/bay.json",
+    "unity/Assets/Tests/EditMode/RoomManifestTests.cs",
+    "docs/plans/p0/p0-environment-rooms/anchors.md"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 201); manifests exported from the bay, corridor, OT and recovery scenes; EditMode: placing twice gives the same scene, an asset swaps by its id, the validator catches bad names, missing and shared slots and missing prefabs",
+   "open": "Sannan agrees the anchor names (panel anchors, NPC_, Anchor_<LOC>) and decides when a room is built from its manifest (docs/plans/p0/p0-environment-rooms/anchors.md)",
+   "external": "Sannan: anchor names and adoption"
   },
   "p0-environment-rooms-s05": {
    "owner": "Sannan",
@@ -1787,10 +1822,16 @@
   "p0-evaluation-performance-s08": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/release/v1.0.md",
+    "docs/RELEASE.md",
+    "tools/unity/quest_sessions.py",
+    "tools/unity/perf_capture.py"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 203); the v1.0 page holds the pre-release checks, the clean-machine timing sheet (EXP-REL-1), the ten-run sheet with replay and perf columns (EXP-REL-2) and the draft release notes",
+   "open": "EXP-REL-1 on a clean machine by someone else; EXP-REL-2 ten runs on the Quest; the owner tags v1.0.0 (depends on s02 to s07)",
+   "external": "a team member: the clean-machine rebuild; Sannan or Moiz: the ten headset runs; the owner: the tag"
   },
   "p0-evaluation-performance-s09": {
    "owner": "Ruhan (tool and outline), Sannan (demo video)",
@@ -2073,10 +2114,16 @@
   "p0-vr-interaction-ui-s12": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Scripts/Views/IdentityStatusView.cs",
+    "unity/Assets/Tests/PlayMode/WristbandInteractionTests.cs",
+    "tools/content/build_tablet.py",
+    "content/ui/tablet.json"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 200); PlayMode: the grab and the tablet give the same log and the headless golden state on the mismatch, missing and missing-with-allergy fixtures; the banner follows the nurse's visit and the missing band",
+   "open": "the same three fixtures by hand in the headset; the nurse shown walking in and replacing the band (Sannan's characters s08, from Core's nurse events)",
+   "external": "Sannan: the headset run of the three fixtures (UX-P0-VRUI) and the nurse avatar"
   },
   "p0-vr-platform-s04": {
    "owner": "Sannan",
