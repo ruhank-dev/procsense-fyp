@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "a8592ab4194de372a2d871538f0081124a14ed73be85ef7b4dddd67c1a6296aa",
- "files": 755,
- "bytes": 18502381,
+ "content_hash": "aa445ae6a713953f00c2db3f04c225ee9be71355ed5cc557d97ba5c325eac9ec",
+ "files": 756,
+ "bytes": 18503599,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
@@ -53,7 +53,7 @@
   "sepsis": 1,
   "sources": 1,
   "templates": 2,
-  "ui": 1,
+  "ui": 2,
   "voice": 4,
   "ward": 1,
   "workflow": 1,
@@ -2787,6 +2787,10 @@
   "turnaround.csv": {
    "bytes": 429,
    "sha256": "d9f910c10a708a7f803db7a127c7c3da6177541d5b00cae6dde641e3e4a907ce"
+  },
+  "ui/monitor.json": {
+   "bytes": 1218,
+   "sha256": "60cf916e58e63ab637d96fbe8de2e97b9ccf2570ac2dd7115fbccd38e802da60"
   },
   "ui/tablet.json": {
    "bytes": 62629,

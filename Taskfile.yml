@@ -181,6 +181,17 @@ tasks:
     cmds:
       - uv run --project tools tools/unity/run_unity.py build {{.CLI_ARGS}}
 
+  quest-pull-session:
+    desc: Pull the session logs off the Quest (adb) into artifacts/quest-sessions and replay each one headless with the engine it was recorded by (EXP-CORE-1)
+    cmds:
+      - uv run --project tools tools/unity/quest_sessions.py pull
+      - uv run --project tools tools/unity/quest_sessions.py replay
+
+  perf-row:
+    desc: Summarise a weekly OVR Metrics CSV against the gate and last week (task perf-row -- docs/plans/p0/p0-vr-platform/perf/<file>.csv --by <name> [--write])
+    cmds:
+      - uv run --project tools tools/unity/perf_capture.py {{.CLI_ARGS}}
+
   ci:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
     cmds:
@@ -288,6 +299,7 @@ tasks:
       - uv run --project tools tools/content/build_diagnostics.py
       - uv run --project tools tools/content/build_tablet.py
       - uv run --project tools tools/content/build_citations.py
+      - uv run --project tools tools/content/build_monitor.py
 
   content-refresh:
     desc: Regenerate every generated content file and document in dependency order (tables, case files, imaging library, review packs, equipment sheets, traceability, manifest); run after any content change
@@ -297,6 +309,7 @@ tasks:
       - uv run --project tools tools/content/build_records.py
       - uv run --project tools tools/content/build_diagnostics.py
       - uv run --project tools tools/content/build_citations.py
+      - uv run --project tools tools/content/build_monitor.py
       - uv run --project tools tools/content/imaging_library.py
       - uv run --project tools tools/content/image_review_pack.py
       - uv run --project tools tools/data/dataset_cards.py

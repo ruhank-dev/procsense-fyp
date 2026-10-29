@@ -1699,18 +1699,29 @@
   "p0-evaluation-performance-s01": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-evaluation-performance/results/skeleton1.md",
+    "docs/plans/p0/p0-evaluation-performance/results/quest-logs-2026-10-13",
+    "tools/unity/quest_sessions.py"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 196); EXP-CORE-1 met: 10 of 10 hand-played Quest logs (build of 13 Oct 2026) replay headless to the headset's hash with the engine they were recorded by (29 Oct 2026); task quest-pull-session pulls and replays",
+   "open": "EXP-VR-1 first performance numbers on the headset (OVR Metrics, needs a person in the headset); a fresh session on the current Demo build pulled and replayed",
+   "external": "Sannan or Moiz in the headset: one OVR Metrics capture and one fresh session"
   },
   "p0-evaluation-performance-s03": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-evaluation-performance/profiling-route.md",
+    "tools/unity/perf_capture.py",
+    "tools/ci/test_perf_capture.py",
+    "docs/plans/p0/p0-vr-platform/perf/README.md"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 197); the route, conditions and gate are written; tools/unity/perf_capture.py turns an OVR Metrics CSV into the weekly row, judges the gate and flags a regression over 5 % (tested on made-up captures)",
+   "open": "the weekly captures themselves (a person runs the route on the Quest each week); none recorded yet",
+   "external": "whoever wears the headset each week: the route and task perf-row"
   },
   "p0-evaluation-performance-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1735,18 +1746,29 @@
   "p0-evaluation-performance-s05": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-evaluation-performance/protocols/usability-study.md",
+    "tools/eval/analyse_usability.py",
+    "tools/ci/test_usability_analysis.py"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 198); protocol, consent text, task list and data template written; the analysis scores SUS and raw NASA-TLX and reports medians, IQR and ranges, and refuses simulated rows in the results folder (tested on simulated rows)",
+   "open": "ethics or supervisor approval of the protocol; recruiting and running the sessions; the results page from the real table",
+   "external": "supervisor: approval; testers: the study sessions"
   },
   "p0-evaluation-performance-s06": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "tools/eval/realism_review.py",
+    "docs/research/review-packs/realism-review.md",
+    "docs/plans/p0/p0-evaluation-performance/results/clinical-review-sheet.csv",
+    "tools/ci/test_realism_review.py"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 199); the review pack holds the walkthrough's Part I.3 checklist (44 items in sections A to G, read from the book) with where to look in ProcSense and three 45-minute sittings; the import refuses a blank item or a correction without an issue ID",
+   "open": "the reviewer's sessions and the imported results (results/clinical-review.md); corrections filed as issues",
+   "external": "the medical reviewer: the three sittings"
   },
   "p0-evaluation-performance-s07": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1904,10 +1926,18 @@
   "p0-voice-audio-s05": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Scripts/Audio/AlarmAudioView.cs",
+    "unity/Assets/Scripts/Audio/RoomAudio.cs",
+    "unity/Assets/Scripts/Audio/ToneBank.cs",
+    "docs/research/sounds.csv",
+    "unity/Assets/Tests/PlayMode/MonitorViewTests.cs",
+    "tests/ProcSense.Core.Tests/ObservationsTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 194); Unity EditMode 154/154 and PlayMode 225 passed (2 skipped); the alarm sounds at its priority's pattern, silencing stops it and is logged; the room bed ducks under a high-priority alarm; all sounds are made in code (docs/research/sounds.csv)",
+   "open": "EXP-VOX-2 reviewer check of the alarm behaviour (realism review); spatial rolloff heard in the headset; suction, pump and insufflator sounds wait for Core states for those devices",
+   "external": "reviewer: EXP-VOX-2; Sannan: UX-P0-VOICE on the headset"
   },
   "p0-voice-audio-s06": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1947,10 +1977,19 @@
   "p0-vr-interaction-ui-s04": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "unity/Assets/Scripts/Views/MonitorView.cs",
+    "unity/Assets/Scripts/UI/Monitor/MonitorAlarms.cs",
+    "unity/Assets/Scripts/UI/Monitor/WaveformRenderer.cs",
+    "unity/Assets/Tests/EditMode/MonitorAlarmsTests.cs",
+    "unity/Assets/Tests/PlayMode/MonitorViewTests.cs",
+    "tools/content/build_monitor.py",
+    "content/ui/monitor.json"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 194); Unity EditMode 154/154 and PlayMode 225 passed (2 skipped); the pleth runs at a fixed 100 samples a second; alarms follow Core's display zones; silencing is the Core action acknowledge_alarm",
+   "open": "EXP-UI-3 realism verdict (in the realism review, p0-evaluation-performance-s06); T-UI3 trace cost on the device; the PTB-XL beat templates are not in the content and Core publishes no ECG lead or EtCO2, so the ECG and capnography traces (drawn by WaveformRenderer) are not shown yet; placing the monitor (DT-266)",
+   "external": "reviewer: EXP-UI-3; Sannan: UX-P0-VRUI on the headset"
   },
   "p0-vr-interaction-ui-s05": {
    "owner": "Moiz",
@@ -2005,18 +2044,31 @@
   "p0-vr-interaction-ui-s10": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-vr-interaction-ui/ui-guidelines.md",
+    "unity/Assets/Scripts/UI/Accessibility/AccessibilitySettings.cs",
+    "unity/Assets/Scripts/UI/Accessibility/AccessibleCanvas.cs",
+    "unity/Assets/Scripts/UI/Accessibility/Readability.cs",
+    "unity/Assets/Scripts/UI/Accessibility/SettingsTabView.cs",
+    "unity/Assets/Tests/PlayMode/AccessibilityTests.cs"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 195); Unity EditMode 154/154 and PlayMode 225 passed (2 skipped); every label of the tablet, monitor, subtitles, phone, results, EMR, WHO board, ward checklist, debrief and event cards is at least 24 headset pixels where it is read; every text colour pair meets WCAG AA; settings persist in PlayerPrefs",
+   "open": "EXP-UI-2: sizes 18/24/32 px with 3 users at 1 m and 0.6 m in the headset; legibility on the device with dynamic resolution",
+   "external": "Sannan with 3 users: EXP-UI-2 within UX-P0-VRUI"
   },
   "p0-vr-interaction-ui-s11": {
    "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "ASSIGNED",
-   "evidence": [],
-   "measured": "",
-   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+   "now": "ENG_DONE",
+   "evidence": [
+    "docs/plans/p0/p0-vr-interaction-ui/usability-pass.md",
+    "tools/eval/analyse_usability.py",
+    "tools/ci/test_usability_analysis.py"
+   ],
+   "measured": "built and tested by Moiz on 29 Oct 2026 (decision row 198); the task script, observer sheet, hand-tracking comparison and pass rule are written; the analysis judges EXP-UI-1 (4 of 5 on Step 1 unaided) and reports EXP-VR-2 (tested on simulated rows)",
+   "open": "the five think-aloud sessions, the top 3 fixes and the re-test with 2 new users; hand tracking enabled in a build for EXP-VR-2",
+   "external": "5 new users (3 medical students) with Sannan or Moiz observing"
   },
   "p0-vr-interaction-ui-s12": {
    "owner": "Moiz",
