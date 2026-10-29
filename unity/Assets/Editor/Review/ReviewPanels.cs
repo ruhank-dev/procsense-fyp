@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ProcSense.VR.Audio;
 using ProcSense.VR.Diagnostics;
+using ProcSense.VR.Records;
 using ProcSense.VR.Records.Emr;
 using ProcSense.VR.Records.Folder;
 using ProcSense.VR.UI.Checklist;
@@ -75,7 +76,7 @@ namespace ProcSense.EditorTools
         {
             if (!Application.isPlaying) return null;
             var old = GameObject.Find(RootName);
-            if (old != null) Object.Destroy(old);
+            if (old != null) { old.SetActive(false); Object.Destroy(old); }
             var cam = Camera.main != null ? Camera.main.transform : null;
             Vector3 eye = cam != null ? cam.position : new Vector3(0, 1.6f, 0);
             Vector3 ahead = cam != null ? Vector3.ProjectOnPlane(cam.forward, Vector3.up).normalized : Vector3.forward;
@@ -94,13 +95,16 @@ namespace ProcSense.EditorTools
                 setup?.Invoke(c);
             }
 
-            At<EmrShell>("EMR shell", -70f, 1.6f, 1.45f);
-            At<ResultsView>("Results viewer", -35f, 1.7f, 1.5f);
-            At<PhoneView>("Phone", -35f, 1.5f, 1.0f);
+            var stations = Object.FindObjectsByType<RecordsWorkstation>(FindObjectsSortMode.None);
+            foreach (var station in stations) station.Sync();
+            bool permanentRecords = System.Array.Exists(stations, s => s.Emr != null && s.Results != null && s.Phone != null && s.Tray != null);
+            if (!permanentRecords) At<EmrShell>("EMR shell", -70f, 1.6f, 1.45f);
+            if (!permanentRecords) At<ResultsView>("Results viewer", -35f, 1.7f, 1.5f);
+            if (!permanentRecords) At<PhoneView>("Phone", -35f, 1.5f, 1.0f);
             At<ChecklistBoard>("WHO board", 0f, 2.2f, 1.6f);
             At<WardChecklistPanel>("Ward checklist", 25f, 1.8f, 1.45f);
             At<DebriefView>("Debrief", 60f, 1.9f, 1.5f);
-            At<ReportTray>("Report tray", -10f, 0.9f, 0.85f);
+            if (!permanentRecords) At<ReportTray>("Report tray", -10f, 0.9f, 0.85f);
 
             var hud = new GameObject("Waiting overlay and subtitles");
             hud.transform.SetParent(root.transform, false);
