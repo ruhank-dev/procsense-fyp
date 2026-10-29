@@ -1,0 +1,301 @@
+{
+  "asset": "stethoscope",
+  "anchors": [
+    {
+      "name": "GRAB_ChestPiece",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "SOCKET_Neck",
+      "size": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      }
+    },
+    {
+      "name": "COL_Body",
+      "size": {
+        "x": 0.1,
+        "y": 0.03,
+        "z": 0.7
+      }
+    }
+  ],
+  "materials": {
+    "M_PlasticWhite": {
+      "color": [
+        0.72,
+        0.76,
+        0.78,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.34
+    },
+    "M_PlasticGrey": {
+      "color": [
+        0.055,
+        0.075,
+        0.085,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.38
+    },
+    "M_SteelBrushed": {
+      "color": [
+        0.38,
+        0.43,
+        0.47,
+        1
+      ],
+      "metallic": 0.8,
+      "roughness": 0.3
+    },
+    "M_Chrome": {
+      "color": [
+        0.62,
+        0.67,
+        0.7,
+        1
+      ],
+      "metallic": 0.95,
+      "roughness": 0.18
+    },
+    "M_RubberBlack": {
+      "color": [
+        0.018,
+        0.025,
+        0.028,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.75
+    },
+    "M_ScreenOff": {
+      "color": [
+        0.009,
+        0.023,
+        0.029,
+        1
+      ],
+      "metallic": 0.05,
+      "roughness": 0.24
+    },
+    "M_AccentBlue": {
+      "color": [
+        0.025,
+        0.25,
+        0.35,
+        1
+      ],
+      "metallic": 0.15,
+      "roughness": 0.35
+    },
+    "M_FabricNavy": {
+      "color": [
+        0.014,
+        0.04,
+        0.085,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.9
+    },
+    "M_PlasticClear": {
+      "color": [
+        0.86,
+        0.9,
+        0.92,
+        0.35
+      ],
+      "metallic": 0,
+      "roughness": 0.12
+    },
+    "M_BandRed": {
+      "color": [
+        0.55,
+        0.03,
+        0.03,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.5
+    },
+    "M_Paper": {
+      "color": [
+        0.86,
+        0.86,
+        0.83,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.85
+    },
+    "M_PaperGloss": {
+      "color": [
+        0.9,
+        0.9,
+        0.9,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.15
+    },
+    "M_Hardboard": {
+      "color": [
+        0.35,
+        0.22,
+        0.12,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.7
+    },
+    "M_AlarmRed": {
+      "color": [
+        0.7,
+        0.04,
+        0.03,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.3
+    },
+    "M_CapPurple": {
+      "color": [
+        0.36,
+        0.18,
+        0.55,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_CapGold": {
+      "color": [
+        0.75,
+        0.55,
+        0.12,
+        1
+      ],
+      "metallic": 0.3,
+      "roughness": 0.35
+    },
+    "M_CapBlueLight": {
+      "color": [
+        0.35,
+        0.6,
+        0.85,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_CapGrey": {
+      "color": [
+        0.45,
+        0.47,
+        0.5,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_CapPink": {
+      "color": [
+        0.9,
+        0.45,
+        0.6,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_CultureBlue": {
+      "color": [
+        0.05,
+        0.2,
+        0.6,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_CulturePurple": {
+      "color": [
+        0.35,
+        0.1,
+        0.45,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_BrothAmber": {
+      "color": [
+        0.55,
+        0.35,
+        0.1,
+        0.6
+      ],
+      "metallic": 0,
+      "roughness": 0.2
+    },
+    "M_BloodDark": {
+      "color": [
+        0.3,
+        0.01,
+        0.02,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.3
+    },
+    "M_PadBlank": {
+      "color": [
+        0.95,
+        0.93,
+        0.85,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.7
+    },
+    "M_NeedleGreen": {
+      "color": [
+        0.1,
+        0.55,
+        0.2,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_BinYellow": {
+      "color": [
+        0.85,
+        0.7,
+        0.05,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.45
+    },
+    "M_LidOrange": {
+      "color": [
+        0.85,
+        0.35,
+        0.05,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.45
+    }
+  }
+}

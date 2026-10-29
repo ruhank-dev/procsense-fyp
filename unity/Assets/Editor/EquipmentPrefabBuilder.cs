@@ -16,6 +16,13 @@ namespace ProcSense.EditorTools
         public static readonly string[] Pilots = { "vital_signs_monitor", "iv_pole_pump", "wristband" };
         public static readonly string[] Sensors = { "spo2_probe", "bp_cuff" };
         public static readonly string[] Documents = { "patient_folder" };
+        /// <summary>Identity documents, bedside monitoring and sampling (p0-blender-equipment-s06 to s08): grabbable props with their named points; their live surfaces and states come with the panels that use them.</summary>
+        public static readonly string[] Props =
+        {
+            "allergy_band", "report_sheet", "imaging_printout", "consent_form", "clipboard_chart",
+            "tympanic_thermometer", "ecg_machine", "stethoscope", "glucose_meter",
+            "blood_collection_set", "specimen_tube_rack", "blood_culture_bottles", "urine_kit", "sharps_bin", "tube_station",
+        };
         [Serializable] private class Anchor { public string name; public Vector3 size; }
         [Serializable] private class Metadata { public Anchor[] anchors; }
 
@@ -39,6 +46,9 @@ namespace ProcSense.EditorTools
         [MenuItem("ProcSense/Equipment/Import Notes Folder")]
         public static void ImportDocuments() => ImportAssets(Documents);
 
+        [MenuItem("ProcSense/Equipment/Import Documents, Monitoring and Sampling Props")]
+        public static void ImportProps() => ImportAssets(Props);
+
         private static void ImportAssets(string[] ids)
         {
             string source = Path.GetFullPath(Path.Combine(Application.dataPath, "../../build/blender"));
@@ -56,6 +66,7 @@ namespace ProcSense.EditorTools
             MakeMaterial("ScreenOff", new Color(.009f, .023f, .029f), .05f, .24f);
             MakeMaterial("AccentBlue", new Color(.025f, .25f, .35f), .15f, .35f);
             MakeMaterial("FabricNavy", new Color(.014f, .04f, .085f), 0, .9f);
+            foreach (string id in ids) MakePaletteMaterials(Path.Combine(source, id + ".equipment.json"));
             foreach (string id in ids)
             {
                 string path = EquipmentPostprocessor.ModelFolder + id;
@@ -66,6 +77,31 @@ namespace ProcSense.EditorTools
                 CreateIfMissing(path + ".fbx");
             }
             AssetDatabase.SaveAssets();
+        }
+
+        // the shared M_* materials an asset's palette names that do not exist yet (see-through ones get a transparent surface)
+        private static void MakePaletteMaterials(string metadataPath)
+        {
+            if (!(ProcSense.Core.Content.MiniJson.Parse(File.ReadAllText(metadataPath)) is System.Collections.Generic.Dictionary<string, object> root) || !root.TryGetValue("materials", out var all)) return;
+            foreach (var kv in (System.Collections.Generic.Dictionary<string, object>)all)
+            {
+                var m = (System.Collections.Generic.Dictionary<string, object>)kv.Value;
+                var c = ((System.Collections.Generic.List<object>)m["color"]).Select(x => Convert.ToSingle(x, System.Globalization.CultureInfo.InvariantCulture)).ToArray();
+                string name = kv.Key.Substring(2);
+                MakeMaterial(name, new Color(c[0], c[1], c[2], c[3]), Convert.ToSingle(m["metallic"], System.Globalization.CultureInfo.InvariantCulture), Convert.ToSingle(m["roughness"], System.Globalization.CultureInfo.InvariantCulture));
+                var made = AssetDatabase.LoadAssetAtPath<Material>("Assets/Materials/Equipment/M_" + name + ".mat");
+                if (c[3] < 1 && made != null && made.GetFloat("_Surface") == 0)
+                {
+                    made.SetFloat("_Surface", 1);   // URP Lit: transparent
+                    made.SetOverrideTag("RenderType", "Transparent");
+                    made.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
+                    made.SetFloat("_SrcBlend", (float)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                    made.SetFloat("_DstBlend", (float)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                    made.SetFloat("_ZWrite", 0);
+                    made.EnableKeyword("_SURFACE_TYPE_TRANSPARENT");
+                    EditorUtility.SetDirty(made);
+                }
+            }
         }
 
         private static void MakeMaterial(string name, Color color, float metal, float roughness)
@@ -82,7 +118,7 @@ namespace ProcSense.EditorTools
         public static void CreateIfMissing(string modelPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
-            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id)) return;
+            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id) && !Props.Contains(id)) return;
             string prefabPath = "Assets/Prefabs/Equipment/" + id + ".prefab";
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.
             if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) != null) return;
@@ -105,7 +141,7 @@ namespace ProcSense.EditorTools
                     collider.size = item.size;
                 }
                 var body = root.AddComponent<Rigidbody>();
-                body.mass = id == "wristband" ? .01f : Documents.Contains(id) ? .4f : Sensors.Contains(id) ? .1f : 8;
+                body.mass = id == "wristband" || id == "allergy_band" ? .01f : Documents.Contains(id) ? .4f : Sensors.Contains(id) ? .1f : Props.Contains(id) ? (id == "ecg_machine" ? 7 : id == "tube_station" ? 20 : .2f) : 8;
                 body.isKinematic = false;
                 body.useGravity = true;
                 body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
@@ -116,6 +152,7 @@ namespace ProcSense.EditorTools
                 grab.attachTransform = transforms.First(t => t.name.StartsWith("GRAB_", StringComparison.Ordinal));
                 grab.movementType = XRBaseInteractable.MovementType.Kinematic;
                 grab.throwOnDetach = false;
+                if (id == "tube_station") { body.isKinematic = true; body.useGravity = false; grab.enabled = false; }   // fixed to the wall; its carrier is handled with the sample dispatch
                 foreach (var anchor in transforms.Where(t => t.name == "SCREEN_Main" || t.name == "SCREEN_Pump" || t.name == "LABEL_Identity"))
                 {
                     bool identity = anchor.name == "LABEL_Identity";

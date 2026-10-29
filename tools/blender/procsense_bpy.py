@@ -14,6 +14,25 @@ PALETTE = {
     "AccentBlue": ((.025, .25, .35, 1), .15, .35),
     "FabricNavy": ((.014, .04, .085, 1), 0, .9),
     "PlasticClear": ((.86, .9, .92, .35), 0, .12),    # specimen pot (p1-theatre-extension-s04); Unity needs a transparent material for it
+    # identity documents, bedside monitoring and sampling (p0-blender-equipment-s06 to s08)
+    "BandRed": ((.55, .03, .03, 1), 0, .5),            # allergy band (NPSA red)
+    "Paper": ((.86, .86, .83, 1), 0, .85),
+    "PaperGloss": ((.9, .9, .9, 1), 0, .15),           # imaging printout
+    "Hardboard": ((.35, .22, .12, 1), 0, .7),          # clipboard
+    "AlarmRed": ((.7, .04, .03, 1), 0, .3),            # monitor alarm light; Unity drives its emission
+    "CapPurple": ((.36, .18, .55, 1), 0, .4),          # EDTA (lavender)
+    "CapGold": ((.75, .55, .12, 1), .3, .35),          # serum gel
+    "CapBlueLight": ((.35, .6, .85, 1), 0, .4),        # citrate
+    "CapGrey": ((.45, .47, .5, 1), 0, .4),             # fluoride oxalate
+    "CapPink": ((.9, .45, .6, 1), 0, .4),              # EDTA for the blood bank
+    "CultureBlue": ((.05, .2, .6, 1), 0, .4),          # aerobic culture bottle
+    "CulturePurple": ((.35, .1, .45, 1), 0, .4),       # anaerobic culture bottle
+    "BrothAmber": ((.55, .35, .1, .6), 0, .2),
+    "BloodDark": ((.3, .01, .02, 1), 0, .3),           # the fill of a tube
+    "PadBlank": ((.95, .93, .85, 1), 0, .7),           # an unread dipstick pad or result window; Unity colours it from the written result
+    "NeedleGreen": ((.1, .55, .2, 1), 0, .4),          # 21 G hub (ISO 6009)
+    "BinYellow": ((.85, .7, .05, 1), 0, .45),
+    "LidOrange": ((.85, .35, .05, 1), 0, .45),
 }
 
 
