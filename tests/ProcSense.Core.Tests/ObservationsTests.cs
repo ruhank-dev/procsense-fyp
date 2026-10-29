@@ -26,6 +26,21 @@ namespace ProcSense.Core.Tests
             s.Apply(new SimAction("palpate_pulse", "patient", Channel.Cli, seconds == null ? null : new Dictionary<string, string> { ["seconds"] = seconds }));
 
         [Fact]
+        public void Silencing_a_monitor_alarm_is_logged_and_changes_nothing_in_the_patient()   // p0-voice-audio-s05
+        {
+            var s = New();
+            Do(s, "attach_sensor", "spo2");
+            string before = s.Observable.Hash();
+            var o = s.Apply(new SimAction("acknowledge_alarm", "monitor", Channel.Vr, new Dictionary<string, string> { ["vital"] = "spo2", ["priority"] = "high" }));
+            Assert.True(o.Accepted);
+            Assert.Equal("alarm_acknowledged:spo2", o.Effects.Single());
+            Assert.Equal(before, s.Observable.Hash());
+            var missing = s.Apply(new SimAction("acknowledge_alarm", "monitor", Channel.Vr));
+            Assert.False(missing.Accepted);
+            Assert.Equal("MISSING_ALARM_VITAL", missing.RejectReason);
+        }
+
+        [Fact]
         public void Feeling_the_pulse_takes_the_seconds_chosen_and_then_shows_the_rate_and_the_rhythm()   // DT-040
         {
             var s = New();
