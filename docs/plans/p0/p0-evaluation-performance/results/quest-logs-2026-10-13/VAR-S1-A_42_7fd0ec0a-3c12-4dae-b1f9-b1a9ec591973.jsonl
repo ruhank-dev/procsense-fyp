@@ -1,0 +1,7 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","session_id":"7fd0ec0a-3c12-4dae-b1f9-b1a9ec591973","content_version":"837eb302abbc","engine_version":"0.0.1","scenario_package_hash":"","log_hash":"b3ba6c11ed6ca83229d387d4f883b67430cb89b93f88df15a13a1572d01bb987"}}
+{"seq":0,"step":70,"verb":"read_wristband","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["wristband_read"]}
+{"seq":1,"step":71,"verb":"read_wristband","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["wristband_read"]}
+{"seq":2,"step":85,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["attached:spo2"]}
+{"seq":3,"step":86,"verb":"detach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["detached:spo2"]}
+{"seq":4,"step":97,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["attached:nibp_cuff"]}
+{"seq":5,"step":98,"verb":"detach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["detached:nibp_cuff"]}

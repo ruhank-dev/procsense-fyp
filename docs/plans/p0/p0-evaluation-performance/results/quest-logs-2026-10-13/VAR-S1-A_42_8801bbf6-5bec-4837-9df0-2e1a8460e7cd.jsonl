@@ -1,0 +1,11 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","session_id":"8801bbf6-5bec-4837-9df0-2e1a8460e7cd","content_version":"837eb302abbc","engine_version":"0.0.1","scenario_package_hash":"","log_hash":"8b738e7570daa90c37a4886fff3a7684ec9049de2be598cd295c009e03ba0d76"}}
+{"seq":0,"step":154,"verb":"introduce_self","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["trust+1","anxiety-1"]}
+{"seq":1,"step":206,"verb":"request_wristband","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["nothing_to_resolve"]}
+{"seq":2,"step":223,"verb":"ask_identity","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["answered:identity"]}
+{"seq":3,"step":241,"verb":"ask_allergy_reaction","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["nothing_to_describe:allergy_reaction"]}
+{"seq":4,"step":249,"verb":"ask_allergies","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["answered:allergies"]}
+{"seq":5,"step":316,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["attached:nibp_cuff"]}
+{"seq":6,"step":335,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["attached:spo2"]}
+{"seq":7,"step":467,"verb":"introduce_self","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["introduced_not_first"]}
+{"seq":8,"step":472,"verb":"read_name_to_patient","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["patient_agrees","armed:risk.wrong_blood"]}
+{"seq":9,"step":474,"verb":"open_notes","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["notes_opened"]}

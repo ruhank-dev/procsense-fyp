@@ -1,0 +1,4 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","session_id":"1d5df304-0406-4961-a109-a0015970057c","content_version":"837eb302abbc","engine_version":"0.0.1","scenario_package_hash":"","log_hash":"dff3ae59a9eed4408461e9322ae6c07ee122739d97ae2a8d0c37299ac94a6210"}}
+{"seq":0,"step":96,"verb":"open_notes","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["notes_opened"]}
+{"seq":1,"step":158,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["attached:spo2"]}
+{"seq":2,"step":165,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["attached:nibp_cuff"]}
