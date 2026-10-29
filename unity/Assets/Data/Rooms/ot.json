@@ -1,0 +1,27 @@
+{
+ "schema": "procsense.room-manifest/1",
+ "room": "ot",
+ "scene": "Assets/Scenes/OT.unity",
+ "anchors": [
+  {"name": "SLOT_anaesthesia_unit_1", "kind": "SLOT", "pos": [12.05, 0, 6.25], "rot": [0, 70, 0]},
+  {"name": "SLOT_clinical_trolley_1", "kind": "SLOT", "pos": [10.8, 0, 7.98], "rot": [0, 0, 0]},
+  {"name": "SLOT_handrub_1", "kind": "SLOT", "pos": [6.68, 1.36, 6.55], "rot": [0, 270, 0]},
+  {"name": "SLOT_mayo_stand_1", "kind": "SLOT", "pos": [11.15, 0, 4.15], "rot": [0, 90, 0]},
+  {"name": "SLOT_operating_table_1", "kind": "SLOT", "pos": [10.7, 0, 5.2], "rot": [0, 90, 0]},
+  {"name": "SLOT_pedal_bin_1", "kind": "SLOT", "pos": [7.15, 0, 8.15], "rot": [0, 270, 0]},
+  {"name": "SLOT_supply_cupboard_1", "kind": "SLOT", "pos": [13.1, 0, 2.85], "rot": [0, 90, 0]},
+  {"name": "SLOT_surgical_light_1", "kind": "SLOT", "pos": [11.2, 0, 5.85], "rot": [0, 90, 0]},
+  {"name": "TELEPORT_Exit", "kind": "TELEPORT", "pos": [7.7, 0.02, 5.2], "rot": [0, 270, 0]},
+  {"name": "TELEPORT_Station", "kind": "TELEPORT", "pos": [10.7, 0.02, 6.4], "rot": [0, 180, 0]}
+ ],
+ "placements": [
+  {"asset": "anaesthesia_unit", "slot": "SLOT_anaesthesia_unit_1"},
+  {"asset": "clinical_trolley", "slot": "SLOT_clinical_trolley_1"},
+  {"asset": "handrub", "slot": "SLOT_handrub_1"},
+  {"asset": "mayo_stand", "slot": "SLOT_mayo_stand_1"},
+  {"asset": "operating_table", "slot": "SLOT_operating_table_1"},
+  {"asset": "pedal_bin", "slot": "SLOT_pedal_bin_1"},
+  {"asset": "supply_cupboard", "slot": "SLOT_supply_cupboard_1"},
+  {"asset": "surgical_light", "slot": "SLOT_surgical_light_1"}
+ ]
+}
