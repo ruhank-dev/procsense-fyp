@@ -1423,28 +1423,28 @@
    "ci_note": "Unity EditMode (75 of 75) and PlayMode (110 passed, 1 skipped for a live service) run locally in batch mode on 19 Oct 2026 by the engineer on the desktop, without a headset; GitHub Actions does not run Unity"
   },
   "p0-blender-equipment-s06": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s07": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s08": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-blender-equipment-s09": {
    "owner": "Ruhan",
@@ -1643,12 +1643,12 @@
    "open": ""
   },
   "p0-environment-rooms-s04": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-environment-rooms-s05": {
    "owner": "Sannan",
@@ -1697,20 +1697,20 @@
    "ci_note": "Unity EditMode (75 of 75) and PlayMode (110 passed, 1 skipped for a live service) run locally in batch mode on 19 Oct 2026 by the engineer on the desktop, without a headset; GitHub Actions does not run Unity"
   },
   "p0-evaluation-performance-s01": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-evaluation-performance-s03": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-evaluation-performance-s04": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1733,20 +1733,20 @@
    "implementation": "complete"
   },
   "p0-evaluation-performance-s05": {
-   "owner": "Sannan",
-   "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
-   "evidence": [],
-   "measured": "",
-   "open": ""
-  },
-  "p0-evaluation-performance-s06": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
+  },
+  "p0-evaluation-performance-s06": {
+   "owner": "Moiz",
+   "before": "Not started or started in Unity/Blender by Sannan",
+   "now": "ASSIGNED",
+   "evidence": [],
+   "measured": "",
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-evaluation-performance-s07": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1763,12 +1763,12 @@
    "implementation": "complete"
   },
   "p0-evaluation-performance-s08": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-evaluation-performance-s09": {
    "owner": "Ruhan (tool and outline), Sannan (demo video)",
@@ -1902,12 +1902,12 @@
    "open": ""
   },
   "p0-voice-audio-s05": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-voice-audio-s06": {
    "owner": "Ruhan (Core, tools), Sannan (Unity)",
@@ -1945,12 +1945,12 @@
    "external": "Sannan: the Quest headset check UX-P0-VRUI"
   },
   "p0-vr-interaction-ui-s04": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-vr-interaction-ui-s05": {
    "owner": "Moiz",
@@ -2003,28 +2003,28 @@
    "external": "testers: T-DU4 (the debrief read in two minutes); Sannan: UX-P0-VRUI"
   },
   "p0-vr-interaction-ui-s10": {
-   "owner": "Ruhan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
    "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": "assigned to Ruhan in the front-end split confirmed on 29 Oct 2026; not started"
+   "open": "handed from Ruhan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-vr-interaction-ui-s11": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-vr-interaction-ui-s12": {
-   "owner": "Sannan",
+   "owner": "Moiz",
    "before": "Not started or started in Unity/Blender by Sannan",
-   "now": "NOT_RUHAN",
+   "now": "ASSIGNED",
    "evidence": [],
    "measured": "",
-   "open": ""
+   "open": "handed from Sannan to Moiz by the team lead on 29 Oct 2026; not started"
   },
   "p0-vr-platform-s04": {
    "owner": "Sannan",

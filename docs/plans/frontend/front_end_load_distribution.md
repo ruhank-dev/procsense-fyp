@@ -4,13 +4,15 @@
 
 **Working rule:** each person builds only the steps listed under their name below. Before starting a step listed under someone else, ask that person and wait for a yes; a step handed over is moved to its new owner in `reconciliation.json` in the same change. Abdul Moiz has built all 13 of his steps (headset checks and people-run parts remain, see each step) and may take on others' steps the same way, by asking first.
 
+**Handover by the team lead (29 October 2026):** Abdul Moiz, having built his 13 steps, took 7 of Ruhan's (vr-interaction-ui s04 and s10, voice-audio s05, evaluation-performance s06, blender-equipment s06 to s08) and 7 of Sannan's (evaluation-performance s01, s03, s05 and s08, vr-interaction-ui s11 and s12, environment-rooms s04), chosen so that none shares files with work they have started: Sannan keeps the characters, animation, rooms, doors and transport; Ruhan keeps the furniture he started (the hospital bed), the theatre machinery, the trolleys, doors and signs, and the detail-level pass. Moiz now has 27 steps, Sannan 18 and Ruhan 7 (decision row 193). For environment-rooms s04 the anchor names are agreed with Sannan before they are written; for vr-interaction-ui s12 the nurse avatar stays with Sannan (characters s08).
+
 **Overlaps found before the split was confirmed (28 October 2026):** p0-vr-platform-s06 (patient transport) and p0-diagnostic-transitions-s06 (the waiting status) were built twice; Sannan's versions, already in the scenes, were kept (`PatientTransportView`, `DiagnosticWaitOverlay`) and Moiz's removed (decision rows 189 and 191).
 
 **Why:** on 27 October 2026 Ruhan reported that the engine, content, AI and backend work is built and verified ([ruhan-moiz-inventory.md](../ruhan-moiz-inventory.md): unfinished implementation 0). The plan stands at 220 of 279 approved steps. What remains is front-end work (Unity scenes, interaction and UI, Blender equipment, characters) and front-end testing on the Meta Quest 3. This page splits that work across the three members so it can be done in parallel; an agent working on a step reads its row here, then the step file.
 
 ## 1. Who does what
 
-### Abdul Moiz (13 steps): Screen and logic Unity work that talks to the engine and the backend
+### Abdul Moiz (27 steps): Screen and logic Unity work that talks to the engine and the backend
 
 | Step | Title | Wave | State |
 |---|---|---|---|
@@ -27,8 +29,22 @@
 | [p0-vr-platform-s07](../p0/p0-vr-platform/steps/p0-vr-platform-s07-quest-builds-profiling-ci.md) | quest builds profiling ci | 2 | open |
 | [p0-vr-platform-s08](../p0/p0-vr-platform/steps/p0-vr-platform-s08-unity-mcp-experiment.md) | unity mcp experiment | 2 | open |
 | [p1-theatre-extension-s04](../p1/p1-theatre-extension/steps/p1-theatre-extension-s04-p1-equipment-scripts.md) | p1 equipment scripts | 2 | open |
+| [p0-blender-equipment-s06](../p0/p0-blender-equipment/steps/p0-blender-equipment-s06-identity-documents.md) | identity documents | 1 | open |
+| [p0-blender-equipment-s07](../p0/p0-blender-equipment/steps/p0-blender-equipment-s07-bedside-monitoring.md) | bedside monitoring | 1 | open |
+| [p0-blender-equipment-s08](../p0/p0-blender-equipment/steps/p0-blender-equipment-s08-sampling-tests.md) | sampling tests | 1 | open |
+| [p0-vr-interaction-ui-s04](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s04-monitor-traces-alarms.md) | monitor traces alarms | 1 | open |
+| [p0-vr-interaction-ui-s10](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s10-accessibility-readability.md) | accessibility readability | 2 | open |
+| [p0-voice-audio-s05](../p0/p0-voice-audio/steps/p0-voice-audio-s05-ambience-alarms.md) | ambience alarms | 2 | open |
+| [p0-evaluation-performance-s06](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s06-clinical-realism-review.md) | clinical realism review | 2 | open |
+| [p0-environment-rooms-s04](../p0/p0-environment-rooms/steps/p0-environment-rooms-s04-anchors-manifest-placement.md) | anchors manifest placement | 1 | open |
+| [p0-vr-interaction-ui-s12](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s12-wristband-nurse-interaction.md) | wristband nurse interaction | 1 | open |
+| [p0-evaluation-performance-s01](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s01-skeleton1-quest-replay-check.md) | skeleton1 quest replay check | 2 | open |
+| [p0-evaluation-performance-s03](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s03-weekly-profiling.md) | weekly profiling | 2 | open |
+| [p0-evaluation-performance-s05](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s05-usability-study.md) | usability study | 2 | open |
+| [p0-evaluation-performance-s08](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s08-release-v1.md) | release v1 | 2 | open |
+| [p0-vr-interaction-ui-s11](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s11-usability-pass.md) | usability pass | 2 | open |
 
-### Sannan Shakeel (25 steps): 3D, physical interaction and everything that needs the headset
+### Sannan Shakeel (18 steps): 3D, physical interaction and everything that needs the headset
 
 | Step | Title | Wave | State |
 |---|---|---|---|
@@ -42,29 +58,19 @@
 | [p0-characters-s08](../p0/p0-characters/steps/p0-characters-s08-nurse-entry-and-wristband-replacement.md) | nurse entry and wristband replacement | 1 | open |
 | [p0-environment-rooms-s02](../p0/p0-environment-rooms/steps/p0-environment-rooms-s02-import-supervisor-model.md) | import supervisor model | 2 | open |
 | [p0-environment-rooms-s03](../p0/p0-environment-rooms/steps/p0-environment-rooms-s03-optimise-lighting.md) | optimise lighting | 2 | open |
-| [p0-environment-rooms-s04](../p0/p0-environment-rooms/steps/p0-environment-rooms-s04-anchors-manifest-placement.md) | anchors manifest placement | 1 | open |
 | [p0-environment-rooms-s05](../p0/p0-environment-rooms/steps/p0-environment-rooms-s05-patient-bay-variants.md) | patient bay variants | 2 | open |
 | [p0-environment-rooms-s06](../p0/p0-environment-rooms/steps/p0-environment-rooms-s06-ot-layout.md) | ot layout | 2 | open |
 | [p0-vr-interaction-ui-s02](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s02-interaction-framework.md) | interaction framework | 1 | open |
 | [p0-vr-interaction-ui-s06](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s06-bedside-interactions.md) | bedside interactions | 1 | open |
 | [p0-vr-interaction-ui-s07](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s07-ot-interactions.md) | ot interactions | 2 | open |
-| [p0-vr-interaction-ui-s12](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s12-wristband-nurse-interaction.md) | wristband nurse interaction | 1 | open |
 | [p0-voice-audio-s04](../p0/p0-voice-audio/steps/p0-voice-audio-s04-lip-sync.md) | lip sync | 2 | open |
 | [p0-diagnostic-transitions-s02](../p0/p0-diagnostic-transitions/steps/p0-diagnostic-transitions-s02-doors-blocking.md) | doors blocking | 1 | open |
 | [p0-diagnostic-transitions-s03](../p0/p0-diagnostic-transitions/steps/p0-diagnostic-transitions-s03-patient-transport-visuals.md) | patient transport visuals | 2 | open |
-| [p0-evaluation-performance-s01](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s01-skeleton1-quest-replay-check.md) | skeleton1 quest replay check | 2 | open |
-| [p0-evaluation-performance-s03](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s03-weekly-profiling.md) | weekly profiling | 2 | open |
-| [p0-evaluation-performance-s05](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s05-usability-study.md) | usability study | 2 | open |
-| [p0-evaluation-performance-s08](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s08-release-v1.md) | release v1 | 2 | open |
-| [p0-vr-interaction-ui-s11](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s11-usability-pass.md) | usability pass | 2 | open |
 
-### Ruhan Kamran (14 steps): Scripted Blender equipment and engine-driven or clinical Unity work
+### Ruhan Kamran (7 steps): Scripted Blender equipment and engine-driven or clinical Unity work
 
 | Step | Title | Wave | State |
 |---|---|---|---|
-| [p0-blender-equipment-s06](../p0/p0-blender-equipment/steps/p0-blender-equipment-s06-identity-documents.md) | identity documents | 1 | open |
-| [p0-blender-equipment-s07](../p0/p0-blender-equipment/steps/p0-blender-equipment-s07-bedside-monitoring.md) | bedside monitoring | 1 | open |
-| [p0-blender-equipment-s08](../p0/p0-blender-equipment/steps/p0-blender-equipment-s08-sampling-tests.md) | sampling tests | 1 | open |
 | [p0-blender-equipment-s09](../p0/p0-blender-equipment/steps/p0-blender-equipment-s09-iv-oxygen-airway-bedside.md) | iv oxygen airway bedside | 1 | open |
 | [p0-blender-equipment-s10](../p0/p0-blender-equipment/steps/p0-blender-equipment-s10-furniture-transport.md) | furniture transport | 2 | open |
 | [p0-blender-equipment-s11](../p0/p0-blender-equipment/steps/p0-blender-equipment-s11-ot-machinery-1.md) | ot machinery 1 | 2 | open |
@@ -72,10 +78,6 @@
 | [p0-blender-equipment-s13](../p0/p0-blender-equipment/steps/p0-blender-equipment-s13-ot-trolleys-storage-hygiene.md) | ot trolleys storage hygiene | 2 | open |
 | [p0-blender-equipment-s14](../p0/p0-blender-equipment/steps/p0-blender-equipment-s14-boards-doors-signs.md) | boards doors signs | 2 | open |
 | [p0-blender-equipment-s15](../p0/p0-blender-equipment/steps/p0-blender-equipment-s15-lod-performance-pass.md) | lod performance pass | 2 | open |
-| [p0-vr-interaction-ui-s04](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s04-monitor-traces-alarms.md) | monitor traces alarms | 1 | open |
-| [p0-vr-interaction-ui-s10](../p0/p0-vr-interaction-ui/steps/p0-vr-interaction-ui-s10-accessibility-readability.md) | accessibility readability | 2 | open |
-| [p0-voice-audio-s05](../p0/p0-voice-audio/steps/p0-voice-audio-s05-ambience-alarms.md) | ambience alarms | 2 | open |
-| [p0-evaluation-performance-s06](../p0/p0-evaluation-performance/steps/p0-evaluation-performance-s06-clinical-realism-review.md) | clinical realism review | 2 | open |
 
 Total in this split: 52 steps. Also open and not part of the split: `p0-evaluation-performance-s09` (demo material; Ruhan's tool and outline, Sannan's headset recording) and `p2-content-extensions-s04` (blocked on a pharmacist's list).
 
@@ -91,9 +93,9 @@ Unity scene files merge badly. Each area has one owner; anyone else asks the own
 
 | Owner | Files and scenes |
 |---|---|
-| Abdul Moiz | Tablet, results phone, EMR and checklist UI prefabs and their scripts (`unity/Assets/Scripts/Views`, the tablet and phone prefabs), the debrief UI, the build and CI scripts |
+| Abdul Moiz | Tablet, results phone, EMR and checklist UI prefabs and their scripts (`unity/Assets/Scripts/Views`, the tablet and phone prefabs), the debrief UI, the build and CI scripts; since 29 Oct also the monitor traces and alarm views (`Scripts/UI/Monitor`), audio (`Scripts/Audio`), the accessibility settings, the room anchor manifests (data and editor script; anchor names agreed with Sannan), the Blender recipes for identity documents, bedside monitoring and sampling (`tools/blender/assets` for those items), and the evaluation and release documents |
 | Sannan Shakeel | Room scenes (`PatientBay.unity`, `Corridor.unity`, `OT.unity`), lighting, characters, the XR rig and the physical interaction prefabs |
-| Ruhan Kamran | Blender recipes and imported equipment (`tools/blender`, `unity/Assets/Models/Equipment`, equipment prefabs), the monitor traces and alarm views |
+| Ruhan Kamran | Blender recipes and imported equipment for furniture, IV and oxygen, theatre machinery, trolleys, doors and signs (`tools/blender`, `unity/Assets/Models/Equipment`, equipment prefabs), the shared Blender pipeline (`pipeline.py`, `procsense_bpy.py`) and the detail-level pass |
 
 ## 4. How a step is done
 
