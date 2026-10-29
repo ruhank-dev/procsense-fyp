@@ -1,0 +1,187 @@
+"""The clinical realism review (p0-evaluation-performance-s06, EXP-EVAL-2): the walkthrough's own clinician checklist (Part I.3, sections A to G) as a review pack, and
+the import of the reviewer's answers.
+
+    uv run --project tools tools/eval/realism_review.py pack            # write docs/research/review-packs/realism-review.md and the answer sheet
+    uv run --project tools tools/eval/realism_review.py pack --check    # fail if either is out of date (CI)
+    uv run --project tools tools/eval/realism_review.py import --csv answers.csv [--out docs/plans/p0/p0-evaluation-performance/results/clinical-review.md]
+
+The checklist items are read from the walkthrough (docs/context/ProcSense_Medical_Walkthrough_v5_1.md, "I.3 Clinician Final Validation Checklist"), not retyped, so the pack
+cannot drift from the book. Each section says where in ProcSense to look. The import refuses a sheet with an item unanswered, or a correction with no issue ID in
+docs/research/issues.md: every correction becomes a tracked issue with an owner, as the plan asks. Nothing here approves anything; it records what the reviewer said.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import io
+import json
+import re
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+BOOK = ROOT / "docs" / "context" / "ProcSense_Medical_Walkthrough_v5_1.md"
+ISSUES = ROOT / "docs" / "research" / "issues.md"
+PACK = ROOT / "docs" / "research" / "review-packs" / "realism-review.md"
+SHEET = ROOT / "docs" / "plans" / "p0" / "p0-evaluation-performance" / "results" / "clinical-review-sheet.csv"
+CASES = ROOT / "content" / "case_files"
+SECTION = re.compile(r"^([A-G])\. (.+?)\s*$")
+FIELDS = ["section", "item", "ok", "correction", "comment", "issue"]
+
+# where in ProcSense a reviewer sees each section (files and screens, so the review is of the running simulator, not of the book again)
+WHERE = {
+    "A": "Case files (`content/case_files/*.json`: presentation, history, examination, results); the debrief's teaching points; the EMR documents in the headset.",
+    "B": "Display zones and NEWS2 bands (`content/physio/display_zones.json`, `content/news2*`); lab ranges (`content/critical_results.csv`, the case results); fasting rules (`content/fasting_rules.csv`); scoring tables.",
+    "C": "S1 and S2 flows (`content/flow_stages.csv`); the decision rules (`content/decision_rules.csv`); the consent figures in the consent content.",
+    "D": "Fasting and medicine rules; the monitor and its alarms (`content/ui/monitor.json`); the anaesthetist's risk lines; the emergency pathway cases.",
+    "E": "Consent flow (`content/consent/`): capacity, refusal, interpreter, minors, emergency; the legal note for the target jurisdiction.",
+    "F": "Antibiotics, labs, blood bank, theatre, transfer and escalation as the content encodes them; the ward checklist (`content/checklist/`); the EMR documentation.",
+    "G": "In the headset: the equipment, the patient's reactions, the monitor (pleth, cuff cycle, alarm priorities and silencing), the nurse and team, consequences of errors, the order of the workflow.",
+}
+# about 45 minutes per session (the plan): sections in three sittings
+SITTINGS = [("1", "A and B", 45), ("2", "C, D and E", 45), ("3", "F and G (G in the headset)", 45)]
+
+
+def checklist(text: str | None = None) -> list[tuple[str, str, list[str]]]:
+    """[(letter, title, [items])] from the book's I.3 section."""
+    text = text if text is not None else BOOK.read_text(encoding="utf-8")
+    start = text.index("## I.3 Clinician Final Validation Checklist")
+    end = text.index("## FINAL STATUS", start)
+    sections: list[tuple[str, str, list[str]]] = []
+    pending = ""
+    for raw in text[start:end].splitlines()[1:]:
+        line = raw.strip()
+        if not line or line.startswith(("*", "---", "Item OK")):
+            continue
+        m = SECTION.match(line)
+        if m:
+            sections.append((m.group(1), m.group(2), []))
+            pending = ""
+            continue
+        if not sections:
+            continue
+        box = line.endswith("☐")
+        line = line.rstrip("☐").strip()
+        if line:
+            pending = (pending + " " + line).strip()
+        if box and pending:
+            sections[-1][2].append(pending)
+            pending = ""
+    return sections
+
+
+def p0_cases() -> list[str]:
+    ids = []
+    for f in sorted(CASES.glob("*.json")):
+        d = json.loads(f.read_text(encoding="utf-8"))
+        if d.get("scenario") in ("S1", "S2") and not str(d.get("id", "")).startswith("SC-"):
+            ids.append(d["id"])
+    return ids
+
+
+def open_issues() -> list[str]:
+    return [line for line in ISSUES.read_text(encoding="utf-8").splitlines() if line.startswith("| ISS-") and "| Open" in line]
+
+
+def pack() -> tuple[str, str]:
+    sections = checklist()
+    n = sum(len(items) for _, _, items in sections)
+    cases = p0_cases()
+    lines = ["# Clinical realism review pack (EXP-EVAL-2)", "",
+             "Generated by `tools/eval/realism_review.py pack`; do not edit. The checklist is the walkthrough's own (Part I.3, sections A to G), read from the book. "
+             "**Nothing here approves anything**: it is what the reviewer marks. Each correction becomes an issue in `docs/research/issues.md` with an owner; "
+             "the answers are imported with `realism_review.py import` into `docs/plans/p0/p0-evaluation-performance/results/clinical-review.md`.", "",
+             f"{n} items in 7 sections. P0 cases to play or watch: {len(cases)} ({', '.join(cases)}). Open issues the reviewer may settle at the same time: {len(open_issues())} (section 1 of `docs/research/review_pack.md`).", "",
+             "## Sittings (about 45 minutes each)", "", "| Sitting | Sections | Minutes |", "|---|---|---|",
+             *[f"| {s} | {what} | {m} |" for s, what, m in SITTINGS], ""]
+    for letter, title, items in sections:
+        lines += [f"## {letter}. {title}", "", f"Where to look: {WHERE[letter]}", "", "| Item | OK | Correction | Comment |", "|---|---|---|---|",
+                  *[f"| {i} | ☐ | | |" for i in items], ""]
+    lines += ["## How to answer", "",
+              "Fill the answer sheet `docs/plans/p0/p0-evaluation-performance/results/clinical-review-sheet.csv`: `ok` is `yes` or `no` for every item; a `no` needs the correction "
+              "and the issue ID it was filed under (`ISS-0000`). The import refuses a sheet with an item left blank or a correction with no issue."]
+    buf = io.StringIO()
+    w = csv.writer(buf, lineterminator="\n")
+    w.writerow(FIELDS)
+    for letter, _, items in sections:
+        for i in items:
+            w.writerow([letter, i, "", "", "", ""])
+    return "\n".join(lines) + "\n", buf.getvalue()
+
+
+def import_answers(rows: list[dict]) -> tuple[str, list[str]]:
+    """The results page, and the problems that stop it being written."""
+    known = {(letter, i) for letter, _, items in checklist() for i in items}
+    issues = {line.split("|")[1].strip() for line in ISSUES.read_text(encoding="utf-8").splitlines() if line.startswith("| ISS-")}
+    problems, seen = [], set()
+    for r in rows:
+        key = (r["section"], r["item"])
+        seen.add(key)
+        if key not in known:
+            problems.append(f"{r['section']} '{r['item']}': not an item of the checklist")
+        ok = (r.get("ok") or "").strip().lower()
+        if ok not in ("yes", "no"):
+            problems.append(f"{r['section']} '{r['item']}': ok must be yes or no")
+        if ok == "no":
+            if not (r.get("correction") or "").strip():
+                problems.append(f"{r['section']} '{r['item']}': a 'no' needs the correction")
+            if (r.get("issue") or "").strip() not in issues:
+                problems.append(f"{r['section']} '{r['item']}': the correction needs an issue ID that exists in docs/research/issues.md")
+    problems += [f"{s} '{i}': not answered" for s, i in sorted(known - seen)]
+    titles = {letter: title for letter, title, _ in checklist()}
+    lines = ["# Clinical realism review: results (EXP-EVAL-2)", "",
+             "Imported by `tools/eval/realism_review.py import` from the reviewer's answer sheet; the reviewer is not named (the owner's decision, 10 October 2026).", "",
+             "| Section | Items | OK | Corrections |", "|---|---|---|---|"]
+    for letter in sorted(titles):
+        rs = [r for r in rows if r["section"] == letter]
+        lines.append(f"| {letter}. {titles[letter]} | {len(rs)} | {sum((r.get('ok') or '').strip().lower() == 'yes' for r in rs)} | {sum((r.get('ok') or '').strip().lower() == 'no' for r in rs)} |")
+    fixes = [r for r in rows if (r.get("ok") or "").strip().lower() == "no"]
+    lines += ["", "## Corrections", ""]
+    lines += [f"* {r['section']}. {r['item']}: {r['correction'].strip()} ({r['issue'].strip()})" for r in fixes] or ["None."]
+    notes = [r for r in rows if (r.get("comment") or "").strip()]
+    if notes:
+        lines += ["", "## Comments", "", *[f"* {r['section']}. {r['item']}: {r['comment'].strip()}" for r in notes]]
+    return "\n".join(lines) + "\n", problems
+
+
+def main(argv: list[str]) -> int:
+    sys.stdout.reconfigure(encoding="utf-8")
+    ap = argparse.ArgumentParser()
+    ap.add_argument("what", choices=["pack", "import"])
+    ap.add_argument("--check", action="store_true")
+    ap.add_argument("--csv", type=Path)
+    ap.add_argument("--out", type=Path)
+    a = ap.parse_args(argv)
+    if a.what == "pack":
+        page, sheet = pack()
+        if a.check:
+            stale = [p for p, want in ((PACK, page), (SHEET, sheet)) if not p.exists() or p.read_text(encoding="utf-8").replace("\r\n", "\n") != want]
+            if stale:
+                print("out of date: " + ", ".join(str(p.relative_to(ROOT)) for p in stale) + " (run tools/eval/realism_review.py pack)")
+                return 1
+            print(f"realism review pack up to date: {sheet.count(chr(10)) - 1} checklist items from the walkthrough's Part I.3")
+            return 0
+        for p, text in ((PACK, page), (SHEET, sheet)):
+            p.parent.mkdir(parents=True, exist_ok=True)
+            p.write_text(text, encoding="utf-8", newline="\n")
+        print(f"wrote {PACK.relative_to(ROOT)} and {SHEET.relative_to(ROOT)}")
+        return 0
+    if not a.csv:
+        ap.error("import needs --csv")
+    with a.csv.open(encoding="utf-8", newline="") as f:
+        rows = list(csv.DictReader(f))
+    page, problems = import_answers(rows)
+    if problems:
+        print(f"{len(problems)} problem(s); nothing written:\n" + "\n".join(problems[:40]))
+        return 1
+    if a.out:
+        a.out.parent.mkdir(parents=True, exist_ok=True)
+        a.out.write_text(page, encoding="utf-8", newline="\n")
+        print(f"wrote {a.out}")
+    else:
+        print(page)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))
