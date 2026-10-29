@@ -153,7 +153,7 @@ namespace ProcSense.VR.Views
             var root = Canvas.transform;
 
             _clock = UiKit.Label(root, "Clock", "", new Vector2(14, 8), new Vector2(150, 32), 24, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
-            _chip = UiKit.Label(root, "HintChip", "", new Vector2(170, 8), new Vector2(720, 32), 20, TextAlignmentOptions.TopLeft, new Color(0.55f, 0.85f, 0.78f, 1f));
+            _chip = UiKit.Label(root, "HintChip", "", new Vector2(170, 3), new Vector2(452, 40), 16, TextAlignmentOptions.MidlineLeft, new Color(0.55f, 0.85f, 0.78f, 1f));   // the identity banner is to its right
             _hint = UiKit.Label(root, "Hint", "", new Vector2(10, 558), new Vector2(590, 34), 21, TextAlignmentOptions.MidlineLeft, UiKit.WarnColor);   // under the buttons; a form covers it
             UiKit.Panel(root, "SubtitleBackground", new Vector2(10, 44), new Vector2(880, 64), new Color(0.12f, 0.15f, 0.22f, 1f));
             _subtitle = UiKit.Label(root, "Subtitle", "", new Vector2(22, 46), new Vector2(856, 60), 24, TextAlignmentOptions.MidlineLeft);
@@ -203,6 +203,8 @@ namespace ProcSense.VR.Views
             _settingsRoot = Group(root, "Tab - Settings");
             SettingsTab = _settingsRoot.AddComponent<ProcSense.VR.UI.Accessibility.SettingsTabView>();
             SettingsTab.Build(_settingsRoot.transform);
+            var identity = GetComponent<IdentityStatusView>() ?? gameObject.AddComponent<IdentityStatusView>();
+            identity.Build(root);
             var waitStatus = GetComponent<DiagnosticWaitOverlay>() ?? gameObject.AddComponent<DiagnosticWaitOverlay>();
             waitStatus.Build();
             ShowTab(0);

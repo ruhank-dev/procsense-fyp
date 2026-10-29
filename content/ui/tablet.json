@@ -31,7 +31,7 @@
      "enabled": "always"
     },
     {
-     "label": "Read wristband",
+     "label": "Read wristband (tablet)",
      "verb": "read_wristband",
      "params": {},
      "enabled": "always"
@@ -3064,5 +3064,14 @@
    "list": "goals",
    "entries": []
   }
- ]
+ ],
+ "identity_status": {
+  "not_confirmed": "[!] Identity not confirmed",
+  "confirmed": "[OK] Identity confirmed",
+  "nurse_called": "Nurse called",
+  "nurse_at_bedside": "Nurse at bedside: checking records",
+  "nurse_replacing": "Nurse replacing the band",
+  "read_new_band": "New band on: read it again",
+  "band_missing": "No wristband on patient: ask the nurse"
+ }
 }
