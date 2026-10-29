@@ -4,6 +4,7 @@ using ProcSense.VR.Diagnostics;
 using ProcSense.VR.Records;
 using ProcSense.VR.Records.Emr;
 using ProcSense.VR.Records.Folder;
+using ProcSense.VR.UI;
 using ProcSense.VR.UI.Checklist;
 using ProcSense.VR.UI.Debrief;
 using ProcSense.VR.UI.Results;
@@ -101,9 +102,11 @@ namespace ProcSense.EditorTools
             if (!permanentRecords) At<EmrShell>("EMR shell", -70f, 1.6f, 1.45f);
             if (!permanentRecords) At<ResultsView>("Results viewer", -35f, 1.7f, 1.5f);
             if (!permanentRecords) At<PhoneView>("Phone", -35f, 1.5f, 1.0f);
-            At<ChecklistBoard>("WHO board", 0f, 2.2f, 1.6f);
-            At<WardChecklistPanel>("Ward checklist", 25f, 1.8f, 1.45f);
-            At<DebriefView>("Debrief", 60f, 1.9f, 1.5f);
+            var clinical = Object.FindObjectsByType<ClinicalPanelStation>();
+            foreach (var station in clinical) station.Sync();
+            if (!System.Array.Exists(clinical, s => s.WhoAnchor != null)) At<ChecklistBoard>("WHO board", 0f, 2.2f, 1.6f);
+            if (!System.Array.Exists(clinical, s => s.WardAnchor != null)) At<WardChecklistPanel>("Ward checklist", 25f, 1.8f, 1.45f);
+            if (!System.Array.Exists(clinical, s => s.DebriefAnchor != null)) At<DebriefView>("Debrief", 60f, 1.9f, 1.5f);
             if (!permanentRecords) At<ReportTray>("Report tray", -10f, 0.9f, 0.85f);
 
             var hud = new GameObject("Waiting overlay and subtitles");
