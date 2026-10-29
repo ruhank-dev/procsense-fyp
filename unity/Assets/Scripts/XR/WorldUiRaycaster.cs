@@ -16,6 +16,7 @@ namespace ProcSense.VR.XR
 
         private static void Add(Canvas canvas)
         {
+            if (!Application.isPlaying) return; // Editor prefab generation must not inherit a previous Play session hook.
             if (canvas.GetComponent<TrackedDeviceGraphicRaycaster>() == null) canvas.gameObject.AddComponent<TrackedDeviceGraphicRaycaster>();
         }
     }

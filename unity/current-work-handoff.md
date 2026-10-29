@@ -84,3 +84,17 @@ Uncommitted feature scope is under unity/: RecordsWorkstation/source meta, targe
 Sannan accepted the workstation implementation and exact one-line commit subject feat(unity): integrate bay records workstation (no body) at 2026-10-29 19:15 Asia/Karachi. Pre-commit task ci is running. Next authorized batch: DT-263 folder-builder reproduction. No push authorized. Device acceptance remains separate.
 Final pre-commit lifecycle review also covers a held paper at case reset: explicit owned-sheet cleanup added; real XRI grab/reset regression passes. Latest PlayMode10/10 and EditMode149/149,0failures/skips. Required CI remains running.
 Workstation pre-commit checks completed 2026-10-29 19:37 Asia/Karachi: task ci198/198 passed, exit0; final workstation EditMode149/149 and focused PlayMode10/10. Approved subject feat(unity): integrate bay records workstation, no body; Sannan <sannanshakeel04@gmail.com>, sannan47/main-sync-20261029. Only the10 reviewed Unity files are included; DT-263 stays uncommitted. No push.
+
+## Latest handoff — 2026-10-29 19:39 Asia/Karachi
+
+Workstation committed as b6513e2d8fed29e4536fd217f0efe2969bef6549 on sannan47/main-sync-20261029, exact approved subject feat(unity): integrate bay records workstation (no body), Sannan <sannanshakeel04@gmail.com>. task ci198/198 passed; final workstation EditMode149/149 and PlayMode10/10. No push.
+
+The next authorized batch, DT-263 folder-builder reproduction, is implemented and self-verified but uncommitted:3 fresh/repeat/rejection factory checks passed; full EditMode152/152 and repository checks passed. The real matching Blender export reproduces the authored prefab's hierarchy/transforms/bindings including FolderController. Production folder/GUID/model unchanged. See [manual review and evidence](folder-builder-handoff.md) and execution-plan section56. Awaiting Sannan acceptance and exact next-message approval; suggested subject test(unity): verify patient folder builder reproduction, no body.
+
+Current uncommitted owned files: EquipmentPrefabBuilder.cs, FolderBuilderTests.cs/meta, folder-builder-handoff.md and the2 logs/handoffs (this file and sannan-execution-plan.md). Separately preserved: milestones edit,3recovery files and generated fallback font. Editor closed; headset acceptance remains pending. Remaining DT-266 boards/debrief/wait/audio are a later implementation batch.
+
+DT-263 accepted by Sannan 2026-10-29 19:52 Asia/Karachi with exact proposed commit subject approved. New required CI running before its6-file commit. Separate next authorized slice: permanent ward checklist in PatientBay, WHO board in OT and a gated end-of-session debrief; wait/audio later. Next-slice source/scenes remain uncommitted and excluded from the folder commit.
+
+Folder batch hardened against the Editor-after-Play context: runtime canvas hook now ignores Editor authoring; reproduction test explicitly exercises the retained subscription. Latest full live EditMode152/152 and runtime scene2/2 passed. The approved folder commit includes7 files; pending checklist/debrief station integration remains excluded.
+
+DT-263 final pre-commit receipt 2026-10-29 20:15 Asia/Karachi: fresh task ci198/198 passed, exit0. Approved exact subject test(unity): verify patient folder builder reproduction, no body.7 reviewed files, Sannan <sannanshakeel04@gmail.com>, sannan47/main-sync-20261029. Pending station integration excluded; no push.

@@ -79,11 +79,16 @@ namespace ProcSense.EditorTools
             AssetDatabase.CreateAsset(material, path);
         }
 
-        public static void CreateIfMissing(string modelPath)
+        public static void CreateIfMissing(string modelPath) =>
+            CreateIfMissing(modelPath, "Assets/Prefabs/Equipment/" + Path.GetFileNameWithoutExtension(modelPath) + ".prefab");
+
+        /// <summary>Build a separate verification copy without replacing an authored equipment prefab.</summary>
+        public static void CreateIfMissing(string modelPath, string prefabPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
             if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id)) return;
-            string prefabPath = "Assets/Prefabs/Equipment/" + id + ".prefab";
+            if (!prefabPath.StartsWith("Assets/", StringComparison.Ordinal) || !prefabPath.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) || prefabPath.Contains(".."))
+                throw new ArgumentException("Prefab destination must stay under Assets and end in .prefab", nameof(prefabPath));
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.
             if (AssetDatabase.LoadAssetAtPath<GameObject>(prefabPath) != null) return;
             string metadataPath = Path.ChangeExtension(modelPath, ".equipment.json");
