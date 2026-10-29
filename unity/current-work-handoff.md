@@ -110,3 +110,14 @@ New owned scope13files under unity/: lifecycle/setup/test source+meta, ReviewPan
 Station batch accepted 2026-10-29 23:22 Asia/Karachi; approved exact subject feat(unity): place checklist and debrief stations, no body. Source manifest matches, required CI running. Next wait/voice/subtitle slice authorized; keep it separate and uncommitted for its review.
 
 Station pre-commit receipt 2026-10-29 23:48 Asia/Karachi: task ci198/198 passed, exit0.13-file approved scope reviewed; wait/voice/Sys_Core work excluded. Exact subject feat(unity): place checklist and debrief stations, no body; Sannan <sannanshakeel04@gmail.com>, sannan47/main-sync-20261029. No push.
+
+## Latest checkpoint — 2026-10-29 23:51 Asia/Karachi
+
+Checklist/debrief committed as e9cf36c57fdab0f8f27dd3c80cf8c4dc44b9d562, exact approved subject feat(unity): place checklist and debrief stations (no body), Sannan <sannanshakeel04@gmail.com>, sannan47/main-sync-20261029. Fresh task ci198/198 passed, exit0. Nothing pushed.
+
+Next authorized DT-266 wait/voice/subtitle slice is implemented and self-verified, uncommitted. Sys_Core owns the existing wait/speech UI once, actual bedside/transport/phone anchors are bound, repeated review/camera/session/host replacement cleans up correctly. Fixed doubled real-frame subtitle timing and subtitle-follow movement affecting pooled audio. No clinical/Core/content or timing ownership changes.
+
+Live EditMode152/152 and focused PlayMode16/16 passed; final strengthened presenter6/6 rerun passed. Four room captures inspected, Sys_Core originals preserved, protected hashes unchanged, Editor stopped with clean scenes and zero missing scripts/compile errors. See execution-plan section58 and [manual review](session-presentation-handoff.md). Missing production voice resources mean subtitle fallback; synthetic clips prove mechanics only. Quest and actual speech/lip-sync acceptance remain open.
+
+Owned16-file scope is listed in that handoff, all uncommitted. Separate milestones, generated fallback font and3recovery files remain preserved/excluded. Proposed exact next subject: feat(unity): integrate session wait and voice presentation, no body. Await explicit acceptance/message approval before fresh CI and commit. Next roadmap slice is the remaining physical S1/wristband interaction audit.
+Wait/speech accepted and pre-commit verified — 2026-10-30 00:29 Asia/Karachi: Sannan approved the implementation and exact proposed subject feat(unity): integrate session wait and voice presentation, no body. Fresh task ci198/198 passed, exit0. Reviewed16-file scope only, Sannan <sannanshakeel04@gmail.com>, sannan47/main-sync-20261029. Separate physical identity audit excluded and uncommitted. No push.

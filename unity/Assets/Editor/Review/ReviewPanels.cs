@@ -8,6 +8,7 @@ using ProcSense.VR.UI;
 using ProcSense.VR.UI.Checklist;
 using ProcSense.VR.UI.Debrief;
 using ProcSense.VR.UI.Results;
+using ProcSense.VR.Views;
 using UnityEditor;
 using UnityEngine;
 
@@ -109,16 +110,18 @@ namespace ProcSense.EditorTools
             if (!System.Array.Exists(clinical, s => s.DebriefAnchor != null)) At<DebriefView>("Debrief", 60f, 1.9f, 1.5f);
             if (!permanentRecords) At<ReportTray>("Report tray", -10f, 0.9f, 0.85f);
 
-            var hud = new GameObject("Waiting overlay and subtitles");
-            hud.transform.SetParent(root.transform, false);
-            if (cam != null) { hud.transform.SetParent(cam, false); hud.transform.localPosition = new Vector3(0, 0.15f, 1.2f); hud.transform.localRotation = Quaternion.identity; }
-            hud.AddComponent<WaitOverlay>();
-            var voice = new GameObject("Voice player");
-            voice.transform.SetParent(root.transform, false);
-            var player = voice.AddComponent<VoicePlayer>();
-            if (cam != null) player.Subtitles.Follow = cam;
+            if (SessionPresentation.Instance == null || !SessionPresentation.Instance.isActiveAndEnabled)
+            {
+                var hud = new GameObject("Waiting overlay and subtitles");
+                hud.transform.SetParent(root.transform, false);
+                var anchor = hud.AddComponent<CameraHudAnchor>(); anchor.Follow = cam; anchor.Offset = new Vector3(0, .15f, 1.2f); anchor.Sync();
+                hud.AddComponent<WaitOverlay>();
+                var voice = new GameObject("Voice player"); voice.transform.SetParent(root.transform, false);
+                var player = voice.AddComponent<VoicePlayer>();
+                if (cam != null) player.Subtitles.Follow = cam;
+            }
 
-            Debug.Log("[ProcSense] review panels placed around the player (left: EMR and results with the phone; ahead: WHO board and ward checklist; right: debrief). They are not saved.");
+            Debug.Log("[ProcSense] review panels placed for unplaced views; permanent panels and session presentation are reused. Review objects are not saved.");
             return root;
         }
     }

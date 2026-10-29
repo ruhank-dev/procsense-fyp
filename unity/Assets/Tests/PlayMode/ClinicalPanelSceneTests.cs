@@ -111,7 +111,9 @@ namespace ProcSense.Tests.PlayMode
             var previousHuds = Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>(FindObjectsInactive.Include);
             var root = (GameObject)review.GetMethod("Place").Invoke(null, null);
             _reviewRoot = root;
-            _reviewHud = Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>(FindObjectsInactive.Include).Single(h => !previousHuds.Contains(h)).gameObject;
+            var newHuds = Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>(FindObjectsInactive.Include).Where(h => !previousHuds.Contains(h)).ToArray();
+            if (SessionPresentation.Instance != null) Assert.IsEmpty(newHuds, "Reuse permanent session HUD");
+            _reviewHud = newHuds.FirstOrDefault() != null ? newHuds[0].gameObject : null;
             Assert.IsEmpty(root.GetComponentsInChildren<ProcSense.VR.UI.Checklist.ChecklistBoard>());
             Assert.IsEmpty(root.GetComponentsInChildren<ProcSense.VR.UI.Checklist.WardChecklistPanel>());
             Assert.IsEmpty(root.GetComponentsInChildren<DebriefView>(), "review placement must not bypass the permanent debrief gate");

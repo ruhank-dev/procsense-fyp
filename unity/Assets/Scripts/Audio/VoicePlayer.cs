@@ -32,6 +32,7 @@ namespace ProcSense.VR.Audio
         public const float WordsPerSecond = 2.6f;
 
         public SubtitleView Subtitles;
+        public bool RequireSpeakerAnchor;
         public IVoiceClips Clips = new ResourceVoiceClips();
         public readonly Dictionary<string, Transform> Heads = new Dictionary<string, Transform>(StringComparer.Ordinal);
 
@@ -40,11 +41,13 @@ namespace ProcSense.VR.Audio
         public IReadOnlyList<VoiceLine> Queue => _queue;
         public IReadOnlyList<string> Played => _played;
         public IReadOnlyList<string> Missing => _missing;
+        public IReadOnlyList<string> Unanchored => _unanchored;
         public event Action<VoiceLine> Started;
 
         private readonly List<VoiceLine> _queue = new List<VoiceLine>();
         private readonly List<string> _played = new List<string>();
         private readonly List<string> _missing = new List<string>();
+        private readonly List<string> _unanchored = new List<string>();
         private readonly List<AudioSource> _pool = new List<AudioSource>();
         private AudioSource _playing;
         private float _left;
@@ -64,7 +67,11 @@ namespace ProcSense.VR.Audio
                 src.maxDistance = 12f;
                 _pool.Add(src);
             }
-            if (Subtitles == null) Subtitles = gameObject.AddComponent<SubtitleView>();
+            if (Subtitles == null)
+            {
+                var go = new GameObject("Subtitles"); go.transform.SetParent(transform, false);
+                Subtitles = go.AddComponent<SubtitleView>();
+            }
         }
 
         private void OnEnable() => Attach(SimulationHost.Instance);
@@ -113,12 +120,25 @@ namespace ProcSense.VR.Audio
         public void Tick(float seconds)
         {
             Subtitles.Tick(seconds);
+            AdvancePlayback(seconds);
+        }
+
+        private void AdvancePlayback(float seconds)
+        {
             if (Current == null) { Next(); return; }
             _left -= seconds;
             if (_left <= 0f) { Stop(); Next(); }
         }
 
-        private void Update() => Tick(Time.deltaTime);
+        // SubtitleView owns the real-frame clock; Tick remains an explicit deterministic test/preview step.
+        private void Update() => AdvancePlayback(Time.deltaTime);
+        private void LateUpdate()
+        {
+            if (_playing == null || Current == null) return;
+            if (Heads.TryGetValue(Current.Speaker, out var head) && head != null) _playing.transform.position = head.position;
+            else if (RequireSpeakerAnchor) { _playing.Stop(); _playing = null; }
+            else _playing.transform.position = transform.position;
+        }
 
         private void Stop()
         {
@@ -136,7 +156,8 @@ namespace ProcSense.VR.Audio
             _played.Add(line.Id);
             var clip = Clips?.Find(line.Id);
             float reading = Mathf.Max(SubtitleView.MinSeconds, line.Text.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Length / WordsPerSecond);
-            if (clip != null)
+            bool anchored = Heads.TryGetValue(line.Speaker, out var speakerHead) && speakerHead != null;
+            if (clip != null && (!RequireSpeakerAnchor || anchored))
             {
                 _playing = _pool.FirstOrDefault(p => !p.isPlaying) ?? _pool[0];
                 _playing.transform.position = Heads.TryGetValue(line.Speaker, out var head) && head != null ? head.position : transform.position;
@@ -146,8 +167,16 @@ namespace ProcSense.VR.Audio
             }
             else
             {
-                _missing.Add(line.Id);
-                Debug.LogWarning("[ProcSense] voice line " + line.Id + " has no audio: subtitle only");
+                if (clip == null)
+                {
+                    _missing.Add(line.Id);
+                    Debug.LogWarning("[ProcSense] voice line " + line.Id + " has no audio: subtitle only");
+                }
+                else
+                {
+                    _unanchored.Add(line.Id);
+                    Debug.LogWarning("[ProcSense] voice line " + line.Id + " has no speaker anchor: subtitle only");
+                }
                 _left = reading;
             }
             Subtitles.Show(line.Speaker, line.Text, Mathf.Max(_left, reading));

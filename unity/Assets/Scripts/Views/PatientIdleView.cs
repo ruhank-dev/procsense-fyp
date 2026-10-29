@@ -12,6 +12,7 @@ namespace ProcSense.VR.Views
     public sealed class PatientIdleView : MonoBehaviour
     {
         public const string BreathShape = "ProcSense_IdleBreath";
+        public Transform Head => head;
         [SerializeField] private Transform head;
         [SerializeField] private SkinnedMeshRenderer[] breathSurfaces;
         [SerializeField] private SkinnedMeshRenderer[] faceSurfaces;
