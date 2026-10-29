@@ -199,6 +199,8 @@ namespace ProcSense.VR.Views
             _diagnosticsRoot = Group(root, "Tab - Diagnostics");
             DiagnosticsTab = _diagnosticsRoot.AddComponent<DiagnosticsTabView>();
             DiagnosticsTab.Build(_diagnosticsRoot.transform);
+            var waitStatus = GetComponent<DiagnosticWaitOverlay>() ?? gameObject.AddComponent<DiagnosticWaitOverlay>();
+            waitStatus.Build();
             ShowTab(0);
         }
 
