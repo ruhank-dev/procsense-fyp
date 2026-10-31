@@ -85,7 +85,7 @@ def build() -> str:
             "id": r["id"], "type": kind, "title": r["title"], "date_offset": r["date_offset"], "body": r["d_body"],
             "synthetic": r["synthetic"] == "yes", "ref": r["ref"],
         })
-    distractors = [{"id": r["patient_id"], "name": r["d_name"], "dob": r["d_dob"], "mrn": r["d_mrn"], "ref": r["ref"]} for r in rows("emr_distractors.csv")]
+    distractors = [{"id": r["patient_id"], "name": r["d_name"], "dob": r["d_dob"], "mrn": r["d_mrn"], "location": r["d_location"], "ref": r["ref"]} for r in rows("emr_distractors.csv")]
     doc = {
         "tabs": [{"id": i, "label": label} for i, label in TABS],
         "document_types": [{"id": i, "label": label, "episode": ep, "tab": tab} for i, label, ep, tab in TYPES],

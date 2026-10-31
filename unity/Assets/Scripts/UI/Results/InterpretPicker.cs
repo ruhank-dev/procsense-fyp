@@ -69,7 +69,7 @@ namespace ProcSense.VR.UI.Results
             string key = _verb == ImagingVerb ? "category" : "interpretation";
             var outcome = PanelSend.Send(_send, _verb, new Dictionary<string, string> { ["test"] = _test, [key] = value }, click);
             if (outcome == null) return null;
-            if (!outcome.Accepted) { _card.text = outcome.RejectReason; return outcome; }
+            if (!outcome.Accepted) { _card.text = HintTexts.For(outcome.RejectReason); return outcome; }   // the words, not the code
             bool right = outcome.Effects.Any(e => e.EndsWith(":correct"));
             _card.text = option.Label + ModeGate.Practice(right ? "  -  the results bear this out" : "  -  the results do not bear this out");
             return outcome;

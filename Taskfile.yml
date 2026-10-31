@@ -122,6 +122,11 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/render.py --check
 
+  voice-copy:
+    desc: Copy the rendered voice lines (build/voice) into the Unity project for VoicePlayer (unity/Assets/Audio/Voice/Resources/Voice, git-ignored); a line without audio is shown as a subtitle only
+    cmds:
+      - uv run --project tools tools/voice/copy_to_unity.py {{.CLI_ARGS}}
+
   report-experiments:
     desc: Regenerate the experiments chapter of the report (docs/report/experiments.md) from the phase READMEs
     cmds:
@@ -172,9 +177,20 @@ tasks:
       - uv run --project tools tools/unity/run_unity.py test
 
   unity-build:
-    desc: Build the Quest APK into artifacts/unity/ProcSense.apk (needs Unity with Android support)
+    desc: Build a Quest APK variant into artifacts/unity/ProcSense-<variant>.apk with its SHA-256 (task unity-build -- dev|demo|study; dev when none; needs Unity with Android support and the Editor closed)
     cmds:
-      - uv run --project tools tools/unity/run_unity.py build
+      - uv run --project tools tools/unity/run_unity.py build {{.CLI_ARGS}}
+
+  quest-pull-session:
+    desc: Pull the session logs off the Quest (adb) into artifacts/quest-sessions and replay each one headless with the engine it was recorded by (EXP-CORE-1)
+    cmds:
+      - uv run --project tools tools/unity/quest_sessions.py pull
+      - uv run --project tools tools/unity/quest_sessions.py replay
+
+  perf-row:
+    desc: Summarise a weekly OVR Metrics CSV against the gate and last week (task perf-row -- docs/plans/p0/p0-vr-platform/perf/<file>.csv --by <name> [--write])
+    cmds:
+      - uv run --project tools tools/unity/perf_capture.py {{.CLI_ARGS}}
 
   ci:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
@@ -282,6 +298,8 @@ tasks:
       - uv run --project tools tools/content/build_records.py
       - uv run --project tools tools/content/build_diagnostics.py
       - uv run --project tools tools/content/build_tablet.py
+      - uv run --project tools tools/content/build_citations.py
+      - uv run --project tools tools/content/build_monitor.py
 
   content-refresh:
     desc: Regenerate every generated content file and document in dependency order (tables, case files, imaging library, review packs, equipment sheets, traceability, manifest); run after any content change
@@ -290,6 +308,8 @@ tasks:
       - uv run --project tools tools/content/build_case_files.py
       - uv run --project tools tools/content/build_records.py
       - uv run --project tools tools/content/build_diagnostics.py
+      - uv run --project tools tools/content/build_citations.py
+      - uv run --project tools tools/content/build_monitor.py
       - uv run --project tools tools/content/imaging_library.py
       - uv run --project tools tools/content/image_review_pack.py
       - uv run --project tools tools/data/dataset_cards.py

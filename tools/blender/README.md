@@ -55,6 +55,10 @@ Monitor/identity surfaces render permitted observable state; no patient facts ar
 
 Nested model instances refresh on FBX reimport. Existing prefab component settings and material assets are preserved; the builder only creates missing prefabs. Changes to the interaction schema require an explicit migration; reimport intentionally does not overwrite authored settings. Import tests check dimensions, materials, socket isolation and preservation of an edited mass/GUID. Run Unity tests in the live Test Runner while the Editor is open.
 
+## Specimen container (P1)
+
+`specimen_container` (p1-theatre-extension-s04) is a 496-triangle 60 mL specimen pot: 33 × 70 mm with the cap ([sheet 52](../../docs/research/equipment/52-specimen-container-and-label.md)), a see-through pot (`PlasticClear`, the palette's only transparent material), a white screw cap about `PIVOT_Lid` and a label band whose text is drawn live at `LABEL_Specimen`. The pot/cap split and the label size are design sizes. Not imported into Unity yet: it needs a transparent URP material in the import step and a prefab entry; the biohazard bag variant is not modelled.
+
 ## Physical notes folder
 
 `patient_folder` is a 564-triangle procedural A4 folder using shared materials. Page area is 210 × 297 mm; cover allowance, 10 mm total thickness and binder details are provisional visual choices. Generate with `uv run --project tools tools/blender/run.py all patient_folder`, then **Import Notes Folder** and **Install Notes Folder** in the Equipment menu. The installer preserves the existing table and disables the old notes proxy/view without rebuilding the scene.

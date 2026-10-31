@@ -1,0 +1,3 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","session_id":"6be5d9e7-4c0e-4033-a758-ec6455303998","content_version":"837eb302abbc","engine_version":"0.0.1","scenario_package_hash":"","log_hash":"ef0105ead41e4fa3dcbc7f94d30d4e22e043081f9c76c9ffcb47c290171ef418"}}
+{"seq":0,"step":170,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["attached:spo2"]}
+{"seq":1,"step":185,"verb":"detach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["detached:spo2"]}

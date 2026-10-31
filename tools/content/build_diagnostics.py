@@ -33,6 +33,7 @@ def build() -> str:
             "ref": "SR-4121",
         },
         "send_rule": {"default": "now", "later": "later", "ref": "SR-4122"},
+        "wait_overlay": {"seconds": 10, "note": "on-screen seconds the waiting overlay is shown when the patient goes behind a door, then a corner note until they are back; tuned with testers (EXP-DT-1)"},
         "refs": ["SR-4120", "SR-4121", "SR-4122"],
     }
     return json.dumps(doc, indent=1, ensure_ascii=False) + "\n"

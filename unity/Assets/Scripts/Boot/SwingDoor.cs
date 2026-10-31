@@ -14,6 +14,7 @@ namespace ProcSense.VR.Boot
         public string RoomB;
         public BoxCollider Leaf;
         public float Angle { get; private set; }
+        public bool NpcPassageRequested => _npcPassage;
         public bool Ready => _rooms != null && !_rooms.Busy
             && UnityEngine.SceneManagement.SceneManager.GetSceneByName(RoomA).isLoaded
             && UnityEngine.SceneManagement.SceneManager.GetSceneByName(RoomB).isLoaded;
@@ -24,6 +25,9 @@ namespace ProcSense.VR.Boot
         private Quaternion _closed;
         private Vector3 _lastDirection;
         private float _target;
+        private bool _npcPassage;
+        private float _beforeNpc;
+        public void SetNpcPassage(bool open) { if (open == _npcPassage) return; if (open) _beforeNpc = _target; _npcPassage = open; if (_hand == null) _target = open ? 100 : _beforeNpc; }
 
         private void Awake()
         {
@@ -61,6 +65,7 @@ namespace ProcSense.VR.Boot
             if (_rooms == null) _rooms = FindAnyObjectByType<RoomLoader>();
             // A closed solid leaf gates an incomplete preload, never a void beyond an open door.
             if (_grab.enabled != Ready) _grab.enabled = Ready;
+            if (_npcPassage && _hand == null && Ready) _target = 100;
             if (_hand == null || !Ready) return;
             var direction = Direction();
             if (direction.sqrMagnitude < .5f || _lastDirection.sqrMagnitude < .5f)

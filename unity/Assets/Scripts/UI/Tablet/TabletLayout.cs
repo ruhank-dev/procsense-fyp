@@ -50,6 +50,8 @@ namespace ProcSense.VR.UI.Tablet
         public const string File = "ui/tablet.json";
 
         public List<TabletTab> Tabs = new List<TabletTab>();
+        /// <summary>The identity banner's words (p0-vr-interaction-ui-s12), by key.</summary>
+        public Dictionary<string, string> IdentityStatus = new Dictionary<string, string>();
 
         public IEnumerable<TabletEntry> Entries => Tabs.SelectMany(t => t.Entries);
 
@@ -73,6 +75,8 @@ namespace ProcSense.VR.UI.Tablet
                 layout.Tabs.Add(parsed);
             }
             if (layout.Tabs.Count == 0) throw new ContentException(File + ": no tabs");
+            if (root.TryGetValue("identity_status", out var words) && words is Dictionary<string, object> status)
+                foreach (var kv in status) layout.IdentityStatus[kv.Key] = (string)kv.Value;
             return layout;
         }
 

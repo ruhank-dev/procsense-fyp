@@ -341,6 +341,8 @@ def build():
         cyl(f"HandleCollar{x}", (x - .003 * (1 if x > 0 else -1), .010, 1.485), (x + .003 * (1 if x > 0 else -1), .010, 1.485), .0185, "MonShell", 40, r=.001)
 
     point("SCREEN_Main", (-.008, -.1012, 1.316))
+    box("AlarmLight", (.06, .02, .012), (0, -.02, 1.44), "AlarmRed", .003)   # the alarm light on top; Unity lights it by priority
+    point("LIGHT_Alarm", (0, -.02, 1.447))
     point("GRAB_Handle", (0, .01, 1.485))
     point("COL_Body", (0, 0, 1.29), (.327, .182, .288))
     join_by_material()

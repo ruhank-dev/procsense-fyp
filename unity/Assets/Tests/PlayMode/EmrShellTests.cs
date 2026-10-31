@@ -63,6 +63,9 @@ namespace ProcSense.Tests.PlayMode
             Snapshots.Photograph(emr.Canvas, Snapshots.Out("emr-shell-search.png"));
             Assert.IsTrue(emr.Choose(emr.Shown[0].Id));
             StringAssert.Contains("Ayesha Khan", emr.BannerText);
+            StringAssert.Contains("MR 102938", emr.BannerText, "the record number as the wristband prints it (DT-264)");
+            StringAssert.Contains("Patient bay", emr.BannerText, "where she is now (DT-264)");
+            Assert.IsTrue(emr.Shown.Where(p => !p.IsCasePatient).All(p => p.Location.Length > 0), "every distractor has a ward and bed");
             Assert.AreEqual("profile", emr.Tabs.Active, "the record opens on the profile");
             Assert.IsTrue(emr.OpenTab("labs"));
             Assert.IsTrue(emr.OpenTab("imaging"));

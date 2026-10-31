@@ -25,6 +25,7 @@ namespace ProcSense.VR.Bridge
             { "VERIFY_IDENTITY_FIRST", "Check who she is another way first (ask her, open the notes)" },
             { "CUFF_NOT_ATTACHED", "Attach the blood-pressure cuff first" },
             { "CYCLE_IN_PROGRESS", "The cuff is still measuring" },
+            { "MISSING_ALARM_VITAL", "Say which alarm to silence" },
             { "UNKNOWN_TOPIC", "She cannot answer that" },
             { "TOPIC_NOT_IN_CASE", "Nothing to ask about that for this patient" },
             { "MISSING_SENSOR", "Choose a sensor" },
@@ -49,6 +50,18 @@ namespace ProcSense.VR.Bridge
             { "MISSING_DOCUMENT", "Choose a document" },
             { "UNKNOWN_DOCUMENT", "That document is not in this record" },
             { "NO_IMAGE", "There is no picture with this report" },
+            { "NOT_DELIVERED", "That report has not been delivered yet" },
+            { "ALREADY_FILED", "That report is already in the folder" },
+            { "NOT_A_PRINTOUT", "Only a printed result goes in the report pocket" },
+            { "NOT_IN_FOLDER", "That document is not in the folder" },
+            { "ASK_THE_RIGHT_PERSON", "The team answers that one: ask the right person" },
+            { "ITEM_OUT_OF_ORDER", "Take the checklist in order" },
+            { "SIGN_IN_FIRST", "Finish the Sign In first" },
+            { "CASE_STOPPED", "The case is stopped: resolve the problem first" },
+            { "PHASE_COMPLETE", "That part of the checklist is already complete" },
+            { "ITEMS_OUTSTANDING", "Some checklist items are still outstanding" },
+            { "NOT_ALL_TICKED", "Some ward checklist items are not ticked yet" },
+            { "ALREADY_SIGNED", "That is already signed" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>

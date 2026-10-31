@@ -1,7 +1,7 @@
 """Runs Unity in batch mode for the project's tests and the Quest build.
 
     uv run --project tools tools/unity/run_unity.py test    # EditMode + PlayMode tests
-    uv run --project tools tools/unity/run_unity.py build   # Quest APK -> artifacts/unity/ProcSense.apk
+    uv run --project tools tools/unity/run_unity.py build [dev|demo|study]   # Quest APK -> artifacts/unity/ProcSense-<variant>.apk (+ .sha256)
 
 Unity is found through UNITY_EXE, or in the default Unity Hub folder for the editor version in unity/ProjectSettings/ProjectVersion.txt.
 CI does not run this (the free GitHub runners have no Unity licence); it is the local check before a hand-off that touches unity/.
@@ -54,13 +54,17 @@ def test() -> int:
     return 1 if failed else 0
 
 
-def build() -> int:
-    code = run(["-nographics", "-executeMethod", "ProcSense.EditorTools.BuildScript.BuildQuest"], OUT / "build.log")
-    print("APK:", OUT / "ProcSense.apk" if (OUT / "ProcSense.apk").exists() else "not produced, see build.log")
+VARIANTS = ("dev", "demo", "study")
+
+
+def build(variant: str = "dev") -> int:
+    code = run(["-nographics", "-executeMethod", "ProcSense.EditorTools.BuildScript.BuildQuest", "-variant", variant], OUT / f"build-{variant}.log")
+    apk = OUT / f"ProcSense-{variant}.apk"
+    print("APK:", apk if apk.exists() else f"not produced, see build-{variant}.log")
     return code
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2 or sys.argv[1] not in ("test", "build"):
+    if len(sys.argv) < 2 or sys.argv[1] not in ("test", "build") or (sys.argv[1] == "build" and len(sys.argv) > 2 and sys.argv[2] not in VARIANTS):
         sys.exit(__doc__)
-    sys.exit(test() if sys.argv[1] == "test" else build())
+    sys.exit(test() if sys.argv[1] == "test" else build(sys.argv[2] if len(sys.argv) > 2 else "dev"))

@@ -19,6 +19,8 @@ namespace ProcSense.VR.ActionEmitters
         private Session _session;
         private bool _knownNotes;
         public bool IsOpen { get; private set; }
+        /// <summary>The identifiers page (the first page of the folder, p0-patient-records-emr-s02).</summary>
+        public GameObject Page => page;
 
         public void ConfigureFolder(Transform coverTransform, GameObject pageObject)
         {

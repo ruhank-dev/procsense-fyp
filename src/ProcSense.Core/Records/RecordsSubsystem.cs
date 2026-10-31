@@ -54,8 +54,8 @@ namespace ProcSense.Core.Records
         public string Tab { get; internal set; } = "";
     }
 
-    /// <summary>A patient on the EMR's ward list: the case patient or a distractor.</summary>
-    public sealed record RecordPatient(string Id, string Name, string Dob, string Mrn, bool IsCasePatient);
+    /// <summary>A patient on the EMR's ward list: the case patient or a distractor. The record number is written as the wristband prints it ("MR 102938"); the location is where the patient is (DT-264).</summary>
+    public sealed record RecordPatient(string Id, string Name, string Dob, string Mrn, bool IsCasePatient, string Location = "");
 
     /// <summary>
     /// The patient's record (p0-patient-records-emr-s01). The folder holds this admission's paperwork (clerking note, observation chart, consent and ward checklist once signed, printed results once
@@ -121,8 +121,11 @@ namespace ProcSense.Core.Records
         /// <summary>The EMR tabs in the order the record defines them (id and label), for a view that draws them.</summary>
         public IReadOnlyList<EmrTab> Tabs => Tables.Tabs;
 
-        /// <summary>The EMR's ward list (the case patient and the distractors), by name.</summary>
-        public IReadOnlyList<RecordPatient> Patients => _patients;
+        /// <summary>The EMR's ward list (the case patient and the distractors), by name. The case patient's location is where the session has them now (the bay, the corridor, the CT scanner).</summary>
+        public IReadOnlyList<RecordPatient> Patients => _patients.Select(p => p.IsCasePatient ? p with { Location = _content.Locations.Find(Clinical.Location)?.Label ?? Clinical.Location } : p).ToList();
+
+        /// <summary>A record number as the hospital prints it on the wristband and the record: "MR " and the number (the case files hold the number alone).</summary>
+        public static string Printed(string mrn) => string.IsNullOrEmpty(mrn) || mrn.StartsWith("MR ", StringComparison.Ordinal) ? mrn ?? "" : "MR " + mrn;
 
         /// <summary>Documents opened, pictures viewed and searches, with sim steps (no score items yet; the scorer reads them as evidence later).</summary>
         public IReadOnlyList<GraphEvent> History => _history;
@@ -139,8 +142,8 @@ namespace ProcSense.Core.Records
                     _docs.Add(new RecordDocument { Id = e.Id, Type = e.Type, Episode = Episode(e.Type), Tab = TabOf(e.Type), Title = e.Title, Body = e.Body, DateOffset = e.DateOffset, Synthetic = e.Synthetic, InEmr = true });
             var patients = new List<RecordPatient>();
             if (_content.CaseFiles.TryGetValue(caseId, out var file))
-                patients.Add(new RecordPatient(caseId, file.Identity.Title + " " + file.Identity.FullName, file.Identity.Dob, file.Identity.Mrn, true));
-            patients.AddRange(Tables.Distractors.Select(d => new RecordPatient(d.Id, d.Name, d.Dob, d.Mrn, false)));
+                patients.Add(new RecordPatient(caseId, file.Identity.Title + " " + file.Identity.FullName, file.Identity.Dob, Printed(file.Identity.Mrn), true));
+            patients.AddRange(Tables.Distractors.Select(d => new RecordPatient(d.Id, d.Name, d.Dob, Printed(d.Mrn), false, d.Location)));
             _patients.AddRange(patients.OrderBy(p => p.Name, StringComparer.Ordinal).ThenBy(p => p.Id, StringComparer.Ordinal));
             session.Verbs.Register(OpenVerb);
             session.Verbs.Register(ImageVerb);

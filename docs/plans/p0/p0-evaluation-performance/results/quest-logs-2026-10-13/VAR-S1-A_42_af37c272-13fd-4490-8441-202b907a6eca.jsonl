@@ -1,0 +1,6 @@
+{"header":{"case":"VAR-S1-A","seed":"42","mode":"practice","session_id":"af37c272-13fd-4490-8441-202b907a6eca","content_version":"837eb302abbc","engine_version":"0.0.1","scenario_package_hash":"","log_hash":"138edf8a4e8fe4f8e6d473bf1cbafb127687102aacfc3b555eacb018aa7c33c9"}}
+{"seq":0,"step":142,"verb":"open_notes","target":"patient","channel":"vr","params":{},"accepted":true,"reject":"","effects":["notes_opened"]}
+{"seq":1,"step":181,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["attached:nibp_cuff"]}
+{"seq":2,"step":196,"verb":"attach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["attached:spo2"]}
+{"seq":3,"step":361,"verb":"detach_sensor","target":"patient","channel":"vr","params":{"sensor":"spo2"},"accepted":true,"reject":"","effects":["detached:spo2"]}
+{"seq":4,"step":365,"verb":"detach_sensor","target":"patient","channel":"vr","params":{"sensor":"nibp_cuff"},"accepted":true,"reject":"","effects":["detached:nibp_cuff"]}

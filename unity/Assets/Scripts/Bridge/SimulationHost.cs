@@ -12,6 +12,7 @@ using ProcSense.Core.Twin;
 using ProcSense.Core.Workflow;
 using ProcSense.VR.Content;
 using ProcSense.VR.Sync;
+using Unity.Profiling;
 using UnityEngine;
 
 namespace ProcSense.VR.Bridge
@@ -34,6 +35,10 @@ namespace ProcSense.VR.Bridge
         /// <summary>The content the running session was built from (the speech interpretation reads the behaviour windows from it).</summary>
         public ContentPackage Content { get; private set; }
         public ObservableState Observable { get; private set; }
+        // Public catalogue metadata only; patient results remain behind ObservableState disclosure.
+        public IReadOnlyList<ProcSense.Core.Clinical.InvestigationDef> InvestigationCatalogue => Content?.Investigations.Tests ?? Array.Empty<ProcSense.Core.Clinical.InvestigationDef>();
+        public IReadOnlyList<string> SampleTubes => Content?.Investigations.Tubes ?? Array.Empty<string>();
+        public IReadOnlyList<string> SampleLabels => Content?.Investigations.Labels ?? Array.Empty<string>();
         public bool Paused { get; private set; }
         public string PauseReason { get; private set; } = "";
 
@@ -168,11 +173,15 @@ namespace ProcSense.VR.Bridge
             return PackageHash;
         }
 
+        // profiler markers (p0-vr-platform-s07): Core's tick and actions show up by name in the Unity and OVR Metrics captures
+        private static readonly ProfilerMarker TickMarker = new ProfilerMarker("ProcSense.Core.Tick");
+        private static readonly ProfilerMarker ApplyMarker = new ProfilerMarker("ProcSense.Core.Apply");
+
         public void Tick(double dt)
         {
             if (Session == null || Paused) return;
             long before = Session.Clock.Steps;
-            try { Session.Tick(dt); }
+            try { using (TickMarker.Auto()) Session.Tick(dt); }
             catch (Exception e) { Pause(e); return; }
             if (Session.Clock.Steps != before) Refresh();
         }
@@ -186,7 +195,8 @@ namespace ProcSense.VR.Bridge
             if (Session == null || Paused) return Rejected(Paused ? "SESSION_PAUSED" : "NO_SESSION");
             try
             {
-                var outcome = Session.Apply(action);
+                ActionOutcome outcome;
+                using (ApplyMarker.Auto()) outcome = Session.Apply(action);
                 Refresh();
                 Applied?.Invoke(action, outcome);
                 return outcome;

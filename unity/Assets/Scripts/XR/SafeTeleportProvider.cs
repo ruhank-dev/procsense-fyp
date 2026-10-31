@@ -14,6 +14,8 @@ namespace ProcSense.VR.XR
         private XROrigin _rig;
         private RoomLoader _rooms;
         private LocomotionFade _fade;
+        private bool _cancelled;
+        public void CancelPendingTeleport() { if (Busy) _cancelled = true; }
         private readonly Dictionary<LocomotionProvider, bool> _movement = new Dictionary<LocomotionProvider, bool>();
 
         public bool CanTeleport(Vector3 point)
@@ -40,7 +42,7 @@ namespace ProcSense.VR.XR
         public override bool QueueTeleportRequest(TeleportRequest request)
         {
             if (!CanTeleport(request.destinationPosition)) return false;
-            Busy = true;
+            _cancelled = false; Busy = true;
             StartCoroutine(Teleport(request));
             return true;
         }
@@ -56,7 +58,7 @@ namespace ProcSense.VR.XR
             {
                 yield return _fade.Fade(1, 0.15f);
                 // Dynamic obstruction can appear during the fade; reject it before any movement.
-                if (Clear(request.destinationPosition))
+                if (!_cancelled && Clear(request.destinationPosition))
                 {
                     base.QueueTeleportRequest(request);
                     while (validRequest) yield return null;
@@ -69,7 +71,7 @@ namespace ProcSense.VR.XR
 
         protected override void Update()
         {
-            if (validRequest && !Clear(currentRequest.destinationPosition)) validRequest = false;
+            if (validRequest && (_cancelled || !Clear(currentRequest.destinationPosition))) validRequest = false;
             base.Update();
         }
 

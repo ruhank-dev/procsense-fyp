@@ -16,14 +16,14 @@ namespace ProcSense.VR.Views
 {
     /// <summary>
     /// The hand-held tablet (p0-vr-interaction-ui-s03): the tabs of content/ui/tablet.json in walkthrough order (Admission, Ask, Known, Assess, Orders, Results,
-    /// Treat, Consent, Checklist, Handover, Debrief), then More (a button for every VR gesture without one, the tablet fallback) and Session. A button sends one
+    /// Treat, Consent, Checklist, Handover, Debrief), then More (a button for every VR gesture without one, the tablet fallback), Session and runtime Diagnostics. A button sends one
     /// action through an emitter; a form collects its fields and sends one action. Every label and choice comes from content; which buttons are enabled
     /// depends only on the ObservableState. A refused action shows a short hint and changes nothing on screen. Practice mode adds the hint chip and the list
     /// of outstanding goals (Debrief tab); assessment shows neither.
     /// </summary>
     public class TabletView : StateView
     {
-        public const string MoreTab = "more", SessionTabId = "session";
+        public const string MoreTab = "more", SessionTabId = "session", DiagnosticsTabId = "diagnostics", SettingsTabId = "settings";
         private const int PerPage = 12, FormRows = 6;
         private static readonly Vector2 Size = new Vector2(900, 600);
 
@@ -53,7 +53,7 @@ namespace ProcSense.VR.Views
         private readonly List<Row> _rows = new List<Row>();
         private readonly Dictionary<string, string> _values = new Dictionary<string, string>(StringComparer.Ordinal);
         private TMP_Text _clock, _hint, _chip, _subtitle, _note, _sideTitle, _side, _pageLabel, _formTitle, _formPageLabel;
-        private GameObject _sessionRoot, _noteRoot, _sideRoot, _formRoot, _paging;
+        private GameObject _sessionRoot, _diagnosticsRoot, _settingsRoot, _noteRoot, _sideRoot, _formRoot, _paging;
         private FormSendEmitter _send;
         private TabletEntry _form;
         private int _formPage, _tab, _factCount;
@@ -63,6 +63,8 @@ namespace ProcSense.VR.Views
 
         /// <summary>The Session tab (account, uploads, latest results). It is not an action tab and holds no simulation buttons.</summary>
         public SessionTabView SessionTab { get; private set; }
+        public DiagnosticsTabView DiagnosticsTab { get; private set; }
+        public ProcSense.VR.UI.Accessibility.SettingsTabView SettingsTab { get; private set; }
 
         public string ClockText => _clock.text;
         public string HintText => _hint.text;
@@ -151,7 +153,7 @@ namespace ProcSense.VR.Views
             var root = Canvas.transform;
 
             _clock = UiKit.Label(root, "Clock", "", new Vector2(14, 8), new Vector2(150, 32), 24, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
-            _chip = UiKit.Label(root, "HintChip", "", new Vector2(170, 8), new Vector2(720, 32), 20, TextAlignmentOptions.TopLeft, new Color(0.55f, 0.85f, 0.78f, 1f));
+            _chip = UiKit.Label(root, "HintChip", "", new Vector2(170, 3), new Vector2(452, 40), 16, TextAlignmentOptions.MidlineLeft, new Color(0.55f, 0.85f, 0.78f, 1f));   // the identity banner is to its right
             _hint = UiKit.Label(root, "Hint", "", new Vector2(10, 558), new Vector2(590, 34), 21, TextAlignmentOptions.MidlineLeft, UiKit.WarnColor);   // under the buttons; a form covers it
             UiKit.Panel(root, "SubtitleBackground", new Vector2(10, 44), new Vector2(880, 64), new Color(0.12f, 0.15f, 0.22f, 1f));
             _subtitle = UiKit.Label(root, "Subtitle", "", new Vector2(22, 46), new Vector2(856, 60), 24, TextAlignmentOptions.MidlineLeft);
@@ -165,7 +167,7 @@ namespace ProcSense.VR.Views
             _sideTitle = UiKit.Label(_sideRoot.transform, "SideTitle", "", new Vector2(620, 198), new Vector2(260, 28), 20, TextAlignmentOptions.TopLeft, UiKit.DimTextColor);
             _side = UiKit.Label(_sideRoot.transform, "Side", "", new Vector2(620, 228), new Vector2(262, 356), 16);
 
-            var tabs = Layout.Tabs.Select(t => (Id: t.Id, Label: t.Label)).Concat(new[] { (Id: MoreTab, Label: "More"), (Id: SessionTabId, Label: "Session") }).ToList();
+            var tabs = Layout.Tabs.Select(t => (Id: t.Id, Label: t.Label)).Concat(new[] { (Id: MoreTab, Label: "More"), (Id: SessionTabId, Label: "Session"), (Id: DiagnosticsTabId, Label: "Diagnostics"), (Id: SettingsTabId, Label: "Settings") }).ToList();
             for (int t = 0; t < tabs.Count; t++)
             {
                 _tabIds.Add(tabs[t].Id);
@@ -173,7 +175,7 @@ namespace ProcSense.VR.Views
                 float width = 880f / perRow;
                 int tab = t;
                 UiKit.MakeButton(root, tabs[t].Label, new Vector2(10 + col * width, 114 + row * 40), new Vector2(width - 4, 36), 17).onClick.AddListener(() => ShowTab(tab));
-                if (tabs[t].Id == SessionTabId) continue;
+                if (tabs[t].Id == SessionTabId || tabs[t].Id == DiagnosticsTabId || tabs[t].Id == SettingsTabId) continue;
                 var tabRoot = Group(root, "Tab - " + tabs[t].Label);
                 _tabRoots.Add(tabRoot);
                 if (t < Layout.Tabs.Count)
@@ -195,6 +197,16 @@ namespace ProcSense.VR.Views
             _sessionRoot = Group(root, "Tab - Session");
             SessionTab = _sessionRoot.AddComponent<SessionTabView>();
             SessionTab.Build(_sessionRoot.transform);
+            _diagnosticsRoot = Group(root, "Tab - Diagnostics");
+            DiagnosticsTab = _diagnosticsRoot.AddComponent<DiagnosticsTabView>();
+            DiagnosticsTab.Build(_diagnosticsRoot.transform);
+            _settingsRoot = Group(root, "Tab - Settings");
+            SettingsTab = _settingsRoot.AddComponent<ProcSense.VR.UI.Accessibility.SettingsTabView>();
+            SettingsTab.Build(_settingsRoot.transform);
+            var identity = GetComponent<IdentityStatusView>() ?? gameObject.AddComponent<IdentityStatusView>();
+            identity.Build(root);
+            var waitStatus = GetComponent<DiagnosticWaitOverlay>() ?? gameObject.AddComponent<DiagnosticWaitOverlay>();
+            waitStatus.Build();
             ShowTab(0);
         }
 
@@ -249,6 +261,9 @@ namespace ProcSense.VR.Views
             bool session = _tabIds[_tab] == SessionTabId;
             for (int i = 0; i < _tabRoots.Count; i++) _tabRoots[i].SetActive(i == _tab);
             if (_sessionRoot != null) _sessionRoot.SetActive(session);
+            bool diagnostics = _tabIds[_tab] == DiagnosticsTabId;
+            if (_diagnosticsRoot != null) _diagnosticsRoot.SetActive(diagnostics);
+            if (_settingsRoot != null) _settingsRoot.SetActive(_tabIds[_tab] == SettingsTabId);
             ShowPage();
             ShowSide();
         }
@@ -278,7 +293,7 @@ namespace ProcSense.VR.Views
                 ((RectTransform)item.Button.transform).anchoredPosition = new Vector2(Slot(index).x, -Slot(index).y);
                 index++;
             }
-            bool session = _tabIds[_tab] == SessionTabId;
+            bool session = _tabIds[_tab] == SessionTabId || _tabIds[_tab] == SettingsTabId;
             _paging.SetActive(!session && _form == null && pages > 1);
             SetText(_pageLabel, "Page " + (page + 1) + " of " + pages);
         }
@@ -290,9 +305,10 @@ namespace ProcSense.VR.Views
         private void ShowSide()
         {
             string list = ListOf(_tab);
-            bool session = _tabIds[_tab] == SessionTabId;
-            _sideRoot.SetActive(!session && list.Length > 0);
-            _noteRoot.SetActive(!session && list.Length == 0);
+            bool session = _tabIds[_tab] == SessionTabId || _tabIds[_tab] == SettingsTabId;
+            bool diagnostics = _tabIds[_tab] == DiagnosticsTabId;
+            _sideRoot.SetActive(!session && !diagnostics && list.Length > 0);
+            _noteRoot.SetActive(!session && !diagnostics && list.Length == 0);
             if (Last != null) RenderSide(Last);
         }
 

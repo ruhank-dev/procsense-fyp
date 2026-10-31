@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 6408787167020795954}
   - component: {fileID: 8733042886080629304}
   - component: {fileID: 7319914816044683750}
+  - component: {fileID: 4033704432688583774}
   m_Layer: 0
   m_Name: patient_folder
   m_TagString: Untagged
@@ -414,6 +415,18 @@ MonoBehaviour:
   debounceSeconds: 0.35
   cover: {fileID: 1967602306838765015}
   page: {fileID: 5297359310908174237}
+--- !u!114 &4033704432688583774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228127864415920023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a602bc07ba3399a42bfbcce236d059f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Records.Folder.FolderController
 --- !u!1 &3948283751434419869
 GameObject:
   m_ObjectHideFlags: 0

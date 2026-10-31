@@ -33,6 +33,7 @@ namespace ProcSense.VR.Views
             go.AddComponent<CanvasScaler>().dynamicPixelsPerUnit = 8f;
             go.AddComponent<GraphicRaycaster>();
             Panel(go.transform, "Background", Vector2.zero, sizePixels, PanelColor);
+            ProcSense.VR.UI.Accessibility.AccessibleCanvas.Attach(canvas, metresPerPixel);   // the viewer's panel size (p0-vr-interaction-ui-s10)
             CanvasCreated?.Invoke(canvas);
             return canvas;
         }
@@ -54,7 +55,9 @@ namespace ProcSense.VR.Views
             go.transform.SetParent(parent, false);
             var label = go.AddComponent<TextMeshProUGUI>();
             label.text = text;
-            label.fontSize = fontSize;
+            // never below the readable floor for where the panel is read (p0-vr-interaction-ui-s10: 24 headset pixels)
+            var readable = parent.GetComponentInParent<ProcSense.VR.UI.Accessibility.AccessibleCanvas>(true);
+            label.fontSize = readable != null ? Mathf.Max(fontSize, readable.MinFontSize) : fontSize;
             label.alignment = align;
             label.color = color ?? TextColor;
             label.textWrappingMode = TextWrappingModes.Normal;

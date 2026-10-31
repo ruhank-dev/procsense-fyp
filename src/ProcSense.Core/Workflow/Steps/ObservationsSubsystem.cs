@@ -22,6 +22,8 @@ namespace ProcSense.Core.Workflow.Steps
         public const string NibpCuff = "nibp_cuff";
 
         public const string MissingSensor = "MISSING_SENSOR";
+        public const string AcknowledgeAlarmVerb = "acknowledge_alarm";
+        public const string MissingAlarmVital = "MISSING_ALARM_VITAL";
         public const string UnknownSensor = "UNKNOWN_SENSOR";
         public const string ProbeNotAttached = "PROBE_NOT_ATTACHED";
         public const string CuffNotAttached = "CUFF_NOT_ATTACHED";
@@ -53,6 +55,7 @@ namespace ProcSense.Core.Workflow.Steps
             _devices = session.Random.Stream("devices");
             foreach (var v in new[] { "attach_sensor", "detach_sensor", "measure_nibp", "measure_temperature", "count_rr", "assess_acvpu", "ask_pain_score", "resite_probe", PalpatePulseVerb, "wait" })
                 session.Verbs.Register(v, requiresPatient: v != "wait");
+            session.Verbs.Register(AcknowledgeAlarmVerb);   // the monitor is silenced where it stands, so this is not aimed at the patient
         }
 
         public void OnAction(SimAction a, ActionOutcome o)
@@ -68,6 +71,11 @@ namespace ProcSense.Core.Workflow.Steps
                 case "count_rr": CountRr(a, o); break;
                 case "assess_acvpu": Record("acvpu", Physio.Vitals.Acvpu, o); break;
                 case "ask_pain_score": Record("pain_score", Physio.Vitals.PainScore.ToString(CultureInfo.InvariantCulture), o); break;
+                // silencing a monitor alarm changes nothing in the patient; it is only logged, so the debrief and the reviewer can see who silenced what and when (p0-voice-audio-s05)
+                case AcknowledgeAlarmVerb:
+                    if (a.Params.TryGetValue("vital", out var vital) && vital.Length > 0) o.Effects.Add("alarm_acknowledged:" + vital);
+                    else o.Reject(MissingAlarmVital);
+                    break;
                 case "wait": o.Effects.Add("waited"); break; // time passes before the action runs; nothing else happens
             }
         }
