@@ -100,11 +100,19 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -1323977990648036477, guid: e7036e0206d59654ebb6029f62cf0348, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cf8eb8a6458bfaf419a38e532cfb40af, type: 2}
     - target: {fileID: -251547420113325838, guid: e7036e0206d59654ebb6029f62cf0348, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0666a6e6be0046f4c8ae4a346ddfefbf, type: 2}
     - target: {fileID: -76942636149187980, guid: e7036e0206d59654ebb6029f62cf0348, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -42084517775628342, guid: e7036e0206d59654ebb6029f62cf0348, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}

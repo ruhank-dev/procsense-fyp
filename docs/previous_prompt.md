@@ -3854,3 +3854,87 @@ _Session: 5f6e9808_
 APPROVED. The revised hospital bed is accepted. I also approve the corrected ComfortTests Boot() synchronisation change, provided it genuinely waits for room readiness rather than masking failures or adding delays. Finalise the bed, update its documentation and task records, and safely commit and push the approved work under the authoritative Git rules. Next major visual task: a comprehensive photorealistic lighting, reflections, materials and rendering overhaul of the PatientBay (as close to real life as possible, comparable to the two reference images, smooth on standalone Quest 2 and 3). Use the full pipeline (read the guides, planning and reference analysis, inspect the current PatientBay and URP, research Quest techniques, establish a reproducible baseline, then capture, image critique, revise, validators, tests, identical-camera comparisons). Examine baked global illumination, directional lightmaps, soft shadows, contact shadows, light probes, ceiling fixtures, window exposure, reflection probes (box projection, resolution, placement), PBR materials and textures, URP renderer, anti-aliasing, render scale, colour management, tone mapping, HDR trade-offs; evaluate ray tracing, path tracing, real-time GI, SSR and SSAO without blindly enabling them (offline path tracing may be used for baking or references). Fix the earlier audit findings (blotchy baked light, flat grey ambient, weak contact shadows, blown-out window, poorly grounded furniture, weak reflections, non-directional lightmaps, low-resolution probes, inconsistent Blender and Unity). Quest 2 is the minimum; target 72 FPS (13.9 ms); distinguish Editor measurements from headset performance; do not claim Quest performance until Sannan tests. Bounded item: only PatientBay lighting, reflections and rendering quality; do not rebuild unrelated models, change the operating theatre or corridor, redesign characters or break the bed and interactive prefabs; preserve GUIDs and scripts; assess regressions when a shared URP setting affects other scenes. Capture a baseline first, track lightmap, probe and texture memory, batches, shadow lights; mandatory image critique against the references; show screenshots (bed under the new lighting, doorway view, window and ceiling lighting, reflections, close-ups), settings changed, measurements and limits, run all Unity tests and verify the Quest build. The bed may be committed and pushed after final checks; the lighting overhaul is NOT approved until I say so: show the results and wait. No AI co-author credits.
 (This entry keeps the requirements, shortened.)
 ``````
+
+## 217. 28-29 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+CRITICAL — Fix Our 3D Asset Creation Pipeline Before Continuing PatientBay: stop the room overhaul, rebuild the patient monitor as one photorealistic hero object (real photo references, hard-surface Blender model, PBR materials, studio renders, then Unity close-ups compared with Blender and photographs), show evidence, wait for approval before any other object. No commit or push.
+(This entry keeps the requirements, shortened.)
+``````
+
+## 218. 28-29 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+The Blender Cycles render is much closer to the realism I want, but the Unity version loses material quality, especially on the polished steel pole. Diagnose why (shaders, metallic/smoothness, channel packing, reflection probes, cubemaps, environment lighting, exposure), build a controlled Unity material test scene, and show matched-camera comparisons after fixing. Do not remodel the monitor; do not commit.
+(This entry keeps the requirements, shortened.)
+``````
+
+## 219. 28-29 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+The HDR reflection fix is a substantial improvement. One more focused visual-quality pass before approving the monitor: screen glass (Fresnel, anti-glare, subtle real reflections, separate from the emissive display), bezel and material separation, white housing shading, a local reflection probe reflecting the real hospital (no studio softboxes), rendering parity analysis, keep the successful fixes, check Corridor/OT and the intermittent BakedRoomLightingTests failure. Do not commit or push.
+(This entry keeps the requirements, shortened.)
+``````
+
+## 220. 28-29 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+We are keeping Unity URP and aiming for the highest photorealism achievable in it. Finish verifying the monitor: investigate why tone mapping produced an identical image and prove the effect with an obvious controlled comparison, then configure tone mapping/exposure/grading only if each change is a measurable improvement; review the dark plastic clamp, base and castors (material, environment light, contact shadows); capture final PlayMode screenshots (front, three-quarter, glass, housing/bezel, steel stand, full stand, monitor in the PatientBay) and compare with Blender and the photoreal reference; run EditMode/PlayMode, check interactions, probe persistence, RoomLoader cold start, the Quest build, Corridor/OT, the assembly definition and test files; list what Sannan must test on the headset. Do not commit, push or move to another object until I approve the monitor.
+(This entry keeps the requirements, shortened.)
+``````
+
+## 221. 30 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+I approve the patient monitor as our current visual and technical baseline, with the remaining minor defects documented for a later polish pass. (Then: one object at a time from now on; FIRST OBJECT: restore and completely improve the wooden flooring, restoring the original wood look and rebuilding it to a photorealistic standard, with Blender and Unity comparisons, measurements, tests and a Quest build check; do not commit or push the flooring until I approve; do not begin the next object.) Answer to the commit question: hold the monitor commit.
+(This entry keeps the requirements, shortened.)
+``````
+
+## 222. 30 October 2026 (UTC; the exact time was not recorded)
+_Session: 5f6e9808_
+
+``````text
+ProcSense PatientBay, Cinematic Golden-Hour Lighting Overhaul: recreate the attached golden-hour reference (warm low sun through the window, long window-frame shadows, warm bounce, metal highlights) in the existing URP scene for Quest 2, with orange saturation reduced about 25-30 percent; lighting only (no object, material, floor or Corridor/OT content changes; keep the vinyl floor); prefer high-quality baked GI, directional lightmaps, bounces, probes and HDR reflection probes; evaluate tone mapping/post-processing separately because the Quest pipeline has them off; follow the shared three-room bake procedure; real Unity PlayMode captures at the reference viewpoint with original vs updated vs reference comparisons, close-ups of sun, shadows, metals and indirect light; ChatGPT-first critique and iteration; run tests, build the Quest APK, compare memory; do not commit or push; wait for approval. Also: standing policy of intelligent parallel execution (use idle bake/render/test time for safe independent work, dedicated agents with clear file ownership, one Unity Editor per project, hardware-aware scheduling on GTX 1660 SUPER / Ryzen 5 2600 / 16 GB, a lightweight task queue, quality first, no unapproved integration, commit or push).
+(This entry keeps the requirements, shortened.)
+``````
+
+## Entry 223 (31 Oct 2026, UTC)
+
+``````text
+ProcSense PatientBay, complete visual reconstruction from the owner's FINAL reference image (neutral daylight, white and muted blue-grey walls, light-grey vinyl floor, wide window with white horizontal blinds and a high-rise skyline, blue curtains, three-seat teal sofa, palms in brushed-grey planters, trailing vine, three framed prints "Rest well, get better" / "Small steps, big recovery" / "One day at a time", thin wall TV seen edge-on, realistic human patient, hospital gown with cloth-like behaviour, curtain cloth, believable physics, Quest 2 URP budgets). One-time authorisation to do the whole environment without intermediate approvals; final approval at the end; do not commit or push; no AI attribution; headset performance stays unverified (Sannan). It supersedes the golden-hour and wood-floor direction.
+(This entry keeps the requirements, shortened.)
+``````
+
+## Entry 224 (31 Oct 2026, UTC)
+
+``````text
+ProcSense AAA-quality realistic human patient: redesign and rebuild the patient to the standard of modern AAA game characters (Hellblade, God of War, Modern Warfare, Spider-Man) within the standalone Quest URP budget: anatomy, detailed face (eyes, eyelids, lips, ears, asymmetry), skin (pores, roughness, cheap SSS approximation), hair and eyebrows, hands and feet, production topology, rig and weights, hospital gown with cloth response, idle life (breathing driven by the existing physiological state, blinking, gaze, head, small adjustments, no inappropriate behaviour for sedated patients), facial animation and viseme lip-sync from the local dialogue pipeline, bed contact, Quest optimisation and LODs, repeated ChatGPT critique rounds on Unity close-ups, tests, side-by-side with the previous patient, technical report; one-time authorisation to complete everything, ask approval only at the end; no commit/push, no AI attribution; headset performance stays with Sannan.
+(This entry keeps the requirements, shortened.)
+``````
+
+## Entry 225 (31 Oct 2026, UTC)
+
+``````text
+CRITICAL CORRECTION: the PatientBay visual quality is not accepted. Repeat the monitor workflow (reference analysis, ChatGPT critique, Blender rebuild, textures and UVs, Unity integration, Unity capture, critique, revise) for EVERY object; rebuild sofa (padded seats, back cushions, arms, seams, weave), plants (natural fronds), curtains (folds, track, cloth movement), window (glass, frame, thin blinds, believable skyline), bed, workstation (preserve the approved monitor), medical equipment, TV, prints, bins, carts, trims; the patient gets the most detail; fix blur at its source (resolution, textures, compression, mips, anisotropy, lightmaps, shadows, post effects) without a sharpening filter; refine lighting and shadows (neutral daylight, contact shadows, ceiling panels not blank white, exposure, grounding); individual material realism; perceived realism over polygon count within Quest budgets; an object-by-object quality gate; multiple critique rounds on real Unity output; keep the approved design; work continuously without intermediate approval; final verification with captures, gown and curtain demonstrations, tests, Quest build, performance notes, and Sannan for headset tests; no commit or push.
+(This entry keeps the requirements, shortened.)
+``````
+
+## Entry 226 (31 Oct 2026, UTC)
+
+``````text
+Requested, then cancelled the same day: a non-destructive URP versus enhanced URP versus HDRP visual comparison, followed by an ultimate HDRP photorealism rebuild in an isolated desktop-only copy. The first comparison was completed and reported (the enhanced URP desktop preview looked only slightly better than the Quest URP; HDRP looked different but needed a lot of conversion work), then the HDRP rebuild was stopped at its start.
+(This entry keeps the requirements, shortened.)
+``````
+
+## Entry 227 (31 Oct 2026, UTC)
+
+``````text
+FINAL DECISION: HDRP is cancelled. Stop all HDRP work, delete the isolated HDRP experiment and everything dedicated to it (project, assets, tests, PNGs, scripts, caches, outputs, reports, High/Ultra presets) after verifying nothing shared or production is affected; keep the latest Enhanced URP implementation as the baseline; verify production (still URP, render pipeline assets unchanged, no missing references or shader errors, EditMode and PlayMode tests, Quest APK build, new URP screenshot compared with the last approved one); update documentation (official renderer: Unity URP; objective: maximum realism with Quest-compatible Enhanced URP; keep general graphics research); then continue the URP visual-quality work (patient, skin, eyes, hair, gown cloth, bed and equipment, fabric, PBR textures, shadows, baked GI, reflections, window and skyline, plants, sharpness, Quest performance) with the reference, analysis, Blender, Unity, ChatGPT critique, revision, verification workflow; no commit or push, no AI attribution; headset testing stays with Sannan.
+(This entry keeps the requirements, shortened.)
+``````
+

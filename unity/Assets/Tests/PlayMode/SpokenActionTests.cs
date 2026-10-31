@@ -32,6 +32,7 @@ namespace ProcSense.Tests.PlayMode
 
         private SimulationHost NewHost()
         {
+            TestHostHygiene.DestroyLeftoverHost();
             var host = Make<SimulationHost>("host");
             host.AutoTick = false;
             host.SaveLogOnDestroy = false;

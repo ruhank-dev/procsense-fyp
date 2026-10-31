@@ -14,6 +14,9 @@ namespace ProcSense.Tests.PlayMode
 {
     public class LoginPresentationTests
     {
+        /// <summary>Every test here loads the Boot scene itself and expects a clean start (no host, one camera); remove anything an earlier fixture left behind.</summary>
+        [SetUp] public void StartClean() => TestHostHygiene.DestroyRoomLeftovers();
+
         [TearDown] public void RestoreGate() => DemoLoginSettings.LoginRequiredOverride = null;
 
         private static IEnumerator Open()

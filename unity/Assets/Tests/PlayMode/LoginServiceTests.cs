@@ -39,6 +39,9 @@ namespace ProcSense.Tests.PlayMode
             .Answer("POST", Sb + "/auth/v1/token?grant_type=password", 200, Token)
             .Answer("GET", Base + "/me", 200, Me)
             .Answer("GET", Base + "/privacy/consent", 200, "{\"needs_consent\":" + (consent ? "false" : "true") + "}");
+        /// <summary>Every test here loads the Boot scene itself and expects a clean start (no host, one camera); remove anything an earlier fixture left behind.</summary>
+        [SetUp] public void StartClean() => TestHostHygiene.DestroyRoomLeftovers();
+
 
         [TearDown]
         public void Restore()

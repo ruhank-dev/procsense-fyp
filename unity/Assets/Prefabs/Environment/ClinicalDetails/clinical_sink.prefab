@@ -80,6 +80,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8566615996460652697, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cae47a35d94607b4ab5bd12d45138074, type: 2}
     - target: {fileID: -7904024531783018722, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
@@ -100,7 +104,15 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4a9e3f80c2f789c4ea3d1d2aaee17ac3, type: 2}
+    - target: {fileID: -1801317334941781734, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e333c14bfc1dc074fae49528ae957e2b, type: 2}
     - target: {fileID: -1169021602375833277, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -457104797050730646, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}
@@ -109,6 +121,10 @@ PrefabInstance:
       value: clinical_sink
       objectReference: {fileID: 0}
     - target: {fileID: 3188095797380546970, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4763081269368657857, guid: 68c144a97da11fe478e0ba05cd5bd7cb, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}

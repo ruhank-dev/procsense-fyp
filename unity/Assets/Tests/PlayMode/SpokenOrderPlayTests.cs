@@ -47,6 +47,7 @@ namespace ProcSense.Tests.PlayMode
             _hearing = null;
             _confirmation = new OrderConfirmation { FromService = true, Outcome = "open" };
             TabletFallbackRegistry.Clear();
+            TestHostHygiene.DestroyLeftoverHost();
             _host = Make<SimulationHost>("host");
             _host.AutoTick = false;
             _host.SaveLogOnDestroy = false;

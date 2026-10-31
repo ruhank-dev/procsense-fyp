@@ -62,7 +62,8 @@ namespace ProcSense.Tests.PlayMode
                     for (int i = 0; i < moved.Length; i++)
                     {
                         var delta = moved[i] - rest[s][i];
-                        Assert.That(Mathf.Abs(delta.x) + Mathf.Abs(delta.z), Is.LessThan(.00002f), "Breathing must lift, not slide cloth");
+                        // lift, not slide: sideways drift is limited to the larger of 0.2 mm or 15% of the vertex lift (about 2 mm at the 14 mm peak): a breath lift carried through the splayed thighs (up to ~8 degrees) has a sideways part of tan(8) = 14%; the relaxed pose tilts the torso ~1.5 and the upper arms ~3 degrees (hands rest on the foam), which the earlier 0.02 mm limit did not allow for
+                        Assert.That(Mathf.Abs(delta.x) + Mathf.Abs(delta.z), Is.LessThan(Mathf.Max(.0002f, .00002f + .15f * Mathf.Abs(delta.y))), $"Breathing must lift, not slide cloth: {surfaces[s].name} vertex {i} rest {rest[s][i]} delta(mm) {delta * 1000f}");
                         if (Mathf.Abs(rest[s][i].x) > .28f || rest[s][i].z < .70f || rest[s][i].z > 1.58f)
                             Assert.That(delta.magnitude, Is.LessThan(.00002f), "Hands, feet, neck and draped edges must stay put");
                     }
@@ -241,7 +242,13 @@ namespace ProcSense.Tests.PlayMode
             var bones = GameObject.Find("MPFB patient").GetComponentsInChildren<Transform>().Where(t => new[] { "thigh_l", "calf_l", "foot_l", "ball_l", "thigh_r", "calf_r", "foot_r", "ball_r" }.Contains(t.name)).ToArray();
             var rest = bones.Select(t => t.localRotation).ToArray();
             float largest = 0;
-            float top = GameObject.Find("Soft mattress").GetComponent<Renderer>().bounds.max.y;
+            // the foam is depressed under the resting body, so the heel is measured against the real surface under it, not a flat constant
+            var mattressGo = GameObject.Find("Soft mattress");
+            var surfaceProbe = new GameObject("test mattress surface") { hideFlags = HideFlags.HideAndDontSave };
+            var surfaceCollider = surfaceProbe.AddComponent<MeshCollider>();
+            surfaceCollider.sharedMesh = mattressGo.GetComponent<MeshFilter>().sharedMesh;
+            surfaceProbe.transform.SetPositionAndRotation(mattressGo.transform.position, mattressGo.transform.rotation);
+            surfaceProbe.transform.localScale = mattressGo.transform.lossyScale;
             int count = SimulationHost.Instance.Session.Log.Count;
             string hash = SimulationHost.Instance.Observable.Hash();
             try
@@ -250,8 +257,9 @@ namespace ProcSense.Tests.PlayMode
                 {
                     idle.EvaluatePose(time);
                     for (int i = 0; i < bones.Length; i++) largest = Mathf.Max(largest, Quaternion.Angle(rest[i], bones[i].localRotation));
-                    float heel = WorldVertices(Body).Where(p => p.z < .36f && Mathf.Abs(p.x) < .3f).Min(p => p.y);
-                    Assert.That(heel, Is.InRange(top - .001f, top + .025f));
+                    var heelPoint = WorldVertices(Body).Where(p => p.z < .36f && Mathf.Abs(p.x) < .3f).OrderBy(p => p.y).First();
+                    Assert.IsTrue(surfaceCollider.Raycast(new Ray(new Vector3(heelPoint.x, 2f, heelPoint.z), Vector3.down), out var surfaceHit, 4f), "the heel is over the mattress");
+                    Assert.That(heelPoint.y - surfaceHit.point.y, Is.InRange(-.001f, .025f), "heel clearance above the real mattress surface");
                 }
                 Assert.That(largest, Is.InRange(1, 3.6f));
                 foreach (float time in new[] { 0f, 3f, 8.5f, 16f, 20f })
@@ -264,7 +272,7 @@ namespace ProcSense.Tests.PlayMode
                 idle.RestorePose();
                 for (int i = 0; i < bones.Length; i++) Assert.That(Quaternion.Angle(rest[i], bones[i].localRotation), Is.LessThan(.05f));
             }
-            finally { idle.RestorePose(); }
+            finally { idle.RestorePose(); Object.DestroyImmediate(surfaceProbe); }
         }
 
         [UnityTest]

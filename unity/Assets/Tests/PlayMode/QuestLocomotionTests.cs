@@ -25,6 +25,10 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return SceneManager.LoadSceneAsync("Boot");
             for (int i = 0; i < 40; i++) yield return null;
+            var rooms = Object.FindAnyObjectByType<RoomLoader>();
+            int extra = 0; float end = Time.realtimeSinceStartup + 20;
+            while (rooms != null && rooms.Busy && Time.realtimeSinceStartup < end) { extra++; yield return null; }
+            if (extra > 0) Debug.Log($"[QuestLocomotionTests] room needed {extra} frames beyond the fixed 40 to finish loading");
             SimulationHost.Instance.AutoTick = false;
         }
 

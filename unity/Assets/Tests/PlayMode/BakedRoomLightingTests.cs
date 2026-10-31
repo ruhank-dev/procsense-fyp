@@ -33,7 +33,9 @@ namespace ProcSense.Tests.PlayMode
         {
             DemoLoginSettings.LoginRequiredOverride = false;
             yield return SceneManager.LoadSceneAsync("Boot");
-            var deadline = Time.realtimeSinceStartup + 10;
+            // The first PatientBay load after asset changes deserialises cold (97 s was observed once; 1-2 s when warm), so boot is given a
+            // generous ceiling and must actually finish; the room-change waits below keep their own limits.
+            var deadline = Time.realtimeSinceStartup + 240;
             RoomLoader loader = null;
             while (Time.realtimeSinceStartup < deadline)
             {
@@ -43,6 +45,7 @@ namespace ProcSense.Tests.PlayMode
             }
             Assert.IsNotNull(loader);
             Assert.IsNotNull(SimulationHost.Instance);
+            Assert.IsFalse(loader.Busy, "Boot must finish loading the first room");
             SimulationHost.Instance.SaveLogOnDestroy = false;
             var session = SimulationHost.Instance.Session;
             Color? initialBayLight = null;
@@ -56,7 +59,7 @@ namespace ProcSense.Tests.PlayMode
                     Assert.IsFalse(loader.Busy, "Lighting data must not stall room loading");
                 }
                 for (int frame = 0; frame < 3; frame++) yield return null;
-                const int expectedProbes = 60 + 108 + 108; // One shared multi-scene bake.
+                const int expectedProbes = 132 + 108 + 108; // One shared multi-scene bake; the PatientBay look pass raised its authored probes from 60 to 132.
                 var scene = SceneManager.GetSceneByName(name);
                 deadline = Time.realtimeSinceStartup + 2;
                 while (LightProbes.GetSharedLightProbesForScene(scene) == null && Time.realtimeSinceStartup < deadline)

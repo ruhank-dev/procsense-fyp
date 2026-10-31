@@ -56,7 +56,9 @@ namespace ProcSense.Tests.PlayMode
                 Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
                 var gown = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
                 Assert.IsTrue(gown.enabled);
-                Assert.AreEqual(body.bones.Length, gown.bones.Length);
+                Assert.GreaterOrEqual(gown.bones.Length, body.bones.Length, "the gown shares the body skeleton and may add its secondary cloth bones");
+                CollectionAssert.AreEqual(body.bones, gown.bones.Take(body.bones.Length).ToArray(), "the first bones are exactly the body's skeleton");
+                Assert.IsTrue(gown.bones.Skip(body.bones.Length).All(b => b.name.StartsWith("gown_secondary_")), "extra bones are only the gown's secondary cloth bones");
                 Assert.IsTrue(gown.sharedMesh.boneWeights.All(w => Mathf.Abs(w.weight0 + w.weight1 + w.weight2 + w.weight3 - 1) < .001f));
                 var upperarm = forearm.parent;
                 var upperRotation = upperarm.localRotation;
