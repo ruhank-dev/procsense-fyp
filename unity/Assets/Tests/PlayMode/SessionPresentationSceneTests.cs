@@ -70,20 +70,20 @@ namespace ProcSense.Tests.PlayMode
         private ActionOutcome Do(string verb,params(string k,string v)[] p)=>_host.Apply(Action(verb,p));
         private void Identify(){foreach(var verb in new[]{"introduce_self","ask_identity","read_wristband","open_notes","confirm_identity"})Assert.IsTrue(Do(verb).Accepted,verb);}
 
-        [UnityTest] public IEnumerator One_owned_HUD_follows_camera_replacement_and_review_does_not_duplicate_it()
+        [UnityTest] public IEnumerator One_voice_owner_follows_camera_replacement_and_reuses_the_tablet_wait_card()
         {
             yield return Boot();
             string hash=_host.Session.Log.Hash(),state=_host.Observable.Hash();
             var voice=_view.Voice;var wait=_view.Wait;
             for(int i=0;i<20;i++)_view.Sync();Assert.AreSame(voice,_view.Voice);
-            Assert.IsTrue(wait.transform.IsChildOf(_view.transform));Assert.IsTrue(voice.Subtitles.transform.IsChildOf(_view.transform));
+            Assert.IsNotNull(wait.GetComponent<TabletView>());Assert.IsTrue(voice.Subtitles.transform.IsChildOf(_view.transform));
             Assert.AreNotSame(voice.transform,voice.Subtitles.transform,"moving subtitles cannot move pooled audio sources");
             Assert.IsTrue(wait.Canvas.GetComponentsInChildren<UnityEngine.UI.Graphic>(true).All(g=>!g.raycastTarget));
             Assert.IsTrue(voice.Subtitles.Canvas.GetComponentsInChildren<UnityEngine.UI.Graphic>(true).All(g=>!g.raycastTarget));
             var review=AppDomain.CurrentDomain.GetAssemblies().Single(a=>a.GetName().Name=="ProcSense.Editor").GetType("ProcSense.EditorTools.ReviewPanels");
             for(int i=0;i<2;i++)_objects.Add((GameObject)review.GetMethod("Place").Invoke(null,null));
             yield return null;
-            Assert.AreEqual(1,Object.FindObjectsByType<VoicePlayer>().Length);Assert.AreEqual(1,Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>().Length);
+            Assert.AreEqual(1,Object.FindObjectsByType<VoicePlayer>().Length);Assert.AreEqual(1,Object.FindObjectsByType<DiagnosticWaitOverlay>().Length);
             var duplicate=new GameObject("Duplicate presenter fixture");_objects.Add(duplicate);
             Assert.IsFalse(duplicate.AddComponent<SessionPresentation>().enabled);Assert.AreSame(_view,SessionPresentation.Instance);
             var original=Camera.main;string tag=original.tag;bool enabled=original.enabled;
@@ -93,16 +93,16 @@ namespace ProcSense.Tests.PlayMode
                 original.tag="Untagged";original.enabled=false;replacement.tag="MainCamera";
                 replacement.transform.SetPositionAndRotation(new Vector3(.2f,1.8f,-.4f),Quaternion.Euler(10,25,0));_view.Sync();
                 Assert.AreSame(voice,_view.Voice);Assert.AreSame(replacement.transform,voice.Subtitles.Follow);
-                Assert.Less(Vector3.Distance(wait.transform.position,replacement.transform.TransformPoint(new Vector3(0,.30f,1.2f))),.0001f);
+                Assert.AreSame(wait,_view.Wait,"Camera replacement must reuse the tablet-owned wait card");
             }
             finally{replacement.tag="Untagged";original.tag=tag;original.enabled=enabled;_view.Sync();}
-            // The explicit review fallback must also own its HUD, rather than orphaning it under the camera.
+            // Review fallback creates only speech; the tablet continues to own exactly one wait card.
             _view.enabled=false;
             for(int i=0;i<2;i++)_objects.Add((GameObject)review.GetMethod("Place").Invoke(null,null));
             yield return null;
             var fallback=_objects.Last();
-            Assert.AreEqual(1,fallback.GetComponentsInChildren<ProcSense.VR.Diagnostics.WaitOverlay>().Length);
-            Assert.AreEqual(1,Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>().Length);
+            Assert.IsEmpty(fallback.GetComponentsInChildren<DiagnosticWaitOverlay>());
+            Assert.AreEqual(1,Object.FindObjectsByType<DiagnosticWaitOverlay>().Length);
             Assert.AreEqual(1,Object.FindObjectsByType<VoicePlayer>().Length);
             fallback.SetActive(false);_view.enabled=true;_view.Sync();
             Assert.AreEqual(hash,_host.Session.Log.Hash());Assert.AreEqual(state,_host.Observable.Hash());
@@ -113,21 +113,21 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();Identify();
             Assert.IsTrue(Do("order_investigation",("test","fbc")).Accepted);Assert.IsTrue(Do("take_sample",("test","fbc"),("tube","edta_purple")).Accepted);
             Assert.IsTrue(Do("request_transport",("to","ct"),("mode","trolley"),("escort","porter,nurse"),("monitoring","none"),("oxygen","false"),("accompany","false")).Accepted);
-            _view.Wait.Sync();
-            for(int i=0;i<600&&_host.Observable.Transport?.State!="ARRIVED";i++){_host.Tick(15);_view.Wait.Sync();}
-            Assert.AreEqual("ARRIVED",_host.Observable.Transport.State);Assert.IsTrue(_view.Wait.FullShown);
-            StringAssert.Contains("CT scanner",_view.Wait.FullText);
+            _view.Wait.RenderNow();
+            for(int i=0;i<600&&_host.Observable.Transport?.State!="ARRIVED";i++){_host.Tick(15);_view.Wait.RenderNow();}
+            Assert.AreEqual("ARRIVED",_host.Observable.Transport.State);Assert.IsTrue(_view.Wait.Canvas.gameObject.activeSelf);
+            StringAssert.Contains("CT scanner",_view.Wait.LocationText);
             string hash=_host.Session.Log.Hash(),state=_host.Observable.Hash();
-            for(int i=0;i<20;i++){_view.Sync();_view.Wait.Sync();}
+            for(int i=0;i<20;i++){_view.Sync();_view.Wait.RenderNow();}
             Assert.AreEqual(hash,_host.Session.Log.Hash());Assert.AreEqual(state,_host.Observable.Hash());
             yield return null;Photograph("hud-wait-full.png");
             var emr=Object.FindAnyObjectByType<RecordsWorkstation>().Emr;
             Assert.IsTrue(emr.Find("khan").Accepted,"other records work remains available during waiting");
-            _view.Wait.Advance(_view.Wait.WaitSeconds+.1f);Assert.IsTrue(_view.Wait.CornerShown);
+            Assert.AreEqual(1,Object.FindObjectsByType<DiagnosticWaitOverlay>().Length);
             Photograph("hud-wait-corner.png");
-            Assert.IsTrue(Do("time_skip",("minutes","1")).Accepted);StringAssert.Contains("+1 min",_view.Wait.NoteText);
-            for(int i=0;i<40&&!_host.Observable.Investigations.Any(x=>x.Test=="fbc"&&x.State=="RESULT_AVAILABLE");i++){_host.Tick(300);_view.Wait.Sync();}
-            StringAssert.Contains("Results are back",_view.Wait.NoteText);Photograph("hud-result-note.png");
+            Assert.IsTrue(Do("time_skip",("minutes","1")).Accepted);StringAssert.Contains("Time advanced",_view.Wait.AdvanceText);
+            for(int i=0;i<40&&!_host.Observable.Investigations.Any(x=>x.Test=="fbc"&&x.State=="RESULT_AVAILABLE");i++){_host.Tick(300);_view.Wait.RenderNow();}
+            StringAssert.Contains("result ready",_view.Wait.AlertText);Photograph("hud-result-note.png");
         }
 
         [UnityTest] public IEnumerator Real_frame_subtitles_keep_their_minimum_and_audio_tracks_the_real_head()
@@ -169,9 +169,9 @@ namespace ProcSense.Tests.PlayMode
             oldVoice.Clips=new Clips{Clip=Clip(6)};oldVoice.Say(new VoiceLine{Id="TEST-OLD",Speaker="patient",Text="Old session fixture."});
             oldVoice.Say(new VoiceLine{Id="TEST-QUEUED",Speaker="patient",Text="Queued old fixture."});
             _host.StartSession("VAR-S1-A",43,SessionMode.Practice);_view.Sync();
-            Assert.IsFalse(oldVoice.gameObject.activeInHierarchy);Assert.IsFalse(oldWait.gameObject.activeInHierarchy);
+            Assert.IsFalse(oldVoice.gameObject.activeInHierarchy);Assert.AreSame(oldWait,_view.Wait,"The tablet owns the retained card across sessions");_view.Wait.RenderNow();
             Assert.IsTrue(oldVoice.GetComponentsInChildren<AudioSource>(true).All(a=>!a.isPlaying));
-            Assert.IsEmpty(_view.Voice.Played);Assert.IsEmpty(_view.Voice.Queue);Assert.IsFalse(_view.Wait.FullShown||_view.Wait.CornerShown);
+            Assert.IsEmpty(_view.Voice.Played);Assert.IsEmpty(_view.Voice.Queue);Assert.IsFalse(_view.Wait.Canvas.gameObject.activeSelf);
             _view.Voice.Clips=new Clips{Clip=Clip(.1f)};
             int count=oldVoice.Played.Count+oldVoice.Queue.Count;
             var action=Action("ask_identity");var outcome=_host.Apply(action);Assert.IsTrue(outcome.Accepted);
@@ -192,7 +192,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(_host.EndSession());Assert.IsNull(_view.Voice);Assert.IsNull(_view.Wait);
             Assert.AreEqual(hash,_host.Session.Log.Hash());Assert.AreEqual(state,_host.Observable.Hash());
             yield return null;
-            Assert.IsEmpty(Object.FindObjectsByType<VoicePlayer>());Assert.IsEmpty(Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>());
+            Assert.IsEmpty(Object.FindObjectsByType<VoicePlayer>());Assert.IsTrue(Object.FindObjectsByType<DiagnosticWaitOverlay>().All(w=>!w.Canvas.gameObject.activeSelf));
         }
         [UnityTest] public IEnumerator Visible_transport_uses_its_actual_patient_and_escort_heads()
         {

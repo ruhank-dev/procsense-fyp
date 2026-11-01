@@ -1,8 +1,8 @@
 {
  "schema": 1,
- "content_hash": "a8592ab4194de372a2d871538f0081124a14ed73be85ef7b4dddd67c1a6296aa",
- "files": 755,
- "bytes": 18502381,
+ "content_hash": "a141beeb200ded83973af59587572746e7c8b6ca504deb40c79e3861fcd7950d",
+ "files": 756,
+ "bytes": 18503976,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
@@ -53,7 +53,7 @@
   "sepsis": 1,
   "sources": 1,
   "templates": 2,
-  "ui": 1,
+  "ui": 2,
   "voice": 4,
   "ward": 1,
   "workflow": 1,
@@ -2788,9 +2788,13 @@
    "bytes": 429,
    "sha256": "d9f910c10a708a7f803db7a127c7c3da6177541d5b00cae6dde641e3e4a907ce"
   },
+  "ui/monitor.json": {
+   "bytes": 1218,
+   "sha256": "60cf916e58e63ab637d96fbe8de2e97b9ccf2570ac2dd7115fbccd38e802da60"
+  },
   "ui/tablet.json": {
-   "bytes": 62629,
-   "sha256": "1371218a07e76d816ff969076ee35d9aa5c120c94d9f0b4f8534fbcbf46a9e02"
+   "bytes": 63006,
+   "sha256": "e60f1fb14a7b539a4f5838729a93a136753f6c437eebee42e48461a3fad703d2"
   },
   "ultrasound_findings.csv": {
    "bytes": 4880,

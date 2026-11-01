@@ -102,7 +102,7 @@ namespace ProcSense.Tests.PlayMode
             foreach (var verb in new[] { "introduce_self", "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.IsTrue(tablet.Press(verb));
             Assert.IsTrue(tablet.PressAction("order_investigation", new Dictionary<string, string> { ["test"] = "fbc" }));
             tablet.RenderNow();
-            Assert.AreEqual(14, tablet.TabIds.Count, "11 content tabs, More, Session and runtime Diagnostics");
+            Assert.AreEqual(15, tablet.TabIds.Count, "11 content tabs, More, Session, runtime Diagnostics and Settings");
             for (int i = 0; i < tablet.TabIds.Count; i++)
             {
                 tablet.ShowTab(i);

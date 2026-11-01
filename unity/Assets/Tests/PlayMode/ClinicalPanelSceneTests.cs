@@ -108,10 +108,10 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();
             Assert.IsNull(_bay.Debrief); Assert.IsTrue(_bay.WaitingForDebrief);
             var review = AppDomain.CurrentDomain.GetAssemblies().Single(a => a.GetName().Name == "ProcSense.Editor").GetType("ProcSense.EditorTools.ReviewPanels");
-            var previousHuds = Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>(FindObjectsInactive.Include);
+            var previousHuds = Object.FindObjectsByType<ProcSense.VR.Views.DiagnosticWaitOverlay>(FindObjectsInactive.Include);
             var root = (GameObject)review.GetMethod("Place").Invoke(null, null);
             _reviewRoot = root;
-            var newHuds = Object.FindObjectsByType<ProcSense.VR.Diagnostics.WaitOverlay>(FindObjectsInactive.Include).Where(h => !previousHuds.Contains(h)).ToArray();
+            var newHuds = Object.FindObjectsByType<ProcSense.VR.Views.DiagnosticWaitOverlay>(FindObjectsInactive.Include).Where(h => !previousHuds.Contains(h)).ToArray();
             if (SessionPresentation.Instance != null) Assert.IsEmpty(newHuds, "Reuse permanent session HUD");
             _reviewHud = newHuds.FirstOrDefault() != null ? newHuds[0].gameObject : null;
             Assert.IsEmpty(root.GetComponentsInChildren<ProcSense.VR.UI.Checklist.ChecklistBoard>());

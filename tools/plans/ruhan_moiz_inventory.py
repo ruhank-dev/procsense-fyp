@@ -24,7 +24,7 @@ DATA = ROOT / "docs" / "plans" / "reconciliation.json"
 OUT = ROOT / "docs" / "plans" / "ruhan-moiz-inventory.md"
 BUILT_FOR_SANNAN = {"p1-voice-input-s02"}
 CLASSES = [("completed", "Completed engineering (done, or a Moiz step approved by the owner)"), ("engineering_done", "Engineering done; only outside acceptance remains"),
-           ("gated_off", "Built and tested; the feature switch is OFF until human evidence exists"), ("conditional", "Research trigger not met (nothing to build unless it occurs)"), ("external", "Waiting on a source, a person or a device"), ("unfinished", "Unfinished implementation")]
+           ("gated_off", "Built and tested; the feature switch is OFF until human evidence exists"), ("conditional", "Research trigger not met (nothing to build unless it occurs)"), ("assigned", "Assigned in the front-end split of 29 Oct 2026; not started yet (listed, not counted as unfinished)"), ("external", "Waiting on a source, a person or a device"), ("unfinished", "Unfinished implementation")]
 
 
 def klass(e: dict) -> str:
@@ -39,6 +39,8 @@ def klass(e: dict) -> str:
         return "conditional"
     if now in ("BLOCKED", "PARTLY"):
         return "external"
+    if now == "ASSIGNED":          # a front-end step handed to Ruhan or Moiz in the confirmed split (docs/plans/frontend/front_end_load_distribution.md), not started yet
+        return "assigned"
     return "unfinished"
 
 

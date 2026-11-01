@@ -26,7 +26,7 @@ and replays any session exactly (same seed + same actions = same result).
 ## Experiments
 | ID | Question | Method | Success metric | Status |
 |---|---|---|---|---|
-| EXP-CORE-1 | Identical results on PC (.NET 9) and Quest (IL2CPP/ARM)? | Same golden action list, compare log hash | Equal hashes | planned |
+| EXP-CORE-1 | Identical results on PC (.NET 9) and Quest (IL2CPP/ARM)? | Same golden action list, compare log hash | Equal hashes | met for the Quest build of 13 Oct 2026: 10 of 10 hand-played Quest logs replay headless to the headset's hash (29 Oct 2026, `p0-evaluation-performance/results/skeleton1.md`) |
 | EXP-CORE-2 | Is 0.5 s smooth enough for the monitor? | Unity-side interpolation at headset refresh | No visible stepping | planned |
 | EXP-CORE-3 | Allocation per Tick | Profiler/BenchmarkDotNet | 0 bytes after warm-up | planned |
 | EXP-CORE-3 result (09 Oct 2026, s05, Release, skeleton 1 case, 3 subsystems) | `PerformanceTests` | `GC.GetAllocatedBytesForCurrentThread` over 1000 ticks after 200 warm-up ticks | **0 bytes**; 0.0002 ms per tick; 0.0047 ms per action. Re-check as physiology and events are added | planned |

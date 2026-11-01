@@ -46,7 +46,7 @@ namespace ProcSense.VR.UI.Debrief
         public void Build()
         {
             if (Canvas != null) return;
-            Canvas = UiKit.WorldCanvas("Debrief", transform, new Vector2(1400, 900), 0.0008f);
+            Canvas = UiKit.WorldCanvas("Debrief", transform, new Vector2(1400, 900), 0.001f);
             _root = Canvas.transform;
             _headline = UiKit.Label(_root, "Headline", "", new Vector2(16, 10), new Vector2(1000, 50), 28);
             UiKit.MakeButton(_root, "Template", new Vector2(1060, 12), new Vector2(150, 44), 16f).interactable = false;      // the debrief shown is the template one

@@ -23,6 +23,8 @@ def build():
         x = -.11+i*.0366
         rod(f"BasketWire{i}", (x,-.05,.79), (x,-.05,.89), .0025)
     rod("BasketRim", (-.115,-.05,.89), (.115,-.05,.89), .004)
+    box("AlarmLight", (.06, .02, .012), (0, -.02, 1.44), "AlarmRed", .003)   # the alarm light on top; Unity lights it by priority
+    point("LIGHT_Alarm", (0, -.02, 1.447))
     point("SCREEN_Main", (-.008, -.107, 1.316))
     point("GRAB_Handle", (0, .01, 1.485))
     point("COL_Body", (0, 0, 1.29), (.327, .182, .288))

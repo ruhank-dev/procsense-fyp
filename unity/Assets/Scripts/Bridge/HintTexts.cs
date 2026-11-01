@@ -25,6 +25,7 @@ namespace ProcSense.VR.Bridge
             { "VERIFY_IDENTITY_FIRST", "Check who she is another way first (ask her, open the notes)" },
             { "CUFF_NOT_ATTACHED", "Attach the blood-pressure cuff first" },
             { "CYCLE_IN_PROGRESS", "The cuff is still measuring" },
+            { "MISSING_ALARM_VITAL", "Say which alarm to silence" },
             { "UNKNOWN_TOPIC", "She cannot answer that" },
             { "TOPIC_NOT_IN_CASE", "Nothing to ask about that for this patient" },
             { "MISSING_SENSOR", "Choose a sensor" },

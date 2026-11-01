@@ -503,7 +503,7 @@ namespace ProcSense.Tests.PlayMode
             Object.DestroyImmediate(emitter.gameObject);
             tablet.RenderNow();
             Assert.IsEmpty(TabletFallbackRegistry.All);
-            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Read wristband"));
+            Assert.IsTrue(tablet.Buttons.Any(b => b.label == "Read wristband (tablet)"));
         }
 
         [Test]

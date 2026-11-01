@@ -150,7 +150,7 @@ The register has 265 rows: 129 completed and 136 open. Each open row is placed i
 | DT-259 | Pending | Scorer evidence is per sim step: when several actions share a step, every item points at the last log entry of that step (an unneeded TSH order pointe | Ruhan Kamran (his decision as the engine's owner: a Core change) |
 | DT-260 | Pending | One unneeded test is scored twice: 'unnecessary.test_ordered' appears twice for one TSH order | Ruhan Kamran (his decision as the engine's owner: a Core change) |
 | DT-262 | Pending | Core has no action to direct a WHO checklist question to a role (surgeon, anaesthetist, nurse); the board shows who answers each item and the team ans | Ruhan Kamran (Core), Abdul Moiz (board) |
-| DT-265 | Pending | Core's transport does not publish the expected back time; the waiting overlay works it out from the locations table exactly as Core does, so a change  | Ruhan Kamran (his decision as the engine's owner: a Core change) |
+| DT-265 | Pending | Core's transport publishes no return time while the patient is inside a scanner room (ARRIVED and DONE carry no 'arrives'), so the waiting status (San | Ruhan Kamran (his decision as the engine's owner: a Core change) |
 
 ## Later by design: a trigger that has not occurred (customer, scale, release, merge, laptop)
 

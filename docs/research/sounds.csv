@@ -1,0 +1,9 @@
+id,sound,used_for,source,author,licence,notes
+SND-01,alarm_high,monitor alarm at high priority (an emergency display zone),synthesised in code: unity/Assets/Scripts/Audio/ToneBank.cs Alarm(),ProcSense team,project code (no third-party audio),10 pulses at 880 Hz with two harmonics in the 3+2+3+2 rhythm; repeat every 2.5 s (content/ui/monitor.json); pattern for the clinical realism review (p0-evaluation-performance-s06)
+SND-02,alarm_medium,monitor alarm at medium priority (a worry zone),synthesised in code: ToneBank.Alarm(),ProcSense team,project code (no third-party audio),3 pulses at 660 Hz; repeat every 6 s
+SND-03,alarm_low,monitor alarm at low priority (a watch zone),synthesised in code: ToneBank.Alarm(),ProcSense team,project code (no third-party audio),2 softer pulses at 520 Hz; repeat every 16 s
+SND-04,cuff,blood-pressure cuff pump and bleed when a measurement starts,synthesised in code: ToneBank.Cuff(),ProcSense team,project code (no third-party audio),3 s motor and hiss then a 2 s bleed; spatial at the monitor
+SND-05,phone,lab phone ringing while Core's phone state is RINGING,synthesised in code: ToneBank.Phone(),ProcSense team,project code (no third-party audio),400 and 450 Hz ring-ring then a pause; looped
+SND-06,room_ward,ward bay and corridor background,synthesised in code: ToneBank.Room(),ProcSense team,project code (no third-party audio),brown noise with a slow murmur; ducks under a high-priority alarm
+SND-07,room_imaging,imaging rooms background,synthesised in code: ToneBank.Room(),ProcSense team,project code (no third-party audio),as the ward bed with its own seed
+SND-08,room_theatre,theatre background,synthesised in code: ToneBank.Room(),ProcSense team,project code (no third-party audio),brown noise with the 50 and 100 Hz ventilation hum

@@ -1,0 +1,33 @@
+{
+ "schema": "procsense.room-manifest/1",
+ "room": "corridor",
+ "scene": "Assets/Scenes/Corridor.unity",
+ "anchors": [
+  {"name": "DOOR_ct_Inside", "kind": "DOOR", "pos": [2.015, 0, 0.58], "rot": [0, 270, 0]},
+  {"name": "DOOR_ct_Outside", "kind": "DOOR", "pos": [3.465, 0, 0.58], "rot": [0, 270, 0]},
+  {"name": "DOOR_lab_Inside", "kind": "DOOR", "pos": [5.18, 0, 7.685], "rot": [0, 0, 0]},
+  {"name": "DOOR_lab_Outside", "kind": "DOOR", "pos": [5.18, 0, 6.235], "rot": [0, 0, 0]},
+  {"name": "DOOR_mri_Inside", "kind": "DOOR", "pos": [3.58, 0, 7.685], "rot": [0, 0, 0]},
+  {"name": "DOOR_mri_Outside", "kind": "DOOR", "pos": [3.58, 0, 6.235], "rot": [0, 0, 0]},
+  {"name": "DOOR_ultrasound_Inside", "kind": "DOOR", "pos": [2.015, 0, 3.58], "rot": [0, 270, 0]},
+  {"name": "DOOR_ultrasound_Outside", "kind": "DOOR", "pos": [3.465, 0, 3.58], "rot": [0, 270, 0]},
+  {"name": "DOOR_xray_Inside", "kind": "DOOR", "pos": [4.62, 0, -3.285], "rot": [0, 180, 0]},
+  {"name": "DOOR_xray_Outside", "kind": "DOOR", "pos": [4.62, 0, -1.835], "rot": [0, 180, 0]},
+  {"name": "SLOT_clinical_trolley_1", "kind": "SLOT", "pos": [6.06, 0, 3.05], "rot": [0, 90, 0]},
+  {"name": "SLOT_handrub_1", "kind": "SLOT", "pos": [6.33, 1.36, 3.85], "rot": [0, 90, 0]},
+  {"name": "SLOT_waiting_bench_1", "kind": "SLOT", "pos": [6.14, 0, 1.05], "rot": [0, 90, 0]},
+  {"name": "SLOT_wall_bumper_1", "kind": "SLOT", "pos": [6.36, 0.77, -1], "rot": [0, 90, 0]},
+  {"name": "SLOT_wall_bumper_2", "kind": "SLOT", "pos": [2.64, 0.77, 5.85], "rot": [0, 270, 0]},
+  {"name": "SLOT_wall_clock_1", "kind": "SLOT", "pos": [4.5, 2.08, 7.08], "rot": [0, 0, 0]},
+  {"name": "TELEPORT_BayDoor", "kind": "TELEPORT", "pos": [3.7, 0.02, -0.8], "rot": [0, 270, 0]},
+  {"name": "TELEPORT_OTDoor", "kind": "TELEPORT", "pos": [5.3, 0.02, 5.2], "rot": [0, 90, 0]}
+ ],
+ "placements": [
+  {"asset": "wall_bumper", "slot": "SLOT_wall_bumper_1"},
+  {"asset": "wall_bumper", "slot": "SLOT_wall_bumper_2"},
+  {"asset": "wall_clock", "slot": "SLOT_wall_clock_1"},
+  {"asset": "clinical_trolley", "slot": "SLOT_clinical_trolley_1"},
+  {"asset": "handrub", "slot": "SLOT_handrub_1"},
+  {"asset": "waiting_bench", "slot": "SLOT_waiting_bench_1"}
+ ]
+}

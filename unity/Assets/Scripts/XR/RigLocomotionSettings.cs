@@ -11,9 +11,11 @@ namespace ProcSense.VR.XR
         public static void Apply(XROrigin rig, bool sticks, bool login)
         {
             sticks &= !login;
+            // the walking stick is the left one unless the viewer chose left-handed play (p0-vr-interaction-ui-s10)
+            bool leftHanded = ProcSense.VR.UI.Accessibility.AccessibilitySettings.LeftHanded;
             foreach (var manager in rig.GetComponentsInChildren<ControllerInputActionManager>(true))
             {
-                bool left = manager.name == "Left Controller";
+                bool left = manager.name == (leftHanded ? "Right Controller" : "Left Controller");
                 manager.smoothMotionEnabled = sticks && left;
                 manager.smoothTurnEnabled = false;
                 // Keep left-stick walking available while aiming at a screen;
@@ -25,8 +27,9 @@ namespace ProcSense.VR.XR
                 move.moveSpeed = 1.5f;
                 move.enableFly = false;
                 move.enableStrafe = true;
-                move.leftHandMovementDirection = DynamicMoveProvider.MovementDirection.HeadRelative;
-                move.rightHandMoveInput.inputSourceMode = XRInputValueReader.InputSourceMode.Unused;
+                move.leftHandMovementDirection = move.rightHandMovementDirection = DynamicMoveProvider.MovementDirection.HeadRelative;
+                (leftHanded ? move.rightHandMoveInput : move.leftHandMoveInput).inputSourceMode = XRInputValueReader.InputSourceMode.InputActionReference;
+                (leftHanded ? move.leftHandMoveInput : move.rightHandMoveInput).inputSourceMode = XRInputValueReader.InputSourceMode.Unused;
                 move.enabled = !login;
             }
             foreach (var turn in rig.GetComponentsInChildren<ContinuousTurnProvider>(true)) turn.enabled = false;
