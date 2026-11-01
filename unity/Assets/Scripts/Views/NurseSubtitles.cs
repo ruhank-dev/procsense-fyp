@@ -104,13 +104,21 @@ namespace ProcSense.VR.Views
         private void Update()
         {
             if (SimulationHost.Instance != null && !_subscribed) { SimulationHost.Instance.Applied += OnApplied; _subscribed = true; }
+            if (SharedPresentation)
+            {
+                _queue.Clear(); _until = 0;
+                if (Canvas != null) Canvas.gameObject.SetActive(false);
+                return;
+            }
             Step(Time.unscaledDeltaTime);
         }
 
+        private bool SharedPresentation => NurseWristbandController.Instance != null && SessionPresentation.Instance != null && SessionPresentation.Instance.Voice != null;
         private bool _subscribed;
 
         public void OnApplied(SimAction action, ActionOutcome outcome)
         {
+            if (SharedPresentation) return;
             _lines = _lines ?? Load();
             foreach (var line in NurseSubtitles.For(_lines, action, outcome)) _queue.Enqueue(line);
         }

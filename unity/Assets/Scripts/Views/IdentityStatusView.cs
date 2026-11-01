@@ -22,7 +22,12 @@ namespace ProcSense.VR.Views
 
         public string BannerText => _banner != null ? _banner.text : "";
         /// <summary>The nurse step the banner shows now ("" when no visit is on).</summary>
-        public string NurseStep { get; private set; } = "";
+        private string _fallbackStep = "";
+        public string NurseStep
+        {
+            get => _host != null && _host.Ended ? "" : NurseWristbandController.Instance?.StepFor(_host?.Session) ?? _fallbackStep;
+            private set => _fallbackStep = value;
+        }
         public Color BannerColor => _back != null ? _back.color : Color.clear;
 
         public static readonly Color NotConfirmed = new Color(.55f, .12f, .12f), Confirmed = new Color(.12f, .42f, .22f), Waiting = new Color(.45f, .32f, .05f);
@@ -30,6 +35,8 @@ namespace ProcSense.VR.Views
         private TMP_Text _banner;
         private Image _back;
         private SimulationHost _host;
+        private object _boundSession;
+        private string _lastVisualStep;
         private readonly Queue<string> _steps = new Queue<string>();
         private float _nextStep;
         private bool _reRead, _bandMissing;
@@ -57,20 +64,22 @@ namespace ProcSense.VR.Views
         private void Bind()
         {
             var host = SimulationHost.Instance;
-            if (ReferenceEquals(host, _host)) return;
+            var session = host != null ? host.Session : null;
+            if (ReferenceEquals(host, _host) && ReferenceEquals(session, _boundSession)) return;
             if (_host != null) _host.Applied -= OnApplied;
-            _host = host;
+            _host = host; _boundSession = session; _lastVisualStep = null;
             _steps.Clear(); NurseStep = ""; _reRead = _bandMissing = false;
             if (_host != null) _host.Applied += OnApplied;
         }
 
         private void OnApplied(SimAction action, ActionOutcome outcome)
         {
+            Bind();
             if (action.Verb == "read_wristband" && outcome.RejectReason == "WRISTBAND_MISSING") { _bandMissing = true; RenderNow(); }   // stays until the nurse has put one on
             if (!outcome.Accepted) return;
             foreach (var e in outcome.Effects)
                 if (e.StartsWith("nurse:", System.StringComparison.Ordinal)) _steps.Enqueue(e.Substring(6));
-            if (_steps.Count > 0 && NurseStep.Length == 0) Advance();
+            if (_steps.Count > 0 && _fallbackStep.Length == 0) Advance();
             if (action.Verb == "read_wristband") _reRead = false;
         }
 
@@ -78,15 +87,24 @@ namespace ProcSense.VR.Views
         {
             NurseStep = _steps.Count > 0 ? _steps.Dequeue() : "";
             _nextStep = Time.unscaledTime + StepSeconds;
-            if (NurseStep == "DONE") { _reRead = true; _bandMissing = false; }
+            if (_fallbackStep == "DONE") { _reRead = true; _bandMissing = false; }
             RenderNow();
         }
 
         protected override void Update()
         {
             Bind();
+            if (_host != null && _host.Ended)
+            { _steps.Clear(); _fallbackStep = ""; _reRead = _bandMissing = false; _lastVisualStep = null; }
             base.Update();
-            if (NurseStep.Length > 0 && NurseStep != "DONE" && Time.unscaledTime >= _nextStep) Advance();
+            var visual = NurseWristbandController.Instance?.StepFor(_host?.Session);
+            if (visual != null)
+            {
+                if (_lastVisualStep != visual) { _lastVisualStep = visual; RenderNow(); }
+                return;
+            }
+            _lastVisualStep = null;
+            if (_fallbackStep.Length > 0 && _fallbackStep != "DONE" && Time.unscaledTime >= _nextStep) Advance();
         }
 
         /// <summary>Shows the rest of the nurse's visit at once (tests, and a trainee who skips ahead).</summary>
@@ -103,7 +121,7 @@ namespace ProcSense.VR.Views
             string text;
             Color color;
             if (NurseStep.Length > 0 && NurseStep != "DONE") { text = W("nurse_" + NurseStep.ToLowerInvariant()); color = Waiting; }
-            else if (_reRead && !s.IdentityConfirmed) { text = W("read_new_band"); color = Waiting; }
+            else if ((_reRead || NurseStep == "DONE") && !s.IdentityConfirmed) { text = W("read_new_band"); color = Waiting; }
             else if (_bandMissing && !s.IdentityConfirmed) { text = W("band_missing"); color = Waiting; }
             else if (!practice) { text = ""; color = Color.clear; }   // assessment: no banner that gives the answer away
             else if (s.IdentityConfirmed) { text = W("confirmed"); color = Confirmed; }

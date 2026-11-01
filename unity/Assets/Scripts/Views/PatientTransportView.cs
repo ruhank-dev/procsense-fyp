@@ -101,7 +101,7 @@ namespace ProcSense.VR.Views
             if(!Actor.Agent.enabled || !Actor.Agent.isOnNavMesh)return;
             var agent=Actor.Agent;
             foreach(var door in FindObjectsByType<SwingDoor>())
-                door.SetNpcPassage(door.Connection=="BayCorridor" && ((_phase!=TransportVisualPhase.Returning&&(_routeLeg==0||StaffNeedsBayDoor()))||(_phase==TransportVisualPhase.Returning&&_routeLeg==2)));
+                door.SetNpcPassage(this,door.Connection=="BayCorridor" && ((_phase!=TransportVisualPhase.Returning&&(_routeLeg==0||StaffNeedsBayDoor()))||(_phase==TransportVisualPhase.Returning&&_routeLeg==2)));
             if(Time.unscaledTime>=_retry)
             {
                 _retry=Time.unscaledTime+.8f;
@@ -137,7 +137,7 @@ namespace ProcSense.VR.Views
             else { AtDoor=true; Status="At door; awaiting Core arrival"; }
         }
 
-        private void ReleaseBayPassage() { foreach(var door in FindObjectsByType<SwingDoor>())if(door.Connection=="BayCorridor")door.SetNpcPassage(false); }
+        private void ReleaseBayPassage() { foreach(var door in FindObjectsByType<SwingDoor>())if(door.Connection=="BayCorridor")door.SetNpcPassage(this,false); }
         private bool StaffNeedsBayDoor() => new[]{Actor.Nurse,Actor.Doctor}.Any(t=>t!=null&&t.gameObject.activeInHierarchy&&t.position.x<3.4f);
         private void StopStaff()
         {
@@ -233,7 +233,7 @@ namespace ProcSense.VR.Views
         {
             if(Actor!=null)Destroy(Actor.gameObject); Actor=null;
             if(_sequence!=null)_sequence.Restore();
-            foreach(var door in FindObjectsByType<SwingDoor>())door.SetNpcPassage(false);
+            foreach(var door in FindObjectsByType<SwingDoor>())door.SetNpcPassage(this,false);
             SetBedside(true); _door=null; _sequence=null; _destination=_mode="";
             _phase=TransportVisualPhase.Bedside; _routeLeg=0; _returnFromInside=AtDoor=HiddenInside=false; _passage=0; Status="";
         }

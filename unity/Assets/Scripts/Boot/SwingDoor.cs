@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
@@ -27,7 +28,24 @@ namespace ProcSense.VR.Boot
         private float _target;
         private bool _npcPassage;
         private float _beforeNpc;
-        public void SetNpcPassage(bool open) { if (open == _npcPassage) return; if (open) _beforeNpc = _target; _npcPassage = open; if (_hand == null) _target = open ? 100 : _beforeNpc; }
+        private bool _legacyNpcPassage;
+        private readonly HashSet<Object> _npcOwners = new HashSet<Object>();
+        public void SetNpcPassage(bool open) { _legacyNpcPassage = open; RefreshNpcPassage(); }
+        public void SetNpcPassage(Object owner, bool open)
+        {
+            if (ReferenceEquals(owner, null)) throw new System.ArgumentNullException(nameof(owner));
+            if (open && owner != null) _npcOwners.Add(owner); else _npcOwners.Remove(owner);
+            RefreshNpcPassage();
+        }
+        private void RefreshNpcPassage()
+        {
+            _npcOwners.RemoveWhere(owner => owner == null);
+            bool open = _legacyNpcPassage || _npcOwners.Count > 0;
+            if (open == _npcPassage) return;
+            if (open) _beforeNpc = _target;
+            _npcPassage = open;
+            if (_hand == null) _target = open ? 100 : _beforeNpc;
+        }
 
         private void Awake()
         {
@@ -62,6 +80,7 @@ namespace ProcSense.VR.Boot
 
         private void Update()
         {
+            RefreshNpcPassage();
             if (_rooms == null) _rooms = FindAnyObjectByType<RoomLoader>();
             // A closed solid leaf gates an incomplete preload, never a void beyond an open door.
             if (_grab.enabled != Ready) _grab.enabled = Ready;
@@ -97,7 +116,7 @@ namespace ProcSense.VR.Boot
                 * _closed * Quaternion.Euler(0, Angle, 0));
         }
 
-        private void OnDisable() { _hand = null; _target = Angle; }
+        private void OnDisable() { _hand = null; _npcOwners.Clear(); _legacyNpcPassage = _npcPassage = false; _target = Angle; }
         private void OnDestroy()
         {
             if (_grab == null) return;

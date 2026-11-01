@@ -51,6 +51,7 @@ namespace ProcSense.VR.Audio
         private readonly List<AudioSource> _pool = new List<AudioSource>();
         private AudioSource _playing;
         private float _left;
+        private VoiceLine _subtitleOwner;
         private SimulationHost _host;
         private ObservableState _before;
 
@@ -94,7 +95,14 @@ namespace ProcSense.VR.Audio
 
         private void OnApplied(SimAction a, ActionOutcome o)
         {
-            foreach (var l in Catalog.For(CaseId, a, o)) Say(l);
+            var nurse = ProcSense.VR.Views.NurseWristbandController.Instance;
+            bool visit = nurse != null && nurse.ObserveApplied(a, o);
+            foreach (var l in Catalog.For(CaseId, a, o))
+                if (visit && l.Speaker == "nurse") nurse.QueueSpeech(l); else Say(l);
+            if (visit)
+                foreach (var l in Catalog.ForCase(CaseId).Where(l => !l.Template && l.Speaker == "nurse"))
+                    if (l.Event.TryGetValue("nurse_state", out var raw) && raw is string state && o.Effects.Contains("nurse:" + state) &&
+                        (!l.Event.TryGetValue("effect", out var effect) || effect is string e && o.Effects.Contains(e))) nurse.QueueSpeech(l);
         }
 
         private void OnChanged(ObservableState s)
@@ -116,6 +124,17 @@ namespace ProcSense.VR.Audio
             if (Current == null) Next();
         }
 
+        /// <summary>Removes only lines owned by a cancelled presentation; other speakers keep their queue.</summary>
+        public void CancelLines(IEnumerable<VoiceLine> lines)
+        {
+            var owned = new HashSet<VoiceLine>(lines);
+            _queue.RemoveAll(l => owned.Contains(l));
+            bool interrupted = Current != null && owned.Contains(Current);
+            if (interrupted) Stop();
+            if (_subtitleOwner != null && owned.Contains(_subtitleOwner))
+            { if (Subtitles != null) Subtitles.Tick(float.MaxValue); _subtitleOwner = null; }
+            if (interrupted) Next();
+        }
         /// <summary>Moves playback on by this much time (the update loop calls it with the frame time).</summary>
         public void Tick(float seconds)
         {
@@ -179,6 +198,7 @@ namespace ProcSense.VR.Audio
                 }
                 _left = reading;
             }
+            _subtitleOwner = line;
             Subtitles.Show(line.Speaker, line.Text, Mathf.Max(_left, reading));
             Started?.Invoke(line);
         }

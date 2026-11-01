@@ -47,6 +47,7 @@ namespace ProcSense.VR.Views
             if (_transport == null) _transport = Object.FindAnyObjectByType<PatientTransportView>();
             if (_records == null) _records = Object.FindAnyObjectByType<RecordsWorkstation>();
             Voice.Heads.Clear();
+            var visitingNurse = NurseWristbandController.Instance;
             if (_records != null) Head("laboratory", _records.PhoneAnchor);
             string state = _host.Observable?.Transport?.State ?? "";
             var actor = _transport != null ? _transport.Actor : null;
@@ -61,6 +62,7 @@ namespace ProcSense.VR.Views
                 }
             }
             else if (_host.Observable?.Location == "patient_bay" && _patient != null) Head("patient", _patient.Head);
+            if (visitingNurse != null && visitingNurse.Head != null) Head("nurse", visitingNurse.Head);
         }
         private void Head(string speaker, Transform head) { if (head != null) Voice.Heads[speaker] = head; }
         private void Clear()
