@@ -10,6 +10,8 @@ traceable and honest. Nothing clinical enters `content/` or code without a row h
 | `source_register.csv` | One row per clinical value/rule: where it comes from and how it was verified |
 | `dataset_register.csv` | One row per external or synthetic dataset: licence, contents, verification |
 | `issues.md` | Conflicts between sources (or source vs walkthrough) waiting for a clinician/supervisor decision |
+| `asset_sources_and_licenses.md` | Every 3D, texture, character and animation asset: source link, creator, licence, how to download it again, what was excluded and why |
+| `speedtutor_unity_masterguide.md`, `speedtutor_video_inventory.csv` | Technique notes from the SpeedTutor Unity channel and the list of every video found, read or unread |
 
 ## Approval status (owner decision, 09 October 2026)
 

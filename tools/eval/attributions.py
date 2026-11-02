@@ -24,6 +24,8 @@ PICTURE_INDEXES = ["images", "ecg", "cxr", "xsec"]       # ultrasound, ECG strip
 PROVENANCE = [
     ("3D character", "Patient (MPFB, MakeHuman assets)", "unity/Assets/Models/Characters/MPFBPatient/README.md"),
     ("Textures", "Hospital wall and floor surfaces (ambientCG)", "unity/Assets/Textures/Hospital/README.md"),
+    ("3D characters", "Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars)", "unity/Assets/Characters/Rocketbox/README.md"),
+    ("Animation", "Idle, talking, sitting and walking clips (Quaternius Universal Animation Library)", "unity/Assets/Characters/Animations/README.md"),
 ]
 
 
@@ -74,7 +76,7 @@ def collect() -> tuple[dict, list[str]]:
             problems.append(f"{rel}: the provenance note is missing")
             continue
         text = p.read_text(encoding="utf-8")
-        lic = "CC0 1.0" if "CC0" in text else ""
+        lic = "CC0 1.0" if "CC0" in text else ("MIT" if "MIT" in text else "")
         if not lic:
             problems.append(f"{rel}: the provenance note states no licence")
         assets.append({"kind": kind, "what": what, "licence": lic, "note": rel})

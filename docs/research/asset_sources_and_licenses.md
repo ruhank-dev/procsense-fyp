@@ -101,3 +101,19 @@ Eight fictional people (elderly man and woman, young woman, child, parent, two v
 | Universal Animation Library (Standard), clips `Idle_Loop`, `Idle_Talking_Loop`, `Sitting_Idle_Loop`, `Sitting_Talking_Loop`, `Walk_Loop`, `Walk_Formal_Loop` and others (43 clips) | https://quaternius.com (Universal Animation Library) | Quaternius | CC0 1.0 (copy at `unity/Assets/Characters/Animations/LICENSE_Quaternius_UAL_CC0.txt`) | Retargeted onto every Rocketbox avatar through Unity Humanoid |
 
 Not available under a redistributable licence, so documented but not imported: a ready-made hospital bed gown, dedicated elderly models (the closest adults are used), Mixamo characters (Adobe terms forbid redistribution in a public repository), Unity Asset Store and BlenderKit packs (store licences). The patient in the patient bay therefore stays on the earlier generated model until a licensed replacement is verified.
+
+## Where everything came from and how to download it again (2 Nov 2026)
+
+| What | Where | How it got into the project |
+|---|---|---|
+| Rocketbox avatars (MIT) | https://github.com/microsoft/Microsoft-Rocketbox, folder `Assets/Avatars/<group>/<Name>/Export/<Name>_facial.fbx` and `Textures/*.tga` (raw files at raw.githubusercontent.com/microsoft/Microsoft-Rocketbox/master/) | `python -I unity/Tools/Characters/fetch_rocketbox.py [Name ...]` (needs `build/rocketbox_tree.json`, the GitHub tree listing); then Unity menu method `ProcSense.EditorTools.RocketboxSetup.Import`, `BuildPrefabs`, `RocketboxPeople.Apply` |
+| Universal Animation Library (CC0) | https://quaternius.com (Universal Animation Library, Standard pack, `Unity/UAL1_Standard.fbx`) | Unzipped to `build/ual/x/`, copied by `RocketboxSetup.Import` |
+| PBR textures (CC0) | ambientCG https://ambientcg.com and Poly Haven https://polyhaven.com/textures | `unity/Tools/Environment/pack_pbr.py`, `make_pbr_surfaces.py`; the sets used are listed at the top of this file |
+| 3D props, plants, clocks (CC0) | Poly Haven models https://polyhaven.com/models | `fetch_ph_model.py`, `convert_ph_model.py`, `PolyHavenProps.cs` |
+| Sky and city backdrop | Poly Haven HDRIs (`sky_partly_cloudy_4k`, `city_skyline_8k`), see `docs/assets/EXTERIOR_ASSET_SOURCES.md` | `CityExterior.cs` |
+| Medical equipment candidates (Sketchfab CC-BY) | Listed above, NOT imported: need a signed-in Sketchfab session or API token | Open (VO-02) |
+| Mixamo (https://www.mixamo.com), Unity Asset Store, BlenderKit | Researched, excluded: Adobe and store licences do not allow redistributing the files in a public repository | Not used |
+| SpeedTutor Unity channel research | YouTube channel inventory and master guide | `docs/research/speedtutor_unity_masterguide.md`, `speedtutor_video_inventory.csv` |
+| Reference photos from the owner | Doctor and nurse clothing photos, corridor lighting reference image | Used as visual targets only, not shipped |
+
+Commands to rebuild the lighting after any change to doors, walls or lights: `powershell -File unity/Tools/Rooms/light_cycle.ps1 -Tag <name>` (preview bake about 11 minutes; add `-Final` for the roughly 45 minute final bake; `-SkipDoors` when the Blender doors did not change). Captures land in `unity/Logs/Rooms/` (git-ignored).

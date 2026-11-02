@@ -417,10 +417,10 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | VO-01 | SpeedTutor channel: 14 of 1,032 videos read via auto-captions, 123 more flagged relevant and unread (`docs/research/speedtutor_video_inventory.csv`); no video was watched | In progress |
 | VO-02 | Sketchfab CC-BY medical equipment candidates found but not downloadable without an authenticated Sketchfab session or token; owner to supply a token or manual downloads (`docs/research/asset_sources_and_licenses.md`) | Blocked (owner) |
 | VO-03 | OT: scrub sink, wall gas panels, boom monitor, floor and wall detail not yet modelled; rebuilt equipment triangle counts (light 6.8k, table 5.8k, anaesthesia 11.9k, Mayo 9.6k) need LODs for Quest | In progress |
-| VO-04 | Characters: staff hands/clipboards, faces, scrub/coat construction detail, shoes, receptionist; patient feet/hands/skin, gown fold detail and weave; no complete free rigged medical wardrobe exists (ChatGPT agrees), so the MPFB plus Blender wardrobe route continues | In progress |
+| VO-04 | Characters: staff hands/clipboards, faces, scrub/coat construction detail, shoes, receptionist; patient feet/hands/skin, gown fold detail and weave; no complete free rigged medical wardrobe exists (ChatGPT agrees), so the MPFB plus Blender wardrobe route continued until 2 Nov; superseded for the corridor and theatre by ready-made Rocketbox avatars (ADR-0031); patient bay patient, bed gown and elderly models still open | In progress |
 | VO-05 | Exterior facades, glass, trees, streets, sun disc; photographic mid-height panorama unobtainable under a free licence | Open |
 | VO-06 | Decals, light probes near characters, reflection-probe audit, LOD Groups, Desktop/Quest tier budget measurement; Quest headset check is Sannan's | Open |
-| VO-07 | Full EditMode/PlayMode/backend tests, `task ci`, Quest APK build after the final bake; no commit or push before owner approval | Pending |
+| VO-07 | Full EditMode/PlayMode/backend tests, `task ci`, Quest APK build after the final bake; the branch `overhaul/urp-integration` was pushed on 2 Nov 2026 at the owner's request (no merge to main before approval) | Pending |
 
 | ID | Item (4 Nov planning, added 3 Nov UTC) | Status |
 |---|---|---|
@@ -429,4 +429,8 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | VO-10 | Glass: premultiplied-alpha Fresnel panes with waviness and dust maps applied to corridor wall, window, frame and door glass; sun shafts and frame-shadow patterns in the corridor not verified; mirrors/planar reflections not implemented | In progress |
 | VO-11 | Exterior city buildings, vehicles, trees and sun-direction match with the interior remain open | Open |
 | VO-12 | Quest crowd reduction: `StaffIdleView.UpdateInterval` is 0.1 s on Android builds; crowd density switch (fewer people on Quest) not implemented; no headset measurement | Open |
+| VO-13 | Rocketbox characters: only 5 seated, 1 standing and 2 theatre doctors placed; the talking visitor pair is blocked by a physics check; receptionist, children on benches, nurses and surgeon not yet replaced; one woman's hair shows a white patch (opacity map); `PropGrip` (clipboards, phones, papers) written but not wired or tested; no walking behaviour; old `Staff_*` prefabs kept until the owner approves | Open |
+| VO-14 | Lighting: preview bakes only (sun 6.2 / 2.8, 17 / 7 degrees, yaw 108); final-quality bake (`light_cycle.ps1 -Final`, about 45 min) not run; patches smaller than the owner's reference because only three west doors have unobstructed glass; rooms behind the doors are open void; ChatGPT round 20 flagged ceiling hot spots, floor contact shadows, bench shimmer | Open |
+| VO-15 | Patient bay: only one wall lamp exists (converted to up/down cones); more lamps, a sun check with the new exposure and a final bake are pending | Open |
+| VO-16 | Exposure -0.4 EV is on `DefaultVolumeProfile.asset` and applies to every room; a per-room volume, SSAO for desktop and Quest-tier settings are not done | Open |
 

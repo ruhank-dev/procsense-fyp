@@ -94,3 +94,13 @@ Honest limitations: the reviewer (ChatGPT) has rejected every round so far; the 
 | Quest | Everything is baked, no new realtime lights or shadows; the up/down cones add lightmap work only | Not measured on a headset |
 
 Open: ChatGPT round 20 REJECTED (6 major, 1 minor: ceiling hot spots, floor contact shadows, sun patches clipping to white, bench shimmer, repetitive city backdrop, plant cards). A final-quality bake (`light_cycle.ps1 -Final`) has not been run on the rebalanced values, and the rooms behind the west doors are open void for the bake (the patient bay's own walls block the doors beside it); no modelled rooms exist there.
+
+## 2 Nov 2026: characters replaced by ready-made avatars (ADR-0031)
+
+| Area | What was done | Status |
+|---|---|---|
+| Source | 17 Microsoft Rocketbox avatars (MIT) fetched, imported as valid Humanoid rigs; 43 Quaternius UAL clips (CC0) | Done |
+| Corridor | 5 seated (bench heights aligned by `SeatedPerson` using the sitting clip), 1 reader at the notice board; the talking pair was blocked by a physics check | Partly done |
+| Theatre | Medical_Female_02 and Medical_Male_03 in white coats with stethoscopes, talking gesture clip | Looks right in the captured view |
+| Known defects | White patch on one woman's hair, no held props, no walking, receptionist and children not replaced, patient bay unchanged | Open (VO-13) |
+| ChatGPT | Not yet run on the new characters | Pending |
