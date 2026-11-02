@@ -56,6 +56,7 @@ namespace ProcSense.EditorTools
             foreach (var name in new[] { "PatientBay", "OT" })
             {
                 var scene = EditorSceneManager.OpenScene("Assets/Scenes/" + name + ".unity", OpenSceneMode.Single); int done = 0;
+                if (name == "PatientBay") { RemovePatientBayLamp(scene); continue; }
                 var fixtures = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Transform>(true)).Where(t => t.name == "wall_sconce" && PrefabUtility.IsOutermostPrefabInstanceRoot(t.gameObject)).ToArray();
                 foreach (var l in Object.FindObjectsByType<Light>(FindObjectsInactive.Include).Where(l => l.gameObject.scene == scene && l.name == "Baked sconce light").ToArray())
                 {
@@ -75,14 +76,77 @@ namespace ProcSense.EditorTools
             }
         }
 
-        public static void Apply() => Run(17f, 108f, 6.2f, 2.8f);
+        /// <summary>Owner request: the patient room has no wall lamp. Removes the sconce fixture, its baked lights and the up/down cones, and adds a local exposure trim volume (the room read too bright).</summary>
+        static void RemovePatientBayLamp(UnityEngine.SceneManagement.Scene scene)
+        {
+            int removed = 0;
+            foreach (var t in scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Transform>(true)).Where(t => t != null && (t.name == "wall_sconce" || t.name == "Baked sconce light" || t.name.StartsWith("Sconce up ") || t.name.StartsWith("Sconce down "))).ToArray())
+            { if (t != null) { Object.DestroyImmediate(t.gameObject); removed++; } }
+            var lampsRoot = scene.GetRootGameObjects().FirstOrDefault(g => g.name == "Wall lamps"); if (lampsRoot != null && lampsRoot.transform.childCount == 0) Object.DestroyImmediate(lampsRoot);
+            const string path = "Assets/Settings/HospitalLighting/PatientBay exposure trim.asset";
+            var prof = AssetDatabase.LoadAssetAtPath<VolumeProfile>(path);
+            if (prof == null) { prof = ScriptableObject.CreateInstance<VolumeProfile>(); AssetDatabase.CreateAsset(prof, path); }
+            if (!prof.TryGet(out ColorAdjustments ca)) ca = prof.Add<ColorAdjustments>(true);
+            ca.active = true; ca.postExposure.overrideState = true; ca.postExposure.value = -.55f; ca.contrast.overrideState = true; ca.contrast.value = 10f;
+            EditorUtility.SetDirty(prof); AssetDatabase.SaveAssets();
+            var old = scene.GetRootGameObjects().FirstOrDefault(g => g.name == "Patient room exposure trim"); if (old != null) Object.DestroyImmediate(old);
+            var go = new GameObject("Patient room exposure trim"); UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(go, scene); go.transform.position = new Vector3(0f, 1.4f, 0f);
+            var box = go.AddComponent<BoxCollider>(); box.isTrigger = true; box.size = new Vector3(4.9f, 2.8f, 3.9f);
+            var vol = go.AddComponent<Volume>(); vol.isGlobal = false; vol.sharedProfile = prof; vol.priority = 10f; vol.blendDistance = .35f; vol.weight = 1f;
+            EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
+            Debug.Log($"[CorridorSun] PatientBay: {removed} lamp objects removed, local exposure trim volume added (-0.55 EV, contrast +10, on top of the shared -0.4 override)");
+        }
+
+        static Material BeamMaterial(string matName, float alpha)
+        {
+            const string tp = "Assets/Textures/Environment/doorbeam.png"; string mp = "Assets/Materials/Environment/" + matName + ".mat";
+            var tex = new Texture2D(32, 128, TextureFormat.RGBA32, false);
+            for (int y = 0; y < 128; y++) for (int x = 0; x < 32; x++)
+            {
+                float u = (x + .5f) / 32f * 2f - 1f, v = (y + .5f) / 128f; float across = Mathf.SmoothStep(0, 1, 1f - Mathf.Abs(u) * Mathf.Abs(u)); float along = Mathf.SmoothStep(0, 1, v / .08f) * Mathf.Lerp(1f, .55f, v);
+                tex.SetPixel(x, y, new Color(1, 1, 1, across * along));
+            }
+            System.IO.Directory.CreateDirectory("Assets/Textures/Environment"); System.IO.File.WriteAllBytes(tp, tex.EncodeToPNG()); AssetDatabase.ImportAsset(tp, ImportAssetOptions.ForceSynchronousImport);
+            var ti = (TextureImporter)AssetImporter.GetAtPath(tp); ti.alphaIsTransparency = true; ti.wrapMode = TextureWrapMode.Clamp; ti.mipmapEnabled = true; ti.sRGBTexture = true; ti.SaveAndReimport();
+            var m = AssetDatabase.LoadAssetAtPath<Material>(mp);
+            if (m == null) { System.IO.Directory.CreateDirectory("Assets/Materials/Environment"); m = new Material(Shader.Find("Universal Render Pipeline/Unlit")); AssetDatabase.CreateAsset(m, mp); }
+            m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(tp)); m.SetColor("_BaseColor", new Color(1f, .95f, .82f, alpha));
+            m.SetFloat("_Surface", 1f); m.SetFloat("_Blend", 2f); m.SetFloat("_SrcBlend", 5f); m.SetFloat("_DstBlend", 1f); m.SetFloat("_SrcBlendAlpha", 0f); m.SetFloat("_DstBlendAlpha", 1f); m.SetFloat("_ZWrite", 0f); m.SetFloat("_Cull", 0f);
+            m.EnableKeyword("_SURFACE_TYPE_TRANSPARENT"); m.SetOverrideTag("RenderType", "Transparent"); m.renderQueue = (int)RenderQueue.Transparent + 6; m.SetShaderPassEnabled("ShadowCaster", false);
+            EditorUtility.SetDirty(m); return m;
+        }
+
+        /// <summary>One visible light beam per unobstructed west door glass: the pane rectangle swept along the sun direction until it meets the floor or the east wall (desktop only, additive, no shadows).</summary>
+        static int Beams(Transform rig, MeshRenderer[] glasses, Vector3 dir, string hostName, string matName, float alpha)
+        {
+            var host = new GameObject(hostName); host.transform.SetParent(rig, false); host.AddComponent<ProcSense.VR.Views.DesktopOnly>(); var mat = BeamMaterial(matName, alpha); int n = 0;
+            foreach (var g in glasses.Where(r => r.bounds.center.x < 3f && r.bounds.center.z > 3f))
+            {
+                var b = g.bounds; float x = b.center.x + .05f; var c = new Vector3(x, b.center.y, b.center.z);
+                float tFloor = c.y / -dir.y, tWall = (6.42f - x) / dir.x, t = Mathf.Min(tFloor, tWall);
+                var p = new[] { new Vector3(x, b.min.y, b.min.z), new Vector3(x, b.min.y, b.max.z), new Vector3(x, b.max.y, b.max.z), new Vector3(x, b.max.y, b.min.z) };
+                var m = new Mesh { name = "door beam" }; var verts = new System.Collections.Generic.List<Vector3>(); var uvs = new System.Collections.Generic.List<Vector2>(); var tris = new System.Collections.Generic.List<int>();
+                for (int i = 0; i < 4; i++)
+                {
+                    var a = p[i]; var bb = p[(i + 1) % 4]; int k = verts.Count;
+                    verts.AddRange(new[] { a, bb, a + dir * t, bb + dir * t }); uvs.AddRange(new[] { new Vector2(0, 0), new Vector2(1, 0), new Vector2(0, 1), new Vector2(1, 1) });
+                    tris.AddRange(new[] { k, k + 2, k + 1, k + 1, k + 2, k + 3, k, k + 1, k + 2, k + 1, k + 3, k + 2 });
+                }
+                m.SetVertices(verts); m.SetUVs(0, uvs); m.SetTriangles(tris, 0); m.RecalculateNormals(); m.RecalculateBounds();
+                var go = new GameObject(hostName + " z" + Mathf.RoundToInt(b.center.z * 10)); go.transform.SetParent(host.transform, false); go.AddComponent<MeshFilter>().sharedMesh = m;
+                var r = go.AddComponent<MeshRenderer>(); r.sharedMaterial = mat; r.shadowCastingMode = ShadowCastingMode.Off; r.receiveShadows = false; r.lightProbeUsage = LightProbeUsage.Off; r.reflectionProbeUsage = ReflectionProbeUsage.Off; n++;
+            }
+            return n;
+        }
+
+        public static void Apply() => Run(14f, 110f, 5.2f, 2.4f);
 
         public static void Run(float pitch, float yaw, float sunI, float lowI)
         {
             var scene = EditorSceneManager.OpenScene("Assets/Scenes/Corridor.unity", OpenSceneMode.Single);
             var oldRig = scene.GetRootGameObjects().FirstOrDefault(g => g.name == "Corridor sun rig"); if (oldRig != null) Object.DestroyImmediate(oldRig);
             var rig = new GameObject("Corridor sun rig"); UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(rig, scene);
-            MakeSun(rig.transform, "Corridor sun", pitch, yaw, sunI, 1.2f); MakeSun(rig.transform, "Corridor low sun", 7f, yaw + 4f, lowI, 1.0f);
+            MakeSun(rig.transform, "Corridor sun", pitch, yaw, sunI, 1.2f); MakeSun(rig.transform, "Corridor low sun", 6f, yaw + 4f, lowI, 1.0f);
 
             // 1. door leaves on the west wall: fill everything but the glass opening with static shadow-only blockers
             var all = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<MeshRenderer>(true)).ToArray(); int doors = 0;
@@ -96,6 +160,10 @@ namespace ProcSense.EditorTools
                 void Box(float z0, float z1, float y0, float y1) { if (z1 - z0 > .005f && y1 - y0 > .005f) Blocker(rig.transform, new Bounds(new Vector3(x, (y0 + y1) / 2, (z0 + z1) / 2), new Vector3(th, y1 - y0, z1 - z0))); }
                 Box(zMin - .03f, gz0, yMin, yMax); Box(gz1, zMax + .03f, yMin, yMax); Box(gz0, gz1, yMin, gy0); Box(gz0, gz1, gy1, yMax); doors++;
             }
+
+            var doorGlass = all.Where(r => r.name.StartsWith("EQ_door_leaf_") && r.name.EndsWith("M_DoorGlass")).ToArray();
+            int beams = Beams(rig.transform, doorGlass, Quaternion.Euler(pitch, yaw, 0) * Vector3.forward, "Door sun beams", "Door sun beam", .045f)
+                      + Beams(rig.transform, doorGlass, Quaternion.Euler(6f, yaw + 4f, 0) * Vector3.forward, "Door low sun beams", "Door low sun beam", .03f);
 
             // 1b. the west wall is one solid slab with the diagnostic doors mounted proud of it: it stops casting in the bake and shadow-only blockers rebuild it with a hole behind each glass pane
             foreach (var wall in all.Where(r => r.name.StartsWith("Wall left doorway") && r.bounds.center.x < 3f))
@@ -143,7 +211,7 @@ namespace ProcSense.EditorTools
             // 3. exposure: a small negative post exposure on the default volume profile
             var prof = AssetDatabase.LoadAssetAtPath<VolumeProfile>("Assets/DefaultVolumeProfile.asset");
             if (prof != null && prof.TryGet(out ColorAdjustments ca)) { ca.active = true; ca.postExposure.overrideState = true; ca.postExposure.value = -.4f; EditorUtility.SetDirty(prof); AssetDatabase.SaveAssets(); }
-            Debug.Log($"[CorridorSun] sun {pitch}/{yaw} I={sunI}, {doors} door openings, {panels} panels, {fills} fills, {sconces} sconces; exposure -0.4 ({(prof ? "profile ok" : "NO PROFILE")})");
+            Debug.Log($"[CorridorSun] sun {pitch}/{yaw} I={sunI}, {doors} door openings, {beams} beams, {panels} panels, {fills} fills, {sconces} sconces; exposure -0.4 ({(prof ? "profile ok" : "NO PROFILE")})");
         }
     }
 }

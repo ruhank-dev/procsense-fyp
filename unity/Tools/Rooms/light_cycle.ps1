@@ -6,6 +6,7 @@ function Step($label, $method, $pat, $extra=@()) { "== $label"; & $s -Method $me
 if (-not $SkipDoors) { Step 'doorimp' 'ProcSense.EditorTools.DoorUpgrade.Import' '^\[DoorUpgrade\]'; Step 'doorapply' 'ProcSense.EditorTools.DoorUpgrade.Apply' '^\[DoorUpgrade\]' }
 Step 'sun' 'ProcSense.EditorTools.CorridorSun.Apply' '^\[CorridorSun\]'
 Step 'roomsconces' 'ProcSense.EditorTools.CorridorSun.RoomSconces' '^\[CorridorSun\]'
+Step 'golden' 'ProcSense.EditorTools.GoldenHourLighting.Apply' '^\[GoldenHour\] applied'
 $extra = @(); if ($Final) { $extra = @('-final') }
 Step 'bake' 'ProcSense.EditorTools.GoldenHourLighting.Bake' '^\[GoldenHour\]' $extra
 Step 'refl' 'ProcSense.EditorTools.GoldenHourLighting.Reflections' '^\[GoldenHour\]'

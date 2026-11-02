@@ -104,3 +104,20 @@ Open: ChatGPT round 20 REJECTED (6 major, 1 minor: ceiling hot spots, floor cont
 | Theatre | Medical_Female_02 and Medical_Male_03 in white coats with stethoscopes, talking gesture clip | Looks right in the captured view |
 | Known defects | White patch on one woman's hair, no held props, no walking, receptionist and children not replaced, patient bay unchanged | Open (VO-13) |
 | ChatGPT | Not yet run on the new characters | Pending |
+
+## 2 Nov 2026 (later): sun rays, patient room lamp removed, exposure trim
+
+| Area | What was done | Status |
+|---|---|---|
+| Visible sun rays | `CorridorSun.Beams`: one additive light beam per unobstructed west door glass (3 of 5), the pane swept along the sun direction to the floor or east wall, material `Door sun beam` (alpha 0.075), desktop only through `DesktopOnly` (off on Quest) | Rays visible in the corridor captures; first value (0.24) was far too hazy |
+| Sun | Main sun 14 degrees, intensity 5.2; grazing sun 6 degrees, intensity 2.4; yaw 110 (owner asked for longer floor streaks and a stronger sun; 8.5 blew the floor out) | Preview bake |
+| Patient room | Wall lamp (fixture, baked light, cones) removed on the owner's request; local box Volume "Patient room exposure trim" (-1.05 EV, contrast +6) so the room no longer reads too bright. `WallLighting.Apply` would re-add the lamp: do not re-run it for PatientBay | Applied |
+| Still short of the reference | Opposite-wall patches are small and low; only three doors let sun in; floor streaks bright but shorter than the reference | Open (VO-14) |
+
+## 2 Nov 2026 (last pass): dimmer see-through rays, darker patient room
+
+| Area | What was done | Status |
+|---|---|---|
+| Rays | One beam set per sun (main 14 degrees alpha 0.045, grazing 6 degrees alpha 0.03), each swept from the door glass to the floor or opposite wall so it ends where its light patch is; desktop only | Subtle, see-through shafts visible in captures |
+| Patient room | `golden.json` (git-ignored, `unity/Logs/Lighting`): window rect 1.1 to 0.55, ceiling panels 1.9 to 0.95, headwall 1.1 to 0.5, key 0.2 to 0.05, trilight ambient sky 0.55 to 0.25; local exposure trim -0.55 EV, contrast +10; applied with `GoldenHourLighting.Apply`, then baked (preview) | Darker, sunlit floor patches now read lighter than the shaded wall; ceiling tile still bright |
+| Reproduce | `powershell -File unity/Tools/Rooms/light_cycle.ps1 -Tag <name> -SkipDoors` runs CorridorSun, RoomSconces, GoldenHourLighting.Apply, bake, reflections and captures | Preview bake about 11 min |
