@@ -73,7 +73,8 @@ namespace ProcSense.Tests.EditMode
                 try
                 {
                     var mats = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<MeshRenderer>(true)).SelectMany(r => r.sharedMaterials).Where(x => x != null).Select(x => x.name);
-                    Assert.IsFalse(mats.Any(n => n == "PatientBay grey vinyl"), room + " must not use the PatientBay floor material");
+                    // superseded 1 Nov 2026 (owner: bring every room up to PatientBay's quality): the corridor and the theatre now lay the same grey vinyl (the corridor shares the material, the theatre a tiled copy of it)
+                    Assert.IsTrue(mats.Any(n => n.Contains("vinyl")), room + " lays the grey vinyl floor");
                 }
                 finally { EditorSceneManager.CloseScene(scene, true); }
             }

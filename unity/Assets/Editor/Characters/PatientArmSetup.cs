@@ -15,8 +15,8 @@ namespace ProcSense.EditorTools
     {
         private const string Folder = "Assets/Models/Characters/MPFBPatient/";
         private const string Review = "Logs/PatientArmsReview/";
-        [Serializable] private class Surface { public Vector3[] vertices; public int[] triangles; }
-        [Serializable] private class Fit { public Surface body; public Surface gown; public Surface shorts; }
+        [Serializable] private class Surface { public Vector3[] vertices; public int[] triangles; public Vector2[] uv; public int[] boneIndex; public float[] boneWeight; }
+        [Serializable] private class Fit { public Surface body; public Surface gown; public Surface shorts; public Surface mattress; }
 
         private static void Guard()
         {
@@ -120,10 +120,52 @@ namespace ProcSense.EditorTools
                 gown.sharedMesh = AssetDatabase.LoadAssetAtPath<Mesh>(Folder + "patient_gown_draped.asset");
                 Directory.CreateDirectory(Review);
                 var shorts = GameObject.Find("Patient shorts")?.GetComponent<SkinnedMeshRenderer>();
-                File.WriteAllText(Review + "gown-fit-input.json", JsonUtility.ToJson(new Fit { body = Snapshot(body), gown = Snapshot(gown), shorts = shorts == null ? null : Snapshot(shorts) }));
+                var mattress = GameObject.Find("Soft mattress")?.GetComponent<MeshFilter>();
+                File.WriteAllText(Review + "gown-fit-input.json", JsonUtility.ToJson(new Fit { body = Snapshot(body), gown = WithSkin(Snapshot(gown), gown.sharedMesh), shorts = shorts == null ? null : Snapshot(shorts), mattress = mattress == null || !mattress.sharedMesh.isReadable ? null : new Surface { vertices = mattress.sharedMesh.vertices.Select(mattress.transform.TransformPoint).ToArray(), triangles = mattress.sharedMesh.triangles } }));
             }
             finally { gown.sharedMesh = saved; }
             return "Exported original-gown fit snapshot in supported arm pose.";
+        }
+
+        /// <summary>Adds the UVs and the four bone influences per vertex, which the Blender re-drape needs because it splits long edges and must interpolate them.</summary>
+        private static Surface WithSkin(Surface s, Mesh mesh)
+        {
+            var bw = mesh.boneWeights; s.uv = mesh.uv; s.boneIndex = new int[bw.Length * 4]; s.boneWeight = new float[bw.Length * 4];
+            for (int i = 0; i < bw.Length; i++)
+            {
+                s.boneIndex[4 * i] = bw[i].boneIndex0; s.boneIndex[4 * i + 1] = bw[i].boneIndex1; s.boneIndex[4 * i + 2] = bw[i].boneIndex2; s.boneIndex[4 * i + 3] = bw[i].boneIndex3;
+                s.boneWeight[4 * i] = bw[i].weight0; s.boneWeight[4 * i + 1] = bw[i].weight1; s.boneWeight[4 * i + 2] = bw[i].weight2; s.boneWeight[4 * i + 3] = bw[i].weight3;
+            }
+            return s;
+        }
+
+        /// <summary>Imports gown-fit-output.json when it carries its own topology (vertices, triangles, UVs, bone weights): the skirt was re-meshed so it can sag between the thighs. Installs it as the relaxed gown and refreshes only the gown's breathing surface.</summary>
+        public static string ImportRedrapedGown()
+        {
+            Guard();
+            var renderer = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
+            GameObject.Find("MPFB patient").GetComponent<PatientIdleView>().RestorePose();
+            var fit = JsonUtility.FromJson<Surface>(File.ReadAllText(Review + "gown-fit-output.json"));
+            if (fit.triangles == null || fit.triangles.Length == 0 || fit.boneIndex == null) throw new InvalidOperationException("gown-fit-output.json has no topology; run drape_gown_sag.py");
+            var old = AssetDatabase.LoadAssetAtPath<Mesh>(Folder + "patient_gown_draped.asset");
+            int n = fit.vertices.Length; var weights = new BoneWeight[n];
+            for (int i = 0; i < n; i++) weights[i] = new BoneWeight { boneIndex0 = fit.boneIndex[4 * i], boneIndex1 = fit.boneIndex[4 * i + 1], boneIndex2 = fit.boneIndex[4 * i + 2], boneIndex3 = fit.boneIndex[4 * i + 3],
+                                                                    weight0 = fit.boneWeight[4 * i], weight1 = fit.boneWeight[4 * i + 1], weight2 = fit.boneWeight[4 * i + 2], weight3 = fit.boneWeight[4 * i + 3] };
+            string path = Folder + "patient_gown_relaxed.asset";
+            var mesh = AssetDatabase.LoadAssetAtPath<Mesh>(path); bool isNew = mesh == null;
+            if (isNew) mesh = new Mesh { name = "patient_gown_relaxed" }; else mesh.Clear();
+            mesh.indexFormat = n > 65000 ? UnityEngine.Rendering.IndexFormat.UInt32 : UnityEngine.Rendering.IndexFormat.UInt16;
+            mesh.vertices = fit.vertices; mesh.uv = fit.uv; mesh.triangles = fit.triangles; mesh.boneWeights = weights;
+            mesh.bindposes = renderer.bones.Select(b => b.worldToLocalMatrix * renderer.transform.localToWorldMatrix).ToArray();
+            mesh.RecalculateNormals(); mesh.RecalculateTangents(); mesh.RecalculateBounds();
+            if (isNew) AssetDatabase.CreateAsset(mesh, path); else EditorUtility.SetDirty(mesh);
+            AssetDatabase.SaveAssets();
+            renderer.sharedMesh = mesh;
+            { var probe = new Mesh(); renderer.BakeMesh(probe, true); Debug.Log($"[PatientBayLayout] probe bake {probe.vertexCount} of {mesh.vertexCount}; bones {renderer.bones.Length} bind {mesh.bindposes.Length}; weights zero: {weights.Count(w => w.weight0 + w.weight1 + w.weight2 + w.weight3 < .001f)}; max bone idx {weights.Max(w => Mathf.Max(Mathf.Max(w.boneIndex0, w.boneIndex1), Mathf.Max(w.boneIndex2, w.boneIndex3)))}"); UnityEngine.Object.DestroyImmediate(probe); }
+            typeof(PatientIdleSetup).GetMethod("AddBreath", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).Invoke(null, new object[] { renderer, "patient_gown_idle.asset", true });
+            AssetDatabase.SaveAssets();
+            EditorSceneManager.MarkSceneDirty(renderer.gameObject.scene); EditorSceneManager.SaveScene(renderer.gameObject.scene);
+            return $"Re-draped gown installed: {n} vertices, {fit.triangles.Length / 3} triangles (was {old.vertexCount} / {old.triangles.Length / 3}).";
         }
 
         private static void Aim(Transform root, Transform next, Vector3 direction) => root.rotation = Quaternion.FromToRotation(next.position - root.position, direction) * root.rotation;

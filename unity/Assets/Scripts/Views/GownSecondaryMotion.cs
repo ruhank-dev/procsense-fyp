@@ -39,6 +39,8 @@ namespace ProcSense.VR.Views
         [SerializeField] private Mesh originalMesh;
         [SerializeField] private Transform[] originalBones;
 
+        /// <summary>World height below which cloth cannot sink: the mattress while the patient lies on the bed, the floor when the patient stands (tests and reviews set it).</summary>
+        public float SurfaceY { get => surfaceY; set => surfaceY = value; }
         public Node[] Nodes => nodes;
         public Mesh OriginalMesh => originalMesh;
         public Transform[] OriginalBones => originalBones;

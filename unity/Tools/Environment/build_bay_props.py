@@ -69,6 +69,6 @@ BUILDERS = {"bay_headwall": headwall, **pb.BUILDERS_B, **pc.BUILDERS_C}
 if __name__ == "__main__":
     assert bpy.app.version[:3] == (4, 5, 14), bpy.app.version_string
     wanted = [a for a in sys.argv[sys.argv.index("--") + 1:]] if "--" in sys.argv else list(BUILDERS)
-    results = [pk.export(n, BUILDERS[n], OUT) for n in wanted]
+    results = [pk.export(n, BUILDERS[n], OUT, allow_open=("Curtain",)) if n == "privacy_curtain" else pk.export(n, BUILDERS[n], OUT) for n in wanted]
     (OUT / "validation.json").write_text(json.dumps(results, indent=2) + "\n")
     print("BAYREBUILD", json.dumps(results))

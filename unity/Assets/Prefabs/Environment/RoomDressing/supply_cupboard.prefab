@@ -84,6 +84,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 6e8c5846ff932ff499b00ef94b53934f, type: 2}
+    - target: {fileID: -4351009667677670435, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: -4049092899052516234, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -92,10 +96,22 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -2300878585490054232, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cae47a35d94607b4ab5bd12d45138074, type: 2}
+    - target: {fileID: 320022662968113894, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
       propertyPath: m_Name
       value: supply_cupboard
       objectReference: {fileID: 0}
+    - target: {fileID: 5664833279730353530, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cf8eb8a6458bfaf419a38e532cfb40af, type: 2}
     - target: {fileID: 7084617085586650307, guid: ae99687cba2a68949baf3ee82e7a55a0, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5

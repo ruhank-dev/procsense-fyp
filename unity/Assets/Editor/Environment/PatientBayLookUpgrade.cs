@@ -377,7 +377,7 @@ namespace ProcSense.EditorTools
             {
                 var t = all.FirstOrDefault(x => x != null && x.name == name && x.GetComponentsInChildren<MeshRenderer>().Length > 0);
                 if (t == null) { Debug.Log("[LookUpgrade] contact shadow target not found: " + name); continue; }
-                var rs = t.GetComponentsInChildren<MeshRenderer>().Where(r => r.enabled && r.bounds.min.y < .3f).ToArray();
+                var rs = t.GetComponentsInChildren<MeshRenderer>().Where(r => r.enabled && r.gameObject.activeInHierarchy && r.bounds.min.y < .3f).ToArray();
                 if (rs.Length == 0) continue;
                 var b = rs[0].bounds;
                 foreach (var r in rs) b.Encapsulate(r.bounds);
@@ -401,13 +401,13 @@ namespace ProcSense.EditorTools
             Debug.Log($"[LookUpgrade] contact shadows merged: {quads.Count} quads, {mesh.triangles.Length / 3} tris, 1 draw call");
         }
 
-        static List<Vector3> WheelSpots(Transform item)
+        internal static List<Vector3> WheelSpots(Transform item)
         {
             var clusters = new Dictionary<(int, int), (Vector3 sum, int n)>();
             foreach (var r in item.GetComponentsInChildren<MeshRenderer>())
             {
                 var mf = r.GetComponent<MeshFilter>();
-                if (mf == null || mf.sharedMesh == null) continue;
+                if (mf == null || mf.sharedMesh == null || !r.gameObject.activeInHierarchy) continue;
                 foreach (var v in mf.sharedMesh.vertices)
                 {
                     var w = r.transform.TransformPoint(v);

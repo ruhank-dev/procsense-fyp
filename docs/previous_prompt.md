@@ -3938,3 +3938,11 @@ FINAL DECISION: HDRP is cancelled. Stop all HDRP work, delete the isolated HDRP 
 (This entry keeps the requirements, shortened.)
 ``````
 
+
+## Entry 228 (3 Nov 2026, UTC)
+
+``````text
+Comprehensive Unity realism research and implementation: research the SpeedTutor YouTube channel (inventory every public video, read what is accessible, write docs/research/speedtutor_unity_masterguide.md with technique, source, URP/Quest compatibility, status and verification, plus a coverage inventory so research can resume); research free realistic PBR textures and 3D assets (Poly Haven, ambientCG, Unity Asset Store, Sketchfab, others) with ChatGPT's independent recommendations, compare candidates and record sources and licences in docs/research/asset_sources_and_licenses.md; professional asset first, adapt second, PBR over existing geometry third, custom Blender only last; upgrade every material to real PBR; upgrade every environment (PatientBay, corridor, reception, OT, exterior) and all characters; apply SpeedTutor techniques where they measurably help; separate Enhanced URP desktop and optimised Quest 2 quality, no Quest claims without headset tests; mandatory ChatGPT visual review loop with a register; implement in tested batches, preserve gameplay; no AI attribution in commits.
+Added mid-turn: the same research-first workflow for every character, garment and fabric: realistic ready-made rigged humans (doctors, nurses, patients, receptionist), professional medical clothing (lab coats, scrubs, gowns, caps, masks, gloves, shoes, badges), PBR fabrics for all cloth, fix defective clothing (torn-looking or ballooned coats, clipping, gown draping naturally when lying and standing), skin/hair/eye shading, natural poses and animation, Quest-friendly baked or pose-specific cloth, document sources, ChatGPT critique until no major defect remains.
+(This entry keeps the requirements, shortened.)
+``````

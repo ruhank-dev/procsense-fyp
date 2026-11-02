@@ -75,6 +75,7 @@ namespace ProcSense.Tests.PlayMode
                 Assert.Greater(lag, .02f, c.name + " swings when pushed");
                 Settle(c.Step, 420);
                 Assert.Less(c.MaxLag(), .006f, c.name + " settles");
+                c.Open = 0f; Settle(c.Step, 300);                                                                // the privacy curtain now rests gathered (open); draw it across first, then open it again
                 var far = c.Nodes.OrderByDescending(n => n.Column).First(); var before = far.Bone.position;
                 c.Open = 1f; Settle(c.Step, 300);
                 Assert.Greater(Vector3.Distance(before, far.Bone.position), .25f * c.Nodes.Max(n => n.Column), c.name + " gathers along its track");

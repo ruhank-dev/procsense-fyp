@@ -17,6 +17,7 @@ sys.path.insert(0, str(ROOT / "tools" / "blender"))
 import procsense_bpy as g
 
 OUT = ROOT / "unity" / "Logs" / "RoomDressing"
+TRIANGLE_CAP = 5000          # build_ot_equipment.py raises this for hero equipment
 g.PALETTE.update({
     "Ivory": ((.79, .82, .78, 1), 0, .55),
     "Sage": ((.35, .49, .44, 1), 0, .6),
@@ -224,7 +225,7 @@ def export(name, build):
         assert obj.data.uv_layers, obj.name
         tris += sum(len(f.verts)-2 for f in bm.faces)
         bm.free()
-    assert tris < 5000, (name, tris)
+    assert tris < TRIANGLE_CAP, (name, tris)
     coords = [o.matrix_world @ Vector(c) for o in meshes for c in o.bound_box]
     bounds = [[min(c[i] for c in coords) for i in range(3)], [max(c[i] for c in coords) for i in range(3)]]
     bpy.ops.wm.save_as_mainfile(filepath=str(OUT / (name+".blend")))

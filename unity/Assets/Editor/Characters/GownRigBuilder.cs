@@ -49,6 +49,16 @@ namespace ProcSense.EditorTools
                 else if (n.StartsWith("upperarm")) f[i] = .22f;
                 else if (n.StartsWith("pelvis") || n.StartsWith("thigh") || n.StartsWith("calf") || n.StartsWith("spine_01")) f[i] = Smooth(.03f, .30f, d);
             }
+            // the strip of cloth that sags between the thighs follows the pelvis, not either thigh: a raised knee must not drag the centre of the gown across the gap
+            int pelvisIdx = Array.IndexOf(bones, pelvis);
+            var gap = new bool[wv.Length];
+            for (int i = 0; i < wv.Length; i++)
+            {
+                var local = pelvis.InverseTransformPoint(wv[i]); float lateral = Mathf.Abs(Vector3.Dot(wv[i] - pelvis.position, Vector3.Cross(axis, Vector3.up).normalized));
+                float towardFeet = Vector3.Dot(pelvis.position - wv[i], axis);
+                gap[i] = pelvisIdx >= 0 && f[i] > .08f && lateral < .085f && towardFeet > .02f && wv[i].y < .88f;
+                if (gap[i]) dom[i] = pelvisIdx;
+            }
             var free = Enumerable.Range(0, wv.Length).Where(i => f[i] > .08f).ToArray();
             if (free.Length < K) throw new InvalidOperationException("too few loose vertices: " + free.Length);
             // k-means, farthest-point initialisation
@@ -76,6 +86,7 @@ namespace ProcSense.EditorTools
             foreach (var i in free)
             {
                 var w = bw[i]; var arr = new[] { (w.boneIndex0, w.weight0), (w.boneIndex1, w.weight1), (w.boneIndex2, w.weight2), (w.boneIndex3, w.weight3) }.OrderByDescending(t => t.Item2).ToArray();
+                if (gap[i]) arr = new[] { (pelvisIdx, 1f), (arr[0].Item1 == pelvisIdx ? arr[1].Item1 : arr[0].Item1, 0f), (0, 0f), (0, 0f) };
                 float s = arr[0].Item2 + arr[1].Item2; if (s < 1e-5f) continue;
                 var near = Enumerable.Range(0, K).OrderBy(c => (cen[c] - wv[i]).sqrMagnitude).Take(2).ToArray();
                 float d0 = 1f / (.003f + (cen[near[0]] - wv[i]).magnitude), d1 = 1f / (.003f + (cen[near[1]] - wv[i]).magnitude); float ds = d0 + d1;

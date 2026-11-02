@@ -210,21 +210,71 @@ def handrub():
     rbox("Drip_tray", (.16, .15, .015), (0, -.05, -.19), "PlasticGrey", .006)
 
 
+# Ceiling track of the bed's privacy curtain: a U that surrounds the bed on three sides (head wall is the fourth). Waypoints are room coordinates (x, z); the fabric follows the SAME filleted path.
+TRACK_PTS = [(-1.30, 1.80), (-1.30, -.78), (1.52, -.78), (1.52, 1.80)]
+TRACK_CORNER = .30
+TRACK_Z = 2.48
+CURTAIN_HEIGHT = 2.13
+CURTAIN_HEM = .23
+
+
+def track_path(res=24):
+    """Dense polyline of the track centre line using the same quadratic fillet as prop_kit.tube. Returns [(x, y)] and cumulative arc length."""
+    import numpy as np
+    P = [np.array(p, dtype=float) for p in TRACK_PTS]
+    out = [P[0]]
+    for i in range(1, len(P) - 1):
+        a, b, c = P[i - 1], P[i], P[i + 1]
+        da, dc = a - b, c - b
+        k = min(TRACK_CORNER, np.linalg.norm(da) / 2.2, np.linalg.norm(dc) / 2.2)
+        p0 = b + da / np.linalg.norm(da) * k
+        p2 = b + dc / np.linalg.norm(dc) * k
+        for t in range(res + 1):
+            s = t / res
+            out.append((1 - s) ** 2 * p0 + 2 * (1 - s) * s * b + s * s * p2)
+    out.append(P[-1])
+    out = np.array(out)
+    # densify straight stretches so the fabric bends smoothly
+    dense = [out[0]]
+    for q in out[1:]:
+        prev = dense[-1]
+        n = max(1, int(np.linalg.norm(q - prev) / .05))
+        for j in range(1, n + 1):
+            dense.append(prev + (q - prev) * j / n)
+    dense = np.array(dense)
+    seg = np.linalg.norm(np.diff(dense, axis=0), axis=1)
+    return dense, np.concatenate([[0.0], np.cumsum(seg)])
+
+
 def privacy_curtain():
-    """Ceiling track on filleted corners, runner carriers, hangers and a pleated closed-shell curtain (pleated cloth from curtain_gen)."""
+    """U-shaped ceiling track (filleted corners, hangers), and one long pleated single-sheet curtain bent along it (pleated cloth from curtain_gen). The fabric is the CLOSED shape: Unity's CurtainCloth gathers it toward the head-left end when the curtain is opened."""
     import numpy as np
     import curtain_gen as cg
-    tube("Ceiling_track", [(-1.55, 1.78, 2.48), (-1.55, -.78, 2.48), (.95, -.78, 2.48)], .018, "SteelBrushed", corner=.30)
-    for x, y in [(-1.55, 1.60), (-1.55, -.70), (.85, -.78)]:
-        cyl("Ceiling_hanger", (x, y, 2.48), (x, y, 2.76), .009, "SteelBrushed", 16, r=.002)
+    tube("Ceiling_track", [(x, z, TRACK_Z) for x, z in TRACK_PTS], .018, "SteelBrushed", corner=TRACK_CORNER)
+    for x, y in [(-1.30, 1.62), (-1.30, .45), (-1.30, -.62), (-.75, -.78), (.75, -.78), (1.42, -.78), (1.52, .45), (1.52, 1.62)]:
+        cyl("Ceiling_hanger", (x, y, TRACK_Z), (x, y, 2.76), .009, "SteelBrushed", 16, r=.002)
         cyl("Ceiling_rose", (x, y, 2.745), (x, y, 2.765), .028, "PlasticWhite", 24, r=.004)
-    for k in range(11):                                                  # runner carriers along the curtain heading
-        y = .50 + 1.12 * (k + .5) / 11
-        cyl("Runner", (-1.55, y, 2.455), (-1.55, y, 2.50), .010, "PlasticWhite", 12, r=.002)
-        cyl("Hook", (-1.55, y, 2.40), (-1.55, y, 2.46), .0035, "SteelBrushed", 8)
-    verts, norms, uv, uv2, tris = cg.make(1.12, 2.13, 12, .055, thickness=.006, nu=160, nv=48, seed=5, heading=.5)
-    # canonical (x width, y up, z toward viewer) -> Blender (Y along the track, Z up, X toward the bed): a cyclic permutation
-    P = np.stack([-1.55 + verts[:, 2], .50 + verts[:, 0], .23 + verts[:, 1]], -1)
+    for x, y in [(-1.30, 1.80), (1.52, 1.80)]:                            # end stops
+        cyl("Track_end_stop", (x, y, TRACK_Z - .02), (x, y, TRACK_Z + .02), .022, "PlasticWhite", 20, r=.004)
+    dense, S = track_path()
+    L = float(S[-1])
+    import json, pathlib
+    out_dir = pathlib.Path(__file__).resolve().parents[2] / "Logs" / "BayRebuild"; out_dir.mkdir(parents=True, exist_ok=True)
+    (out_dir / "privacy_curtain_path.json").write_text(json.dumps({"length": L, "points": [[round(float(x), 4), round(float(y), 4)] for x, y in dense]}))
+    pleats = int(round(L * 7.6))                                           # wider, softer pleats than the old gathered stack; ten samples per pleat keeps them round
+    nu = pleats * 10 + 1
+    verts, norms, uv, uv2, tris = cg.make(L, CURTAIN_HEIGHT, pleats, .05, nu=nu, nv=18, seed=5, heading=.5, single_sided=True)
+    # bend the strip along the path: width -> arc length, canonical Z (toward the room) -> the path normal pointing at the bed
+    s = np.clip(verts[:, 0], 0, L)
+    px = np.interp(s, S, dense[:, 0]); py = np.interp(s, S, dense[:, 1])
+    d = dense[1:] - dense[:-1]
+    tang = d / np.linalg.norm(d, axis=1, keepdims=True)
+    tang = np.vstack([tang, tang[-1]])
+    tx = np.interp(s, S, tang[:, 0]); ty = np.interp(s, S, tang[:, 1])
+    tl = np.hypot(tx, ty); tx /= tl; ty /= tl
+    nx, ny = -ty, tx                                                       # left of travel (travel is head-left -> foot -> head-right, so left is the bed side)
+    P = np.stack([px + nx * verts[:, 2], py + ny * verts[:, 2], CURTAIN_HEM + verts[:, 1]], -1)
+    N = np.stack([tx * norms[:, 0] + nx * norms[:, 2], ty * norms[:, 0] + ny * norms[:, 2], norms[:, 1]], -1)
     me = bpy.data.meshes.new("Curtain")
     me.from_pydata(P.tolist(), [], np.asarray(tris).reshape(-1, 3).tolist())
     me.update()

@@ -69,11 +69,26 @@ namespace ProcSense.Tests.PlayMode
                 ("patient_bed_contact", new Vector3(1.0f, .62f, .25f), new Vector3(0f, .62f, .85f), 50f),
                 ("room_sofa_window", new Vector3(1.3f, 1.5f, -1.2f), new Vector3(-2.2f, 1.0f, .1f), 70f),
                 ("room_prints", new Vector3(0f, 1.5f, -.5f), new Vector3(0f, 2.1f, 1.9f), 62f),
-                ("room_wall_tv", new Vector3(-.3f, 1.4f, 1.2f), new Vector3(.98f, 1.88f, -1.9f), 50f),
+                ("room_wall_tv", new Vector3(-.3f, 1.4f, 1.2f), new Vector3(0f, 1.7f, -1.95f), 50f),
+                ("bay_doorway", new Vector3(2.36f, 1.60f, -.85f), new Vector3(-.6f, 1.0f, .9f), 78f),
+                ("bay_tv_from_bed", new Vector3(0f, 1.05f, 1.35f), new Vector3(0f, 1.7f, -1.95f), 52f),
+                ("bay_tv_wall", new Vector3(.2f, 1.45f, .2f), new Vector3(0f, 1.45f, -1.95f), 74f),
+                ("bay_sink_access", new Vector3(-.35f, 1.55f, -.25f), new Vector3(-1.45f, .95f, -1.8f), 62f),
+                ("bay_sofa", new Vector3(-.55f, 1.45f, -1.15f), new Vector3(-2.1f, .6f, .45f), 66f),
+                ("bay_floor", new Vector3(2.2f, 1.9f, -1.5f), new Vector3(.4f, 0f, .1f), 78f),
+                ("bay_rail_open", new Vector3(2.1f, 1.65f, -1.5f), new Vector3(.1f, 2.45f, .5f), 74f),
+                ("gown_front", new Vector3(0f, 1.15f, -.55f), new Vector3(0f, .85f, .85f), 40f),
+                ("gown_front_low", new Vector3(.05f, .88f, -.45f), new Vector3(0f, .80f, .75f), 44f),
+                ("gown_top", new Vector3(0f, 2.1f, .55f), new Vector3(0f, .75f, .75f), 44f),
+                ("gown_side_left", new Vector3(-.95f, .95f, .75f), new Vector3(0f, .78f, .75f), 46f),
+                ("closed_privacy", new Vector3(2.15f, 1.75f, -1.55f), new Vector3(0f, 1.0f, .9f), 74f),
+                ("closed_privacy_top", new Vector3(.1f, 2.65f, -1.7f), new Vector3(.1f, 1.7f, .6f), 82f),
             };
             foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude)) c.enabled = false;
             foreach (var v in views)
             {
+                foreach (var curtain in Object.FindObjectsByType<ProcSense.VR.Views.CurtainCloth>(FindObjectsInactive.Exclude, FindObjectsSortMode.None).Where(c => c.UsesPath)) curtain.Open = v.n.StartsWith("closed_") ? 0f : 1f;   // privacy curtain: open by default, drawn shut for the closed_ views
+                for (int settle = 0; settle < 150; settle++) yield return null;
                 var go = new GameObject("CaptureCamera"); var cam = go.AddComponent<Camera>();
                 cam.transform.position = v.pos; cam.transform.LookAt(v.look); cam.fieldOfView = v.fov; cam.nearClipPlane = .02f; cam.farClipPlane = 60f;
                 cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(.12f, .12f, .14f);

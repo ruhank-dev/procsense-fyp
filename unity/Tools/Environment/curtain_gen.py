@@ -18,7 +18,7 @@ def _noise1(n, cells, rng):
     return g[i] * (1 - f) + g[i + 1] * f
 
 
-def make(width, height, pleats, amp, thickness=.006, nu=120, nv=44, seed=1, heading=.55, scallop=.012, drift=.012):
+def make(width, height, pleats, amp, thickness=.006, nu=120, nv=44, seed=1, heading=.55, scallop=.012, drift=.012, single_sided=False):
     rng = np.random.default_rng(seed)
     u = np.linspace(0, 1, nu)
     v = np.linspace(0, 1, nv)                                           # 0 = hem, 1 = top
@@ -65,7 +65,10 @@ def make(width, height, pleats, amp, thickness=.006, nu=120, nv=44, seed=1, head
                 a = base + j * nu + i; b = a + 1; c = a + nu + 1; d = a + nu
                 tris.extend([a, c, d, a, b, c] if not flip else [a, d, c, a, c, b])   # Unity front face = clockwise
 
-    add_sheet(front, n, False, (0.0, 0.0, .48, 1.0))
+    add_sheet(front, n, False, (0.0, 0.0, 1.0, 1.0) if single_sided else (0.0, 0.0, .48, 1.0))
+    if single_sided:                                                     # one sheet, drawn double-sided by the material (Quest triangle budget)
+        return (np.array(verts, dtype=np.float32), np.array(norms, dtype=np.float32), np.array(uv, dtype=np.float32),
+                np.array(uv2, dtype=np.float32), np.array(tris, dtype=np.int32))
     add_sheet(back, n, True, (.52, 0.0, .48, 1.0))
 
     def strip(Pa, Pb, Na):

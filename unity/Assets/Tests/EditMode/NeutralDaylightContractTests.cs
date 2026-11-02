@@ -36,8 +36,8 @@ namespace ProcSense.Tests.EditMode
             Assert.That(sun.transform.eulerAngles.x, Is.InRange(25f, 60f), "daytime elevation");
             Assert.That(sun.color.b / sun.color.r, Is.InRange(.8f, 1.1f), "neutral daylight, no orange");
             Assert.That(sun.shadows, Is.Not.EqualTo(LightShadows.None));
-            Assert.That(sun.shadowAngle, Is.GreaterThanOrEqualTo(5f), "soft penumbra, no hard game-like shadow edges");
-            Assert.That(sun.intensity, Is.InRange(.2f, 1.6f), "daylight is mostly diffuse window light");
+            Assert.That(sun.shadowAngle, Is.GreaterThanOrEqualTo(1.5f), "soft but readable penumbra (3 Nov 2026: owner asked for visible sun patches and window-frame shadows, so the 5 degree floor was lowered)");
+            Assert.That(sun.intensity, Is.InRange(.2f, 3.5f), "direct sun visible on floors and walls (3 Nov 2026 owner request), still well below an HDR hot spot");
             var dir = sun.transform.forward;
             Assert.That(dir.y, Is.LessThan(0f)); Assert.That(dir.x, Is.GreaterThan(0f), "travels from the -X window into the room");
         }

@@ -110,7 +110,8 @@ namespace ProcSense.EditorTools
                 material.color = new Color(0.16f, 0.36f, 0.58f);
                 AssetDatabase.CreateAsset(material, "Assets/Materials/Prototype/Mat_295C94.mat");
             }
-            go.GetComponent<Renderer>().sharedMaterial = material;
+            // the pad is only a trigger target now: no visible disc in the room (owner request); the collider, anchor and destination do the work
+            UnityEngine.Object.DestroyImmediate(go.GetComponent<MeshRenderer>()); UnityEngine.Object.DestroyImmediate(go.GetComponent<MeshFilter>());
         }
     }
 }

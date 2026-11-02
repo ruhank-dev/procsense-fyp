@@ -409,3 +409,24 @@ From the planning set in `docs/architecture/` (feature registry A1 to E65, live 
 | 09 October 2026 (CI/CD) | CI/CD added (DT-028 re-scoped, DT-026 completed, DT-037 updated, DT-041–DT-045 added). |
 | 09 October 2026 (later) | Owner decisions: step 6 approved (DT-030); approval statement closes the 15 institutional decisions (DT-034, DT-018) and ISS-0001 / ISS-0002 (DT-019); no deadlines (DT-035); wristband applied instantly after verification (DT-006, DT-010 re-scoped, no delay); DT-017 unblocked; times now in UTC. |
 | 09 October 2026 | Register created; context-folder sync and prompt history created (DT-034–DT-036 added).  DT-002 completed (owner accepted the ±1 values; `SR-0035` updated). DT-001, DT-006–DT-011 planned as new step files (workflow s18/s19, characters s08, vr-interaction-ui s12, voice-audio s06). Other items collected from the plans, the step 6 hand-off and the engine steps. |
+
+## Visual overhaul, 3 Nov 2026 (open items; details in `docs/qa/visual_audit_2026-11-02.md` and `docs/qa/visual_qa_register.md`)
+
+| ID | Item | Status |
+|---|---|---|
+| VO-01 | SpeedTutor channel: 14 of 1,032 videos read via auto-captions, 123 more flagged relevant and unread (`docs/research/speedtutor_video_inventory.csv`); no video was watched | In progress |
+| VO-02 | Sketchfab CC-BY medical equipment candidates found but not downloadable without an authenticated Sketchfab session or token; owner to supply a token or manual downloads (`docs/research/asset_sources_and_licenses.md`) | Blocked (owner) |
+| VO-03 | OT: scrub sink, wall gas panels, boom monitor, floor and wall detail not yet modelled; rebuilt equipment triangle counts (light 6.8k, table 5.8k, anaesthesia 11.9k, Mayo 9.6k) need LODs for Quest | In progress |
+| VO-04 | Characters: staff hands/clipboards, faces, scrub/coat construction detail, shoes, receptionist; patient feet/hands/skin, gown fold detail and weave; no complete free rigged medical wardrobe exists (ChatGPT agrees), so the MPFB plus Blender wardrobe route continues | In progress |
+| VO-05 | Exterior facades, glass, trees, streets, sun disc; photographic mid-height panorama unobtainable under a free licence | Open |
+| VO-06 | Decals, light probes near characters, reflection-probe audit, LOD Groups, Desktop/Quest tier budget measurement; Quest headset check is Sannan's | Open |
+| VO-07 | Full EditMode/PlayMode/backend tests, `task ci`, Quest APK build after the final bake; no commit or push before owner approval | Pending |
+
+| ID | Item (4 Nov planning, added 3 Nov UTC) | Status |
+|---|---|---|
+| VO-08 | Corridor people: 8 baked-pose civilians seated/standing with `StaffIdleView` roles (phone, reading, talking, cough, look-around); NOT done: walking staff, a visitor pushing a wheelchair, staff transporting equipment, entering/leaving rooms, hands/faces/clothing quality review, patient entering rooms (no locomotion animation exists; baked static poses only) | In progress |
+| VO-09 | Perforated steel benches (original model, alpha-cut holes), stretcher, side tables placed in groups; reception seating, more equipment (medical carts, PPE stations), reception accessories, desk clutter still open | In progress |
+| VO-10 | Glass: premultiplied-alpha Fresnel panes with waviness and dust maps applied to corridor wall, window, frame and door glass; sun shafts and frame-shadow patterns in the corridor not verified; mirrors/planar reflections not implemented | In progress |
+| VO-11 | Exterior city buildings, vehicles, trees and sun-direction match with the interior remain open | Open |
+| VO-12 | Quest crowd reduction: `StaffIdleView.UpdateInterval` is 0.1 s on Android builds; crowd density switch (fewer people on Quest) not implemented; no headset measurement | Open |
+
