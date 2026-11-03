@@ -49,7 +49,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(view.Completed);
             Assert.AreEqual("", view.Password.text, "Do not retain the entered password after success");
             view.Submit(); // Repeated click must not start a second workspace.
-            for (int i = 0; i < 60; i++) yield return null;
+            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
             Assert.IsNull(Object.FindFirstObjectByType<DemoLoginView>());
@@ -85,7 +85,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual("", view.Status);
             view.Submit();
             Assert.IsTrue(view.Completed);
-            for (int i = 0; i < 60; i++) yield return null;
+            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
         }
@@ -119,7 +119,7 @@ namespace ProcSense.Tests.PlayMode
         {
             DemoLoginSettings.LoginRequiredOverride = false;
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 60; i++) yield return null;
+            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
             Assert.IsNull(Object.FindFirstObjectByType<DemoLoginView>());

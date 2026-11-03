@@ -137,8 +137,8 @@ namespace ProcSense.EditorTools
                 const float xw = -.15f, xe = 2.45f, top = 3.05f, wy0 = 1.2f, wy1 = 2.85f; float wz0 = zlo + .2f, wz1 = zhi - .04f;
                 var room = new GameObject("Room z" + Mathf.RoundToInt(zc * 10)); room.transform.SetParent(host.transform, false);
                 float cx = (xw - .05f + xe) / 2f, wx = xe - (xw - .05f) + .1f;
-                Cube(room.transform, "Floor", new Vector3(cx, -.05f, zmid), new Vector3(wx, .1f, depth + .2f), floorM);
-                Cube(room.transform, "Ceiling", new Vector3(cx, top + .05f, zmid), new Vector3(wx, .1f, depth + .2f), ceilM);
+                Cube(room.transform, "Sunroom floor", new Vector3(cx, -.05f, zmid), new Vector3(wx, .1f, depth + .2f), floorM);
+                Cube(room.transform, "Sunroom ceiling", new Vector3(cx, top + .05f, zmid), new Vector3(wx, .1f, depth + .2f), ceilM);
                 Cube(room.transform, "South partition", new Vector3(cx, top / 2f, zlo - .04f), new Vector3(wx, top, .08f), wallM, false);
                 Cube(room.transform, "North partition", new Vector3(cx, top / 2f, zhi + .04f), new Vector3(wx, top, .08f), wallM, false);
                 Cube(room.transform, "West wall below window", new Vector3(xw, wy0 / 2f, zmid), new Vector3(.1f, wy0, depth), wallM);
@@ -263,6 +263,15 @@ namespace ProcSense.EditorTools
             var host = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include).FirstOrDefault(t => t.name == "Door sun shafts");
             if (host != null) host.gameObject.SetActive(!System.Environment.GetCommandLineArgs().Contains("-noshafts"));
             EditorSceneManager.MarkSceneDirty(sc); EditorSceneManager.SaveScene(sc); Debug.Log("[CorridorSun] shafts active = " + (host != null && host.gameObject.activeSelf));
+        }
+
+        /// <summary>One-off migration: the sunlit rooms behind the door glass used the names "Floor" and "Ceiling", which collided with the room shell the lighting tests look up by name (exactly one "Floor" per scene).</summary>
+        public static void RenameSunroom()
+        {
+            var sc = EditorSceneManager.OpenScene("Assets/Scenes/Corridor.unity", OpenSceneMode.Single); int n = 0;
+            var host = sc.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<Transform>(true)).FirstOrDefault(t => t.name == "Sunlit rooms behind the doors");
+            if (host != null) foreach (var t in host.GetComponentsInChildren<Transform>(true)) { if (t.name == "Floor") { t.name = "Sunroom floor"; n++; } else if (t.name == "Ceiling") { t.name = "Sunroom ceiling"; n++; } }
+            EditorSceneManager.MarkSceneDirty(sc); EditorSceneManager.SaveScene(sc); Debug.Log("[CorridorSun] renamed " + n + " sunroom objects");
         }
 
         public static void Apply() => Run(11f, 138f, 1.9f, 0f);

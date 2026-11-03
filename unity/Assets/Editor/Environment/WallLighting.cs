@@ -60,7 +60,7 @@ namespace ProcSense.EditorTools
 
         static Vector3 SunDirection()
         {
-            var cfg = JsonUtility.FromJson<Cfg>(File.ReadAllText("Logs/Lighting/golden.json")); return Quaternion.Euler(cfg.sun.pitch, cfg.sun.yaw, 0f) * Vector3.forward;
+            var cfg = JsonUtility.FromJson<Cfg>(File.ReadAllText("Tools/Lighting/golden.json")); return Quaternion.Euler(cfg.sun.pitch, cfg.sun.yaw, 0f) * Vector3.forward;
         }
 
         public static void Apply()

@@ -47,7 +47,9 @@ namespace ProcSense.Tests.EditMode
         [Test]
         public void Bezel_is_satin_and_the_housing_carries_baked_occlusion()
         {
-            Assert.That(Mat("MonBezel").GetFloat("_Smoothness"), Is.InRange(.6f, .88f), "satin black, not piano black");
+            var bezel = Mat("MonBezel");                                                                                    // after the 2 Nov material overhaul the bezel is dark plastic whose smoothness comes from the packed mask map (the slider is its multiplier)
+            if (bezel.GetTexture("_MetallicGlossMap") == null) Assert.That(bezel.GetFloat("_Smoothness"), Is.InRange(.6f, .88f), "satin black, not piano black");
+            else Assert.That(bezel.GetFloat("_Smoothness"), Is.InRange(.6f, 1f), "mask-driven smoothness: the slider only scales the map");
             foreach (var n in new[] { "MonShell", "MonShell2", "MonBezel", "MonKey" })
                 Assert.That(Mat(n).GetTexture("_OcclusionMap"), Is.Not.Null, n + " occlusion map");
             Assert.That(Mat("MonKey").GetFloat("_Smoothness"), Is.LessThan(.5f), "soft-touch keys");

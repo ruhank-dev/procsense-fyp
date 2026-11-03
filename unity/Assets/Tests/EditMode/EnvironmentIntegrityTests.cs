@@ -57,8 +57,10 @@ namespace ProcSense.Tests.EditMode
             foreach (var l in LightmapSettings.lightmaps) Assert.NotNull(l.lightmapColor, room + ": a lightmap texture is missing (LFS pointer?)");
             Assert.Greater(LightmapSettings.lightProbes != null ? LightmapSettings.lightProbes.count : 0, 0, room + ": no baked light probes");
             Assert.Greater(Object.FindObjectsByType<ReflectionProbe>(FindObjectsInactive.Include).Length, 0, room + ": no reflection probes");
-            foreach (var rp in Object.FindObjectsByType<ReflectionProbe>(FindObjectsInactive.Include)) if (rp.mode == ReflectionProbeMode.Baked) Assert.NotNull(rp.bakedTexture, room + ": reflection probe '" + rp.name + "' has no baked texture");
-            Assert.Greater(Object.FindObjectsByType<Volume>(FindObjectsInactive.Include).Length, 0, room + ": no post-processing Volume");
+            foreach (var rp in Object.FindObjectsByType<ReflectionProbe>(FindObjectsInactive.Include)) Assert.NotNull(rp.texture, room + ": reflection probe '" + rp.name + "' has no texture");
+            // exposure and contrast live in the project's default Volume profile; PatientBay adds a local trim Volume on top of it
+            Assert.IsInstanceOf<UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset>(GraphicsSettings.defaultRenderPipeline, room + ": the default render pipeline is not the URP asset");
+            if (room == "PatientBay") Assert.Greater(Object.FindObjectsByType<Volume>(FindObjectsInactive.Include).Length, 0, room + ": no local exposure trim Volume");
         }
 
         [Test]
@@ -80,24 +82,19 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
-        public void Every_texture_referenced_by_a_material_loads()
+        public void Every_guid_referenced_by_a_material_resolves_to_an_asset()
         {
-            var bad = new List<string>();
-            foreach (var g in AssetDatabase.FindAssets("t:Material", new[] { "Assets/Materials", "Assets/Characters" }))
+            var bad = new List<string>(); var rx = new System.Text.RegularExpressions.Regex(@"guid: ([0-9a-f]{32})");
+            foreach (var g in AssetDatabase.FindAssets("t:Material", new[] { "Assets/Materials", "Assets/Characters", "Assets/Models" }))
             {
-                var path = AssetDatabase.GUIDToAssetPath(g); var m = AssetDatabase.LoadAssetAtPath<Material>(path); if (m == null || m.shader == null) { bad.Add(path + " (cannot load)"); continue; }
-                foreach (var prop in m.GetTexturePropertyNames())
+                var path = AssetDatabase.GUIDToAssetPath(g); if (!path.EndsWith(".mat")) continue;
+                foreach (System.Text.RegularExpressions.Match m in rx.Matches(System.IO.File.ReadAllText(path)))
                 {
-                    var t = m.GetTexture(prop);
-                    var so = new SerializedObject(m); var env = so.FindProperty("m_SavedProperties.m_TexEnvs");
-                    for (int i = 0; i < env.arraySize; i++)
-                    {
-                        var e = env.GetArrayElementAtIndex(i); if (e.FindPropertyRelative("first").stringValue != prop) continue;
-                        var tex = e.FindPropertyRelative("second.m_Texture"); if (tex.objectReferenceValue == null && tex.objectReferenceInstanceIDValue != 0) bad.Add(path + " -> missing texture for " + prop);
-                    }
+                    var guid = m.Groups[1].Value; if (guid.Trim('0').Length == 0) continue;                        // built-in resources have all-zero or fixed guids
+                    if (string.IsNullOrEmpty(AssetDatabase.GUIDToAssetPath(guid)) && !guid.StartsWith("0000000000000000")) bad.Add(path + " -> unknown guid " + guid);
                 }
             }
-            Assert.IsEmpty(bad, string.Join("\n", bad.Take(25)));
+            Assert.IsEmpty(bad, string.Join(System.Environment.NewLine, bad.Take(25)));
         }
 
         [Test]

@@ -10,13 +10,13 @@ namespace ProcSense.EditorTools
 {
     /// <summary>
     /// Golden-hour lighting for PatientBay, lighting only: lights, ambient, the exterior backdrop's tint, bake quality and the connected three-room bake.
-    /// Nothing about objects, geometry, textures or floors is touched. Values come from Logs/Lighting/golden.json so a look can be iterated without recompiling.
+    /// Nothing about objects, geometry, textures or floors is touched. Values come from unity/Tools/Lighting/golden.json (tracked, so a clone rebakes with the same sun) so a look can be iterated without recompiling.
     /// Colours in the JSON are sRGB (as the Light colour field shows them). Stages: Apply -> Bake (connected bake) -> Reflections (room cube + monitor local probe).
     /// </summary>
     public static class GoldenHourLighting
     {
         const string LightingPath = "Assets/Settings/HospitalLighting/PatientBay.lighting";
-        static string CfgPath => Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Logs", "Lighting", "golden.json"));
+        static string CfgPath => Path.GetFullPath(Path.Combine(Application.dataPath, "..", "Tools", "Lighting", "golden.json"));
 
         [Serializable] public class SunCfg { public float pitch = 20f, yaw = 135f, intensity = 2.4f, shadowAngle = 2f; public float[] color = { 1f, .80f, .58f }; public bool cookie = false; public bool mixed = false; }
         [Serializable] public class LowSunCfg { public float pitch = 6f, yaw = 108f, intensity = 0f, shadowAngle = .5f; public float[] color = { 1f, .62f, .30f }; public bool cookie = false; }

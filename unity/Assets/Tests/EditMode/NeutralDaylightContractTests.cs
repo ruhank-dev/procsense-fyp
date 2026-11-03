@@ -33,7 +33,7 @@ namespace ProcSense.Tests.EditMode
             var sun = Named("Sun through window");
             Assert.That(sun.type, Is.EqualTo(LightType.Directional));
             Assert.That(sun.lightmapBakeType, Is.EqualTo(LightmapBakeType.Mixed), "static GI is baked; dynamic objects (patient, gown) receive its realtime shadow");
-            Assert.That(sun.transform.eulerAngles.x, Is.InRange(25f, 60f), "daytime elevation");
+            Assert.That(sun.transform.eulerAngles.x, Is.InRange(20f, 60f), "daytime elevation (3 Nov 2026: lowered to 24 degrees for the long window-frame streaks across the floor, owner approved)");
             Assert.That(sun.color.b / sun.color.r, Is.InRange(.8f, 1.1f), "neutral daylight, no orange");
             Assert.That(sun.shadows, Is.Not.EqualTo(LightShadows.None));
             Assert.That(sun.shadowAngle, Is.GreaterThanOrEqualTo(1.5f), "soft but readable penumbra (3 Nov 2026: owner asked for visible sun patches and window-frame shadows, so the 5 degree floor was lowered)");
@@ -66,7 +66,7 @@ namespace ProcSense.Tests.EditMode
             Assert.IsFalse(GameObjectUtility.GetStaticEditorFlags(pane.gameObject).HasFlag(StaticEditorFlags.ContributeGI));
             Assert.That(pane.sharedMaterial.GetFloat("_Surface"), Is.EqualTo(1f), "transparent");
             Assert.That(pane.sharedMaterial.GetColor("_BaseColor").a, Is.InRange(.02f, .15f), "clear glass");
-            Assert.That(pane.transform.lossyScale.z, Is.GreaterThan(2.8f), "the wide window opening");
+            Assert.That(pane.transform.lossyScale.z, Is.GreaterThan(2.0f), "the wide window opening (the rebuilt bay window is 2.08 m between its frames)");
             var ext = all.Single(r => r.name == "Window exterior backdrop");
             Assert.That(ext.sharedMaterial.GetTexture("_BaseMap").name, Does.Contain("skyline"), "the high-rise city view");
             Assert.That(all.Any(r => r.name == "Window blinds"), "horizontal blinds");
