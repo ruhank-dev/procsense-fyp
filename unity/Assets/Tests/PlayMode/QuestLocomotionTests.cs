@@ -80,7 +80,8 @@ namespace ProcSense.Tests.PlayMode
                 while (Time.realtimeSinceStartup - t0 < 6f && distance < .05f) { yield return null; distance = Vector3.Dot(rig.Camera.transform.position - start, forward); }
                 yield return new WaitForSeconds(1);
                 distance = Vector3.Dot(rig.Camera.transform.position - start, forward);
-                Assert.That(distance, Is.InRange(.05f, .70f), "Move toward the obstruction, then stop at its collider");
+                var near = Physics.OverlapSphere(start + forward * .45f, .9f); var cc = rig.GetComponent<CharacterController>();
+                Assert.That(distance, Is.InRange(.05f, .70f), "Move toward the obstruction, then stop at its collider. rig=" + rig.transform.position + " cam=" + rig.Camera.transform.position + " start=" + start + " cc.enabled=" + (cc != null && cc.enabled) + " scenes=" + string.Join(",", System.Linq.Enumerable.Select(System.Linq.Enumerable.Range(0, SceneManager.sceneCount), i => SceneManager.GetSceneAt(i).name)) + " near=" + string.Join(",", System.Linq.Enumerable.Select(near, c => c.name + "@" + c.gameObject.scene.name)));
                 Assert.That(rig.transform.position.y, Is.InRange(-.06f, .1f));
                 reader.manualValue = Vector2.zero;
                 Assert.AreEqual(hash, SimulationHost.Instance.Observable.Hash());
