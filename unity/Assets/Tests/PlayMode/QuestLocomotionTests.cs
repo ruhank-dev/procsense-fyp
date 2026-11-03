@@ -64,7 +64,17 @@ namespace ProcSense.Tests.PlayMode
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
             var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
             blocker.name = "Movement regression obstruction";
-            var forward = Vector3.ProjectOnPlane(rig.Camera.transform.forward, Vector3.up).normalized;
+            // the rig's start yaw depends on what ran before; face a direction with a clear metre and a half in front of the capsule (the bay's wall TV, tablet table and bed all have colliders near the spawn point)
+            Vector3 Fwd() => Vector3.ProjectOnPlane(rig.Camera.transform.forward, Vector3.up).normalized;
+            var cc0 = rig.GetComponent<CharacterController>(); float applied = 0f;
+            foreach (var yaw in new[] { 0f, 180f, 90f, -90f })
+            {
+                if (yaw != 0f) { rig.transform.Rotate(0, yaw - applied, 0); applied = yaw; }
+                Physics.SyncTransforms();
+                var c = rig.transform.TransformPoint(cc0.center); float half = Mathf.Max(0f, cc0.height / 2f - cc0.radius);
+                if (!Physics.CapsuleCast(c - Vector3.up * half, c + Vector3.up * half, cc0.radius * .95f, Fwd(), out _, 1.6f, ~0, QueryTriggerInteraction.Ignore)) break;
+            }
+            var forward = Fwd();
             Vector3 start = rig.Camera.transform.position;
             blocker.transform.position = Vector3.ProjectOnPlane(start + forward * .85f, Vector3.up) + Vector3.up;
             blocker.transform.rotation = Quaternion.LookRotation(forward);
