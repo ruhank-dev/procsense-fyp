@@ -512,7 +512,7 @@ Procedure:
 
 Procedure:
 
-1. On a clean clone follow docs/new_unity_environment.md section E and run `powershell -ExecutionPolicy Bypass -File tools\setupestore_environment.ps1`; it must end with 'All manifest files verified'. Record the commit hash.
+1. On a clean clone follow docs/new_unity_environment.md section E and run `powershell -ExecutionPolicy Bypass -File tools\setup\restore_environment.ps1`; it must end with 'All manifest files verified'. Record the commit hash.
 2. Build and install the Dev APK (section F of the same guide) and start it on the Quest 2.
 3. In PatientBay, Corridor and OT look for: pink or black materials, missing lightmaps (flat or black rooms), missing city outside the windows, people without clothes or in T-pose, the patient lying centred on the bed with a moving chest and blinking eyes, sunlit floor patches with window-frame shadows. The soft sunshafts and floating dust are desktop-only by design and must NOT appear in the headset.
 4. Walk or teleport through the three rooms for 5 minutes each with OVR Metrics running and record average and worst frame time, GPU level and any dropped-frame bursts.
