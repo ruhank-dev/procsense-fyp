@@ -25,6 +25,12 @@ namespace ProcSense.Tests.PlayMode
         {
             for (int i = 0; i < minFrames; i++) yield return null;
             for (int i = 0; i < 900 && ProcSense.VR.Bridge.SimulationHost.Instance == null; i++) yield return null;
+            int last = -1, stable = 0;                                                                                     // then until no further scene is being added (a load still in flight would land in the next fixture)
+            for (int i = 0; i < 900 && stable < 40; i++)
+            {
+                var rooms = Object.FindAnyObjectByType<ProcSense.VR.Boot.RoomLoader>(); int n = UnityEngine.SceneManagement.SceneManager.loadedSceneCount;
+                stable = (n == last && (rooms == null || !rooms.Busy)) ? stable + 1 : 0; last = n; yield return null;
+            }
         }
 
         /// <summary>After a sign-in or boot: waits for the host and the bay, then until the set of loaded scenes has been stable for 40 frames and no room load is running, so the BootLoader has finished adding Sys_Core, the room and DevOnly before the test ends (a load still in flight would land in the next test and duplicate Sys_Core and its camera).</summary>
