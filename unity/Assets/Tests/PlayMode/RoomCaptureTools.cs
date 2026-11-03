@@ -76,6 +76,37 @@ namespace ProcSense.Tests.PlayMode
             }
             ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
         }
+
+        /// <summary>
+        /// Video frames: ROOM_VIEWS holds exactly two views (start and end of a slow camera move); ROOM_FRAMES frames (default 72) are written as f0000.png ... at a fixed game time step of 1/12 s, so particles and slow noise animate as in play.
+        /// Join them with ffmpeg: ffmpeg -framerate 12 -i f%04d.png out.mp4.
+        /// </summary>
+        [UnityTest, Explicit("capture tool")]
+        public IEnumerator Capture_room_video()
+        {
+            string scene = System.Environment.GetEnvironmentVariable("ROOM_SCENE"), json = System.Environment.GetEnvironmentVariable("ROOM_VIEWS"), dir = System.Environment.GetEnvironmentVariable("ROOM_CAPTURE_DIR");
+            Assert.IsFalse(string.IsNullOrEmpty(scene) || string.IsNullOrEmpty(json) || string.IsNullOrEmpty(dir), "set ROOM_SCENE, ROOM_VIEWS and ROOM_CAPTURE_DIR");
+            Directory.CreateDirectory(dir); var views = JsonUtility.FromJson<Views>(File.ReadAllText(json)).views; Assert.AreEqual(2, views.Length, "two views: start and end");
+            int frames = int.TryParse(System.Environment.GetEnvironmentVariable("ROOM_FRAMES"), out var ff) ? ff : 72;
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+            yield return SceneManager.LoadSceneAsync(scene);
+            for (int i = 0; i < 40; i++) yield return null;
+            foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)) c.enabled = false;
+            int w = int.TryParse(System.Environment.GetEnvironmentVariable("ROOM_W"), out var ww) ? ww : 1280, h = w * 9 / 16;
+            var go = new GameObject("CaptureCamera"); var cam = go.AddComponent<Camera>(); cam.nearClipPlane = .02f; cam.farClipPlane = 6000f; cam.clearFlags = CameraClearFlags.Skybox;
+            var rt = new RenderTexture(w, h, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 }; cam.targetTexture = rt; go.AddComponent<UniversalAdditionalCameraData>().antialiasing = AntialiasingMode.None;
+            Time.captureDeltaTime = 1f / 12f;
+            for (int f = 0; f < frames; f++)
+            {
+                float k = Mathf.SmoothStep(0, 1, f / (float)(frames - 1)); Vector3 P(float[] a) => new Vector3(a[0], a[1], a[2]);
+                cam.transform.position = Vector3.Lerp(P(views[0].p), P(views[1].p), k); cam.transform.LookAt(Vector3.Lerp(P(views[0].l), P(views[1].l), k)); cam.fieldOfView = Mathf.Lerp(views[0].f, views[1].f, k);
+                yield return null; cam.Render();
+                var prev = RenderTexture.active; RenderTexture.active = rt; var tex = new Texture2D(w, h, TextureFormat.RGB24, false, false); tex.ReadPixels(new Rect(0, 0, w, h), 0, 0); tex.Apply();
+                File.WriteAllBytes(Path.Combine(dir, "f" + f.ToString("D4") + ".png"), tex.EncodeToPNG()); RenderTexture.active = prev; Object.Destroy(tex);
+            }
+            Time.captureDeltaTime = 0f; cam.targetTexture = null; Object.Destroy(rt); Object.Destroy(go);
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        }
     }
 }
 #endif

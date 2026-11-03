@@ -105,7 +105,7 @@ namespace ProcSense.EditorTools
             AssetDatabase.SaveAssets(); Debug.Log("[WallLighting] applied");
         }
 
-        static int Ribbon(Transform parent, Material mat, Vector3 start, Vector3 end, float width)
+        internal static int Ribbon(Transform parent, Material mat, Vector3 start, Vector3 end, float width)
         {
             var d = (end - start).normalized; var side = Vector3.Cross(Vector3.up, d).normalized; var tilt = Vector3.Cross(d, side).normalized; int made = 0;
             foreach (var axis in new[] { side, tilt })
@@ -118,7 +118,7 @@ namespace ProcSense.EditorTools
             return made;
         }
 
-        static Material ShaftMat()
+        internal static Material ShaftMat()
         {
             Folder(Tex); Folder(Mats);
             var tp = Tex + "/sunshaft.png"; var tex = new Texture2D(64, 256, TextureFormat.RGBA32, false);

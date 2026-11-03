@@ -7,6 +7,7 @@ if (-not $SkipDoors) { Step 'doorimp' 'ProcSense.EditorTools.DoorUpgrade.Import'
 Step 'sun' 'ProcSense.EditorTools.CorridorSun.Apply' '^\[CorridorSun\]'
 Step 'roomsconces' 'ProcSense.EditorTools.CorridorSun.RoomSconces' '^\[CorridorSun\]'
 Step 'golden' 'ProcSense.EditorTools.GoldenHourLighting.Apply' '^\[GoldenHour\] applied'
+Step 'cshadow' 'ProcSense.EditorTools.OtContactShadows.ApplyCorridor' '^\[OtContactShadows\]'
 $extra = @(); if ($Final) { $extra = @('-final') }
 Step 'bake' 'ProcSense.EditorTools.GoldenHourLighting.Bake' '^\[GoldenHour\]' $extra
 Step 'refl' 'ProcSense.EditorTools.GoldenHourLighting.Reflections' '^\[GoldenHour\]'
@@ -15,4 +16,7 @@ $rc = Join-Path $u 'Tools\Rooms\room_capture.ps1'
 & $rc -Scene Corridor -Views (Join-Path $u 'Tools\Rooms\light_views.json') -Tag "${Tag}l" -Width 1400
 & $rc -Scene PatientBay -Views (Join-Path $u 'Tools\Rooms\pb_views.json') -Tag "${Tag}b" -Width 1400
 & $rc -Scene OT -Views (Join-Path $u 'Tools\Rooms\ot_views.json') -Tag "${Tag}o" -Width 1400
+"== shafts on"
+Step 'shafts' 'ProcSense.EditorTools.CorridorSun.ShaftsOn' '^\[CorridorSun\]'
+& $rc -Scene Corridor -Views (Join-Path $u 'Tools\Rooms\light_views.json') -Tag "${Tag}v" -Width 1400
 "light_cycle done"

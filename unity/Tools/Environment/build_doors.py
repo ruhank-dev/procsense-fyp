@@ -103,7 +103,7 @@ def frame():
 
 VARIANTS = {
     "bay": dict(skin="DoorBay", vision=(.16, 1.38, .50, 1.05), pull="lever"),
-    "diag": dict(skin="DoorDiag", vision=(.16, 1.38, .52, 1.05), pull="bar"),
+    "diag": dict(skin="DoorDiag", vision=(-.02, 1.25, .80, 1.50), pull="bar"),
     "lab": dict(skin="DoorLab", vision=(0.0, 1.50, .60, .80), pull="bar"),
     "ot": dict(skin="DoorOT", vision=(0.0, 1.45, .62, .86), pull="plate", wide_kick=True),
 }
