@@ -74,8 +74,11 @@ namespace ProcSense.Tests.PlayMode
             {
                 reader.inputSourceMode = XRInputValueReader.InputSourceMode.ManualValue;
                 reader.manualValue = Vector2.up;
+                // hold the stick until the rig has really moved (up to 6 s: the first frames after a room load can stall in batch mode), then give it a second to reach and stop at the collider
+                float t0 = Time.realtimeSinceStartup; float distance = 0f;
+                while (Time.realtimeSinceStartup - t0 < 6f && distance < .05f) { yield return null; distance = Vector3.Dot(rig.Camera.transform.position - start, forward); }
                 yield return new WaitForSeconds(1);
-                float distance = Vector3.Dot(rig.Camera.transform.position - start, forward);
+                distance = Vector3.Dot(rig.Camera.transform.position - start, forward);
                 Assert.That(distance, Is.InRange(.05f, .70f), "Move toward the obstruction, then stop at its collider");
                 Assert.That(rig.transform.position.y, Is.InRange(-.06f, .1f));
                 reader.manualValue = Vector2.zero;
