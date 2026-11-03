@@ -1,7 +1,9 @@
 param([string]$Tag, [switch]$Final, [switch]$SkipDoors)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # 3 Nov 2026 (lighting reference): wider door vision panes -> corridor sun rig + lamps + exposure -> bake (preview, or -final) -> reflections -> captures of the corridor, patient bay and OT.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$u='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main\unity'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$u=(Join-Path $Repo 'unity')
 function Step($label, $method, $pat, $extra=@()) { "== $label"; & $s -Method $method -Log "lc_${label}_$Tag" -Extra $extra | Select-String "error CS|Exception|$pat" | Select-Object -First 6 }
 if (-not $SkipDoors) { Step 'doorimp' 'ProcSense.EditorTools.DoorUpgrade.Import' '^\[DoorUpgrade\]'; Step 'doorapply' 'ProcSense.EditorTools.DoorUpgrade.Apply' '^\[DoorUpgrade\]' }
 Step 'sun' 'ProcSense.EditorTools.CorridorSun.Apply' '^\[CorridorSun\]'

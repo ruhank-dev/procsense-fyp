@@ -1,4 +1,4 @@
-"""Downloads the chosen Microsoft Rocketbox avatars (MIT licence) from GitHub and converts their textures to project-sized maps.
+"""Downloads (at a pinned commit, see tools/setup/remote_metadata.json) the chosen Microsoft Rocketbox avatars (MIT licence) from GitHub and converts their textures to project-sized maps.
 
   python -I fetch_rocketbox.py            ->  unity/Assets/Characters/Rocketbox/<Name>/<Name>.fbx + <map>.jpg/png
 Source: https://github.com/microsoft/Microsoft-Rocketbox  (Assets/Avatars/<group>/<Name>/Export/<Name>_facial.fbx and Textures/*.tga). The raw maps are 2048 px TGA (12 MB each); they are stored as
@@ -13,9 +13,11 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "unity" / "Assets" / "Characters" / "Rocketbox"
-RAW = ROOT.parent / "build" / "rb"
-TREE = json.loads((ROOT.parent / "build" / "rocketbox_tree.json").read_text(encoding="utf8"))
-BASE = "https://raw.githubusercontent.com/microsoft/Microsoft-Rocketbox/master/"
+RAW = ROOT / "build" / "rb"
+META = json.loads((ROOT / "tools" / "setup" / "remote_metadata.json").read_text(encoding="utf8"))["rocketbox"]
+COMMIT = META["commit"]                                   # pinned commit of github.com/microsoft/Microsoft-Rocketbox: the files below are exactly the ones the project was built from
+BASE = META["raw_base"]
+TREE = [{"path": f["path"], "type": "blob"} for fl in META["avatars"].values() for f in fl]
 
 CAST = ["Medical_Male_03", "Medical_Female_02", "Medical_Female_01", "Medical_Male_01", "Medical_Male_04", "Medical_Male_05", "Business_Female_03",
         "Male_Child_01", "Female_Child_01", "Male_Adult_03", "Female_Adult_14", "Female_Adult_05", "Female_Adult_08", "Male_Adult_08", "Male_Adult_16", "Female_Adult_15", "Male_Adult_13"]

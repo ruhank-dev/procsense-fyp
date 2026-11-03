@@ -1,7 +1,9 @@
 param([string]$Tag, [switch]$Final, [switch]$Floor, [switch]$NoRefl)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # One look-development cycle: apply golden.json -> connected bake -> reflection refresh -> PlayMode captures. Only one Unity instance ever runs.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$r='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main'; $exe='C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$r=$Repo; $exe=$UnityExe
 if ($Floor) { "== floor import"; & $s -Method ProcSense.EditorTools.FloorImport.Run -Log "gh_floor_$Tag" | Select-String 'error CS|Exception|\[FloorImport\]' | Select-Object -First 3 }
 "== apply"; & $s -Method ProcSense.EditorTools.GoldenHourLighting.Apply -Log "gh_apply_$Tag" | Select-String 'error CS|Exception|\[GoldenHour\]' | Select-Object -First 3
 $extra = @(); if ($Final) { $extra = @('-final') }

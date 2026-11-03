@@ -1,7 +1,9 @@
 param([string]$Tag, [switch]$Final, [switch]$NoBake, [switch]$NoRefl, [switch]$Props, [switch]$Rigs, [switch]$Tests)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # Full final-look cycle in one Unity-at-a-time sequence: lights -> room -> [props import+place] -> materials -> bake -> reflections -> captures.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$r='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main'; $exe='C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$r=$Repo; $exe=$UnityExe
 function Step($label, $method, $log, $pat, $extra=@()) { "== $label"; & $s -Method $method -Log "fa_${log}_$Tag" -Extra $extra | Select-String "error CS|Exception|$pat" | Select-Object -First 4 }
 Step 'apply' 'ProcSense.EditorTools.GoldenHourLighting.Apply' 'apply' '\[GoldenHour\]'
 Step 'room' 'ProcSense.EditorTools.FinalLookRoom.Apply' 'room' '\[FinalLookRoom\]'

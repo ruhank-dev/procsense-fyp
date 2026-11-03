@@ -1,7 +1,9 @@
 param([string]$Tag)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # 3 Nov 2026: materials + OT equipment -> final connected bake -> reflections -> manifests -> captures (corridor, staff, bay, OT overview + OT close-ups). One Unity at a time.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$u='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main\unity'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$u=(Join-Path $Repo 'unity')
 function Step($label, $method, $pat, $extra=@()) { "== $label"; & $s -Method $method -Log "bc_${label}_$Tag" -Extra $extra | Select-String "error CS|Exception|$pat" | Select-Object -First 4 }
 Step 'mat' 'ProcSense.EditorTools.MaterialOverhaul.Apply' '^\[MaterialOverhaul\] applied'
 Step 'ote' 'ProcSense.EditorTools.OtEquipmentUpgrade.Apply' '^\[OtEquipmentUpgrade\] applied'

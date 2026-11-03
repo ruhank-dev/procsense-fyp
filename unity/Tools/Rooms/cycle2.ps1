@@ -1,7 +1,9 @@
 param([string]$Tag, [switch]$NoBake, [switch]$Final, [switch]$Staff)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # Second-generation cycle (1 Nov 2026 review): imports (city art/trees, doors, plants, [staff]) -> corridor apply -> city -> sky -> doors -> OT parity -> [bake -> reflections] -> corridor, staff, patient-bay and OT captures. One Unity at a time.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$u='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main\unity'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$u=(Join-Path $Repo 'unity')
 function Step($label, $method, $pat, $extra=@()) { "== $label"; & $s -Method $method -Log "c2_${label}_$Tag" -Extra $extra | Select-String "error CS|Exception|$pat" | Select-Object -First 4 }
 Step 'cityimport' 'ProcSense.EditorTools.CityExterior.Import' '^\[CityExterior\]'
 Step 'doorimport' 'ProcSense.EditorTools.DoorUpgrade.Import' '^\[DoorUpgrade\]'

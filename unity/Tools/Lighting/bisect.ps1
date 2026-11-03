@@ -1,6 +1,8 @@
 param([string[]]$Groups)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # Runs each filter in its own Unity session and prints pass/fail counts, to find which test leaks state into the later ones.
-$r='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main\unity'; $exe='C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe'
+$r=(Join-Path $Repo 'unity'); $exe=$UnityExe
 $i = 0
 foreach ($g in $Groups) {
   $i++; $x="$r\Logs\bisect_$i.xml"; if (Test-Path $x) { Remove-Item $x -Force }

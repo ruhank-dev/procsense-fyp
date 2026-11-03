@@ -34,6 +34,7 @@ free-model-candidates.md (characters); Implementation Guide B-S3 Steps 1–2.
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
+* [DC-12](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-12): Visual environment on the Quest 2: PatientBay, Corridor (with the reception area) and OT after the 3 Nov 2026 overhaul (baked sunlight, PBR materials, Rocketbox characters, the clothed patient who breathes and blinks)
 * [UX-P0-CHAR](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ux-p0-char): Characters: patient models, clinical signs, staff avatars, animation, escort
 
 <!-- external-testing:end -->

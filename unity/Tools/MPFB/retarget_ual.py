@@ -21,7 +21,7 @@ from mathutils import Matrix, Quaternion, Vector
 
 ROOT = Path(__file__).resolve().parents[3]
 OUT = ROOT / "build/mpfb/output/staff"
-UAL = ROOT.parent / "build/ual/x/Universal Animation Library[Standard]/Unity/UAL1_Standard.fbx"
+UAL = ROOT / "build/ual/x/Universal Animation Library[Standard]/Unity/UAL1_Standard.fbx"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 # ---------------------------------------------------------------- per-character plan

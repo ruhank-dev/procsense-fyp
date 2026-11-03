@@ -363,6 +363,32 @@
    "pass_rule": "Hints appear only in practice at the allowed difficulty and never reveal a hidden fact; pulse and breath counts take their time and are refused twice at once; the fever event card appears and scores as described; voice goes offline within 35 seconds of the service stopping and returns within 35 seconds of it starting; the speaker is silent while recording; the identity attempt and the missing introduction are scored as described and nothing else changes. The declined pregnancy test places nothing and is scored as described; the pain event card appears and scores as described; spoken orders in own words read back correctly and nothing is placed without a yes.",
    "who": "Sannan",
    "after": "Ruhan ticks p2-ai-learning-analytics-s01 and p1-voice-input-s02."
+  },
+  {
+   "id": "DC-12",
+   "title": "Visual environment on the Quest 2: PatientBay, Corridor (with the reception area) and OT after the 3 Nov 2026 overhaul (baked sunlight, PBR materials, Rocketbox characters, the clothed patient who breathes and blinks)",
+   "steps": [
+    "p0-environment-rooms-s01",
+    "p0-characters-s01"
+   ],
+   "needs": "Quest 2 with the Dev APK built from the pushed commit (`task unity-build -- dev`), a fresh clone restored with tools/setup/restore_environment.ps1, OVR Metrics Tool",
+   "prepared": [
+    "docs/new_unity_environment.md",
+    "docs/qa/unity_environment_validation.md",
+    "tools/setup/restore_environment.ps1",
+    "unity/Assets/Scripts/Views/PatientMotion.cs",
+    "unity/Assets/Editor/Setup/BuildScript.cs"
+   ],
+   "procedure": [
+    "On a clean clone follow docs/new_unity_environment.md section E and run `powershell -ExecutionPolicy Bypass -File tools\\setup\restore_environment.ps1`; it must end with 'All manifest files verified'. Record the commit hash.",
+    "Build and install the Dev APK (section F of the same guide) and start it on the Quest 2.",
+    "In PatientBay, Corridor and OT look for: pink or black materials, missing lightmaps (flat or black rooms), missing city outside the windows, people without clothes or in T-pose, the patient lying centred on the bed with a moving chest and blinking eyes, sunlit floor patches with window-frame shadows. The soft sunshafts and floating dust are desktop-only by design and must NOT appear in the headset.",
+    "Walk or teleport through the three rooms for 5 minutes each with OVR Metrics running and record average and worst frame time, GPU level and any dropped-frame bursts.",
+    "Compare with the desktop screenshots in docs/qa/ (same rooms) and note anything that looks darker, brighter or missing."
+   ],
+   "pass_rule": "No pink or missing materials, no missing lightmaps, characters clothed and animated, the patient breathes and blinks, average frame time within the Quest 2 budget the P0 plan sets (11.1 ms at 90 Hz, 13.9 ms at 72 Hz) and no sustained bursts above it; every difference from the desktop look is written down.",
+   "who": "Sannan",
+   "after": "Ruhan ticks the steps after reading the result file."
   }
  ],
  "unity_groups": [

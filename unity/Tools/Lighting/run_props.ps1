@@ -1,6 +1,8 @@
 param([string]$Tag)
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$r='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main'; $exe='C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe'
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$r=$Repo; $exe=$UnityExe
 "== apply"; & $s -Method ProcSense.EditorTools.GoldenHourLighting.Apply -Log "fp_apply_$Tag" | Select-String 'error CS|Exception|\[GoldenHour\]' | Select-Object -First 3
 "== room"; & $s -Method ProcSense.EditorTools.FinalLookRoom.Apply -Log "fp_room_$Tag" | Select-String 'error CS|Exception|\[FinalLookRoom\]' | Select-Object -First 4
 "== import"; & $s -Method ProcSense.EditorTools.FinalLookProps.Import -Log "fp_import_$Tag" | Select-String 'error CS|Exception|\[FinalLookProps\]' | Select-Object -First 6

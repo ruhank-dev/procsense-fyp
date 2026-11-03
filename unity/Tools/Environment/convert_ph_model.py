@@ -15,7 +15,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[3]
 BLENDER = ROOT / "build" / "blender" / "blender-4.5.14-windows-x64" / "blender.exe"
 mid, target = sys.argv[1], int(sys.argv[2]) if len(sys.argv) > 2 else 20000
-src = ROOT.parent / "build" / "phmodels" / mid
+src = ROOT / "build" / "phmodels" / mid
 gltf = json.loads((src / f"{mid}.gltf").read_text(encoding="utf8"))
 tex = ROOT / "unity" / "Assets" / "Textures" / "PolyHaven"; tex.mkdir(parents=True, exist_ok=True)
 

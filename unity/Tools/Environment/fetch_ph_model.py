@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[3]
 for mid in sys.argv[1:]:
     req = Request(f"https://api.polyhaven.com/files/{mid}", headers={"User-Agent": "ProcSense-FYP"})
     g = json.load(urlopen(req))["gltf"]["2k"]["gltf"]
-    out = ROOT.parent / "build" / "phmodels" / mid
+    out = ROOT / "build" / "phmodels" / mid
     (out / "textures").mkdir(parents=True, exist_ok=True)
     subprocess.run(["curl", "-s", "-L", "-o", str(out / f"{mid}.gltf"), g["url"]], check=True)
     for rel, info in g["include"].items():
@@ -25,6 +25,6 @@ for mid in sys.argv[1:]:
     req = Request(f"https://api.polyhaven.com/files/{mid}", headers={"User-Agent": "ProcSense-FYP"})
     for key, val in json.load(urlopen(req)).items():
         if key.endswith("_alpha") and "2k" in val:
-            out = ROOT.parent / "build" / "phmodels" / mid / "textures" / f"{mid}_{key}_2k.jpg"
+            out = ROOT / "build" / "phmodels" / mid / "textures" / f"{mid}_{key}_2k.jpg"
             subprocess.run(["curl", "-s", "-L", "-o", str(out), val["2k"]["jpg"]["url"]], check=True)
             print("alpha", out.name)

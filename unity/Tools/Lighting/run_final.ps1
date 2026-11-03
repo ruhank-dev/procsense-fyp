@@ -1,7 +1,9 @@
 param([string]$Tag, [switch]$Final, [switch]$NoRefl, [switch]$Room, [switch]$NoBake)
+$Repo = (Resolve-Path (Join-Path $PSScriptRoot '..\..\..')).Path
+$UnityExe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 # Final-look cycle: [-Room FinalLookRoom.Apply after GoldenHourLighting.Apply] -> connected bake -> reflections -> PlayMode captures.
-$s='C:\Users\RUHAN\AppData\Local\Temp\claude\c--Users-RUHAN-Downloads-procsense-fyp-main\5f6e9808-39a5-4600-a178-679c9fcf001e\scratchpad\unity_run.ps1'
-$r='C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main'; $exe='C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe'
+$s=(Join-Path $PSScriptRoot 'unity_run.ps1')
+$r=$Repo; $exe=$UnityExe
 "== apply"; & $s -Method ProcSense.EditorTools.GoldenHourLighting.Apply -Log "fl_apply_$Tag" | Select-String 'error CS|Exception|\[GoldenHour\]' | Select-Object -First 3
 if ($Room) { "== room"; & $s -Method ProcSense.EditorTools.FinalLookRoom.Apply -Log "fl_room_$Tag" | Select-String 'error CS|Exception|\[FinalLookRoom\]' | Select-Object -First 4 }
 $extra = @(); if ($Final) { $extra = @('-final') }
