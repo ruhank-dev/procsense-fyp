@@ -57,7 +57,8 @@ namespace ProcSense.Tests.EditMode
             foreach (var l in LightmapSettings.lightmaps) Assert.NotNull(l.lightmapColor, room + ": a lightmap texture is missing (LFS pointer?)");
             Assert.Greater(LightmapSettings.lightProbes != null ? LightmapSettings.lightProbes.count : 0, 0, room + ": no baked light probes");
             Assert.Greater(Object.FindObjectsByType<ReflectionProbe>(FindObjectsInactive.Include).Length, 0, room + ": no reflection probes");
-            foreach (var rp in Object.FindObjectsByType<ReflectionProbe>(FindObjectsInactive.Include)) Assert.NotNull(rp.texture, room + ": reflection probe '" + rp.name + "' has no texture");
+            Assert.IsNotEmpty(System.IO.Directory.GetFiles("Assets/Scenes/PatientBay", "ReflectionProbe-*.exr"), "baked reflection probe data is missing (Git LFS pointer files are smaller than 200 bytes)");
+            foreach (var f in System.IO.Directory.GetFiles("Assets/Scenes/PatientBay", "ReflectionProbe-*.exr")) Assert.Greater(new System.IO.FileInfo(f).Length, 1000, f + " looks like a Git LFS pointer, run git lfs pull");
             // exposure and contrast live in the project's default Volume profile; PatientBay adds a local trim Volume on top of it
             Assert.IsInstanceOf<UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset>(GraphicsSettings.defaultRenderPipeline, room + ": the default render pipeline is not the URP asset");
             if (room == "PatientBay") Assert.Greater(Object.FindObjectsByType<Volume>(FindObjectsInactive.Include).Length, 0, room + ": no local exposure trim Volume");

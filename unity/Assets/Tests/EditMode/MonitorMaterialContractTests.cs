@@ -52,7 +52,9 @@ namespace ProcSense.Tests.EditMode
             else Assert.That(bezel.GetFloat("_Smoothness"), Is.InRange(.6f, 1f), "mask-driven smoothness: the slider only scales the map");
             foreach (var n in new[] { "MonShell", "MonShell2", "MonBezel", "MonKey" })
                 Assert.That(Mat(n).GetTexture("_OcclusionMap"), Is.Not.Null, n + " occlusion map");
-            Assert.That(Mat("MonKey").GetFloat("_Smoothness"), Is.LessThan(.5f), "soft-touch keys");
+            var key = Mat("MonKey");                                                                                        // soft-touch keys: the slider is the whole story only when no mask map drives smoothness (2 Nov overhaul: dark plastic mask)
+            if (key.GetTexture("_MetallicGlossMap") == null) Assert.That(key.GetFloat("_Smoothness"), Is.LessThan(.5f), "soft-touch keys");
+            else Assert.That(key.GetFloat("_Smoothness"), Is.LessThan(.8f), "soft-touch keys (mask-driven)");
         }
 
         [Test]

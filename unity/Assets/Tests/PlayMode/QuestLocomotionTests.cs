@@ -24,7 +24,7 @@ namespace ProcSense.Tests.PlayMode
         private static IEnumerator Boot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 40; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(40);
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
             int extra = 0; float end = Time.realtimeSinceStartup + 20;
             while (rooms != null && rooms.Busy && Time.realtimeSinceStartup < end) { extra++; yield return null; }

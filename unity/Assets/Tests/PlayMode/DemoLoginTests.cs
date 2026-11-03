@@ -26,7 +26,7 @@ namespace ProcSense.Tests.PlayMode
             var view = Object.FindFirstObjectByType<DemoLoginView>();
             Assert.IsNotNull(view);
             Assert.IsNull(SimulationHost.Instance, "Clinical time must not start behind login");
-            Assert.AreEqual(1, Camera.allCamerasCount);
+            Assert.AreEqual(1, Camera.allCamerasCount, "cameras: " + string.Join(", ", System.Array.ConvertAll(Camera.allCameras, c => c.name + " in " + c.gameObject.scene.name)));
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>().Length);
             view.Submit();
             Assert.IsFalse(view.Completed); StringAssert.Contains("email", view.EmailError);
@@ -49,11 +49,11 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(view.Completed);
             Assert.AreEqual("", view.Password.text, "Do not retain the entered password after success");
             view.Submit(); // Repeated click must not start a second workspace.
-            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
             Assert.IsNull(Object.FindFirstObjectByType<DemoLoginView>());
-            Assert.AreEqual(1, Camera.allCamerasCount);
+            Assert.AreEqual(1, Camera.allCamerasCount, "cameras: " + string.Join(", ", System.Array.ConvertAll(Camera.allCameras, c => c.name + " in " + c.gameObject.scene.name)));
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>().Length);
             Assert.IsTrue(SceneManager.GetSceneByName("PatientBay").isLoaded);
             Assert.IsNotNull(GameObject.Find("MPFB patient"), "Sign-in must open the permanent rigged patient");
@@ -85,7 +85,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual("", view.Status);
             view.Submit();
             Assert.IsTrue(view.Completed);
-            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
         }
@@ -119,11 +119,11 @@ namespace ProcSense.Tests.PlayMode
         {
             DemoLoginSettings.LoginRequiredOverride = false;
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;      // wait for the workspace, not a fixed 60 frames: the bay now carries the Rocketbox patient and six lightmaps and loads more slowly
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
             Assert.IsNull(Object.FindFirstObjectByType<DemoLoginView>());
-            Assert.AreEqual(1, Camera.allCamerasCount);
+            Assert.AreEqual(1, Camera.allCamerasCount, "cameras: " + string.Join(", ", System.Array.ConvertAll(Camera.allCameras, c => c.name + " in " + c.gameObject.scene.name)));
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>().Length);
         }
     }

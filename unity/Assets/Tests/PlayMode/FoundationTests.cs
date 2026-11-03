@@ -22,7 +22,7 @@ namespace ProcSense.Tests.PlayMode
         private static IEnumerator Boot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 30; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(30);
             yield return EditorXRTestEnvironment.EnsureSimulator();
         }
 

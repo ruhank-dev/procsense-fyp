@@ -36,7 +36,7 @@ namespace ProcSense.Tests.PlayMode
         private static IEnumerator Load()
         {
             yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/PatientBay.unity", new LoadSceneParameters(LoadSceneMode.Single));
-            for (int i = 0; i < 30; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(30);
             SimulationHost.Instance.AutoTick = false; SimulationHost.Instance.SaveLogOnDestroy = false;
         }
 

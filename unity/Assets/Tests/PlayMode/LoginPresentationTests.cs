@@ -122,7 +122,7 @@ namespace ProcSense.Tests.PlayMode
             keyboard.Clear(); keyboard.Insert(DemoLoginSettings.DemoPassword);
             view.Submit(); Assert.IsTrue(view.Completed); Assert.AreEqual("", view.Password.text);
             keyboard.Insert("ignored"); Assert.AreEqual("", view.Password.text);
-            for (int i = 0; i < 60; i++) yield return null;
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNull(Object.FindFirstObjectByType<LoginKeyboard>());
             Assert.AreEqual(1, Camera.allCamerasCount);
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);

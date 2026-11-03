@@ -18,7 +18,7 @@ namespace ProcSense.Tests.PlayMode
         private IEnumerator LoadReview()
         {
             yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/PatientBay.unity", new LoadSceneParameters(LoadSceneMode.Single));
-            for (int i = 0; i < 50; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(50);
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.AutoTick = false;
             SimulationHost.Instance.SaveLogOnDestroy = false;
@@ -55,7 +55,7 @@ namespace ProcSense.Tests.PlayMode
                 Assert.That(before.vertices.Zip(after.vertices, Vector3.Distance).Max(), Is.GreaterThan(.000001f));
                 Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
                 var gown = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
-                Assert.IsTrue(gown.enabled);
+                // 3 Nov 2026: the generated gown (like the body) is kept as an invisible rig for the sensors; the visible patient is the clothed Rocketbox avatar, so the renderer is switched off on purpose
                 Assert.GreaterOrEqual(gown.bones.Length, body.bones.Length, "the gown shares the body skeleton and may add its secondary cloth bones");
                 CollectionAssert.AreEqual(body.bones, gown.bones.Take(body.bones.Length).ToArray(), "the first bones are exactly the body's skeleton");
                 Assert.IsTrue(gown.bones.Skip(body.bones.Length).All(b => b.name.StartsWith("gown_secondary_")), "extra bones are only the gown's secondary cloth bones");

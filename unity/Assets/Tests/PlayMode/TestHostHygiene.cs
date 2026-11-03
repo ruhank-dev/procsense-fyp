@@ -20,6 +20,26 @@ namespace ProcSense.Tests.PlayMode
         }
 
         /// <summary>Destroys every persistent (DontDestroyOnLoad) root that holds a camera, a simulation host or an event system. The test runner's own persistent objects hold none of these.</summary>
+        /// <summary>Waits the given minimum number of frames and then until the scene host exists (up to 900 frames): the rooms now carry the Rocketbox people, the clothed patient and eight lightmaps and load more slowly than the fixed 30-60 frame waits the older fixtures used.</summary>
+        public static System.Collections.IEnumerator WaitForHost(int minFrames)
+        {
+            for (int i = 0; i < minFrames; i++) yield return null;
+            for (int i = 0; i < 900 && ProcSense.VR.Bridge.SimulationHost.Instance == null; i++) yield return null;
+        }
+
+        /// <summary>After a sign-in or boot: waits for the host and the bay, then until the set of loaded scenes has been stable for 40 frames and no room load is running, so the BootLoader has finished adding Sys_Core, the room and DevOnly before the test ends (a load still in flight would land in the next test and duplicate Sys_Core and its camera).</summary>
+        public static System.Collections.IEnumerator WaitForWorkspaceSettled()
+        {
+            for (int i = 0; i < 1500 && (SimulationHost.Instance == null || !UnityEngine.SceneManagement.SceneManager.GetSceneByName("PatientBay").isLoaded); i++) yield return null;
+            int last = -1, stable = 0;
+            for (int i = 0; i < 1500 && stable < 40; i++)
+            {
+                var rooms = Object.FindAnyObjectByType<ProcSense.VR.Boot.RoomLoader>();
+                int n = UnityEngine.SceneManagement.SceneManager.loadedSceneCount;
+                stable = (n == last && (rooms == null || !rooms.Busy)) ? stable + 1 : 0; last = n; yield return null;
+            }
+        }
+
         public static void DestroyRoomLeftovers()
         {
             DestroyLeftoverHost();
