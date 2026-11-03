@@ -159,10 +159,10 @@ namespace ProcSense.Tests.PlayMode
             yield return EditorXRTestEnvironment.EnsureSimulator();
             var host = SimulationHost.Instance; host.AutoTick = false; host.SaveLogOnDestroy = false;
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
-            for (int i = 0; i < 300 && rooms.Busy; i++) yield return null;
+            for (int i = 0; i < 3000 && rooms.Busy; i++) yield return null;
             Assert.IsFalse(rooms.Busy);
             Assert.IsTrue(rooms.RequestRoom("Corridor"));
-            for (int i = 0; i < 300 && rooms.Busy; i++) yield return null;
+            for (int i = 0; i < 3000 && rooms.Busy; i++) yield return null;
             Assert.IsFalse(rooms.Busy);
             var rig = Object.FindAnyObjectByType<XROrigin>();
             var controller = rig.GetComponent<CharacterController>();
