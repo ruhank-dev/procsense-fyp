@@ -19,10 +19,11 @@ namespace ProcSense.Tests.PlayMode
     public class QuestLocomotionTests
     {
         [SetUp] public void BypassLogin() => DemoLoginSettings.LoginRequiredOverride = false;
-        [TearDown] public void RestoreLogin() => DemoLoginSettings.LoginRequiredOverride = null;
+        [TearDown] public void RestoreLogin() { DemoLoginSettings.LoginRequiredOverride = null; TestHostHygiene.DestroyRoomLeftovers(); }
 
         private static IEnumerator Boot()
         {
+            TestHostHygiene.DestroyRoomLeftovers();                                                                          // the previous fixture's persistent rig, camera and host must not be picked up by FindAnyObjectByType
             yield return SceneManager.LoadSceneAsync("Boot");
             yield return TestHostHygiene.WaitForHost(40);
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
