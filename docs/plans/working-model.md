@@ -26,7 +26,7 @@
 | Rooms (ward, ED, theatre…) | **Supervisor's base hospital room models** (empty shells) |
 | All equipment, machinery, props | **Procedural Blender Python scripts** written by the developer (one script per asset, shared helper library) — detail in `p0/p0-blender-equipment/` |
 | Free online models (Sketchfab etc.) | Listed in `p0/p0-blender-equipment/free-model-candidates.md` as **visual references only** — never imported |
-| AI text-to-3D | **Not used** |
+| AI text-to-3D | **Allowed** since 3 Nov 2026 (decision row 213): reduce to the budget, add the named points, record the licence |
 | Characters | Candidate open sets (team approves) + our clinical-sign materials/blend shapes |
 
 ## VR approach (decided)

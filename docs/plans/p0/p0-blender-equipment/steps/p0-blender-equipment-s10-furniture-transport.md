@@ -6,7 +6,7 @@ Milestone: **M6 Environment & assets — rooms, equipment, characters, voice**
 Our own procedural Blender Python assets for: Hospital bed / trolley (#3), Wheelchair (#4), Transfer trolley + portable monitor + oxygen cylinder (#38), Medication trolley + drug chart (#32), Anti-embolism stockings + IPC device (#34), Clippers (#35) and skin marker (#36), Desk + computer workstation, Phone, Clinical waste bin. Each is clinically recognisable, built from its reference sheet, VR-ready, and carries the interaction points its row in `equipment-interaction-spec.md` needs.
 
 ## Why
-Every item the trainee touches must exist as a clean, detailed, interactive asset; no AI text-to-3D and no imported free models (user decisions).
+Every item the trainee touches must exist as a clean, detailed, interactive asset. It can be our own Blender Python script, an AI-generated model or an imported model (decision row 213: reduced to the budget, given its named points, its licence recorded, checked against its reference sheet).
 
 ## How to implement
 1. Write/confirm the reference sheet for each item (p0-medical-research-data-s09); free-model references are visual only.

@@ -116,7 +116,7 @@ The owner confirmed the same day that the statement **also closes the 15 institu
 |---|---|---|---|---|
 | Where simulation logic lives | Pure C# Core, no Unity (ADR-0001) | Logic in MonoBehaviours | Testable headless, deterministic, replayable | — |
 | Content | Data files (CSV/JSON) loaded at runtime; no clinical numbers in code | ScriptableObjects; hard-coded | Traceable to the source register; editable without code | Load time on Quest too slow → bake to binary at build |
-| 3D | Supervisor's room shells; only A rooms dressed; **every equipment item/prop = our Blender Python script** | Paid asset pack; AI text-to-3D; importing free models; model every room | User decisions | — |
+| 3D | Supervisor's room shells; only A rooms dressed; **each equipment item/prop = our Blender Python script, an AI-generated model or an imported model** (row 213: reduced to budget, named points added, licence recorded) | Paid asset pack; model every room | User decisions; row 213 (3 Nov 2026) allows AI-generated and imported models | — |
 | Free 3D models | Listed as **visual references only** ([free-model-candidates.md](p0/p0-blender-equipment/free-model-candidates.md)) | Import them | User decision | — |
 | AI | Layer on top; every AI path has a non-AI fallback | AI-first | Medical safety; Quest works offline | — |
 | Backend | Optional (P1); headset works without it | Required | Demo/use never depends on a laptop or Wi-Fi | — |

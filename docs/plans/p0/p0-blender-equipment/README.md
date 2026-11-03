@@ -17,7 +17,7 @@ Only category-A rooms (OT, patient bay) are dressed; diagnostic rooms are doors 
 - VR-friendly triangle counts per asset class (budgets set by EXP-VR-1 / EXP-BL-4), plus LODs for large items.
 - Organised: one collection per asset, meaningful object names, applied transforms, origins at a sensible pivot (floor contact or grip).
 - **Interaction/attachment points** as named empties (see conventions) so Unity can wire grabbing, sockets, cables, screens.
-- **Not** AI text-to-3D, ever.
+- AI text- or image-to-3D is allowed since 3 Nov 2026 (decision row 213): four conditions: reduce to the triangle budget, add the named points the interaction needs (GRAB_, SCREEN_, LABEL_, SOCKET_, PIVOT_ and separate moving parts), record the source and licence in docs/research/asset_sources_and_licenses.md, and check clinical items against their reference sheet.
 
 ## Pipeline
 
@@ -52,12 +52,12 @@ Run inside Blender (Scripting tab → open script → Run) **or** headless: `ble
 ## Decisions
 | Decision | Chosen | Alternatives | Why | Revisit if |
 |---|---|---|---|---|
-| How assets are made | Procedural `bpy` scripts per asset + shared library | Hand-modelling; AI text-to-3D; paid pack | User decision; repeatable, editable, consistent style | — |
+| How assets are made | Procedural `bpy` scripts per asset + shared library, or an AI-generated or imported model brought up to the same standard | Hand-modelling; paid pack | User decision; repeatable, editable, consistent style; AI generation allowed by decision row 213 (3 Nov 2026) | — |
 | Script style | Plain `bpy` mesh/modifier building | Script-generated Geometry Nodes trees | Easier to read/debug, exports cleanly | Many parametric variants needed (e.g. tubes/bags) → Geometry Nodes for those |
 | Export format | FBX | glTF (.glb) via glTFast | Unity imports FBX natively | Material fidelity issues → glTF |
 | Materials in Unity | Library of URP materials matching `M_*` names; bake only labels/decals/wear | Bake everything | Smaller textures, consistent look | Assets look flat → bake AO/detail maps |
 | Build order | Pilot 3 assets → lock library + quality bar → rest by room, P0 first | All at once | Quality bar agreed before mass production | — |
-| Free models | Visual references only; every asset scripted by us | Import good free models | User decision (07 Oct) | — |
+| Free models | Allowed with a recorded licence, reduced to the budget and given their named points | Visual references only (the 07 Oct rule) | Decision row 213 (3 Nov 2026) replaces the 07 Oct rule | — |
 
 ## Experiments
 | ID | Question | Method | Success metric | Status |
