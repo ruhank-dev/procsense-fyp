@@ -7,8 +7,8 @@
  "hash": "sha256 of the file content; text files hashed with LF line endings",
  "groups": {
   "blender_sources": {
-   "files": 54,
-   "bytes": 48075971
+   "files": 53,
+   "bytes": 46966543
   },
   "project_owned": {
    "files": 2003,
@@ -2938,13 +2938,6 @@
    "path": "blender/sources/Doors/door_leaf_ot.blend",
    "sha256": "210246be7dc3e04d32f1f00012271893686b01fb764d968c714e21fc39f120bc",
    "size": 579179,
-   "group": "blender_sources",
-   "lfs": false
-  },
-  {
-   "path": "blender/sources/FloorBuild/WoodFloor040_4K-JPG.blend",
-   "sha256": "8425f1586f4db727962238b6e73668cc4232f8dc85d9c00c05fe669cc9213a9e",
-   "size": 1109428,
    "group": "blender_sources",
    "lfs": false
   },
