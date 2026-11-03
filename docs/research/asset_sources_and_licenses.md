@@ -117,3 +117,7 @@ Not available under a redistributable licence, so documented but not imported: a
 | Reference photos from the owner | Doctor and nurse clothing photos, corridor lighting reference image | Used as visual targets only, not shipped |
 
 Commands to rebuild the lighting after any change to doors, walls or lights: `powershell -File unity/Tools/Rooms/light_cycle.ps1 -Tag <name>` (preview bake about 11 minutes; add `-Final` for the roughly 45 minute final bake; `-SkipDoors` when the Blender doors did not change). Captures land in `unity/Logs/Rooms/` (git-ignored).
+
+## Patient character (3 Nov 2026): licensing waived by the owner
+
+The generated MPFB patient could not be given correct clothes, so the owner asked for an existing, free, ready-made clothed character and said licensing does not matter for this asset ("forget licensing, it should be free"). Current state: a clothed Microsoft Rocketbox avatar (MIT, `Male_Adult_08`) lies on the bed; the MPFB rig stays live but invisible so the mounted sensors and idle hooks keep working. Candidates found for something more realistic, none downloaded yet because each needs a site login: Meshy community "Photorealistic 3D human, 25-year-old male patient" (light-blue gown, arms at sides, legs straight; Meshy's FAQ states its community patient assets are CC0), Meshy "Patient in Hospital Gown", Sketchfab and CGTrader free human sets. When a file is supplied it is recorded here with its source URL and the licence the page states.

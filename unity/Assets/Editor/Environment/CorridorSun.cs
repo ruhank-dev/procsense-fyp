@@ -192,11 +192,11 @@ namespace ProcSense.EditorTools
         /// density noise in the shader (stretched along the sun) divides the air into irregular shafts. Plus a restrained dust-mote particle system inside the same sunlit volume (slow drift, turbulence, fade in and out).
         /// Everything sits under one DesktopOnly host: Quest never draws it. It starts switched off; <see cref="ShaftsOn"/> enables it.
         /// </summary>
-        static void ShaftsFor(Transform rig, System.Collections.Generic.List<Bounds> lit, Vector3 dir)
+        internal static void ShaftsFor(Transform rig, System.Collections.Generic.List<Bounds> lit, Vector3 dir, float maxX = 6.4f, string tag = "")
         {
             var host = new GameObject("Door sun shafts"); host.transform.SetParent(rig, false); host.AddComponent<ProcSense.VR.Views.DesktopOnly>();
             System.IO.Directory.CreateDirectory("Assets/Materials/Environment");
-            const string mp = "Assets/Materials/Environment/Sun shaft soft.mat", dp = "Assets/Materials/Environment/Sun dust mote.mat";
+            string mp = "Assets/Materials/Environment/Sun shaft soft" + tag + ".mat", dp = "Assets/Materials/Environment/Sun dust mote" + tag + ".mat";
             var mat = AssetDatabase.LoadAssetAtPath<Material>(mp); if (mat == null) { mat = new Material(Shader.Find("ProcSense/Sun Shaft")); AssetDatabase.CreateAsset(mat, mp); }
             mat.shader = Shader.Find("ProcSense/Sun Shaft"); mat.SetFloat("_Intensity", .035f); mat.SetFloat("_EdgePower", 3.2f); mat.SetFloat("_NoiseAmount", .85f); mat.SetVector("_ShaftDir", new Vector4(dir.x, dir.y, dir.z, 0)); EditorUtility.SetDirty(mat);
             var dust = AssetDatabase.LoadAssetAtPath<Material>(dp); if (dust == null) { dust = new Material(Shader.Find("ProcSense/Sun Dust Mote")); AssetDatabase.CreateAsset(dust, dp); }
@@ -204,7 +204,7 @@ namespace ProcSense.EditorTools
             foreach (var b in lit)
             {
                 var rng = new System.Random(Mathf.RoundToInt(b.center.z * 100)); float R(float lo, float hi) => lo + (float)rng.NextDouble() * (hi - lo);
-                float x = b.center.x + .05f; var c = b.center; float tFull = Mathf.Min(c.y / -dir.y, (6.4f - x) / dir.x);
+                float x = b.center.x + .05f; var c = b.center; float tFull = Mathf.Min(c.y / -dir.y, (maxX - x) / dir.x);
                 var verts = new System.Collections.Generic.List<Vector3>(); var uvs = new System.Collections.Generic.List<Vector2>(); var norms = new System.Collections.Generic.List<Vector3>(); var cols = new System.Collections.Generic.List<Color>(); var tris = new System.Collections.Generic.List<int>();
                 int shafts = 6; var strong = new System.Collections.Generic.List<(Vector3 c, Vector3 d, float w, float h, float t)>();
                 for (int k = 0; k < shafts; k++)

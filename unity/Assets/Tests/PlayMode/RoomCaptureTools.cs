@@ -96,6 +96,8 @@ namespace ProcSense.Tests.PlayMode
             var go = new GameObject("CaptureCamera"); var cam = go.AddComponent<Camera>(); cam.nearClipPlane = .02f; cam.farClipPlane = 6000f; cam.clearFlags = CameraClearFlags.Skybox;
             var rt = new RenderTexture(w, h, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 }; cam.targetTexture = rt; go.AddComponent<UniversalAdditionalCameraData>().antialiasing = AntialiasingMode.None;
             Time.captureDeltaTime = 1f / 12f;
+            cam.transform.position = new Vector3(views[0].p[0], views[0].p[1], views[0].p[2]); cam.transform.LookAt(new Vector3(views[0].l[0], views[0].l[1], views[0].l[2])); cam.fieldOfView = views[0].f;
+            for (int i = 0; i < 36; i++) { yield return null; cam.Render(); }                                             // the first ~2 s of a fresh capture camera show a start-up transient (a one-step dip in overall brightness near 1.75 s); settle it before writing frames
             for (int f = 0; f < frames; f++)
             {
                 float k = Mathf.SmoothStep(0, 1, f / (float)(frames - 1)); Vector3 P(float[] a) => new Vector3(a[0], a[1], a[2]);

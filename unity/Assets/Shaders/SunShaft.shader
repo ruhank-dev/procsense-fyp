@@ -62,7 +62,8 @@ Shader "ProcSense/Sun Shaft"
                 float n2 = vnoise(perp * 4.7 - d * al * 0.35 + float3(-t * 0.004, t * 0.007, t * 0.003) + 17.3);
                 float n = n1 * 0.65 + n2 * 0.35;
                 float dens = lerp(1.0, smoothstep(0.28, 0.82, n) * 1.35 + 0.05, _NoiseAmount);
-                float3 col = _Tint.rgb * _Intensity * i.strength * dens * edge * along;
+                float nearFade = smoothstep(0.8, 2.6, distance(GetCameraPositionWS(), i.positionWS));      // prism walls close to the eye (close-ups, head movement) dissolve instead of showing as bars
+                float3 col = _Tint.rgb * _Intensity * i.strength * dens * edge * along * nearFade;
                 return half4(col, 1);
             }
             ENDHLSL
