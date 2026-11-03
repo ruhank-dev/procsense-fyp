@@ -11,8 +11,8 @@
    "bytes": 48075971
   },
   "project_owned": {
-   "files": 2034,
-   "bytes": 560630856
+   "files": 2003,
+   "bytes": 160969373
   },
   "quaternius_ual": {
    "files": 6,
@@ -3296,7 +3296,7 @@
    "sha256": "21b32d912da3cb93426d974fb945e86f5b2e86970acd2ce89905e0fbf9f1dcc2",
    "size": 23754684,
    "group": "quaternius_ual",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Characters/Animations/UAL1_Standard.fbx.meta",
@@ -24740,6 +24740,13 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/EditMode/EnvironmentIntegrityTests.cs",
+   "sha256": "abcc2b164c0092aefc2e1895e8c4b4edd8555f4ac7e34f6563ee5d9ed53ecd9e",
+   "size": 7631,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/EditMode/EquipmentImportTests.cs",
    "sha256": "45469f0ff710c54f3de8a47ab6885409f697f620261d2b4054df2437e9379ee8",
    "size": 4198,
@@ -26851,7 +26858,7 @@
    "sha256": "fb165673a8e7ae7561c605491ee73f6f6a865a3d72a643b371a1a4f7442bfc4f",
    "size": 50212914,
    "group": "polyhaven_hdri",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Environment/Sky/city_skyline_8k.hdr.meta",
@@ -26865,7 +26872,7 @@
    "sha256": "3061c00a16ecae748e84fd6c44c04804f539c118bb66325db858bad87b11bf88",
    "size": 20674857,
    "group": "polyhaven_hdri",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Environment/Sky/sky_partly_cloudy_4k.hdr.meta",
@@ -27957,7 +27964,7 @@
    "sha256": "c5ab1eecae66dfb2a93751e0adc67c14facb290cd12a01c8704958678e95da61",
    "size": 10580119,
    "group": "cc0_pbr",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Hospital/PBR/curtain_weave_albedo.png.meta",
@@ -27999,7 +28006,7 @@
    "sha256": "9cc271bc589b15226253f82c3f8f42c636fc7b368c6bb6fb2f6430cf1bf2c751",
    "size": 10598194,
    "group": "cc0_pbr",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Hospital/PBR/curtain_weave_normal.png.meta",
@@ -29189,7 +29196,7 @@
    "sha256": "b8be690d12ea528dcd35c0e02fb99b8080126192de830fbc2d23e61cea7ffaa0",
    "size": 20806269,
    "group": "project_owned",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Hospital/PatientBayWood/floor_albedo_smooth.png.meta",
@@ -29203,7 +29210,7 @@
    "sha256": "2ded225554cee71a041d7081723ec319c2f6536d18b40635ed459da449afa2dc",
    "size": 16467641,
    "group": "project_owned",
-   "lfs": false
+   "lfs": true
   },
   {
    "path": "unity/Assets/Textures/Hospital/PatientBayWood/floor_normal.png.meta",
@@ -29514,146 +29521,6 @@
    "lfs": false
   },
   {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env.exr",
-   "sha256": "da977af5855067d1d8882feb1a8402d105bbf92f515f1eee15e1e876329a0501",
-   "size": 23532677,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env.exr.meta",
-   "sha256": "4c022a38d08609d8948c2ccf21e196258ad4eaa1a1a9b4486f3b9b6c9e343b3c",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_cube.exr",
-   "sha256": "da977af5855067d1d8882feb1a8402d105bbf92f515f1eee15e1e876329a0501",
-   "size": 23532677,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_cube.exr.meta",
-   "sha256": "f9f6ee7a7999b3cb5fd6a4a4f46b73ace4c730251e2b1aab7b4bd78fd6a0f941",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_flip.exr",
-   "sha256": "3cc29faacec55c80f7558c5dc862f7ef0162d6a562fa18378b4240fde91698b4",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_flip.exr.meta",
-   "sha256": "2e99a8ad2fbfa822cbf2fe49e43a66e83d7670126c632f1233b87ebc13639370",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_flip_cube.exr",
-   "sha256": "3cc29faacec55c80f7558c5dc862f7ef0162d6a562fa18378b4240fde91698b4",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_flip_cube.exr.meta",
-   "sha256": "2f60657f53868da87432a179ea7ae9653eb6e46df8c3b99f8af508e9afad43b4",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fliproll.exr",
-   "sha256": "59dc4b0dd9ccbf91ecb84a400a55668918c7ae2b915e9eba49854976c24900ad",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fliproll.exr.meta",
-   "sha256": "47bfd8e1526d7d0b1383910715c08b633ad968744782b8f08bba65ab4768b0f7",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fliproll_cube.exr",
-   "sha256": "59dc4b0dd9ccbf91ecb84a400a55668918c7ae2b915e9eba49854976c24900ad",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fliproll_cube.exr.meta",
-   "sha256": "90776842e7dcdfaa9fd875e7b947eba6e86b4a9b9862d9a231a6cce007aa0f0a",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq1.exr",
-   "sha256": "ab67478bc3955415f7d5f838591d2d451829138ddc272ff64c211ed3fa5c2fd3",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq1.exr.meta",
-   "sha256": "c92deaee29391a0843900f5610c813003ecfb02f413bba9593c9007efaa8aa2b",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq1_cube.exr",
-   "sha256": "ab67478bc3955415f7d5f838591d2d451829138ddc272ff64c211ed3fa5c2fd3",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq1_cube.exr.meta",
-   "sha256": "1e99f158c8ea65008a5062091643d66d845042f905fc301bd4caedaf8ddaaca0",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq3.exr",
-   "sha256": "e19405d64d3c908a3c84eb5627191df5e4c205cd22605deefbe88fedfc712b63",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq3.exr.meta",
-   "sha256": "f3d5d09a549042bff5879d8a3fda8c3eb7006a144892133e9acd5a5c474ce121",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq3_cube.exr",
-   "sha256": "e19405d64d3c908a3c84eb5627191df5e4c205cd22605deefbe88fedfc712b63",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_fq3_cube.exr.meta",
-   "sha256": "54b94a58ba8cdd54b397b6f7d87490c164993fbc97b939064ca2fe58e73967c0",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
    "path": "unity/Assets/Textures/MaterialTest/studio_env_ldr.png",
    "sha256": "9d4d2e33dcf39dc0ca4b704ed9a955d028c9f290f0e2e48e0b6779f2f083f93b",
    "size": 1147680,
@@ -29663,90 +29530,6 @@
   {
    "path": "unity/Assets/Textures/MaterialTest/studio_env_ldr.png.meta",
    "sha256": "8468b6f061b12d02f1d893142c124bda994bd4bc29ec05d315cd8116d44eebf6",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_roll.exr",
-   "sha256": "edb8ba05e8540110c8b70f48f396cc1a7d5b5102b7b5353456b5e8c7f63d560d",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_roll.exr.meta",
-   "sha256": "0960a86ec29b26ea9347bcb7a7e292ba4b46ee5850aa1ec40362b0ea9d508fec",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_roll_cube.exr",
-   "sha256": "edb8ba05e8540110c8b70f48f396cc1a7d5b5102b7b5353456b5e8c7f63d560d",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_roll_cube.exr.meta",
-   "sha256": "a1ec97b6054e05c6a033264bef2870d880dcac6d1d2ef24162cd01116a7aabba",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq1.exr",
-   "sha256": "22d14cd9ede0490ae9a92862408d2a98589b432b9bd3b32ced2a08fef9d99c69",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq1.exr.meta",
-   "sha256": "b22e6563bcb341661cdbaf1ddd3a702e86a062553106165f131b65e407c6a8a4",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq1_cube.exr",
-   "sha256": "22d14cd9ede0490ae9a92862408d2a98589b432b9bd3b32ced2a08fef9d99c69",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq1_cube.exr.meta",
-   "sha256": "d56fda53beddec81d74b751667df24f55b82f12030be64d5b25e2d2e6f857b64",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq3.exr",
-   "sha256": "b8b0b02ee3dd77a4d075f5dbd9da8fec00daa0b2debae918d30363bb907f5192",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq3.exr.meta",
-   "sha256": "55f934e1417885e1343842563ac87075d70e96cea843de67a3c444a6a2a3487f",
-   "size": 3009,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq3_cube.exr",
-   "sha256": "b8b0b02ee3dd77a4d075f5dbd9da8fec00daa0b2debae918d30363bb907f5192",
-   "size": 25182544,
-   "group": "project_owned",
-   "lfs": false
-  },
-  {
-   "path": "unity/Assets/Textures/MaterialTest/studio_env_rq3_cube.exr.meta",
-   "sha256": "e8837806d2df3a6329a6394d55d79f6dc65b8fa32725324ecb1b10b21ff01c79",
    "size": 3009,
    "group": "project_owned",
    "lfs": false

@@ -55,6 +55,8 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 | [RELEASE.md](RELEASE.md) | The release checklist for a Quest APK: variants (Dev, Demo, Study), builds with checksums, the headset performance gate, tags and the release table | How a release is built and recorded |
 | [release/](release/v1.0.md) | One page per release: `v1.0.md` holds the P0 pre-release checks, the clean-machine rebuild sheet (EXP-REL-1), the ten headset runs (EXP-REL-2) and the draft release notes | What a given release needs and what proved it |
 | [ATTRIBUTIONS.md](ATTRIBUTIONS.md) | Credits and sources, generated from the registers (`task attributions`) | Who and what is credited |
+| [new_unity_environment.md](new_unity_environment.md) | The authoritative guide to reproduce the Unity environment from a clone: software, packages, every external asset (generated from `tools/setup/asset_manifest.json`), restore script, builds, troubleshooting | How a new collaborator gets the same environment |
+| [collaborator_setup_message.md](collaborator_setup_message.md) | The WhatsApp message for Sannan and Moiz with the exact steps | Nothing (convenience copy of the guide) |
 | [TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md) | Branch, merge, `task ci`, direct push to `main` | Team git practice |
 | [previous_prompt.md](previous_prompt.md) | Owner prompt history | What was asked, when |
 | [team/](team/) | Ready-to-send messages for teammates | Nothing (convenience copies) |

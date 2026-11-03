@@ -93,3 +93,7 @@ Thumbs.db
 
 # Android NDK/CMake scratch output created by Unity builds
 /unity/.utmp/
+
+# MaterialParityTest diagnostics (3 Nov 2026): 17 environment maps of about 24 MB each, used only by the one-off Editor tool Assets/Editor/Environment/MaterialParityTest.cs, not by any scene
+/unity/Assets/Textures/MaterialTest/*.exr
+/unity/Assets/Textures/MaterialTest/*.exr.meta
