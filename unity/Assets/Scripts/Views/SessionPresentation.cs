@@ -14,6 +14,7 @@ namespace ProcSense.VR.Views
         private object _session;
         private GameObject _root;
         private PatientIdleView _patient;
+        private PatientMotion _visiblePatient;
         private PatientTransportView _transport;
         private RecordsWorkstation _records;
         private void OnEnable()
@@ -44,6 +45,7 @@ namespace ProcSense.VR.Views
         private void BindHeads()
         {
             if (_patient == null) _patient = Object.FindAnyObjectByType<PatientIdleView>();
+            if (_visiblePatient == null) _visiblePatient = Object.FindAnyObjectByType<PatientMotion>();
             if (_transport == null) _transport = Object.FindAnyObjectByType<PatientTransportView>();
             if (_records == null) _records = Object.FindAnyObjectByType<RecordsWorkstation>();
             Voice.Heads.Clear();
@@ -61,7 +63,8 @@ namespace ProcSense.VR.Views
                     var head = actor.Doctor.Find("Doctor prototype head"); Head("clinician", head); Head("doctor", head);
                 }
             }
-            else if (_host.Observable?.Location == "patient_bay" && _patient != null) Head("patient", _patient.Head);
+            else if (_host.Observable?.Location == "patient_bay")
+                Head("patient", _visiblePatient != null ? _visiblePatient.Head : _patient != null ? _patient.Head : null);
             if (visitingNurse != null && visitingNurse.Head != null) Head("nurse", visitingNurse.Head);
         }
         private void Head(string speaker, Transform head) { if (head != null) Voice.Heads[speaker] = head; }

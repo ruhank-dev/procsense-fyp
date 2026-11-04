@@ -17,9 +17,27 @@ sys.path.insert(0, str(__import__("pathlib").Path(__file__).resolve().parent))
 import bed_common as bc          # noqa: E402
 import bed_cover_fields as cf    # noqa: E402
 
-A_LONG, B_SHORT, N_ARC = 29, 13, 8
+A_LONG, B_SHORT, N_ARC = 100, 44, 8          # ~2 cm cells so the top can carry a body-shaped cradle
 R_EDGE, R_CORNER = cf.R_EDGE, cf.R_CORNER
 argv = sys.argv[sys.argv.index("--") + 1:] if "--" in sys.argv else []
+_DENT = None
+_dent_file = bc.OUT.parent.parent / "Logs" / "LookUpgrade" / "body_dent.json" if False else __import__("pathlib").Path(__file__).resolve().parents[2] / "Logs" / "LookUpgrade" / "body_dent.json"
+if "--no-dent" not in argv and _dent_file.exists():
+    _DENT = json.loads(_dent_file.read_text())
+    _DENT["grid"] = np.array(_DENT["dent"]).reshape(_DENT["nz"], _DENT["nx"])
+
+
+def dent_at(x, z):
+    """Depth (m) the soft top sinks under the resting body and pillow, bilinear in the 1 cm contact grid."""
+    if _DENT is None:
+        return 0.0
+    fx = (x - _DENT["x0"]) / _DENT["step"]; fz = (z - _DENT["z0"]) / _DENT["step"]
+    if fx < 0 or fz < 0 or fx >= _DENT["nx"] - 1 or fz >= _DENT["nz"] - 1:
+        return 0.0
+    i, j = int(fx), int(fz); a, b = fx - i, fz - j
+    g = _DENT["grid"]
+    return float((1 - a) * (1 - b) * g[j, i] + a * (1 - b) * g[j, i + 1] + (1 - a) * b * g[j + 1, i] + a * b * g[j + 1, i + 1])
+
 HEX = argv[argv.index("--hex") + 1] if "--hex" in argv else "#6180A4"
 
 
@@ -140,7 +158,7 @@ def build(fields):
             else:
                 x, z = g[i, j]
                 top_id[i, j] = len(verts)
-                verts.append((x, bc.Y_TOP + cap(float(cf.sample(fields["F_low"], x, z))), z))
+                verts.append((x, bc.Y_TOP + cap(float(cf.sample(fields["F_low"], x, z))) - dent_at(x, z), z))
                 uvs.append(uv_of(x, z)); kinds.append("top")
     for i in range(NX):
         for j in range(NZ):
@@ -167,6 +185,10 @@ def vertex_normals(v, tris):
 
 def main():
     fields = cf.compute(seed=7, cover_hex=HEX)
+    if _DENT is not None:                                                   # contact shade where the body presses into the foam
+        X, Z = bc.grid_xz(fields["ao"].shape[1], fields["ao"].shape[0])
+        depth = np.vectorize(dent_at)(X, Z)
+        fields["ao"] = fields["ao"] * (1 - .45 * np.clip(depth / .03, 0, 1))
     verts, uvs, tris, roles = build(fields)
     normals, face_n = vertex_normals(verts, tris)
     t = np.array(tris).reshape(-1, 3)

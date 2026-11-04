@@ -96,11 +96,35 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2069985afa450d742885ae23e9c8122a, type: 2}
+    - target: {fileID: -3891800479179349167, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f1e04ff2a84fcc84ea7daf2e9b801e58, type: 2}
+    - target: {fileID: -3637381778461006575, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 0666a6e6be0046f4c8ae4a346ddfefbf, type: 2}
+    - target: {fileID: -2296171935581707692, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
       propertyPath: m_Name
       value: surgical_light
       objectReference: {fileID: 0}
     - target: {fileID: 2629558378115870230, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293997564771007873, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e8c5846ff932ff499b00ef94b53934f, type: 2}
+    - target: {fileID: 3925035513798037169, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4047123385607922068, guid: 9f9eaf0f2a050014899ac63ae0d86aa8, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}

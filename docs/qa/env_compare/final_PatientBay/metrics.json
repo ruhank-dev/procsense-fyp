@@ -1,0 +1,32 @@
+[
+ {
+  "name": "s1_window_wide.png",
+  "mean_abs_diff": 0.039,
+  "pct_pixels_over_24": 0.053,
+  "psnr_db": 45.77
+ },
+ {
+  "name": "s2_floor_streaks.png",
+  "mean_abs_diff": 0.033,
+  "pct_pixels_over_24": 0.037,
+  "psnr_db": 47.19
+ },
+ {
+  "name": "s3_east_wall.png",
+  "mean_abs_diff": 0.047,
+  "pct_pixels_over_24": 0.063,
+  "psnr_db": 45.26
+ },
+ {
+  "name": "s4_bed_corner.png",
+  "mean_abs_diff": 0.113,
+  "pct_pixels_over_24": 0.137,
+  "psnr_db": 41.22
+ },
+ {
+  "name": "s5_close_shaft.png",
+  "mean_abs_diff": 0.075,
+  "pct_pixels_over_24": 0.105,
+  "psnr_db": 42.79
+ }
+]

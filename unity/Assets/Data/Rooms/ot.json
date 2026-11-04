@@ -11,6 +11,15 @@
   {"name": "SLOT_pedal_bin_1", "kind": "SLOT", "pos": [7.15, 0, 8.15], "rot": [0, 270, 0]},
   {"name": "SLOT_supply_cupboard_1", "kind": "SLOT", "pos": [13.1, 0, 2.85], "rot": [0, 90, 0]},
   {"name": "SLOT_surgical_light_1", "kind": "SLOT", "pos": [11.2, 0, 5.85], "rot": [0, 90, 0]},
+  {"name": "SLOT_wall_clock_1", "kind": "SLOT", "pos": [10.62, 2.3, 8.646], "rot": [0, 180, 0]},
+  {"name": "SLOT_wall_clock_2", "kind": "SLOT", "pos": [10.62, 2.3, 1.754], "rot": [0, 0, 0]},
+  {"name": "SLOT_wall_clock_3", "kind": "SLOT", "pos": [13.446, 2.3, 6.57], "rot": [0, 270, 0]},
+  {"name": "SLOT_wall_clock_4", "kind": "SLOT", "pos": [6.554, 2.3, 6.32], "rot": [0, 90, 0]},
+  {"name": "SLOT_wall_sconce_1", "kind": "SLOT", "pos": [8, 2, 8.646], "rot": [0, 0, 0]},
+  {"name": "SLOT_wall_sconce_2", "kind": "SLOT", "pos": [10.1, 2, 8.646], "rot": [0, 0, 0]},
+  {"name": "SLOT_wall_sconce_3", "kind": "SLOT", "pos": [10.1, 2, 1.754], "rot": [0, 180, 0]},
+  {"name": "SLOT_wall_sconce_4", "kind": "SLOT", "pos": [13.446, 2, 7.4], "rot": [0, 90, 0]},
+  {"name": "SLOT_wall_sconce_5", "kind": "SLOT", "pos": [6.554, 2, 3.2], "rot": [0, 270, 0]},
   {"name": "TELEPORT_Exit", "kind": "TELEPORT", "pos": [7.7, 0.02, 5.2], "rot": [0, 270, 0]},
   {"name": "TELEPORT_Station", "kind": "TELEPORT", "pos": [10.7, 0.02, 6.4], "rot": [0, 180, 0]}
  ],
@@ -22,6 +31,15 @@
   {"asset": "operating_table", "slot": "SLOT_operating_table_1"},
   {"asset": "pedal_bin", "slot": "SLOT_pedal_bin_1"},
   {"asset": "supply_cupboard", "slot": "SLOT_supply_cupboard_1"},
-  {"asset": "surgical_light", "slot": "SLOT_surgical_light_1"}
+  {"asset": "surgical_light", "slot": "SLOT_surgical_light_1"},
+  {"asset": "wall_clock", "slot": "SLOT_wall_clock_1"},
+  {"asset": "wall_clock", "slot": "SLOT_wall_clock_2"},
+  {"asset": "wall_clock", "slot": "SLOT_wall_clock_3"},
+  {"asset": "wall_clock", "slot": "SLOT_wall_clock_4"},
+  {"asset": "wall_sconce", "slot": "SLOT_wall_sconce_1"},
+  {"asset": "wall_sconce", "slot": "SLOT_wall_sconce_2"},
+  {"asset": "wall_sconce", "slot": "SLOT_wall_sconce_3"},
+  {"asset": "wall_sconce", "slot": "SLOT_wall_sconce_4"},
+  {"asset": "wall_sconce", "slot": "SLOT_wall_sconce_5"}
  ]
 }

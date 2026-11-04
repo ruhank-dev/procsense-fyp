@@ -67,6 +67,8 @@ Every picture in the app (from `content/images`, `content/ecg`, `content/cxr` an
 |---|---|---|
 | Patient (MPFB, MakeHuman assets) | CC0 1.0 | `unity/Assets/Models/Characters/MPFBPatient/README.md` |
 | Hospital wall and floor surfaces (ambientCG) | CC0 1.0 | `unity/Assets/Textures/Hospital/README.md` |
+| Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars) | MIT | `unity/Assets/Characters/Rocketbox/README.md` |
+| Idle, talking, sitting and walking clips (Quaternius Universal Animation Library) | CC0 1.0 | `unity/Assets/Characters/Animations/README.md` |
 
 ## Voices and sounds
 

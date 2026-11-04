@@ -2,6 +2,7 @@ using System.Collections;
 using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using ProcSense.VR.Boot;
 using ProcSense.VR.Bridge;
 using ProcSense.VR.Views;
 using UnityEngine;
@@ -20,7 +21,11 @@ namespace ProcSense.Tests.PlayMode
         private IEnumerator LoadBoot()
         {
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 30; i++) yield return null;   // BootLoader loads Sys_Core, the bay and (in the Editor) DevOnly
+            yield return TestHostHygiene.WaitForHost(30);   // BootLoader loads Sys_Core, the bay and (in the Editor) DevOnly
+            var rooms = Object.FindAnyObjectByType<RoomLoader>();
+            int extra = 0; float end = Time.realtimeSinceStartup + 20;
+            while (rooms != null && rooms.Busy && Time.realtimeSinceStartup < end) { extra++; yield return null; }
+            if (extra > 0) Debug.Log($"[PatientBayTests] room needed {extra} frames beyond the fixed 30 to finish loading");
         }
 
         [UnityTest]

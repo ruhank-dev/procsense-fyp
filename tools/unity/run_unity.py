@@ -43,6 +43,7 @@ def test() -> int:
     failed = 0
     for platform in ("EditMode", "PlayMode"):
         result = OUT / f"{platform}.xml"
+        result.unlink(missing_ok=True)                                             # a stale result file from an earlier run must never be read as this run's outcome
         code = run(["-runTests", "-testPlatform", platform, "-testResults", str(result)], OUT / f"{platform}.log")
         if not result.exists():
             print(f"{platform}: no result file, see {OUT / (platform + '.log')}")

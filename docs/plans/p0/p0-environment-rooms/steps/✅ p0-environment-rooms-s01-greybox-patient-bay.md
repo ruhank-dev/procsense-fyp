@@ -43,6 +43,7 @@ Implementation Guide B-S8 Step 5 (anchors); walkthrough Step 1 'what the trainee
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
+* [DC-12](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-12): Visual environment on the Quest 2: PatientBay, Corridor (with the reception area) and OT after the 3 Nov 2026 overhaul (baked sunlight, PBR materials, Rocketbox characters, the clothed patient who breathes and blinks)
 * [UX-P0-ENV](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ux-p0-env): Rooms: the supervisor's hospital model, lighting, anchors, patient bay, theatre, corridor
 
 <!-- external-testing:end -->

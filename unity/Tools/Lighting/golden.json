@@ -1,0 +1,112 @@
+{
+ "sun": {
+  "pitch": 24,
+  "yaw": 84,
+  "intensity": 1.1,
+  "shadowAngle": 1.5,
+  "color": [
+   1,
+   0.97,
+   0.92
+  ],
+  "cookie": false,
+  "mixed": true
+ },
+ "lowSun": {
+  "pitch": 6,
+  "yaw": 108,
+  "intensity": 0.0,
+  "shadowAngle": 0.4,
+  "color": [
+   1,
+   0.62,
+   0.3
+  ],
+  "cookie": false
+ },
+ "window": {
+  "intensity": 0.55,
+  "color": [
+   0.92,
+   0.96,
+   1
+  ]
+ },
+ "panels": {
+  "intensity": 0.95,
+  "color": [
+   1,
+   0.98,
+   0.95
+  ]
+ },
+ "headwall": {
+  "intensity": 0.5,
+  "color": [
+   1,
+   0.98,
+   0.95
+  ]
+ },
+ "key": {
+  "intensity": 0.05,
+  "color": [
+   1,
+   0.97,
+   0.92
+  ],
+  "followSun": true
+ },
+ "ambient": {
+  "sky": [
+   0.25,
+   0.275,
+   0.32
+  ],
+  "equator": [
+   0.16,
+   0.175,
+   0.2
+  ],
+  "ground": [
+   0.085,
+   0.085,
+   0.09
+  ]
+ },
+ "exterior": {
+  "tint": [
+   1,
+   1,
+   1
+  ],
+  "texture": "skyline_city.jpg",
+  "glassAlpha": 0.05,
+  "glassSmooth": 0.96,
+  "glare": 0.0,
+  "shapers": false
+ },
+ "bars": {
+  "mullion": 0.06,
+  "transom": 0.05
+ },
+ "wash": {
+  "intensity": 0.0,
+  "color": [
+   1,
+   0.84,
+   0.62
+  ]
+ },
+ "curtainShift": 0.0,
+ "bake": {
+  "quality": "preview",
+  "bounces": 3,
+  "resolution": 48,
+  "direct": 24,
+  "indirect": 64,
+  "env": 24,
+  "denoiseDirect": 0,
+  "denoiseIndirect": 2
+ }
+}

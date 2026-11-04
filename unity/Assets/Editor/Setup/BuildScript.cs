@@ -55,6 +55,36 @@ namespace ProcSense.EditorTools
             EditorApplication.Exit(ok ? 0 : 1);
         }
 
+        /// <summary>Batch entry point for a Windows desktop player (development build, same scenes and content as the Quest build): artifacts/unity/desktop/ProcSense-&lt;variant&gt;.exe. Added for the environment handoff check (3 Nov 2026).</summary>
+        public static void BuildDesktop()
+        {
+            var args = Environment.GetCommandLineArgs();
+            int i = Array.IndexOf(args, "-variant");
+            var v = Variant(i >= 0 && i + 1 < args.Length ? args[i + 1] : "dev");
+            CopyContent();
+            Directory.CreateDirectory("../artifacts/unity/desktop");
+            var target = NamedBuildTarget.Standalone;
+            var before = PlayerSettings.GetScriptingDefineSymbols(target);
+            bool ok = false;
+            try
+            {
+                PlayerSettings.SetScriptingDefineSymbols(target, string.Join(";", DefinesFor(v, before.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))));
+                var options = new BuildPlayerOptions
+                {
+                    scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray(),
+                    locationPathName = "../artifacts/unity/desktop/ProcSense-" + v.Name + ".exe",
+                    target = BuildTarget.StandaloneWindows64,
+                    options = v.Development ? BuildOptions.Development : BuildOptions.None,
+                };
+                EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                var report = BuildPipeline.BuildPlayer(options);
+                ok = report.summary.result == BuildResult.Succeeded;
+                Debug.Log("[BuildScript] desktop " + v.Name + " " + report.summary.result + " size=" + report.summary.totalSize + " errors=" + report.summary.totalErrors);
+            }
+            finally { PlayerSettings.SetScriptingDefineSymbols(target, before); }
+            EditorApplication.Exit(ok ? 0 : 1);
+        }
+
         private static bool Build(BuildVariantSpec v, bool batch)
         {
             // a Quest build without the OpenXR loader runs as a flat Android window: black in the headset

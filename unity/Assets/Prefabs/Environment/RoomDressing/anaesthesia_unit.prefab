@@ -104,6 +104,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: -1022852740519017046, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4f665d9bc3e79574ea45007a929891c4, type: 2}
+    - target: {fileID: 64935026228233280, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b73467a40019da34a99e771b347bd25c, type: 3}
       propertyPath: m_Name
       value: anaesthesia_unit
@@ -124,6 +132,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 4a9e3f80c2f789c4ea3d1d2aaee17ac3, type: 2}
+    - target: {fileID: 4432952660158796898, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 24b8038c9da27e74f9032a67ab36cde1, type: 2}
     - target: {fileID: 5382515122655172991, guid: b73467a40019da34a99e771b347bd25c, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 5
@@ -132,6 +144,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 1aba153fcf443e04d9d7e64d4313a946, type: 2}
+    - target: {fileID: 6649660007951002925, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6711997993166969672, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: cf8eb8a6458bfaf419a38e532cfb40af, type: 2}
     - target: {fileID: 6883701399466558740, guid: b73467a40019da34a99e771b347bd25c, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -140,6 +160,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 0666a6e6be0046f4c8ae4a346ddfefbf, type: 2}
+    - target: {fileID: 7975725211767880837, guid: b73467a40019da34a99e771b347bd25c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

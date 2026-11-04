@@ -1,0 +1,3 @@
+# Rocketbox avatar provenance
+
+Seventeen clothed, rigged avatars from Microsoft Rocketbox (https://github.com/microsoft/Microsoft-Rocketbox, Assets/Avatars), licence MIT, copied here as LICENSE.md. Used for the corridor waiting people, the two theatre doctors and the receptionist. Fetched and converted by `unity/Tools/Characters/fetch_rocketbox.py` (`_facial.fbx` plus the 2048 px TGA maps, stored as JPG or PNG). Names: Medical_Male_01/03/04/05, Medical_Female_01/02, Business_Female_03, Male_Child_01, Female_Child_01, Male_Adult_03/08/13/16, Female_Adult_05/08/14/15. Imported as Humanoid by `unity/Assets/Editor/Characters/RocketboxSetup.cs` and placed by `RocketboxPeople.cs`.

@@ -39,6 +39,9 @@ namespace ProcSense.Tests.PlayMode
             .Answer("POST", Sb + "/auth/v1/token?grant_type=password", 200, Token)
             .Answer("GET", Base + "/me", 200, Me)
             .Answer("GET", Base + "/privacy/consent", 200, "{\"needs_consent\":" + (consent ? "false" : "true") + "}");
+        /// <summary>Every test here loads the Boot scene itself and expects a clean start (no host, one camera); remove anything an earlier fixture left behind.</summary>
+        [SetUp] public void StartClean() => TestHostHygiene.DestroyRoomLeftovers();
+
 
         [TearDown]
         public void Restore()
@@ -77,7 +80,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(AuthService.Current);
             Assert.AreEqual("T-ab12cd34", AuthService.Current.Pseudonym);
             Assert.AreEqual("o1", AuthService.Current.OrganisationId);
-            for (int i = 0; i < 60; i++) yield return null;
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNotNull(SimulationHost.Instance, "the workspace opens after a real sign-in too");
             SimulationHost.Instance.SaveLogOnDestroy = false;
         }
@@ -116,7 +119,7 @@ namespace ProcSense.Tests.PlayMode
             view.Submit();
             Assert.IsTrue(view.Completed);
             Assert.IsNull(AuthService.Current, "the offline demo has no service identity");
-            for (int i = 0; i < 60; i++) yield return null;
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.SaveLogOnDestroy = false;
         }

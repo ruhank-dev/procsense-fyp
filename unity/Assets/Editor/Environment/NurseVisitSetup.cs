@@ -33,7 +33,7 @@ namespace ProcSense.EditorTools
             var view = root.AddComponent<NurseWristbandController>();
             view.Entry = Anchor("ANCHOR_NurseEntry", new Vector3(4.25f, 0, -.8f));
             view.InsideDoor = Anchor("ANCHOR_NurseBayDoor", new Vector3(2.35f, 0, -.8f));
-            view.Bedside = Anchor("ANCHOR_NurseBedside", new Vector3(1.15f, 0, 1.05f));
+            view.Bedside = Anchor("ANCHOR_NurseBedside", new Vector3(.9f, 0, .5f));
             view.Exit = Anchor("ANCHOR_NurseExit", new Vector3(4.25f, 0, -.8f));
             view.Wrist = wrist; view.ClipboardPrefab = clipboard; view.BandPrefab = band; view.AllergyPrefab = allergy;
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);

@@ -135,7 +135,7 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot();
             var voice=_view.Voice;voice.Clips=new Clips{Clip=Clip(6)};
             string hash=_host.Session.Log.Hash(),state=_host.Observable.Hash();
-            var head=Object.FindAnyObjectByType<PatientIdleView>().Head;Assert.AreSame(head,voice.Heads["patient"]);
+            var head=Object.FindAnyObjectByType<PatientMotion>().Head;Assert.AreSame(head,voice.Heads["patient"]);
             voice.Say(new VoiceLine{Id="TEST-LONG",Speaker="patient",Text="Presentation test line."});
             var source=voice.GetComponentsInChildren<AudioSource>().Single(a=>a.isPlaying);
             var position=head.localPosition;

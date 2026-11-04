@@ -4,3 +4,12 @@ Assets/Scenes/*/*.exr filter=lfs diff=lfs merge=lfs -text
 Assets/Settings/HospitalLighting/*.exr filter=lfs diff=lfs merge=lfs -text
 # Generated patient blendshape mesh exceeds the repository's 5 MB file limit.
 Assets/Models/Characters/MPFBPatient/patient_body_idle.asset filter=lfs diff=lfs merge=lfs -text
+# Files over 10 MB that the project needs (3 Nov 2026 handoff): kept with Git LFS so a clone stays within the plain-git limit that CI enforces.
+Assets/Textures/Environment/Sky/*.hdr filter=lfs diff=lfs merge=lfs -text
+Assets/Characters/Animations/UAL1_Standard.fbx filter=lfs diff=lfs merge=lfs -text
+Assets/Textures/Hospital/PatientBayWood/floor_albedo_smooth.png filter=lfs diff=lfs merge=lfs -text
+Assets/Textures/Hospital/PatientBayWood/floor_normal.png filter=lfs diff=lfs merge=lfs -text
+Assets/Textures/Hospital/PBR/curtain_weave_normal.png filter=lfs diff=lfs merge=lfs -text
+Assets/Textures/Hospital/PBR/curtain_weave_albedo.png filter=lfs diff=lfs merge=lfs -text
+
+Assets/Textures/Hospital/PBR/rubber_black_normal.png filter=lfs diff=lfs merge=lfs -text

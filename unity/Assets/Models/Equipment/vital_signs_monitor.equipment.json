@@ -50,14 +50,6 @@
       }
     },
     {
-      "name": "LIGHT_Alarm",
-      "size": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      }
-    },
-    {
       "name": "SCREEN_Main",
       "size": {
         "x": 0,
@@ -163,195 +155,305 @@
       "metallic": 0,
       "roughness": 0.9
     },
-    "M_PlasticClear": {
+    "M_Ivory": {
       "color": [
-        0.86,
-        0.9,
-        0.92,
-        0.35
+        0.79,
+        0.82,
+        0.78,
+        1
       ],
       "metallic": 0,
-      "roughness": 0.12
+      "roughness": 0.55
     },
-    "M_BandRed": {
+    "M_Sage": {
       "color": [
+        0.35,
+        0.49,
+        0.44,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.6
+    },
+    "M_Oak": {
+      "color": [
+        0.66,
+        0.51,
+        0.32,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.6
+    },
+    "M_Diffuser": {
+      "color": [
+        0.95,
+        0.98,
+        0.94,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_GasGreen": {
+      "color": [
+        0.05,
+        0.45,
+        0.12,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_GasYellow": {
+      "color": [
+        0.8,
+        0.62,
+        0.05,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_GasBlue": {
+      "color": [
+        0.04,
+        0.16,
         0.55,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_GasWhite": {
+      "color": [
+        0.85,
+        0.86,
+        0.84,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.4
+    },
+    "M_AlarmRed": {
+      "color": [
+        0.62,
         0.03,
         0.03,
         1
       ],
       "metallic": 0,
-      "roughness": 0.5
+      "roughness": 0.4
     },
-    "M_Paper": {
+    "M_Brass": {
       "color": [
-        0.86,
-        0.86,
-        0.83,
+        0.62,
+        0.46,
+        0.18,
+        1
+      ],
+      "metallic": 0.9,
+      "roughness": 0.35
+    },
+    "M_Teal": {
+      "color": [
+        0.12,
+        0.38,
+        0.4,
         1
       ],
       "metallic": 0,
       "roughness": 0.85
     },
-    "M_PaperGloss": {
+    "M_Laminate": {
       "color": [
-        0.9,
-        0.9,
-        0.9,
+        0.8,
+        0.72,
+        0.58,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.55
+    },
+    "M_ScreenBlack": {
+      "color": [
+        0.01,
+        0.012,
+        0.014,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.12
+    },
+    "M_Curtain": {
+      "color": [
+        0.57,
+        0.69,
+        0.63,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.95
+    },
+    "M_Upholstery": {
+      "color": [
+        0.1,
+        0.22,
+        0.23,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.85
+    },
+    "M_Amber": {
+      "color": [
+        0.64,
+        0.42,
+        0.07,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.65
+    },
+    "M_MonShell": {
+      "color": [
+        0.7,
+        0.715,
+        0.71,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.46
+    },
+    "M_MonBezel": {
+      "color": [
+        0.011,
+        0.012,
+        0.014,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.2
+    },
+    "M_MonGlass": {
+      "color": [
+        0.01,
+        0.012,
+        0.014,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.03
+    },
+    "M_MonLCD": {
+      "color": [
+        0.009,
+        0.023,
+        0.029,
+        1
+      ],
+      "metallic": 0.05,
+      "roughness": 0.24
+    },
+    "M_MonShell2": {
+      "color": [
+        0.7,
+        0.715,
+        0.71,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.46
+    },
+    "M_MonChrome": {
+      "color": [
+        0.85,
+        0.86,
+        0.88,
+        1
+      ],
+      "metallic": 1.0,
+      "roughness": 0.06
+    },
+    "M_MonSteel": {
+      "color": [
+        0.55,
+        0.56,
+        0.58,
+        1
+      ],
+      "metallic": 1.0,
+      "roughness": 0.32
+    },
+    "M_MonPlastic": {
+      "color": [
+        0.26,
+        0.27,
+        0.285,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.5
+    },
+    "M_MonKey": {
+      "color": [
+        0.05,
+        0.055,
+        0.06,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.55
+    },
+    "M_MonLabels": {
+      "color": [
+        0.8,
+        0.8,
+        0.8,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.5
+    },
+    "M_MonSocket": {
+      "color": [
+        0.004,
+        0.004,
+        0.005,
+        1
+      ],
+      "metallic": 0,
+      "roughness": 0.6
+    },
+    "M_LedGreen": {
+      "color": [
+        0.04,
+        0.55,
+        0.16,
         1
       ],
       "metallic": 0,
       "roughness": 0.15
     },
-    "M_Hardboard": {
+    "M_LedAmber": {
       "color": [
-        0.35,
-        0.22,
-        0.12,
+        0.65,
+        0.38,
+        0.03,
         1
       ],
       "metallic": 0,
-      "roughness": 0.7
+      "roughness": 0.15
     },
-    "M_AlarmRed": {
+    "M_LedRed": {
       "color": [
-        0.7,
+        0.62,
         0.04,
         0.03,
         1
       ],
       "metallic": 0,
-      "roughness": 0.3
-    },
-    "M_CapPurple": {
-      "color": [
-        0.36,
-        0.18,
-        0.55,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_CapGold": {
-      "color": [
-        0.75,
-        0.55,
-        0.12,
-        1
-      ],
-      "metallic": 0.3,
-      "roughness": 0.35
-    },
-    "M_CapBlueLight": {
-      "color": [
-        0.35,
-        0.6,
-        0.85,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_CapGrey": {
-      "color": [
-        0.45,
-        0.47,
-        0.5,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_CapPink": {
-      "color": [
-        0.9,
-        0.45,
-        0.6,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_CultureBlue": {
-      "color": [
-        0.05,
-        0.2,
-        0.6,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_CulturePurple": {
-      "color": [
-        0.35,
-        0.1,
-        0.45,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_BrothAmber": {
-      "color": [
-        0.55,
-        0.35,
-        0.1,
-        0.6
-      ],
-      "metallic": 0,
-      "roughness": 0.2
-    },
-    "M_BloodDark": {
-      "color": [
-        0.3,
-        0.01,
-        0.02,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.3
-    },
-    "M_PadBlank": {
-      "color": [
-        0.95,
-        0.93,
-        0.85,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.7
-    },
-    "M_NeedleGreen": {
-      "color": [
-        0.1,
-        0.55,
-        0.2,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.4
-    },
-    "M_BinYellow": {
-      "color": [
-        0.85,
-        0.7,
-        0.05,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.45
-    },
-    "M_LidOrange": {
-      "color": [
-        0.85,
-        0.35,
-        0.05,
-        1
-      ],
-      "metallic": 0,
-      "roughness": 0.45
+      "roughness": 0.15
     }
   }
 }

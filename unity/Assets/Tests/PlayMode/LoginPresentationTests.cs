@@ -14,6 +14,9 @@ namespace ProcSense.Tests.PlayMode
 {
     public class LoginPresentationTests
     {
+        /// <summary>Every test here loads the Boot scene itself and expects a clean start (no host, one camera); remove anything an earlier fixture left behind.</summary>
+        [SetUp] public void StartClean() => TestHostHygiene.DestroyRoomLeftovers();
+
         [TearDown] public void RestoreGate() => DemoLoginSettings.LoginRequiredOverride = null;
 
         private static IEnumerator Open()
@@ -119,7 +122,7 @@ namespace ProcSense.Tests.PlayMode
             keyboard.Clear(); keyboard.Insert(DemoLoginSettings.DemoPassword);
             view.Submit(); Assert.IsTrue(view.Completed); Assert.AreEqual("", view.Password.text);
             keyboard.Insert("ignored"); Assert.AreEqual("", view.Password.text);
-            for (int i = 0; i < 60; i++) yield return null;
+            yield return TestHostHygiene.WaitForWorkspaceSettled();
             Assert.IsNull(Object.FindFirstObjectByType<LoginKeyboard>());
             Assert.AreEqual(1, Camera.allCamerasCount);
             Assert.AreEqual(1, Object.FindObjectsByType<EventSystem>(FindObjectsSortMode.None).Length);

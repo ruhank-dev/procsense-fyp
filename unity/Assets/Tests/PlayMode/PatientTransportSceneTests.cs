@@ -55,7 +55,10 @@ namespace ProcSense.Tests.PlayMode
             ulong seed=42;
             foreach(var mode in new[]{"walk","wheelchair","trolley"})
             {
+                var body=Object.FindAnyObjectByType<PatientMotion>();Assert.IsNotNull(body);
+                var visible=body.GetComponentsInChildren<Renderer>(true).ToDictionary(r=>r,r=>r.enabled);
                 _host.StartSession("VAR-S1-A",seed++,ProcSense.Core.SessionMode.Practice);Request(mode,destination);
+                Assert.IsTrue(visible.Keys.All(r=>!r.enabled),"The actual visible patient must leave the bed");
                 string hash=_host.Session.Log.Hash(),state=_host.Observable.Hash();
                 float deadline=Time.realtimeSinceStartup+30;
                 while(!_view.AtDoor&&Time.realtimeSinceStartup<deadline)yield return null;
@@ -70,12 +73,15 @@ namespace ProcSense.Tests.PlayMode
                 Until("ARRIVED");deadline=Time.realtimeSinceStartup+7;
                 while(!_view.HiddenInside&&Time.realtimeSinceStartup<deadline)yield return null;
                 Assert.IsTrue(_view.HiddenInside,"Core-authorized inside passage");
+                Assert.IsTrue(visible.Keys.All(r=>!r.enabled),"No duplicate patient while inside diagnostics");
                 Assert.IsFalse(Object.FindObjectsByType<SwingDoor>().Single(d=>d.Connection=="BayCorridor").NpcPassageRequested,"No stale NPC bay-door request after group disappearance");
                 Until("RETURNING");deadline=Time.realtimeSinceStartup+30;
                 while(!_view.Status.StartsWith("At bedside")&&Time.realtimeSinceStartup<deadline)yield return null;
                 Assert.IsTrue(_view.Status.StartsWith("At bedside"),mode+": "+_view.Status);
                 Assert.IsFalse(_view.Presentation.BedsideVisible,"Do not restore bedside before Core BACK");
+                Assert.IsTrue(visible.Keys.All(r=>!r.enabled),"Wait for Core BACK before restoring the visible body");
                 Until("BACK");yield return null;Assert.IsNull(_view.Actor);Assert.IsTrue(_view.Presentation.BedsideVisible);
+                foreach(var item in visible)Assert.AreEqual(item.Value,item.Key.enabled,item.Key.name);
             }
         }
 

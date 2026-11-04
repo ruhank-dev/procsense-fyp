@@ -50,6 +50,7 @@ namespace ProcSense.Tests.PlayMode
         private SimulationHost Host(string caseId, SessionMode mode = SessionMode.Practice)
         {
             TabletFallbackRegistry.Clear();
+            TestHostHygiene.DestroyLeftoverHost();
             _host = Make<SimulationHost>("host");
             _host.AutoTick = false;
             _host.SaveLogOnDestroy = false;

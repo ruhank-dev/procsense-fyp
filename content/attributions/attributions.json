@@ -229,6 +229,18 @@
    "what": "Hospital wall and floor surfaces (ambientCG)",
    "licence": "CC0 1.0",
    "note": "unity/Assets/Textures/Hospital/README.md"
+  },
+  {
+   "kind": "3D characters",
+   "what": "Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars)",
+   "licence": "MIT",
+   "note": "unity/Assets/Characters/Rocketbox/README.md"
+  },
+  {
+   "kind": "Animation",
+   "what": "Idle, talking, sitting and walking clips (Quaternius Universal Animation Library)",
+   "licence": "CC0 1.0",
+   "note": "unity/Assets/Characters/Animations/README.md"
   }
  ],
  "voices_and_sounds": [],

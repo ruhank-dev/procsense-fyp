@@ -20,7 +20,7 @@ namespace ProcSense.Tests.PlayMode
         // Tests that exercise simulated input must request their own fixture instead.
         public static IEnumerator EnsureSimulator()
         {
-            float end = Time.realtimeSinceStartup + 10;
+            float end = Time.realtimeSinceStartup + 90;      // the rooms now carry the Rocketbox people, eight lightmaps and the clothed patient: the first room takes longer than the earlier 10 s
             RoomLoader rooms;
             while (((rooms = Object.FindFirstObjectByType<RoomLoader>()) == null || rooms.Busy) && Time.realtimeSinceStartup < end)
                 yield return null;

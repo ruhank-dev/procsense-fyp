@@ -51,11 +51,13 @@ namespace ProcSense.VR.Boot
                 if (LightmapSettings.lightProbes != null) LightProbes.Tetrahedralize();
             }
             // Boot is a service shell: the visible room owns ambient lighting and baked probes.
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(CurrentRoom));
+            // The room can be unloaded under us (a scene change while a slow first load is still streaming); then there is nothing to activate.
+            var visibleRoom = SceneManager.GetSceneByName(CurrentRoom);
+            if (visibleRoom.IsValid() && visibleRoom.isLoaded) SceneManager.SetActiveScene(visibleRoom);
             if (_rig == null) _rig = FindAnyObjectByType<XROrigin>();
-            if (_rig != null)
+            if (_rig != null && visibleRoom.IsValid() && visibleRoom.isLoaded)
             {
-                var scene = SceneManager.GetSceneByName(CurrentRoom);
+                var scene = visibleRoom;
                 var anchors = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<RoomAnchor>()).ToArray();
                 var anchor = anchors.FirstOrDefault(a => a.FromRoom == "Default") ?? anchors.FirstOrDefault();
                 if (anchor != null)

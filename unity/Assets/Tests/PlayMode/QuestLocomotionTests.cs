@@ -19,12 +19,17 @@ namespace ProcSense.Tests.PlayMode
     public class QuestLocomotionTests
     {
         [SetUp] public void BypassLogin() => DemoLoginSettings.LoginRequiredOverride = false;
-        [TearDown] public void RestoreLogin() => DemoLoginSettings.LoginRequiredOverride = null;
+        [TearDown] public void RestoreLogin() { DemoLoginSettings.LoginRequiredOverride = null; TestHostHygiene.DestroyRoomLeftovers(); }
 
         private static IEnumerator Boot()
         {
+            TestHostHygiene.DestroyRoomLeftovers();                                                                          // the previous fixture's persistent rig, camera and host must not be picked up by FindAnyObjectByType
             yield return SceneManager.LoadSceneAsync("Boot");
-            for (int i = 0; i < 40; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(40);
+            var rooms = Object.FindAnyObjectByType<RoomLoader>();
+            int extra = 0; float end = Time.realtimeSinceStartup + 20;
+            while (rooms != null && rooms.Busy && Time.realtimeSinceStartup < end) { extra++; yield return null; }
+            if (extra > 0) Debug.Log($"[QuestLocomotionTests] room needed {extra} frames beyond the fixed 40 to finish loading");
             SimulationHost.Instance.AutoTick = false;
         }
 
@@ -59,7 +64,17 @@ namespace ProcSense.Tests.PlayMode
             var rooms = Object.FindAnyObjectByType<RoomLoader>();
             var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
             blocker.name = "Movement regression obstruction";
-            var forward = Vector3.ProjectOnPlane(rig.Camera.transform.forward, Vector3.up).normalized;
+            // the rig's start yaw depends on what ran before; face a direction with a clear metre and a half in front of the capsule (the bay's wall TV, tablet table and bed all have colliders near the spawn point)
+            Vector3 Fwd() => Vector3.ProjectOnPlane(rig.Camera.transform.forward, Vector3.up).normalized;
+            var cc0 = rig.GetComponent<CharacterController>(); float applied = 0f;
+            foreach (var yaw in new[] { 0f, 180f, 90f, -90f })
+            {
+                if (yaw != 0f) { rig.transform.Rotate(0, yaw - applied, 0); applied = yaw; }
+                Physics.SyncTransforms();
+                var c = rig.transform.TransformPoint(cc0.center); float half = Mathf.Max(0f, cc0.height / 2f - cc0.radius);
+                if (!Physics.CapsuleCast(c - Vector3.up * half, c + Vector3.up * half, cc0.radius * .95f, Fwd(), out _, 1.6f, ~0, QueryTriggerInteraction.Ignore)) break;
+            }
+            var forward = Fwd();
             Vector3 start = rig.Camera.transform.position;
             blocker.transform.position = Vector3.ProjectOnPlane(start + forward * .85f, Vector3.up) + Vector3.up;
             blocker.transform.rotation = Quaternion.LookRotation(forward);
@@ -70,9 +85,13 @@ namespace ProcSense.Tests.PlayMode
             {
                 reader.inputSourceMode = XRInputValueReader.InputSourceMode.ManualValue;
                 reader.manualValue = Vector2.up;
-                yield return new WaitForSeconds(1);
-                float distance = Vector3.Dot(rig.Camera.transform.position - start, forward);
-                Assert.That(distance, Is.InRange(.05f, .70f), "Move toward the obstruction, then stop at its collider");
+                // hold the stick until the rig has really moved (up to 6 s: the first frames after a room load can stall in batch mode), then give it a second to reach and stop at the collider
+                float t0 = Time.realtimeSinceStartup; float distance = 0f;
+                while (Time.realtimeSinceStartup - t0 < 6f && distance < .05f) { reader.inputSourceMode = XRInputValueReader.InputSourceMode.ManualValue; reader.manualValue = Vector2.up; yield return null; distance = Vector3.Dot(rig.Camera.transform.position - start, forward); }      // a room service that unfreezes the providers after a late load restores the reader's input action: keep the manual stick value applied
+                for (float held = 0f; held < 1f; held += Time.deltaTime) { reader.inputSourceMode = XRInputValueReader.InputSourceMode.ManualValue; reader.manualValue = Vector2.up; yield return null; }
+                distance = Vector3.Dot(rig.Camera.transform.position - start, forward);
+                var near = Physics.OverlapSphere(start + forward * .45f, .9f); var cc = rig.GetComponent<CharacterController>();
+                Assert.That(distance, Is.InRange(.05f, .70f), "Move toward the obstruction, then stop at its collider. rig=" + rig.transform.position + " cam=" + rig.Camera.transform.position + " start=" + start + " cc.enabled=" + (cc != null && cc.enabled) + " move.enabled=" + move.enabled + " speed=" + move.moveSpeed + " state=" + move.locomotionState + " canProcess=" + move.canProcess + " input=" + reader.manualValue + " mode=" + reader.inputSourceMode + " timeScale=" + Time.timeScale + " rooms.Busy=" + (rooms != null && rooms.Busy) + " room=" + (rooms != null ? rooms.CurrentRoom : "-") + " scenes=" + string.Join(",", System.Linq.Enumerable.Select(System.Linq.Enumerable.Range(0, SceneManager.sceneCount), i => SceneManager.GetSceneAt(i).name)) + " near=" + string.Join(",", System.Linq.Enumerable.Select(near, c => c.name + "@" + c.gameObject.scene.name)));
                 Assert.That(rig.transform.position.y, Is.InRange(-.06f, .1f));
                 reader.manualValue = Vector2.zero;
                 Assert.AreEqual(hash, SimulationHost.Instance.Observable.Hash());

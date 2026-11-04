@@ -14,6 +14,7 @@ namespace ProcSense.VR.Views
         public Vector3 BayStart = new Vector3(1.35f,0,-.8f);
         public Vector3 CorridorClear = new Vector3(4.25f,0,-.8f);
         public Transform BedsidePatient;
+        public Transform[] AdditionalBedsideVisuals = System.Array.Empty<Transform>();
         public TransportPresentation Presentation { get; }=new TransportPresentation();
         public TransportActor Actor { get; private set; }
         public string Status { get; private set; }="";
@@ -220,6 +221,8 @@ namespace ProcSense.VR.Views
             {
                 var hidden=new HashSet<Renderer>();
                 if(BedsidePatient!=null) foreach(var renderer in BedsidePatient.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
+                foreach(var root in AdditionalBedsideVisuals ?? System.Array.Empty<Transform>())
+                    if(root!=null) foreach(var renderer in root.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
                 foreach(var sensor in FindObjectsByType<ProcSense.VR.ActionEmitters.SensorAttachment>().Where(s=>s.Attached))
                     foreach(var renderer in sensor.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
                 foreach(var renderer in _bedside.Keys.Where(r=>r!=null&&!hidden.Contains(r)).ToArray())

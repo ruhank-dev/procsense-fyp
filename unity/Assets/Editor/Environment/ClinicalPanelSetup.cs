@@ -30,8 +30,8 @@ namespace ProcSense.EditorTools
                 anchor.position = at; anchor.rotation = Quaternion.Euler(0, yaw, 0); return anchor;
             }
             var ward = Station(bay);
-            ward.WardAnchor = Anchor(ward, "SCREEN_WardChecklist", new Vector3(.15f, 1.65f, -1.918f), 180);
-            ward.DebriefAnchor = Anchor(ward, "SCREEN_Debrief", new Vector3(2.415f, 1.85f, .60f), 90);
+            ward.WardAnchor = Anchor(ward, "SCREEN_WardChecklist", new Vector3(.15f, 1.65f, -1.68f), 180);
+            ward.DebriefAnchor = Anchor(ward, "SCREEN_Debrief", new Vector3(2.28f, 1.85f, .60f), 90);
             var theatre = Station(ot);
             theatre.WhoAnchor = Anchor(theatre, "SCREEN_WHOBoard", new Vector3(13.42f, 1.65f, 5.20f), 90);
             foreach (var scene in new[] { bay, ot }) { EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene); }

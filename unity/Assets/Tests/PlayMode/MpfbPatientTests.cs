@@ -18,7 +18,7 @@ namespace ProcSense.Tests.PlayMode
         private IEnumerator LoadReview()
         {
             yield return EditorSceneManager.LoadSceneAsyncInPlayMode("Assets/Scenes/PatientBay.unity", new LoadSceneParameters(LoadSceneMode.Single));
-            for (int i = 0; i < 50; i++) yield return null;
+            yield return TestHostHygiene.WaitForHost(50);
             Assert.IsNotNull(SimulationHost.Instance);
             SimulationHost.Instance.AutoTick = false;
             SimulationHost.Instance.SaveLogOnDestroy = false;
@@ -36,13 +36,14 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(animator.avatar.isValid && animator.avatar.isHuman);
             Assert.AreEqual(1, Camera.allCamerasCount);
             var body = patient.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r => r.name.Contains(".body"));
-            var band = patient.GetComponentsInChildren<Transform>().Single(t => t.name == "Patient wristband");
-            var forearm = band.parent.parent;
+            // The retained rig still deforms correctly; physical band/sensor following belongs to the visible-patient regression.
+            var wrist = patient.GetComponentsInChildren<Transform>().Single(t => t.name == "hand_l");
+            var forearm = wrist.parent;
             Assert.That(forearm.name, Does.StartWith("lowerarm_"));
             var before = new Mesh();
             var after = new Mesh();
             var initial = forearm.localRotation;
-            var position = band.position;
+            var position = wrist.position;
             int actions = SimulationHost.Instance.Session.Log.Count;
             try
             {
@@ -51,12 +52,14 @@ namespace ProcSense.Tests.PlayMode
                 forearm.localRotation = initial * Quaternion.Euler(10, 0, 0);
                 yield return null;
                 body.BakeMesh(after);
-                Assert.That(Vector3.Distance(position, band.position), Is.GreaterThan(.005f));
+                Assert.That(Vector3.Distance(position, wrist.position), Is.GreaterThan(.005f));
                 Assert.That(before.vertices.Zip(after.vertices, Vector3.Distance).Max(), Is.GreaterThan(.000001f));
                 Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
                 var gown = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
-                Assert.IsTrue(gown.enabled);
-                Assert.AreEqual(body.bones.Length, gown.bones.Length);
+                // 3 Nov 2026: the generated gown (like the body) is kept as an invisible rig for the sensors; the visible patient is the clothed Rocketbox avatar, so the renderer is switched off on purpose
+                Assert.GreaterOrEqual(gown.bones.Length, body.bones.Length, "the gown shares the body skeleton and may add its secondary cloth bones");
+                CollectionAssert.AreEqual(body.bones, gown.bones.Take(body.bones.Length).ToArray(), "the first bones are exactly the body's skeleton");
+                Assert.IsTrue(gown.bones.Skip(body.bones.Length).All(b => b.name.StartsWith("gown_secondary_")), "extra bones are only the gown's secondary cloth bones");
                 Assert.IsTrue(gown.sharedMesh.boneWeights.All(w => Mathf.Abs(w.weight0 + w.weight1 + w.weight2 + w.weight3 - 1) < .001f));
                 var upperarm = forearm.parent;
                 var upperRotation = upperarm.localRotation;

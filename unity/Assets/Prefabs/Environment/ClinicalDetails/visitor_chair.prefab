@@ -100,6 +100,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: visitor_chair
       objectReference: {fileID: 0}
+    - target: {fileID: 3315747866049237606, guid: 88865a1b141a485448c378323aee96e0, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e8c5846ff932ff499b00ef94b53934f, type: 2}
     - target: {fileID: 5926652818728532817, guid: 88865a1b141a485448c378323aee96e0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

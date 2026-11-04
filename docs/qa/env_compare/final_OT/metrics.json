@@ -1,0 +1,26 @@
+[
+ {
+  "name": "ot1_from_door.png",
+  "mean_abs_diff": 0.022,
+  "pct_pixels_over_24": 0.004,
+  "psnr_db": 55.84
+ },
+ {
+  "name": "ot2_far_corner.png",
+  "mean_abs_diff": 0.0,
+  "pct_pixels_over_24": 0.0,
+  "psnr_db": 99.0
+ },
+ {
+  "name": "ot3_other_corner.png",
+  "mean_abs_diff": 0.0,
+  "pct_pixels_over_24": 0.0,
+  "psnr_db": 99.0
+ },
+ {
+  "name": "ot4_ceiling.png",
+  "mean_abs_diff": 0.0,
+  "pct_pixels_over_24": 0.0,
+  "psnr_db": 99.0
+ }
+]

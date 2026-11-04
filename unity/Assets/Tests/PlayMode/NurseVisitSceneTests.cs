@@ -232,7 +232,7 @@ namespace ProcSense.Tests.PlayMode
             yield return Boot("TEST-ID-MISMATCH"); PrepareMismatch();
             yield return Until(() => _nurse.Phase == NurseVisitPhase.CheckingRecords);
             var position = _nurse.Wrist.localPosition;
-            _nurse.Wrist.localPosition += Vector3.up * 2;
+            _nurse.Wrist.position += Vector3.up * 2;
             yield return Until(() => _nurse.Phase == NurseVisitPhase.ReplacingBand && _nurse.Blocked);
             Assert.IsFalse(_nurse.BandPlaced); Assert.AreEqual("Waiting for reachable wrist", _nurse.Status);
             for (int i = 0; i < 20; i++) { yield return null; Parity(); Assert.IsFalse(_nurse.BandPlaced); }
