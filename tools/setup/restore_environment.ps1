@@ -182,6 +182,10 @@ if ($ImportInUnity) {
   else {
     $log = Join-Path $Repo 'unity\Logs\restore_import.log'; New-Item -ItemType Directory -Force (Split-Path $log) | Out-Null
     $p = Start-Process $UnityExe -ArgumentList @('-batchmode', '-quit', '-projectPath', "`"$(Join-Path $Repo 'unity')`"", '-logFile', "`"$log`"") -PassThru -Wait
+    if ((Select-String -Path $log -Pattern 'Failed to resolve packages: operation cancelled' -Quiet -ErrorAction SilentlyContinue)) {      # seen on the very first launch of a fresh clone: the package manager is cancelled while it starts; a second launch resolves all 60 packages
+      Warn 'The package manager was cancelled on the first launch (a known start-up race); launching Unity once more'
+      $p = Start-Process $UnityExe -ArgumentList @('-batchmode', '-quit', '-projectPath', "`"$(Join-Path $Repo 'unity')`"", '-logFile', "`"$log`"") -PassThru -Wait
+    }
     $errs = Select-String -Path $log -Pattern 'error CS\d+|Scripts have compiler errors|Missing Script|Failed to import|Could not load|Library\\\S+ is missing' -ErrorAction SilentlyContinue
     if ($p.ExitCode -eq 0 -and -not $errs) { Ok 'Unity imported the project: no compile errors, no import failures in the log' }
     else { Bad "Unity exit code $($p.ExitCode); $(@($errs).Count) error lines in $log"; $errs | Select-Object -First 8 | ForEach-Object { Warn $_.Line.Trim() } }
