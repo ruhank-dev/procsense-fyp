@@ -11,8 +11,8 @@
    "bytes": 46966543
   },
   "project_owned": {
-   "files": 2003,
-   "bytes": 160969373
+   "files": 2004,
+   "bytes": 160971535
   },
   "quaternius_ual": {
    "files": 6,
@@ -35,8 +35,8 @@
    "bytes": 14961481
   },
   "baked_lighting": {
-   "files": 46,
-   "bytes": 50322532
+   "files": 58,
+   "bytes": 79691447
   },
   "polyhaven_hdri": {
    "files": 4,
@@ -48,7 +48,7 @@
   },
   "unity_settings": {
    "files": 26,
-   "bytes": 60931
+   "bytes": 61027
   }
  },
  "sources": [
@@ -6674,8 +6674,8 @@
   },
   {
    "path": "unity/Assets/Editor/Environment/CorridorSun.cs",
-   "sha256": "ec39abaf79349f2028e6909d4069a9a42cf2e24f1c8db9d2dffb89547127138a",
-   "size": 35484,
+   "sha256": "c7035a2c66085c9f2c7410e11b97650cfafbac0fdc55d2cc8b2345850b2d01fe",
+   "size": 36452,
    "group": "project_owned",
    "lfs": false
   },
@@ -6828,8 +6828,8 @@
   },
   {
    "path": "unity/Assets/Editor/Environment/GoldenHourLighting.cs",
-   "sha256": "31b117b79b754bb9f3f62a393ca7d40a95325fc372fbf4f9a73e2fd2eed37df3",
-   "size": 25864,
+   "sha256": "bb6aa1d05443c57017288de528e33f1cb01e2ef4f48ecdb083392ba8d6a7f7bb",
+   "size": 25920,
    "group": "project_owned",
    "lfs": false
   },
@@ -7360,8 +7360,8 @@
   },
   {
    "path": "unity/Assets/Editor/Environment/WallLighting.cs",
-   "sha256": "bf7176143a7325276537ecb9dc6300f79faceb3332837de1a23e8244c60e53f1",
-   "size": 11679,
+   "sha256": "d19632931eb43f2521ed49c19faedf15f36511b95417ead55d8e4b116422d296",
+   "size": 11680,
    "group": "project_owned",
    "lfs": false
   },
@@ -21577,8 +21577,8 @@
   },
   {
    "path": "unity/Assets/Scenes/Corridor.unity",
-   "sha256": "7eef04df16e8e72973dbd5d8594170cde7b0a49a1bc72e4197d263dbe0a60392",
-   "size": 2951524,
+   "sha256": "2f2cf275b6c47f72a41ca72423c27f4edc651229999c09fd68101b46a5d3584a",
+   "size": 2951572,
    "group": "project_owned",
    "lfs": false
   },
@@ -21675,8 +21675,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay.unity",
-   "sha256": "7aecb7bb29f0be9b5e8519dbd123ed75a916e79e24a9991cf8d1fa0d8d345972",
-   "size": 1248725,
+   "sha256": "713033b09966b2535690697c5e05d9760838650e7b0e171a7eb1f7ea93db68dc",
+   "size": 1248754,
    "group": "project_owned",
    "lfs": false
   },
@@ -21689,8 +21689,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/LightingData.asset",
-   "sha256": "ac21f0318ad951d5634276e3ac2b1d9e2331ea878f3366e9e20c02a11a1cd29d",
-   "size": 327392,
+   "sha256": "b76ec86569d784e2f9502e5ae058c8eeef233b70cb36c220b20fcc34a8a2bc6d",
+   "size": 327041,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21703,8 +21703,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-0_comp_dir.png",
-   "sha256": "ad73e5ca4523fd26a8c59eddf40f49181fbe6fe432c02c568959969b841fe6a2",
-   "size": 222576,
+   "sha256": "a0bfcd24b5e16f5df68cf762b3781ed074361e9d4148e0b56574f1fa2a7c399f",
+   "size": 585557,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21717,8 +21717,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-0_comp_light.exr",
-   "sha256": "9c8d670b6969ed5c851a85471f1d917f2cdeefa35049161935353faf9953dae0",
-   "size": 2518862,
+   "sha256": "cba4701341f6057bc44e04101e6ebfc1ee8b592cca520782d4378220e337ee4d",
+   "size": 8197088,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21731,8 +21731,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-0_comp_shadowmask.png",
-   "sha256": "90c4dbf4ae2bcbae61a6e58c7847f06e25d26e4222568384cf1a12f980de48a9",
-   "size": 69948,
+   "sha256": "988925b72aac91286a6badc13f7c7852f6ef393c54b71180f965da4f38a4cb6c",
+   "size": 177250,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21745,8 +21745,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-1_comp_dir.png",
-   "sha256": "dd038f029ce7e804867bf0920611c491b6d4f0c59f6e0564717c1bfc286a42f2",
-   "size": 180770,
+   "sha256": "2d37ce2342a19048b96076e66e443f6caad3439f9c7ded16578487b4c54a1975",
+   "size": 193737,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21759,8 +21759,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-1_comp_light.exr",
-   "sha256": "2e8f4db1345ab315de971cb2d352b02bc5e0a89b9bef7e00051e476145a9ed76",
-   "size": 2025847,
+   "sha256": "b5cf834710980ef4b3f65e6fc29be341abc91ec2267787523069834a1a9e8f1c",
+   "size": 2668703,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21773,8 +21773,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-1_comp_shadowmask.png",
-   "sha256": "15002e1b5744590e6e310bc74afc81b3b7c099096cfbec0855fd74c39e0a515f",
-   "size": 49191,
+   "sha256": "531fc69d4dc71b08c5e0c6d212c19a62cc932638e6b48b42d3a704766b31e8df",
+   "size": 66578,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21787,8 +21787,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-2_comp_dir.png",
-   "sha256": "e5efd5017482cbd807315fa60638cc2e018dbf570c0f840ba97f964ecc4f112a",
-   "size": 196595,
+   "sha256": "4cb126d7cb0ee19364575991650ab3c3c5b575a64049a39ae21d31ce59939566",
+   "size": 2176657,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21801,8 +21801,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-2_comp_light.exr",
-   "sha256": "243775f4315621bb2ceae8b4531db7b5d5ee948fc61018ebb8071616d6b92cad",
-   "size": 1951253,
+   "sha256": "62cd5f2bdf0ac2ab6267dc7b379f5560a0a0082210bbb74ff118c7799befe0e4",
+   "size": 34827336,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21815,8 +21815,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-2_comp_shadowmask.png",
-   "sha256": "9ac690e3838a45ac202498a42a3594c627a510f6026cbfe8ad2775bd3e669f33",
-   "size": 74064,
+   "sha256": "46f7a86bd9e53931d6d3bf6d0587f21b30a87799cf7de4cdd9cb2841c9685f28",
+   "size": 321211,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21829,8 +21829,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-3_comp_dir.png",
-   "sha256": "2a7e270f8969e6e6567a60df33629e38f33fbeac8c16d6757150420d3263f52a",
-   "size": 2319986,
+   "sha256": "241b18c5cd208eacf64f676fa4851d2926cfa5b8ca96add9e395da59f767aae1",
+   "size": 380491,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21843,8 +21843,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-3_comp_light.exr",
-   "sha256": "2ee3e95721c4cd725b3422176e44d0a3d73ef8c5804cbc4a85bd5c3178177f11",
-   "size": 27713268,
+   "sha256": "3f068e59975be9ad0029ae822d3c5ab456c726b80d347268c61260f6f9c0f715",
+   "size": 5696268,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21857,8 +21857,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-3_comp_shadowmask.png",
-   "sha256": "67cfd960c306298854cae00454d376752fe66e042da7f91dd6f07920d0647ac2",
-   "size": 452176,
+   "sha256": "36236ecf150c50ebcf87b0b7eaada9f485d1dd51e1efbc7ad844938befb0a613",
+   "size": 163786,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21871,8 +21871,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-4_comp_dir.png",
-   "sha256": "a7ccf9f77366052c16e82077b570c06becd645ce39214007b74a05ed594e5893",
-   "size": 619215,
+   "sha256": "992d4eba73a0d09a9ed3e167dc71026be9d8042c4c7a735f89c2b26b37d1fa15",
+   "size": 363601,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21885,8 +21885,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-4_comp_light.exr",
-   "sha256": "c9416835515937b8e72a5181dd65f7e3258b1307f7a3c860c3e2582746fcf775",
-   "size": 8318878,
+   "sha256": "7bb092c9a843af72ccc3d9ccfbb5343f71d3a87ef1dea7a1e1e66878bae915f8",
+   "size": 4522129,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21899,8 +21899,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-4_comp_shadowmask.png",
-   "sha256": "8a0b8d2f22b8ee38dc308a180dd8608767a05c9c8e782103f54922c5e1e02b1f",
-   "size": 49797,
+   "sha256": "febeecb85badcbbac94e3cd322bc5fd8ed1c6ce8d7b3b06e6cfbd83443ddd6c0",
+   "size": 92288,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21913,8 +21913,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-5_comp_dir.png",
-   "sha256": "1d124dc3d7ed79c54400ff46b017a3006e9deb6030c0e409d21183c46ff9bb77",
-   "size": 194444,
+   "sha256": "70a7e65ec372a9b1e5170431e3d3bc00aeac8c8f2a199781683ef91a7fd5a8d4",
+   "size": 519549,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21927,8 +21927,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-5_comp_light.exr",
-   "sha256": "f95431f7416a1b587c4842079e85f9e8158a28f1860ab6f930fc6095d16cec60",
-   "size": 2161162,
+   "sha256": "2fddb15e0fda552f47bc392006453a68f23b4117bc56549609a603ee31bfea8d",
+   "size": 8608517,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21941,8 +21941,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/Lightmap-5_comp_shadowmask.png",
-   "sha256": "11b9054bf019eb7b4f88a27de02d801db18f70e44c7a2cfb6ca55e5308bf750e",
-   "size": 4726,
+   "sha256": "c1766dbe2bfc308485f2dd8bb75443ffee57392015f1da42a091ee954ec5d9c4",
+   "size": 30207,
    "group": "baked_lighting",
    "lfs": false
   },
@@ -21954,9 +21954,93 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_dir.png",
+   "sha256": "5cfe28c0212a6a137ed612906244de3e683bb6f7e2d540ce9649d59493500219",
+   "size": 454028,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_dir.png.meta",
+   "sha256": "7e6ff208487386ca2cdf8261f32ced00d88a53eddfcb6f2911ca9a72a352b5be",
+   "size": 3010,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_light.exr",
+   "sha256": "2085c46eeb0e387a1ad948d7e6b62192d42904b4ad21df6411adb0a0ec7cfa6f",
+   "size": 7581902,
+   "group": "baked_lighting",
+   "lfs": true
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_light.exr.meta",
+   "sha256": "d37f01e6073d0dd6803c4e4c0b66e5eb9700346eeaa0d3398c95c7b6aeb72826",
+   "size": 3009,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_shadowmask.png",
+   "sha256": "6b4152c002b16424af8d66e9528f47184240631a79b8535ae3a1dd861a28d6f3",
+   "size": 40107,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-6_comp_shadowmask.png.meta",
+   "sha256": "2bbe37f59530504d27c2d6fc56b21b38840d793a85d0bd449bc3c3c2e33f331c",
+   "size": 3010,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_dir.png",
+   "sha256": "a162e24b2b3addfd2a665bf757aef8f758ab1cdf0ae740e9ebe55302dbd7f67e",
+   "size": 31582,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_dir.png.meta",
+   "sha256": "ca1269b56ecc13be91ae64688cdafcb8a744e90497970eb38228a85543abf98b",
+   "size": 3010,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_light.exr",
+   "sha256": "c9fedfbd5a4ef3e8c330462fe285ef935015228bf9d2225a2f0e4430055ffb28",
+   "size": 774448,
+   "group": "baked_lighting",
+   "lfs": true
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_light.exr.meta",
+   "sha256": "8501567e4ddeb18ca27fb2560a036cab7ef14ab0de3a2bddcb743a647e4e0f9c",
+   "size": 3009,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_shadowmask.png",
+   "sha256": "4a0a2d7b2c52e8695b236b0d6f0c5627b1ad908a998a520def70c1ea7fd28612",
+   "size": 1117,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scenes/PatientBay/Lightmap-7_comp_shadowmask.png.meta",
+   "sha256": "91a1c600702af89b674b89e50835104bef7a770fea533e3235da79219b439fad",
+   "size": 3010,
+   "group": "baked_lighting",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Scenes/PatientBay/ReflectionProbe-0.exr",
-   "sha256": "a4ac0edbd9f0491169534d03d5da7e3f374221835d371c6ba52bda7831f89b1b",
-   "size": 203019,
+   "sha256": "acc64fbc0b5f273dcd22309e708abbe456838934d0053463b8727113bcbaf5e8",
+   "size": 203012,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21969,8 +22053,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/ReflectionProbe-1.exr",
-   "sha256": "d20cdd2ca17c0dfd5077cad7498301706315fdb08465a795c47b3697c85f6b6e",
-   "size": 210147,
+   "sha256": "7a5bc1744ab836814ea36a3bf84b33e40e1f8dcbda191df05a39266083269548",
+   "size": 209954,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21983,8 +22067,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/ReflectionProbe-2.exr",
-   "sha256": "7384d03d0b79b165549acab3e23235cac39c221e0ab221be9944a4e0fbfefe1a",
-   "size": 204589,
+   "sha256": "4f5598c755922234ab3dbb1bde832108c7cd54016a048a7b0d05134065f1d9b6",
+   "size": 203591,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -21997,8 +22081,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay/ReflectionProbe-3.exr",
-   "sha256": "b4ad71159e86d772c444f20220ec2bc8b45b9a62d9bcf20d98d5b40be5a8b6cf",
-   "size": 188213,
+   "sha256": "e2e723bc7a90958ce0f2c5c257facbd79dd2133b4e88d095bf25b76ac0e566e6",
+   "size": 189240,
    "group": "baked_lighting",
    "lfs": true
   },
@@ -24335,8 +24419,8 @@
   },
   {
    "path": "unity/Assets/Settings/HospitalLighting/PatientBay monitor reflection.exr",
-   "sha256": "3f698c9828d72196f13f64320369a3b30395fe144fa297d4b76d86544cb1a294",
-   "size": 466900,
+   "sha256": "111a9dc38675102fc3138be38e94379d36083aad4e82d3f79526b065e80cded5",
+   "size": 467639,
    "group": "project_owned",
    "lfs": true
   },
@@ -24349,8 +24433,8 @@
   },
   {
    "path": "unity/Assets/Settings/HospitalLighting/PatientBay reflection.exr",
-   "sha256": "b4c861ed46c391b6a838cac0b3ac9f17cc1ebab8f19139a4dd422c9f4190598f",
-   "size": 1582470,
+   "sha256": "ed344e121b6af2217a031fb07695965488fff07d9f7a96e1e1262f724f61b69e",
+   "size": 1575533,
    "group": "project_owned",
    "lfs": true
   },
@@ -24363,8 +24447,8 @@
   },
   {
    "path": "unity/Assets/Settings/HospitalLighting/PatientBay.lighting",
-   "sha256": "ffd60e752ca776882567b10bd0670e2b89dd9b32fe95eb492732cdd7b3af737f",
-   "size": 1975,
+   "sha256": "262f5277fff840c658d1a5ae8294448b946a421de40708ade21e3d886e57cf5c",
+   "size": 1977,
    "group": "project_owned",
    "lfs": false
   },
@@ -24734,8 +24818,15 @@
   },
   {
    "path": "unity/Assets/Tests/EditMode/EnvironmentIntegrityTests.cs",
-   "sha256": "abcc2b164c0092aefc2e1895e8c4b4edd8555f4ac7e34f6563ee5d9ed53ecd9e",
-   "size": 7631,
+   "sha256": "e61e99b62eb7c4c67983fb07595b7eacbaf4d89d2d3fc05d33973f89e82c72a9",
+   "size": 7977,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/EditMode/EnvironmentIntegrityTests.cs.meta",
+   "sha256": "075b1952578551f698d0a3a6921cd4243c6203d8b3894d2392939973fb5fc90e",
+   "size": 59,
    "group": "project_owned",
    "lfs": false
   },
@@ -24839,8 +24930,8 @@
   },
   {
    "path": "unity/Assets/Tests/EditMode/MonitorMaterialContractTests.cs",
-   "sha256": "83d0f3dbb93c12514c99bff12f3988de1f1413db7d627d9efe120ad3fcc376c6",
-   "size": 5120,
+   "sha256": "5b151f3af2abebfe6631a18d5f9d05d9c32ffa7832e4f8f99ba1f6f5670e3f8d",
+   "size": 5966,
    "group": "project_owned",
    "lfs": false
   },
@@ -24853,8 +24944,8 @@
   },
   {
    "path": "unity/Assets/Tests/EditMode/NeutralDaylightContractTests.cs",
-   "sha256": "e76bf0c6f7f626cbf832cce6881c7edad5874adf6688f26240481336366346fb",
-   "size": 6964,
+   "sha256": "04500fd857d2cdc0edd812ef7c36b977cc7e84ba76453694f2ce425c0c639b9c",
+   "size": 7121,
    "group": "project_owned",
    "lfs": false
   },
@@ -24909,8 +25000,8 @@
   },
   {
    "path": "unity/Assets/Tests/EditMode/ProcSense.Tests.EditMode.asmdef",
-   "sha256": "1930a0e74cfbcc3227cd2f95a40c881838294d84dd91338bd865bc0e2cc9189d",
-   "size": 435,
+   "sha256": "e31656f137d6cb4dd0b08be9b9f4395276cde79e06ed2253eea94823ca684029",
+   "size": 516,
    "group": "project_owned",
    "lfs": false
   },
@@ -25168,8 +25259,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/ClothMotionTests.cs",
-   "sha256": "67ff948ef896a2590751736a5151bcdd304d5821fbb7d030fd9be94e6eb068ed",
-   "size": 5420,
+   "sha256": "cf3522be2416fc569354c21b2f6028bba83526276933656042d5b81dac47f16e",
+   "size": 5418,
    "group": "project_owned",
    "lfs": false
   },
@@ -25210,8 +25301,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/DemoLoginTests.cs",
-   "sha256": "3de3d78f1990b9857ed9ecf0bef3f15cd03d1a40a9578381fde2954dd8590146",
-   "size": 6758,
+   "sha256": "ba5f3f731b032bdc26b120cc2463ae9087435356a8fced0b9637c2d5df61c15d",
+   "size": 7157,
    "group": "project_owned",
    "lfs": false
   },
@@ -25224,8 +25315,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/DiagnosticDoorTests.cs",
-   "sha256": "2dacc20ca98d76d1d9c070bf364810a5bd85b1c33251d7773fef2b548c247918",
-   "size": 14871,
+   "sha256": "a8f2bb063feb45ef52e351a2bb510c815edffedb65fa008aeb459842fbf0f790",
+   "size": 14873,
    "group": "project_owned",
    "lfs": false
   },
@@ -25266,8 +25357,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/EditorXRTestEnvironment.cs",
-   "sha256": "909a683c3de924035c1d2552720506210b5161dc341573a2e9b3a631bf336421",
-   "size": 4156,
+   "sha256": "6b05769e67b24069ce5c14e37415f07996267f75b2f68d84188c46aa4b701666",
+   "size": 4297,
    "group": "project_owned",
    "lfs": false
   },
@@ -25336,8 +25427,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/FoundationTests.cs",
-   "sha256": "bfe8a882e430dae2367d24c735e6d5537cfa6da5df4d7d802c74b92fe264f177",
-   "size": 9447,
+   "sha256": "df62200e0cd1d8c318cb222f26cab0e11c06f27baa46fad1c44dc4c13162f014",
+   "size": 9445,
    "group": "project_owned",
    "lfs": false
   },
@@ -25350,8 +25441,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/GownPoseTests.cs",
-   "sha256": "4f4d6c8cd34c3f90fb8220e7dfd9fad401f8f0459929675de8157b54d558e320",
-   "size": 11327,
+   "sha256": "17a10a27b06c307a50179b8d0ce8c20b1dcbeec9b0613079eb4f80460eac2176",
+   "size": 11325,
    "group": "project_owned",
    "lfs": false
   },
@@ -25406,8 +25497,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/LoginPresentationTests.cs",
-   "sha256": "72a07c04a0222c1d007606ecca9730087f676fa7ebbabe576d7f49071697c1fc",
-   "size": 7459,
+   "sha256": "dc4fa290a2e5b59cad0699c57922984d798f169750e3e10c59b39333f1e285ca",
+   "size": 7467,
    "group": "project_owned",
    "lfs": false
   },
@@ -25420,8 +25511,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/LoginServiceTests.cs",
-   "sha256": "249ec42f300798463254f64990edb5b6f7b02a0bd37d3eca25f1c6aa786743a2",
-   "size": 7825,
+   "sha256": "1c9115166295406a686c1286d7d4bd16a66fb3d9ce46af58d3d10813f35fe25b",
+   "size": 7841,
    "group": "project_owned",
    "lfs": false
   },
@@ -25476,8 +25567,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/MpfbPatientTests.cs",
-   "sha256": "af0f6ac04b2df2ad02401e4641912be1847482262832571cefaec963b6b02dc9",
-   "size": 7876,
+   "sha256": "ecd01d92f5018681d47f9d703d999c89045e443870677ef46b11d6ffe80699a6",
+   "size": 8036,
    "group": "project_owned",
    "lfs": false
   },
@@ -25490,8 +25581,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/PatientBayTests.cs",
-   "sha256": "8e5f44ed45b56d94eb85ce6ced2c3fe3b9b2a951098a3f1f5a4c758d430cefdb",
-   "size": 12153,
+   "sha256": "266f2f65211d6f0b0f69435e1d089908e5e252bc89dca46c42d51d08e9e59d1a",
+   "size": 12151,
    "group": "project_owned",
    "lfs": false
   },
@@ -25504,8 +25595,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/PatientIdleTests.cs",
-   "sha256": "991cdf6cdfe4713b0058788e2382f2b79270d88279fb46f29394282190c5afa1",
-   "size": 17431,
+   "sha256": "c500be8c5fe0da5b04d8435cc4158e4fd9f41220e025c5e267c883b09cf00f9b",
+   "size": 17429,
    "group": "project_owned",
    "lfs": false
   },
@@ -25546,8 +25637,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/QuestLocomotionTests.cs",
-   "sha256": "f3bd450b4db1c16bc42af5d0494a0663ab906075a8bb2f0e9626bfb75aa946ea",
-   "size": 8490,
+   "sha256": "f228ee1e945bc66734ea062ad176a63b7d690cfcef63fa0dfc9f4e0056152847",
+   "size": 11325,
    "group": "project_owned",
    "lfs": false
   },
@@ -25644,8 +25735,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/SpeechFaceTests.cs",
-   "sha256": "83a42d135c77ee3de8574bde7787e7b1f9235dab28ad1a8f648a918ef64d77cd",
-   "size": 4452,
+   "sha256": "71e8453f4688b3141e2d04f9b3a4638addec624910a1e8876415fcc4391955ba",
+   "size": 4450,
    "group": "project_owned",
    "lfs": false
   },
@@ -25728,8 +25819,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/TestHostHygiene.cs",
-   "sha256": "24a07d1645433057989396647df92f7f681c3f68db82658ea6a0583896bd5308",
-   "size": 1790,
+   "sha256": "35bab2694d5acc144ef82d4f02ce4adcd7324001c3e924518d851bfceaef1dad",
+   "size": 4008,
    "group": "project_owned",
    "lfs": false
   },
@@ -31020,8 +31111,8 @@
   },
   {
    "path": "unity/ProjectSettings/ProjectSettings.asset",
-   "sha256": "ade21e4882c08acd3055653a9030adf1cb922dcd60b33f750e8ebe80a85430de",
-   "size": 22429,
+   "sha256": "c840a795e00b702a8c396187ce02014a411e2c3033b13f23ec1d9d2d862860b2",
+   "size": 22525,
    "group": "unity_settings",
    "lfs": false
   },

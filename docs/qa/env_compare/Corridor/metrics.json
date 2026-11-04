@@ -1,0 +1,44 @@
+[
+ {
+  "name": "l1_wide_orig.png",
+  "mean_abs_diff": 2.625,
+  "pct_pixels_over_24": 0.089,
+  "psnr_db": 36.77
+ },
+ {
+  "name": "l2_south_mid.png",
+  "mean_abs_diff": 3.569,
+  "pct_pixels_over_24": 0.57,
+  "psnr_db": 33.3
+ },
+ {
+  "name": "l3_close_door_window.png",
+  "mean_abs_diff": 2.941,
+  "pct_pixels_over_24": 0.332,
+  "psnr_db": 35.47
+ },
+ {
+  "name": "l4_floor_across.png",
+  "mean_abs_diff": 2.872,
+  "pct_pixels_over_24": 0.231,
+  "psnr_db": 35.83
+ },
+ {
+  "name": "l5_opposite_wall.png",
+  "mean_abs_diff": 2.858,
+  "pct_pixels_over_24": 0.658,
+  "psnr_db": 33.05
+ },
+ {
+  "name": "l6_floor_down.png",
+  "mean_abs_diff": 2.77,
+  "pct_pixels_over_24": 0.327,
+  "psnr_db": 35.21
+ },
+ {
+  "name": "l7_through_glass.png",
+  "mean_abs_diff": 1.717,
+  "pct_pixels_over_24": 0.072,
+  "psnr_db": 39.2
+ }
+]
