@@ -69,7 +69,7 @@ try {
 
 # --- 3. verify every tracked asset -------------------------------------------------------------------------------------------------------------
 Say "== 3. Verifying $($manifest.files.Count) tracked files by SHA-256" Cyan
-$textExt = @('.cs','.meta','.unity','.prefab','.mat','.asset','.shader','.cginc','.hlsl','.json','.md','.txt','.py','.ps1','.sh','.yaml','.yml','.asmdef','.asmref','.shadergraph','.shadersubgraph','.controller','.anim','.overrideController','.mask','.physicMaterial','.renderTexture','.flare','.cubemap','.playable','.signal','.inputactions','.uss','.uxml','.xml','.csv','.lighting','.preset','.mixer','.guiskin','.fontsettings','.spriteatlas','.terrainlayer','.brush','.compute','.raytrace','.vfx','.tpsd')
+$textExt = @('.cs','.meta','.unity','.prefab','.mat','.asset','.shader','.cginc','.hlsl','.json','.md','.txt','.py','.ps1','.sh','.yaml','.yml','.asmdef','.asmref','.shadergraph','.shadersubgraph','.controller','.anim','.overrideController','.mask','.physicMaterial','.renderTexture','.flare','.cubemap','.playable','.signal','.inputactions','.uss','.uxml','.xml','.csv','.obj','.mtl','.lighting','.preset','.mixer','.guiskin','.fontsettings','.spriteatlas','.terrainlayer','.brush','.compute','.raytrace','.vfx','.tpsd')
 $sha = [System.Security.Cryptography.SHA256]::Create()
 function Get-NormHash([string]$full, [string]$ext) {
   $bytes = [System.IO.File]::ReadAllBytes($full)

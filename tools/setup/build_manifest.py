@@ -22,7 +22,7 @@ REMOTE = json.loads((SETUP / "remote_metadata.json").read_text(encoding="utf-8")
 TRACKED_ROOTS = ["unity/Assets", "unity/Packages", "unity/ProjectSettings", "blender"]
 TEXT_EXT = {".cs", ".meta", ".unity", ".prefab", ".mat", ".asset", ".shader", ".cginc", ".hlsl", ".json", ".md", ".txt", ".py", ".ps1", ".sh", ".yaml", ".yml", ".asmdef", ".asmref", ".shadergraph",
             ".shadersubgraph", ".controller", ".anim", ".overrideController", ".mask", ".physicMaterial", ".renderTexture", ".flare", ".cubemap", ".playable", ".signal", ".inputactions", ".uss", ".uxml",
-            ".xml", ".csv", ".lighting", ".preset", ".mixer", ".guiskin", ".fontsettings", ".spriteatlas", ".terrainlayer", ".brush", ".compute", ".raytrace", ".vfx", ".tpsd", ".txt"}
+            ".xml", ".csv", ".obj", ".mtl", ".lighting", ".preset", ".mixer", ".guiskin", ".fontsettings", ".spriteatlas", ".terrainlayer", ".brush", ".compute", ".raytrace", ".vfx", ".tpsd", ".txt"}
 
 LICENSES = {
     "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
