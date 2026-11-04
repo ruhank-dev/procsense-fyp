@@ -45,7 +45,7 @@ git status
 ```
 powershell -ExecutionPolicy Bypass -File tools\setup\restore_environment.ps1
 ```
-It checks all 4,059 Unity and Blender files one by one (SHA-256) against a list and fixes anything missing from Git. It must end with: *All manifest files verified. Environment restored.* Useful extras:
+It checks all 4,061 Unity and Blender files one by one (SHA-256) against a list and fixes anything missing from Git. It must end with: *All manifest files verified. Environment restored.* Useful extras:
 • `-WithBlender` installs Blender 4.5.14 into the project folder
 • `-DownloadSources` re-downloads the original CC0/MIT downloads (characters, textures, HDRIs) from their original sites and checks their checksums (several GB, only needed if you want the originals)
 • `-ImportInUnity` opens Unity once in the background so it imports everything and compiles the code
@@ -95,7 +95,7 @@ I built the APK and checked it is a valid file, but *I did not test it on a head
 • Android SDK problems: Unity Hub -> Installs -> the gear on 6000.5.10f1 -> Add modules -> Android Build Support with OpenJDK and SDK and NDK Tools.
 • Anything else: section G of the guide has the full list.
 
-*What I tested myself on the fresh clone (4 Nov 2026):* restore script all 4,059 files verified; Unity import; all scenes load; EditMode 204/204; PlayMode 239 passed, 0 failed, 7 skipped on purpose; Windows development build and Quest Dev APK both build; GitHub CI green. *Not tested:* anything on a real Quest headset.
+*What I tested myself on the fresh clone (4 Nov 2026):* restore script all 4,061 files verified; Unity import; all scenes load; EditMode 204/204; PlayMode 239 passed, 0 failed, 7 skipped on purpose; Windows development build and Quest Dev APK both build; GitHub CI green. *Not tested:* anything on a real Quest headset.
 
 ---
 

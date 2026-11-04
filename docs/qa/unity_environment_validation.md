@@ -15,7 +15,7 @@ Only what was actually executed is listed as passed. Anything not run, or run on
 | Unity PlayMode, working project | Last full run 246 tests: 238 passed, 7 skipped on purpose, **1 failed** (a locomotion fixture); the cause was found and fixed, the fixed class then passed 4 / 4. The full suite was **not** re-run in the working project after that last fix (see the clean clone for a complete green run) |
 | Unity EditMode, fresh clone | **204 / 204 passed** (commit `39a4f8c0`) |
 | Unity PlayMode, fresh clone | **246 tests: 239 passed, 0 failed, 7 skipped on purpose** (commit `39a4f8c0`) |
-| Restore script on the fresh clone | **4,059 / 4,059 files match the manifest** ("All manifest files verified", commit `5b564331`) |
+| Restore script on the fresh clone | **4,061 / 4,061 files match the manifest** ("All manifest files verified", commit `5b564331`) |
 | Blender sources | **53 / 53 open, no linked library, no missing image, export to FBX** (one non-project file removed, see 4) |
 | Desktop development build (Windows x64) | **Succeeded**, 0 errors, 1.40 GB; the player ran 50 s with no exception in its log (launch smoke test only) |
 | Quest development APK | **Succeeded**, 493,771,980 bytes, SHA-256 `1d8af6a8fd06734dca9ddd4f4a489eb37da4fe062121db0220c26efe3da2f8f5`, valid archive. **Not run on a headset.** |
