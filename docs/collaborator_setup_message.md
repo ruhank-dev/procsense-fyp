@@ -9,9 +9,9 @@ Written 4 Nov 2026 (UTC). This is the short, copy-and-send version of [new_unity
 Hi both. Everything is on GitHub, nothing needs to be sent to you by hand. Follow these steps in order. I tested the whole thing myself on a brand-new clone of the repo.
 
 *Repo:* https://github.com/ruhank-dev/procsense-fyp
-*Branch with the new environment:* `overhaul/urp-integration` (not main yet)
-*Full guide:* https://github.com/ruhank-dev/procsense-fyp/blob/overhaul/urp-integration/docs/new_unity_environment.md
-*Licences and where every asset came from:* https://github.com/ruhank-dev/procsense-fyp/blob/overhaul/urp-integration/docs/research/asset_sources_and_licenses.md
+*Branch:* `main` (the new environment is merged into main)
+*Full guide:* https://github.com/ruhank-dev/procsense-fyp/blob/main/docs/new_unity_environment.md
+*Licences and where every asset came from:* https://github.com/ruhank-dev/procsense-fyp/blob/main/docs/research/asset_sources_and_licenses.md
 
 *1. Install these first (Windows 11)*
 • Git for Windows (includes Git LFS): https://git-scm.com/download/win
@@ -34,7 +34,7 @@ git lfs version
 mkdir C:\dev
 cd C:\dev
 git lfs install
-git clone --branch overhaul/urp-integration https://github.com/ruhank-dev/procsense-fyp.git
+git clone https://github.com/ruhank-dev/procsense-fyp.git
 cd procsense-fyp
 git lfs pull
 git status
@@ -64,7 +64,7 @@ Then in the menu bar: *ProcSense -> Open Patient Bay*, and press *Play*. WASD mo
 • The soft light shafts and floating dust only show on PC, never on Quest (on purpose).
 • Run the tests: Window -> General -> *Test Runner*. EditMode: all 204 should pass. PlayMode: 246 tests, 239 pass and 7 are skipped on purpose (1 needs a live server login, 6 are clinical cases that are not signed off yet), 0 should fail.
 This is exactly what I got in a fresh clone: EditMode 204 of 204, PlayMode 239 passed, 0 failed, 7 skipped.
-Honest note: screenshots from the fresh clone and from my machine match (every pixel difference is small, about 1 to 3 shades out of 255). I could not find the cause of that tiny difference, it is not a missing file.
+Screenshots from 16 fixed camera positions in the fresh clone and in my project are identical (the only differences are random dust specks and a character caught mid-animation).
 
 *6. Sannan: Quest 2*
 1. Quest: Meta Horizon phone app -> Devices -> your headset -> Developer mode ON. Plug in USB and accept "Allow USB debugging" inside the headset. `adb devices` must show your headset as `device`.
@@ -77,9 +77,10 @@ adb install -r artifacts\unity\ProcSense-dev.apk
 Then in the headset: Apps -> Unknown Sources -> ProcSense.
 5. Please test and write down: frame rate (OVR Metrics Tool), pink or missing materials, flat or black rooms (missing lightmaps), the patient breathing and blinking, comfort. The checklist is item *DC-12* in docs/testing/SANNAN_EXTERNAL_TESTING.md. Results go in docs/testing/results/DC-12.md.
 I built the APK and checked it is a valid file, but *I did not test it on a headset*: that part is yours.
+6. *Important:* a Quest build leaves the Unity Editor on the *Android* platform. In that state the desktop rooms look slightly darker (that is how I found it). Before you work on, capture or bake the desktop look, switch back: File -> Build Profiles -> Windows -> Switch Platform.
 
 *7. Moiz: working in the shared project*
-• Work on your own branch from `overhaul/urp-integration`, merge the latest into it before pushing, never force-push (docs/TEAM_GIT_WORKFLOW.md). Run `task setup` once, then `task ci` before pushing.
+• Work on your own branch from `main`, merge the latest `main` into it before pushing, never force-push (docs/TEAM_GIT_WORKFLOW.md). Run `task setup` once, then `task ci` before pushing.
 • Never commit Library, Temp, Logs or UserSettings. Always commit the `.meta` file together with its asset, never delete a `.meta` by hand (it holds the GUID that scenes use).
 • Two people must not edit the same scene at the same time (Corridor, PatientBay, OT). Tell the group which scene you are editing.
 • Baked lighting (Lightmap-*.exr, LightingData.asset) is in Git LFS and the free LFS quota is small: do not rebake unless you really change lighting. A rebake of the three rooms takes about 70 minutes at final quality.
@@ -98,4 +99,4 @@ I built the APK and checked it is a valid file, but *I did not test it on a head
 
 ---
 
-(End of the message. Branch, commit and test numbers are repeated in docs/qa/unity_environment_validation.md.)
+(End of the message. Commit and test numbers are in docs/qa/unity_environment_validation.md.)

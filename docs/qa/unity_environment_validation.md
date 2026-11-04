@@ -3,7 +3,7 @@
 Run on 3 and 4 Nov 2026 (UTC) on the owner's Windows 11 machine (Unity 6000.5.10f1, Blender 4.5.14, Git 2.54, Git LFS 3.7.1). Companion: [../new_unity_environment.md](../new_unity_environment.md) (the setup guide), [../collaborator_setup_message.md](../collaborator_setup_message.md) (the WhatsApp copy), [../testing/SANNAN_EXTERNAL_TESTING.md](../testing/SANNAN_EXTERNAL_TESTING.md) (headset items).
 Only what was actually executed is listed as passed. Anything not run, or run only in part, says so.
 
-**Branch:** `overhaul/urp-integration` on https://github.com/ruhank-dev/procsense-fyp (the repository is public and stays public).
+**Branch:** developed on `overhaul/urp-integration`, then fast-forwarded into `main` on 4 Nov 2026 (no merge commit, no force-push) on https://github.com/ruhank-dev/procsense-fyp (the repository is public and stays public).
 **Last code and manifest commit that every result below refers to:** `5b564331` ("Manifest: hash .obj and .mtl with LF endings like the other text files"). Commits after it only add documentation (this report, the collaborator message); the GitHub run on the final commit is listed in section 7.
 
 ## 1. Summary
@@ -20,7 +20,7 @@ Only what was actually executed is listed as passed. Anything not run, or run on
 | Desktop development build (Windows x64) | **Succeeded**, 0 errors, 1.40 GB; the player ran 50 s with no exception in its log (launch smoke test only) |
 | Quest development APK | **Succeeded**, 493,771,980 bytes, SHA-256 `1d8af6a8fd06734dca9ddd4f4a489eb37da4fe062121db0220c26efe3da2f8f5`, valid archive. **Not run on a headset.** |
 | GitHub Actions `CI` | Runs on commits `d3b9361d` and `d8ba367b` both **success** (5 of 5 jobs each); final run in section 7 |
-| Visual comparison working project vs fresh clone | 16 fixed-camera views: small differences only (section 6); one residual difference not explained |
+| Visual comparison working project vs fresh clone | 16 fixed-camera views: **identical within render noise** (mean difference 0.0 to 0.27 of 255, PSNR 36 to 99 dB) once the working project is on the Windows desktop target; an earlier 1 to 8 level darker clone was traced to the working project being left on the Android target by the Quest build (section 6) |
 | Headset checks | **Not done**, assigned to Sannan (item DC-12) |
 
 ## 2. Local checks (`task doctor`, `task ci`)
@@ -79,9 +79,10 @@ Procedure (exactly the documented one): `git clone --branch overhaul/urp-integra
 | | Mean difference (0 to 255) | Pixels changed by more than 24 levels | PSNR |
 |---|---|---|---|
 | Working project vs itself (second capture) | 0.0 to 0.25 | 0.0 to 0.36 % | 37 to 99 dB |
-| Working project vs fresh clone | 1.7 to 4.5 (OT ceiling 7.9) | 0.0 to 0.66 % | 29 to 40 dB |
+| Working project (Android target left by the Quest build) vs fresh clone | 1.7 to 4.5 (OT ceiling 7.9), the clone consistently darker | 0.0 to 0.66 % | 29 to 40 dB |
+| **Working project (Windows desktop target) vs fresh clone** | **0.0 to 0.27** | **0.0 to 0.38 %** | **36 to 99 dB** |
 
-  Dust and light-shaft motes are random; the working project differs from itself by almost nothing, so the clone difference is systematic. ChatGPT's image analysis of four side-by-side sheets (`unity/Logs/QA/EnvCompare/round_01`) found the same geometry, placement, exterior and lighting direction and called out two minor items: one character posed slightly differently (people animate continuously and the captures were taken at different moments) and low-level shading differences on ceilings, walls and seat reflections. **The source of the residual shading difference was not isolated.** It is not a missing or different project file (checked above); the remaining suspects are editor-side state (cached import or lighting data) in the working project. It is small (about 1 to 3 % of full scale) and no object, material or light is missing.
+  **Root cause found.** The first comparison showed the fresh clone slightly darker everywhere (1 to 4 levels, ceilings up to 8, a little cooler), while the working project differed from itself by almost nothing. All files, settings and packages were identical, and a forced reimport of the lighting data changed nothing. The working project's `Library/EditorUserBuildSettings.asset` showed the **active build target Android**: the Quest build (`BuildScript.BuildQuest`) switches the Editor to Android and leaves it there, and on Android the Editor imports textures and chooses quality settings for the headset. The fresh clone was still on Windows desktop. After `EnvironmentReimport.SwitchToDesktop` put the working project back on Windows, the same views differ by 0.0 to 0.27 levels (signed mean within 0.15), the same as run-to-run noise, and [env_compare/final_*](env_compare/) holds the sheets. Lesson for the team: after a Quest build, switch the Editor back to Windows (File > Build Profiles > Windows, or the menu method) before looking at, capturing or baking the desktop look. ChatGPT's image analysis of the first four sheets (`unity/Logs/QA/EnvCompare/round_01`) found the same geometry, placement, exterior and lighting direction and two minor items: one character posed slightly differently (people animate continuously and the captures were taken at different moments) and low-level shading differences, which the Android target explains. The earlier signed-difference tool is `tools/setup/signed_diff.py`.
 
 ## 7. GitHub Actions
 
@@ -100,7 +101,6 @@ Not run, with the reason: `deploy.yml`, `publish-image.yml` and `release.yml` ne
 
 * Everything on the Quest 2 headset (item DC-12 and the existing headset items), for Sannan.
 * Full PlayMode suite of the working project after the last test-fixture fix (the fresh clone has a complete green run of the same code).
-* Unexplained small systematic render difference between the working project and a fresh clone (section 6).
 * Desktop release build, Quest demo and study builds.
 * The hidden old MPFB patient rig stays in the bay (invisible) because the sensors and idle hooks use it; 13 of the tests that touch it needed that to stay.
 * Dust motes of the soft light shafts are not fully confined to the beams (cosmetic, desktop only).
