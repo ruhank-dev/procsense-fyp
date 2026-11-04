@@ -11,8 +11,8 @@
    "bytes": 46966543
   },
   "project_owned": {
-   "files": 2040,
-   "bytes": 161124529
+   "files": 2050,
+   "bytes": 161166118
   },
   "quaternius_ual": {
    "files": 6,
@@ -6715,9 +6715,23 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Editor/Environment/DoorInteractionRepair.cs",
+   "sha256": "fd2eb0e579d05fd3e359766a8a458d8a658c2282eba79c4255fb16df818a0644",
+   "size": 4901,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/DoorInteractionRepair.cs.meta",
+   "sha256": "c2babbd63e8b2255202430ae0a6f5ce2c16c62fedae3842c471729d8e1372024",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Editor/Environment/DoorUpgrade.cs",
-   "sha256": "235d26759e873bf760a8b3cb036d470ea41e2e55e01e4950f3bd68d9799a803d",
-   "size": 7727,
+   "sha256": "ef247fa86ed960fd9b733ae77cba5a9427bac1524ed26e9c9cb735a395a12a18",
+   "size": 7811,
    "group": "project_owned",
    "lfs": false
   },
@@ -7810,6 +7824,20 @@
    "path": "unity/Assets/Editor/Setup/SessionDevMenu.cs.meta",
    "sha256": "45174d9da0e9a70e6e1cca2700935985bd86f376dc43e342e7e6d3697df1327a",
    "size": 60,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/ThermometerSetup.cs",
+   "sha256": "75c7210ef7ed826b02548d548a2b581840e998cf939b2632d9edea6a5c8d5d36",
+   "size": 3333,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/ThermometerSetup.cs.meta",
+   "sha256": "e0d2e07bdef9969c82e614deec5666e31cc94036c6ade25aec36e49acc954add",
+   "size": 59,
    "group": "project_owned",
    "lfs": false
   },
@@ -21661,8 +21689,8 @@
   },
   {
    "path": "unity/Assets/Scenes/Corridor.unity",
-   "sha256": "2f2cf275b6c47f72a41ca72423c27f4edc651229999c09fd68101b46a5d3584a",
-   "size": 2951572,
+   "sha256": "ef1c8c2fc2ced09cda554332fb0ebd5a2a185c82a5f521dce15745c43bca0e23",
+   "size": 2951756,
    "group": "project_owned",
    "lfs": false
   },
@@ -21738,8 +21766,8 @@
   },
   {
    "path": "unity/Assets/Scenes/OT.unity",
-   "sha256": "5cfdd54d44e5171697ed3969a60bdc3d9343490af3f6eefd353adb137ed26eba",
-   "size": 551496,
+   "sha256": "04f4bf19284758b1f62d7410188ae85ce11a51c6286616f4e9b3f35bc75ed819",
+   "size": 551669,
    "group": "project_owned",
    "lfs": false
   },
@@ -21759,8 +21787,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay.unity",
-   "sha256": "a95f4608f639ffc186f515d8dc23eaac175e6fe303f24cede428f186cd7a8324",
-   "size": 1262910,
+   "sha256": "e79f9a337028f4df0b883e73f3a968f8a4815c1be3eee157c43f06e66e0f2ec5",
+   "size": 1282647,
    "group": "project_owned",
    "lfs": false
   },
@@ -22229,6 +22257,20 @@
   {
    "path": "unity/Assets/Scripts/ActionEmitters/ActionEmitter.cs.meta",
    "sha256": "2b2102c25a0ef951d8546f9aef27f114670b18113874bbc1bbba2224ee39b3fd",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/ActionEmitters/ContactActionEmitter.cs",
+   "sha256": "6666704783695c3d608982da37115d757576790091825d2159173425bfced7a0",
+   "size": 3171,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/ActionEmitters/ContactActionEmitter.cs.meta",
+   "sha256": "c381e43bd5aa4ece7da72ebc9a0b23703b51a99bfc9f676a5233cbc0a3d07139",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -23649,8 +23691,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/EquipmentSurfaceView.cs",
-   "sha256": "f61699f396e7b6584bc92b55005a9ac7d72cd32bcfeb7d3599fd9274536c358d",
-   "size": 1684,
+   "sha256": "279b252e19250034e5fd801565ea82be6dad2384b376e9eddabdd31b8c51a708",
+   "size": 1971,
    "group": "project_owned",
    "lfs": false
   },
@@ -25734,6 +25776,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/PlayMode/ModeledDoorTests.cs",
+   "sha256": "72aad01fed9dc05995eefc4f9a6b0cae7a453300ad47c7adcf2c8e98d1c3cb5c",
+   "size": 2963,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ModeledDoorTests.cs.meta",
+   "sha256": "5d87e79e6f2fdce2e1e5fa165fedacf8d7ac065d231febb417be60694b560ce8",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/PlayMode/MonitorCaptureTools.cs",
    "sha256": "0403aeacd3f17bd6e458dd8d0db437d07890d8b2c503a6ff430658c58acf5068",
    "size": 7398,
@@ -26079,6 +26135,20 @@
   {
    "path": "unity/Assets/Tests/PlayMode/TestHostHygiene.cs.meta",
    "sha256": "7471de7146be38e8068c9ea4410fd3c9d15b454ea6e8e9d3ca6e3fc9c5dcb874",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ThermometerTests.cs",
+   "sha256": "b545362aa5e669ee494267754fa56fd19448bfc4a8f2be4cff3f4fc9838198a2",
+   "size": 6461,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ThermometerTests.cs.meta",
+   "sha256": "0c3bc81259cb62de6f1f5bcd8950d29d21a2ffca3bbd041f9c70f9e9ec0767b3",
    "size": 59,
    "group": "project_owned",
    "lfs": false
