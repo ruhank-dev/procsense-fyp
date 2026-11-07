@@ -15,7 +15,7 @@ Everything here was checked against the repository on the day it was written. Wh
 |---|---|
 | Which Unity project do I open? | The folder **`unity/`** inside the repository (not the repository root). Add that folder in Unity Hub. |
 | Unity version | **6000.5.10f1** (revision `3bd4f66ad299`) |
-| Render pipeline | **URP 17.5.0** (Universal Render Pipeline). Quest and desktop share one URP asset in `unity/Assets/Settings`. |
+| Render pipeline | **URP 17.5.0** (Universal Render Pipeline). Desktop uses `URP_Quest.asset` in `unity/Assets/Settings`. From branch `quest-perf/d7-optimisations` (7 Nov 2026, not yet merged, DT-280) Android's quality level uses its own copy `URP_Quest_Android.asset` (renderer with intermediate texture Auto); before that, Quest and desktop shared one asset. |
 | Is there an HDRP project? | **No.** The repository contains exactly one Unity project (`unity/`, URP). A separate HDRP project was discussed, but none exists in the repository or on the owner's machines, so there is nothing to preserve or to keep apart. Two older experiment copies of the URP project (`D:\ProcSenseExperiments\A_urp_original`, `B_urp_enhanced`) live outside the repository and are not part of this handoff. |
 | Current working baseline | Branch **`overhaul/urp-integration`** (the visual overhaul: PBR materials, baked sunlight, Rocketbox characters). `main` is the older baseline. |
 | Scenes | `Boot` (first in the build), `Sys_Core` (simulation services), `MainMenu`, `PatientBay`, `Corridor` (the corridor **includes the reception desk and waiting area**; there is no separate Reception scene), `OT` (operating theatre), `Recovery`, `DevOnly` (Editor XR simulator), plus review scenes `EquipmentPilotReview` and `MPFBPatientReview`. |
@@ -228,7 +228,7 @@ Results land in `artifacts/unity/EditMode.xml` and `PlayMode.xml`. The environme
 1. PatientBay: the sunlit patches on the floor have window-frame shadows; the patient lies centred on the mattress and his chest moves; no pink materials; outside the window there is a city (not black or grey).
 2. Corridor: long sunbeams from the right-hand door windows on the floor and opposite wall, soft shafts with floating dust in the air, people on the benches, plants, wheelchair, reception TV.
 3. OT: two staff talking, lit theatre, equipment present.
-4. Shafts and dust are desktop-only (`DesktopOnly` component): they will not appear on Quest by design.
+4. Shafts and dust: on `main` they are hidden on Quest by the `DesktopOnly` component; builds from branch `quest-perf/d7-optimisations` (owner decision D7, 7 Nov 2026) show them on Quest in both eyes (DC-12, DC-13).
 5. Identify missing assets: `restore_environment.ps1 -VerifyOnly` names every missing file; *Edit → Select All* does not; in the Console search `Missing` and `The referenced script`.
 
 ### Build for desktop

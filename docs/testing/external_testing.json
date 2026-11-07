@@ -382,7 +382,7 @@
    "procedure": [
     "On a clean clone follow docs/new_unity_environment.md section E and run `powershell -ExecutionPolicy Bypass -File tools\\setup\\restore_environment.ps1`; it must end with 'All manifest files verified'. Record the commit hash.",
     "Build and install the Dev APK (section F of the same guide) and start it on the Quest 2.",
-    "In PatientBay, Corridor and OT look for: pink or black materials, missing lightmaps (flat or black rooms), missing city outside the windows, people without clothes or in T-pose, the patient lying centred on the bed with a moving chest and blinking eyes, sunlit floor patches with window-frame shadows. The soft sunshafts and floating dust are desktop-only by design and must NOT appear in the headset.",
+    "In PatientBay, Corridor and OT look for: pink or black materials, missing lightmaps (flat or black rooms), missing city outside the windows, people without clothes or in T-pose, the patient lying centred on the bed with a moving chest and blinking eyes, sunlit floor patches with window-frame shadows. Sunshafts and floating dust: builds from branch `quest-perf/d7-optimisations` (and `main` after it is merged) must show them in BOTH eyes at the same place (close one eye at a time; owner decision D7, 7 Nov 2026); older builds hide them on Android by design.",
     "Walk or teleport through the three rooms for 5 minutes each with OVR Metrics running and record average and worst frame time, GPU level and any dropped-frame bursts.",
     "Compare with the desktop screenshots in docs/qa/ (same rooms) and note anything that looks darker, brighter or missing."
    ],
@@ -397,20 +397,25 @@
     "p0-vr-platform-s07",
     "p0-evaluation-performance-s03"
    ],
-   "needs": "Quest 2 with developer mode, OVR Metrics Tool, the Dev APK built from main (part A), the diagnostic APK of P3-PRF-01 (part B), the optimised APK (part C)",
+   "needs": "Quest 2 with developer mode, OVR Metrics Tool, the diagnostic APKs `ProcSense-diag.apk` and `ProcSense-diag-gpuskin.apk` (`task unity-build -- diag` / `diag-gpuskin` on branch `quest-perf/d7-optimisations`) for parts A and B, the optimised APK for part C",
    "prepared": [
-    "docs/qa/quest2_sannan_benchmark_guide.md",
-    "docs/qa/quest2_performance_analysis.md",
-    "docs/qa/quest2_optimization_options.md",
+    "docs/plans/p3/p3-17-quest-performance.md",
     "docs/qa/quest2_missing_light_effects.md",
-    "docs/plans/p3/p3-17-quest-performance.md"
+    "docs/qa/quest2_optimization_options.md",
+    "docs/qa/quest2_performance_analysis.md",
+    "docs/qa/quest2_performance_results.md",
+    "docs/qa/quest2_sannan_benchmark_guide.md",
+    "docs/qa/quest2_static_render_stats.md",
+    "tools/unity/perf_sweep.py",
+    "unity/Assets/Scripts/Diagnostics/QuestPerfDiagnostics.cs"
    ],
    "procedure": [
-    "Follow docs/qa/quest2_sannan_benchmark_guide.md sections 1 to 4: build and install from main, record commit, APK checksum, firmware and OVR Metrics Tool version, set up the HUD and CSV recording.",
-    "Part A (now): measure views V1 to V8 of the guide, cool and warm, 30 s still plus 30 s slow turn each; record average and worst FPS, App CPU and GPU ms, CPU/GPU level, stale frames, throttling, one screenshot per view.",
-    "Part B (after P3-PRF-01 is built): measure V2, V4 and V5 for configurations B0 to B11 of the guide, one change at a time, cool then warm; in B9 check both eyes for the shafts and dust.",
-    "Part C (after the P3-PRF optimisations): repeat part A on the optimised APK.",
-    "Write docs/testing/results/DC-13.md with the tables and put screenshots and CSV files in docs/testing/results/DC-13/."
+    "Follow docs/qa/quest2_sannan_benchmark_guide.md sections 1 to 4: build and install the diagnostic APK, record commit, APK checksum, firmware and OVR Metrics Tool version, set up the HUD and CSV recording.",
+    "Part A: in the diagnostic APK, configuration B1 (left thumbstick click until the readout shows B1: the early-November rendering) and then B0 (this branch's default), visit views V1 to V8 (right thumbstick click), cool and warm, 30 s still plus 30 s slow turn each; record average and 1% low FPS, App CPU and GPU ms, CPU/GPU level, stale frames, throttling, one screenshot per view.",
+    "Part B: in V2, V3, V4, V5 and V8 hold left X for 1.5 s to run the automatic sweep of B0 to B14 (about 3.5 minutes per view, do not move), cool then warm; repeat the sweep in V4 and V5 with `ProcSense-diag-gpuskin.apk`; in B0 check both eyes for the shafts and dust.",
+    "Pull the logs: `adb pull /sdcard/Android/data/<package>/files/perf docs/testing/results/DC-13/csv` (the package name is printed by `adb shell pm list packages | findstr procsense`).",
+    "Part C (after the P3-PRF optimisations the owner approves): repeat part A on the optimised APK.",
+    "Write docs/testing/results/DC-13.md with the tables; run `uv run --project tools tools/unity/perf_sweep.py docs/testing/results/DC-13/csv/sweep_*.csv` and paste the table (or let Ruhan run it with --write)."
    ],
    "pass_rule": "Parts A and B pass when complete and recorded (they are measurements). Part C passes when every view V1 to V8 holds a stable 72 FPS on a warm Quest 2 with stale frames near zero and the approved look (shafts and dust in both eyes), or the owner accepts a written exception. The teammate-reported 20 to 30 FPS is not a result until part A records it.",
    "who": "Sannan",
@@ -422,7 +427,7 @@
    "steps": [
     "p0-evaluation-performance-s08"
    ],
-   "needs": "Quest 2 with the release-candidate APK of P3-QA-06, the server in the demonstration profile on the same network for the voice parts, a fresh clone",
+   "needs": "Quest 2 with the release-candidate APK of P3-QA-06, the laptop server on the same Wi-Fi with Ollama Cloud reachable (docs/setup/quest_laptop_cloud_demo.md), a fresh clone",
    "prepared": [
     "docs/plans/p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md",
     "docs/plans/p3/p3-16-qa-release.md"
@@ -431,13 +436,36 @@
     "Launch, sign in, reach the main menu; note load time and readability of every menu screen.",
     "Training, cholecystectomy, beginner, menu input: complete the session using the contextual panels and the bulletin board; use one hint; submit to OT; read the results; retry the same scenario.",
     "Examination, appendicectomy, menu input: confirm no checklist or guidance appears; use one lightbulb hint; submit; check that missed items are listed.",
-    "Repeat one training and one examination session in voice mode (examination only if decision D3 allows it); switch input mode mid-session once and check nothing resets.",
+    "Repeat one training and one examination session in voice mode (both modes: decision D3 allows voice in the examination); switch input mode mid-session once and check nothing resets.",
     "Stop the server mid-session: the voice banner appears and menu mode still works.",
     "Check comfort (transitions, panel distances), subtitles, sounds and character reactions; export the session logs."
    ],
    "pass_rule": "All sessions complete without restarting the app; results match the server's replay of the exported logs; no practice aid appears in the examination; no discomfort reported; every failure has a screenshot and the log.",
    "who": "Sannan",
    "after": "Ruhan ticks the P3-QA tasks and the owner takes the release readiness decision (P3-QA-08)."
+  },
+  {
+   "id": "DC-15",
+   "title": "Quest 2 ⇄ laptop ⇄ Ollama Cloud network test: discovery, pairing, voice round trips, disconnect and reconnect (run when P3-NET-02 to P3-NET-09 are done)",
+   "steps": [
+    "p0-evaluation-performance-s08"
+   ],
+   "needs": "Quest 2 with the Demo APK of that commit, a Windows laptop with the server started by `task demo-laptop`, Ollama signed in or a key in server/.env, a private Wi-Fi or phone hotspot",
+   "prepared": [
+    "docs/setup/quest_laptop_cloud_demo.md",
+    "docs/plans/p3/p3-18-networked-quest-runtime.md"
+   ],
+   "procedure": [
+    "Follow docs/setup/quest_laptop_cloud_demo.md on a fresh clone; record every step that needed help.",
+    "Discovery and pairing: the laptop appears on the Server page within 5 s (or by manual address); pairing with the six-digit code; the chip turns green.",
+    "Voice round trips in Training and Examination: 10 sentences each to the patient and the nurse; record for each the time from releasing the talk button to the transcript, to the action or reply, and to the first spoken sentence (the server page shows the timings).",
+    "Turn the laptop's Wi-Fi off for 30 s mid-session: the chip turns amber, menu mode works, the engine state is unchanged (same checklist ticks and score items), and the chip turns green again without input.",
+    "Remove the cloud credentials (stop `ollama serve` or rename the key): the chip shows the local fallback and voice still answers through the grammar or the local model.",
+    "Try the USB fallback once: `adb reverse tcp:8000 tcp:8000` with the address `http://127.0.0.1:8000`."
+   ],
+   "pass_rule": "A teammate gets from clone to a voice reply on the Quest with the guide alone; disconnect and cloud loss never change the clinical session; the chip state is right in every case; the round-trip times are recorded (no pass threshold until the owner sets one).",
+   "who": "Sannan",
+   "after": "Ruhan records the times in docs/qa/ and closes P3-NET-17."
   }
  ],
  "unity_groups": [

@@ -1,5 +1,7 @@
 # Quest 2: why the sunlight shafts and the dust are missing
 
+> **Update, 7 November 2026 (UTC), owner decision D7 (ADR-0032): fixed on branch `quest-perf/d7-optimisations`.** F1/F2: `DesktopOnly` no longer hides the effects on Android; it is now a tier switch (`ShowOnAndroid`, default on; diagnostic configuration B3 hides them to measure their cost). DC-12 now asks for the effects in both eyes. F3: both shaders now carry `#pragma multi_compile_instancing`, `UNITY_VERTEX_INPUT_INSTANCE_ID`, `UNITY_VERTEX_OUTPUT_STEREO`, `UNITY_SETUP_INSTANCE_ID`, `UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO` and, in the fragment, `UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX` (the shaft uses the eye's own camera position); EditMode test `QuestRenderTierTests`. The appearance is unchanged on desktop (capture comparison in `quest2_performance_results.md` section 3). F5: the diagnostic APK build compiles them for Vulkan (section 9 of the results file). **Still to verify on the headset (DC-13):** both-eye display (F4) and cost (F10). The text below is the investigation as written before the fix.
+
 _Investigation of 7 November 2026 (UTC) at `main` = `641f6b27`. Read-only: no setting, scene, shader or build was changed. No headset was available; nothing here was observed on a Quest. Each finding is marked **Confirmed** (read in code or settings, no doubt about what it does) or **Hypothesis** (needs a device test, listed in DC-13 part B)._
 
 ## 1. Summary

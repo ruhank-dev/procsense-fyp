@@ -1,7 +1,9 @@
 """Runs Unity in batch mode for the project's tests and the Quest build.
 
     uv run --project tools tools/unity/run_unity.py test    # EditMode + PlayMode tests
-    uv run --project tools tools/unity/run_unity.py build [dev|demo|study]   # Quest APK -> artifacts/unity/ProcSense-<variant>.apk (+ .sha256)
+    uv run --project tools tools/unity/run_unity.py build [dev|demo|study|diag|diag-gpuskin]   # Quest APK -> artifacts/unity/ProcSense-<variant>.apk (+ .sha256, + .report.txt)
+    uv run --project tools tools/unity/run_unity.py stats   # static render workload per Quest benchmark view -> docs/qa/quest2_static_render_stats.md
+    uv run --project tools tools/unity/run_unity.py desktop   # switch the Editor back to the Windows target after a Quest build
 
 Unity is found through UNITY_EXE, or in the default Unity Hub folder for the editor version in unity/ProjectSettings/ProjectVersion.txt.
 CI does not run this (the free GitHub runners have no Unity licence); it is the local check before a hand-off that touches unity/.
@@ -55,7 +57,7 @@ def test() -> int:
     return 1 if failed else 0
 
 
-VARIANTS = ("dev", "demo", "study")
+VARIANTS = ("dev", "demo", "study", "diag", "diag-gpuskin")   # diag*: Quest benchmark builds (P3-PRF-01, branch quest-perf/d7-optimisations until merged), never shipped
 
 
 def build(variant: str = "dev") -> int:
@@ -65,7 +67,16 @@ def build(variant: str = "dev") -> int:
     return code
 
 
+def stats() -> int:
+    return run(["-executeMethod", "ProcSense.EditorTools.QuestRenderStats.Run"], OUT / "quest-render-stats.log")
+
+
+def desktop() -> int:
+    return run(["-quit", "-executeMethod", "ProcSense.EditorTools.EnvironmentReimport.SwitchToDesktop"], OUT / "switch-desktop.log")
+
+
 if __name__ == "__main__":
-    if len(sys.argv) < 2 or sys.argv[1] not in ("test", "build") or (sys.argv[1] == "build" and len(sys.argv) > 2 and sys.argv[2] not in VARIANTS):
+    if len(sys.argv) < 2 or sys.argv[1] not in ("test", "build", "stats", "desktop") or (sys.argv[1] == "build" and len(sys.argv) > 2 and sys.argv[2] not in VARIANTS):
         sys.exit(__doc__)
-    sys.exit(test() if sys.argv[1] == "test" else build(sys.argv[2] if len(sys.argv) > 2 else "dev"))
+    command = sys.argv[1]
+    sys.exit(test() if command == "test" else stats() if command == "stats" else desktop() if command == "desktop" else build(sys.argv[2] if len(sys.argv) > 2 else "dev"))

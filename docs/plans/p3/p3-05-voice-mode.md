@@ -1,6 +1,6 @@
 # p3-05-voice-mode — Voice-based mode with contextual reference panels (VOX)
 
-Status: Planned (P3, 7 November 2026). Nothing in this plan is implemented. Needs owner decisions D2 (network profile) and D3 (voice in the examination).
+Status: Planned (P3, 7 November 2026). Nothing in this plan is implemented. Owner decisions (7 Nov 2026 UTC, ADR-0032): D2 network-connected demonstration through the laptop server and Ollama Cloud ([p3-18](p3-18-networked-quest-runtime.md)); D3 voice in **both** Training and Examination, validated exactly like the menu action.
 
 ## 1. Objective and final user-facing behaviour
 
@@ -34,24 +34,26 @@ Outcome (gateway or service) ─► VoiceFeedback phrase table ─► subtitle +
 
 - **Same authority:** a voice request becomes the same `ActionRequest` as a menu press. Critical physical actions keep needing the physical or button path; speech never grants them credit (ADR-0025, unchanged).
 - **Interaction mode is presentation only:** it is not engine state, it does not change scoring, and switching keeps the session as it is. It is written to the session header as metadata for analysis.
-- **Examination (D3):** if allowed, the router and order flow drop the practice gate in assessment but keep every confirmation and show no hint text; if not allowed, voice mode in the examination shows a message and the menus stay.
+- **Examination (D3, decided: allowed):** the router and order flow drop the practice gate in assessment but keep every confirmation and show no hint text; voice hint and submit requests use the same gateway requests, limits and costs as the glass buttons; P3-VOX-13 proves voice and menu give identical engine outcomes first.
+- **Network (D2):** every voice stage runs on the laptop (ASR faster-whisper, Piper TTS) except the text model (Gemma 4 31B on Ollama Cloud through the laptop); see [p3-18](p3-18-networked-quest-runtime.md) for discovery, pairing, time budgets and reconnection.
 
 ## 6. Implementation tasks
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-VOX-01 | Owner decisions D2 (network profile for the demonstration) and D3 (voice in the examination) recorded with an ADR amendment to ADR-0028 | Owner | — | Decision rows and ADR text exist | Planned |
+| P3-VOX-01 | Owner decisions D2 (network profile for the demonstration) and D3 (voice in the examination) recorded with an ADR amendment to ADR-0028 | Owner | — | Decision rows and ADR text exist | Done |
 | P3-VOX-02 | `InteractionMode` service (Menu, Voice), persisted, switchable mid-session, raising a change event; written to the session header | Moiz | P3-SES-05 | Switching does not change the observable state hash | Planned |
 | P3-VOX-03 | Voice mode hides persistent menus (tablet, contextual action lists, ward panel buttons) and turns contextual panels into reference cards | Moiz | P3-VOX-02, P3-CTX-04 | PlayMode test: no action button visible except the allowed exceptions | Planned |
 | P3-VOX-04 | Reference card layout: "You can ask…" from the catalogue's voice examples, relevant information, the clickable exceptions (Submit Patient to OT, confirmation Yes/No) | Moiz | P3-VOX-03, P3-CTX-01 | Every entity type shows at least three examples | Planned |
 | P3-VOX-05 | Addressee targeting: selected entity, else gaze cone, else a name in the sentence; sent as `addressee` to the speech routes | Moiz | P3-CTX-02, P3-API-02 | Test: "Nurse, …" while looking at the patient goes to the nurse | Planned |
-| P3-VOX-06 | Examination voice per D3: remove the practice gate where allowed, keep confirmations, suppress hint text | Ruhan | P3-VOX-01, P3-SES-04 | Assessment test plays the identity steps by voice with no hint shown | Planned |
+| P3-VOX-06 | Examination voice per D3: remove the practice gate in `SpokenActionRouter` and `SpokenOrderFlow` for assessment, keep every confirmation and read-back, suppress hint text, route hint and submit by voice through the same gateway requests (same limits and costs as the glass buttons) | Ruhan | P3-VOX-01, P3-SES-04, P3-VOX-13 | Assessment test plays the identity, allergy and consent steps by voice with no hint shown and the same engine outcome as the menu | Planned |
 | P3-VOX-07 | `content/ui/voice_feedback.json` phrase table (misunderstood, ambiguous, unavailable, wrong person, refused by the engine with its reason, recogniser failed, needs confirmation, service offline) with pre-rendered clips where available and subtitle always | Ruhan | P3-SES-10 | Every outcome code maps to a phrase (validator) | Planned |
 | P3-VOX-08 | Hint and submit intents ("hint", "help", "submit the patient to theatre/OT") added to the approved action catalogue of the interpreter and mapped to the same gateway requests as the buttons | Ruhan | P3-EXM-01, P3-EXM-04 | Held-out style check on a small fixed sentence list; the frozen evaluator prompt is not retuned (only the catalogue changes, as ADR-0028 allows) | Planned |
 | P3-VOX-09 | Listening and processing indicator: ring on the controller and near the view, transcript echo for 3 s, processing spinner, 8 s timeout | Moiz | P3-UIX-07 | Indicator states tested with a fake microphone | Planned |
 | P3-VOX-10 | Availability: poll `VoiceHealth`; on loss show a banner, offer menu mode with one button, never block the session | Moiz | P3-VOX-02, P3-API-03 | Server stopped mid-session: banner within 5 s, menus available | Planned |
-| P3-VOX-11 | Offline demonstration profile per D2 (local ASR, grammar orders, local dialogue model; cloud off) with `task demo-offline-check` | Ruhan | P3-VOX-01, P3-VOX-10 | The check passes with the internet cable unplugged | Planned |
+| P3-VOX-11 | Degraded profile per D2: cloud unreachable or out of quota → the laptop answers with the local fallbacks (grammar orders, local Qwen dialogue, templates) and says so once; laptop unreachable → menu mode with the status chip; `task demo-degraded-check` | Ruhan | P3-VOX-01, P3-VOX-10, P3-NET-13 | The check passes with the laptop's internet unplugged and again with the laptop's Wi-Fi off | Planned |
 | P3-VOX-12 | Tests: server contract tests for `addressee` and the intents; PlayMode with a fake recogniser for the voice-only S1 identity and consent steps | Ruhan | P3-VOX-05, P3-VOX-07, P3-VOX-08 | Green in CI | Planned |
+| P3-VOX-13 | Voice/menu equivalence before examination voice is switched on: for every examination-relevant action of the catalogue, a fixed sentence set through the fake recogniser and the same action through the menu give the identical engine outcome, score items and refusal codes; critical physical actions never credited from speech | Ruhan | P3-VOX-08, P3-SES-04 | Equivalence test green in CI; mismatches fixed in the catalogue, never by retuning the frozen evaluator | Planned |
 
 ## 7. Dependencies and execution order
 

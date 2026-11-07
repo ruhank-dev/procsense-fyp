@@ -85,7 +85,7 @@
      "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
      "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
      "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-     "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+     "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
     },
     "llm_offline": {
      "gtx1660": "Runs as a batch job on the desktop; larger models (8B with offload) acceptable because time is not critical.",
@@ -4486,7 +4486,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s13",
@@ -4773,7 +4773,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s04"
@@ -4999,7 +4999,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s13"
@@ -5223,7 +5223,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s13"
@@ -5641,7 +5641,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s13"
@@ -5859,7 +5859,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s13"
@@ -6063,7 +6063,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s08",
@@ -6272,7 +6272,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s08"
@@ -7977,7 +7977,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-live-scenario-generation-s15"
@@ -8642,7 +8642,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s05"
@@ -8865,7 +8865,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-voice-input-s03"
@@ -9045,7 +9045,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s04"
@@ -9098,7 +9098,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s04"
@@ -9155,7 +9155,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s13"
@@ -9321,7 +9321,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -9483,7 +9483,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -9645,7 +9645,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -9807,7 +9807,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -10008,7 +10008,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s04"
@@ -10164,7 +10164,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -11612,7 +11612,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s10"
@@ -11668,7 +11668,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s22"
@@ -11913,7 +11913,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s08"
@@ -12065,7 +12065,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s01"
@@ -12262,7 +12262,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s01"
@@ -12454,7 +12454,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s02"
@@ -12647,7 +12647,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s03"
@@ -13240,7 +13240,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s08"
@@ -13388,7 +13388,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s08"
@@ -13592,7 +13592,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-advanced-simulation-s02"
@@ -13779,7 +13779,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-advanced-simulation-s03"
@@ -14286,7 +14286,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-learning-analytics-s04"
@@ -14670,7 +14670,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-language-s05"
@@ -14997,7 +14997,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-scenario-composer-difficulty-s04"
@@ -15170,7 +15170,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-infrastructure-s01",
@@ -15491,7 +15491,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p2-ai-extensions-s05"
@@ -16924,7 +16924,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-personalisation-s05"
@@ -17095,7 +17095,7 @@
        "rtx4050": "Laptop RTX 4050 (Ada, 6 GB, tensor cores, power-limited): faster per token than the desktop for the same model, but if Unity VR renders on this GPU the model must share VRAM with the scene; budget about 2 GB for a model while Unity runs, or run the model on the desktop.",
        "ram": "16 GB system RAM on the desktop limits CPU offload to small models; laptop RAM to be recorded in the benchmark.",
        "latency": "Interactive replies: p95 under 3 s; generation stages: under 25 s or served from the pre-generated pool; offline jobs: no limit.",
-       "deployment": "Recommended split (to confirm by p1-ai-infrastructure-s02): inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
+       "deployment": "Demonstration deployment (the owner's network decision of 7 Nov 2026, ADR-0032; plan docs/plans/p3/p3-18-networked-quest-runtime.md): the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, the AI gateway and the local fallback model) and calls Ollama Cloud (Gemma 4 31B) for the text model only; the cloud key stays on the laptop; no PC-rendered VR. Development split, unchanged: inference service on the desktop GPU, Unity on the laptop GPU, over the local network. Single-machine mode: Qwen3.5 2B (to be benchmarked) or CPU inference plus the pool. Remote inference only for offline jobs, never with real personal data."
       },
       "tasks": [
        "p1-ai-infrastructure-s01",

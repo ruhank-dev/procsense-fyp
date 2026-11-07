@@ -1,6 +1,6 @@
 # p3-08-results-debrief — Results screen, debrief and what next (RES)
 
-Status: Planned (P3, 7 November 2026). Nothing in this plan is implemented. Needs owner decision D4 (grade presentation).
+Status: Planned (P3, 7 November 2026). Nothing in this plan is implemented. Owner decision D4 (7 Nov 2026 UTC, ADR-0032): score out of 100, letter grade (A 90-100, B 80-89, C 70-79, D 60-69, F below 60, configurable), pass/fail, correct, incorrect, missed, critical failures, hints, time, personal feedback and the debrief; the existing scoring engine is reused; a critical safety failure decides the verdict whatever the number.
 
 ## 1. Objective and final user-facing behaviour
 
@@ -29,8 +29,8 @@ A result summary built only from the engine; a grade rule (D4); the transition; 
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-RES-01 | Owner decision D4: what the panel shows as score and grade (verdict only; verdict plus percentage of the process score; or bands from `content/score_bands.csv`) and the wording | Owner | — | Decision row recorded | Planned |
-| P3-RES-02 | Core `ResultSummary.From` with xUnit proving equality with `Scorer` and `Debrief` for every golden session | Ruhan | P3-RES-01, P3-EXM-08 | Golden summaries committed and checked | Planned |
+| P3-RES-01 | Owner decision D4: what the panel shows as score and grade (verdict only; verdict plus percentage of the process score; or bands from `content/score_bands.csv`) and the wording | Owner | — | Decision row recorded | Done |
+| P3-RES-02 | Core `ResultSummary.From` with xUnit proving equality with `Scorer` and `Debrief` for every golden session; adds `Score100`, `Grade` and `Passed` from P3-RES-10 | Ruhan | P3-RES-01, P3-EXM-08, P3-RES-10 | Golden summaries committed and checked | Planned |
 | P3-RES-03 | Results transition: input frozen, environment dimmed with a stereo-safe fullscreen fade quad (no post-processing), ambience ducked by mixer snapshot, panel rises | Moiz | P3-SES-05, P3-UIX-03, P3-SND-01 | Transition costs no extra render pass (frame debugger check) | Planned |
 | P3-RES-04 | Results panel: verdict badge, score ring, grade, sections (criticals first), hints, time, recommendations, seed and case id, buttons | Moiz | P3-RES-02, P3-UIX-05 | Panel equals summary (PlayMode test) | Planned |
 | P3-RES-05 | "Review details" opens the existing debrief views restyled with the kit, inside the results space | Moiz | P3-RES-04, P3-SES-01 | Timeline and evidence drawer work from the results | Planned |
@@ -38,6 +38,7 @@ A result summary built only from the engine; a grade rule (D4); the transition; 
 | P3-RES-07 | Optional AI wording of recommendations through `/debrief/.../rewrite` with template fallback and a "reworded" label | Ruhan | P3-RES-02 | Offline shows the template; online shows the label | Planned |
 | P3-RES-08 | Upload and server verification badge ("Verified by the server" when the replay matches; nothing shown offline) | Moiz | P3-RES-04 | Badge only after the server's replay result | Planned |
 | P3-RES-09 | Tests: numbers equal Scorer for all goldens, transition, buttons, offline | Moiz | P3-RES-04, P3-RES-06 | Green in CI | Planned |
+| P3-RES-10 | 100-point score and grade (D4) as a pure function of the existing `ScoreReport`: `Score100 = clamp(round(100 × (credits − penalties) / credits_of_the_case's_correct_path) − 5 × hints, 0, 100)` (the correct-path credits come from the case's golden correct script, so the number never depends on a second rubric); grade from `content/scoring/grades.json` (A ≥ 90, B ≥ 80, C ≥ 70, D ≥ 60, else F; `pass_mark` 60); **Passed = engine result not FAIL, no critical item, Score100 ≥ pass_mark**; with a critical failure the panel shows "Not passed: critical safety error" and the grade F whatever the number; validator for the thresholds | Ruhan | P3-RES-01 | xUnit over every golden: correct path gives 100, an empty session gives 0, a critical error gives Not passed with any number; thresholds validated (ordered, 0-100) | Planned |
 
 ## 7. Dependencies and execution order
 

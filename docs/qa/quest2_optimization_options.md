@@ -1,5 +1,7 @@
 # Quest 2 optimisation options (ranked, not applied)
 
+> **Status update, 7 November 2026 (UTC), D7:** option 1 (separate Android asset) and option 2 (intermediate texture Auto on Android) are **done** on branch `quest-perf/d7-optimisations` with no desktop change; option 3 (foveation) is **available at level 0**, levels 0.5/1.0 are diagnostic configurations B4/B5; option 10 (shafts and dust on Quest, stereo-safe) is **done**, cost measured with B3; options 4, 5, 7, 11, 16 have diagnostic configurations (B6, B7, `diag-gpuskin`, B10, B11/B12). The full feature table with "Measured cost" columns is now `quest2_performance_results.md` section 6; this file keeps the original ranking for history.
+
 _7 November 2026 (UTC). Companion to `quest2_performance_analysis.md`. Nothing here is applied; the owner chooses after the DC-13 measurements (decision D7 in `docs/plans/p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md`). Constraint from the owner: keep the hospital geometry, details, high-quality textures, realistic materials, lighting direction, sunlight shapes, soft shafts, moving dust, shadows, reflections, characters, equipment and overall look. Options that reduce any of these are marked and are not recommended without approval._
 
 ## How to read "estimated benefit"

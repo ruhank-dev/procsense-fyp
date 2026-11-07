@@ -68,6 +68,8 @@ P3-SES-01 makes merging this branch into `main` (by Sannan, with `task ci`) the 
 6. **The URP asset is shared by desktop and Quest (confirmed by settings):** one `URP_Quest.asset` for every quality level; the renderer forces an intermediate texture (`m_IntermediateTextureMode: 1`, Always), which also blocks Quest foveated rendering. Details in `docs/qa/quest2_performance_analysis.md`.
 7. **All three rooms are loaded together (confirmed by code):** `RoomLoader` loads PatientBay, Corridor and OT additively, so every realtime light and renderer of the three rooms is live at once.
 
+8. **The headset cannot reach a laptop on the local network today (confirmed by code, added 7 Nov 2026 later the same day for D2):** `ServiceSettings.IsAcceptable` accepts only `https://` or `http://localhost`/`127.0.0.1`, the player setting `insecureHttpOption: 0` forbids plain HTTP on the device, `task server-demo` binds `127.0.0.1`, and headset sign-in needs the server's Supabase settings. Plan: [p3-18-networked-quest-runtime](p3-18-networked-quest-runtime.md).
+
 ## 4. Open P0 steps that P3 depends on (not duplicated)
 
 The 59 unapproved P0-P2 steps stay where they are. P3 tasks name them in "Depends on" when they need them: interaction framework (p0-vr-interaction-ui-s02), bedside and OT interactions (s06, s07), nurse and wristband (s12), checklist boards (s08), debrief UI (s09), accessibility (s10), characters (p0-characters-s01 to s08), lip sync (p0-voice-audio-s04), ambience (s05), Quest builds and profiling (p0-vr-platform-s07), weekly profiling (p0-evaluation-performance-s03), release (s08). Their owners stay as in `docs/plans/frontend/front_end_load_distribution.md`.

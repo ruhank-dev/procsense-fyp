@@ -2,6 +2,12 @@
 
 Audit of 12 October 2026. It answers one question for every AI idea in the original plans: **is it built, missing, deferred or only planned, and is the thing that is built really AI or just rules?** Nothing here claims more than the code and tests show. The plans it was read from are `docs/plans/p1/`, `docs/plans/p2/`, the Master Plan (AI sections 81 to 88) and the Implementation Guide (B-R2, B-R5, B-R8 to B-R10, B-M3, B-M5, B-M6, B-M7).
 
+## 0zzzz. Update of 7 November 2026, later (owner decisions D1-D7, ADR-0032)
+
+- **Deployment for the demonstration changed (D2):** the standalone Quest 2 APK renders everything and runs the engine; a laptop on the same Wi-Fi runs the ProcSense server (faster-whisper ASR, Piper TTS, AI gateway, local fallback model) and calls Ollama Cloud for the text model (Gemma 4 31B); the key stays on the laptop. Model roles, the frozen speech evaluator and the scoring semantics are unchanged. Plan: `docs/plans/p3/p3-18-networked-quest-runtime.md`; pipeline JSON deployment fields updated; Ollama Cloud facts R-060 to R-064.
+- **Voice in both modes (D3):** the practice-only gate is removed only after the voice/menu equivalence test (P3-VOX-13); speech never credits a critical physical action (ADR-0025).
+- **Not changed:** no model was trained, retuned or re-evaluated; no cloud route was switched on that was not on before.
+
 ## 0zzz. Update of 7 November 2026 (P3 planning; nothing implemented)
 
 * **Voice in the final game** is planned in `docs/plans/p3/p3-05-voice-mode.md`: a voice mode that hides the menus, reference cards, addressee targeting, a phrase table for failures, hint and submit intents added to the interpreter's approved catalogue (the frozen evaluator prompt and scoring semantics are not changed), voice in the examination only if the owner decides so (D3), and a tested offline profile (D2). No model, prompt, gate or route changed.

@@ -564,6 +564,9 @@ jobs:
           uv run --project tools tools/plans/p3_plans.py --check
           uv run --project tools tools/ci/test_p3_plans.py
 
+      - name: Quest sweep converter turns headset CSVs into the results table without inventing numbers
+        run: uv run --project tools tools/ci/test_perf_sweep.py
+
       - name: AI planning graph is valid and its generated documents are up to date
         run: |
           uv run --project tools tools/plans/validate_pipeline.py

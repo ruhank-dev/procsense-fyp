@@ -1,5 +1,7 @@
 # Quest 2 performance analysis (static investigation, no headset)
 
+> **Corrections and follow-up, 7 November 2026 (UTC):** (1) Only **one** "Soft clinical key" realtime directional is lit at a time: `RoomLoader.UpdateLighting` switches off the other rooms' keys (section 2 below counted three). (2) Post-processing is **confirmed** off: the renderer's `postProcessData` is empty, so the -0.4 EV volume never applies in play (DT-275). (3) Android's quality level uses Shadowmask mode, desktop Distance Shadowmask. (4) The city's 28 merged meshes (196,844 triangles) are inside the frustum from every benchmark view (`quest2_static_render_stats.md`). (5) Owner decision D7 authorised fixes; what was changed, the desktop comparison, the build facts and the result tables are in `quest2_performance_results.md`. No Quest frame rate has been measured yet.
+
 _Investigation of 7 November 2026 (UTC) at `main` = `641f6b27`. Read-only: no project setting, scene, material, light or build was changed. No Quest headset was available (Sannan has it)._
 
 ## 0. What kind of evidence this report contains
