@@ -1,4 +1,5 @@
-// Soft atmospheric sunshaft approximation for the desktop tier (the host object carries DesktopOnly, so Quest never draws it).
+// Soft atmospheric sunshaft approximation (desktop and Quest; the host object's DesktopOnly switch keeps it on Android unless a diagnostic toggle hides it).
+// Stereo-safe for single-pass instanced / Vulkan multiview (P3-PRF-11): the instance id and the eye index are carried, so each eye sees the beam at its own position.
 // Several overlapping prisms per window opening (irregular widths, lengths and strengths, strength in the vertex colour). Each is additive: the silhouette fades out by view angle (no hard boundary),
 // the shaft fades along its travel, and a low-frequency noise stretched ALONG the sun direction breaks the air into irregular, softly separated shafts; it drifts extremely slowly.
 // The noise is a function of world position only, so overlapping prisms agree and the floor/wall lighting (baked) is never touched. No depth texture is needed: the beam ends where the
@@ -27,18 +28,19 @@ Shader "ProcSense/Sun Shaft"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Tint; half _Intensity; half _EdgePower; half _NoiseScale; half _NoiseAmount; half _FadeStart; float4 _ShaftDir;
             CBUFFER_END
 
-            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float2 uv : TEXCOORD0; float4 color : COLOR; };
-            struct Varyings { float4 positionCS : SV_POSITION; float3 positionWS : TEXCOORD0; float3 normalWS : TEXCOORD1; float2 uv : TEXCOORD2; float strength : TEXCOORD3; };
+            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float2 uv : TEXCOORD0; float4 color : COLOR; UNITY_VERTEX_INPUT_INSTANCE_ID };
+            struct Varyings { float4 positionCS : SV_POSITION; float3 positionWS : TEXCOORD0; float3 normalWS : TEXCOORD1; float2 uv : TEXCOORD2; float strength : TEXCOORD3; UNITY_VERTEX_OUTPUT_STEREO };
 
             Varyings vert(Attributes i)
             {
-                Varyings o; o.positionWS = TransformObjectToWorld(i.positionOS.xyz); o.positionCS = TransformWorldToHClip(o.positionWS);
+                Varyings o; UNITY_SETUP_INSTANCE_ID(i); UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); o.positionWS = TransformObjectToWorld(i.positionOS.xyz); o.positionCS = TransformWorldToHClip(o.positionWS);
                 o.normalWS = TransformObjectToWorldNormal(i.normalOS); o.uv = i.uv; o.strength = i.color.r; return o;
             }
 
@@ -53,6 +55,7 @@ Shader "ProcSense/Sun Shaft"
 
             half4 frag(Varyings i) : SV_Target
             {
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);                                              // GetCameraPositionWS() is this eye's position
                 float3 V = normalize(GetCameraPositionWS() - i.positionWS);
                 float edge = pow(saturate(abs(dot(normalize(i.normalWS), V))), _EdgePower);            // silhouette fades smoothly, never a hard line
                 float along = smoothstep(0.0, _FadeStart + 0.001, i.uv.y) * pow(saturate(1.0 - i.uv.y), 1.5);   // a little brighter near the window, fading with distance

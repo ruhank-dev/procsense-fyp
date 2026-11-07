@@ -10,9 +10,9 @@ namespace ProcSense.Tests.EditMode
     public class BuildScriptTests
     {
         [Test]
-        public void There_are_three_variants_each_with_its_define_and_apk()
+        public void There_are_the_three_product_variants_and_two_diagnostic_ones_each_with_its_define_and_apk()
         {
-            CollectionAssert.AreEqual(new[] { "dev", "demo", "study" }, BuildScript.Variants.Select(v => v.Name).ToList());
+            CollectionAssert.AreEqual(new[] { "dev", "demo", "study", "diag", "diag-gpuskin" }, BuildScript.Variants.Select(v => v.Name).ToList());
             Assert.AreEqual(("PROCSENSE_DEMO", "ProcSense-demo.apk", false), (BuildScript.Variant("Demo").Define, BuildScript.Variant("demo").Apk, BuildScript.Variant("demo").Development));
             Assert.IsTrue(BuildScript.Variant("dev").Development, "only Dev is a development build");
             Assert.Throws<System.ArgumentException>(() => BuildScript.Variant("beta"));
@@ -23,6 +23,21 @@ namespace ProcSense.Tests.EditMode
         {
             var defines = BuildScript.DefinesFor(BuildScript.Variant("study"), new[] { "UNITY_POST_PROCESSING", "PROCSENSE_DEMO" });
             CollectionAssert.AreEquivalent(new[] { "UNITY_POST_PROCESSING", "PROCSENSE_STUDY" }, defines);
+        }
+
+        [Test]
+        public void Only_the_diagnostic_variants_carry_the_diagnostic_define_and_only_one_changes_skinning()
+        {
+            foreach (var name in new[] { "dev", "demo", "study" })
+            {
+                var defines = BuildScript.DefinesFor(BuildScript.Variant(name), new[] { "PROCSENSE_PERF_DIAG", "PROCSENSE_PERF_GPUSKIN" });
+                CollectionAssert.DoesNotContain(defines, "PROCSENSE_PERF_DIAG", name + " must never contain the diagnostic readout");
+                Assert.IsFalse(BuildScript.Variant(name).Diagnostic || BuildScript.Variant(name).GpuSkinning, name);
+            }
+            CollectionAssert.AreEquivalent(new[] { "PROCSENSE_DEMO", "PROCSENSE_PERF_DIAG" }, BuildScript.DefinesFor(BuildScript.Variant("diag"), new string[0]));
+            Assert.IsFalse(BuildScript.Variant("diag").GpuSkinning, "the baseline diagnostic build keeps the production CPU skinning");
+            Assert.IsTrue(BuildScript.Variant("diag-gpuskin").GpuSkinning);
+            Assert.IsFalse(BuildScript.Variant("diag").Development, "measurements need a release build");
         }
 
         [Test]
