@@ -200,6 +200,9 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 **🟠 Moiz**
 - [ ] S1 P0 variants B, C, D, E, G, H, J (B-M19)
 
+
+> 📌 **7 Nov 2026: P3 planned.** The final game integration roadmap is in `docs/plans/p3/` (170 tasks; owners as in the front-end split). First moves: Sannan merges `sannan47/doors-bedside-monitoring` into `main` (P3-SES-01) and runs the Quest 2 benchmark part A (DC-13); Ruhan adds the engine `Check` query (P3-SES-02) and the case catalogue (P3-SCN-02); Moiz starts the UI tokens (P3-UIX-01); the owner decides D1-D7.
+
 ## 📆 W7 9–15 Nov
 
 > 🚩 CRG-3 Wed 11 Nov: what-ifs, stacked cases, S2 P0 · GATE 5 Fri 13 Nov: all S1 P0 cases

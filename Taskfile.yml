@@ -165,6 +165,13 @@ tasks:
       - uv run --project tools tools/plans/test_validate_pipeline.py
       - uv run --project tools tools/plans/pipeline_docs.py --check
       - uv run --project tools tools/plans/check_planning_sync.py
+      - uv run --project tools tools/plans/p3_plans.py --check
+
+  p3-plans:
+    desc: Check the P3 plans (sections, task ids, owners, dependencies, no cycle) and rebuild docs/plans/p3/p3-task-index.md
+    cmds:
+      - uv run --project tools tools/plans/p3_plans.py
+      - uv run --project tools tools/ci/test_p3_plans.py
 
   format:
     desc: Verify code format (CI is the authority; Windows checkouts report line-ending errors)

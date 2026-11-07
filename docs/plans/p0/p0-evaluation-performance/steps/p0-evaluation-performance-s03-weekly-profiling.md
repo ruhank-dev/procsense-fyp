@@ -35,6 +35,7 @@ Implementation Guide B-S11 Step 2, perf gate (≥ 72 fps avg, no hitch > 50 ms, 
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
+* [DC-13](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-13): Quest 2 performance benchmark: the unchanged environment (part A), the diagnostic configurations (part B) and the optimised build (part C)
 * [UX-P0-EVAL](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ux-p0-eval): P0 evaluation: Quest replay check, weekly profiling, usability study, clinical review, release, demo
 
 <!-- external-testing:end -->

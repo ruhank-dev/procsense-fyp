@@ -389,6 +389,55 @@
    "pass_rule": "No pink or missing materials, no missing lightmaps, characters clothed and animated, the patient breathes and blinks, average frame time within the Quest 2 budget the P0 plan sets (11.1 ms at 90 Hz, 13.9 ms at 72 Hz) and no sustained bursts above it; every difference from the desktop look is written down.",
    "who": "Sannan",
    "after": "Ruhan ticks the steps after reading the result file."
+  },
+  {
+   "id": "DC-13",
+   "title": "Quest 2 performance benchmark: the unchanged environment (part A), the diagnostic configurations (part B) and the optimised build (part C)",
+   "steps": [
+    "p0-vr-platform-s07",
+    "p0-evaluation-performance-s03"
+   ],
+   "needs": "Quest 2 with developer mode, OVR Metrics Tool, the Dev APK built from main (part A), the diagnostic APK of P3-PRF-01 (part B), the optimised APK (part C)",
+   "prepared": [
+    "docs/qa/quest2_sannan_benchmark_guide.md",
+    "docs/qa/quest2_performance_analysis.md",
+    "docs/qa/quest2_optimization_options.md",
+    "docs/qa/quest2_missing_light_effects.md",
+    "docs/plans/p3/p3-17-quest-performance.md"
+   ],
+   "procedure": [
+    "Follow docs/qa/quest2_sannan_benchmark_guide.md sections 1 to 4: build and install from main, record commit, APK checksum, firmware and OVR Metrics Tool version, set up the HUD and CSV recording.",
+    "Part A (now): measure views V1 to V8 of the guide, cool and warm, 30 s still plus 30 s slow turn each; record average and worst FPS, App CPU and GPU ms, CPU/GPU level, stale frames, throttling, one screenshot per view.",
+    "Part B (after P3-PRF-01 is built): measure V2, V4 and V5 for configurations B0 to B11 of the guide, one change at a time, cool then warm; in B9 check both eyes for the shafts and dust.",
+    "Part C (after the P3-PRF optimisations): repeat part A on the optimised APK.",
+    "Write docs/testing/results/DC-13.md with the tables and put screenshots and CSV files in docs/testing/results/DC-13/."
+   ],
+   "pass_rule": "Parts A and B pass when complete and recorded (they are measurements). Part C passes when every view V1 to V8 holds a stable 72 FPS on a warm Quest 2 with stale frames near zero and the approved look (shafts and dust in both eyes), or the owner accepts a written exception. The teammate-reported 20 to 30 FPS is not a result until part A records it.",
+   "who": "Sannan",
+   "after": "Ruhan updates the three Quest reports with the measured numbers and the owner takes decision D7 (docs/plans/p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md)."
+  },
+  {
+   "id": "DC-14",
+   "title": "P3 end-to-end on the Quest 2: menu, both procedures, training and examination, menu and voice input, results (run when the P3 milestones M1 to M4 are done)",
+   "steps": [
+    "p0-evaluation-performance-s08"
+   ],
+   "needs": "Quest 2 with the release-candidate APK of P3-QA-06, the server in the demonstration profile on the same network for the voice parts, a fresh clone",
+   "prepared": [
+    "docs/plans/p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md",
+    "docs/plans/p3/p3-16-qa-release.md"
+   ],
+   "procedure": [
+    "Launch, sign in, reach the main menu; note load time and readability of every menu screen.",
+    "Training, cholecystectomy, beginner, menu input: complete the session using the contextual panels and the bulletin board; use one hint; submit to OT; read the results; retry the same scenario.",
+    "Examination, appendicectomy, menu input: confirm no checklist or guidance appears; use one lightbulb hint; submit; check that missed items are listed.",
+    "Repeat one training and one examination session in voice mode (examination only if decision D3 allows it); switch input mode mid-session once and check nothing resets.",
+    "Stop the server mid-session: the voice banner appears and menu mode still works.",
+    "Check comfort (transitions, panel distances), subtitles, sounds and character reactions; export the session logs."
+   ],
+   "pass_rule": "All sessions complete without restarting the app; results match the server's replay of the exported logs; no practice aid appears in the examination; no discomfort reported; every failure has a screenshot and the log.",
+   "who": "Sannan",
+   "after": "Ruhan ticks the P3-QA tasks and the owner takes the release readiness decision (P3-QA-08)."
   }
  ],
  "unity_groups": [

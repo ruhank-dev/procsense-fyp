@@ -36,7 +36,7 @@ The one and only remote: **https://github.com/ruhank-dev/procsense-fyp** (branch
 | `unity/` | Unity VR project (later) |
 | `server/` | FastAPI + PostgreSQL (Supabase) backend (P1, milestone M17) |
 | `tools/` | Python content/validation tools; `tools/blender/` procedural equipment scripts (later) |
-| `docs/plans/` | Plan: tiers `p0/ p1/ p2/` → phases → steps — start at `docs/plans/README.md` |
+| `docs/plans/` | Plan: tiers `p0/ p1/ p2/` → phases → steps — start at `docs/plans/README.md`; the final game integration (P3) is `docs/plans/p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md` |
 | `docs/testing/` | [Everything that needs Sannan or another outside actor](docs/testing/SANNAN_EXTERNAL_TESTING.md): headset checks, Unity/3D/VR acceptance, people, accounts, permissions, with exact steps and pass rules |
 | `docs/research/` | Proof of truth: source register, dataset register, open medical issues |
 | `docs/CI.md` | Every CI/CD check, what it guards, and the roadmap of checks to add |
@@ -83,4 +83,5 @@ Required for `task ci`: Git, .NET SDK, uv, Task (and Docker for the backend test
 | `task data-fetch` | downloads the open source datasets the pictures are built from (about 3 GB, git-ignored; **only needed to rebuild**: every generated picture, report and table is already committed). See `tools/data/README.md` |
 | `task data-check` / `task data-rebuild` | verifies the downloaded data against its manifest / rebuilds every generated picture, report, table and register from it |
 | `task plans-check` | fails if `docs/plans/milestones.md` is out of date |
+| `task p3-plans` | checks the P3 plans (sections, task ids, owners, dependencies, no cycle) and rebuilds `docs/plans/p3/p3-task-index.md` |
 | `task clean` | `dotnet clean ProcSense.sln` |

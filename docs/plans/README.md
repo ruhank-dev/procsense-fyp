@@ -21,6 +21,7 @@ not a list of optional features.
 | **P0** | The complete core simulator: both scenarios (S1, S2) Steps 1–14, the 17 P0 cases, engine, all VR rooms, equipment, characters, voices, debrief | [p0/](p0/) |
 | **P1** | Extensions on top of P0: Step 15 + theatre extension, remaining cases, backend, AI language, speech input, scenario composer, Pulse physiology | [p1/](p1/) |
 | **P2** | Advanced extensions: compact stacked cases SC-1..SC-20, new case combinations, terminology codes, on-device / multilingual AI | [p2/](p2/) |
+| **P3** | Final game integration (7 Nov 2026, planned): main menu, Training and Test/Examination modes, procedure selection, random valid scenarios, menu and voice interaction on one engine path, training board, examination hints and Submit Patient to OT, results, characters, animation, assets, UI design system, settings, sound, contracts, QA and release, Quest 2 performance. 17 plans with task tables (`P3-<CODE>-NN`), not step files | [p3/](p3/README.md) |
 
 ## Naming convention
 
@@ -122,4 +123,4 @@ The owner confirmed the same day that the statement **also closes the 15 institu
 
 See [working-model.md](working-model.md) for who does what (the developer vs team) in VR, 3D and backend.
 
-Work that no step of P0, P1 or P2 covers but that measured results ask for is kept in [p3-backlog.md](p3-backlog.md) (not started).
+Work that no step of P0, P1 or P2 covers but that measured results ask for is kept in [p3-backlog.md](p3-backlog.md) (not started). That backlog (items `P3-01` to `P3-05`) is separate from the P3 tier: the tier's roadmap is [p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md](p3/P3_FINAL_GAME_INTEGRATION_ROADMAP.md).

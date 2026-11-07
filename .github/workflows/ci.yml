@@ -559,6 +559,11 @@ jobs:
       - name: Plan index is up to date and step references resolve
         run: uv run --project tools tools/plans/milestones.py --check
 
+      - name: P3 plans are valid and their task index is current
+        run: |
+          uv run --project tools tools/plans/p3_plans.py --check
+          uv run --project tools tools/ci/test_p3_plans.py
+
       - name: AI planning graph is valid and its generated documents are up to date
         run: |
           uv run --project tools tools/plans/validate_pipeline.py

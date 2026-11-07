@@ -34,6 +34,7 @@ Implementation Guide B-S11 Step 4, T-Q2; p0 README done criteria; evaluation REA
 
 This step has acceptance that only a person, device or account outside the engineering desk can give. The exact procedure, pass rule and evidence are in the single source of truth:
 
+* [DC-14](../../../../testing/SANNAN_EXTERNAL_TESTING.md#dc-14): P3 end-to-end on the Quest 2: menu, both procedures, training and examination, menu and voice input, results (run when the P3 milestones M1 to M4 are done)
 * [UX-P0-EVAL](../../../../testing/SANNAN_EXTERNAL_TESTING.md#ux-p0-eval): P0 evaluation: Quest replay check, weekly profiling, usability study, clinical review, release, demo
 
 <!-- external-testing:end -->

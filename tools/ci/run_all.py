@@ -305,6 +305,8 @@ def main(argv: list[str]) -> int:
         ("content manifest up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/content_manifest.py", "--check"])),
         ("medical review pack up to date", lambda: run(["uv", "run", "--project", "tools", "tools/content/review_pack.py", "--check"])),
         ("plan index up to date", lambda: run(["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"])),
+        ("P3 plans: sixteen sections each, task ids, owners and dependencies valid, no cycle, task index current", lambda: run(["uv", "run", "--project", "tools", "tools/plans/p3_plans.py", "--check"])),
+        ("P3 plan checker tests (missing section, wrong code, unknown dependency, cycle)", lambda: run(["uv", "run", "--project", "tools", "tools/ci/test_p3_plans.py"])),
         ("Ruhan and Moiz step inventory is current and has no unfinished implementation", lambda: run(["uv", "run", "--project", "tools", "tools/plans/ruhan_moiz_inventory.py", "--check"])),
         ("register triage page is current", lambda: run(["uv", "run", "--project", "tools", "tools/plans/register_triage.py", "--check"])),
         ("engineering audit page is current and names a reason for every open engineering row", lambda: run(["uv", "run", "--project", "tools", "tools/plans/engineering_audit.py", "--check"])),
