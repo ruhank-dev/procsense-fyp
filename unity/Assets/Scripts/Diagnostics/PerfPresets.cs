@@ -17,11 +17,13 @@ namespace ProcSense.VR.Diagnostics
         public bool CityHidden;              // the "City exterior" renderers are not drawn (the photographic skybox stays)
         public bool CharactersHidden;        // skinned renderers not drawn and their animators paused (cost of people and CPU skinning)
         public bool MainShadowsOff;          // mixed directional suns cast no realtime shadow (measurement only: changes dynamic shadows)
+        public bool OcclusionOff;            // camera does not use the baked occlusion data (shows what occlusion culling saves; a look-neutral setting)
+        public bool ExteriorCullOff;         // the city is always drawn (ExteriorVisibility off); shows what hiding the city behind solid walls saves
         public float EyeScale = 1f;          // XR eye-texture scale
         public int Msaa = 4;                 // MSAA samples
 
         /// <summary>True when the configuration changes something a player would see (used to label rows "measurement only" in the HUD and the CSV).</summary>
-        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4;
+        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4;   // OcclusionOff is look-neutral by design
     }
 
     /// <summary>The fixed list of configurations, in the order the left thumbstick click cycles them and the automatic sweep measures them.</summary>
@@ -43,6 +45,8 @@ namespace ProcSense.VR.Diagnostics
             new PerfPreset { Id = "B11", Label = "Eye scale 0.9", EyeScale = 0.9f },
             new PerfPreset { Id = "B12", Label = "Eye scale 1.1", EyeScale = 1.1f },
             new PerfPreset { Id = "B13", Label = "MSAA 2x", Msaa = 2 },
+            new PerfPreset { Id = "B15", Label = "Occlusion culling off (shows what the baked occlusion saves)", OcclusionOff = true },
+            new PerfPreset { Id = "B16", Label = "City always drawn (exterior culling off)", ExteriorCullOff = true },
             new PerfPreset { Id = "B14", Label = "Candidate set: foveation 0.5, fills off, current room only", Foveation = 0.5f, RealtimeFillsOff = true, CurrentRoomOnly = true },
         };
     }

@@ -29,8 +29,8 @@ A small yellow readout sits at the lower right of your view: configuration, view
 
 | Control | Does |
 |---|---|
-| Left thumbstick click | Next configuration (B0 → B14 → B0) |
-| Right thumbstick click | Teleport to the next benchmark view (V1 → V8) |
+| Left thumbstick click | Next configuration (B0 → B16 → B0) |
+| Right thumbstick click | Teleport to the next benchmark view (V1 → V9) |
 | Hold left **X** for 1.5 s | Automatic sweep: every configuration at the current view, 3 s settle + 10 s measure each (about 3.5 minutes); stand still |
 | Both thumbsticks clicked together | Hide or show the readout |
 
@@ -54,10 +54,11 @@ Every second a row goes to `perf/diag_<UTC time>.csv`; each sweep step adds a ro
 | V6 reception | (4.5, 1.6, -1) | desk and TV |
 | V7 theatre | (7, 1.7, 5.2), the OT door | table, lights, staff |
 | V8 corridor exterior | (4.5, 1.6, 9) | the north glass and the city |
+| V9 theatre far end | (9.5, 1.7, 5.2) | the theatre looking away from its door; the city must not be drawn (about 72 % fewer triangles on desktop) |
 
 ## 6. Part A: baseline (old rendering and new default)
 
-1. Configuration **B1** (the early-November rendering: intermediate texture Always, shafts and dust off). For each view V1-V8: 30 s still, then 30 s slowly turning 90° left and back. Note average FPS, 1% low, App CPU ms, App GPU ms, CPU/GPU level, stale frames, throttling; one headset screenshot per view (Meta button → Camera → Screenshot).
+1. Configuration **B1** (the early-November rendering: intermediate texture Always, shafts and dust off). For each view V1-V9: 30 s still, then 30 s slowly turning 90° left and back. Note average FPS, 1% low, App CPU ms, App GPU ms, CPU/GPU level, stale frames, throttling; one headset screenshot per view (Meta button → Camera → Screenshot).
 2. Configuration **B0** (this branch: Quest renderer with intermediate texture Auto, shafts and dust on): the same.
 3. In B0, close one eye at a time in V2 and V4: the shafts and dust must be in the same place for both eyes. Note any pink, black or missing material, flicker, or effect visible in one eye only.
 
@@ -94,4 +95,12 @@ Configurations that change the look are for measurement only; nothing is adopted
 
 ## 9. Pass rule (part C)
 
-Stable 72 FPS (no sustained drops, stale frames near zero) in V1-V8, warm, with the approved look (shafts and dust visible in both eyes). If a view cannot reach it, write which view and the numbers; the owner decides.
+Stable 72 FPS (no sustained drops, stale frames near zero) in V1-V9, warm, with the approved look (shafts and dust visible in both eyes). If a view cannot reach it, write which view and the numbers; the owner decides.
+
+## 9. Added 8 November 2026 (UTC): desktop optimisations to confirm on the headset
+
+The desktop round (`quest2_desktop_optimisation.md`) added **baked occlusion culling** (all three rooms) and **room-aware culling of the exterior city** (`ExteriorVisibility`, on by default on Quest). The diagnostic builds carry two switches to measure them: **B15** (occlusion culling off) and **B16** (city always drawn). Please:
+
+1. In V1, V4 and V9 compare B0 against B15 and B16 (30 s each, cool). Note average FPS, 1 % low and OVR CPU/GPU levels. Hypothesis, not a result: B0 is faster in V1 and V9 and equal in V4/V8 where a window is in view.
+2. **Look for popping.** Walk slowly through the bay door, the corridor and the theatre door in B0, turning quickly towards the bay window, the corridor glass walls and open doors. The city and any wall or object must never flicker, vanish or appear late. If it does: note where, then send a screenshot-free description of the position and head direction.
+3. Send the CSVs as before.

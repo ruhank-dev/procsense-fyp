@@ -2,6 +2,8 @@
 
 _7 November 2026 (UTC), owner decision D7 (ADR-0032), branch `quest-perf/d7-optimisations`. Companion of `quest2_performance_analysis.md` (static analysis of the same day, corrected where section 2 says so), `quest2_optimization_options.md`, `quest2_missing_light_effects.md`, `quest2_sannan_benchmark_guide.md` and the generated `quest2_static_render_stats.md`._
 
+> **8 November 2026 (UTC):** the desktop optimisation round (baked occlusion, room-aware exterior-city culling, nine-view desktop benchmark, the rejected city split) is documented in [`quest2_desktop_optimisation.md`](quest2_desktop_optimisation.md). Its numbers are desktop counts; the Quest columns below stay "Not measured on Quest".
+
 ## 0. Evidence classes used in this file
 
 | Class | Meaning | Present today |

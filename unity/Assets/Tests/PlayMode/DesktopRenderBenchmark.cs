@@ -1,0 +1,119 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using NUnit.Framework;
+using ProcSense.VR.Boot;
+using ProcSense.VR.Diagnostics;
+using Unity.Profiling;
+using UnityEngine;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
+using UnityEngine.TestTools;
+
+namespace ProcSense.Tests.PlayMode
+{
+    /// <summary>
+    /// Desktop render benchmark (P3-PRF-19), not a behaviour test (Explicit). Loads the hospital as the game does (Boot: PatientBay, Corridor and OT together), then for each of the eight
+    /// benchmark views and each requested configuration renders a Quest-sized eye buffer (1832 x 1920, 4x MSAA) and records the renderer's own counters with ProfilerRecorder
+    /// (draw calls, SetPass calls, batches, triangles, vertices, shadow casters), the CPU time of the Render() call and the GPU time from FrameTimingManager when the desktop driver gives it.
+    /// Numbers are desktop GPU/CPU numbers: they rank work and show what was removed, they are never Quest frame rates.
+    /// Environment: BENCH_CONFIGS (comma list of PerfPreset ids, default "B0,B1"), BENCH_OUT (csv path), BENCH_FRAMES (measured frames per cell, default 20).
+    /// </summary>
+    public class DesktopRenderBenchmark
+    {
+        private static readonly (string id, Vector3 p, Vector3 l, string room)[] Views =
+        {
+            ("V1 bay near wall", new Vector3(0f, 1.6f, -1.4f), new Vector3(0f, 1.6f, -1.95f), "PatientBay"),
+            ("V2 bay overview", new Vector3(2.2f, 1.65f, -1.8f), new Vector3(-1.3f, 1.0f, 0.9f), "PatientBay"),
+            ("V3 bay window", new Vector3(1.8f, 1.5f, -0.6f), new Vector3(-2.45f, 1.6f, 0f), "PatientBay"),
+            ("V4 corridor long", new Vector3(4.5f, 1.7f, 13.6f), new Vector3(4.5f, 1.5f, -9f), "Corridor"),
+            ("V5 corridor people", new Vector3(3.2f, 1.55f, 5.6f), new Vector3(5.45f, 1.2f, 7.9f), "Corridor"),
+            ("V6 reception", new Vector3(4.5f, 1.6f, -1f), new Vector3(4.5f, 1.4f, -9f), "Corridor"),
+            ("V7 theatre", new Vector3(7f, 1.7f, 5.2f), new Vector3(11f, 1.2f, 5.4f), "OT"),
+            ("V8 corridor exterior", new Vector3(4.5f, 1.6f, 9f), new Vector3(4.5f, 1.5f, 14.2f), "Corridor"),
+            ("V9 theatre far end", new Vector3(9.5f, 1.7f, 5.2f), new Vector3(13f, 1.3f, 5.4f), "OT"),
+        };
+
+        private const int EyeW = 1832, EyeH = 1920;
+
+        [UnityTest, Explicit("desktop benchmark")]
+        public IEnumerator Benchmark_views()
+        {
+            string cfg = Environment.GetEnvironmentVariable("BENCH_CONFIGS") ?? "B0,B1", outPath = Environment.GetEnvironmentVariable("BENCH_OUT");
+            int frames = int.TryParse(Environment.GetEnvironmentVariable("BENCH_FRAMES"), out var f) ? f : 20;
+            Assert.IsFalse(string.IsNullOrEmpty(outPath), "set BENCH_OUT");
+            int quality = int.TryParse(Environment.GetEnvironmentVariable("BENCH_QUALITY"), out var q) ? q : 2;   // 2 = Medium, the level Android builds use (URP_Quest_Android); 5 = Ultra, the desktop level
+            int authoredQuality = QualitySettings.GetQualityLevel(); QualitySettings.SetQualityLevel(quality, true);
+            LogAssert.ignoreFailingMessages = true;   // the Editor logs "First two bone weights should have non-zero sum" for a skinned mesh (recorded as a finding in docs/qa); it must not abort the measurement
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
+            yield return SceneManager.LoadSceneAsync("Boot");
+            yield return EditorXRTestEnvironment.EnsureSimulator();
+            for (int i = 0; i < 120; i++) yield return null;                                   // RoomLoader streams the other rooms; lights, probes and animators settle
+            foreach (var c in UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)) c.enabled = false;
+
+            var go = new GameObject("BenchCamera"); var cam = go.AddComponent<Camera>(); cam.nearClipPlane = 0.05f; cam.farClipPlane = 1000f; cam.fieldOfView = 96f; cam.clearFlags = CameraClearFlags.Skybox;
+            var rt = new RenderTexture(EyeW, EyeH, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 }; cam.targetTexture = rt;
+            go.AddComponent<UniversalAdditionalCameraData>().antialiasing = AntialiasingMode.None;
+            var toggles = new PerfToggles();
+            toggles.Apply(PerfPresets.All[0], cam, "PatientBay"); cam.Render(); yield return null; cam.Render(); Debug.Log("EXTERIOR " + ProcSense.VR.Views.ExteriorVisibility.Report);
+
+            using (var draw = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Draw Calls Count"))
+            using (var setPass = ProfilerRecorder.StartNew(ProfilerCategory.Render, "SetPass Calls Count"))
+            using (var batches = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Batches Count"))
+            using (var tris = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Triangles Count"))
+            using (var verts = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Vertices Count"))
+            using (var casters = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Shadow Casters Count"))
+            using (var mem = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Total Used Memory"))
+            using (var gfx = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Gfx Used Memory"))
+            {
+                var sb = new StringBuilder("config,view,room,draw_calls,setpass_calls,batches,triangles,vertices,shadow_casters,cpu_render_ms,gpu_ms,used_mem_mb,gfx_mem_mb,city_hidden\n");
+                foreach (var id in cfg.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    var preset = PerfPresets.All.First(p => p.Id == id.Trim());
+                    foreach (var v in Views)
+                    {
+                        cam.transform.position = v.p; cam.transform.LookAt(v.l);
+                        toggles.Apply(preset, cam, v.room);
+                        for (int k = 0; k < 12; k++) { cam.Render(); yield return null; }       // warm-up: shader variants, culling caches
+                        var cpu = new List<double>(); var gpuT = new List<double>(); var timing = new FrameTiming[1];
+                        double dc = 0, sp = 0, bt = 0, tr = 0, vt = 0, sc = 0;
+                        for (int k = 0; k < frames; k++)
+                        {
+                            UnityEngine.FrameTimingManager.CaptureFrameTimings();
+                            var sw = System.Diagnostics.Stopwatch.StartNew(); cam.Render(); sw.Stop(); cpu.Add(sw.Elapsed.TotalMilliseconds);
+                            yield return null;
+                            dc = draw.LastValue; sp = setPass.LastValue; bt = batches.LastValue; tr = tris.LastValue; vt = verts.LastValue; sc = casters.LastValue;
+                            if (UnityEngine.FrameTimingManager.GetLatestTimings(1, timing) > 0 && timing[0].gpuFrameTime > 0) gpuT.Add(timing[0].gpuFrameTime);
+                        }
+                        string pngDir = Environment.GetEnvironmentVariable("BENCH_PNG_DIR");
+                        if (!string.IsNullOrEmpty(pngDir))
+                        {
+                            Directory.CreateDirectory(pngDir); cam.Render(); yield return null; cam.Render();
+                            var prev = RenderTexture.active; RenderTexture.active = rt; var tex = new Texture2D(EyeW, EyeH, TextureFormat.RGB24, false, false); tex.ReadPixels(new Rect(0, 0, EyeW, EyeH), 0, 0); tex.Apply();
+                            File.WriteAllBytes(Path.Combine(pngDir, preset.Id + "_" + v.id.Substring(0, 2) + ".png"), tex.EncodeToPNG()); RenderTexture.active = prev; UnityEngine.Object.Destroy(tex);
+                        }
+                        Debug.Log("VIEWDBG " + preset.Id + " " + v.id + ": " + ProcSense.VR.Views.ExteriorVisibility.LastDecision);
+                        cpu.Sort(); gpuT.Sort();
+                        double Med(List<double> l) => l.Count == 0 ? double.NaN : l[l.Count / 2];
+                        sb.Append(preset.Id).Append(',').Append(v.id).Append(',').Append(v.room).Append(',').Append(F(dc)).Append(',').Append(F(sp)).Append(',').Append(F(bt)).Append(',').Append(F(tr)).Append(',').Append(F(vt)).Append(',').Append(F(sc))
+                          .Append(',').Append(F(Med(cpu))).Append(',').Append(F(Med(gpuT))).Append(',').Append(F(mem.LastValue / 1048576.0)).Append(',').Append(F(gfx.LastValue / 1048576.0)).Append(',').Append(ProcSense.VR.Views.ExteriorVisibility.CityHiddenNow ? 1 : 0).Append('\n');
+                    }
+                }
+                Directory.CreateDirectory(Path.GetDirectoryName(outPath));
+                File.WriteAllText(outPath, sb.ToString());
+            }
+            toggles.Apply(PerfPresets.All[0], cam, "PatientBay");
+            cam.targetTexture = null; UnityEngine.Object.Destroy(rt); UnityEngine.Object.Destroy(go);
+            QualitySettings.SetQualityLevel(authoredQuality, true);
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        }
+
+        private static string F(double d) => double.IsNaN(d) ? "" : d.ToString("0.###", CultureInfo.InvariantCulture);
+    }
+}
+#endif

@@ -66,10 +66,10 @@ How each part works is specified in the plans: flow and gateway [p3-01](p3-01-se
 | [p3-14-sound-design](p3-14-sound-design.md) | SND | 11 | Moiz, Sannan |
 | [p3-15-integration-contracts](p3-15-integration-contracts.md) | API | 8 | Ruhan, Moiz |
 | [p3-16-qa-release](p3-16-qa-release.md) | QA | 8 | Ruhan, Moiz, Team, Owner |
-| [p3-17-quest-performance](p3-17-quest-performance.md) | PRF | 18 | Ruhan, Sannan, Owner |
+| [p3-17-quest-performance](p3-17-quest-performance.md) | PRF | 21 | Ruhan, Sannan, Owner |
 | [p3-18-networked-quest-runtime](p3-18-networked-quest-runtime.md) | NET | 17 | Ruhan, Moiz, Sannan |
 | [p3-19-exterior-rendering](p3-19-exterior-rendering.md) | EXT | 8 | Ruhan, Sannan, Owner |
-| **Total** | | **203** | the generated index has the per-owner totals and the 12 dependency waves |
+| **Total** | | **206** | the generated index has the per-owner totals and the 12 dependency waves |
 
 Task ids are `P3-<CODE>-NN`. They are distinct from the older backlog items `P3-01` to `P3-05` in [../p3-backlog.md](../p3-backlog.md), which stay as they are (not part of this phase). Status per task lives in its plan's table (Planned, In progress, Done, Blocked); `tools/plans/p3_plans.py --check` (CI) validates every table, dependency and the index. Owners follow the confirmed split in [../frontend/front_end_load_distribution.md](../frontend/front_end_load_distribution.md): Moiz screens and engine-facing Unity logic, Sannan 3D, physical interaction, characters and the headset, Ruhan engine, content, backend and AI.
 
@@ -96,7 +96,7 @@ The original options and recommendations are kept in ADR-0032 for history. What 
 | **P3-M2 Both procedures, both modes** | Examination pool (SCN-07), hints (EXM-01, EXM-03), submit UI (EXM-04), abandon (EXM-06), leak audit (EXM-07), training board (TRN-03 to TRN-07), S2 bay variant (AST-08), patient profiles and swap (AST-02, AST-03) | Eight golden playthroughs pass in menu mode |
 | **P3-M3 Voice mode over the network** | VOX-02 to VOX-13, API-02 to API-05, NET-06 to NET-17 | Voice-only S1 and S2 playthroughs pass in training and examination with the Quest talking to the laptop; DC-15 recorded |
 | **P3-M4 Presence and polish** | Staff and interactions (INT, AST-04/05), animation (ANI), sound (SND), settings (SET) | Coverage check green; owner approves captures and clips |
-| **P3-M5 Quest performance** | PRF-03 to PRF-18, EXT-01 to EXT-08 | DC-13 part C: stable 72 FPS in the benchmark views, or an owner-accepted exception |
+| **P3-M5 Quest performance** | PRF-03 to PRF-21, EXT-01 to EXT-08 | DC-13 part C: stable 72 FPS in the benchmark views, or an owner-accepted exception |
 | **P3-M6 Release** | QA-02, QA-03, QA-05 to QA-08, API-06 to API-08 | Release readiness decision |
 
 The full ordered list with every dependency is the generated [p3-task-index.md](p3-task-index.md) (12 waves; wave 1 has 25 tasks that need no other P3 task). Critical path: merge → gateway → flow → menu/picker → submit/results → examination pool → voice → playthroughs → release candidate.
@@ -115,7 +115,7 @@ Checked on 7 November 2026:
 | Check | Result |
 |---|---|
 | Every requested final-game feature has tasks | Yes: menu (MNU), modes (SES, EXM, TRN), procedures (MNU-04, SCN), scenario generation (SCN), orchestration (SES), both input modes (CTX, VOX), mode switching (VOX-02, SET-04), training board (TRN), examination hint and submit (EXM), results (RES), interactions (INT), animation (ANI), assets (AST), UI (UIX), settings (SET), sound (SND), integration (API), QA (QA), Quest performance (PRF) |
-| Dependencies | Machine-checked: 203 tasks, every dependency exists (P3 task or existing P0 step), no cycle (`tools/plans/p3_plans.py --check`, tested by `tools/ci/test_p3_plans.py`) |
+| Dependencies | Machine-checked: 206 tasks, every dependency exists (P3 task or existing P0 step), no cycle (`tools/plans/p3_plans.py --check`, tested by `tools/ci/test_p3_plans.py`) |
 | Duplicated functionality | Existing systems are reused by name in each plan's section 3; the tablet is kept as the full list rather than replaced; Sannan's branch is merged, not redone; open P0 steps are depended on, not copied |
 | Contradictions | Examination ends at submission (D6) consistently in EXM, RES, INT; voice in examination only per D3 in VOX and QA; no plan changes clinical labels; desktop look unchanged in PRF and UIX |
 | Frontend/backend/AI/voice connections | Every flow has a contract and an event flow in p3-15 |

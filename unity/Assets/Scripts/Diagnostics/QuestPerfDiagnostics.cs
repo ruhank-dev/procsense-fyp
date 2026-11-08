@@ -14,7 +14,7 @@ namespace ProcSense.VR.Diagnostics
 {
     /// <summary>
     /// The Quest diagnostic build's benchmark helper (P3-PRF-01; only compiled with PROCSENSE_PERF_DIAG, which only BuildScript's "diag" variants set).
-    /// Controls (Quest Touch): left thumbstick click = next configuration (B0..B14), right thumbstick click = next benchmark view (V1..V8), hold left X for 1.5 s = automatic sweep of every
+    /// Controls (Quest Touch): left thumbstick click = next configuration (B0..B16), right thumbstick click = next benchmark view (V1..V9), hold left X for 1.5 s = automatic sweep of every
     /// configuration at the current view (3 s settle + 10 s measure each), both thumbsticks together = hide or show the readout.
     /// Every second it appends a row to persistentDataPath/perf/diag_*.csv; each sweep step adds a row to perf/sweep_*.csv. Numbers come from the frame times and FrameTimingManager on the device
     /// (no estimate). OVR Metrics Tool stays the reference for GPU/CPU levels and throttling.
@@ -32,6 +32,7 @@ namespace ProcSense.VR.Diagnostics
             ("V6 reception", new Vector3(4.5f, 1.6f, -1f), new Vector3(4.5f, 1.4f, -9f)),
             ("V7 theatre", new Vector3(7f, 1.7f, 5.2f), new Vector3(11f, 1.2f, 5.4f)),
             ("V8 corridor exterior", new Vector3(4.5f, 1.6f, 9f), new Vector3(4.5f, 1.5f, 14.2f)),
+            ("V9 theatre far end", new Vector3(9.5f, 1.7f, 5.2f), new Vector3(13f, 1.3f, 5.4f)),
         };
 
         private readonly PerfToggles _toggles = new PerfToggles();
