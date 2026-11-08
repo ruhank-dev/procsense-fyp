@@ -38,7 +38,7 @@ def run(args: list[str], log: Path) -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     cmd = [str(find_unity()), "-batchmode", "-projectPath", str(PROJECT), "-logFile", str(log), *args]
     print(" ".join(cmd))
-    return subprocess.call(cmd)
+    return subprocess.call(cmd, creationflags=0x08000000 if os.name == "nt" else 0)   # CREATE_NO_WINDOW: background-only, never a foreground window
 
 
 def test() -> int:

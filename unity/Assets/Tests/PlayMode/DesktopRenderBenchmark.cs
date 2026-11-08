@@ -37,6 +37,10 @@ namespace ProcSense.Tests.PlayMode
             ("V7 theatre", new Vector3(7f, 1.7f, 5.2f), new Vector3(11f, 1.2f, 5.4f), "OT"),
             ("V8 corridor exterior", new Vector3(4.5f, 1.6f, 9f), new Vector3(4.5f, 1.5f, 14.2f), "Corridor"),
             ("V9 theatre far end", new Vector3(9.5f, 1.7f, 5.2f), new Vector3(13f, 1.3f, 5.4f), "OT"),
+            // desktop-only street-facing views (P3-EXT): the window views above look at towers; these look down at the street, traffic and trees where the reduced meshes are most exposed
+            ("V10 glass wall down", new Vector3(4.5f, 1.6f, 13.4f), new Vector3(4.5f, -25f, 34f), "Corridor"),
+            ("V11 glass wall oblique", new Vector3(4.5f, 1.6f, 13.4f), new Vector3(30f, -10f, 40f), "Corridor"),
+            ("V12 bay window down", new Vector3(-1.6f, 1.5f, 0f), new Vector3(-25f, -12f, 5f), "PatientBay"),
         };
 
         private const int EyeW = 1832, EyeH = 1920;
@@ -59,6 +63,12 @@ namespace ProcSense.Tests.PlayMode
             var go = new GameObject("BenchCamera"); var cam = go.AddComponent<Camera>(); cam.nearClipPlane = 0.05f; cam.farClipPlane = 1000f; cam.fieldOfView = 96f; cam.clearFlags = CameraClearFlags.Skybox;
             var rt = new RenderTexture(EyeW, EyeH, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 }; cam.targetTexture = rt;
             go.AddComponent<UniversalAdditionalCameraData>().antialiasing = AntialiasingMode.None;
+            cam.enabled = false;   // rendered by the explicit Render() calls only; an enabled camera with a target texture also renders itself every frame and the counters then show every frame twice (found 8 Nov, see docs/qa/quest2_desktop_optimisation.md)
+            // BENCH_HIDE: comma list of name fragments; renderers whose own or parent name contains one are disabled for the whole run (measures one layer's share)
+            foreach (var frag in (Environment.GetEnvironmentVariable("BENCH_HIDE") ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                foreach (var r in UnityEngine.Object.FindObjectsByType<Renderer>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+                    for (var t = r.transform; t != null; t = t.parent) if (t.name.Contains(frag.Trim())) { r.enabled = false; break; }
+            ProcSense.VR.Views.ExteriorVisibility.CollectStats = true;
             var toggles = new PerfToggles();
             toggles.Apply(PerfPresets.All[0], cam, "PatientBay"); cam.Render(); yield return null; cam.Render(); Debug.Log("EXTERIOR " + ProcSense.VR.Views.ExteriorVisibility.Report);
 
@@ -95,9 +105,9 @@ namespace ProcSense.Tests.PlayMode
                         {
                             Directory.CreateDirectory(pngDir); cam.Render(); yield return null; cam.Render();
                             var prev = RenderTexture.active; RenderTexture.active = rt; var tex = new Texture2D(EyeW, EyeH, TextureFormat.RGB24, false, false); tex.ReadPixels(new Rect(0, 0, EyeW, EyeH), 0, 0); tex.Apply();
-                            File.WriteAllBytes(Path.Combine(pngDir, preset.Id + "_" + v.id.Substring(0, 2) + ".png"), tex.EncodeToPNG()); RenderTexture.active = prev; UnityEngine.Object.Destroy(tex);
+                            File.WriteAllBytes(Path.Combine(pngDir, preset.Id + "_" + v.id.Split(' ')[0] + ".png"), tex.EncodeToPNG()); RenderTexture.active = prev; UnityEngine.Object.Destroy(tex);
                         }
-                        Debug.Log("VIEWDBG " + preset.Id + " " + v.id + ": " + ProcSense.VR.Views.ExteriorVisibility.LastDecision);
+                        Debug.Log("VIEWDBG " + preset.Id + " " + v.id + ": " + ProcSense.VR.Views.ExteriorVisibility.LastDecision + " chunks " + ProcSense.VR.Views.ExteriorVisibility.ChunksDrawn + "/" + ProcSense.VR.Views.ExteriorVisibility.ChunksTotal + " | " + ProcSense.VR.Views.ExteriorVisibility.StatsLine);
                         cpu.Sort(); gpuT.Sort();
                         double Med(List<double> l) => l.Count == 0 ? double.NaN : l[l.Count / 2];
                         sb.Append(preset.Id).Append(',').Append(v.id).Append(',').Append(v.room).Append(',').Append(F(dc)).Append(',').Append(F(sp)).Append(',').Append(F(bt)).Append(',').Append(F(tr)).Append(',').Append(F(vt)).Append(',').Append(F(sc))

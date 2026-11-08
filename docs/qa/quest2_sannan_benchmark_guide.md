@@ -29,7 +29,7 @@ A small yellow readout sits at the lower right of your view: configuration, view
 
 | Control | Does |
 |---|---|
-| Left thumbstick click | Next configuration (B0 → B16 → B0) |
+| Left thumbstick click | Next configuration (B0 → B19 → B0) |
 | Right thumbstick click | Teleport to the next benchmark view (V1 → V9) |
 | Hold left **X** for 1.5 s | Automatic sweep: every configuration at the current view, 3 s settle + 10 s measure each (about 3.5 minutes); stand still |
 | Both thumbsticks clicked together | Hide or show the readout |
@@ -104,3 +104,17 @@ The desktop round (`quest2_desktop_optimisation.md`) added **baked occlusion cul
 1. In V1, V4 and V9 compare B0 against B15 and B16 (30 s each, cool). Note average FPS, 1 % low and OVR CPU/GPU levels. Hypothesis, not a result: B0 is faster in V1 and V9 and equal in V4/V8 where a window is in view.
 2. **Look for popping.** Walk slowly through the bay door, the corridor and the theatre door in B0, turning quickly towards the bay window, the corridor glass walls and open doors. The city and any wall or object must never flicker, vanish or appear late. If it does: note where, then send a screenshot-free description of the position and head direction.
 3. Send the CSVs as before.
+
+## 10. Added 8 November 2026 (UTC): the optimised exterior city (B17 and B18)
+
+`quest2_exterior_optimisation.md` describes a Quest variant of the exterior city (far traffic and trees simplified from the same seed, the city split into 401 chunks, only the chunks inside the view cone through a window or door drawn). It looked identical to the original in every desktop capture, but **only the headset can say whether it is faster and whether depth looks right.** The default stays the original (B0). The diagnostic builds add:
+
+| Configuration | What it is |
+|---|---|
+| B17 | Optimised exterior city (reduced far traffic and trees, chunks, portal culling) |
+| B18 | Optimised exterior without the portal culling (reduced meshes only) |
+
+1. In V3 and V8 compare B0 against B17 and B18 (30 s each, cool): average FPS, 1 % low, OVR CPU and GPU levels. The CPU level matters here: the portal test and the extra renderers cost CPU. Hypothesis, not a result: B17 is lighter on the GPU in V3 and V8.
+2. **Look down.** Stand at the corridor glass wall (V8 position) and at the bay window, look down at the street, the plaza, the trees and the traffic in B0 and then B17. Report any difference you can see: simpler cars, thinner trees, anything missing, anything flickering, in either eye.
+3. **Look for chunks appearing late.** In B17 turn quickly towards each window and each glass wall from the side and from a few metres back. A tree, a car, a patch of ground or a building must never pop in or out.
+4. Send the CSVs as before. Do not press anything that changes the default: the approved look stays B0 until the owner decides.

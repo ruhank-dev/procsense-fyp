@@ -9,6 +9,7 @@ Outputs under unity/Logs/CityBuild (git-ignored): city_near.fbx, city_mid.fbx, c
 """
 import json
 import math
+import os
 import random
 from pathlib import Path
 
@@ -16,7 +17,16 @@ import bmesh
 import bpy
 from mathutils import Vector
 
-OUT = Path(__file__).resolve().parents[2] / "Logs" / "CityBuild"; OUT.mkdir(parents=True, exist_ok=True)
+# CITY_VARIANT=quest (P3-EXT, 8 Nov 2026): same seed, same placement, so every tree and car stands exactly where it stands in the original; only the geometry that is too small to read from the hospital
+# is reduced with distance (cars beyond QUEST_CAR_DETAIL_M lose lofted detail, trees beyond the LOD1/LOD2 radii lose twigs and some leaf cards that are replaced by larger ones). Only the traffic and tree meshes are exported,
+# as city_traffic_q.fbx and city_trees_q.fbx under CityBuild/quest; the original outputs are never touched. No random number is drawn differently, so the original run is byte-for-byte unchanged.
+QUEST = os.environ.get("CITY_VARIANT") == "quest"
+QUEST_CAR_DETAIL_M, QUEST_CAR_WHEELS_M = 70.0, 150.0
+TREE_LOD1_M, TREE_LOD2_M = 90.0, 180.0
+OUT = Path(__file__).resolve().parents[2] / "Logs" / "CityBuild" / ("quest" if QUEST else ""); OUT.mkdir(parents=True, exist_ok=True)
+_LOD = 0
+_cardn = 0
+LOD_STATS = {"cars_detailed": 0, "cars_simple": 0, "cars_far": 0, "trees_l0": 0, "trees_l1": 0, "trees_l2": 0}
 rng = random.Random(2026)
 HC = (4.0, 2.2)                  # hospital centre (x, z)
 GROUND = -48.0                   # street level below the corridor floor (y = 0)
@@ -241,6 +251,8 @@ def _limb(sink, p0, p1, r0, r1, n=6, v0=0.0):
     d = Vector(p1) - Vector(p0); L = d.length
     if L < 1e-4:
         return
+    if (_LOD >= 1 and n == 4) or (_LOD >= 2 and n == 5):         # twigs (LOD1) and secondary branches (LOD2) are thinner than a pixel from the hospital; the leaf cards that hide them stay
+        return
     d /= L
     up = Vector((0, 1, 0)) if abs(d.y) < .95 else Vector((1, 0, 0))
     a = d.cross(up).normalized(); b = d.cross(a).normalized()
@@ -254,6 +266,12 @@ def _limb(sink, p0, p1, r0, r1, n=6, v0=0.0):
 
 def _card(sink, c, size, yaw, tilt, flip):
     """A leaf-cluster card centred on c: a square of side `size`, turned about the vertical by yaw and leaned by tilt (0 = upright, 90 = flat)."""
+    global _cardn
+    if _LOD:
+        _cardn += 1
+        keep, grow = (3, 1.18) if _LOD == 1 else (2, 1.38)       # keep 3 of every 5 (LOD1) or 2 of every 5 (LOD2) cards and enlarge them so the canopy covers the same area
+        if _cardn % 5 >= keep: return
+        size *= grow
     cy, sy = math.cos(yaw), math.sin(yaw); ct, st = math.cos(tilt), math.sin(tilt)
     h = size / 2
     pts = []
@@ -268,8 +286,12 @@ def _card(sink, c, size, yaw, tilt, flip):
 def tree(sink, x, z, y, h, detail=1.0):
     """A real tree: a curved tapering trunk, a spreading scaffold of branches, and crossed foliage-cluster cards (the leaf atlas) around every branch end; canopy shape and density vary with the seed.
     Written into the tree sink whatever sink the caller passes, so every tree shares two materials (Bark, Leaf) and one draw call each."""
+    global _LOD
     s = TREES
     r = rng
+    dist = math.hypot(x - HC[0], z - HC[1])
+    _LOD = (0 if dist < TREE_LOD1_M else 1 if dist < TREE_LOD2_M else 2) if QUEST else 0
+    LOD_STATS["trees_l%d" % _LOD] += 1
     trunk_h = h * r.uniform(.30, .38); lean = (r.uniform(-.25, .25), r.uniform(-.25, .25))
     r0 = h * .028 + .05
     pts = [(x, y, z)]
@@ -360,7 +382,7 @@ def car_detailed(sink, x, z, yaw, kind, colour):
 
 
 # ------------------------------------------------------------------------------------------------------------------------------------------------------------------ traffic
-def car(sink, x, z, yaw, kind, color):
+def car(sink, x, z, yaw, kind, color, wheels=True):
     c, s = math.cos(yaw), math.sin(yaw)
     def tx(lx, ly, lz):
         return (x + lx * c + lz * s, GROUND + ly, z - lx * s + lz * c)
@@ -375,10 +397,13 @@ def car(sink, x, z, yaw, kind, color):
         for k, (idx, n) in enumerate(faces):
             sink.face("Palette", [cs[i] for i in idx], n, [pal(top_cell if (top_cell is not None and k == 4) else cell)] * 4)
     L, W = kind["len"], kind["wid"]
-    # wheels
-    for sx in (-1, 1):
-        for zf in kind["axles"]:
-            part(sx * (W / 2 - .12) - .12, sx * (W / 2 - .12) + .12, 0, .62, zf - .32, zf + .32, 17)
+    # wheels (the far-traffic variant replaces the separate wheel blocks by one dark under-body block: from over 150 m a wheel is under a pixel wide)
+    if wheels:
+        for sx in (-1, 1):
+            for zf in kind["axles"]:
+                part(sx * (W / 2 - .12) - .12, sx * (W / 2 - .12) + .12, 0, .62, zf - .32, zf + .32, 17)
+    else:
+        part(-W / 2 * .92, W / 2 * .92, 0, .34, -L / 2 * .9, L / 2 * .9, 17)
     part(-W / 2, W / 2, .30, kind["body_h"], -L / 2, L / 2, color, color)
     if kind.get("cabin"):
         cw, cl, ch, off = kind["cabin"]
@@ -429,7 +454,10 @@ def traffic(sink, count):
                         if abs(abs(rel) - P / 2) < 9.0 and (k % 2 != 0):
                             continue
                         yaw = math.pi / 2 if direction > 0 else -math.pi / 2
-                    (car_detailed if (kindname in ('sedan', 'hatch', 'suv') and math.hypot(x - HC[0], z - HC[1]) < 135) else car)(sink, x, z, yaw, kd, color); cars += 1
+                    det = kindname in ('sedan', 'hatch', 'suv') and math.hypot(x - HC[0], z - HC[1]) < (QUEST_CAR_DETAIL_M if QUEST else 135)
+                    far = QUEST and not det and math.hypot(x - HC[0], z - HC[1]) >= QUEST_CAR_WHEELS_M
+                    LOD_STATS["cars_detailed" if det else "cars_far" if far else "cars_simple"] += 1
+                    car_detailed(sink, x, z, yaw, kd, color) if det else car(sink, x, z, yaw, kd, color, wheels=not far); cars += 1
     return cars
 
 
@@ -472,6 +500,42 @@ def export(name, sink):
         bpy.data.objects.remove(o, do_unlink=True)
 
 
+CHUNK_M = 80.0     # cell size of the Quest variant's spatial chunks (metres)
+
+
+def export_chunks(name, sink, keys=None, cell=CHUNK_M):
+    """Quest variant: the same faces as export(), split into one object per (cell, material) by face centroid, so the runtime can draw only the cells that lie inside the view cone through a window.
+    Faces keep their world positions (the FBX still lands at the origin); every object is named EQ_<name>_c<ix>_<iz>_M_<material key>."""
+    for o in list(bpy.data.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    n = 0
+    for key, bm in sink.bm.items():
+        if keys is not None and key not in keys:
+            continue
+        uvl = bm.loops.layers.uv.active; cells = {}
+        for f in bm.faces:
+            c = sum((v.co for v in f.verts), Vector()) / len(f.verts)                  # Blender coordinates: x = -Unity x, y = -Unity z
+            cells.setdefault((int(math.floor(-c.x / cell)), int(math.floor(-c.y / cell))), []).append(f)
+        mat = bpy.data.materials.new(f"M_{key}")
+        for (ix, iz), faces in cells.items():
+            nb = bmesh.new(); nuv = nb.loops.layers.uv.new("UVMap")
+            for f in faces:
+                nf = nb.faces.new([nb.verts.new(v.co) for v in f.verts])
+                for l, ol in zip(nf.loops, f.loops):
+                    l[nuv].uv = ol[uvl].uv
+            me = bpy.data.meshes.new(f"{key}_{ix}_{iz}"); nb.to_mesh(me); nb.free()
+            ob = bpy.data.objects.new(f"EQ_{name}_c{ix}_{iz}_M_{key}", me); bpy.context.collection.objects.link(ob); ob.data.materials.append(mat)
+            for p in me.polygons:
+                p.use_smooth = False
+            n += 1
+    bpy.ops.object.select_all(action="SELECT")
+    bpy.ops.export_scene.fbx(filepath=str(OUT / f"{name}.fbx"), use_selection=True, object_types={"MESH"}, axis_forward="-Z", axis_up="Y", apply_unit_scale=True,
+                             apply_scale_options="FBX_SCALE_UNITS", bake_space_transform=True, add_leaf_bones=False, bake_anim=False, path_mode="STRIP")
+    for o in list(bpy.data.objects):
+        bpy.data.objects.remove(o, do_unlink=True)
+    return n
+
+
 def main():
     global TREES
     TREES = Sink()
@@ -488,7 +552,12 @@ def main():
     report["near_x_min_max_unity"] = [min(xs), max(xs)]
     report["near_tris"] = near.tris; report["mid_tris"] = mid.tris; report["ground_tris"] = gsink.tris
     tsink = Sink(); report["vehicles"] = traffic(tsink, 0); report["street_poles"] = furniture(tsink); report["traffic_tris"] = tsink.tris
-    report["tree_tris"] = TREES.tris; export("city_trees", TREES); export("city_near", near); export("city_mid", mid); export("city_ground", gsink); export("city_traffic", tsink)
+    report["tree_tris"] = TREES.tris; report["lod"] = LOD_STATS
+    if QUEST:
+        report["chunks"] = {"traffic": export_chunks("city_traffic_q", tsink), "trees": export_chunks("city_trees_q", TREES), "ground_palette": export_chunks("city_ground_q", gsink, {"Palette"}),
+                            "mid_concrete": export_chunks("city_mid_q", mid, {"Concrete"})}
+    else:
+        export("city_trees", TREES); export("city_near", near); export("city_mid", mid); export("city_ground", gsink); export("city_traffic", tsink)
     (OUT / "report.json").write_text(json.dumps(report, indent=2))
     print("CITY", json.dumps(report))
 

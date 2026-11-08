@@ -14,7 +14,7 @@ namespace ProcSense.VR.Diagnostics
 {
     /// <summary>
     /// The Quest diagnostic build's benchmark helper (P3-PRF-01; only compiled with PROCSENSE_PERF_DIAG, which only BuildScript's "diag" variants set).
-    /// Controls (Quest Touch): left thumbstick click = next configuration (B0..B16), right thumbstick click = next benchmark view (V1..V9), hold left X for 1.5 s = automatic sweep of every
+    /// Controls (Quest Touch): left thumbstick click = next configuration (B0..B19), right thumbstick click = next benchmark view (V1..V9), hold left X for 1.5 s = automatic sweep of every
     /// configuration at the current view (3 s settle + 10 s measure each), both thumbsticks together = hide or show the readout.
     /// Every second it appends a row to persistentDataPath/perf/diag_*.csv; each sweep step adds a row to perf/sweep_*.csv. Numbers come from the frame times and FrameTimingManager on the device
     /// (no estimate). OVR Metrics Tool stays the reference for GPU/CPU levels and throttling.

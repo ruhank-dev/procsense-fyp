@@ -39,7 +39,8 @@ namespace ProcSense.VR.Diagnostics
                 if (urp.msaaSampleCount != want) urp.msaaSampleCount = want;
                 twoRenderers = urp.name == AndroidPipelineName;    // only the Quest tier lists the legacy renderer as index 1
             }
-            ExteriorVisibility.Enabled = !p.ExteriorCullOff;
+            ExteriorVisibility.Enabled = !p.ExteriorCullOff; ExteriorVisibility.PortalCullEnabled = !p.PortalCullOff;
+            QuestExterior.Current = p.OptimisedExterior ? QuestExterior.Variant.Optimised : QuestExterior.Variant.Original;
             ExteriorVisibility.ForceHidden = p.CityHidden;
             if (cam != null) cam.useOcclusionCulling = !p.OcclusionOff;
             if (cam != null && twoRenderers) cam.GetUniversalAdditionalCameraData().SetRenderer(p.LegacyRenderer ? 1 : 0);

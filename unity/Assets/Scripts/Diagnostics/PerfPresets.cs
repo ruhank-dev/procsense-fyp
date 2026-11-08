@@ -18,12 +18,14 @@ namespace ProcSense.VR.Diagnostics
         public bool CharactersHidden;        // skinned renderers not drawn and their animators paused (cost of people and CPU skinning)
         public bool MainShadowsOff;          // mixed directional suns cast no realtime shadow (measurement only: changes dynamic shadows)
         public bool OcclusionOff;            // camera does not use the baked occlusion data (shows what occlusion culling saves; a look-neutral setting)
+        public bool OptimisedExterior;       // the Quest variant of the exterior city (QuestExterior): reduced far traffic and trees, same placement; compare against B0 (original)
+        public bool PortalCullOff;           // with the optimised exterior: no per-chunk cone culling through windows (shows what the portal culling saves on top of the reduced meshes)
         public bool ExteriorCullOff;         // the city is always drawn (ExteriorVisibility off); shows what hiding the city behind solid walls saves
         public float EyeScale = 1f;          // XR eye-texture scale
         public int Msaa = 4;                 // MSAA samples
 
         /// <summary>True when the configuration changes something a player would see (used to label rows "measurement only" in the HUD and the CSV).</summary>
-        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4;   // OcclusionOff is look-neutral by design
+        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4 || OptimisedExterior;   // OcclusionOff is look-neutral by design
     }
 
     /// <summary>The fixed list of configurations, in the order the left thumbstick click cycles them and the automatic sweep measures them.</summary>
@@ -47,6 +49,9 @@ namespace ProcSense.VR.Diagnostics
             new PerfPreset { Id = "B13", Label = "MSAA 2x", Msaa = 2 },
             new PerfPreset { Id = "B15", Label = "Occlusion culling off (shows what the baked occlusion saves)", OcclusionOff = true },
             new PerfPreset { Id = "B16", Label = "City always drawn (exterior culling off)", ExteriorCullOff = true },
+            new PerfPreset { Id = "B17", Label = "Optimised exterior city (Quest variant, P3-EXT)", OptimisedExterior = true },
+            new PerfPreset { Id = "B18", Label = "Optimised exterior without portal culling (reduced meshes only)", OptimisedExterior = true, PortalCullOff = true },
+            new PerfPreset { Id = "B19", Label = "Before the 8 Nov optimisations (occlusion off, city always drawn, original exterior)", OcclusionOff = true, ExteriorCullOff = true },
             new PerfPreset { Id = "B14", Label = "Candidate set: foveation 0.5, fills off, current room only", Foveation = 0.5f, RealtimeFillsOff = true, CurrentRoomOnly = true },
         };
     }

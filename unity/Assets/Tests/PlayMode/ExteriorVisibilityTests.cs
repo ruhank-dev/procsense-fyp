@@ -30,6 +30,46 @@ namespace ProcSense.Tests.PlayMode
             return ExteriorVisibility.CityHiddenNow;
         }
 
+        [TearDown] public void RestoreVariant() { QuestExterior.Current = QuestExterior.Variant.Original; ExteriorVisibility.PortalCullEnabled = true; }
+
+        /// <summary>P3-EXT-04/08: the original city is the default everywhere, the Quest variant sits beside it switched off, either can be shown, and every original renderer is still present.</summary>
+        [UnityTest]
+        public IEnumerator Quest_variant_is_isolated_and_reversible()
+        {
+            yield return Boot();
+            var q = Object.FindAnyObjectByType<QuestExterior>(); Assert.IsNotNull(q, "QuestExterior on the City exterior root");
+            Assert.AreEqual(QuestExterior.Variant.Original, QuestExterior.Current, "original city is the default until the owner approves the optimised one");
+            Assert.Greater(q.OriginalCount, 0); Assert.Greater(q.OptimisedCount, 0);
+            int OnCount(string layer) { int n = 0; foreach (var r in q.GetComponentsInChildren<Renderer>(true)) if (r.enabled && r.transform.parent != null && r.transform.parent.name == layer) n++; return n; }
+            int chunksOn() { int n = 0; foreach (var r in q.transform.Find("Quest variant").GetComponentsInChildren<Renderer>(true)) if (r.enabled) n++; return n; }
+            Assert.AreEqual(0, chunksOn(), "no Quest chunk draws while the original is selected");
+            QuestExterior.Current = QuestExterior.Variant.Optimised;
+            Assert.AreEqual(q.OptimisedCount, chunksOn(), "every Quest chunk is enabled when the optimised variant is selected");
+            QuestExterior.Current = QuestExterior.Variant.Original;
+            Assert.AreEqual(0, chunksOn()); foreach (var r in q.transform.Find("Quest variant").GetComponentsInChildren<MeshRenderer>(true)) Assert.IsNotNull(r.sharedMaterial, r.name + " has a material");
+        }
+
+        [UnityTest]
+        public IEnumerator Portal_culling_draws_only_the_chunks_seen_through_a_window()
+        {
+            yield return Boot();
+            foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)) c.enabled = false;
+            var go = new GameObject("TestCamera"); var cam = go.AddComponent<Camera>(); cam.fieldOfView = 96f; go.AddComponent<UniversalAdditionalCameraData>();
+            cam.targetTexture = new RenderTexture(256, 256, 24);
+            ExteriorVisibility.Enabled = true; QuestExterior.Current = QuestExterior.Variant.Optimised;
+            HiddenFrom(cam, new Vector3(1.8f, 1.5f, -0.6f), new Vector3(-2.45f, 1.6f, 0f));      // bay, facing the window
+            Assert.Greater(ExteriorVisibility.ChunksDrawn, 0, "the window shows part of the city");
+            Assert.Less(ExteriorVisibility.ChunksDrawn, ExteriorVisibility.ChunksTotal / 2, "most chunks lie outside the cone through the window; decision " + ExteriorVisibility.LastDecision + " " + ExteriorVisibility.Report);
+            HiddenFrom(cam, new Vector3(4.5f, 1.7f, 13.6f), new Vector3(4.5f, 1.5f, -9f));      // corridor, glass walls in view
+            Assert.Greater(ExteriorVisibility.ChunksDrawn, 0);
+            Assert.IsTrue(HiddenFrom(cam, new Vector3(9.5f, 1.7f, 5.2f), new Vector3(13f, 1.3f, 5.4f)), "theatre: the whole city is off");
+            ExteriorVisibility.PortalCullEnabled = false;
+            HiddenFrom(cam, new Vector3(1.8f, 1.5f, -0.6f), new Vector3(-2.45f, 1.6f, 0f));
+            int drawnWithout = 0; foreach (var r in Object.FindAnyObjectByType<QuestExterior>().transform.Find("Quest variant").GetComponentsInChildren<Renderer>()) if (r.enabled && !r.forceRenderingOff) drawnWithout++;
+            Assert.AreEqual(Object.FindAnyObjectByType<QuestExterior>().OptimisedCount, drawnWithout, "portal culling off: every chunk is drawn");
+            cam.targetTexture.Release(); Object.Destroy(go);
+        }
+
         [UnityTest]
         public IEnumerator City_is_hidden_only_where_no_window_or_door_can_show_it()
         {
