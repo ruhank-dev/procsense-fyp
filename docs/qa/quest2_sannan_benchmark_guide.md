@@ -68,7 +68,7 @@ In **V2, V3, V4, V5 and V8**, cool and then warm: hold left X for 1.5 s and stan
 
 | Config | What changes (from B0) | Changes the look? |
 |---|---|---|
-| B0 | Production default of this branch | No |
+| B0 | Production default of this branch. **Since 9 Nov 2026 on Android:** optimised exterior city, room portal culling (`RoomVisibility`) and city portal culling, character culler, no baked occlusion (see section 11) | No |
 | B1 | Legacy renderer (intermediate texture Always) and shafts/dust off: the early-November rendering | Shafts off |
 | B2 | Legacy renderer only | No |
 | B3 | Shafts and dust off | Yes |
@@ -118,3 +118,23 @@ The desktop round (`quest2_desktop_optimisation.md`) added **baked occlusion cul
 2. **Look down.** Stand at the corridor glass wall (V8 position) and at the bay window, look down at the street, the plaza, the trees and the traffic in B0 and then B17. Report any difference you can see: simpler cars, thinner trees, anything missing, anything flickering, in either eye.
 3. **Look for chunks appearing late.** In B17 turn quickly towards each window and each glass wall from the side and from a few metres back. A tree, a car, a patch of ground or a building must never pop in or out.
 4. Send the CSVs as before. Do not press anything that changes the default: the approved look stays B0 until the owner decides.
+
+## 11. Added 9 November 2026 (UTC): optimisation round 2, presets B20 to B30
+
+The Android default changed (`quest2_optimisation_round2.md`): **B0 now means the optimised exterior city, room portal culling, city portal culling and the character culler, with baked occlusion off** (it was the original exterior in section 6; the older B0 text above describes the 7 Nov build). Owner approval of the optimised exterior was given on 9 Nov 2026 for the development branch only; merging into `main` is not approved yet. Everything below was measured on the desktop only; **no Quest frame rate exists**, so these comparisons are what the headset has to settle (DC-13, DT-283).
+
+| Config | What it is | Compare |
+|---|---|---|
+| B20 | Original exterior city (the recoverable comparison variant) | the old look and cost; the baseline for the others |
+| B21 | Shadow distance 5 m | measurement only; changes the look |
+| B22 | Hard realtime shadows | measurement only; changes the look |
+| B23 | Shadow map 1024 | measurement only; changes the look |
+| B24 | At most 2 additional lights per object | measurement only; changes the look |
+| B25 | Additional lights off | measurement only |
+| B26 | Skinned meshes not updated off-screen | CPU level; people must not pop or freeze |
+| B27 | Optimised exterior, baked occlusion off | against B17: does removing occlusion cost anything |
+| B28 | Optimised exterior + room portal culling, baked occlusion off | the production candidate; against B20 |
+| B29 | B28 + character culler | against B28: CPU level and any popping people |
+| B30 | B29 with baked occlusion forced on | against B29: what occlusion adds on the headset (the owner decides, DT-285) |
+
+What to do: in V3, V8 and the corridor (V4) run B20, B0, B17, B28, B29 and B30 (30 s each, cool; average FPS, 1 % low, OVR CPU and GPU levels; CPU matters because three culling components run each frame). Turn the head fast at each door and window and check for popping city, rooms or people, in both eyes. Then repeat B0 with `ProcSense-diag-gpuskin.apk` (GPU skinning) against `ProcSense-diag.apk`. Foveation (B4, B5), eye scale (B11, B12), Symmetric Projection and Multiview Render Regions only with the owner's check of text sharpness and nothing is adopted without the owner.

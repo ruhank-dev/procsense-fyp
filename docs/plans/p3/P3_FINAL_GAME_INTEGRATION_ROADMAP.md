@@ -115,7 +115,7 @@ Checked on 7 November 2026:
 | Check | Result |
 |---|---|
 | Every requested final-game feature has tasks | Yes: menu (MNU), modes (SES, EXM, TRN), procedures (MNU-04, SCN), scenario generation (SCN), orchestration (SES), both input modes (CTX, VOX), mode switching (VOX-02, SET-04), training board (TRN), examination hint and submit (EXM), results (RES), interactions (INT), animation (ANI), assets (AST), UI (UIX), settings (SET), sound (SND), integration (API), QA (QA), Quest performance (PRF) |
-| Dependencies | Machine-checked: 206 tasks, every dependency exists (P3 task or existing P0 step), no cycle (`tools/plans/p3_plans.py --check`, tested by `tools/ci/test_p3_plans.py`) |
+| Dependencies | Machine-checked: 220 tasks (206 at 7 Nov 2026, 14 Quest rows added 9 Nov 2026), every dependency exists (P3 task or existing P0 step), no cycle (`tools/plans/p3_plans.py --check`, tested by `tools/ci/test_p3_plans.py`) |
 | Duplicated functionality | Existing systems are reused by name in each plan's section 3; the tablet is kept as the full list rather than replaced; Sannan's branch is merged, not redone; open P0 steps are depended on, not copied |
 | Contradictions | Examination ends at submission (D6) consistently in EXM, RES, INT; voice in examination only per D3 in VOX and QA; no plan changes clinical labels; desktop look unchanged in PRF and UIX |
 | Frontend/backend/AI/voice connections | Every flow has a contract and an event flow in p3-15 |

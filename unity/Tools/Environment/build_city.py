@@ -235,8 +235,11 @@ def podium(sink_ground, sink_near):
             tx, tz = rng.uniform(lx0 + 1.5, lx1 - 1.5), rng.uniform(lz0 + 1.5, lz1 - 1.5)
             tree(sink_near, tx, tz, py + .5, rng.uniform(6.5, 10), 1.5)
     # the hospital tower shell below the corridor floor: what you see looking straight down from the glass
+    # The shell used to rise to y = 3.9, above the corridor floor (y = 0). Its east face (x = 11.0) then stood inside the theatre, whose east end reaches x = 13.45, and showed as a blue glass wall from
+    # x > 11 (found by the pose sweep, P3-EXT-11). It now stops under the hospital's floor slabs (their undersides are at y = -0.45), so no face of it is inside any room; what is seen looking down from the glass is unchanged.
     sx0, sx1, sz0, sz1 = -2.9, 11.0, -10.0, 14.5
-    box(sink_near, {"side": "Facade5", "top": "Roof"}, sx0, sx1, py, 3.9, sz0, sz1, uv=facade_uv(5, py))
+    SHELL_TOP = -0.45
+    box(sink_near, {"side": "Facade5", "top": "Roof"}, sx0, sx1, py, SHELL_TOP, sz0, sz1, uv=facade_uv(5, py))
 
 
 TREES = None                      # the tree sink (Bark + Leaf), exported as city_trees.fbx; set in main()
@@ -500,7 +503,7 @@ def export(name, sink):
         bpy.data.objects.remove(o, do_unlink=True)
 
 
-CHUNK_M = 80.0     # cell size of the Quest variant's spatial chunks (metres)
+CHUNK_M = float(os.environ.get("CITY_CHUNK_M", "80"))     # cell size of the Quest variant's spatial chunks (metres); round 3 measured 80, 160, 320 and 2000 (one renderer per material)
 
 
 def export_chunks(name, sink, keys=None, cell=CHUNK_M):

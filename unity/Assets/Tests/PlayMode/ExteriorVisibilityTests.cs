@@ -30,7 +30,7 @@ namespace ProcSense.Tests.PlayMode
             return ExteriorVisibility.CityHiddenNow;
         }
 
-        [TearDown] public void RestoreVariant() { QuestExterior.Current = QuestExterior.Variant.Original; ExteriorVisibility.PortalCullEnabled = true; }
+        [TearDown] public void RestoreVariant() { QuestExterior.ResetToDefault(); ExteriorVisibility.PortalCullEnabled = true; }
 
         /// <summary>P3-EXT-04/08: the original city is the default everywhere, the Quest variant sits beside it switched off, either can be shown, and every original renderer is still present.</summary>
         [UnityTest]
@@ -38,7 +38,7 @@ namespace ProcSense.Tests.PlayMode
         {
             yield return Boot();
             var q = Object.FindAnyObjectByType<QuestExterior>(); Assert.IsNotNull(q, "QuestExterior on the City exterior root");
-            Assert.AreEqual(QuestExterior.Variant.Original, QuestExterior.Current, "original city is the default until the owner approves the optimised one");
+            Assert.AreEqual(QuestExterior.DefaultVariant, QuestExterior.Current, "the platform default: optimised on Android (approved 9 Nov 2026), the untouched original on desktop and in the Editor");
             Assert.Greater(q.OriginalCount, 0); Assert.Greater(q.OptimisedCount, 0);
             int OnCount(string layer) { int n = 0; foreach (var r in q.GetComponentsInChildren<Renderer>(true)) if (r.enabled && r.transform.parent != null && r.transform.parent.name == layer) n++; return n; }
             int chunksOn() { int n = 0; foreach (var r in q.transform.Find("Quest variant").GetComponentsInChildren<Renderer>(true)) if (r.enabled) n++; return n; }
@@ -85,6 +85,39 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsFalse(HiddenFrom(cam, new Vector3(7f, 1.7f, 5.2f), new Vector3(11f, 1.2f, 5.4f)), "theatre doorway");
             ExteriorVisibility.Enabled = false;
             Assert.IsFalse(HiddenFrom(cam, new Vector3(9.5f, 1.7f, 5.2f), new Vector3(13f, 1.3f, 5.4f)), "disabled: always drawn");
+            cam.targetTexture.Release(); Object.Destroy(go);
+        }
+
+        /// <summary>Round 3 CPU fast path (cached flags, managed plane tests, pose cache) must give exactly the cull states of the original per-frame path, on a pose the first time and again when the identical pose is rendered a second time (cache hit).</summary>
+        [UnityTest, Timeout(1200000)]
+        public IEnumerator Fast_path_gives_identical_cull_states_to_the_original_path()
+        {
+            yield return Boot();
+            foreach (var c in Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)) c.enabled = false;
+            var go = new GameObject("TestCamera"); var cam = go.AddComponent<Camera>(); cam.fieldOfView = 96f; go.AddComponent<UniversalAdditionalCameraData>();
+            cam.targetTexture = new RenderTexture(128, 128, 24);
+            ExteriorVisibility.Enabled = true; RoomVisibility.Enabled = true; QuestExterior.Current = QuestExterior.Variant.Optimised;
+            var all = Object.FindObjectsByType<Renderer>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            var anchors = new[] { new Vector3(1.2f, 1.6f, -0.2f), new Vector3(1.8f, 1.5f, -0.6f), new Vector3(3.6f, 1.6f, -0.8f), new Vector3(4.5f, 1.6f, 3f), new Vector3(4.5f, 1.6f, 13.3f), new Vector3(2.4f, 1.6f, 1f), new Vector3(7f, 1.7f, 5.2f), new Vector3(8.8f, 1.6f, 5.2f), new Vector3(9.5f, 1.7f, 5.2f) };
+            var a = new bool[all.Length]; int mismatches = 0, poses = 0, hidden = 0; string first = null;
+            foreach (var p in anchors)
+                for (int yaw = 0; yaw < 360; yaw += 30)
+                {
+                    cam.transform.position = p; cam.transform.rotation = Quaternion.Euler(yaw % 60 == 0 ? 8f : -6f, yaw, 0);
+                    ExteriorVisibility.FastPath = false; RoomVisibility.FastPath = false; cam.Render();
+                    for (int i = 0; i < all.Length; i++) a[i] = all[i] != null && all[i].forceRenderingOff;
+                    ExteriorVisibility.FastPath = true; RoomVisibility.FastPath = true;
+                    for (int pass = 0; pass < 2; pass++)                                          // pass 0 computes, pass 1 is the cache hit
+                    {
+                        cam.Render(); int bad = 0;
+                        for (int i = 0; i < all.Length; i++) if (all[i] != null && all[i].forceRenderingOff != a[i]) { bad++; if (first == null) first = all[i].name + " at " + p + " yaw " + yaw + " pass " + pass; }
+                        mismatches += bad;
+                    }
+                    for (int i = 0; i < all.Length; i++) if (a[i]) hidden++;
+                    poses++; if (poses % 10 == 0) yield return null;
+                }
+            Assert.AreEqual(0, mismatches, "fast path differs from the original path; first: " + first);
+            Assert.Greater(hidden, poses * 10, "the comparison saw real culling (hidden renderers summed over poses " + hidden + ")");
             cam.targetTexture.Release(); Object.Destroy(go);
         }
     }

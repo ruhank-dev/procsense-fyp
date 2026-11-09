@@ -45,11 +45,12 @@ namespace ProcSense.Tests.PlayMode
 
         private const int EyeW = 1832, EyeH = 1920;
 
-        [UnityTest, Explicit("desktop benchmark")]
+        [UnityTest, Explicit("desktop benchmark"), Timeout(21600000)]
         public IEnumerator Benchmark_views()
         {
             string cfg = Environment.GetEnvironmentVariable("BENCH_CONFIGS") ?? "B0,B1", outPath = Environment.GetEnvironmentVariable("BENCH_OUT");
             int frames = int.TryParse(Environment.GetEnvironmentVariable("BENCH_FRAMES"), out var f) ? f : 20;
+            bool stereo = Environment.GetEnvironmentVariable("BENCH_STEREO") == "1";
             Assert.IsFalse(string.IsNullOrEmpty(outPath), "set BENCH_OUT");
             int quality = int.TryParse(Environment.GetEnvironmentVariable("BENCH_QUALITY"), out var q) ? q : 2;   // 2 = Medium, the level Android builds use (URP_Quest_Android); 5 = Ultra, the desktop level
             int authoredQuality = QualitySettings.GetQualityLevel(); QualitySettings.SetQualityLevel(quality, true);
@@ -80,22 +81,29 @@ namespace ProcSense.Tests.PlayMode
             using (var casters = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Shadow Casters Count"))
             using (var mem = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Total Used Memory"))
             using (var gfx = ProfilerRecorder.StartNew(ProfilerCategory.Memory, "Gfx Used Memory"))
+            using (var rtBytes = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Render Textures Bytes"))
+            using (var texBytes = ProfilerRecorder.StartNew(ProfilerCategory.Render, "Used Textures Bytes Count"))
             {
-                var sb = new StringBuilder("config,view,room,draw_calls,setpass_calls,batches,triangles,vertices,shadow_casters,cpu_render_ms,gpu_ms,used_mem_mb,gfx_mem_mb,city_hidden\n");
+                var sb = new StringBuilder("config,view,room,draw_calls,setpass_calls,batches,triangles,vertices,shadow_casters,cpu_render_ms,gpu_ms,used_mem_mb,gfx_mem_mb,city_hidden,done_med_ms,done_avg_ms,done_p99_ms,done_max_ms,fps_med,fps_1pct_low,cpu_avg_ms,cpu_p99_ms,rt_mem_mb,tex_mem_mb,stereo\n");
                 foreach (var id in cfg.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
                     var preset = PerfPresets.All.First(p => p.Id == id.Trim());
+                    // the eye-texture scale of the preset is simulated by the size of the render texture (the XR display that normally owns it does not exist on the desktop)
+                    int sw0 = Mathf.RoundToInt(EyeW * Mathf.Clamp(preset.EyeScale, 0.5f, 1.5f)), sh0 = Mathf.RoundToInt(EyeH * Mathf.Clamp(preset.EyeScale, 0.5f, 1.5f));
+                    if (rt.width != sw0 || rt.height != sh0) { cam.targetTexture = null; UnityEngine.Object.Destroy(rt); rt = new RenderTexture(sw0, sh0, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = 4 }; cam.targetTexture = rt; }
                     foreach (var v in Views)
                     {
                         cam.transform.position = v.p; cam.transform.LookAt(v.l);
                         toggles.Apply(preset, cam, v.room);
                         for (int k = 0; k < 12; k++) { cam.Render(); yield return null; }       // warm-up: shader variants, culling caches
-                        var cpu = new List<double>(); var gpuT = new List<double>(); var timing = new FrameTiming[1];
+                        var cpu = new List<double>(); var gpuT = new List<double>(); var done = new List<double>(); var timing = new FrameTiming[1];
                         double dc = 0, sp = 0, bt = 0, tr = 0, vt = 0, sc = 0;
                         for (int k = 0; k < frames; k++)
                         {
                             UnityEngine.FrameTimingManager.CaptureFrameTimings();
-                            var sw = System.Diagnostics.Stopwatch.StartNew(); cam.Render(); sw.Stop(); cpu.Add(sw.Elapsed.TotalMilliseconds);
+                            var sw = System.Diagnostics.Stopwatch.StartNew(); RenderEyes(cam, stereo); cpu.Add(sw.Elapsed.TotalMilliseconds);
+                            UnityEngine.Rendering.AsyncGPUReadback.Request(rt, 0, 0, 1, 0, 1, 0, 1, TextureFormat.RGBA32, null).WaitForCompletion();   // returns when the GPU has finished this frame: submit time plus GPU time on the desktop card
+                            sw.Stop(); done.Add(sw.Elapsed.TotalMilliseconds);
                             yield return null;
                             dc = draw.LastValue; sp = setPass.LastValue; bt = batches.LastValue; tr = tris.LastValue; vt = verts.LastValue; sc = casters.LastValue;
                             if (UnityEngine.FrameTimingManager.GetLatestTimings(1, timing) > 0 && timing[0].gpuFrameTime > 0) gpuT.Add(timing[0].gpuFrameTime);
@@ -104,23 +112,35 @@ namespace ProcSense.Tests.PlayMode
                         if (!string.IsNullOrEmpty(pngDir))
                         {
                             Directory.CreateDirectory(pngDir); cam.Render(); yield return null; cam.Render();
-                            var prev = RenderTexture.active; RenderTexture.active = rt; var tex = new Texture2D(EyeW, EyeH, TextureFormat.RGB24, false, false); tex.ReadPixels(new Rect(0, 0, EyeW, EyeH), 0, 0); tex.Apply();
+                            var prev = RenderTexture.active; RenderTexture.active = rt; var tex = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false, false); tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0); tex.Apply();
                             File.WriteAllBytes(Path.Combine(pngDir, preset.Id + "_" + v.id.Split(' ')[0] + ".png"), tex.EncodeToPNG()); RenderTexture.active = prev; UnityEngine.Object.Destroy(tex);
                         }
                         Debug.Log("VIEWDBG " + preset.Id + " " + v.id + ": " + ProcSense.VR.Views.ExteriorVisibility.LastDecision + " chunks " + ProcSense.VR.Views.ExteriorVisibility.ChunksDrawn + "/" + ProcSense.VR.Views.ExteriorVisibility.ChunksTotal + " | " + ProcSense.VR.Views.ExteriorVisibility.StatsLine);
-                        cpu.Sort(); gpuT.Sort();
+                        cpu.Sort(); gpuT.Sort(); done.Sort();
                         double Med(List<double> l) => l.Count == 0 ? double.NaN : l[l.Count / 2];
                         sb.Append(preset.Id).Append(',').Append(v.id).Append(',').Append(v.room).Append(',').Append(F(dc)).Append(',').Append(F(sp)).Append(',').Append(F(bt)).Append(',').Append(F(tr)).Append(',').Append(F(vt)).Append(',').Append(F(sc))
-                          .Append(',').Append(F(Med(cpu))).Append(',').Append(F(Med(gpuT))).Append(',').Append(F(mem.LastValue / 1048576.0)).Append(',').Append(F(gfx.LastValue / 1048576.0)).Append(',').Append(ProcSense.VR.Views.ExteriorVisibility.CityHiddenNow ? 1 : 0).Append('\n');
+                          .Append(',').Append(F(Med(cpu))).Append(',').Append(F(Med(gpuT))).Append(',').Append(F(mem.LastValue / 1048576.0)).Append(',').Append(F(gfx.LastValue / 1048576.0)).Append(',').Append(ProcSense.VR.Views.ExteriorVisibility.CityHiddenNow ? 1 : 0)
+                          .Append(',').Append(F(Med(done))).Append(',').Append(F(done.Count == 0 ? double.NaN : done.Average())).Append(',').Append(F(Pct(done, 0.99))).Append(',').Append(F(done.Count == 0 ? double.NaN : done[done.Count - 1]))
+                          .Append(',').Append(F(1000.0 / Med(done))).Append(',').Append(F(1000.0 / Pct(done, 0.99))).Append(',').Append(F(cpu.Count == 0 ? double.NaN : cpu.Average())).Append(',').Append(F(Pct(cpu, 0.99)))
+                          .Append(',').Append(F(rtBytes.Valid ? rtBytes.LastValue / 1048576.0 : double.NaN)).Append(',').Append(F(texBytes.Valid ? texBytes.LastValue / 1048576.0 : double.NaN)).Append(',').Append(stereo ? 2 : 1).Append('\n');
                     }
+                    Directory.CreateDirectory(Path.GetDirectoryName(outPath)); File.WriteAllText(outPath, sb.ToString());   // after every configuration, so a long run keeps what it measured
                 }
-                Directory.CreateDirectory(Path.GetDirectoryName(outPath));
-                File.WriteAllText(outPath, sb.ToString());
             }
             toggles.Apply(PerfPresets.All[0], cam, "PatientBay");
             cam.targetTexture = null; UnityEngine.Object.Destroy(rt); UnityEngine.Object.Destroy(go);
             QualitySettings.SetQualityLevel(authoredQuality, true);
             ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+        }
+
+        private static double Pct(List<double> sorted, double q) => sorted.Count == 0 ? double.NaN : sorted[Math.Min(sorted.Count - 1, (int)Math.Ceiling(q * sorted.Count) - 1 < 0 ? 0 : (int)Math.Ceiling(q * sorted.Count) - 1)];
+
+        /// <summary>One frame: a single eye, or both eyes (the stereo pair, 64 mm apart) so a desktop frame carries the work of a headset frame.</summary>
+        private static void RenderEyes(Camera cam, bool stereo)
+        {
+            if (!stereo) { cam.Render(); return; }
+            var p = cam.transform.position; var right = cam.transform.right * 0.032f;
+            cam.transform.position = p - right; cam.Render(); cam.transform.position = p + right; cam.Render(); cam.transform.position = p;
         }
 
         private static string F(double d) => double.IsNaN(d) ? "" : d.ToString("0.###", CultureInfo.InvariantCulture);

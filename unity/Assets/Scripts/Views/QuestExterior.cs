@@ -16,10 +16,16 @@ namespace ProcSense.VR.Views
         [SerializeField] private Renderer[] originals = new Renderer[0];
         [SerializeField] private Renderer[] optimised = new Renderer[0];
         private static readonly List<QuestExterior> Instances = new List<QuestExterior>();
-        private static Variant _current = Variant.Original;
+        private static Variant? _override;
 
-        /// <summary>The variant every instance shows. Original unless a diagnostic configuration (PerfToggles, B17) or an approved default says otherwise.</summary>
-        public static Variant Current { get => _current; set { _current = value; foreach (var i in Instances) if (i != null) i.Apply(); } }
+        /// <summary>The variant a build shows when nothing overrides it: Optimised on the Quest (Android), Original on desktop and in the Editor (the desktop URP and HDRP references keep the untouched city). Owner approval of 9 Nov 2026 (P3-EXT-07).</summary>
+        public static Variant DefaultVariant => Application.platform == RuntimePlatform.Android ? Variant.Optimised : Variant.Original;
+
+        /// <summary>The variant every instance shows: the platform default unless a diagnostic configuration (PerfToggles) or a test overrides it.</summary>
+        public static Variant Current { get => _override ?? DefaultVariant; set { _override = value; foreach (var i in Instances) if (i != null) i.Apply(); } }
+
+        /// <summary>Forgets any override and shows the platform default again.</summary>
+        public static void ResetToDefault() { _override = null; foreach (var i in Instances) if (i != null) i.Apply(); }
         public int OriginalCount => originals.Length;
         public int OptimisedCount => optimised.Length;
 
@@ -30,7 +36,8 @@ namespace ProcSense.VR.Views
 
         private void Apply()
         {
-            bool opt = _current == Variant.Optimised && optimised.Length > 0;
+            ExteriorVisibility.MarkDirty();
+            bool opt = Current == Variant.Optimised && optimised.Length > 0;
             SetAll(originals, !opt); SetAll(optimised, opt);
         }
 

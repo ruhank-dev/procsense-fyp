@@ -27,7 +27,7 @@ namespace ProcSense.VR.Views
         public static bool ForceHidden;
         public const float Margin = 0.5f, VerticalFov = 112f, Aspect = 1.15f, DoorReachXZ = 0.9f, DoorReachY = 1.15f, DoorMargin = 0.15f;
         private static readonly string[] CityRoots = { "City exterior", "Window exterior backdrop" };
-        private static readonly string[] WindowMaterials = { "window glass", "glass wall" };   // "Corridor window glass", "PatientBay window glass", "Corridor glass wall"
+        private static readonly string[] WindowMaterials = { "window glass", "glass wall", "vision glass" };   // "Corridor window glass", "PatientBay window glass", "Corridor glass wall"
 
         private readonly List<Renderer> _city = new List<Renderer>();
         private readonly List<bool> _authoredOff = new List<bool>();
@@ -50,9 +50,58 @@ namespace ProcSense.VR.Views
         public static int ChunksDrawn { get; private set; }
         public static int ChunksTotal { get; private set; }
         private int _indexedScenes = -1;
+
+        // CPU fast path (round 3): the last forceRenderingOff written per renderer is cached and a write is made only on change; the real flags are re-read every ResyncEvery frames and whenever the
+        // index, the exterior variant or the mode changes (Unity may reset a flag when a renderer is enabled or disabled). Chunk bounds are tested in managed code (no native call per chunk) and a
+        // frame whose pose, room and pads equal the previous one costs nothing. FastPath = false restores the original per-frame behaviour (A/B for CullingCostTests).
+        private static bool _fast = true;
+        public static bool FastPath { get => _fast; set { _fast = value; _dirtyAll = true; } }
+        private const int ResyncEvery = 30;
+        private static bool _dirtyAll = true;
+        /// <summary>Called when something else may have changed renderer flags (variant switch): the next frame re-reads every flag.</summary>
+        public static void MarkDirty() { _dirtyAll = true; }
+        private int _applied = -1, _sinceSync;
+        private bool _pcValid; private int _pcRoom; private Vector3 _pcPos; private Quaternion _pcRot; private float _pcPad, _pcApex;
+        private Vector3[] _cCenter = new Vector3[0], _cExt = new Vector3[0];
         public static bool CityHiddenNow { get; private set; }
         public static string Report { get; private set; } = "";
         public static string LastDecision { get; private set; } = "";
+
+        // Head motion allowance: the pose the headset renders with is predicted and can be a frame or two ahead of the transform read here, so the apex and the aperture rectangles are widened by the
+        // rotation and travel measured since the previous frame (capped; a snap turn or teleport is a jump, not a prediction error, so it is capped too). Look-neutral: it only draws more.
+        public static bool MotionPadEnabled = true;
+        public const float MotionPadMax = 0.15f, MotionApexMax = 0.1f, MotionRectPerRadian = 1.05f;
+        private struct PoseTrail { public int Frame; public Vector3 PrevPos, CurPos; public Quaternion PrevRot, CurRot; }
+        private static readonly Dictionary<Camera, PoseTrail> Trails = new Dictionary<Camera, PoseTrail>();
+        /// <summary>Extra NDC border and extra apex travel for this camera, from its pose change since the previous frame. Idempotent within a frame (several renders of one frame give the same answer).</summary>
+        internal static void MotionPad(Camera cam, out float rectPad, out float apexExtra)
+        {
+            rectPad = 0f; apexExtra = 0f; if (!MotionPadEnabled) return;
+            var id = cam; Trails.TryGetValue(id, out var t);
+            var pos = cam.transform.position; var rot = cam.transform.rotation;
+            if (t.Frame == 0) { t.PrevPos = t.CurPos = pos; t.PrevRot = t.CurRot = rot; }
+            else if (t.Frame != Time.frameCount) { t.PrevPos = t.CurPos; t.PrevRot = t.CurRot; }
+            t.Frame = Time.frameCount == 0 ? 1 : Time.frameCount; t.CurPos = pos; t.CurRot = rot; Trails[id] = t;
+            float ang = Quaternion.Angle(t.PrevRot, t.CurRot) * Mathf.Deg2Rad;
+            rectPad = Mathf.Min(ang * MotionRectPerRadian * 1.5f, MotionPadMax);
+            apexExtra = Mathf.Min((t.CurPos - t.PrevPos).magnitude * 1.5f, MotionApexMax);
+        }
+
+        /// <summary>The instance that indexes rooms and apertures; RoomVisibility reads the same lists so there is one source of truth.</summary>
+        public static ExteriorVisibility Instance { get; private set; }
+        /// <summary>Incremented every time the room/aperture index is rebuilt.</summary>
+        public int IndexVersion { get; private set; }
+        public IReadOnlyList<RoomLayout> Rooms => _rooms;
+        /// <summary>Window glass, vision glass and door openings of a room, without the large safety margin (the portal-test apertures).</summary>
+        public IReadOnlyList<Bounds> RawAperturesOf(int room) => _rawApertures[room];
+        /// <summary>Makes sure the index matches the loaded scenes (cheap when nothing changed).</summary>
+        public void EnsureIndexed() => Index();
+        /// <summary>Index of the room whose footprint holds the point (strict, no inset), or -1 between rooms.</summary>
+        public int RoomIndexAt(Vector3 pos)
+        {
+            for (int i = 0; i < _rooms.Count; i++) if (_rooms[i] != null && _rooms[i].Contains(pos, 0f)) return i;
+            return -1;
+        }
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Boot()
@@ -63,18 +112,28 @@ namespace ProcSense.VR.Views
             go.AddComponent<ExteriorVisibility>();
         }
 
-        private void OnEnable() => RenderPipelineManager.beginCameraRendering += OnBeginCamera;
-        private void OnDisable() { RenderPipelineManager.beginCameraRendering -= OnBeginCamera; Apply(false); }
+        private bool _sceneDirty = true; private int _idxTick;
+        private void MarkScenes(Scene s, LoadSceneMode m) { _sceneDirty = true; }
+        private void MarkScenes(Scene s) { _sceneDirty = true; }
+        private static readonly Matrix4x4 WideProj = Matrix4x4.Perspective(VerticalFov, Aspect, 0.05f, 3000f);
+        private void OnEnable() { Instance = this; _sceneDirty = true; SceneManager.sceneLoaded += MarkScenes; SceneManager.sceneUnloaded += MarkScenes; RenderPipelineManager.beginCameraRendering += OnBeginCamera; }
+        private void OnDisable() { SceneManager.sceneLoaded -= MarkScenes; SceneManager.sceneUnloaded -= MarkScenes; RenderPipelineManager.beginCameraRendering -= OnBeginCamera; if (Instance == this) Instance = null; _applied = -1; _dirtyAll = true; Apply(false); }
 
         private void OnBeginCamera(ScriptableRenderContext ctx, Camera cam)
         {
             if (cam.cameraType != CameraType.Game && cam.cameraType != CameraType.VR) return;
+            long t0 = CullCost.Begin(); OnBeginCameraCore(cam); CullCost.End(CullCost.ExtCamera, t0);
+        }
+
+        private void OnBeginCameraCore(Camera cam)
+        {
             Index();
             if (_city.Count == 0) return;
+            if (FastPath && (_dirtyAll || ++_sinceSync >= ResyncEvery)) Resync();
             bool hide = ForceHidden || (Enabled && CityCannotBeSeen(cam));
             bool portal = !hide && Enabled && PortalCullEnabled && _chunk.Count > 0 && QuestExterior.Current == QuestExterior.Variant.Optimised;
             Apply(hide, portal);
-            if (portal) PortalCull(cam);
+            if (portal) { long t1 = CullCost.Begin(); PortalCull(cam); CullCost.End(CullCost.ExtPortal, t1); }
         }
 
         /// <summary>Hides the chunks that no window or door of the camera's room can show. Conservative: the view cone is built from both eye positions (plus head movement) through each aperture's padded screen rectangle.</summary>
@@ -82,13 +141,22 @@ namespace ProcSense.VR.Views
         {
             var pos = cam.transform.position; int room = -1;
             for (int i = 0; i < _rooms.Count; i++) if (_rooms[i] != null && _rooms[i].Contains(pos, 0f)) { room = i; break; }
-            if (room < 0) { ChunksDrawn = ChunksTotal = _chunk.Count; return; }                       // between rooms: draw every chunk
+            if (room < 0)                                                                              // between rooms: draw every chunk (they must be switched back on: the previous frame's cone may have hidden them)
+            {
+                for (int i = 0; i < _chunk.Count; i++) if (_city[_chunk[i]] != null) Set(_chunk[i], _authoredOff[_chunk[i]]);
+                ChunksDrawn = ChunksTotal = _chunk.Count; return;
+            }
             _pyramidCount = 0;
             var right = cam.transform.right;
+            MotionPad(cam, out float motionPad, out float apexExtra);
+            float pad = RectPad + motionPad;
+            var rotNow = cam.transform.rotation;
+            if (FastPath && !CollectStats && _pcValid && _pcRoom == room && _pcPos == pos && _pcRot == rotNow && _pcPad == pad && _pcApex == apexExtra) return;   // identical pose: the chunk states already hold
+            _pcValid = FastPath && !CollectStats; _pcRoom = room; _pcPos = pos; _pcRot = rotNow; _pcPad = pad; _pcApex = apexExtra;
             for (int e = -1; e <= 1; e += 2)
             {
-                var apex = pos + right * (EyeOffset * e);
-                var proj = Matrix4x4.Perspective(VerticalFov, Aspect, 0.05f, 3000f);
+                var apex = pos + right * ((EyeOffset + apexExtra) * e) - cam.transform.forward * apexExtra;   // also step back along the view: a cone from further behind contains the cone from the true apex
+                var proj = WideProj;
                 var viewM = Matrix4x4.TRS(apex, cam.transform.rotation, new Vector3(1, 1, -1)).inverse;
                 var vp = proj * viewM;
                 float ux0 = 1f, ux1 = -1f, uy0 = 1f, uy1 = -1f;                                           // union of every aperture's screen rectangle: one view cone per eye keeps the per-chunk test to two plane sets
@@ -108,7 +176,7 @@ namespace ProcSense.VR.Views
                         }
                     }
                     if (inFront == 0) continue;                                                               // the aperture is entirely behind the eye: nothing can be seen through it
-                    x0 = Mathf.Max(-1f, x0 - RectPad); x1 = Mathf.Min(1f, x1 + RectPad); y0 = Mathf.Max(-1f, y0 - RectPad); y1 = Mathf.Min(1f, y1 + RectPad);
+                    x0 = Mathf.Max(-1f, x0 - pad); x1 = Mathf.Min(1f, x1 + pad); y0 = Mathf.Max(-1f, y0 - pad); y1 = Mathf.Min(1f, y1 + pad);
                     if (x0 >= x1 || y0 >= y1) continue;                                                       // fully outside the wide cone
                     ux0 = Mathf.Min(ux0, x0); ux1 = Mathf.Max(ux1, x1); uy0 = Mathf.Min(uy0, y0); uy1 = Mathf.Max(uy1, y1);
                 }
@@ -126,7 +194,8 @@ namespace ProcSense.VR.Views
             {
                 var r = _city[_chunk[i]]; if (r == null) continue;
                 bool visible = false;
-                for (int p = 0; p < _pyramidCount && !visible; p++) visible = GeometryUtility.TestPlanesAABB(_pyramids[p], _chunkBounds[i]);
+                if (FastPath) { for (int p = 0; p < _pyramidCount && !visible; p++) visible = InsidePlanes(_pyramids[p], _cCenter[i], _cExt[i]); }
+                else for (int p = 0; p < _pyramidCount && !visible; p++) visible = GeometryUtility.TestPlanesAABB(_pyramids[p], _chunkBounds[i]);
                 if (CollectStats) { trisAll += _chunkTris[i]; bool inF = GeometryUtility.TestPlanesAABB(_planes, _chunkBounds[i]); if (inF) trisFrustum += _chunkTris[i]; if (inF && visible) trisPortal += _chunkTris[i]; }
                 if (visible) drawn++;
                 Set(_chunk[i], !visible || _authoredOff[_chunk[i]]);
@@ -135,22 +204,49 @@ namespace ProcSense.VR.Views
             ChunksDrawn = drawn; ChunksTotal = _chunk.Count;
         }
 
+        private void Resync()
+        {
+            _dirtyAll = false; _sinceSync = 0; _pcValid = false;
+            for (int i = 0; i < _city.Count; i++) if (_city[i] != null) _off[i] = _city[i].forceRenderingOff;
+            if (CullCost.On) CullCost.Reads += _city.Count;
+        }
+
         private void Apply(bool hide, bool chunksHandledByPortal = false)
         {
+            if (FastPath && _dirtyAll) Resync();
+            int code = (hide ? 1 : 0) | (chunksHandledByPortal ? 2 : 0);
+            if (FastPath && code == _applied) { CityHiddenNow = hide; return; }                               // nothing to change: the previous frame already wrote this state
+            _applied = code; _pcValid = false;
             for (int i = 0; i < _city.Count; i++) if (_city[i] != null && !(chunksHandledByPortal && _isChunk[i])) Set(i, hide || _authoredOff[i]);
             CityHiddenNow = hide;
         }
 
         // reads before it writes (a write is the expensive call); the flag is read back rather than cached because Unity may reset it when a renderer is enabled or disabled
-        private void Set(int i, bool off) { var r = _city[i]; if (r.forceRenderingOff != off) r.forceRenderingOff = off; }
+        private void Set(int i, bool off)
+        {
+            var r = _city[i];
+            if (FastPath) { if (_off[i] != off) { r.forceRenderingOff = off; _off[i] = off; if (CullCost.On) CullCost.Writes++; } return; }
+            if (CullCost.On) CullCost.Reads++; if (r.forceRenderingOff != off) { r.forceRenderingOff = off; if (CullCost.On) CullCost.Writes++; }
+        }
 
-        private const float NearW = 0.02f;
-        private static Vector4 Clip(Matrix4x4 vp, Bounds b, int corner)
+        /// <summary>Managed equivalent of GeometryUtility.TestPlanesAABB (no native call): false only when the box lies completely outside one plane.</summary>
+        internal static bool InsidePlanes(Plane[] pl, Vector3 c, Vector3 e)
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                var n = pl[i].normal; float r = e.x * Mathf.Abs(n.x) + e.y * Mathf.Abs(n.y) + e.z * Mathf.Abs(n.z);
+                if (n.x * c.x + n.y * c.y + n.z * c.z + pl[i].distance < -r) return false;
+            }
+            return true;
+        }
+
+        internal const float NearW = 0.02f;
+        internal static Vector4 Clip(Matrix4x4 vp, Bounds b, int corner)
         {
             var p = b.center + Vector3.Scale(b.extents, new Vector3((corner & 1) == 0 ? -1 : 1, (corner & 2) == 0 ? -1 : 1, (corner & 4) == 0 ? -1 : 1));
             return vp * new Vector4(p.x, p.y, p.z, 1f);
         }
-        private static void Grow(Vector4 q, ref float x0, ref float x1, ref float y0, ref float y1)
+        internal static void Grow(Vector4 q, ref float x0, ref float x1, ref float y0, ref float y1)
         {
             float nx = q.x / q.w, ny = q.y / q.w; x0 = Mathf.Min(x0, nx); x1 = Mathf.Max(x1, nx); y0 = Mathf.Min(y0, ny); y1 = Mathf.Max(y1, ny);
         }
@@ -170,11 +266,13 @@ namespace ProcSense.VR.Views
         /// <summary>Finds the city renderers, rooms, window glass and doors again whenever scenes were loaded or unloaded.</summary>
         private void Index()
         {
+            if (FastPath && !_sceneDirty && ++_idxTick < 300) return;                                   // scene events mark the index stale; the signature is still re-checked every 300 renders as a safety net
+            _sceneDirty = false; _idxTick = 0;
             int signature = SceneManager.sceneCount;                                                      // the handles, not only the count: a reload of the same scenes (Boot, test runs) must index again
             for (int i = 0; i < SceneManager.sceneCount; i++) signature = signature * 31 + SceneManager.GetSceneAt(i).handle.GetHashCode();
             if (signature == _indexedScenes) return;
-            _indexedScenes = signature;
-            Apply(false); _city.Clear(); _authoredOff.Clear(); _rooms.Clear(); _apertures.Clear(); _chunk.Clear(); _chunkBounds.Clear(); _chunkTris.Clear(); _off.Clear(); _isChunk.Clear(); _rawApertures.Clear();
+            _indexedScenes = signature; IndexVersion++;
+            Apply(false); _applied = -1; _pcValid = false; _dirtyAll = true; _city.Clear(); _authoredOff.Clear(); _rooms.Clear(); _apertures.Clear(); _chunk.Clear(); _chunkBounds.Clear(); _chunkTris.Clear(); _off.Clear(); _isChunk.Clear(); _rawApertures.Clear();
             _rooms.AddRange(FindObjectsByType<RoomLayout>(FindObjectsInactive.Exclude, FindObjectsSortMode.None));
             foreach (var _ in _rooms) { _apertures.Add(new List<Bounds>()); _rawApertures.Add(new List<Bounds>()); }
             // the room whose floor plan holds the point deepest (glass in a shared wall sits on the boundary of two plans: the deeper one is the room it belongs to)
@@ -197,6 +295,8 @@ namespace ProcSense.VR.Views
                 int room = RoomOf(r.bounds.center); if (room < 0) continue;
                 var b = r.bounds; var raw = b; raw.Expand(0.1f); _rawApertures[room].Add(raw); b.Expand(Margin * 2f); _apertures[room].Add(b);
             }
+            _cCenter = new Vector3[_chunkBounds.Count]; _cExt = new Vector3[_chunkBounds.Count];
+            for (int i = 0; i < _chunkBounds.Count; i++) { _cCenter[i] = _chunkBounds[i].center; _cExt[i] = _chunkBounds[i].extents; }
             Report = string.Join("; ", _rooms.Select((r, i) => r.gameObject.scene.name + " apertures " + _apertures[i].Count));
             foreach (var d in FindObjectsByType<SwingDoor>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
             {
@@ -220,13 +320,13 @@ namespace ProcSense.VR.Views
 
         private static bool IsChunk(Transform t) { for (; t != null; t = t.parent) if (t.name == "Quest variant") return true; return false; }
 
-        private static bool UnderCity(Transform t)
+        internal static bool UnderCity(Transform t)
         {
             for (; t != null; t = t.parent) foreach (var n in CityRoots) if (t.name == n) return true;
             return false;
         }
 
-        private static bool IsWindowGlass(Renderer r)
+        internal static bool IsWindowGlass(Renderer r)
         {
             foreach (var m in r.sharedMaterials)
             {

@@ -29,7 +29,8 @@ namespace ProcSense.VR.Views
         private readonly float[] _target = new float[Shapes.Length], _value = new float[Shapes.Length];
         private int[][] _index = Array.Empty<int[]>();
         private readonly float[] _wave = new float[256], _spec = new float[512];
-        private float _lastLevel, _plosive, _scan;
+        private float _lastLevel, _plosive, _scan, _poolUntil;
+        private AudioSource[] _pool;
 
         public PresentationAlertness Alertness { get => alertness; set => alertness = value; }
         public float Level { get; private set; }
@@ -58,8 +59,9 @@ namespace ProcSense.VR.Views
             if (_scan > 0f) return source;
             _scan = .25f;
             source = null;
-            foreach (var s in FindObjectsByType<AudioSource>(FindObjectsSortMode.None))
-                if (s.isPlaying && s.clip != null && s.clip.length > .2f && !s.loop) { source = s; break; }
+            if (_pool == null || Time.unscaledTime >= _poolUntil) { _pool = FindObjectsByType<AudioSource>(FindObjectsSortMode.None); _poolUntil = Time.unscaledTime + 3f; }   // the object search runs every 3 s, the cheap isPlaying check every .25 s
+            foreach (var s in _pool)
+                if (s != null && s.isPlaying && s.clip != null && s.clip.length > .2f && !s.loop) { source = s; break; }
             return source;
         }
 
@@ -126,7 +128,7 @@ namespace ProcSense.VR.Views
                 v = Mathf.Lerp(v, t, 1f - Mathf.Exp(-dt / rate));
                 _value[i] = v;
                 float w = Mathf.Clamp(v * gain * 100f, 0f, 100f);
-                for (int f = 0; f < faces.Length; f++) if (faces[f] != null && _index[f][i] >= 0) faces[f].SetBlendShapeWeight(_index[f][i], w);
+                for (int f = 0; f < faces.Length; f++) if (faces[f] != null && _index[f][i] >= 0) CharacterPerfBlend.Set(faces[f], _index[f][i], w);
             }
         }
 

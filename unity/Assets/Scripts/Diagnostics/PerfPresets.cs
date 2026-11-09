@@ -19,13 +19,24 @@ namespace ProcSense.VR.Diagnostics
         public bool MainShadowsOff;          // mixed directional suns cast no realtime shadow (measurement only: changes dynamic shadows)
         public bool OcclusionOff;            // camera does not use the baked occlusion data (shows what occlusion culling saves; a look-neutral setting)
         public bool OptimisedExterior;       // the Quest variant of the exterior city (QuestExterior): reduced far traffic and trees, same placement; compare against B0 (original)
+        public bool RoomCullOff;             // force the room-level culling off (the Quest default is on)
+        public bool CharCull;                // force the character culler on (the Quest default is on, desktop default off)
+        public bool OcclusionOn;             // force the baked occlusion on (the Quest default is off, desktop default on)
+        public bool RoomCull;                // room-level portal culling (RoomVisibility): rooms no door or glass can show are not drawn (replaces the baked occlusion for cross-room hiding)
+        public bool OriginalExterior;        // force the untouched original city (the recoverable comparison variant); the production default on Android is the optimised one
         public bool PortalCullOff;           // with the optimised exterior: no per-chunk cone culling through windows (shows what the portal culling saves on top of the reduced meshes)
         public bool ExteriorCullOff;         // the city is always drawn (ExteriorVisibility off); shows what hiding the city behind solid walls saves
+        public float ShadowDistance;         // main-light shadow distance in metres, 0 = as authored (8 m)
+        public bool SoftShadowsOff;          // hard-edged realtime shadows
+        public int ShadowMapSize;            // main-light shadow map resolution, 0 = as authored (2048)
+        public int MaxAdditionalLights = -1; // per-object additional-light limit, -1 = as authored (4)
+        public bool AdditionalLightsOff;     // no per-pixel additional lights (measurement only: the corridor fills are realtime points)
+        public bool SkinOffscreenOff;        // skinned meshes are not updated while off-screen (SkinnedMeshRenderer.updateWhenOffscreen = false)
         public float EyeScale = 1f;          // XR eye-texture scale
         public int Msaa = 4;                 // MSAA samples
 
         /// <summary>True when the configuration changes something a player would see (used to label rows "measurement only" in the HUD and the CSV).</summary>
-        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4 || OptimisedExterior;   // OcclusionOff is look-neutral by design
+        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4 || OptimisedExterior || OriginalExterior || ShadowDistance > 0 || SoftShadowsOff || ShadowMapSize > 0 || MaxAdditionalLights >= 0 || AdditionalLightsOff;   // OcclusionOff is look-neutral by design
     }
 
     /// <summary>The fixed list of configurations, in the order the left thumbstick click cycles them and the automatic sweep measures them.</summary>
@@ -33,7 +44,7 @@ namespace ProcSense.VR.Diagnostics
     {
         public static readonly IReadOnlyList<PerfPreset> All = new List<PerfPreset>
         {
-            new PerfPreset { Id = "B0", Label = "Production default (Quest renderer, shafts and dust on)" },
+            new PerfPreset { Id = "B0", Label = "Production default (Android: optimised exterior, room and city portal culling, character culler, no baked occlusion; desktop: original exterior, no culling)" },
             new PerfPreset { Id = "B1", Label = "Legacy: 7 Nov rendering (intermediate texture Always, shafts off)", LegacyRenderer = true, ShaftsOff = true },
             new PerfPreset { Id = "B2", Label = "Legacy renderer only (intermediate texture Always)", LegacyRenderer = true },
             new PerfPreset { Id = "B3", Label = "Shafts and dust off", ShaftsOff = true },
@@ -52,6 +63,17 @@ namespace ProcSense.VR.Diagnostics
             new PerfPreset { Id = "B17", Label = "Optimised exterior city (Quest variant, P3-EXT)", OptimisedExterior = true },
             new PerfPreset { Id = "B18", Label = "Optimised exterior without portal culling (reduced meshes only)", OptimisedExterior = true, PortalCullOff = true },
             new PerfPreset { Id = "B19", Label = "Before the 8 Nov optimisations (occlusion off, city always drawn, original exterior)", OcclusionOff = true, ExteriorCullOff = true },
+            new PerfPreset { Id = "B20", Label = "Original exterior city (recoverable comparison variant; the Quest default is the optimised one)", OriginalExterior = true },
+            new PerfPreset { Id = "B27", Label = "Optimised exterior, baked occlusion off (candidate: removes the light-selection side effect of occlusion)", OptimisedExterior = true, OcclusionOff = true },
+            new PerfPreset { Id = "B28", Label = "Candidate: optimised exterior + room portal culling, baked occlusion off", OptimisedExterior = true, OcclusionOff = true, RoomCull = true },
+            new PerfPreset { Id = "B29", Label = "Candidate B28 + character culler", OptimisedExterior = true, OcclusionOff = true, RoomCull = true, CharCull = true },
+            new PerfPreset { Id = "B30", Label = "Quest candidate with baked occlusion forced on (shows what the occlusion adds to B29)", OptimisedExterior = true, RoomCull = true, CharCull = true, OcclusionOn = true },
+            new PerfPreset { Id = "B21", Label = "Shadow distance 5 m", ShadowDistance = 5f },
+            new PerfPreset { Id = "B22", Label = "Hard realtime shadows", SoftShadowsOff = true },
+            new PerfPreset { Id = "B23", Label = "Shadow map 1024", ShadowMapSize = 1024 },
+            new PerfPreset { Id = "B24", Label = "At most 2 additional lights per object", MaxAdditionalLights = 2 },
+            new PerfPreset { Id = "B25", Label = "Additional lights off (measurement only)", AdditionalLightsOff = true },
+            new PerfPreset { Id = "B26", Label = "Skinned meshes not updated off-screen", SkinOffscreenOff = true },
             new PerfPreset { Id = "B14", Label = "Candidate set: foveation 0.5, fills off, current room only", Foveation = 0.5f, RealtimeFillsOff = true, CurrentRoomOnly = true },
         };
     }

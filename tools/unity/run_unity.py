@@ -38,7 +38,13 @@ def run(args: list[str], log: Path) -> int:
     OUT.mkdir(parents=True, exist_ok=True)
     cmd = [str(find_unity()), "-batchmode", "-projectPath", str(PROJECT), "-logFile", str(log), *args]
     print(" ".join(cmd))
-    return subprocess.call(cmd, creationflags=0x08000000 if os.name == "nt" else 0)   # CREATE_NO_WINDOW: background-only, never a foreground window
+    env = dict(os.environ)
+    work = os.environ.get("PROCSENSE_WORK") or ("D:/ProcSenseWork" if os.name == "nt" and Path("D:/").exists() else "")   # big temporary files (build intermediates, Gradle cache) go to the drive with the most free space
+    if work:
+        for sub in ("tmp", "gradle"):
+            Path(work, sub).mkdir(parents=True, exist_ok=True)
+        env.update(TEMP=str(Path(work, "tmp")), TMP=str(Path(work, "tmp")), GRADLE_USER_HOME=str(Path(work, "gradle")))
+    return subprocess.call(cmd, env=env, creationflags=0x08000000 if os.name == "nt" else 0)   # CREATE_NO_WINDOW: background-only, never a foreground window
 
 
 def test() -> int:
