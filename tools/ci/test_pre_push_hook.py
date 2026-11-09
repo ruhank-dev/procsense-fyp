@@ -16,6 +16,21 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 STUB = '#!/bin/sh\necho "task $*" >> "$TASK_STUB_LOG"\nexit "${TASK_STUB_EXIT:-0}"\n'
 OK_STUB = "#!/bin/sh\nexit 0\n"
+# Fake 'gh': counts the runs in GH_STUB_RUNS ("sha:event:conclusion ...") that match the --commit and --event it was asked for and that succeeded, like
+# `gh run list --commit --event --status success --json conclusion --jq length`. GH_STUB_MODE=error makes it fail like an API error. No network.
+GH_STUB = """#!/bin/sh
+echo "gh $*" >> "$GH_STUB_LOG"
+[ "${GH_STUB_MODE:-}" = "error" ] && { echo "gh: HTTP 500" >&2; exit 1; }
+event=""; commit=""; prev=""
+for a in "$@"; do case "$prev" in --event) event=$a ;; --commit) commit=$a ;; esac; prev=$a; done
+n=0
+for r in $GH_STUB_RUNS; do
+  rsha=${r%%:*}; rest=${r#*:}; rev=${rest%%:*}; rcon=${rest#*:}
+  if [ "$rsha" = "$commit" ] && [ "$rev" = "$event" ] && [ "$rcon" = success ]; then n=$((n + 1)); fi
+done
+echo "$n"
+"""
+
 
 
 def system_dirs() -> list[str]:
@@ -36,7 +51,7 @@ class Lab:
             self.stub(name, body)
         # A minimal PATH (stubs first, then only the system/Git folders), so a developer's real task/dotnet/uv never leak into the test.
         self.env = {**os.environ, "PATH": os.pathsep.join([str(self.bin)] + system_dirs()), "TASK_STUB_LOG": str(self.log),
-                    "GIT_CONFIG_GLOBAL": str(base / "gitconfig"), "GIT_TERMINAL_PROMPT": "0"}
+                    "GIT_CONFIG_GLOBAL": str(base / "gitconfig"), "GIT_TERMINAL_PROMPT": "0", "GH_STUB_LOG": str(base / "gh.log")}
         self.remote = base / "remote.git"
         self.git("init", "--bare", "-b", "main", str(self.remote), cwd=base)
         self.work = self.clone("work")
@@ -226,6 +241,85 @@ def run_cases(lab: Lab) -> list[tuple[str, bool, str]]:
     # 16. --no-verify is the one documented escape, and it really bypasses (the hook is not tamper-proof)
     rc, out, calls = lab.push("--no-verify", "origin", "main", stub_exit=1)
     case("'git push --no-verify' bypasses the hook (documented limitation: local hooks are not enforcement)", rc == 0 and calls == 0, out)
+
+    # 17-25: the remote-green shortcut (a successful full 'workflow_dispatch' run of ci.yml on the exact commit). Fake gh, no network, no real push to GitHub.
+    lab.git("remote", "set-url", "origin", "https://github.com/test/repo.git")   # what the hook reads to find the repository ...
+    lab.git("remote", "set-url", "--push", "origin", str(lab.remote))             # ... while the push itself still goes to the local bare repo
+
+    def next_main_commit(name):
+        lab.commit(lab.work, name + ".txt", name, name)
+        return lab.head()
+
+    def gh_push(sha, runs, mode="", install_gh=True, stub_exit=0, args=("origin", "main")):
+        if install_gh:
+            lab.stub("gh", GH_STUB)
+        elif (lab.bin / "gh").exists():
+            (lab.bin / "gh").unlink()
+        (lab.base / "gh.log").write_text("", encoding="utf-8")
+        rc, out, calls = lab.push(*args, stub_exit=stub_exit, extra_env={"GH_STUB_RUNS": runs.replace("HEAD", sha), "GH_STUB_MODE": mode})
+        task_log = lab.log.read_text(encoding="utf-8").strip().splitlines()
+        gh_log = (lab.base / "gh.log").read_text(encoding="utf-8")
+        return rc, out, task_log, gh_log
+
+    full_ci = ["task ci"]
+
+    # 17. green full run on this exact commit: fast local checks instead of task ci
+    sha = next_main_commit("g1"); before = lab.remote_main()
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success")
+    fast = [f"task check", f"task change-check -- --base {before} --skip docs_check,kind:unity"]
+    case("a successful full workflow_dispatch run for this exact commit: 'task check' and 'task change-check' run, 'task ci' does not, and the push is allowed",
+         rc == 0 and tl == fast and lab.remote_main() == sha and "--repo test/repo" in gl and "--workflow ci.yml" in gl and f"--commit {sha}" in gl
+         and "--event workflow_dispatch" in gl and "--status success" in gl, f"{out}\n{tl}\n{gl}")
+
+    # 18. no run at all
+    sha = next_main_commit("g2")
+    rc, out, tl, gl = gh_push(sha, "")
+    case("no GitHub run for the commit falls back to the full 'task ci'", rc == 0 and tl == full_ci, f"{out}\n{tl}")
+
+    # 19. only a push-triggered (change-aware, possibly partial) run
+    sha = next_main_commit("g3")
+    rc, out, tl, gl = gh_push(sha, "HEAD:push:success")
+    case("a green push-triggered run (it may have skipped jobs) does not count: full 'task ci' runs", rc == 0 and tl == full_ci, f"{out}\n{tl}")
+
+    # 20. a successful run, but for another commit
+    sha = next_main_commit("g4")
+    rc, out, tl, gl = gh_push(sha, "0123456789abcdef0123456789abcdef01234567:workflow_dispatch:success")
+    case("a green full run of a different commit does not count: full 'task ci' runs", rc == 0 and tl == full_ci, f"{out}\n{tl}")
+
+    # 21. gh missing
+    sha = next_main_commit("g5")
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success", install_gh=False)
+    case("gh not installed falls back to the full 'task ci'", rc == 0 and tl == full_ci, f"{out}\n{tl}")
+
+    # 22. API error / not logged in
+    sha = next_main_commit("g6")
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success", mode="error")
+    case("a gh/API error falls back to the full 'task ci'", rc == 0 and tl == full_ci, f"{out}\n{tl}")
+
+    # 23. origin is not a GitHub repository
+    sha = next_main_commit("g7")
+    lab.git("remote", "set-url", "origin", str(lab.remote))
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success")
+    case("an origin that is not on GitHub falls back to the full 'task ci' (gh is not even asked)", rc == 0 and tl == full_ci and gl == "", f"{out}\n{tl}\n{gl}")
+    lab.git("remote", "set-url", "origin", "https://github.com/test/repo.git")
+
+    # 24. green run, but the fast local checks fail
+    sha = next_main_commit("g8"); before = lab.remote_main()
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success", stub_exit=1)
+    case("with a green remote run, a failing fast local check still blocks the push and main is unchanged", rc != 0 and "was not updated" in out and lab.remote_main() == before and "task ci" not in tl, f"{out}\n{tl}")
+
+    # 25. a brand-new main on the remote (zero remote sha): never trust the shortcut
+    fresh = lab.base / "fresh.git"
+    lab.git("init", "--bare", "-b", "main", str(fresh), cwd=lab.base)
+    lab.git("remote", "set-url", "--push", "origin", str(fresh))
+    rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success")
+    case("creating main on a remote that has none falls back to the full 'task ci' even with a green run", rc == 0 and tl == full_ci and gl == "", f"{out}\n{tl}\n{gl}")
+    lab.git("remote", "set-url", "--push", "origin", str(lab.remote))
+
+    # 26. no bypass variable in the hook, and a failing 'task ci' still blocks on the fallback path
+    sha = next_main_commit("g9"); before = lab.remote_main()
+    rc, out, tl, gl = gh_push(sha, "", stub_exit=1)
+    case("on the fallback path a failing 'task ci' still blocks and main is unchanged", rc != 0 and "task ci' failed" in out and lab.remote_main() == before and tl == full_ci, f"{out}\n{tl}")
     return results
 
 

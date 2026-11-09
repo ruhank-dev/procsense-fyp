@@ -5,13 +5,13 @@ Repository: **https://github.com/ruhank-dev/procsense-fyp** (private).
 
 ## The idea in one paragraph
 
-You work on your own branch, merge the latest `main` into it, run **`task ci`** (the same checks GitHub runs), push your branch, then push the tested result straight to `main`. **No pull request and no approval are needed.** A git hook that `task setup` installs runs `task ci` again automatically on every push to `main` and blocks the push if anything fails. GitHub Actions then runs the checks once more on `main` and raises an alert if something is red.
+You work on your own branch, merge the latest `main` into it, run **`task ci`** (the same checks GitHub runs), push your branch, then push the tested result straight to `main`. **No pull request and no approval are needed.** A git hook that `task setup` installs checks every push to `main` and blocks it if anything fails: it runs `task ci` again, unless GitHub already ran the full CI successfully on that exact commit, in which case it runs only fast local checks (see "What the hook checks"). GitHub Actions then runs the checks once more on `main` and raises an alert if something is red.
 
 ## What is and is not protected (read this once)
 
 | Protection | What it does | Limit |
 |---|---|---|
-| Pre-push hook (`.githooks/pre-push`, installed by `task setup`) | Before `main` is updated it runs `task ci`, refuses force-pushes and deleting `main`, and requires a clean working tree that is exactly the commit being pushed | It lives on your machine. `git push --no-verify` or removing `core.hooksPath` skips it. It is not server-side enforcement |
+| Pre-push hook (`.githooks/pre-push`, installed by `task setup`) | Before `main` is updated it runs `task ci` (or, when a manual full CI run on GitHub is green for that exact commit, the fast local checks instead), refuses force-pushes and deleting `main`, and requires a clean working tree that is exactly the commit being pushed | It lives on your machine. `git push --no-verify` or removing `core.hooksPath` skips it. It is not server-side enforcement |
 | GitHub Actions CI (`ci.yml`) | Runs the same checks on Linux **and** Windows after every push to `main` | It runs **after** the push: it can detect a bad commit, not stop it |
 | Main guard (`main-guard.yml`) | Opens an issue naming the commit and author if CI fails on `main`, or if `main` is force-pushed | Also after the fact |
 | GitHub branch protection | **Available since the repository became public (18 Oct 2026) but not switched on**: the owner's decision of 9 Oct 2026 is direct pushes with no approvals; rulesets can be enabled in Settings, Rules, with an owner bypass | So write-access users *can* push to `main` without any check, if they bypass the hook. This workflow depends on everyone following it |
@@ -138,7 +138,7 @@ Commit messages: a short subject, then 3–8 bullets that say what changed and i
 
 **When to run `task ci`:** after every merge of `origin/main` into your branch, and always before step 7 below. The hook runs it again, automatically, on the exact commit you push to `main`.
 
-**What the hook checks** (all of `task ci`): build with warnings as errors, unit tests, golden runs, a record-and-replay round trip, no vulnerable packages, content and source-register validation, plan-index freshness, project rules (determinism rules, repo hygiene, doc links, registers, safeguards), and the hook's own tests. The code-format check runs on GitHub (Linux) only, because Windows line endings differ.
+**What the hook checks.** The hook runs the full `task ci` unless GitHub Actions already ran the *complete* CI successfully on the exact commit being pushed. Only a manual run of the CI workflow counts (Actions, CI, Run workflow on your branch: it always runs every job and ignores what changed); the automatic push run is change-aware and may skip jobs, so it does not count. With such a run found (`gh run list --workflow ci.yml --commit <sha> --event workflow_dispatch --status success`), the hook runs `task check` (repository rules, including the guards on the hook itself) and `task change-check` against the remote `main` (the Python, content and .NET checks the change needs) instead of the hour-long `task ci`. If `gh` is missing or not logged in, the API fails, no such run exists, the run is for another commit, `main` is new on the remote, or the origin is not on GitHub, the hook runs the full `task ci` exactly as before. There is no bypass variable. The full `task ci` covers: build with warnings as errors, unit tests, golden runs, a record-and-replay round trip, no vulnerable packages, content and source-register validation, plan-index freshness, project rules (determinism rules, repo hygiene, doc links, registers, safeguards), and the hook's own tests. The code-format check runs on GitHub (Linux) only, because Windows line endings differ.
 
 ### The sequence
 

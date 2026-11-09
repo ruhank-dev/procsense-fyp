@@ -214,6 +214,21 @@ tasks:
     cmds:
       - uv run --project tools tools/ci/run_all.py {{.CLI_ARGS}}
 
+  change-select:
+    desc: Which checks does the current change need? (change-aware testing; add -- --base origin/main --json for what GitHub sees; docs/qa/change_aware_testing.md)
+    cmds:
+      - uv run --project tools python tools/ci/select.py {{.CLI_ARGS}}
+
+  change-check:
+    desc: Run ONLY the checks the change needs, reuse valid earlier passes, report executed/reused/skipped/deferred (add -- --heavy for the heavy Unity checks, -- --only a,b to pick)
+    cmds:
+      - uv run --project tools python tools/ci/run.py {{.CLI_ARGS}}
+
+  change-check-final:
+    desc: The complete gate with no cache and the heavy Unity checks included (what a final integration needs; the mandatory pre-push hook still runs `task ci`)
+    cmds:
+      - uv run --project tools python tools/ci/run.py --final {{.CLI_ARGS}}
+
   ci-status:
     desc: Last local CI result next to GitHub's recent runs (a run that never started is shown as never_started, not as a pass)
     cmds:
