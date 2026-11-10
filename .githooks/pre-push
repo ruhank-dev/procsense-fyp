@@ -77,9 +77,8 @@ remote_full_green() {
 }
 
 if remote_full_green; then
-  echo "pre-push: GitHub Actions already ran the full CI successfully on this exact commit; running the fast local checks only..." >&2
+  echo "pre-push: GitHub Actions already ran the full CI successfully on this exact commit; running the fast local check only (those same tests ran remotely)..." >&2
   task check || fail "'task check' (repository rules) failed, so main was not updated."
-  task change-check -- --base "$main_remote_sha" --skip docs_check,kind:unity || fail "the change-aware local checks failed, so main was not updated."
   echo "pre-push: all checks passed (full CI verified remotely for this commit)." >&2
   exit 0
 fi

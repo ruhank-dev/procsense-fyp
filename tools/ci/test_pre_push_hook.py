@@ -266,8 +266,8 @@ def run_cases(lab: Lab) -> list[tuple[str, bool, str]]:
     # 17. green full run on this exact commit: fast local checks instead of task ci
     sha = next_main_commit("g1"); before = lab.remote_main()
     rc, out, tl, gl = gh_push(sha, "HEAD:workflow_dispatch:success")
-    fast = [f"task check", f"task change-check -- --base {before} --skip docs_check,kind:unity"]
-    case("a successful full workflow_dispatch run for this exact commit: 'task check' and 'task change-check' run, 'task ci' does not, and the push is allowed",
+    fast = ["task check"]
+    case("a successful full workflow_dispatch run for this exact commit: only 'task check' runs, 'task ci' does not, and the push is allowed",
          rc == 0 and tl == fast and lab.remote_main() == sha and "--repo test/repo" in gl and "--workflow ci.yml" in gl and f"--commit {sha}" in gl
          and "--event workflow_dispatch" in gl and "--status success" in gl, f"{out}\n{tl}\n{gl}")
 
