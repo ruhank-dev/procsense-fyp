@@ -48,6 +48,8 @@ namespace ProcSense.Tests.PlayMode
             var hand = Build(out var animator, out _); _culler.Rescan(); CharacterPerfCuller.Enabled = true;
             bool visible = true; CharacterPerfCuller.VisibilityProbe = r => visible;
             for (int i = 0; i < 20; i++) { yield return null; _culler.Tick(i * .05f); }
+            // the clip advances one metre per real second, so let at least 0.1 s of real time pass: 20 frames can last under 8 ms in a fast batch run, which made the check depend on the frame rate
+            float playStart = Time.realtimeSinceStartup; while (Time.realtimeSinceStartup - playStart < 0.1f) yield return null;
             Assert.Greater(hand.localPosition.x, 0.01f, "the clip is playing while visible");
             visible = false; _culler.Tick(2f); _culler.Tick(3.2f); Assert.AreEqual(AnimatorCullingMode.CullCompletely, animator.cullingMode, "culled after the delay");
             yield return null; float justCulled = hand.localPosition.x;
