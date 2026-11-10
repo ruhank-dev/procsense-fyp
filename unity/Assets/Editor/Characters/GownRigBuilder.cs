@@ -91,11 +91,11 @@ namespace ProcSense.EditorTools
                 var near = Enumerable.Range(0, K).OrderBy(c => (cen[c] - wv[i]).sqrMagnitude).Take(2).ToArray();
                 float d0 = 1f / (.003f + (cen[near[0]] - wv[i]).magnitude), d1 = 1f / (.003f + (cen[near[1]] - wv[i]).magnitude); float ds = d0 + d1;
                 float keep = 1f - f[i];
-                nbw[i] = new BoneWeight
+                nbw[i] = ProcSense.EditorTools.SkinWeightFix.Sorted(new BoneWeight
                 {
                     boneIndex0 = arr[0].Item1, weight0 = keep * arr[0].Item2 / s, boneIndex1 = arr[1].Item1, weight1 = keep * arr[1].Item2 / s,
                     boneIndex2 = bones.Length + near[0], weight2 = f[i] * d0 / ds, boneIndex3 = bones.Length + near[1], weight3 = f[i] * d1 / ds,
-                };
+                });
             }
             var m2 = UnityEngine.Object.Instantiate(mesh); m2.name = "patient_gown_secondary";
             m2.boneWeights = nbw; m2.bindposes = newBind.ToArray();

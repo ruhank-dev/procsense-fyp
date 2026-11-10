@@ -86,7 +86,7 @@ namespace ProcSense.EditorTools
                 float hh = Mathf.Clamp01((top - wv[i].y) / height); int k0 = 0; while (k0 < RowH.Length - 2 && hh > RowH[k0 + 1]) k0++; int k1 = k0 + 1;
                 float fk = Mathf.Clamp01((hh - RowH[k0]) / (RowH[k1] - RowH[k0]));
                 (int, float)[] ws = { (c0 * RowH.Length + k0, (1 - fc) * (1 - fk)), (c1 * RowH.Length + k0, fc * (1 - fk)), (c0 * RowH.Length + k1, (1 - fc) * fk), (c1 * RowH.Length + k1, fc * fk) };
-                weights[i] = new BoneWeight { boneIndex0 = ws[0].Item1, weight0 = ws[0].Item2, boneIndex1 = ws[1].Item1, weight1 = ws[1].Item2, boneIndex2 = ws[2].Item1, weight2 = ws[2].Item2, boneIndex3 = ws[3].Item1, weight3 = ws[3].Item2 };
+                weights[i] = ProcSense.EditorTools.SkinWeightFix.Sorted(new BoneWeight { boneIndex0 = ws[0].Item1, weight0 = ws[0].Item2, boneIndex1 = ws[1].Item1, weight1 = ws[1].Item2, boneIndex2 = ws[2].Item1, weight2 = ws[2].Item2, boneIndex3 = ws[3].Item1, weight3 = ws[3].Item2 });
             }
             Finish(r, go, mf, src, t, bones, bind, rigRoot, weights, index);
             var cloth = go.GetComponent<CurtainCloth>() ?? go.AddComponent<CurtainCloth>();
@@ -144,7 +144,7 @@ namespace ProcSense.EditorTools
                 float hh = Mathf.Clamp01((top - wv[i].y) / height); int k0 = 0; while (k0 < RowH.Length - 2 && hh > RowH[k0 + 1]) k0++; int k1 = k0 + 1;
                 float fk = Mathf.Clamp01((hh - RowH[k0]) / (RowH[k1] - RowH[k0]));
                 (int, float)[] ws = { (c0 * RowH.Length + k0, (1 - fc) * (1 - fk)), (c1 * RowH.Length + k0, fc * (1 - fk)), (c0 * RowH.Length + k1, (1 - fc) * fk), (c1 * RowH.Length + k1, fc * fk) };
-                weights[i] = new BoneWeight { boneIndex0 = ws[0].Item1, weight0 = ws[0].Item2, boneIndex1 = ws[1].Item1, weight1 = ws[1].Item2, boneIndex2 = ws[2].Item1, weight2 = ws[2].Item2, boneIndex3 = ws[3].Item1, weight3 = ws[3].Item2 };
+                weights[i] = ProcSense.EditorTools.SkinWeightFix.Sorted(new BoneWeight { boneIndex0 = ws[0].Item1, weight0 = ws[0].Item2, boneIndex1 = ws[1].Item1, weight1 = ws[1].Item2, boneIndex2 = ws[2].Item1, weight2 = ws[2].Item2, boneIndex3 = ws[3].Item1, weight3 = ws[3].Item2 });
             }
             var mats = r.sharedMaterials; var flags = GameObjectUtility.GetStaticEditorFlags(go);
             var copy = UnityEngine.Object.Instantiate(src); copy.name = go.name.Replace(' ', '_') + "_" + index + "_skinned";
