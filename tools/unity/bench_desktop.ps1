@@ -9,7 +9,7 @@ if ($work) { New-Item -ItemType Directory -Force "$work\tmp" | Out-Null; $env:TE
 $r = (Resolve-Path (Join-Path $PSScriptRoot '..\..')).Path
 $exe = if ($env:UNITY_EXE) { $env:UNITY_EXE } else { 'C:\Program Files\Unity\Hub\Editor\6000.5.10f1\Editor\Unity.exe' }
 $out = "$r\unity\Logs\bench"; New-Item -ItemType Directory -Force $out | Out-Null
-$env:BENCH_CONFIGS = $Configs; $env:BENCH_OUT = "$out\$Tag.csv"; $env:BENCH_QUALITY = "$Quality"; $env:BENCH_FRAMES = "$Frames"; $env:BENCH_HIDE = $Hide; $env:BENCH_PNG_DIR = $(if ($Png) { "$out\${Tag}_png" } else { "" }); $env:BENCH_ROUNDS = "$Rounds"; $env:BENCH_EYE_SCALE = "$EyeScale"; $env:BENCH_WORKLOADS = $Workloads; $env:BENCH_STEREO = $(if ($Stereo) { '1' } else { '0' })
+$env:BENCH_CONFIGS = $Configs; $env:BENCH_OUT = "$out\$Tag.csv"; $env:BENCH_QUALITY = "$Quality"; $env:BENCH_FRAMES = "$Frames"; $env:BENCH_HIDE = $Hide; $env:BENCH_PNG_DIR = $(if ($Png) { $(if ($work) { "$work\bench_png\$Tag" } else { "$out\${Tag}_png" }) } else { "" }); $env:BENCH_ROUNDS = "$Rounds"; $env:BENCH_EYE_SCALE = "$EyeScale"; $env:BENCH_WORKLOADS = $Workloads; $env:BENCH_STEREO = $(if ($Stereo) { '1' } else { '0' })
 $ps = "$r\unity\ProjectSettings\ProjectSettings.asset"; $orig = $null
 if ($Skin) { $orig = [IO.File]::ReadAllText($ps); $want = $(if ($Skin -eq 'gpu') { 'gpuSkinning: 1' } else { 'gpuSkinning: 0' }); [IO.File]::WriteAllText($ps, ($orig -replace 'gpuSkinning: \d', $want)) }
 try {

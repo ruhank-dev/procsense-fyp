@@ -10,7 +10,8 @@
   pwsh -File tools/unity/walk_video.ps1 -Mode full -DirA unity/Logs/walk_full/B20 -CsvA unity/Logs/walk_full/B20_walk.csv -LabelA "B20 original" -Out out/walk_B20.mp4
   pwsh -File tools/unity/walk_video.ps1 -Mode compare -DirA .../B20 -DirB .../B17 -CsvA .../B20_walk.csv -LabelA "Original" -LabelB "Optimised" -Ranges "0-10,31-40" -Out out/cmp.mp4
   pwsh -File tools/unity/walk_video.ps1 -Mode triple  ... -Amplify 8 -Out out/diff.mp4
- Ranges are seconds "start-end" separated by commas.
+ Ranges are seconds "start-end" separated by commas; -Segments bay,glasswall derives them from the CSV instead.
+ Encoder: h264_nvenc (GPU, several times faster) when available, otherwise libx264 crf 18; -Encoder x264 forces software.
 #>
 param(
   [ValidateSet('full', 'compare', 'triple', 'all')][string]$Mode = 'full',
@@ -24,6 +25,8 @@ param(
   [int]$PanelWidth = 0,      # per-panel width; 0 = 960 for compare, 640 for triple, native for full
   [double]$Amplify = 8,
   [int]$Crf = 18,
+  [ValidateSet('auto', 'nvenc', 'x264')][string]$Encoder = 'auto',   # auto = h264_nvenc when a 1-frame test encode works, else libx264
+  [string]$Segments = '',   # comma list of walkthrough segment names (bay, door..., from the CSV seg column): builds Ranges from them
   [string]$Font = 'C\\:/Windows/Fonts/arial.ttf',   # double escape: filtergraph level + option level
   [Parameter(Mandatory)][string]$Out
 )
@@ -37,6 +40,21 @@ function Run-FFmpeg([string[]]$a) {
   Write-Host ("ffmpeg " + ($a -join ' '))
   $p = Start-Process -FilePath $ffmpeg -ArgumentList $a -WindowStyle Hidden -Wait -PassThru -RedirectStandardError (Join-Path $tmp 'ff.log')
   if ($p.ExitCode -ne 0) { Get-Content (Join-Path $tmp 'ff.log') -Tail 15 | Write-Host; throw "ffmpeg failed ($($p.ExitCode))" }
+}
+# encoder choice: NVENC when a one-frame test encode succeeds on this machine (GTX 1660 SUPER supports h264_nvenc), else libx264
+$script:EncArgs = $null
+function Get-EncArgs {
+  if ($script:EncArgs) { return $script:EncArgs }
+  $useNv = $false
+  if ($Encoder -ne 'x264') {
+    & $ffmpeg -hide_banner -loglevel error -f lavfi -i 'color=c=black:s=256x256:d=0.1' -frames:v 1 -c:v h264_nvenc -f null - 2>$null
+    $useNv = ($LASTEXITCODE -eq 0)
+    if ($Encoder -eq 'nvenc' -and -not $useNv) { throw 'h264_nvenc requested but not usable' }
+  }
+  $script:EncArgs = if ($useNv) { @('-c:v', 'h264_nvenc', '-preset', 'p5', '-tune', 'hq', '-rc', 'vbr', '-cq', ($Crf + 2), '-b:v', '0', '-pix_fmt', 'yuv420p') }
+                    else { @('-c:v', 'libx264', '-crf', $Crf, '-preset', 'medium', '-pix_fmt', 'yuv420p') }
+  Write-Host ("encoder: " + $script:EncArgs[1])
+  return $script:EncArgs
 }
 function Q([string]$s) { if ($s -match '\s') { '"' + $s + '"' } else { $s } }
 
@@ -96,7 +114,7 @@ function Make-Clip([string]$mode, [int]$S, [int]$count, [string]$dest) {
   $fcFile = Join-Path $tmp ("fc_" + [guid]::NewGuid().ToString('N') + '.txt')
   [IO.File]::WriteAllText($fcFile, $fc, (New-Object Text.UTF8Encoding $false))
   $a = $args2 + @('-y', '-hide_banner', '-loglevel', 'error', '-/filter_complex', (Q $fcFile), '-map', '[v]',
-        '-frames:v', $count, '-r', $Fps, '-c:v', 'libx264', '-crf', $Crf, '-preset', 'medium', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', (Q $dest))
+        '-frames:v', $count, '-r', $Fps) + (Get-EncArgs) + @('-movflags', '+faststart', (Q $dest))
   Run-FFmpeg $a
 }
 
@@ -117,6 +135,16 @@ function Make-Ranged([string]$mode, [string]$dest) {
   Run-FFmpeg @('-y', '-hide_banner', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', (Q $list), '-c', 'copy', (Q $dest))
 }
 
+if ($Segments -and $CsvA -and (Test-Path $CsvA)) {
+  $want = $Segments -split ',' | ForEach-Object { $_.Trim() }
+  $rows = Import-Csv $CsvA; $rr = @(); $st = $null
+  for ($i = 0; $i -le $rows.Count; $i++) {
+    $in = ($i -lt $rows.Count) -and ($want -contains $rows[$i].seg)
+    if ($in -and $null -eq $st) { $st = $i }
+    if (-not $in -and $null -ne $st) { $rr += ('{0}-{1}' -f ($st / $Fps).ToString([Globalization.CultureInfo]::InvariantCulture), ($i / $Fps).ToString([Globalization.CultureInfo]::InvariantCulture)); $st = $null }
+  }
+  if ($rr) { $Ranges = $rr -join ','; Write-Host "segments $Segments -> ranges $Ranges" } else { throw "no frames for segments $Segments" }
+}
 try {
   $total = (Get-ChildItem $DirA -Filter 'f*.jpg').Count
   if ($Mode -in 'compare', 'triple', 'all' -and -not $DirB) { throw 'DirB required for compare/triple' }

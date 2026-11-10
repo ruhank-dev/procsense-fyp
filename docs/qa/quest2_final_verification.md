@@ -51,3 +51,45 @@ Requests for lane C (not edited here):
 ## Status
 
 Ready: `walk_qa.py` (extended), `final_qa.ps1` (parse-checked; Unity stages not yet run, by design, until the lead says integration is done), `walk_video.ps1` (unchanged, used by the video stage). Nothing was committed, pushed or run through CI.
+
+## Fast and incremental pipeline (10 November 2026 UTC)
+
+### Where the hour went (r4 chain, measured from the log timestamps)
+
+| Stage | Time | Cause |
+|---|---|---|
+| walk, B20 + B29 at 1920x1080 (Unity) | 14.4 min | about 86 ms per frame, one config after the other |
+| diff, B29 at 640x360 (Unity) | 6.1 min | about 73 ms per frame |
+| qa, both configs | 14.6 min (one config alone 427 s) | one Python process decoded 5010 full-size JPEGs per config into float32 arrays, strictly serial |
+| video, four clips | 7.3 min | four software x264 encodes (`-preset medium`) one after another |
+
+The Unity capture is mostly fixed cost per frame: the quick run (640x360) took 4.6 min for B20 against 7.2 min per config at 1080p, so only about a third of the capture time depends on resolution and JPG writing. The rest is the two `yield return null` frame waits, the repeated `cam.Render()` calls and the readbacks inside `QuestWalkthrough.Walkthrough` (lane C's file, not edited here). Removing the waits and the extra renders is the next saving for the capture itself; that is an estimate and was not measured.
+
+### What changed
+
+| Piece | Change |
+|---|---|
+| `walk_qa.py` | JPEGs are decoded at half size (DCT scaling), one worker process per logical CPU minus 2; per-frame features are cached by directory, file size and modification time in `D:\ProcSenseWork\frame_cache\feat`, so unchanged frames are never decoded twice. `--exact` decodes at full size, `--no-cache` and `--workers` exist. All detectors are unchanged. One rule was sharpened without losing sensitivity: still-camera pop needs the frame difference to exceed both the limit and 1.5 times the median of its neighbours (steady dust motion on a still camera is not a pop; a real spike still is). |
+| `walk_video.ps1` | `h264_nvenc` (GTX 1660 SUPER) when a one-frame test encode works, otherwise libx264; `-Encoder auto/nvenc/x264`; `-Segments` builds the clip ranges from the CSV segment names; full mode no longer needs a second frame directory. |
+| `frame_cache.py` (new) | content-hash cache of rendered frame sets in `D:\ProcSenseWork\frame_cache`. Key = hash of scenes, shaders, scripts, materials, prefabs, URP and project settings, the walkthrough test (content for files up to 1 MB, size and time for textures and models) plus config, resolution, diff and JPG options. Commands: key, get, put, link (directory junction), merge (overlay a partial run onto the newest full set), prune. |
+| `final_qa.ps1` | `-Mode quick` (640x360, difference columns from the same run, tag `_quick`) and `-Mode final` (default); cache lookup before every render; `-Segments doors,windows,turns` (or segment names) renders only those segments and merges them onto the cached full set; QA runs one process per config in parallel; the four videos encode in parallel and start in the background while the diff and sweep Unity stages run; `-Stages walk,qa` style lists work through `pwsh -File`. |
+
+### Measured, before and after (existing r4 frames; no Unity except the quick runs)
+
+| Item | Before | After |
+|---|---|---|
+| QA of one config, 5010 frames at 1080p | 427 s | 27 s (23 s decoding), 4 s when the frame features are cached, 89 s with `--exact` |
+| QA flags | 73 flagged frames | identical frame and flag lists (max difference in D 0.04, in mean luminance 0.01); `--exact` identical too |
+| Videos (four clips, 1080p, 167 s and 60 s) | 435 s | 82 s; NVENC against libx264 on the same frames: PSNR 45.3 dB, same duration |
+| Walk, B20 + B29 | 14.4 min | 0 s (2 s) on a cache hit; a quick-mode full render of both configs with differences took 11 min |
+| Unchanged re-run, quick mode, walk + qa | - | 5 s |
+| Only the doors segment changed, quick mode, walk + qa + video | 678 s (full quick run) | 139 s (two Unity starts of about 1 min each, 270 frames per config) |
+| QA of the r4 frames under the sharpened rule | 0 flags | 0 flags (r3 frames still report the black frame 4692) |
+
+### Typical use
+
+* Iterating on a change: `-Mode quick -Stages walk,qa,video` (add `-Segments doors` when only the doors changed).
+* Final: `-Mode final` once, with the cache reusing anything unchanged.
+* After a path-only change, skip the sweep: `-Stages walk,diff,qa,video`.
+
+Known limits: the cache key covers the whole walkthrough test file, so any edit to it re-renders everything unless `-Segments` is given; the segment merge assumes the changed content stays inside the named segments (the merged set is the earlier render outside them); the frame sets are kept until `frame_cache.py prune`.

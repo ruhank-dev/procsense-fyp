@@ -60,6 +60,7 @@ namespace ProcSense.VR.Views
 
         private void OnBeginCamera(ScriptableRenderContext ctx, Camera cam)
         {
+            if (ExteriorVisibility.OnlyCamera != null && cam != ExteriorVisibility.OnlyCamera) return;
             if (cam.cameraType != CameraType.Game && cam.cameraType != CameraType.VR) return;
             long t0 = CullCost.Begin(); OnBeginCameraCore(cam); CullCost.End(CullCost.RoomCamera, t0);
         }

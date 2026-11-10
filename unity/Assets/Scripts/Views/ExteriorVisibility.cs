@@ -55,6 +55,8 @@ namespace ProcSense.VR.Views
         // index, the exterior variant or the mode changes (Unity may reset a flag when a renderer is enabled or disabled). Chunk bounds are tested in managed code (no native call per chunk) and a
         // frame whose pose, room and pads equal the previous one costs nothing. FastPath = false restores the original per-frame behaviour (A/B for CullingCostTests).
         private static bool _fast = true;
+        /// <summary>Benchmark hook (null in every build): when set, only this camera runs the exterior and room culling. The desktop two-eye benchmark renders two cameras per frame; the headset renders one multiview camera and culls once, so the benchmark sets this to the left-eye camera to measure the same number of culls.</summary>
+        public static Camera OnlyCamera;
         public static bool FastPath { get => _fast; set { _fast = value; _dirtyAll = true; } }
         private const int ResyncEvery = 30;
         private static bool _dirtyAll = true;
@@ -121,6 +123,7 @@ namespace ProcSense.VR.Views
 
         private void OnBeginCamera(ScriptableRenderContext ctx, Camera cam)
         {
+            if (OnlyCamera != null && cam != OnlyCamera) return;   // desktop two-eye benchmark: the headset culls once per frame for both eyes, so only the first eye camera runs the culling
             if (cam.cameraType != CameraType.Game && cam.cameraType != CameraType.VR) return;
             long t0 = CullCost.Begin(); OnBeginCameraCore(cam); CullCost.End(CullCost.ExtCamera, t0);
         }
@@ -206,7 +209,7 @@ namespace ProcSense.VR.Views
 
         private void Resync()
         {
-            _dirtyAll = false; _sinceSync = 0; _pcValid = false;
+            _dirtyAll = false; _sinceSync = 0; _pcValid = false; _applied = -1;   // another script (PerfToggles resets forceRenderingOff on every configuration change) may have rewritten the flags: apply the hide state again instead of trusting the cached state
             for (int i = 0; i < _city.Count; i++) if (_city[i] != null) _off[i] = _city[i].forceRenderingOff;
             if (CullCost.On) CullCost.Reads += _city.Count;
         }

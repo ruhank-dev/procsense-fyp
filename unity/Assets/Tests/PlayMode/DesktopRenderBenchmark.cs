@@ -48,8 +48,9 @@ namespace ProcSense.Tests.PlayMode
         [UnityTest, Explicit("desktop benchmark"), Timeout(21600000)]
         public IEnumerator Benchmark_views()
         {
-            string cfg = Environment.GetEnvironmentVariable("BENCH_CONFIGS") ?? "B0,B1", outPath = Environment.GetEnvironmentVariable("BENCH_OUT");
-            int frames = int.TryParse(Environment.GetEnvironmentVariable("BENCH_FRAMES"), out var f) ? f : 20;
+            // BENCH_MONO_CONFIGS / BENCH_MONO_OUT / BENCH_MONO_FRAMES override the shared variables, so one Unity launch can run this test (pixel-diff views) together with StereoBenchmark (-testFilter 'A;B') without the two clashing
+            string cfg = Environment.GetEnvironmentVariable("BENCH_MONO_CONFIGS") ?? Environment.GetEnvironmentVariable("BENCH_CONFIGS") ?? "B0,B1", outPath = Environment.GetEnvironmentVariable("BENCH_MONO_OUT") ?? Environment.GetEnvironmentVariable("BENCH_OUT");
+            int frames = int.TryParse(Environment.GetEnvironmentVariable("BENCH_MONO_FRAMES") ?? Environment.GetEnvironmentVariable("BENCH_FRAMES"), out var f) ? f : 20;
             bool stereo = Environment.GetEnvironmentVariable("BENCH_STEREO") == "1";
             Assert.IsFalse(string.IsNullOrEmpty(outPath), "set BENCH_OUT");
             int quality = int.TryParse(Environment.GetEnvironmentVariable("BENCH_QUALITY"), out var q) ? q : 2;   // 2 = Medium, the level Android builds use (URP_Quest_Android); 5 = Ultra, the desktop level

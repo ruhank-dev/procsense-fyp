@@ -2,6 +2,8 @@
 
 Branch `quest-perf/d7-optimisations`. Desktop measurements only: **no Quest frame rate, GPU time or overdraw was measured, and none is claimed.** The reported 20 to 30 FPS on the headset stays unverified until Sannan runs the diagnostic APK (DC-13). Owner approval of the optimised exterior (P3-EXT-07) was given on 9 November 2026; approval to merge into `main` is still pending the owner's review of the walkthrough video.
 
+> **Correction (10 Nov 2026):** the desktop frame-time and triangle comparisons in sections 4.2 and 5 below were measured before a benchmark stale-cache bug was fixed (config switches rewrote hide state and the fast path kept stale values) and with a one-eye or two-camera culling harness. They are **superseded and must not be quoted**; the post-fix, two-eye results with the aggregation stated are in `quest2_optimisation_audit.md`. In particular the optimised exterior is neutral, not faster, on the desktop (GPU-bound +0.8% to +1.1%, intervals include zero), and the ASTC saving is about 12 MB, not 190 MB.
+
 ## 1. What is active by default on Android now
 
 | Setting | Default on Quest | Desktop / Editor |
@@ -13,7 +15,7 @@ Branch `quest-perf/d7-optimisations`. Desktop measurements only: **no Quest fram
 | Sun shafts and dust | on (approved look); shader early-out and half-precision vertex colour | on |
 | Skinning | CPU (unchanged: no desktop difference measured, see 4.5) | CPU |
 | Android quality levels | only level 2 Medium (`URP_Quest_Android`) is built into the Android player; desktop levels excluded (smaller shader set) | all levels |
-| Android texture overrides | eleven patient-monitor textures ASTC (was uncompressed, about 245 MB, now about 55 MB) | unchanged |
+| Android texture overrides | patient-monitor textures ASTC (the five that ship in the player: about 16 MB uncompressed, now about 4 MB; about 12 MB saved) | unchanged |
 | Android shader stripping | `QuestShaderStripping` removes variants that cannot occur (debug display, probe volumes, SSAO, DBuffer, Forward+, unused fog modes, LOD cross-fade, realtime lightmaps) | none |
 
 Foveation (0), eye scale (1.0), MSAA (4x), shadows, lights and the look of every object are unchanged.
@@ -60,7 +62,7 @@ Shadow distance 5 m, hard shadows, shadow map 1024, additional lights capped at 
 
 ### 4.4 Memory
 
-Monitor textures: about 245 MB uncompressed to about 55 MB ASTC on Android (a desktop capture with the same ASTC format differs from the original by a mean of under 0.8/255 and under 0.7% of pixels, mostly dust and animation). Other Android texture settings audited: 446 of 635 textures already carry an ASTC override; no texture has Read/Write enabled.
+Monitor textures: the five that ship in the player go from about 16 MB uncompressed to about 4 MB ASTC on Android (about 12 MB saved; an earlier figure of about 245 MB counted all eleven at source size) (a desktop capture with the same ASTC format differs from the original by a mean of under 0.8/255 and under 0.7% of pixels, mostly dust and animation). Other Android texture settings audited: 446 of 635 textures already carry an ASTC override; no texture has Read/Write enabled.
 
 ### 4.5 CPU against GPU skinning
 
@@ -72,7 +74,7 @@ GPU time from `FrameTimingManager` is not reported by the Editor, so "frame comp
 
 ## 5. Estimated Quest effect (conditional, not a measurement)
 
-The earlier reports quote 20 to 30 FPS on the headset (unverified). A frame at 72 FPS has 13.9 ms. If, on the headset, the work removed here is GPU-bound in proportion to triangles and the same share of the frame as on the desktop, a 10% to 13% cut of the frame time would move 25 FPS (40 ms) to about 28 FPS (36 ms); it would not by itself reach 72. These numbers assume that frame time scales with the desktop ratios, which is not established for a tile-based mobile GPU. The 190 MB texture saving and the removed shader variants reduce memory pressure and load stalls rather than frame time.
+The earlier reports quote 20 to 30 FPS on the headset (unverified). A frame at 72 FPS has 13.9 ms. If, on the headset, the work removed here is GPU-bound in proportion to triangles and the same share of the frame as on the desktop, a 10% to 13% cut of the frame time would move 25 FPS (40 ms) to about 28 FPS (36 ms); it would not by itself reach 72. These numbers assume that frame time scales with the desktop ratios, which is not established for a tile-based mobile GPU. The 12 MB texture saving and the removed shader variants reduce memory pressure and load stalls rather than frame time.
 
 ## 6. Headset-only checks for Sannan (DC-13 and DC-14)
 

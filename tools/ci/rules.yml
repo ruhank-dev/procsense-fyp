@@ -39,7 +39,6 @@ ignore:
   - "unity/Logs/**"
   - "unity/Temp/**"
   - "unity/Library/**"
-  - ".claude/**"
   - ".vscode/**"
   - ".gitignore"
   - ".gitattributes"

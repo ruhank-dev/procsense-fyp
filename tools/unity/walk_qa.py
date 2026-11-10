@@ -14,7 +14,7 @@ Checks (all thresholds come from the sequence's own robust statistics):
   geom   : (needs a CSV written with BENCH_DIFF=1) diff_cull_pct above --max-cull-pct (default 0.05) = geometry
            missing versus the same pose with every cull off; diff_orig_pct above --max-orig-pct (default 0.25)
            = difference from the original exterior
-  static : on runs where the camera is (almost) still, frame-to-frame diff D above --static-d (default 1.5) =
+  static : on runs where the camera is (almost) still, frame-to-frame diff D above --static-d (default 1.5) AND above 1.5x the median of the neighbouring frames =
            texture/LOD pop or shader flicker; "flicker" = luminance sign alternation of >=4 in 8 frames with
            amplitude above 0.4 grey on a still camera
   void   : fraction of pixels equal to the sequence's modal 'background' colour that is
@@ -260,7 +260,7 @@ def main():
     if not (rows and len(rows) == n): static[:] = False   # no camera motion data: cannot tell a still camera from a moving one
     nstatic = int(static.sum())
     for i in range(n):
-        if static[i] and D[i] > a.static_d:
+        if static[i] and D[i] > a.static_d and D[i] > 1.5 * ref[i]:   # a pop is a spike against its neighbours; steady dust or steam motion on a still camera is not
             flags[i].append("static_pop")
     sg = np.sign(np.diff(lum, prepend=lum[0]))
     amp = np.abs(np.diff(lum, prepend=lum[0]))

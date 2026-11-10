@@ -63,7 +63,8 @@ namespace ProcSense.Tests.PlayMode
             for (int i = 0; i < 120; i++) yield return null;
             foreach (var c in UnityEngine.Object.FindObjectsByType<Camera>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)) c.enabled = false;
 
-            int w = Mathf.RoundToInt(EyeW * scale), h = Mathf.RoundToInt(EyeH * scale);
+            // Eye targets are (re)created per preset: URP takes the sample count of a camera target from the RenderTexture, so a fixed 4x target would ignore the MSAA presets, and a preset's eye scale must change the size.
+            int w = Mathf.RoundToInt(EyeW * scale), h = Mathf.RoundToInt(EyeH * scale), curMsaa = 4;
             var eyes = new Camera[2]; var rts = new RenderTexture[2]; var gos = new GameObject[2];
             for (int e = 0; e < 2; e++)
             {
@@ -73,9 +74,11 @@ namespace ProcSense.Tests.PlayMode
             }
             var toggles = new PerfToggles(); var ids = cfg.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToArray();
             ProcSense.VR.Views.ExteriorVisibility.CollectStats = false;   // true would switch the pose cache of the fast path off and measure the slow path
+            // BENCH_CULL_ONCE=1: only the left eye runs the exterior and room culling and the right eye reuses its result, as the headset's single multiview camera culls once per frame (the two-camera benchmark otherwise culls twice and can never hit the pose cache)
+            ProcSense.VR.Views.ExteriorVisibility.OnlyCamera = Environment.GetEnvironmentVariable("BENCH_CULL_ONCE") == "1" ? eyes[0] : null;
             toggles.Apply(PerfPresets.All[0], eyes[0], "PatientBay"); RenderPair(eyes, Vector3.zero, Quaternion.identity); yield return null;
 
-            var summary = new StringBuilder("config,workload,cell,round,frames,draw_calls,setpass_calls,batches,triangles,vertices,shadow_casters,wall_med_ms,wall_p99_ms,wall_max_ms,done_med_ms,done_p99_ms,done_max_ms,submit_med_ms,main_med_ms,render_med_ms,gpu_med_ms,used_mem_mb,gfx_mem_mb,rt_mem_mb,eye_w,eye_h,fd_events,pipe_med_ms,pipe_min_ms,other_busy\n");
+            var summary = new StringBuilder("config,workload,cell,round,frames,draw_calls,setpass_calls,batches,triangles,vertices,shadow_casters,wall_med_ms,wall_p99_ms,wall_max_ms,done_med_ms,done_p99_ms,done_max_ms,submit_med_ms,main_med_ms,render_med_ms,gpu_med_ms,used_mem_mb,gfx_mem_mb,rt_mem_mb,eye_w,eye_h,fd_events,pipe_med_ms,pipe_min_ms,other_busy,msaa,rt_active_mb\n");
             var vis = new StringBuilder("config,cell,shader,material,renderers,triangles" + (char)10);
             var perFrame = new StringBuilder("config,workload,cell,round,frame,wall_ms,done_ms,submit_ms,main_ms,render_ms,gpu_ms\n");
             var proc = System.Diagnostics.Process.GetCurrentProcess(); try { proc.PriorityClass = System.Diagnostics.ProcessPriorityClass.AboveNormal; } catch { }
@@ -102,6 +105,14 @@ namespace ProcSense.Tests.PlayMode
                             bool grp = id.EndsWith("-grp"); string baseId = grp ? id.Substring(0, id.Length - 4) : id; bool slow = baseId.EndsWith("-slow"); var preset = PerfPresets.All.First(p => p.Id == (slow ? baseId.Substring(0, baseId.Length - 5) : baseId));
                             GroupCityByMaterial(grp);
                             toggles.Apply(preset, eyes[0], cell.Room);
+                            int wantW = Mathf.RoundToInt(EyeW * scale * Mathf.Max(0.1f, preset.EyeScale)), wantH = Mathf.RoundToInt(EyeH * scale * Mathf.Max(0.1f, preset.EyeScale)), wantMsaa = Mathf.Max(1, preset.Msaa);
+                            if (rts[0] == null || wantW != w || wantH != h || wantMsaa != curMsaa)
+                            {
+                                w = wantW; h = wantH; curMsaa = wantMsaa;
+                                for (int e = 0; e < 2; e++) { eyes[e].targetTexture = null; if (rts[e] != null) UnityEngine.Object.Destroy(rts[e]); rts[e] = new RenderTexture(w, h, 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.sRGB) { antiAliasing = curMsaa }; rts[e].Create(); eyes[e].targetTexture = rts[e]; }
+                                yield return null;
+                            }
+                            double rtActive = 2.0 * w * h * curMsaa * 8 / 1048576.0;   // colour (4 B) plus depth/stencil (4 B) per sample, both eyes: proof that the preset took effect
                             // "-slow": the same preset with the fast paths (pose cache, plane tests, skipped character samples) switched off, the reference for what they save
                             ProcSense.VR.Views.ExteriorVisibility.FastPath = !slow; ProcSense.VR.Views.RoomVisibility.FastPath = !slow; ProcSense.VR.Views.CharacterPerfCuller.FastTick = !slow;
                             var basePos = cell.P; var baseRot = Quaternion.LookRotation((cell.L - cell.P).normalized);
@@ -139,13 +150,14 @@ namespace ProcSense.Tests.PlayMode
                             wall.Sort(); done.Sort(); submit.Sort(); main.Sort(); rend.Sort(); gpu.Sort();
                             summary.Append(id).Append(',').Append(cell.Workload).Append(',').Append(cell.Id).Append(',').Append(round).Append(',').Append(frames).Append(',').Append(F(dc)).Append(',').Append(F(sp)).Append(',').Append(F(bt)).Append(',').Append(F(tr)).Append(',').Append(F(vt)).Append(',').Append(F(sc))
                                 .Append(',').Append(F(Med(wall))).Append(',').Append(F(Pct(wall, 0.99))).Append(',').Append(F(wall.Count == 0 ? double.NaN : wall[wall.Count - 1])).Append(',').Append(F(Med(done))).Append(',').Append(F(Pct(done, 0.99))).Append(',').Append(F(done.Count == 0 ? double.NaN : done[done.Count - 1]))
-                                .Append(',').Append(F(Med(submit))).Append(',').Append(F(Med(main))).Append(',').Append(F(Med(rend))).Append(',').Append(F(Med(gpu))).Append(',').Append(F(mem.LastValue / 1048576.0)).Append(',').Append(F(gfx.LastValue / 1048576.0)).Append(',').Append(F(rtBytes.Valid ? rtBytes.LastValue / 1048576.0 : double.NaN)).Append(',').Append(w).Append(',').Append(h).Append(',').Append(fd).Append(',').Append(F(Med(pipe))).Append(',').Append(F(pipe[0])).Append(',').Append(busy).Append('\n');
+                                .Append(',').Append(F(Med(submit))).Append(',').Append(F(Med(main))).Append(',').Append(F(Med(rend))).Append(',').Append(F(Med(gpu))).Append(',').Append(F(mem.LastValue / 1048576.0)).Append(',').Append(F(gfx.LastValue / 1048576.0)).Append(',').Append(F(rtBytes.Valid ? rtBytes.LastValue / 1048576.0 : double.NaN)).Append(',').Append(w).Append(',').Append(h).Append(',').Append(fd).Append(',').Append(F(Med(pipe))).Append(',').Append(F(pipe[0])).Append(',').Append(busy).Append(',').Append(curMsaa).Append(',').Append(F(rtActive)).Append('\n');
                         }
                     }
                     Directory.CreateDirectory(Path.GetDirectoryName(outPath)); File.WriteAllText(outPath, summary.ToString()); File.WriteAllText(Path.ChangeExtension(outPath, ".frames.csv"), perFrame.ToString()); File.WriteAllText(Path.ChangeExtension(outPath, ".visible.csv"), vis.ToString());
                     Debug.Log("BENCHLOAD round " + round + " " + LoadSnapshot());
                 }
             }
+            ProcSense.VR.Views.ExteriorVisibility.OnlyCamera = null;
             toggles.Apply(PerfPresets.All[0], eyes[0], "PatientBay");
             for (int e = 0; e < 2; e++) { eyes[e].targetTexture = null; UnityEngine.Object.Destroy(rts[e]); UnityEngine.Object.Destroy(gos[e]); }
             QualitySettings.SetQualityLevel(authored, true); ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
