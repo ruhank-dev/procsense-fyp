@@ -71,7 +71,7 @@ jobs:
             echo "Kept for 14 days as the artifact procsense-backup. To restore: server/RUNBOOK.md, Backup and restore."
           } >> "$GITHUB_STEP_SUMMARY"
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: procsense-backup
           path: backups/
