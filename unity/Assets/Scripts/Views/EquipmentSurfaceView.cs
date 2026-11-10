@@ -8,7 +8,7 @@ namespace ProcSense.VR.Views
     /// <summary>Small equipment surfaces display only permitted Core observations.</summary>
     public sealed class EquipmentSurfaceView : StateView
     {
-        public enum Surface { Monitor, Pump, Identity }
+        public enum Surface { Monitor, Pump, Identity, Temperature }
         [SerializeField] private Surface surface;
         [SerializeField] private TMP_Text label;
         public string DisplayText => label != null ? label.text : "";
@@ -22,6 +22,12 @@ namespace ProcSense.VR.Views
 
         protected override void Render(ObservableState state)
         {
+            if (surface == Surface.Temperature)
+            {
+                var reading = state.Vitals.FirstOrDefault(v => v.Name == "temperature_c");
+                SetText(label, (reading == null ? "--.-" : reading.Value) + " C");
+                return;
+            }
             if (surface == Surface.Pump)
             {
                 SetText(label, "STANDBY");

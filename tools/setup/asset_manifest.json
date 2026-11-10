@@ -11,8 +11,8 @@
    "bytes": 46966543
   },
   "project_owned": {
-   "files": 2006,
-   "bytes": 160973361
+   "files": 2050,
+   "bytes": 161166118
   },
   "quaternius_ual": {
    "files": 6,
@@ -6631,6 +6631,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Editor/Environment/ClinicalPanelSetup.cs",
+   "sha256": "9609567ad5fc75737e367dd736cceb895eb9ff24db421cdc0bc1e435d520fef2",
+   "size": 2412,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/ClinicalPanelSetup.cs.meta",
+   "sha256": "cf81667554aa8caeb8bd8d951045a265154d03719420c348d5ecf7afa353e65d",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Editor/Environment/ContinuousHospitalSetup.cs",
    "sha256": "86976aae0d4fa83b4ae9a0d77df5e460f6dcb5e518d63cab5ca569d66484cd61",
    "size": 15495,
@@ -6701,15 +6715,43 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Editor/Environment/DoorInteractionRepair.cs",
+   "sha256": "fd2eb0e579d05fd3e359766a8a458d8a658c2282eba79c4255fb16df818a0644",
+   "size": 4901,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/DoorInteractionRepair.cs.meta",
+   "sha256": "c2babbd63e8b2255202430ae0a6f5ce2c16c62fedae3842c471729d8e1372024",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Editor/Environment/DoorUpgrade.cs",
-   "sha256": "235d26759e873bf760a8b3cb036d470ea41e2e55e01e4950f3bd68d9799a803d",
-   "size": 7727,
+   "sha256": "ef247fa86ed960fd9b733ae77cba5a9427bac1524ed26e9c9cb735a395a12a18",
+   "size": 7811,
    "group": "project_owned",
    "lfs": false
   },
   {
    "path": "unity/Assets/Editor/Environment/DoorUpgrade.cs.meta",
    "sha256": "5ced853760c0aa339da4b822140ede5e9b46214df0a789d2d0dde7bbaf514f11",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/EnvironmentIntegrationSetup.cs",
+   "sha256": "1f155dc7a770f3a35cf91724d8e544211ce8b30c45f592ecf643913f23569253",
+   "size": 4869,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/EnvironmentIntegrationSetup.cs.meta",
+   "sha256": "2caea5585f497206b5dd98e039357184a92927c9cca46da908b1d361d25c1152",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -7051,6 +7093,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Editor/Environment/NurseVisitSetup.cs",
+   "sha256": "3fc5339151c3566e77ed32a45cfebd7a3c73291c5ef3f85d91d63b3f34ba8a35",
+   "size": 2760,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/NurseVisitSetup.cs.meta",
+   "sha256": "1f165285a5ed9597ffbd5a3aaee11e5a98df679e264c5b36205d5177b6d7e93b",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Editor/Environment/OtContactShadows.cs",
    "sha256": "65e7dfe08465098cb5aeb048f53d63132bea01e189e8481335fd239de9a7d1ab",
    "size": 6881,
@@ -7150,8 +7206,8 @@
   },
   {
    "path": "unity/Assets/Editor/Environment/PatientBayPatient.cs",
-   "sha256": "2bfc59b035f206ba948c2104d4c75171d20536f1c3583b3773e4e3432758675c",
-   "size": 11010,
+   "sha256": "d27ed4ae3eb6f90ce1a9fe44b0c114cf4cbe94db5cca7573251d17f815848ecd",
+   "size": 11378,
    "group": "project_owned",
    "lfs": false
   },
@@ -7261,6 +7317,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Editor/Environment/RecordsWorkstationSetup.cs",
+   "sha256": "bdf77fcaab7d8a7764b22d1b75f740b1ed8d91051e6af70f46c69cf0eae0c2b1",
+   "size": 2910,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/RecordsWorkstationSetup.cs.meta",
+   "sha256": "0dbd61a201a3e0a024525b46a2cf9d7404b4048845cca774cd10fe298ae4cea5",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Editor/Environment/RocketboxFaceDump.cs",
    "sha256": "1beb0b58124c3542950ef4e20663bddc8c5c19d090d1db6a6020944471649902",
    "size": 1555,
@@ -7298,6 +7368,20 @@
   {
    "path": "unity/Assets/Editor/Environment/SensorEquipmentTable.cs.meta",
    "sha256": "327668adf89ddda8b987315632f53928e50c176e48627e8f4aeed713427001c3",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/SessionPresentationSetup.cs",
+   "sha256": "4d10194495e52188d010325da6f32a3025b8eeae59ca293f5df720535b45d7f7",
+   "size": 1425,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/Environment/SessionPresentationSetup.cs.meta",
+   "sha256": "0282974bc10c4c7eb4836a6e7f1ac65d18ade45f6dd4d99ced97f1e9c58f50f9",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -7430,8 +7514,8 @@
   },
   {
    "path": "unity/Assets/Editor/EquipmentPrefabBuilder.cs",
-   "sha256": "81e06cdba3eb09c36d4b344746918e5b68ccb9f5e4137492a6dc46ee2d39e59f",
-   "size": 14550,
+   "sha256": "c733c66efa2edfa35d20cac7a0a64e401f080c2c91be621c0a9a369d4834b93d",
+   "size": 15103,
    "group": "project_owned",
    "lfs": false
   },
@@ -7500,8 +7584,8 @@
   },
   {
    "path": "unity/Assets/Editor/Review/ReviewPanels.cs",
-   "sha256": "199664308c21db645c9be5c4e95c911f9e43a32885c35c0d7fa9af4330baebbc",
-   "size": 5998,
+   "sha256": "bfc7d7c5f16e0243874552fc60740393bda141ab6129d8c32093912add72c7b3",
+   "size": 6936,
    "group": "project_owned",
    "lfs": false
   },
@@ -7740,6 +7824,20 @@
    "path": "unity/Assets/Editor/Setup/SessionDevMenu.cs.meta",
    "sha256": "45174d9da0e9a70e6e1cca2700935985bd86f376dc43e342e7e6d3697df1327a",
    "size": 60,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/ThermometerSetup.cs",
+   "sha256": "75c7210ef7ed826b02548d548a2b581840e998cf939b2632d9edea6a5c8d5d36",
+   "size": 3333,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Editor/ThermometerSetup.cs.meta",
+   "sha256": "e0d2e07bdef9969c82e614deec5666e31cc94036c6ade25aec36e49acc954add",
+   "size": 59,
    "group": "project_owned",
    "lfs": false
   },
@@ -18364,8 +18462,8 @@
   },
   {
    "path": "unity/Assets/Prefabs/Equipment/patient_folder.prefab",
-   "sha256": "f95e479d25b0a62c59993c9dc6bb5b0654554aa6f3a848b0363255cd889aa960",
-   "size": 37465,
+   "sha256": "e183f8956a3224dfca67736376c78b1e67929cf37b7e33305ddad379fe0d3720",
+   "size": 38538,
    "group": "project_owned",
    "lfs": false
   },
@@ -21591,8 +21689,8 @@
   },
   {
    "path": "unity/Assets/Scenes/Corridor.unity",
-   "sha256": "2f2cf275b6c47f72a41ca72423c27f4edc651229999c09fd68101b46a5d3584a",
-   "size": 2951572,
+   "sha256": "ef1c8c2fc2ced09cda554332fb0ebd5a2a185c82a5f521dce15745c43bca0e23",
+   "size": 2951756,
    "group": "project_owned",
    "lfs": false
   },
@@ -21668,8 +21766,8 @@
   },
   {
    "path": "unity/Assets/Scenes/OT.unity",
-   "sha256": "6bce5580cea3aba183befebd1e5f26bc7d4130efae3efb60386440fb1aa6f58d",
-   "size": 549195,
+   "sha256": "04f4bf19284758b1f62d7410188ae85ce11a51c6286616f4e9b3f35bc75ed819",
+   "size": 551669,
    "group": "project_owned",
    "lfs": false
   },
@@ -21689,8 +21787,8 @@
   },
   {
    "path": "unity/Assets/Scenes/PatientBay.unity",
-   "sha256": "713033b09966b2535690697c5e05d9760838650e7b0e171a7eb1f7ea93db68dc",
-   "size": 1248754,
+   "sha256": "e79f9a337028f4df0b883e73f3a968f8a4815c1be3eee157c43f06e66e0f2ec5",
+   "size": 1282647,
    "group": "project_owned",
    "lfs": false
   },
@@ -22123,8 +22221,8 @@
   },
   {
    "path": "unity/Assets/Scenes/Sys_Core.unity",
-   "sha256": "2c4d0a7ed990658faa4f83afdef62a932969217ef14312b321cacb18467ac657",
-   "size": 13979,
+   "sha256": "61fdee209329705a397a7c09eef9e897bc4088187017146f98ac6e41f477e889",
+   "size": 15296,
    "group": "project_owned",
    "lfs": false
   },
@@ -22159,6 +22257,20 @@
   {
    "path": "unity/Assets/Scripts/ActionEmitters/ActionEmitter.cs.meta",
    "sha256": "2b2102c25a0ef951d8546f9aef27f114670b18113874bbc1bbba2224ee39b3fd",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/ActionEmitters/ContactActionEmitter.cs",
+   "sha256": "6666704783695c3d608982da37115d757576790091825d2159173425bfced7a0",
+   "size": 3171,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/ActionEmitters/ContactActionEmitter.cs.meta",
+   "sha256": "c381e43bd5aa4ece7da72ebc9a0b23703b51a99bfc9f676a5233cbc0a3d07139",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -22312,8 +22424,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Audio/VoicePlayer.cs",
-   "sha256": "e3cf5097e1b1d1844ed84b4e644ad5070c1811297d5b842a903115fe3a1b6712",
-   "size": 6621,
+   "sha256": "1da79ec62fe7687451b6264c4197e3f3eee414168d9d8c6c569fef7caa5c5aeb",
+   "size": 9334,
    "group": "project_owned",
    "lfs": false
   },
@@ -22480,8 +22592,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Boot/SwingDoor.cs",
-   "sha256": "056fbd6940113bd2ded0dcf4db017872d616240ae10c56081672aa475712f57c",
-   "size": 5000,
+   "sha256": "b5189a1af69a4fd7396e448c553a1a4c357bf7ee6d8ab3c3c7fe0f882b3cb9b3",
+   "size": 5834,
    "group": "project_owned",
    "lfs": false
   },
@@ -22899,6 +23011,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Scripts/Records/RecordsWorkstation.cs",
+   "sha256": "35b13b11e71fef778de04826b981f7c8e8ec312c1702f49aab23095d96deb3e3",
+   "size": 2801,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Records/RecordsWorkstation.cs.meta",
+   "sha256": "f5c4c07e5ce7e8c08112b59dfd4cabc26ef399521678de6bf0a8de621619458f",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Scripts/Sync.meta",
    "sha256": "33d95ba28d6915b9233f7660e251cfbe0e39a8338bbd6a7bbcd52099f73a0155",
    "size": 172,
@@ -23123,6 +23249,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Scripts/UI/ClinicalPanelStation.cs",
+   "sha256": "c99e639cb4e44b3a36ba85be10416ad6cf756cfee4a401dc0dc9e4a1da9228c0",
+   "size": 3310,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/UI/ClinicalPanelStation.cs.meta",
+   "sha256": "cf148ae1f680790c27d14dcfda1c32126b3ab3e5330626ebe86bd1da70573189",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Scripts/UI/Debrief.meta",
    "sha256": "c878c422e3d23dbe2f4543caf699cccb19c6430c2b28c9127b0ab7047781b325",
    "size": 172,
@@ -23159,8 +23299,8 @@
   },
   {
    "path": "unity/Assets/Scripts/UI/Debrief/DebriefView.cs",
-   "sha256": "0388fe7f3846805f2bd2ded6720a0d97067da39da5dc3761f90114ea32378e05",
-   "size": 10251,
+   "sha256": "8a5cd68ef3a0146553efd9122fb7dbb62192310f91922b1c2590d9765b360eef",
+   "size": 10452,
    "group": "project_owned",
    "lfs": false
   },
@@ -23382,6 +23522,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Scripts/Views/CameraHudAnchor.cs",
+   "sha256": "aa65eb37de7943e6f3322594ab93ba9bb533a77675e251a27855d05f174eda63",
+   "size": 540,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/CameraHudAnchor.cs.meta",
+   "sha256": "ae8a8feee12d44708b6c3312016aeba2b3ac278ba3430cf88a9d1c75167f5056",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Scripts/Views/ClinicalPanelsInstaller.cs",
    "sha256": "2b21d72b94614f6dee06866869ecb8c360be0556d6e783a69deb510d38edf77b",
    "size": 6058,
@@ -23439,8 +23593,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/DiagnosticWaitOverlay.cs",
-   "sha256": "83a17cc1a8dc49100142b25d80710f02afa1a2218e552a945fe47daadaf98cdf",
-   "size": 6814,
+   "sha256": "0c9c84e0dabf788826c05bcf32d316999d662065ff2ea6ec6ed02bde9a774a2b",
+   "size": 6942,
    "group": "project_owned",
    "lfs": false
   },
@@ -23537,8 +23691,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/EquipmentSurfaceView.cs",
-   "sha256": "f61699f396e7b6584bc92b55005a9ac7d72cd32bcfeb7d3599fd9274536c358d",
-   "size": 1684,
+   "sha256": "279b252e19250034e5fd801565ea82be6dad2384b376e9eddabdd31b8c51a708",
+   "size": 1971,
    "group": "project_owned",
    "lfs": false
   },
@@ -23621,8 +23775,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/IdentityStatusView.cs",
-   "sha256": "45477a219d10977786933fd3d21b60131c74fd357652a0e2a15e68fd2c33f1ec",
-   "size": 5738,
+   "sha256": "bb986e66aeb6c63ddf90c6af70e505d45769ef0842b1eae591545053a9a30612",
+   "size": 6697,
    "group": "project_owned",
    "lfs": false
   },
@@ -23691,14 +23845,42 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/NurseSubtitles.cs",
-   "sha256": "8a39a3ad674aa9a91819271d2edcee6cfb280418250264341d16b85afae93646",
-   "size": 6549,
+   "sha256": "db29724770a93520e4f454336ee374c2e70a1be9ad89aecf3cc6cf0685b1d954",
+   "size": 6969,
    "group": "project_owned",
    "lfs": false
   },
   {
    "path": "unity/Assets/Scripts/Views/NurseSubtitles.cs.meta",
    "sha256": "a4c363c16deaa829e0e0868309df63d7176d2a5957d922cc7bad4d9c60876793",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/NurseVisitActor.cs",
+   "sha256": "a3edeb59a4be28d04cbdaa47197c606ff3a1a12a053faae367c98f325793c32a",
+   "size": 10210,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/NurseVisitActor.cs.meta",
+   "sha256": "967abb82f86b4249d5f459640a497494fc3bbe1bf3760a1d4dc051c108cfc292",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/NurseWristbandController.cs",
+   "sha256": "f390e32feda88eb40e36dd29b91d87e655e82c4630c89e12dceab2746c1b1712",
+   "size": 19420,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/NurseWristbandController.cs.meta",
+   "sha256": "dbe04fb216dde408b3bf91d3d32858ee53905790d67505e319a5a8ec7238ad20",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -23719,8 +23901,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/PatientIdleView.cs",
-   "sha256": "d7d0145b08328d4c91984abf8fad2a5b28192f3d981bd169c5bfbd9d2c2a7d17",
-   "size": 9579,
+   "sha256": "d8c1cd8f57d18ceda5a83ca9f586ac5d17053a7833b35792b777007e0420fe6f",
+   "size": 9618,
    "group": "project_owned",
    "lfs": false
   },
@@ -23733,8 +23915,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/PatientMotion.cs",
-   "sha256": "481b4b6753d55691e64b1c254cf3e9201e8c0689ca9f45b326c69db37a178b8b",
-   "size": 9156,
+   "sha256": "ea77db979ff3808357de511d577318a1164ce716e68158069ecb7033c0b45ca1",
+   "size": 9228,
    "group": "project_owned",
    "lfs": false
   },
@@ -23761,8 +23943,8 @@
   },
   {
    "path": "unity/Assets/Scripts/Views/PatientTransportView.cs",
-   "sha256": "00812575b9820ebfb0ea36fd387cbf9ed6ba0620817b01343276f010537551da",
-   "size": 16465,
+   "sha256": "68547b550f08b0fc9ae65ce0c0a61b2f8473f880fdab270d3da422bb73458b4a",
+   "size": 16790,
    "group": "project_owned",
    "lfs": false
   },
@@ -23839,6 +24021,20 @@
   {
    "path": "unity/Assets/Scripts/Views/SensorCableView.cs.meta",
    "sha256": "66a3a7f7fcacc87bf57031ff6b7f01a94cfded6eb414e672a45703064802bed1",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/SessionPresentation.cs",
+   "sha256": "e0c8dcc97caf458f77930b07333e58a926147fa44ce09f5210569b2a4db34744",
+   "size": 4324,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Scripts/Views/SessionPresentation.cs.meta",
+   "sha256": "9fb1649cbfce3fb4f3a07e9397af91442dc4e688f78288a150bd8c4cc8bac425",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -24321,8 +24517,8 @@
   },
   {
    "path": "unity/Assets/Scripts/XR/WorldUiRaycaster.cs",
-   "sha256": "b1b234e2fc3b1df930e081b8ef43736c9224d4b6332f2d2fabd0d4666b1121f0",
-   "size": 730,
+   "sha256": "3f60b527c0bc1fa9aef1ffe2511bcc818abcedf5c372f519b1c56e35e0653023",
+   "size": 853,
    "group": "project_owned",
    "lfs": false
   },
@@ -24873,6 +25069,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/EditMode/FolderBuilderTests.cs",
+   "sha256": "69591d2f41a68350b366aa513ef83044da7bb6f9deb339e7c981d526b90cca23",
+   "size": 6406,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/EditMode/FolderBuilderTests.cs.meta",
+   "sha256": "29ebd856cdad3d38ca744532c0a2d2e003afef7daa9b39b743e7475a0972a470",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/EditMode/FollowUpEncounterTests.cs",
    "sha256": "4ff63918b304fbba51afd00159570724e4f014824ea7b96fdf10b49ed4037317",
    "size": 5158,
@@ -25258,6 +25468,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/PlayMode/ClinicalPanelSceneTests.cs",
+   "sha256": "601a1c77acac3cc2d0f19cfe3fbf0d94ff16f22fd47b0d0a47b90739ff2d0745",
+   "size": 10647,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ClinicalPanelSceneTests.cs.meta",
+   "sha256": "08a27edc253209fafa953a6e392cc878198044bdbc40ca06073fc602ee1f6fdf",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/PlayMode/ClinicalScenesTests.cs",
    "sha256": "28e90a5a230915fcbce18b15d64bbab04b8fea02b842a403c5f3fed4bba55347",
    "size": 9767,
@@ -25398,6 +25622,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/PlayMode/EnvironmentIntegrationTests.cs",
+   "sha256": "87ad19d838e2cad53e5c1dafd32f1dffb3aa2eaf8a5133feae782eea958d4de6",
+   "size": 3552,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/EnvironmentIntegrationTests.cs.meta",
+   "sha256": "1dcbf6bc422a6dbf8d2579bf4e3947e400242ca9450fbce5d51092a9733241d5",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/PlayMode/EquipmentDropTests.cs",
    "sha256": "08e854d27371e07d9589aeee69e9e09751fcb66aebbf8c8889e6a14729245927",
    "size": 5580,
@@ -25469,8 +25707,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/GreyVinylFloorWalkTests.cs",
-   "sha256": "a7f1a958da5addfe3d92b70154510cc92dc86acf3266b50dfeeab00c78253c70",
-   "size": 1982,
+   "sha256": "4a587156ff9d96ce1146cc00bc1f944c8347fd4ee8907d292196f75558c37c0d",
+   "size": 2023,
    "group": "project_owned",
    "lfs": false
   },
@@ -25538,6 +25776,20 @@
    "lfs": false
   },
   {
+   "path": "unity/Assets/Tests/PlayMode/ModeledDoorTests.cs",
+   "sha256": "72aad01fed9dc05995eefc4f9a6b0cae7a453300ad47c7adcf2c8e98d1c3cb5c",
+   "size": 2963,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ModeledDoorTests.cs.meta",
+   "sha256": "5d87e79e6f2fdce2e1e5fa165fedacf8d7ac065d231febb417be60694b560ce8",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
    "path": "unity/Assets/Tests/PlayMode/MonitorCaptureTools.cs",
    "sha256": "0403aeacd3f17bd6e458dd8d0db437d07890d8b2c503a6ff430658c58acf5068",
    "size": 7398,
@@ -25581,14 +25833,28 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/MpfbPatientTests.cs",
-   "sha256": "ecd01d92f5018681d47f9d703d999c89045e443870677ef46b11d6ffe80699a6",
-   "size": 8036,
+   "sha256": "4bcb47d1ebf0690a610fbd5826f8c2dbfe5c736e7456a17a5a71a12b0a98f05a",
+   "size": 8153,
    "group": "project_owned",
    "lfs": false
   },
   {
    "path": "unity/Assets/Tests/PlayMode/MpfbPatientTests.cs.meta",
    "sha256": "aabec80fbacca3d3011fb8ce6e8dd8b1cf859fcac0cc932084e5f7b4b4bdd479",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/NurseVisitSceneTests.cs",
+   "sha256": "0d194f0d86d1c0cd1904683c1aa4b00492dc132d41ff628ef624d7c1de1e526b",
+   "size": 19015,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/NurseVisitSceneTests.cs.meta",
+   "sha256": "46d56013b9bd8cb15e28f4a013feea8b49e102268e7a6304e31f7fb9a25a8dfb",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -25623,8 +25889,8 @@
   },
   {
    "path": "unity/Assets/Tests/PlayMode/PatientTransportSceneTests.cs",
-   "sha256": "a00a7d07f0a66c0a153717020b36aa26eac3e7517929822b280464d9797f2fc0",
-   "size": 18949,
+   "sha256": "524f23fc3a5c9cb496a2700ea7b847fcbfcd347e5d535973abd66ccb959a451b",
+   "size": 19595,
    "group": "project_owned",
    "lfs": false
   },
@@ -25659,6 +25925,20 @@
   {
    "path": "unity/Assets/Tests/PlayMode/QuestLocomotionTests.cs.meta",
    "sha256": "010752e29d1cc1bc96aace91084181b9ce1fe5626f2f3ea8a4f3e97ded2c2566",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/RecordsWorkstationSceneTests.cs",
+   "sha256": "7137a11dd48102f277062d2251372e2e9292d70f43d395f20a46acc2eb710805",
+   "size": 12286,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/RecordsWorkstationSceneTests.cs.meta",
+   "sha256": "4844b8e134c77d466c5de6cb2bd913baeb9d16fcfb471b51391e95242d0b3798",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -25701,6 +25981,20 @@
   {
    "path": "unity/Assets/Tests/PlayMode/RoomTransitionTests.cs.meta",
    "sha256": "f32d9e6247bc1852bff5788b0a6338e857d1c133bed655ba3b777ff5b9a81367",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/SessionPresentationSceneTests.cs",
+   "sha256": "3842baaa460c4a7969195050eeae8c1bf9a36bb0249e96492472dd3a1e0993c6",
+   "size": 15954,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/SessionPresentationSceneTests.cs.meta",
+   "sha256": "bafd13c9969f5df2ccb3aafd42789bb7ece3a36e1e895c6cc2937aa0577afed0",
    "size": 59,
    "group": "project_owned",
    "lfs": false
@@ -25841,6 +26135,20 @@
   {
    "path": "unity/Assets/Tests/PlayMode/TestHostHygiene.cs.meta",
    "sha256": "7471de7146be38e8068c9ea4410fd3c9d15b454ea6e8e9d3ca6e3fc9c5dcb874",
+   "size": 59,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ThermometerTests.cs",
+   "sha256": "b545362aa5e669ee494267754fa56fd19448bfc4a8f2be4cff3f4fc9838198a2",
+   "size": 6461,
+   "group": "project_owned",
+   "lfs": false
+  },
+  {
+   "path": "unity/Assets/Tests/PlayMode/ThermometerTests.cs.meta",
+   "sha256": "0c3bc81259cb62de6f1f5bcd8950d29d21a2ffca3bbd041f9c70f9e9ec0767b3",
    "size": 59,
    "group": "project_owned",
    "lfs": false

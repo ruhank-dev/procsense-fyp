@@ -98,7 +98,8 @@ namespace ProcSense.EditorTools
                     foreach (var plate in arch.GetComponentsInChildren<Transform>(true).Where(x => x.name == "Door identity plate"))                    // the identity plate sits below the vision panel, not across it
                     { var lp = plate.localPosition; lp.y = variant == "ot" || variant == "lab" ? .90f : 1.12f; plate.localPosition = lp; }
                     Add("door_frame", arch, "Door frame (modelled)", mats, true);
-                    Add("door_leaf_" + variant, leaf.parent, "Door leaf (modelled)", mats, false);
+                    var model = Add("door_leaf_" + variant, leaf.parent, "Door leaf (modelled)", mats, false);
+                    DoorInteractionRepair.Reconcile(arch, leaf, model);
                     doors++;
                 }
                 EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);

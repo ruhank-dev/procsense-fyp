@@ -14,6 +14,7 @@ namespace ProcSense.VR.Views
         public Vector3 BayStart = new Vector3(1.35f,0,-.8f);
         public Vector3 CorridorClear = new Vector3(4.25f,0,-.8f);
         public Transform BedsidePatient;
+        public Transform[] AdditionalBedsideVisuals = System.Array.Empty<Transform>();
         public TransportPresentation Presentation { get; }=new TransportPresentation();
         public TransportActor Actor { get; private set; }
         public string Status { get; private set; }="";
@@ -101,7 +102,7 @@ namespace ProcSense.VR.Views
             if(!Actor.Agent.enabled || !Actor.Agent.isOnNavMesh)return;
             var agent=Actor.Agent;
             foreach(var door in FindObjectsByType<SwingDoor>())
-                door.SetNpcPassage(door.Connection=="BayCorridor" && ((_phase!=TransportVisualPhase.Returning&&(_routeLeg==0||StaffNeedsBayDoor()))||(_phase==TransportVisualPhase.Returning&&_routeLeg==2)));
+                door.SetNpcPassage(this,door.Connection=="BayCorridor" && ((_phase!=TransportVisualPhase.Returning&&(_routeLeg==0||StaffNeedsBayDoor()))||(_phase==TransportVisualPhase.Returning&&_routeLeg==2)));
             if(Time.unscaledTime>=_retry)
             {
                 _retry=Time.unscaledTime+.8f;
@@ -137,7 +138,7 @@ namespace ProcSense.VR.Views
             else { AtDoor=true; Status="At door; awaiting Core arrival"; }
         }
 
-        private void ReleaseBayPassage() { foreach(var door in FindObjectsByType<SwingDoor>())if(door.Connection=="BayCorridor")door.SetNpcPassage(false); }
+        private void ReleaseBayPassage() { foreach(var door in FindObjectsByType<SwingDoor>())if(door.Connection=="BayCorridor")door.SetNpcPassage(this,false); }
         private bool StaffNeedsBayDoor() => new[]{Actor.Nurse,Actor.Doctor}.Any(t=>t!=null&&t.gameObject.activeInHierarchy&&t.position.x<3.4f);
         private void StopStaff()
         {
@@ -220,6 +221,8 @@ namespace ProcSense.VR.Views
             {
                 var hidden=new HashSet<Renderer>();
                 if(BedsidePatient!=null) foreach(var renderer in BedsidePatient.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
+                foreach(var root in AdditionalBedsideVisuals ?? System.Array.Empty<Transform>())
+                    if(root!=null) foreach(var renderer in root.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
                 foreach(var sensor in FindObjectsByType<ProcSense.VR.ActionEmitters.SensorAttachment>().Where(s=>s.Attached))
                     foreach(var renderer in sensor.GetComponentsInChildren<Renderer>(true))hidden.Add(renderer);
                 foreach(var renderer in _bedside.Keys.Where(r=>r!=null&&!hidden.Contains(r)).ToArray())
@@ -233,7 +236,7 @@ namespace ProcSense.VR.Views
         {
             if(Actor!=null)Destroy(Actor.gameObject); Actor=null;
             if(_sequence!=null)_sequence.Restore();
-            foreach(var door in FindObjectsByType<SwingDoor>())door.SetNpcPassage(false);
+            foreach(var door in FindObjectsByType<SwingDoor>())door.SetNpcPassage(this,false);
             SetBedside(true); _door=null; _sequence=null; _destination=_mode="";
             _phase=TransportVisualPhase.Bedside; _routeLeg=0; _returnFromInside=AtDoor=HiddenInside=false; _passage=0; Status="";
         }

@@ -101,7 +101,10 @@ namespace ProcSense.VR.UI.Debrief
         {
             if (Facts == null) return;
             var s = Host.Session;
-            _headline.text = DebriefText.Headline(Facts);
+            string headline = DebriefText.Headline(Facts);
+            _headline.text = Host.Ended && Facts.EndState.Length == 0
+                ? headline.Replace("Session not finished", "Session ended before a clinical outcome")
+                : headline;
 
             var ordered = DebriefText.Ordered(Facts);
             int collapsed = ordered.Count(DebriefText.Collapsed);

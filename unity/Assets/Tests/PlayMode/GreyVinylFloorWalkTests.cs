@@ -17,8 +17,8 @@ namespace ProcSense.Tests.PlayMode
             try
             {
                 yield return SceneManager.LoadSceneAsync("PatientBay");
-                for (var i = 0; i < 10; i++) yield return null;
-                var floor = Object.FindObjectsByType<MeshRenderer>(FindObjectsInactive.Include).Single(r => r.name == "Floor");
+                yield return TestHostHygiene.WaitForHost(50);
+                var floor = Object.FindObjectsByType<MeshRenderer>(FindObjectsInactive.Include).Single(r => r.name == "Floor" && r.gameObject.scene.name == "PatientBay");
                 Assert.That(floor.sharedMaterial.name, Is.EqualTo("PatientBay grey vinyl"));
                 Assert.That(floor.lightmapIndex, Is.GreaterThanOrEqualTo(0), "the floor receives the baked lighting");
                 foreach (var p in new[] { new Vector2(-2.2f, -1.7f), new Vector2(0, 0), new Vector2(2.2f, 1.7f), new Vector2(1.1f, 1.6f) })

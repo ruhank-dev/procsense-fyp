@@ -9,8 +9,10 @@ namespace ProcSense.VR.Views
     /// To pose him by hand: set <see cref="gazeOffset"/> (eye direction, -1..1), <see cref="headEuler"/>, <see cref="blinkHold"/> (keeps the eyes shut) or call <see cref="SetBoneEuler"/> for any bone by name; <see cref="autoMotion"/> off freezes the automatic part.
     /// </summary>
     [DisallowMultipleComponent]
+    [DefaultExecutionOrder(-20)]
     public sealed class PatientMotion : MonoBehaviour
     {
+        public Transform Head => head;
         [Header("Automatic")]
         public bool autoMotion = true;
         [Min(4)] public float breathsPerMinute = 14f;

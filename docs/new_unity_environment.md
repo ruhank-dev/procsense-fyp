@@ -17,7 +17,7 @@ Everything here was checked against the repository on the day it was written. Wh
 | Unity version | **6000.5.10f1** (revision `3bd4f66ad299`) |
 | Render pipeline | **URP 17.5.0** (Universal Render Pipeline). Quest and desktop share one URP asset in `unity/Assets/Settings`. |
 | Is there an HDRP project? | **No.** The repository contains exactly one Unity project (`unity/`, URP). A separate HDRP project was discussed, but none exists in the repository or on the owner's machines, so there is nothing to preserve or to keep apart. Two older experiment copies of the URP project (`D:\ProcSenseExperiments\A_urp_original`, `B_urp_enhanced`) live outside the repository and are not part of this handoff. |
-| Current working baseline | Branch **`overhaul/urp-integration`** (the visual overhaul: PBR materials, baked sunlight, Rocketbox characters). `main` is the older baseline. |
+| Current working baseline | Branch **`main`** includes the visual overhaul: PBR materials, baked sunlight and Rocketbox characters. Develop on a feature branch from main. |
 | Scenes | `Boot` (first in the build), `Sys_Core` (simulation services), `MainMenu`, `PatientBay`, `Corridor` (the corridor **includes the reception desk and waiting area**; there is no separate Reception scene), `OT` (operating theatre), `Recovery`, `DevOnly` (Editor XR simulator), plus review scenes `EquipmentPilotReview` and `MPFBPatientReview`. |
 | Which scene first? | Use the menu **ProcSense → Open Patient Bay**: it opens `PatientBay` together with `Sys_Core` and `DevOnly` and places the Scene view in the room. For Corridor/OT use the same menu group. |
 | Size to expect | Clone about 2.5 GB (history + LFS), working copy about 1.7 GB of assets, first Unity import adds about 10 GB in `unity/Library` (git-ignored, regenerated). Keep 25 GB free. |
@@ -176,7 +176,7 @@ The repository is **public**, so only redistributable files are kept in it. Ever
    git lfs install
    git clone https://github.com/ruhank-dev/procsense-fyp.git
    cd procsense-fyp
-   git checkout overhaul/urp-integration
+   git checkout main
    git lfs pull
    ```
    Then `git status` must say "nothing to commit, working tree clean".
@@ -198,7 +198,7 @@ The repository is **public**, so only redistributable files are kept in it. Ever
    | `-Offline` | Skip every network step |
 7. **Open the project:** Unity Hub → **Add → Add project from disk** → choose the `unity` folder inside the clone → open it with 6000.5.10f1. The first open imports about 4,000 files and restores packages (20–40 minutes). If Unity offers "Enter Safe Mode" because of a compile error, stop and see section G.
 8. **Check the render pipeline:** *Edit → Project Settings → Graphics*: the Default Render Pipeline slot shows the URP asset (no "None"). *Window → Rendering → Lighting*: Lightmapping Settings show **Progressive GPU/CPU**, Mixed lighting **Shadowmask**.
-9. **Check lighting and baked data:** open `Assets/Scenes/PatientBay.unity`. The folder `Assets/Scenes/PatientBay` must contain `Lightmap-0…5_comp_light.exr`, `LightingData.asset` and four `ReflectionProbe-*.exr` (real files of 0.2–27 MB, not 130-byte text pointers; section G if they are). Lighting window → "Baked Lightmaps" lists 6 lightmaps.
+9. **Check lighting and baked data:** open `Assets/Scenes/PatientBay.unity`. The folder `Assets/Scenes/PatientBay` must contain `Lightmap-0…7_comp_light.exr`, `LightingData.asset` and four `ReflectionProbe-*.exr` (real files, not 130-byte text pointers; section G if they are). The connected-room bake contains 8 lightmaps.
 10. **Open the main scene:** menu **ProcSense → Open Patient Bay**. You should see the bay with the window, sunlight streaks on the floor, the clothed patient on the bed and the city outside.
 11. **Run:** press **Play**. WASD moves through the simulator, right mouse looks. (Quest headset play through Link: `unity/README.md`.)
 12. **Quest development** (Sannan): section F.
@@ -246,7 +246,7 @@ Output: `artifacts\unity\desktop\ProcSense-dev.exe`. Close the Editor first.
 6. Not verified by the author (no headset was available): frame rate, comfort, lighting appearance on the Quest 2 panel. These are open items for Sannan (item DC-12 in the testing file).
 
 ### Working in the shared project (Moiz and everyone)
-* Work on your own branch, merge the latest `overhaul/urp-integration` into it before pushing, never force-push ([TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md)).
+* Work on your own branch, merge the latest `main` into it before pushing, never force-push ([TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md)).
 * Commit `.meta` files together with their assets (Unity creates them next to every file); never delete a `.meta` by hand. Never commit `Library/`, `Temp/`, `Logs/`, `UserSettings/`.
 * Scenes and prefabs are text YAML with a merge driver (`unityyamlmerge`); two people editing the **same scene** still conflict, so agree who edits which scene.
 * Baked lighting (`Lightmap-*.exr`, `LightingData.asset`, reflection probes) is stored with Git LFS: after a rebake commit the whole scene folder together. A rebake of the three connected rooms takes about 11–25 minutes (`powershell -File unity\Tools\Rooms\light_cycle.ps1 -Tag mytag`). Do not commit a bake you did not mean to change. LFS has a free quota (1 GiB storage and bandwidth per month on GitHub Free): avoid committing repeated bakes.

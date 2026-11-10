@@ -51,6 +51,7 @@ namespace ProcSense.VR.Views
         protected override void Update()
         {
             BindActions();
+            if (_appliedHost == null || _appliedHost.Ended) { if (Canvas != null) Canvas.gameObject.SetActive(false); return; }
             base.Update();
             // the time-skip note stays for the content's wait (content/diagnostics/diagnostics.json wait_overlay.seconds, p0-diagnostic-transitions-s06), then the card shows the state again
             if (AdvanceText.Length > 0 && Time.unscaledTime > _advanceUntil) { AdvanceText = ""; RenderNow(); }

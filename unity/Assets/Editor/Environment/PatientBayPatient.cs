@@ -26,7 +26,13 @@ namespace ProcSense.EditorTools
         {
             var sc = EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
             var old = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include).FirstOrDefault(t => t.name == "MPFB patient");
-            foreach (var n in new[] { "Rocketbox patient" }) { var o = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include).FirstOrDefault(t => t.name == n); if (o != null) Object.DestroyImmediate(o.gameObject); }
+            foreach (var n in new[] { "Rocketbox patient" })
+            {
+                var o = Object.FindObjectsByType<Transform>(FindObjectsInactive.Include).FirstOrDefault(t => t.name == n);
+                if (o != null && o.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>(true).Length > 0)
+                    throw new System.InvalidOperationException("Preserve the fitted patient and physical interaction anchors; edit its pose instead of replacing it.");
+                if (o != null) Object.DestroyImmediate(o.gameObject);
+            }
             if (old == null) { Debug.LogError("[PatientBayPatient] MPFB patient not found"); return; }
             var oldBody = old.GetComponentsInChildren<SkinnedMeshRenderer>(true).Where(r => r.name.EndsWith(".body")).Select(r => r.bounds).ToList(); var tb = oldBody[0]; foreach (var b in oldBody.Skip(1)) tb.Encapsulate(b);
             Debug.Log($"[PatientBayPatient] old patient parent={(old.parent ? old.parent.name : "-")} pos={old.position} rot={old.eulerAngles} bounds center={tb.center} size={tb.size}");

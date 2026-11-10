@@ -36,13 +36,14 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(animator.avatar.isValid && animator.avatar.isHuman);
             Assert.AreEqual(1, Camera.allCamerasCount);
             var body = patient.GetComponentsInChildren<SkinnedMeshRenderer>().Single(r => r.name.Contains(".body"));
-            var band = patient.GetComponentsInChildren<Transform>().Single(t => t.name == "Patient wristband");
-            var forearm = band.parent.parent;
+            // The retained rig still deforms correctly; physical band/sensor following belongs to the visible-patient regression.
+            var wrist = patient.GetComponentsInChildren<Transform>().Single(t => t.name == "hand_l");
+            var forearm = wrist.parent;
             Assert.That(forearm.name, Does.StartWith("lowerarm_"));
             var before = new Mesh();
             var after = new Mesh();
             var initial = forearm.localRotation;
-            var position = band.position;
+            var position = wrist.position;
             int actions = SimulationHost.Instance.Session.Log.Count;
             try
             {
@@ -51,7 +52,7 @@ namespace ProcSense.Tests.PlayMode
                 forearm.localRotation = initial * Quaternion.Euler(10, 0, 0);
                 yield return null;
                 body.BakeMesh(after);
-                Assert.That(Vector3.Distance(position, band.position), Is.GreaterThan(.005f));
+                Assert.That(Vector3.Distance(position, wrist.position), Is.GreaterThan(.005f));
                 Assert.That(before.vertices.Zip(after.vertices, Vector3.Distance).Max(), Is.GreaterThan(.000001f));
                 Assert.AreEqual(actions, SimulationHost.Instance.Session.Log.Count);
                 var gown = GameObject.Find("Draped patient gown").GetComponent<SkinnedMeshRenderer>();
