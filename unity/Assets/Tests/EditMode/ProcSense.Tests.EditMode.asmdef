@@ -1,7 +1,7 @@
 {
   "name": "ProcSense.Tests.EditMode",
   "rootNamespace": "ProcSense.Tests.EditMode",
-  "references": ["ProcSense.Core", "ProcSense.VR", "ProcSense.Editor", "Unity.XR.Interaction.Toolkit", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+  "references": ["ProcSense.Core", "ProcSense.VR", "ProcSense.Editor", "Unity.XR.Interaction.Toolkit", "Unity.RenderPipelines.Core.Runtime", "Unity.RenderPipelines.Universal.Runtime", "Unity.XR.OpenXR", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
   "includePlatforms": ["Editor"],
   "overrideReferences": true,
   "precompiledReferences": ["nunit.framework.dll"],

@@ -56,6 +56,21 @@ namespace ProcSense.VR.Views
             public int Index;
             public string Name;
             public float Rest;
+            public int Kind;   // precomputed from Name: 1 breath, 2 blink, 3 look right-ward, 4 look left-ward, 5 up, 6 down, 0 none
+        }
+
+        private static int KindOf(string name)
+        {
+            switch (name)
+            {
+                case BreathShape: return 1;
+                case "eyeBlinkLeft": case "eyeBlinkRight": return 2;
+                case "eyeLookOutLeft": case "eyeLookInRight": return 3;
+                case "eyeLookInLeft": case "eyeLookOutRight": return 4;
+                case "eyeLookUpLeft": case "eyeLookUpRight": return 5;
+                case "eyeLookDownLeft": case "eyeLookDownRight": return 6;
+                default: return 0;
+            }
         }
 
         public float Elapsed => _elapsed;
@@ -118,7 +133,7 @@ namespace ProcSense.VR.Views
                 {
                     string name = mesh.GetBlendShapeName(i);
                     bool selected = breath ? name == BreathShape : name.StartsWith("eyeBlink", StringComparison.Ordinal) || name.StartsWith("eyeLook", StringComparison.Ordinal);
-                    if (selected) _shapes.Add(new Shape { Renderer = renderer, Index = i, Name = name, Rest = renderer.GetBlendShapeWeight(i) });
+                    if (selected) _shapes.Add(new Shape { Renderer = renderer, Index = i, Name = name, Kind = KindOf(name), Rest = renderer.GetBlendShapeWeight(i) });
                 }
             }
         }
@@ -159,17 +174,17 @@ namespace ProcSense.VR.Views
             {
                 if (shape.Renderer == null) continue;
                 float value;
-                switch (shape.Name)
+                switch (shape.Kind)
                 {
-                    case BreathShape: value = breath * 100; break;
-                    case "eyeBlinkLeft": case "eyeBlinkRight": value = blink * 100; break;
-                    case "eyeLookOutLeft": case "eyeLookInRight": value = Mathf.Max(0, horizontal); break;
-                    case "eyeLookInLeft": case "eyeLookOutRight": value = Mathf.Max(0, -horizontal); break;
-                    case "eyeLookUpLeft": case "eyeLookUpRight": value = Mathf.Max(0, vertical); break;
-                    case "eyeLookDownLeft": case "eyeLookDownRight": value = Mathf.Max(0, -vertical); break;
+                    case 1: value = breath * 100; break;
+                    case 2: value = blink * 100; break;
+                    case 3: value = Mathf.Max(0, horizontal); break;
+                    case 4: value = Mathf.Max(0, -horizontal); break;
+                    case 5: value = Mathf.Max(0, vertical); break;
+                    case 6: value = Mathf.Max(0, -vertical); break;
                     default: continue;
                 }
-                shape.Renderer.SetBlendShapeWeight(shape.Index, Mathf.Lerp(shape.Rest, 100, value / 100));
+                CharacterPerfBlend.Set(shape.Renderer, shape.Index, Mathf.Lerp(shape.Rest, 100, value / 100));
             }
             if (head != null)
                 head.localRotation = _headRest * Quaternion.Euler(.35f * Mathf.Sin(seconds * .37f),

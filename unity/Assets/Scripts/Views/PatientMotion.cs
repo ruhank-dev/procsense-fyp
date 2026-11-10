@@ -68,7 +68,7 @@ namespace ProcSense.VR.Views
             if (!manual.ContainsKey(t)) manual[t] = (t.localRotation, euler); else manual[t] = (manual[t].rest, euler);
         }
 
-        private void SetShape(int idx, float w) { if (face != null && idx >= 0) face.SetBlendShapeWeight(idx, Mathf.Clamp(w, 0f, 100f)); }
+        private void SetShape(int idx, float w) { if (face != null && idx >= 0) CharacterPerfBlend.Set(face, idx, Mathf.Clamp(w, 0f, 100f)); }
 
         private void LateUpdate()
         {

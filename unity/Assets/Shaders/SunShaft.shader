@@ -1,4 +1,5 @@
-// Soft atmospheric sunshaft approximation for the desktop tier (the host object carries DesktopOnly, so Quest never draws it).
+// Soft atmospheric sunshaft approximation (desktop and Quest; the host object's DesktopOnly switch keeps it on Android unless a diagnostic toggle hides it).
+// Stereo-safe for single-pass instanced / Vulkan multiview (P3-PRF-11): the instance id and the eye index are carried, so each eye sees the beam at its own position.
 // Several overlapping prisms per window opening (irregular widths, lengths and strengths, strength in the vertex colour). Each is additive: the silhouette fades out by view angle (no hard boundary),
 // the shaft fades along its travel, and a low-frequency noise stretched ALONG the sun direction breaks the air into irregular, softly separated shafts; it drifts extremely slowly.
 // The noise is a function of world position only, so overlapping prisms agree and the floor/wall lighting (baked) is never touched. No depth texture is needed: the beam ends where the
@@ -27,19 +28,20 @@ Shader "ProcSense/Sun Shaft"
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag
+            #pragma multi_compile_instancing
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 
             CBUFFER_START(UnityPerMaterial)
                 half4 _Tint; half _Intensity; half _EdgePower; half _NoiseScale; half _NoiseAmount; half _FadeStart; float4 _ShaftDir;
             CBUFFER_END
 
-            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float2 uv : TEXCOORD0; float4 color : COLOR; };
-            struct Varyings { float4 positionCS : SV_POSITION; float3 positionWS : TEXCOORD0; float3 normalWS : TEXCOORD1; float2 uv : TEXCOORD2; float strength : TEXCOORD3; };
+            struct Attributes { float4 positionOS : POSITION; float3 normalOS : NORMAL; float2 uv : TEXCOORD0; float4 color : COLOR; UNITY_VERTEX_INPUT_INSTANCE_ID };
+            struct Varyings { float4 positionCS : SV_POSITION; float3 positionWS : TEXCOORD0; float3 normalWS : TEXCOORD1; float2 uv : TEXCOORD2; float strength : TEXCOORD3; UNITY_VERTEX_OUTPUT_STEREO };
 
             Varyings vert(Attributes i)
             {
-                Varyings o; o.positionWS = TransformObjectToWorld(i.positionOS.xyz); o.positionCS = TransformWorldToHClip(o.positionWS);
-                o.normalWS = TransformObjectToWorldNormal(i.normalOS); o.uv = i.uv; o.strength = i.color.r; return o;
+                Varyings o; UNITY_SETUP_INSTANCE_ID(i); UNITY_INITIALIZE_VERTEX_OUTPUT_STEREO(o); o.positionWS = TransformObjectToWorld(i.positionOS.xyz); o.positionCS = TransformWorldToHClip(o.positionWS);
+                o.normalWS = normalize(TransformObjectToWorldNormal(i.normalOS)); o.uv = i.uv; o.strength = i.color.r; return o;
             }
 
             float hash13(float3 p) { p = frac(p * 0.1031); p += dot(p, p.zyx + 31.32); return frac((p.x + p.y) * p.z); }
@@ -53,16 +55,22 @@ Shader "ProcSense/Sun Shaft"
 
             half4 frag(Varyings i) : SV_Target
             {
-                float3 V = normalize(GetCameraPositionWS() - i.positionWS);
-                float edge = pow(saturate(abs(dot(normalize(i.normalWS), V))), _EdgePower);            // silhouette fades smoothly, never a hard line
-                float along = smoothstep(0.0, _FadeStart + 0.001, i.uv.y) * pow(saturate(1.0 - i.uv.y), 1.5);   // a little brighter near the window, fading with distance
+                UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);                                              // GetCameraPositionWS() is this eye's position
+                float3 toCam = GetCameraPositionWS() - i.positionWS;                                      // one subtraction/length shared by the view vector and the near fade (same values as before)
+                float camDist = length(toCam);
+                float3 V = toCam / camDist;
+                float edge = pow(saturate(abs(dot(i.normalWS, V))), _EdgePower);            // silhouette fades smoothly, never a hard line
+                float along = smoothstep(0.0, _FadeStart + 0.001, i.uv.y) * (saturate(1.0 - i.uv.y) * sqrt(saturate(1.0 - i.uv.y)));   // a little brighter near the window, fading with distance
+                float nearFade = smoothstep(0.8, 2.6, camDist);                                          // prism walls close to the eye (close-ups, head movement) dissolve instead of showing as bars
+                // Early-out: the remaining (noise) factor is at most 1.4, so if even that cannot reach 5e-5 linear (below half an 8-bit sRGB step) the additive result is 0 anyway. Skips the 16 hashes for the near-eye and silhouette pixels.
+                float cheap = _Intensity * i.strength * edge * along * nearFade;
+                if (cheap * 1.4 < 0.00005) return half4(0, 0, 0, 1);
                 float3 d = normalize(_ShaftDir.xyz); float3 pp = i.positionWS * _NoiseScale; float al = dot(pp, d); float3 perp = pp - al * d;
                 float t = _Time.y;                                                                       // drift is a few millimetres a second: the haze changes, it does not move or pulse
                 float n1 = vnoise(perp * 2.1 + d * al * 0.22 + float3(t * 0.006, t * 0.004, t * 0.005));
                 float n2 = vnoise(perp * 4.7 - d * al * 0.35 + float3(-t * 0.004, t * 0.007, t * 0.003) + 17.3);
                 float n = n1 * 0.65 + n2 * 0.35;
                 float dens = lerp(1.0, smoothstep(0.28, 0.82, n) * 1.35 + 0.05, _NoiseAmount);
-                float nearFade = smoothstep(0.8, 2.6, distance(GetCameraPositionWS(), i.positionWS));      // prism walls close to the eye (close-ups, head movement) dissolve instead of showing as bars
                 float3 col = _Tint.rgb * _Intensity * i.strength * dens * edge * along * nearFade;
                 return half4(col, 1);
             }

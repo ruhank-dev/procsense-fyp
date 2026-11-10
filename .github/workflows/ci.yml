@@ -1,16 +1,21 @@
 name: CI
 
 # What each job guards is listed in docs/CI.md — keep that file and this one in step (INSTRUCTIONS.md section 6b).
+# One workflow, two depths (no duplicated tests): a push to a branch or a pull request runs only the jobs the CHANGE-AWARE
+# selector (tools/ci/select.py) says the changed files can affect; a push to main, a release tag, a manual run and the weekly
+# schedule run EVERYTHING (the final-integration gate). docs/qa/github_actions_pipeline.md has the full design.
 on:
   push:
-    branches: [main, 'myt1x54/**']   # the owner's branches too, so a change is checked on GitHub before it goes to main
+    branches: [main, 'myt1x54/**', 'quest-perf/**']   # the owner's and the Quest optimisation branches too, so a change is checked on GitHub before it goes to main
   pull_request:
   workflow_call:
-  workflow_dispatch:
+  workflow_dispatch:   # always the FULL suite: the pre-push hook trusts a green dispatch run of the exact commit, so a dispatch run must never be partial
+  schedule:
+    - cron: "17 3 * * 1"   # weekly, Monday 03:17 UTC: everything, so drift in tools, images or dependencies shows up without a push
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}   # a newer push to a pull request replaces its older run; every push to main is checked, none is cancelled
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}   # a newer push to a branch or pull request replaces its older run; every push to main is checked, none is cancelled
 
 permissions:
   contents: read
@@ -20,7 +25,62 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: true
 
 jobs:
+  changes:
+    # Decides which of the jobs below run. Everything runs on main, tags, schedule, manual runs and workflow_call (full = true).
+    # The selector needs PyYAML, so it runs through uv (tools/uv.lock). If tools/ci/select.py is missing or fails, everything runs: the selector can only ever remove work, never hide a failure.
+    name: Select checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      full: ${{ steps.pick.outputs.full }}
+      engine: ${{ steps.pick.outputs.engine }}
+      server: ${{ steps.pick.outputs.server }}
+      repo_checks: ${{ steps.pick.outputs.repo_checks }}
+      dependencies: ${{ steps.pick.outputs.dependencies }}
+      unity: ${{ steps.pick.outputs.unity }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: tools/uv.lock
+
+      - id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha || github.event.before }}
+          HEAD_SHA: ${{ github.sha }}
+        run: |
+          full=false
+          case "$EVENT" in schedule|workflow_call|workflow_dispatch) full=true ;; esac
+          [ "$REF" = "refs/heads/main" ] && full=true
+          case "$REF" in refs/tags/*) full=true ;; esac   # a release tag runs the whole suite (the called workflow reports the caller's event name)
+          json=""
+          if [ "$full" = "false" ]; then
+            if [ -f tools/ci/select.py ] && [ -n "$BASE_SHA" ] && ! echo "$BASE_SHA" | grep -qE '^0+$'; then
+              json=$(uv run --project tools python tools/ci/select.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
+            fi
+            [ -z "$json" ] && { echo "selector unavailable or failed; running everything"; cat select.err 2>/dev/null; full=true; }
+          fi
+          flag() { if [ "$full" = "true" ]; then echo true; else echo "$json" | jq -r ".jobs.$1 // true"; fi; }
+          {
+            echo "full=$full"
+            echo "unity=$(if [ "$full" = "true" ]; then echo true; else echo "$json" | jq -r '(.jobs.unity_compile or .jobs.unity_tests)'; fi)"
+            for j in engine server repo_checks dependencies; do echo "$j=$(flag $j)"; done
+          } | tee -a "$GITHUB_OUTPUT"
+          {
+            echo "### Check selection"
+            echo "Mode: $([ "$full" = "true" ] && echo "**full** (final-integration gate, nothing skipped)" || echo "**change-aware**")"
+            if [ "$full" = "false" ] && [ -n "$json" ]; then echo; echo '```json'; echo "$json" | jq .; echo '```'; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
   engine:
+    needs: changes
+    if: needs.changes.outputs.engine == 'true'
     # Build, unit tests and golden runs on both Linux and Windows: identical hashes on both is the determinism proof.
     name: Engine (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
@@ -98,6 +158,8 @@ jobs:
           if-no-files-found: ignore
 
   server:
+    needs: changes
+    if: needs.changes.outputs.server == 'true'
     name: Backend (FastAPI on PostgreSQL)
     runs-on: ubuntu-24.04
     timeout-minutes: 15
@@ -164,6 +226,8 @@ jobs:
           docker logs svc
 
   repo-checks:
+    needs: changes
+    if: needs.changes.outputs.repo_checks == 'true'
     name: Content, plans and project rules
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -564,6 +628,9 @@ jobs:
           uv run --project tools tools/plans/p3_plans.py --check
           uv run --project tools tools/ci/test_p3_plans.py
 
+      - name: Quest sweep converter turns headset CSVs into the results table without inventing numbers
+        run: uv run --project tools tools/ci/test_perf_sweep.py
+
       - name: AI planning graph is valid and its generated documents are up to date
         run: |
           uv run --project tools tools/plans/validate_pipeline.py
@@ -599,6 +666,8 @@ jobs:
         run: uvx check-jsonschema --builtin-schema vendor.github-workflows .github/workflows/*.yml && uvx check-jsonschema --builtin-schema vendor.dependabot .github/dependabot.yml
 
   dependencies:
+    needs: changes
+    if: needs.changes.outputs.dependencies == 'true'
     name: Dependency audit
     runs-on: ubuntu-24.04
     timeout-minutes: 10
@@ -620,3 +689,28 @@ jobs:
         run: |
           dotnet list ProcSense.sln package --deprecated 2>&1 | tee deprecated.txt
           if grep -q "has the following deprecated packages" deprecated.txt; then echo "::warning::deprecated NuGet packages found (see this step's log; DT-041)"; fi
+
+  result:
+    # One required-looking gate that is green only if every selected job passed; it also lists what ran, and what was skipped because nothing it guards changed.
+    name: CI result
+    needs: [changes, engine, server, repo-checks, dependencies]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Report executed and skipped checks, fail if any selected job failed
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+          FULL: ${{ needs.changes.outputs.full }}
+        run: |
+          {
+            echo "### CI result ($([ "$FULL" = "true" ] && echo "full run" || echo "change-aware run"))"
+            echo
+            echo "| Job | Result |"
+            echo "|---|---|"
+            echo "$NEEDS" | jq -r 'to_entries[] | "| \(.key) | \(.value.result) |"'
+            echo
+            echo "success = executed and passed; skipped = the selector found no changed file that job guards (a full run never skips)."
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          if echo "$NEEDS" | jq -e '[.[] | .result] | any(. == "failure" or . == "cancelled")' >/dev/null; then echo "a selected job failed"; exit 1; fi
+          if [ "$FULL" = "true" ] && echo "$NEEDS" | jq -e '[.[] | .result] | any(. == "skipped")' >/dev/null; then echo "a full run must not skip any job"; exit 1; fi

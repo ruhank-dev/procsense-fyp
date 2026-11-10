@@ -13,3 +13,4 @@ Assets/Textures/Hospital/PBR/curtain_weave_normal.png filter=lfs diff=lfs merge=
 Assets/Textures/Hospital/PBR/curtain_weave_albedo.png filter=lfs diff=lfs merge=lfs -text
 
 Assets/Textures/Hospital/PBR/rubber_black_normal.png filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/PatientBay/OcclusionCullingData.asset filter=lfs diff=lfs merge=lfs -text

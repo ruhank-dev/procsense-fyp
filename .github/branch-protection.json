@@ -2,10 +2,7 @@
   "required_status_checks": {
     "strict": false,
     "contexts": [
-      "Engine (ubuntu-latest)",
-      "Engine (windows-latest)",
-      "Content, plans and project rules",
-      "Dependency audit"
+      "CI result"
     ]
   },
   "enforce_admins": false,

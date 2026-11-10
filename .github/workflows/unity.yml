@@ -1,0 +1,151 @@
+name: Unity
+
+# Unity compile and EditMode tests (and an optional Android build) on a standard GitHub-hosted runner.
+# OFF until the repository owner enables it: it needs a Unity licence that can be used on a CI runner (see docs/qa/github_actions_pipeline.md,
+# section "Unity on GitHub"): Unity no longer supports manual activation of Personal licences, so the secrets below must come from a
+# Unity Pro/Plus serial or an activated licence file. Nothing here is invented: with no UNITY_CI_ENABLED variable the jobs are skipped.
+# PlayMode tests, the desktop benchmark and the walkthrough capture need a GPU and stay local (GitHub-hosted standard runners have none).
+on:
+  workflow_dispatch:
+    inputs:
+      android_build:
+        description: "Also build the Quest APK (slow, large; needs the Android image and about 20 GB of disk)"
+        type: boolean
+        default: false
+  pull_request:
+    paths: ["unity/**", ".github/workflows/unity.yml"]
+
+concurrency:
+  group: unity-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  UNITY_VERSION: 6000.5.10f1   # keep equal to unity/ProjectSettings/ProjectVersion.txt
+  PROJECT_PATH: unity
+
+jobs:
+  changes:
+    # Pull requests run Unity only when the selector says the change can affect it (jobs.unity_compile / unity_tests / android_build);
+    # a manual run always runs the EditMode job, and the Android build when the input asks for it.
+    name: Select Unity checks
+    if: vars.UNITY_CI_ENABLED == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      editmode: ${{ steps.pick.outputs.editmode }}
+      android: ${{ steps.pick.outputs.android }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
+          cache-dependency-glob: tools/uv.lock
+      - id: pick
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.sha }}
+          ANDROID_INPUT: ${{ github.event.inputs.android_build }}
+        run: |
+          editmode=true; android=false
+          if [ "$EVENT" = "workflow_dispatch" ]; then
+            [ "$ANDROID_INPUT" = "true" ] && android=true
+          else
+            json=$(uv run --project tools python tools/ci/select.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
+            if [ -n "$json" ]; then
+              editmode=$(echo "$json" | jq -r '(.jobs.unity_compile or .jobs.unity_tests)')
+              android=$(echo "$json" | jq -r '.jobs.android_build')
+            else
+              cat select.err; android=false
+            fi
+          fi
+          echo "editmode=$editmode" >> "$GITHUB_OUTPUT"; echo "android=$android" >> "$GITHUB_OUTPUT"
+          echo "Unity selection: editmode=$editmode android=$android" >> "$GITHUB_STEP_SUMMARY"
+
+  editmode:
+    name: Unity compile and EditMode tests
+    needs: changes
+    if: vars.UNITY_CI_ENABLED == 'true' && needs.changes.outputs.editmode == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          lfs: true   # the occlusion data asset is stored in Git LFS (unity/.gitattributes)
+
+      - name: Free disk space (the Unity image and Library are large; the runner has about 14 GB free)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+
+      - name: Library cache (imported assets; key = every input that changes an import)
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: unity-lib-${{ env.UNITY_VERSION }}-${{ hashFiles('unity/Assets/**/*.meta', 'unity/Packages/packages-lock.json', 'unity/ProjectSettings/**') }}
+          restore-keys: |
+            unity-lib-${{ env.UNITY_VERSION }}-
+
+      - name: EditMode tests (also compiles every assembly)
+        uses: game-ci/unity-test-runner@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          testMode: editmode
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          customParameters: -nographics
+
+      - name: Keep the test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: unity-editmode-results
+          path: artifacts/**
+          if-no-files-found: ignore
+
+  android:
+    name: Unity Android build check
+    if: ${{ !cancelled() && vars.UNITY_CI_ENABLED == 'true' && needs.changes.outputs.android == 'true' && needs.editmode.result != 'failure' }}
+    needs: [changes, editmode]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          lfs: true
+      - run: |
+          sudo rm -rf /usr/share/dotnet /opt/ghc /opt/hostedtoolcache/CodeQL
+          df -h /
+      - uses: actions/cache@v6
+        with:
+          path: ${{ env.PROJECT_PATH }}/Library
+          key: unity-lib-android-${{ env.UNITY_VERSION }}-${{ hashFiles('unity/Assets/**/*.meta', 'unity/Packages/packages-lock.json', 'unity/ProjectSettings/**') }}
+          restore-keys: unity-lib-android-${{ env.UNITY_VERSION }}-
+      - uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+        with:
+          projectPath: ${{ env.PROJECT_PATH }}
+          unityVersion: ${{ env.UNITY_VERSION }}
+          targetPlatform: Android
+          androidExportType: androidPackage
+          androidKeystoreName: ""   # the project's build method signs; this only proves the player builds
+          allowDirtyBuild: true
+      - uses: actions/upload-artifact@v4
+        with:
+          name: procsense-quest-apk
+          path: build/Android
+          retention-days: 3

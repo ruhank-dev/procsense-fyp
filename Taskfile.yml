@@ -184,9 +184,19 @@ tasks:
       - uv run --project tools tools/unity/run_unity.py test
 
   unity-build:
-    desc: Build a Quest APK variant into artifacts/unity/ProcSense-<variant>.apk with its SHA-256 (task unity-build -- dev|demo|study; dev when none; needs Unity with Android support and the Editor closed)
+    desc: Build a Quest APK variant into artifacts/unity/ProcSense-<variant>.apk with its SHA-256 (task unity-build -- dev|demo|study|diag|diag-gpuskin; dev when none; diag* are the Quest benchmark builds of branch quest-perf/d7-optimisations until it is merged; needs Unity with Android support and the Editor closed)
     cmds:
       - uv run --project tools tools/unity/run_unity.py build {{.CLI_ARGS}}
+
+  unity-quest-stats:
+    desc: Count what each Quest benchmark view asks the headset to draw (renderers, triangles, draws, lights, shadow casters) into docs/qa/quest2_static_render_stats.md (needs Unity; the Editor closed)
+    cmds:
+      - uv run --project tools tools/unity/run_unity.py stats
+
+  unity-desktop:
+    desc: Switch the Unity Editor back to the Windows target after a Quest build (desktop captures and bakes need it; docs/new_unity_environment.md)
+    cmds:
+      - uv run --project tools tools/unity/run_unity.py desktop
 
   quest-pull-session:
     desc: Pull the session logs off the Quest (adb) into artifacts/quest-sessions and replay each one headless with the engine it was recorded by (EXP-CORE-1)
@@ -203,6 +213,21 @@ tasks:
     desc: Run every check CI runs, locally (add -- --quick to skip build and tests)
     cmds:
       - uv run --project tools tools/ci/run_all.py {{.CLI_ARGS}}
+
+  change-select:
+    desc: Which checks does the current change need? (change-aware testing; add -- --base origin/main --json for what GitHub sees; docs/qa/change_aware_testing.md)
+    cmds:
+      - uv run --project tools python tools/ci/select.py {{.CLI_ARGS}}
+
+  change-check:
+    desc: Run ONLY the checks the change needs, reuse valid earlier passes, report executed/reused/skipped/deferred (add -- --heavy for the heavy Unity checks, -- --only a,b to pick)
+    cmds:
+      - uv run --project tools python tools/ci/run.py {{.CLI_ARGS}}
+
+  change-check-final:
+    desc: The complete gate with no cache and the heavy Unity checks included (what a final integration needs; the mandatory pre-push hook still runs `task ci`)
+    cmds:
+      - uv run --project tools python tools/ci/run.py --final {{.CLI_ARGS}}
 
   ci-status:
     desc: Last local CI result next to GitHub's recent runs (a run that never started is shown as never_started, not as a pass)

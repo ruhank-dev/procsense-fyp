@@ -14,6 +14,12 @@ namespace ProcSense.EditorTools
     {
         public string Name = "", Define = "", Apk = "";
         public bool Development;
+        /// <summary>Extra defines (the diagnostic variants: PROCSENSE_PERF_DIAG, and PROCSENSE_PERF_GPUSKIN for the GPU-skinning one).</summary>
+        public string[] Extra = Array.Empty<string>();
+        /// <summary>Diagnostic build (P3-PRF-01): frame-timing statistics on for the build only.</summary>
+        public bool Diagnostic;
+        /// <summary>Build with GPU skinning (mesh deformation on the GPU) for the build only, to measure CPU against GPU skinning on the headset.</summary>
+        public bool GpuSkinning;
     }
 
     /// <summary>
@@ -26,20 +32,23 @@ namespace ProcSense.EditorTools
     public static class BuildScript
     {
         private const string StreamingContent = "Assets/StreamingAssets/content";
-        private static readonly string[] AllDefines = { "PROCSENSE_DEV", "PROCSENSE_DEMO", "PROCSENSE_STUDY" };
+        private static readonly string[] AllDefines = { "PROCSENSE_DEV", "PROCSENSE_DEMO", "PROCSENSE_STUDY", "PROCSENSE_PERF_DIAG", "PROCSENSE_PERF_GPUSKIN" };
 
         public static readonly BuildVariantSpec[] Variants =
         {
             new BuildVariantSpec { Name = "dev", Define = "PROCSENSE_DEV", Apk = "ProcSense-dev.apk", Development = true },
             new BuildVariantSpec { Name = "demo", Define = "PROCSENSE_DEMO", Apk = "ProcSense-demo.apk", Development = false },
             new BuildVariantSpec { Name = "study", Define = "PROCSENSE_STUDY", Apk = "ProcSense-study.apk", Development = false },
+            // Quest benchmark builds (P3-PRF-01, DC-13 part B): release builds like Demo, plus the diagnostic readout, toggles and CSV log; never shipped
+            new BuildVariantSpec { Name = "diag", Define = "PROCSENSE_DEMO", Extra = new[] { "PROCSENSE_PERF_DIAG" }, Apk = "ProcSense-diag.apk", Diagnostic = true },
+            new BuildVariantSpec { Name = "diag-gpuskin", Define = "PROCSENSE_DEMO", Extra = new[] { "PROCSENSE_PERF_DIAG", "PROCSENSE_PERF_GPUSKIN" }, Apk = "ProcSense-diag-gpuskin.apk", Diagnostic = true, GpuSkinning = true },
         };
 
         public static BuildVariantSpec Variant(string name) =>
-            Variants.FirstOrDefault(v => string.Equals(v.Name, name, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentException("unknown build variant '" + name + "' (dev, demo or study)");
+            Variants.FirstOrDefault(v => string.Equals(v.Name, name, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentException("unknown build variant '" + name + "' (dev, demo, study, diag or diag-gpuskin)");
 
         /// <summary>The defines a variant builds with: the project's own, without any other variant's, plus its own.</summary>
-        public static string[] DefinesFor(BuildVariantSpec v, string[] current) => current.Where(d => !AllDefines.Contains(d)).Concat(new[] { v.Define }).Distinct().ToArray();
+        public static string[] DefinesFor(BuildVariantSpec v, string[] current) => current.Where(d => !AllDefines.Contains(d)).Concat(new[] { v.Define }).Concat(v.Extra).Distinct().ToArray();
 
         [MenuItem("ProcSense/Build/Dev")] private static void MenuDev() => Build(Variant("dev"), false);
         [MenuItem("ProcSense/Build/Demo")] private static void MenuDemo() => Build(Variant("demo"), false);
@@ -98,9 +107,13 @@ namespace ProcSense.EditorTools
             Directory.CreateDirectory("../artifacts/unity");
             var target = NamedBuildTarget.Android;
             var before = PlayerSettings.GetScriptingDefineSymbols(target);
+            var skinningBefore = PlayerSettings.meshDeformation;
+            bool timingBefore = PlayerSettings.enableFrameTimingStats;
             try
             {
                 PlayerSettings.SetScriptingDefineSymbols(target, string.Join(";", DefinesFor(v, before.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))));
+                if (v.Diagnostic) PlayerSettings.enableFrameTimingStats = true;
+                if (v.GpuSkinning) PlayerSettings.meshDeformation = MeshDeformation.GPU;
                 var options = new BuildPlayerOptions
                 {
                     scenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray(),
@@ -113,9 +126,28 @@ namespace ProcSense.EditorTools
                 bool ok = report.summary.result == BuildResult.Succeeded;
                 string sha = ok ? Checksum(options.locationPathName) : "";
                 Debug.Log("[BuildScript] " + v.Name + " " + report.summary.result + " size=" + report.summary.totalSize + " errors=" + report.summary.totalErrors + (sha.Length > 0 ? " sha256=" + sha : ""));
+                if (ok) WriteReport(report, options.locationPathName + ".report.txt");
                 return ok;
             }
-            finally { PlayerSettings.SetScriptingDefineSymbols(target, before); }
+            finally
+            {
+                PlayerSettings.SetScriptingDefineSymbols(target, before);
+                PlayerSettings.meshDeformation = skinningBefore;          // a diagnostic build never leaves the project changed
+                PlayerSettings.enableFrameTimingStats = timingBefore;
+            }
+        }
+
+        /// <summary>Writes the build report's facts next to the APK (size, time, the largest packed assets) for the Quest performance analysis (docs/qa/quest2_performance_results.md).</summary>
+        private static void WriteReport(BuildReport report, string path)
+        {
+            var lines = new System.Collections.Generic.List<string>
+            {
+                "result " + report.summary.result, "total_size_bytes " + report.summary.totalSize, "build_seconds " + (int)report.summary.totalTime.TotalSeconds,
+                "warnings " + report.summary.totalWarnings, "errors " + report.summary.totalErrors, "largest packed assets:",
+            };
+            foreach (var a in report.packedAssets.SelectMany(p => p.contents).OrderByDescending(c => c.packedSize).Take(40))
+                lines.Add("  " + a.packedSize + " " + a.sourceAssetPath);
+            File.WriteAllLines(path, lines);
         }
 
         /// <summary>Writes the APK's SHA-256 next to it (ProcSense-demo.apk.sha256) and returns it.</summary>

@@ -201,6 +201,8 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 - [ ] S1 P0 variants B, C, D, E, G, H, J (B-M19)
 
 
+> 📌 **7 Nov 2026 (later): owner decisions D1-D7 (ADR-0032).** All 63 cases in both modes; demo = standalone Quest ⇄ Wi-Fi ⇄ laptop server ⇄ Ollama Cloud (setup guide `docs/setup/quest_laptop_cloud_demo.md`, plan p3-18); voice in both modes; 100-point score and grades; 3 hints × 5 points; Submit to OT ends the exam. **Sannan:** build `task unity-build -- diag` on branch `quest-perf/d7-optimisations` and run DC-13 (guide `docs/qa/quest2_sannan_benchmark_guide.md`): the sunlight shafts and dust are back on Quest and must show in both eyes. **Moiz:** P3-NET-02/03 address policy and endpoint, P3-UIX-11 status chip. **Ruhan:** P3-NET-04/05/07/13 laptop server, P3-SCN-07 examination pool, P3-RES-10 grades.
+
 > 📌 **7 Nov 2026: P3 planned.** The final game integration roadmap is in `docs/plans/p3/` (170 tasks; owners as in the front-end split). First moves: Sannan merges `sannan47/doors-bedside-monitoring` into `main` (P3-SES-01) and runs the Quest 2 benchmark part A (DC-13); Ruhan adds the engine `Check` query (P3-SES-02) and the case catalogue (P3-SCN-02); Moiz starts the UI tokens (P3-UIX-01); the owner decides D1-D7.
 
 ## 📆 W7 9–15 Nov

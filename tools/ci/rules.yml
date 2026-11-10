@@ -1,0 +1,231 @@
+# Change-aware testing rules (read by tools/ci/changeaware.py, select.py, run.py). Guide: docs/qa/change_aware_testing.md
+#
+# A check runs when a changed file matches one of its `inputs`. The same input globs, with the file CONTENTS, form the result-cache key,
+# so an unrelated change never invalidates a check, and a change to any input always does.
+#
+# Glob syntax: `**` crosses folders, `*` stays inside one folder. Patterns match from the repo root. A `.meta` suffix is ignored (a Unity
+# .meta file counts as the asset it describes). Over-inclusive inputs are safe (a needless run); missing inputs are not (a stale pass).
+version: 1
+
+# A change to any of these runs EVERY check (shared infrastructure: the runner, the task file, CI itself, global tool config).
+full_triggers:
+  - "tools/ci/**"
+  - "Taskfile.yml"
+  - ".github/**"
+  - ".githooks/**"
+  - "global.json"
+  - "Directory.Build.props"
+  - "tools/pyproject.toml"
+  - "tools/uv.lock"
+  - "server/pyproject.toml"
+  - "server/uv.lock"
+  - "unity/ProjectSettings/ProjectVersion.txt"
+
+# Changes that affect no check (generated output, logs, scratch files). Anything NOT matched here and NOT matched by a check's inputs is an
+# "unmapped path": the selector then runs everything (the safe default) and says so.
+ignore:
+  - "artifacts/**"
+  - "reports/**"
+  - "build/**"
+  - "TestResults/**"
+  - "**/__pycache__/**"
+  - "**/*.pyc"
+  - "**/*.log"
+  - "**/*.trx"
+  - "bad.json"
+  - "result.json"
+  - "bad.session.jsonl"
+  - "result.session.jsonl"
+  - "unity/Logs/**"
+  - "unity/Temp/**"
+  - "unity/Library/**"
+  - ".vscode/**"
+  - ".gitignore"
+  - ".gitattributes"
+
+# Shared Unity inputs: anything every Unity check must re-run for.
+anchors:
+  unity_shared: &unity_shared
+    - "unity/ProjectSettings/**"
+    - "unity/Packages/manifest.json"
+    - "unity/Packages/packages-lock.json"
+    - "unity/Assets/**/*.asmdef"
+    - "unity/Assets/**/*.asmref"
+    - "unity/Assets/Settings/**"
+    - "unity/Assets/XR/**"
+    - "unity/Assets/Tests/PlayMode/EditorXRTestEnvironment.cs"
+    - "unity/Assets/Tests/PlayMode/QuestWalkthrough.cs"
+    - "tools/unity/run_unity.py"
+  unity_render: &unity_render           # what changes the rendered hospital
+    - "unity/Assets/Shaders/**"
+    - "unity/Assets/Materials/**"
+    - "unity/Assets/Scenes/**"
+    - "unity/Assets/Prefabs/**"
+    - "unity/Assets/Models/**"
+    - "unity/Assets/Textures/**"
+    - "unity/Assets/Scripts/Views/**"
+    - "unity/Assets/Scripts/Diagnostics/**"
+    - "unity/Assets/Resources/**"
+    - "unity/Tools/**"
+
+checks:
+  # ------------------------------------------------------------------ repository checks (GitHub job: repo_checks)
+  docs_check:
+    desc: "Project-rule checks no compiler covers (doc links, registers, determinism rules in Core, prompt history) - `task check`"
+    job: repo_checks
+    cmds: [["uv", "run", "--project", "tools", "tools/ci/repo_checks.py"]]
+    tools: [uv, python]
+    group: python
+    inputs: ["docs/**", "**/*.md", "src/ProcSense.Core/**", "content/**", "tools/ci/tool_mentions_baseline.txt", "INSTRUCTIONS.md"]
+  plans_check:
+    desc: "Milestones, planning pipeline, P3 plans, planning sync - `task plans-check`"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/plans/milestones.py", "--check"]
+      - ["uv", "run", "--project", "tools", "tools/plans/validate_pipeline.py", "--quiet"]
+      - ["uv", "run", "--project", "tools", "tools/plans/test_validate_pipeline.py"]
+      - ["uv", "run", "--project", "tools", "tools/plans/pipeline_docs.py", "--check"]
+      - ["uv", "run", "--project", "tools", "tools/plans/check_planning_sync.py"]
+      - ["uv", "run", "--project", "tools", "tools/plans/p3_plans.py", "--check"]
+    tools: [uv, python]
+    group: python
+    inputs: ["docs/plans/**", "docs/context/**", "docs/deferred-tasks.md", "docs/index.md", "docs/previous_prompt.md", "tools/plans/**"]
+  python_tests:
+    desc: "Content, golden, composer, voice and tool tests plus every generated-file freshness check (task ci -- --quick; no .NET build or tests)"
+    job: repo_checks
+    cmds: [["uv", "run", "--project", "tools", "tools/ci/run_all.py", "--quick"]]
+    tools: [uv, python, dotnet]
+    group: python
+    inputs: ["tools/**", "content/**", "server/validation/**", "tests/golden/**", "tests/golden_generated/**", "docs/research/**", "docs/context/**", "docs/testing/**", "docs/plans/**", "src/**"]
+
+  # ------------------------------------------------------------------ .NET rules engine (GitHub job: engine)
+  rules_engine_tests:
+    desc: "Release build with warnings as errors, unit tests, golden runs (determinism)"
+    job: engine
+    cmds:
+      - ["dotnet", "build", "ProcSense.sln", "-c", "Release", "-warnaserror"]
+      - ["dotnet", "test", "ProcSense.sln", "--no-build", "-c", "Release"]
+      - ["dotnet", "run", "--no-build", "-c", "Release", "--project", "src/ProcSense.Cli", "--", "golden", "--dir", "tests/golden"]
+      - ["dotnet", "run", "--no-build", "-c", "Release", "--project", "src/ProcSense.Cli", "--", "golden", "--dir", "tests/golden_generated"]
+    tools: [dotnet]
+    group: dotnet
+    inputs: ["src/**", "tests/**", "ProcSense.sln", ".editorconfig", "content/**"]
+  dotnet_format:
+    desc: "Code format and style (whitespace and style rules; line endings are the Linux CI's job)"
+    job: engine
+    cmds:
+      - ["dotnet", "format", "whitespace", "ProcSense.sln", "--verify-no-changes"]
+      - ["dotnet", "format", "style", "ProcSense.sln", "--no-restore", "--verify-no-changes"]
+    tools: [dotnet]
+    group: dotnet
+    inputs: ["src/**", "tests/**", "ProcSense.sln", ".editorconfig"]
+  dependency_audit:
+    desc: "No vulnerable NuGet packages (advisories change over time, so a pass is reused for 24 hours at most)"
+    job: dependencies
+    cmds: [["dotnet", "list", "ProcSense.sln", "package", "--vulnerable", "--include-transitive"]]
+    fail_if_output: "has the following vulnerable packages"
+    max_age_hours: 24
+    tools: [dotnet]
+    group: dotnet
+    inputs: ["**/*.csproj", "ProcSense.sln", "**/packages.lock.json"]
+
+  # ------------------------------------------------------------------ backend (GitHub job: server)
+  backend_tests:
+    desc: "FastAPI backend tests against a real PostgreSQL (skipped with a notice when there is no Docker)"
+    job: server
+    cmds: [["uv", "run", "--project", "tools", "tools/ci/server_tests.py"]]
+    tools: [uv, python, dotnet, docker]
+    group: backend
+    inputs: ["server/**", "src/**", "content/**", "tools/ci/server_tests.py"]
+
+  # ------------------------------------------------------------------ Unity (local only: the free GitHub runners have no Unity licence)
+  unity_compile:
+    desc: "Project compiles (batch launch, no tests)"
+    job: unity_compile
+    kind: unity
+    unity: {mode: compile}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/**/*.cs", "unity/Assets/**/*.shader", "unity/Assets/**/*.hlsl", "unity/Assets/**/*.cginc", *unity_shared]
+  unity_editmode:
+    desc: "All Unity EditMode tests"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: EditMode}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/**", "unity/Assets/Editor/**", "unity/Assets/Tests/EditMode/**", "unity/Assets/Scenes/**", "unity/Assets/Prefabs/**", "unity/Assets/Resources/**", "unity/Assets/Shaders/**", *unity_shared]
+  unity_playmode_exterior:
+    desc: "City visibility, door glass aperture, room culling, fast-path equivalence (ExteriorVisibilityTests, CullingCostTests excluded: benchmark)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "ExteriorVisibilityTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Views/ExteriorVisibility.cs", "unity/Assets/Scripts/Views/RoomVisibility.cs", "unity/Assets/Scripts/Views/QuestExterior.cs", "unity/Assets/Scripts/Views/QuestCullingProfile.cs", "unity/Assets/Scripts/Views/CullCost.cs", "unity/Assets/Scripts/Diagnostics/Perf*.cs", "unity/Assets/Tests/PlayMode/ExteriorVisibilityTests.cs", "unity/Assets/Scenes/**", "unity/Assets/Models/Environment/**", "unity/Assets/Materials/Environment/**", "unity/Assets/Prefabs/Environment/**", *unity_shared]
+  unity_playmode_character:
+    desc: "Character culler, animation pose, blendshape and wake tests"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "CharacterPerfTests;CharacterPerfCullTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Views/CharacterPerf*.cs", "unity/Assets/Scripts/Views/Patient*.cs", "unity/Assets/Scripts/Views/Staff*.cs", "unity/Assets/Scripts/Views/*Animation*.cs", "unity/Assets/Tests/PlayMode/CharacterPerf*.cs", "unity/Assets/Prefabs/Characters/**", "unity/Assets/Models/Characters/**", "unity/Assets/Animations/**", "unity/Assets/Animators/**", *unity_shared]
+  unity_playmode_runtime_settings:
+    desc: "Quest runtime settings component (refresh-rate read, performance-level hints)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "QuestRuntimeSettingsTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Views/QuestRuntimeSettings.cs", "unity/Assets/Tests/PlayMode/QuestRuntimeSettingsTests.cs", "unity/Assets/XR/**", *unity_shared]
+  unity_shader_visual:
+    desc: "Render the bay with the changed shader/material/lighting setup; frames kept for comparison with the previous render (single-eye 960x540, 40 frames)"
+    job: unity_tests
+    kind: unity
+    unity:
+      mode: tests
+      platform: PlayMode
+      filter: "QuestWalkthrough.Walkthrough"
+      env: {BENCH_CONFIGS: "B0", BENCH_FRAMES_MAX: "40", BENCH_SEG: "bay", BENCH_W: "960", BENCH_H: "540", BENCH_JPG: "1"}
+      frames_dir: shader_visual
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Shaders/**", "unity/Assets/Materials/**", "unity/Assets/Settings/**", "unity/Assets/Scenes/**", "unity/Assets/Textures/**", "unity/Assets/Tests/PlayMode/QuestWalkthrough.cs", *unity_shared]
+  unity_walkthrough_diff:
+    desc: "Full path, every frame compared with the unculled render and the original exterior (missing geometry, flicker, pops) - heavy (about 15 min of GPU)"
+    job: unity_tests
+    kind: unity
+    heavy: true
+    pwsh: ["tools/unity/final_qa.ps1", "-Stages", "diff", "-Tag", "_ci"]
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Views/ExteriorVisibility.cs", "unity/Assets/Scripts/Views/RoomVisibility.cs", "unity/Assets/Scripts/Views/QuestExterior.cs", "unity/Assets/Scripts/Views/QuestCullingProfile.cs", "unity/Assets/Scripts/Views/CharacterPerf*.cs", "unity/Assets/Models/Environment/**", "unity/Assets/Materials/Environment/**", "unity/Assets/Scenes/**", "unity/Assets/Shaders/**", "unity/Assets/Tests/PlayMode/QuestWalkthrough.cs", "tools/unity/final_qa.ps1", "tools/unity/walk_qa.py", *unity_shared]
+  unity_sweep:
+    desc: "4752-pose visibility sweep, doors closed and open - heavy"
+    job: unity_tests
+    kind: unity
+    heavy: true
+    pwsh: ["tools/unity/final_qa.ps1", "-Stages", "sweep", "-Tag", "_ci"]
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Views/ExteriorVisibility.cs", "unity/Assets/Scripts/Views/RoomVisibility.cs", "unity/Assets/Scripts/Views/QuestExterior.cs", "unity/Assets/Scripts/Views/QuestCullingProfile.cs", "unity/Assets/Models/Environment/**", "unity/Assets/Materials/Environment/**", "unity/Assets/Scenes/**", "unity/Tools/**", "unity/Assets/Tests/PlayMode/QuestWalkthrough.cs", "tools/unity/final_qa.ps1", *unity_shared]
+  benchmark_stereo:
+    desc: "Two-eye desktop benchmark (informational, never a gate; results are timings, not a pass/fail) - heavy"
+    job: unity_tests
+    kind: unity
+    heavy: true
+    informational: true
+    pwsh: ["tools/unity/bench_desktop.ps1", "-Stereo"]
+    tools: [unity]
+    group: unity
+    inputs: *unity_render
+  android_build:
+    desc: "Quest APK builds (demo variant) - heavy (about 20 min; needs Unity Android support and the Editor closed)"
+    job: android_build
+    kind: unity
+    heavy: true
+    cmds: [["uv", "run", "--project", "tools", "tools/unity/run_unity.py", "build", "demo"]]
+    tools: [unity, uv]
+    group: unity
+    inputs: ["unity/Assets/**", "unity/Packages/**", "unity/ProjectSettings/**"]

@@ -19,6 +19,7 @@ fail() {
 }
 
 main_sha=""
+main_remote_sha=""
 while read -r local_ref local_sha remote_ref remote_sha; do
   case "$remote_ref" in
     refs/heads/main | refs/heads/master) ;;
@@ -40,6 +41,7 @@ while read -r local_ref local_sha remote_ref remote_sha; do
     fail "two different commits are being pushed to main in one push. Push one at a time."
   fi
   main_sha="$local_sha"
+  main_remote_sha="$remote_sha"
 done
 
 # Nothing aimed at main: feature branches and tags are not checked here.
@@ -57,7 +59,33 @@ for tool in git task dotnet uv; do
     fail "'$tool' is not installed or not on PATH, so the checks cannot run. Install it (winget install --id Task.Task -e / astral-sh.uv / Microsoft.DotNet.SDK.9 / Git.Git), restart the terminal, then push again."
 done
 
-echo "pre-push: running 'task ci' before updating main (about a minute)..." >&2
+# A full, successful GitHub Actions run of this exact commit replaces the slow local suite. Only a run that executes EVERY check counts
+# (a manual 'workflow_dispatch' run of ci.yml, which always runs the whole suite and never reuses cached results). A change-aware branch
+# push run does not count, because it may have skipped unrelated jobs. Any doubt (no gh, not logged in, API error, no run, run not green,
+# new remote main) falls back to the full local 'task ci', exactly as before. There is deliberately no bypass variable.
+remote_full_green() {
+  command -v gh >/dev/null 2>&1 || return 1
+  [ -n "$main_remote_sha" ] || return 1
+  zero_only "$main_remote_sha" && return 1
+  url=$(git remote get-url origin 2>/dev/null) || return 1
+  case "$url" in
+    *github.com*) repo=$(printf '%s' "$url" | sed -e 's#^.*github\.com[:/]##' -e 's#\.git$##') ;;
+    *) return 1 ;;
+  esac
+  n=$(gh run list --repo "$repo" --workflow ci.yml --commit "$main_sha" --event workflow_dispatch --status success --limit 5 --json conclusion --jq 'length' 2>/dev/null) || return 1
+  [ "${n:-0}" -ge 1 ] 2>/dev/null
+}
+
+if remote_full_green; then
+  echo "pre-push: GitHub Actions already ran the full CI successfully on this exact commit; running the fast local checks only..." >&2
+  task check || fail "'task check' (repository rules) failed, so main was not updated."
+  task change-check -- --base "$main_remote_sha" --skip docs_check,kind:unity || fail "the change-aware local checks failed, so main was not updated."
+  echo "pre-push: all checks passed (full CI verified remotely for this commit)." >&2
+  exit 0
+fi
+
+echo "pre-push: no successful full GitHub Actions run found for this commit; running the full 'task ci' (about an hour)..." >&2
+echo "pre-push: tip: push the branch, start the CI workflow manually (Actions > CI > Run workflow) and push to main after it is green." >&2
 task ci || fail "'task ci' failed, so main was not updated. Fix the problem, commit, and push again."
 echo "pre-push: all checks passed." >&2
 exit 0

@@ -64,12 +64,18 @@ namespace ProcSense.EditorTools
                 EditorUtility.SetDirty(asset);
             }
             GraphicsSettings.defaultRenderPipeline = asset;
+            // Quest render tier (P3-PRF-05, owner decision D7, 7 Nov 2026): the Android quality level uses its own copy of the pipeline (renderer with intermediate texture Auto, so the eye
+            // buffer is rendered directly and foveation can work); every other level, and so the desktop look, keeps URP_Quest unchanged.
+            var android = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(AndroidPipelinePath);
             for (int i = 0; i < QualitySettings.names.Length; i++)
             {
                 QualitySettings.SetQualityLevel(i, false);
-                QualitySettings.renderPipeline = asset;
+                QualitySettings.renderPipeline = android != null && QualitySettings.names[i] == AndroidQualityLevel ? android : asset;
             }
         }
+
+        /// <summary>The Quest tier's pipeline asset and the quality level Android uses by default (QualitySettings m_PerPlatformDefaultQuality Android: 2).</summary>
+        public const string AndroidPipelinePath = "Assets/Settings/URP_Quest_Android.asset", AndroidQualityLevel = "Medium";
 
         /// <summary>Imports the TextMeshPro essentials (fonts, shaders) and exits when Unity reports the import finished.</summary>
         public static void ImportTmp()
@@ -147,6 +153,7 @@ namespace ProcSense.EditorTools
                 foreach (var feature in android.GetFeatures<OpenXRFeature>())
                 {
                     bool wanted = feature is MetaQuestFeature
+                        || feature is UnityEngine.XR.OpenXR.Features.FoveatedRenderingFeature   // available to the Quest tier; the level stays 0 (off) until measured (QuestRenderTier)
                         || feature.GetType().Name.Contains("MetaQuestTouchPlusControllerProfile")
                         || feature.GetType().Name.Contains("OculusTouchControllerProfile");
                     feature.enabled = wanted;
