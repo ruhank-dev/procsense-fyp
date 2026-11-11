@@ -1,4 +1,4 @@
-# Change-aware testing rules (read by tools/ci/changeaware.py, select.py, run.py). Guide: docs/qa/change_aware_testing.md
+# Change-aware testing rules (read by tools/ci/changeaware.py, select_checks.py, run.py). Guide: docs/qa/change_aware_testing.md
 #
 # A check runs when a changed file matches one of its `inputs`. The same input globs, with the file CONTENTS, form the result-cache key,
 # so an unrelated change never invalidates a check, and a change to any input always does.

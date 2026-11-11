@@ -2,7 +2,7 @@ name: CI
 
 # What each job guards is listed in docs/CI.md — keep that file and this one in step (INSTRUCTIONS.md section 6b).
 # One workflow, two depths (no duplicated tests): a push to a branch or a pull request runs only the jobs the CHANGE-AWARE
-# selector (tools/ci/select.py) says the changed files can affect; a push to main, a release tag, a manual run and the weekly
+# selector (tools/ci/select_checks.py) says the changed files can affect; a push to main, a release tag, a manual run and the weekly
 # schedule run EVERYTHING (the final-integration gate). docs/qa/github_actions_pipeline.md has the full design.
 on:
   push:
@@ -27,7 +27,7 @@ env:
 jobs:
   changes:
     # Decides which of the jobs below run. Everything runs on main, tags, schedule, manual runs and workflow_call (full = true).
-    # The selector needs PyYAML, so it runs through uv (tools/uv.lock). If tools/ci/select.py is missing or fails, everything runs: the selector can only ever remove work, never hide a failure.
+    # The selector needs PyYAML, so it runs through uv (tools/uv.lock). If tools/ci/select_checks.py is missing or fails, everything runs: the selector can only ever remove work, never hide a failure.
     name: Select checks
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -61,8 +61,8 @@ jobs:
           case "$REF" in refs/tags/*) full=true ;; esac   # a release tag runs the whole suite (the called workflow reports the caller's event name)
           json=""
           if [ "$full" = "false" ]; then
-            if [ -f tools/ci/select.py ] && [ -n "$BASE_SHA" ] && ! echo "$BASE_SHA" | grep -qE '^0+$'; then
-              json=$(uv run --project tools python tools/ci/select.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
+            if [ -f tools/ci/select_checks.py ] && [ -n "$BASE_SHA" ] && ! echo "$BASE_SHA" | grep -qE '^0+$'; then
+              json=$(uv run --project tools python tools/ci/select_checks.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
             fi
             [ -z "$json" ] && { echo "selector unavailable or failed; running everything"; cat select.err 2>/dev/null; full=true; }
           fi

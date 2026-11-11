@@ -56,7 +56,7 @@ jobs:
           if [ "$EVENT" = "workflow_dispatch" ]; then
             [ "$ANDROID_INPUT" = "true" ] && android=true
           else
-            json=$(uv run --project tools python tools/ci/select.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
+            json=$(uv run --project tools python tools/ci/select_checks.py --json --no-cache --base "$BASE_SHA" --head "$HEAD_SHA" 2>select.err) || json=""
             if [ -n "$json" ]; then
               editmode=$(echo "$json" | jq -r '(.jobs.unity_compile or .jobs.unity_tests)')
               android=$(echo "$json" | jq -r '.jobs.android_build')

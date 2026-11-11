@@ -1,6 +1,6 @@
 """Change-aware testing core: what changed, which checks that affects, and a content-hash result cache.
 
-Used by select.py (decides), run.py (executes) and the GitHub workflow (job selection). Guide: docs/qa/change_aware_testing.md.
+Used by select_checks.py (decides), run.py (executes) and the GitHub workflow (job selection). Guide: docs/qa/change_aware_testing.md.
 Safe by construction: an unmapped path, a shared-infrastructure change or any error selects EVERYTHING; the cache only reuses a PASS whose
 inputs (file contents, check definition, tool versions) are byte-identical and not older than the check's max_age_hours.
 """
@@ -19,7 +19,7 @@ from pathlib import Path
 try:
     import yaml
 except ImportError:  # pragma: no cover
-    sys.exit("PyYAML is missing: run this with `uv run --project tools python tools/ci/select.py` (tools/pyproject.toml lists pyyaml).")
+    sys.exit("PyYAML is missing: run this with `uv run --project tools python tools/ci/select_checks.py` (tools/pyproject.toml lists pyyaml).")
 
 ROOT = Path(__file__).resolve().parents[2]
 RULES_FILE = Path(__file__).with_name("rules.yml")

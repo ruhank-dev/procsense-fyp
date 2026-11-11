@@ -1,6 +1,6 @@
 """Which checks does this change need?  (change-aware testing; guide: docs/qa/change_aware_testing.md)
 
-    uv run --project tools python tools/ci/select.py [--base REF] [--head REF] [--staged] [--all] [--json] [--no-cache]
+    uv run --project tools python tools/ci/select_checks.py [--base REF] [--head REF] [--staged] [--all] [--json] [--no-cache]
 
 Default: what differs from HEAD in the working tree (modified, staged, deleted, untracked). --base REF compares REF...HEAD (plus the
 working tree unless --head is given: what GitHub sees on a pull request). --staged is the index only (a pre-commit view). --all selects
