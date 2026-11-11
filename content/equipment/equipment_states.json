@@ -1,0 +1,55 @@
+{
+ "schema": 1,
+ "note": "p0-vr-interaction-ui-s02. States and transitions of the interactive equipment items. A transition is started by a trigger (grab, socket, activate or ui) and emits ONE Core action; the item shows the new state only after Core accepts it, and stays in its old state when Core refuses (T-IN2). No clinical number lives here: values come from Core. 'verb' names an existing Core verb (the registry is checked by the tests). Spec rows: docs/plans/p0/p0-vr-interaction-ui/equipment-interaction-spec.md.",
+ "items": [
+  {
+   "id": "tympanic_thermometer",
+   "spec_row": 12,
+   "states": ["IDLE", "MEASURED"],
+   "initial": "IDLE",
+   "transitions": [
+    {"from": "IDLE", "to": "MEASURED", "trigger": "activate", "socket": "ear", "verb": "measure_temperature", "target": "patient", "label": "Measure temperature"},
+    {"from": "MEASURED", "to": "MEASURED", "trigger": "activate", "socket": "ear", "verb": "measure_temperature", "target": "patient", "label": "Measure temperature again"}
+   ]
+  },
+  {
+   "id": "spo2_probe",
+   "spec_row": 11,
+   "states": ["DETACHED", "ATTACHED"],
+   "initial": "DETACHED",
+   "transitions": [
+    {"from": "DETACHED", "to": "ATTACHED", "trigger": "socket", "socket": "finger", "verb": "attach_sensor", "target": "patient", "params": {"sensor": "spo2"}, "label": "Attach SpO2 probe"},
+    {"from": "ATTACHED", "to": "DETACHED", "trigger": "grab", "verb": "detach_sensor", "target": "patient", "params": {"sensor": "spo2"}, "label": "Remove SpO2 probe"}
+   ]
+  },
+  {
+   "id": "bp_cuff",
+   "spec_row": 10,
+   "states": ["DETACHED", "WRAPPED"],
+   "initial": "DETACHED",
+   "transitions": [
+    {"from": "DETACHED", "to": "WRAPPED", "trigger": "socket", "socket": "arm", "verb": "attach_sensor", "target": "patient", "params": {"sensor": "nibp"}, "label": "Attach BP cuff"},
+    {"from": "WRAPPED", "to": "DETACHED", "trigger": "grab", "verb": "detach_sensor", "target": "patient", "params": {"sensor": "nibp"}, "label": "Remove BP cuff"}
+   ],
+   "panel": [
+    {"id": "start_cycle", "label": "Start BP cycle", "verb": "measure_nibp", "target": "patient", "only_in": ["WRAPPED"]}
+   ]
+  },
+  {
+   "id": "iv_fluid_bag",
+   "spec_row": 26,
+   "note": "The trainee only REQUESTS fluid; a clinician confirms and a nurse gives it (walkthrough Part 8.1). The bag is hung only when Core accepts the request.",
+   "states": ["SEALED", "SPIKED", "HUNG", "CONNECTED", "RUNNING"],
+   "initial": "SEALED",
+   "transitions": [
+    {"from": "SEALED", "to": "SPIKED", "trigger": "socket", "socket": "giving_set", "visual_only": true, "label": "Spike the bag"},
+    {"from": "SPIKED", "to": "HUNG", "trigger": "socket", "socket": "stand", "visual_only": true, "label": "Hang on the pole"},
+    {"from": "HUNG", "to": "CONNECTED", "trigger": "socket", "socket": "arm", "verb": "request_iv_access", "target": "patient", "label": "Connect to the cannula"},
+    {"from": "CONNECTED", "to": "RUNNING", "trigger": "ui", "verb": "request_fluids", "target": "patient", "label": "Request the fluid"}
+   ],
+   "panel": [
+    {"id": "pump_start", "label": "Start pump", "verb": "request_fluids", "target": "patient", "only_in": ["CONNECTED"]}
+   ]
+  }
+ ]
+}
