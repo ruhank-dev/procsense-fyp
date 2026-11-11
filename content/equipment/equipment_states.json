@@ -45,10 +45,156 @@
     {"from": "SEALED", "to": "SPIKED", "trigger": "socket", "socket": "giving_set", "visual_only": true, "label": "Spike the bag"},
     {"from": "SPIKED", "to": "HUNG", "trigger": "socket", "socket": "stand", "visual_only": true, "label": "Hang on the pole"},
     {"from": "HUNG", "to": "CONNECTED", "trigger": "socket", "socket": "arm", "verb": "request_iv_access", "target": "patient", "label": "Connect to the cannula"},
-    {"from": "CONNECTED", "to": "RUNNING", "trigger": "ui", "verb": "request_fluids", "target": "patient", "label": "Request the fluid"}
+    {"from": "CONNECTED", "to": "RUNNING", "trigger": "ui", "verb": "request_fluids", "target": "patient", "params": {"type": "TR-IV-FLUIDS"}, "label": "Request the fluid"}
    ],
    "panel": [
-    {"id": "pump_start", "label": "Start pump", "verb": "request_fluids", "target": "patient", "only_in": ["CONNECTED"]}
+    {"id": "pump_start", "label": "Start pump", "verb": "request_fluids", "target": "patient", "params": {"type": "TR-IV-FLUIDS"}, "only_in": ["CONNECTED"]}
+   ]
+  },
+  {
+   "id": "glucose_meter",
+   "spec_row": 15,
+   "note": "A bedside test must be ordered first; Core refuses it (NOT_ORDERED) and the meter keeps showing no reading.",
+   "states": ["IDLE", "READ"],
+   "initial": "IDLE",
+   "transitions": [
+    {"from": "IDLE", "to": "READ", "trigger": "activate", "socket": "finger", "verb": "perform_bedside_test", "target": "patient", "params": {"test": "glucose_fingerprick"}, "label": "Check glucose"},
+    {"from": "READ", "to": "READ", "trigger": "activate", "socket": "finger", "verb": "perform_bedside_test", "target": "patient", "params": {"test": "glucose_fingerprick"}, "label": "Check glucose again"}
+   ]
+  },
+  {
+   "id": "ecg_machine",
+   "spec_row": 13,
+   "note": "Electrodes first (placement has no Core action yet, so it is visual only), then the recording, which is the bedside ECG test.",
+   "states": ["ELECTRODES_OFF", "ELECTRODES_ON", "RECORDED"],
+   "initial": "ELECTRODES_OFF",
+   "transitions": [
+    {"from": "ELECTRODES_OFF", "to": "ELECTRODES_ON", "trigger": "socket", "socket": "chest", "visual_only": true, "label": "Place the electrodes"},
+    {"from": "ELECTRODES_ON", "to": "RECORDED", "trigger": "ui", "verb": "perform_bedside_test", "target": "patient", "params": {"test": "ecg"}, "label": "Record 12-lead ECG"},
+    {"from": "RECORDED", "to": "ELECTRODES_OFF", "trigger": "grab", "visual_only": true, "label": "Remove the electrodes"}
+   ]
+  },
+  {
+   "id": "stethoscope",
+   "spec_row": 14,
+   "note": "The chest piece on the chest examines the chest; the finding comes only from Core and only when the case authors it.",
+   "states": ["HUNG", "ON_CHEST"],
+   "initial": "HUNG",
+   "transitions": [
+    {"from": "HUNG", "to": "ON_CHEST", "trigger": "socket", "socket": "chest", "verb": "examine", "target": "patient", "params": {"region": "chest"}, "label": "Listen to the chest"},
+    {"from": "ON_CHEST", "to": "HUNG", "trigger": "grab", "visual_only": true, "label": "Take the stethoscope off"}
+   ]
+  },
+  {
+   "id": "blood_culture_bottles",
+   "spec_row": 18,
+   "note": "Fills the culture bottles at the bedside, labelled there, and keeps them for the porter or the tube station. The test must be ordered first. Other blood tests are taken from the tablet, where the trainee picks the test and tube.",
+   "states": ["EMPTY", "FILLED"],
+   "initial": "EMPTY",
+   "transitions": [
+    {"from": "EMPTY", "to": "FILLED", "trigger": "activate", "socket": "arm", "verb": "take_sample", "target": "patient", "params": {"test": "lactate_cultures", "tube": "grey_fluoride", "label": "bedside", "send": "later"}, "label": "Fill the culture bottles"}
+   ]
+  },
+  {
+   "id": "tube_station",
+   "spec_row": 16,
+   "note": "Sends the samples waiting at the bedside by the tube station; Core refuses when nothing waits.",
+   "states": ["READY", "SENT"],
+   "initial": "READY",
+   "transitions": [
+    {"from": "READY", "to": "SENT", "trigger": "ui", "verb": "send_samples", "target": "patient", "params": {"via": "tube_station"}, "label": "Send samples by the tube station"},
+    {"from": "SENT", "to": "SENT", "trigger": "ui", "verb": "send_samples", "target": "patient", "params": {"via": "tube_station"}, "label": "Send more samples"}
+   ]
+  },
+  {
+   "id": "urine_kit",
+   "spec_row": 19,
+   "note": "The dipstick; the pregnancy test is a panel button. Both are bedside tests that must be ordered first, and the result appears only after Core's turnaround.",
+   "states": ["UNUSED", "DIPPED"],
+   "initial": "UNUSED",
+   "transitions": [
+    {"from": "UNUSED", "to": "DIPPED", "trigger": "ui", "verb": "perform_bedside_test", "target": "patient", "params": {"test": "urine_dipstick"}, "label": "Dip the urine"}
+   ],
+   "panel": [
+    {"id": "pregnancy_test", "label": "Pregnancy test", "verb": "perform_bedside_test", "target": "patient", "params": {"test": "pregnancy"}}
+   ]
+  },
+  {
+   "id": "iv_cannula_kit",
+   "spec_row": 25,
+   "note": "Cannulation is abstracted: the request is the action; the cannula shows on the arm only when Core accepts it.",
+   "states": ["KIT", "IN_PLACE"],
+   "initial": "KIT",
+   "transitions": [
+    {"from": "KIT", "to": "IN_PLACE", "trigger": "socket", "socket": "arm", "verb": "request_iv_access", "target": "patient", "label": "Request IV access"}
+   ]
+  },
+  {
+   "id": "hair_clippers",
+   "spec_row": 35,
+   "states": ["UNUSED", "USED"],
+   "initial": "UNUSED",
+   "transitions": [
+    {"from": "UNUSED", "to": "USED", "trigger": "activate", "verb": "prepare", "target": "patient", "params": {"item": "hair", "detail": "clippers"}, "label": "Remove hair with clippers"}
+   ]
+  },
+  {
+   "id": "razor",
+   "spec_row": 35,
+   "note": "The wrong tool, present on purpose: Core records the razor as an infection risk and scores it.",
+   "states": ["UNUSED", "USED"],
+   "initial": "UNUSED",
+   "transitions": [
+    {"from": "UNUSED", "to": "USED", "trigger": "activate", "verb": "prepare", "target": "patient", "params": {"item": "hair", "detail": "razor"}, "label": "Shave with a razor"}
+   ]
+  },
+  {
+   "id": "stockings",
+   "spec_row": 34,
+   "states": ["PACKED", "APPLIED"],
+   "initial": "PACKED",
+   "transitions": [
+    {"from": "PACKED", "to": "APPLIED", "trigger": "socket", "socket": "leg", "verb": "prepare", "target": "patient", "params": {"item": "stockings", "detail": "applied"}, "label": "Fit the stockings"}
+   ]
+  },
+  {
+   "id": "consent_form",
+   "spec_row": 7,
+   "note": "Signing is Core's decision: it is refused until the discussion and the capacity check are done, and then the form shows signed.",
+   "states": ["BLANK", "SIGNED"],
+   "initial": "BLANK",
+   "transitions": [
+    {"from": "BLANK", "to": "SIGNED", "trigger": "ui", "verb": "sign_consent", "target": "patient", "label": "Sign the consent form"}
+   ]
+  },
+  {
+   "id": "oxygen_nasal_cannula",
+   "spec_row": 28,
+   "states": ["OFF", "ON"],
+   "initial": "OFF",
+   "transitions": [
+    {"from": "OFF", "to": "ON", "trigger": "socket", "socket": "face", "verb": "request_oxygen", "target": "patient", "params": {"device": "nasal_cannula"}, "label": "Request oxygen by nasal cannula"},
+    {"from": "ON", "to": "OFF", "trigger": "grab", "visual_only": true, "label": "Take the cannula off"}
+   ]
+  },
+  {
+   "id": "oxygen_simple_mask",
+   "spec_row": 28,
+   "states": ["OFF", "ON"],
+   "initial": "OFF",
+   "transitions": [
+    {"from": "OFF", "to": "ON", "trigger": "socket", "socket": "face", "verb": "request_oxygen", "target": "patient", "params": {"device": "simple_mask"}, "label": "Request oxygen by simple mask"},
+    {"from": "ON", "to": "OFF", "trigger": "grab", "visual_only": true, "label": "Take the mask off"}
+   ]
+  },
+  {
+   "id": "oxygen_non_rebreather_mask",
+   "spec_row": 28,
+   "states": ["OFF", "ON"],
+   "initial": "OFF",
+   "transitions": [
+    {"from": "OFF", "to": "ON", "trigger": "socket", "socket": "face", "verb": "request_oxygen", "target": "patient", "params": {"device": "non_rebreather_mask"}, "label": "Request oxygen by non-rebreather mask"},
+    {"from": "ON", "to": "OFF", "trigger": "grab", "visual_only": true, "label": "Take the mask off"}
    ]
   }
  ]

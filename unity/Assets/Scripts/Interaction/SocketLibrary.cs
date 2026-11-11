@@ -9,12 +9,12 @@ namespace ProcSense.VR.Interaction
     /// </summary>
     public static class SocketLibrary
     {
-        public const string Finger = "finger", Arm = "arm", Chest = "chest", Wrist = "wrist", Ear = "ear", Face = "face", Stand = "stand", Trolley = "trolley", GivingSet = "giving_set";
+        public const string Finger = "finger", Arm = "arm", Chest = "chest", Wrist = "wrist", Ear = "ear", Face = "face", Stand = "stand", Trolley = "trolley", GivingSet = "giving_set", Leg = "leg";
 
         private static readonly Dictionary<string, string> Layers = new Dictionary<string, string>(StringComparer.Ordinal)
         {
             { Finger, "Socket.Finger" }, { Arm, "Socket.Arm" }, { Chest, "Socket.Chest" }, { Wrist, "Socket.Wrist" }, { Ear, "Socket.Ear" },
-            { Face, "Socket.Face" }, { Stand, "Socket.Stand" }, { Trolley, "Socket.Trolley" }, { GivingSet, "Socket.GivingSet" }
+            { Face, "Socket.Face" }, { Stand, "Socket.Stand" }, { Trolley, "Socket.Trolley" }, { GivingSet, "Socket.GivingSet" }, { Leg, "Socket.Leg" }
         };
 
         public static IEnumerable<string> Names => Layers.Keys;

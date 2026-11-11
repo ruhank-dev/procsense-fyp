@@ -39,7 +39,7 @@ namespace ProcSense.Tests.EditMode
         public void The_equipment_file_is_valid_and_every_verb_exists_in_Core()
         {
             var items = Items();
-            Assert.That(items.Keys, Is.SupersetOf(new[] { "tympanic_thermometer", "spo2_probe", "bp_cuff", "iv_fluid_bag" }));
+            Assert.That(items.Keys, Is.SupersetOf(new[] { "tympanic_thermometer", "spo2_probe", "bp_cuff", "iv_fluid_bag", "glucose_meter", "ecg_machine", "stethoscope" }));
             var session = NewSession(out _);
             foreach (var item in items.Values)
             {
@@ -194,6 +194,146 @@ namespace ProcSense.Tests.EditMode
             Assert.AreEqual(StepResult.Accepted, m.Resolve(t, Accept(null)));
             Assert.AreEqual("ATTACHED", m.State);
             Assert.AreEqual(StepResult.NoTransition, m.Resolve(t, Accept(null)), "the same answer cannot be taken twice from a different state");
+        }
+
+        // ---- bedside monitoring rows (p0-vr-interaction-ui-s06, spec rows 13 to 15) against the real engine ----
+
+        private static Session Verified()
+        {
+            var s = NewSession(out _);
+            foreach (var v in new[] { "introduce_self", "ask_identity", "read_wristband", "open_notes", "confirm_identity" }) Assert.IsTrue(s.Apply(new SimAction(v)).Accepted, v);
+            return s;
+        }
+
+        private static SimAction Order(string test) => new SimAction("order_investigation", "", Channel.Vr, new Dictionary<string, string> { { "test", test } });
+
+        [TestCase("glucose_meter", "glucose_fingerprick", "IDLE", "READ")]
+        public void A_bedside_test_is_refused_until_it_is_ordered_then_the_meter_reads(string item, string test, string before, string after)
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()[item]);
+            Assert.AreEqual(StepResult.Rejected, m.Step(Trigger.Activate, s.Apply, SocketLibrary.Finger), "not ordered yet");
+            Assert.AreEqual(before, m.State);
+            Assert.IsTrue(s.Apply(Order(test)).Accepted, "ordering " + test);
+            Assert.AreEqual(StepResult.Accepted, m.Step(Trigger.Activate, s.Apply, SocketLibrary.Finger));
+            Assert.AreEqual(after, m.State);
+        }
+
+        [Test]
+        public void The_ecg_needs_its_electrodes_then_an_order_and_follows_Core()
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()["ecg_machine"]);
+            Assert.AreEqual(StepResult.NoTransition, m.Step(Trigger.Ui, s.Apply), "no recording without electrodes");
+            Assert.AreEqual(StepResult.Moved, m.Step(Trigger.Socket, s.Apply, SocketLibrary.Chest));
+            Assert.AreEqual(StepResult.Rejected, m.Step(Trigger.Ui, s.Apply), "not ordered yet");
+            Assert.AreEqual("ELECTRODES_ON", m.State);
+            Assert.IsTrue(s.Apply(Order("ecg")).Accepted);
+            Assert.AreEqual(StepResult.Accepted, m.Step(Trigger.Ui, s.Apply));
+            Assert.AreEqual("RECORDED", m.State);
+        }
+
+        [Test]
+        public void The_stethoscope_follows_whatever_Core_says_about_examining_the_chest()
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()["stethoscope"]);
+            var result = m.Step(Trigger.Socket, s.Apply, SocketLibrary.Chest);
+            Assert.AreEqual(result == StepResult.Accepted ? "ON_CHEST" : "HUNG", m.State, "the item shows Core's answer and nothing else");
+            Assert.AreEqual("examine", s.Log.Entries.Last().Verb);
+        }
+
+        // ---- sampling, access and oxygen rows (spec rows 16 to 19, 25, 28) ----
+
+        private static SimAction Act(string verb, params string[] kv)
+        {
+            var p = new Dictionary<string, string>();
+            for (int i = 0; i < kv.Length; i += 2) p[kv[i]] = kv[i + 1];
+            return new SimAction(verb, "patient", Channel.Vr, p);
+        }
+
+        [Test]
+        public void The_sample_is_kept_at_the_bedside_until_it_is_sent_and_the_tube_station_refuses_an_empty_send()
+        {
+            var s = Verified();
+            var bottles = new EquipmentStateMachine(Items()["blood_culture_bottles"]);
+            var station = new EquipmentStateMachine(Items()["tube_station"]);
+            Assert.AreEqual(StepResult.Rejected, station.Step(Trigger.Ui, s.Apply), "nothing waits yet");
+            Assert.AreEqual(StepResult.Rejected, bottles.Step(Trigger.Activate, s.Apply, SocketLibrary.Arm), "not ordered");
+            Assert.IsTrue(s.Apply(Order("lactate_cultures")).Accepted);
+            Assert.AreEqual(StepResult.Accepted, bottles.Step(Trigger.Activate, s.Apply, SocketLibrary.Arm));
+            Assert.AreEqual("FILLED", bottles.State);
+            Assert.AreEqual(StepResult.Accepted, station.Step(Trigger.Ui, s.Apply));
+            Assert.AreEqual("SENT", station.State);
+        }
+
+        [Test]
+        public void The_urine_kit_needs_an_order_and_the_pregnancy_pad_sends_its_own_test()
+        {
+            var s = Verified();
+            var kit = new EquipmentStateMachine(Items()["urine_kit"]);
+            Assert.AreEqual(StepResult.Rejected, kit.Step(Trigger.Ui, s.Apply));
+            Assert.IsTrue(s.Apply(Order("urine_dipstick")).Accepted);
+            Assert.AreEqual(StepResult.Accepted, kit.Step(Trigger.Ui, s.Apply));
+            Assert.AreEqual("DIPPED", kit.State);
+            var pad = kit.PanelNow().Single(p => p.Id == "pregnancy_test");
+            Assert.AreEqual("pregnancy", pad.Params["test"]);
+        }
+
+        [TestCase("iv_cannula_kit", SocketLibrary.Arm, "request_iv_access")]
+        [TestCase("oxygen_nasal_cannula", SocketLibrary.Face, "request_oxygen")]
+        [TestCase("oxygen_simple_mask", SocketLibrary.Face, "request_oxygen")]
+        [TestCase("oxygen_non_rebreather_mask", SocketLibrary.Face, "request_oxygen")]
+        public void A_request_item_shows_Core_s_answer_whichever_it_is(string item, string socket, string verb)
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()[item]);
+            var from = m.State;
+            var t = m.Find(Trigger.Socket, socket);
+            var result = m.Step(Trigger.Socket, s.Apply, socket);
+            Assert.AreEqual(verb, s.Log.Entries.Last().Verb);
+            Assert.AreEqual(result == StepResult.Accepted ? t.To : from, m.State);
+            Assert.AreEqual(result == StepResult.Accepted, s.Log.Entries.Last().Accepted);
+        }
+
+        [Test]
+        public void The_oxygen_request_names_a_device_Core_knows_and_the_fluid_names_its_treatment()
+        {
+            var s = Verified();
+            foreach (var id in new[] { "oxygen_nasal_cannula", "oxygen_simple_mask", "oxygen_non_rebreather_mask" })
+            {
+                var t = Items()[id].Transitions.First(x => !x.VisualOnly);
+                Assert.AreNotEqual("UNKNOWN_DEVICE", s.Apply(EquipmentStateMachine.BuildAction(t)).RejectReason, id);
+                Assert.AreNotEqual("MISSING_DEVICE", s.Apply(EquipmentStateMachine.BuildAction(t)).RejectReason, id);
+            }
+            var fluid = Items()["iv_fluid_bag"].Transitions.Single(x => x.Verb == "request_fluids");
+            Assert.AreNotEqual("MISSING_TREATMENT", s.Apply(EquipmentStateMachine.BuildAction(fluid)).RejectReason);
+            Assert.AreNotEqual("UNKNOWN_TREATMENT", s.Apply(EquipmentStateMachine.BuildAction(fluid)).RejectReason);
+        }
+
+        [Test]
+        public void The_clippers_and_stockings_follow_Core_and_the_razor_is_recorded_as_an_infection_risk()
+        {
+            var s = Verified();
+            var clippers = new EquipmentStateMachine(Items()["hair_clippers"]);
+            Assert.AreEqual(StepResult.Accepted, clippers.Step(Trigger.Activate, s.Apply));
+            Assert.AreEqual("USED", clippers.State);
+            var razor = new EquipmentStateMachine(Items()["razor"]);
+            var o = (ActionOutcome)null;
+            Assert.AreEqual(StepResult.Accepted, razor.Step(Trigger.Activate, a => o = s.Apply(a)));
+            CollectionAssert.Contains(o.Effects, "infection_risk:razor");
+            var socks = new EquipmentStateMachine(Items()["stockings"]);
+            Assert.AreEqual(StepResult.Accepted, socks.Step(Trigger.Socket, s.Apply, SocketLibrary.Leg));
+            Assert.AreEqual("APPLIED", socks.State);
+        }
+
+        [Test]
+        public void The_consent_form_stays_blank_until_Core_lets_it_be_signed()
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()["consent_form"]);
+            Assert.AreEqual(StepResult.Rejected, m.Step(Trigger.Ui, s.Apply), "no discussion yet");
+            Assert.AreEqual("BLANK", m.State);
         }
 
         // ---- panel and faults ----
