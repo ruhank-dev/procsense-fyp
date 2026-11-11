@@ -53,7 +53,7 @@ namespace ProcSense.VR.Views
                 {
                     _noticeSession = id;
                     if (id == "") NoticeSession.End();
-                    else NoticeSession.Begin(ServiceSettings.Load() != null ? ServiceSettings.Load().BaseUrl : "", id, Time.unscaledTime);
+                    else NoticeSession.Begin(ProcSense.VR.Auth.ServerEndpoint.Current, id, Time.unscaledTime);
                 }
                 NoticeSession.Tick(Time.unscaledTime);
                 if (NoticeChip == null && id != "")
