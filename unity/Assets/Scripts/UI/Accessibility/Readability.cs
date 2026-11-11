@@ -18,7 +18,7 @@ namespace ProcSense.VR.UI.Accessibility
         public const float MinContrast = 4.5f;
 
         /// <summary>The em height of a label in headset pixels when read from this far away.</summary>
-        public static float HeadsetPixels(TMP_Text label, float distance) => HeadsetPixels(label.fontSize * Mathf.Abs(label.transform.lossyScale.y), distance);
+        public static float HeadsetPixels(TMP_Text label, float distance) => HeadsetPixelsForHeight(label.fontSize * Mathf.Abs(label.transform.lossyScale.y), distance);
 
         /// <summary>Head-locked content (P3-UIX-08): no nearer than this, so the eyes do not strain to converge on something that moves with the head.</summary>
         public const float HeadLockedMinDistance = .75f;
@@ -43,7 +43,7 @@ namespace ProcSense.VR.UI.Accessibility
         }
 
         /// <summary>The headset pixels of something this many metres tall, this far away.</summary>
-        public static float HeadsetPixels(float metres, float distance) => Mathf.Atan2(metres, Mathf.Max(.05f, distance)) * Mathf.Rad2Deg * PixelsPerDegree;
+        public static float HeadsetPixelsForHeight(float metres, float distance) => Mathf.Atan2(metres, Mathf.Max(.05f, distance)) * Mathf.Rad2Deg * PixelsPerDegree;
 
         /// <summary>Quest 2 native eye buffer width per eye at render scale 1.0 (QuestPerformanceProfile) and an ASSUMED horizontal field of view per eye. Both are estimates for the
         /// report below; the real values are logged on the headset in DC-13 (XRSettings.eyeTextureWidth, camera field of view).</summary>

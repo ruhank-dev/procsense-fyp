@@ -58,7 +58,7 @@ namespace ProcSense.Tests.EditMode
             foreach (float d in new[] { _t.NearestDistance, _t.WristDistance, _t.ContextDistance.x, _t.ContextDistance.y, _t.MenuDistance.x, _t.MenuDistance.y })
                 foreach (float size in new[] { _t.Caption, _t.Body, _t.Heading, _t.Title })
                 {
-                    float px = Readability.HeadsetPixels(size * _t.MetresPerUnit(d), d);
+                    float px = Readability.HeadsetPixelsForHeight(size * _t.MetresPerUnit(d), d);
                     Assert.GreaterOrEqual(px, Readability.MinHeadsetPixels, size + " units at " + d + " m: " + px.ToString("0.0") + " px");
                 }
         }
@@ -66,7 +66,7 @@ namespace ProcSense.Tests.EditMode
         [Test]
         public void A_fixed_scale_would_make_body_text_too_small_on_a_menu()
         {
-            float px = Readability.HeadsetPixels(_t.Body * _t.ReferenceMetresPerUnit, _t.MenuDistance.x);
+            float px = Readability.HeadsetPixelsForHeight(_t.Body * _t.ReferenceMetresPerUnit, _t.MenuDistance.x);
             Assert.Less(px, Readability.MinHeadsetPixels, "why the scale grows with distance");
         }
 
