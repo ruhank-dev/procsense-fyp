@@ -26,8 +26,9 @@ namespace ProcSense.VR.Audio
         public void Build()
         {
             if (Canvas != null) return;
-            Canvas = UiKit.WorldCanvas("Subtitles", transform, new Vector2(900, 120), 0.0009f);
-            _text = UiKit.Label(Canvas.transform, "Line", "", new Vector2(16, 8), new Vector2(868, 104), 26, TextAlignmentOptions.Center);
+            // 700 units at 0.0009 m is 0.63 m, about 37 degrees at 0.95 m: a line is read without turning the head (head-locked limit 40 degrees, P3-UIX-08)
+            Canvas = UiKit.WorldCanvas("Subtitles", transform, new Vector2(700, 150), 0.0009f);
+            _text = UiKit.Label(Canvas.transform, "Line", "", new Vector2(16, 8), new Vector2(668, 134), 26, TextAlignmentOptions.Center);
             Canvas.gameObject.SetActive(false);
         }
 

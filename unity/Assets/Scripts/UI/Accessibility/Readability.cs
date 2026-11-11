@@ -20,6 +20,28 @@ namespace ProcSense.VR.UI.Accessibility
         /// <summary>The em height of a label in headset pixels when read from this far away.</summary>
         public static float HeadsetPixels(TMP_Text label, float distance) => HeadsetPixels(label.fontSize * Mathf.Abs(label.transform.lossyScale.y), distance);
 
+        /// <summary>Head-locked content (P3-UIX-08): no nearer than this, so the eyes do not strain to converge on something that moves with the head.</summary>
+        public const float HeadLockedMinDistance = .75f;
+        /// <summary>Head-locked content stays between 25 degrees below and 15 degrees above the line of sight, and within 20 degrees to either side.</summary>
+        public const float HeadLockedMaxBelow = 25f, HeadLockedMaxAbove = 15f, HeadLockedMaxSide = 20f;
+        /// <summary>And no wider than 40 degrees of view (a line read without turning the head): only small things (subtitles, toasts, the listening ring) follow the head; menus and panels stay in the world.</summary>
+        public const float HeadLockedMaxWidth = 40f;
+
+        /// <summary>What is wrong with content that follows the head at this offset (camera space, metres) and width ("" each when nothing).</summary>
+        public static System.Collections.Generic.List<string> HeadLockedProblems(Vector3 offset, float widthMetres)
+        {
+            var problems = new System.Collections.Generic.List<string>();
+            float distance = offset.magnitude;
+            if (offset.z <= 0) { problems.Add("behind or beside the eyes"); return problems; }
+            if (distance < HeadLockedMinDistance) problems.Add("nearer than " + HeadLockedMinDistance + " m (" + distance.ToString("0.00") + " m)");
+            float pitch = Mathf.Atan2(offset.y, offset.z) * Mathf.Rad2Deg, yaw = Mathf.Atan2(offset.x, offset.z) * Mathf.Rad2Deg;
+            if (pitch < -HeadLockedMaxBelow || pitch > HeadLockedMaxAbove) problems.Add("too far up or down (" + pitch.ToString("0") + " degrees)");
+            if (Mathf.Abs(yaw) > HeadLockedMaxSide) problems.Add("too far to the side (" + yaw.ToString("0") + " degrees)");
+            float width = 2 * Mathf.Atan2(widthMetres / 2, distance) * Mathf.Rad2Deg;
+            if (width > HeadLockedMaxWidth) problems.Add("too wide (" + width.ToString("0") + " degrees)");
+            return problems;
+        }
+
         /// <summary>The headset pixels of something this many metres tall, this far away.</summary>
         public static float HeadsetPixels(float metres, float distance) => Mathf.Atan2(metres, Mathf.Max(.05f, distance)) * Mathf.Rad2Deg * PixelsPerDegree;
 
