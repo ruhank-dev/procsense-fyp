@@ -49,7 +49,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual(.0006f, tablet.Canvas.transform.localScale.x, 1e-7);
             AccessibilitySettings.NextUiScale();
             Assert.AreEqual(.00075f, tablet.Canvas.transform.localScale.x, 1e-7);
-            Assert.AreEqual(1, PlayerPrefs.GetInt(AccessibilitySettings.UiScaleKey), "kept on this headset");
+            StringAssert.Contains("\"panelSize\":1", PlayerPrefs.GetString(ProcSense.VR.Settings.GameSettings.Key), "kept on this headset");
             Assert.AreEqual(1.25f, AccessibilitySettings.UiScale);
             AccessibilitySettings.NextUiScale(); AccessibilitySettings.NextUiScale();
             Assert.AreEqual(.0006f, canvas.transform.localScale.x, 1e-7, "100, 125, 150 and back");
