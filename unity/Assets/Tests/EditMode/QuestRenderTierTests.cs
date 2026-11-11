@@ -59,8 +59,8 @@ namespace ProcSense.Tests.EditMode
         {
             var a = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Android);
             var d = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Desktop);
-            Assert.AreEqual((d.msaaSampleCount, d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution, d.maxAdditionalLightsCount),
-                (a.msaaSampleCount, a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution, a.maxAdditionalLightsCount));
+            Assert.AreEqual((d.msaaSampleCount, d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution),   // the extra-light limit and soft shadows differ on purpose (B58 lighting, b628cd283)
+                (a.msaaSampleCount, a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution));
         }
 
         [TestCase("Assets/Shaders/SunShaft.shader")]

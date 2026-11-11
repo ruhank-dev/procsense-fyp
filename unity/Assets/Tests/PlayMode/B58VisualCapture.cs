@@ -78,6 +78,7 @@ namespace ProcSense.Tests.PlayMode
             string root = Environment.GetEnvironmentVariable("B58V_DIR"); if (string.IsNullOrEmpty(root)) root = Path.Combine(work, "reports/b58_visual");
             string cfgs = Environment.GetEnvironmentVariable("B58V_CONFIGS") ?? "B20,B58";
             var only = new HashSet<string>((Environment.GetEnvironmentVariable("B58V_POSES") ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries));
+            if (!Directory.Exists(Path.GetPathRoot(Path.GetFullPath(root)))) Assert.Ignore("capture tool: its output drive " + Path.GetPathRoot(root) + " does not exist here; set B58V_DIR or PROCSENSE_WORK");
             Directory.CreateDirectory(root);
             var ids = cfgs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
             foreach (var id in ids) Assert.IsTrue(PerfPresets.All.Any(p => p.Id == id.Split('@')[0]), "unknown preset " + id);

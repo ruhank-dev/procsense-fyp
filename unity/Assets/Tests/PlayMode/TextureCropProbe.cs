@@ -45,7 +45,7 @@ namespace ProcSense.Tests.PlayMode
         [UnityTest, Timeout(1800000)]
         public IEnumerator Capture_text_crops()
         {
-            string dir = Environment.GetEnvironmentVariable("TEXPROBE_DIR"); Assert.IsFalse(string.IsNullOrEmpty(dir), "set TEXPROBE_DIR");
+            string dir = Environment.GetEnvironmentVariable("TEXPROBE_DIR"); if (string.IsNullOrEmpty(dir)) Assert.Ignore("capture tool: set TEXPROBE_DIR to run it");
             string tag = Environment.GetEnvironmentVariable("TEXPROBE_TAG") ?? "state";
             bool select = Environment.GetEnvironmentVariable("TEXPROBE_SELECT") == "1";
             string outDir = Path.Combine(dir, tag); Directory.CreateDirectory(outDir);
