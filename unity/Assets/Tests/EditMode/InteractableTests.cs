@@ -64,6 +64,18 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void An_object_whose_parts_are_built_at_runtime_is_not_a_mistake_and_finds_them_when_they_appear()
+        {
+            var go = new GameObject("Phone anchor"); go.transform.SetParent(_root.transform);
+            var i = go.AddComponent<Interactable>(); i.Configure("phone", EntityType.Records, "", null, null, partsBuiltAtRuntime: true);
+            Assert.IsEmpty(i.Problems());
+            Assert.AreEqual(0, i.HighlightRenderers.Count);
+            new GameObject("Phone (runtime)").transform.SetParent(go.transform);
+            go.transform.GetChild(0).gameObject.AddComponent<MeshRenderer>();
+            Assert.AreEqual(1, i.HighlightRenderers.Count, "an empty answer must not be kept");
+        }
+
+        [Test]
         public void Problems_name_a_missing_id_a_missing_voice_name_and_nothing_to_light()
         {
             Assert.IsEmpty(Make("Good nurse", "nurse", EntityType.Nurse, "nurse").Problems());

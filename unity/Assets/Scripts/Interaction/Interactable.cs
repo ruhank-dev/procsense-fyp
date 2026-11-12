@@ -22,6 +22,7 @@ namespace ProcSense.VR.Interaction
         [SerializeField, Tooltip("The renderers that light up on hover. All renderers under the object when empty.")] private Renderer[] highlightRenderers = Array.Empty<Renderer>();
         [SerializeField, Tooltip("What the trainee says to address it by voice, for example nurse, monitor.")] private string voiceName = "";
 
+        [SerializeField, Tooltip("Its visible parts are built at runtime (a phone, a screen), so having nothing to highlight in the editor is not a mistake.")] private bool renderersAtRuntime;
         private Renderer[] cached;
 
         public string EntityId => entityId;
@@ -48,11 +49,19 @@ namespace ProcSense.VR.Interaction
         }
 
         /// <summary>The renderers that light up: the ones given, or every renderer under the object.</summary>
-        public IReadOnlyList<Renderer> HighlightRenderers => highlightRenderers.Length > 0 ? highlightRenderers : (cached ??= GetComponentsInChildren<Renderer>(true));
-
-        public void Configure(string id, EntityType type, string voice = "", Transform anchor = null, Renderer[] renderers = null)
+        public IReadOnlyList<Renderer> HighlightRenderers
         {
-            entityId = id ?? ""; entityType = type; voiceName = voice ?? ""; panelAnchor = anchor; highlightRenderers = renderers ?? Array.Empty<Renderer>(); cached = null;
+            get
+            {
+                if (highlightRenderers.Length > 0) return highlightRenderers;
+                if (cached == null || cached.Length == 0) cached = GetComponentsInChildren<Renderer>(true);          // an empty answer is not kept: parts built at runtime appear later
+                return cached;
+            }
+        }
+
+        public void Configure(string id, EntityType type, string voice = "", Transform anchor = null, Renderer[] renderers = null, bool partsBuiltAtRuntime = false)
+        {
+            entityId = id ?? ""; entityType = type; voiceName = voice ?? ""; panelAnchor = anchor; highlightRenderers = renderers ?? Array.Empty<Renderer>(); renderersAtRuntime = partsBuiltAtRuntime; cached = null;
         }
 
         public void SetHighlighted(bool on)
@@ -66,7 +75,7 @@ namespace ProcSense.VR.Interaction
         public IEnumerable<string> Problems()
         {
             if (string.IsNullOrWhiteSpace(entityId)) yield return name + ": no entity id";
-            if (HighlightRenderers.Count == 0) yield return name + ": nothing to highlight";
+            if (HighlightRenderers.Count == 0 && !renderersAtRuntime) yield return name + ": nothing to highlight";
             if (entityType != EntityType.Equipment && entityType != EntityType.Records && string.IsNullOrWhiteSpace(voiceName)) yield return name + ": a person needs a voice name";
         }
 
