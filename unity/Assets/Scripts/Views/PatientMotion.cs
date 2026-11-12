@@ -68,6 +68,39 @@ namespace ProcSense.VR.Views
             if (!manual.ContainsKey(t)) manual[t] = (t.localRotation, euler); else manual[t] = (manual[t].rest, euler);
         }
 
+        // ---- expression: the face blends toward the target over about half a second (p0-characters-s03) ----
+        [Header("Expression")]
+        [Range(.1f, 3f), Tooltip("Seconds for the face to settle on a new expression.")] public float expressionSeconds = .6f;
+        private IReadOnlyDictionary<string, float> expressionTarget = PatientExpression.Calm;
+        private readonly Dictionary<string, float> expressionNow = new Dictionary<string, float>();
+        private readonly Dictionary<string, int> expressionIndex = new Dictionary<string, int>();
+        private float droop;
+
+        /// <summary>The face to settle into (a table from <see cref="PatientExpression"/>); null is calm.</summary>
+        public void SetExpression(IReadOnlyDictionary<string, float> target) => expressionTarget = target ?? PatientExpression.Calm;
+
+        /// <summary>How far the face is into its expression right now, by shape ending (0 when not part of it). For tests and review.</summary>
+        public float ExpressionWeight(string shape) => expressionNow.TryGetValue(shape, out var w) ? w : 0f;
+
+        public float Droop => droop;
+
+        private void UpdateExpression()
+        {
+            float step = Time.deltaTime / Mathf.Max(.05f, expressionSeconds);
+            foreach (var kv in expressionTarget) if (!expressionNow.ContainsKey(kv.Key)) expressionNow[kv.Key] = 0f;
+            foreach (var key in new List<string>(expressionNow.Keys))
+            {
+                float target = expressionTarget.TryGetValue(key, out var t) ? t : 0f;
+                float now = Mathf.MoveTowards(expressionNow[key], target, step);
+                if (now <= 0f && target <= 0f) { expressionNow.Remove(key); if (key == PatientExpression.Droop) droop = 0f; continue; }
+                expressionNow[key] = now;
+                if (key == PatientExpression.Droop) { droop = now; continue; }                                         // lids are set with the blink, below
+                if (face == null) continue;
+                if (!expressionIndex.TryGetValue(key, out var idx)) expressionIndex[key] = idx = Shape(face, key);
+                SetShape(idx, now * 100f);
+            }
+        }
+
         private void SetShape(int idx, float w) { if (face != null && idx >= 0) CharacterPerfBlend.Set(face, idx, Mathf.Clamp(w, 0f, 100f)); }
 
         private void LateUpdate()
@@ -86,7 +119,8 @@ namespace ProcSense.VR.Views
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
             float b = 0f; float k = t - blinkStart; if (k >= 0f && k < .18f) b = k < .06f ? k / .06f : 1f - (k - .06f) / .12f;
-            b = Mathf.Max(b, blinkHold); SetShape(blinkL, b * 100f); SetShape(blinkR, b * 100f);
+            UpdateExpression();
+            b = Mathf.Max(b, blinkHold, droop); SetShape(blinkL, b * 100f); SetShape(blinkR, b * 100f);
 
             float gx = (autoMotion ? (Mathf.PerlinNoise(seed + 3f, t * .12f) - .5f) * 1.2f : 0f) + gazeOffset.x, gy = (autoMotion ? (Mathf.PerlinNoise(seed + 5f, t * .1f) - .5f) * .8f : 0f) + gazeOffset.y;
             SetShape(lookOutL, Mathf.Max(0f, -gx) * 40f); SetShape(lookInL, Mathf.Max(0f, gx) * 40f); SetShape(lookInR, Mathf.Max(0f, -gx) * 40f); SetShape(lookOutR, Mathf.Max(0f, gx) * 40f);
