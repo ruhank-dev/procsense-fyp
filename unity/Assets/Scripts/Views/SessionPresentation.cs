@@ -48,6 +48,7 @@ namespace ProcSense.VR.Views
             if (_visiblePatient == null) _visiblePatient = Object.FindAnyObjectByType<PatientMotion>();
             if (_transport == null) _transport = Object.FindAnyObjectByType<PatientTransportView>();
             if (_records == null) _records = Object.FindAnyObjectByType<RecordsWorkstation>();
+            if (_visiblePatient != null) _visiblePatient.breathsPerMinute = PatientBreathing.Rate(_host.Observable?.Vitals);
             Voice.Heads.Clear();
             var visitingNurse = NurseWristbandController.Instance;
             if (_records != null) Head("laboratory", _records.PhoneAnchor);
