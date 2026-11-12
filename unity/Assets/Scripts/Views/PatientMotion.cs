@@ -28,7 +28,8 @@ namespace ProcSense.VR.Views
         private SkinnedMeshRenderer face; private int blinkL = -1, blinkR = -1, lookInL = -1, lookOutL = -1, lookInR = -1, lookOutR = -1, lookUpL = -1, lookUpR = -1, lookDownL = -1, lookDownR = -1;
         private Transform spine1, spine2, head, neck, footL, footR;
         private Quaternion spine1Rest, spine2Rest, headRest, footLRest, footRRest;
-        private Vector3 spine1Scale, spine2Scale; private int apAxis1, apAxis2; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, footAxis;
+        private Vector3 spine1Scale, spine2Scale; private int apAxis1, apAxis2; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
+        private Transform armUpper, armFore, armHand, armLeft, pelvis; private Quaternion armUpperRest, armForeRest;
         private float breathSign = 1f, nextBlink, blinkStart = -10f, seed, nextFoot = 12f, footStart = -10f; private int footSide;
         private readonly Dictionary<Transform, (Quaternion rest, Vector3 euler)> manual = new Dictionary<Transform, (Quaternion, Vector3)>();
 
@@ -58,8 +59,14 @@ namespace ProcSense.VR.Views
             float y0 = head.position.y; spine1.localRotation = spine1Rest * Quaternion.AngleAxis(1f, breathAxis1); float y1 = head.position.y; spine1.localRotation = spine1Rest; breathSign = y1 >= y0 ? 1f : -1f;
             headAxisYaw = head.InverseTransformDirection((head.position - neck.position).normalized); headAxisRoll = head.InverseTransformDirection(lateral);
             footAxis = footL != null ? footL.InverseTransformDirection(lateral) : Vector3.right;
+            headAxisTilt = Vector3.Cross(headAxisYaw, headAxisRoll).normalized;
+            armUpper = Find(transform, "Bip01 R UpperArm"); armFore = Find(transform, "Bip01 R Forearm"); armHand = Find(transform, "Bip01 R Hand"); pelvis = Find(transform, "Bip01 Pelvis"); armLeft = Find(transform, "Bip01 L UpperArm");
+            if (armUpper != null && armFore != null && armHand != null) { armUpperRest = armUpper.localRotation; armForeRest = armFore.localRotation; }
             nextBlink = Time.time + Random.Range(1.5f, 4f);
         }
+
+        /// <summary>Runs the set-up Awake does, for the review tool, which poses the patient outside play mode.</summary>
+        public void Prepare() => Awake();
 
         /// <summary>Rotates a bone (looked up by name, e.g. "Bip01 L Hand") by the given Euler offset on top of its resting pose.</summary>
         public void SetBoneEuler(string boneName, Vector3 euler)
@@ -76,17 +83,14 @@ namespace ProcSense.VR.Views
         private readonly Dictionary<string, int> expressionIndex = new Dictionary<string, int>();
         private float droop;
 
-        /// <summary>The face to settle into (a table from <see cref="PatientExpression"/>); null is calm.</summary>
-        public void SetExpression(IReadOnlyDictionary<string, float> target) => expressionTarget = target ?? PatientExpression.Calm;
-
         /// <summary>How far the face is into its expression right now, by shape ending (0 when not part of it). For tests and review.</summary>
         public float ExpressionWeight(string shape) => expressionNow.TryGetValue(shape, out var w) ? w : 0f;
 
         public float Droop => droop;
 
-        private void UpdateExpression()
+        private void UpdateExpression(float dt)
         {
-            float step = Time.deltaTime / Mathf.Max(.05f, expressionSeconds);
+            float step = dt / Mathf.Max(.05f, expressionSeconds);
             foreach (var kv in expressionTarget) if (!expressionNow.ContainsKey(kv.Key)) expressionNow[kv.Key] = 0f;
             foreach (var key in new List<string>(expressionNow.Keys))
             {
@@ -101,28 +105,72 @@ namespace ProcSense.VR.Views
             }
         }
 
+        // ---- mood: face, head, eyes, breathing depth and the guarding hand settle together ----
+        [Tooltip("Review aid: type a behaviour mode (IN_PAIN, ANXIOUS, DISTRESSED, CONFUSED, DROWSY, NAUSEATED, UNCOOPERATIVE) to show it now, whatever the session says. Empty follows the session.")] public string previewMode = "";
+        [Header("Guarding hand (target on the body, metres from the pelvis)")]
+        public Vector3 guardTarget = new Vector3(.17f, .06f, .18f);                          // x: toward the patient's right, y: toward the head, z: up from the pelvis
+        private string appliedPreview = "";
+        private PatientPose poseNow = PatientPose.Calm, poseTarget = PatientPose.Calm;
+
+        /// <summary>The mood to show: the face, head, eyes, breathing depth and guarding hand for a behaviour mode (null or unknown is calm). The session's mode is ignored while <see cref="previewMode"/> is set, unless forced.</summary>
+        public void SetMood(string mode, bool force = false)
+        {
+            if (!force && previewMode.Length > 0) return;
+            expressionTarget = PatientExpression.For(mode);
+            poseTarget = PatientPose.For(mode);
+        }
+
+        /// <summary>How far into the mood's pose the patient is right now. For tests and review.</summary>
+        public PatientPose Pose => poseNow;
+
+        // The right hand comes to the lower right abdomen: the forearm bends at the elbow (two-bone solve), blended in by the pose's Guard weight.
+        private void GuardArm(float w)
+        {
+            if (armUpper == null || armFore == null || armHand == null || pelvis == null || armLeft == null) return;
+            armUpper.localRotation = armUpperRest; armFore.localRotation = armForeRest;
+            if (w < .001f) return;
+            var lateral = Vector3.ProjectOnPlane(armUpper.position - armLeft.position, Vector3.up).normalized;
+            var toHead = Vector3.ProjectOnPlane(head.position - pelvis.position, Vector3.up).normalized;
+            var target = pelvis.position + lateral * guardTarget.x + toHead * guardTarget.y + Vector3.up * guardTarget.z;
+            var s = armUpper.position; var e0 = armFore.position; var h0 = armHand.position;
+            float a = (e0 - s).magnitude, b = (h0 - e0).magnitude;
+            var line = target - s; float d = Mathf.Clamp(line.magnitude, Mathf.Abs(a - b) + .01f, a + b - .01f); var u = line.normalized;
+            var pole = Vector3.ProjectOnPlane(lateral + Vector3.up * .3f, u).normalized;
+            float x = (a * a - b * b + d * d) / (2f * d), h = Mathf.Sqrt(Mathf.Max(0f, a * a - x * x));
+            var elbow = s + u * x + pole * h;
+            armUpper.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.FromToRotation(e0 - s, elbow - s), w) * armUpper.rotation;
+            var e1 = armFore.position; var h1 = armHand.position;
+            armFore.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.FromToRotation(h1 - e1, s + u * d - e1), w) * armFore.rotation;
+        }
+
         private void SetShape(int idx, float w) { if (face != null && idx >= 0) CharacterPerfBlend.Set(face, idx, Mathf.Clamp(w, 0f, 100f)); }
 
-        private void LateUpdate()
+        private void LateUpdate() => Step(Time.time, Time.deltaTime);
+
+        /// <summary>One frame of motion at time t (seconds) after dt seconds. LateUpdate calls it; the review tool calls it to pose the patient outside play mode.</summary>
+        public void Step(float t, float dt)
         {
-            float t = Time.time;
+            if (previewMode.Length > 0 && previewMode != appliedPreview) { appliedPreview = previewMode; SetMood(previewMode, true); }
+            poseNow = PatientPose.Lerp(poseNow, poseTarget, 1f - Mathf.Exp(-dt / Mathf.Max(.05f, expressionSeconds * .6f)));
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath
-            spine1.localRotation = spine1Rest * Quaternion.AngleAxis(breathSign * breathDegrees * .6f * rise, breathAxis1);
-            spine2.localRotation = spine2Rest * Quaternion.AngleAxis(breathSign * breathDegrees * rise, breathAxis2);
+            spine1.localRotation = spine1Rest * Quaternion.AngleAxis(breathSign * breathDegrees * poseNow.Depth * .6f * rise, breathAxis1);
+            spine2.localRotation = spine2Rest * Quaternion.AngleAxis(breathSign * breathDegrees * poseNow.Depth * rise, breathAxis2);
 
-            var sc1 = spine1Scale; sc1[apAxis1] *= 1f + breathDepth * .6f * rise; spine1.localScale = sc1;                                    // the chest wall rises and falls
-            var sc2 = spine2Scale; sc2[apAxis2] *= 1f + breathDepth * rise; spine2.localScale = sc2;
+            var sc1 = spine1Scale; sc1[apAxis1] *= 1f + breathDepth * poseNow.Depth * .6f * rise; spine1.localScale = sc1;                                    // the chest wall rises and falls
+            var sc2 = spine2Scale; sc2[apAxis2] *= 1f + breathDepth * poseNow.Depth * rise; spine2.localScale = sc2;
 
-            float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f) - .5f) * 2f * headDriftDegrees : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f) - .5f) * headDriftDegrees * .6f : 0f;
-            head.localRotation = headRest * Quaternion.AngleAxis(yaw, headAxisYaw) * Quaternion.AngleAxis(roll, headAxisRoll) * Quaternion.Euler(headEuler);
+            float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f * Mathf.Sqrt(poseNow.Restless)) - .5f) * 2f * headDriftDegrees * poseNow.Restless : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f * Mathf.Sqrt(poseNow.Restless)) - .5f) * headDriftDegrees * .6f * poseNow.Restless : 0f;
+            head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
+            GuardArm(poseNow.Guard);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
             float b = 0f; float k = t - blinkStart; if (k >= 0f && k < .18f) b = k < .06f ? k / .06f : 1f - (k - .06f) / .12f;
-            UpdateExpression();
+            UpdateExpression(dt);
             b = Mathf.Max(b, blinkHold, droop); SetShape(blinkL, b * 100f); SetShape(blinkR, b * 100f);
 
-            float gx = (autoMotion ? (Mathf.PerlinNoise(seed + 3f, t * .12f) - .5f) * 1.2f : 0f) + gazeOffset.x, gy = (autoMotion ? (Mathf.PerlinNoise(seed + 5f, t * .1f) - .5f) * .8f : 0f) + gazeOffset.y;
+            float gx = (autoMotion ? (Mathf.PerlinNoise(seed + 3f, t * .12f) - .5f) * 1.2f : 0f) + gazeOffset.x + poseNow.GazeX, gy = (autoMotion ? (Mathf.PerlinNoise(seed + 5f, t * .1f) - .5f) * .8f : 0f) + gazeOffset.y + poseNow.GazeY;
+            if (autoMotion && poseNow.Dart > .001f) { float ds = t * poseNow.DartSpeed; gx += (Mathf.PerlinNoise(seed + 20f, ds) - .5f) * 2f * poseNow.Dart; gy += (Mathf.PerlinNoise(seed + 30f, ds) - .5f) * 1.2f * poseNow.Dart; }       // the eyes jump about
             SetShape(lookOutL, Mathf.Max(0f, -gx) * 40f); SetShape(lookInL, Mathf.Max(0f, gx) * 40f); SetShape(lookInR, Mathf.Max(0f, -gx) * 40f); SetShape(lookOutR, Mathf.Max(0f, gx) * 40f);
             SetShape(lookUpL, Mathf.Max(0f, gy) * 40f); SetShape(lookUpR, Mathf.Max(0f, gy) * 40f); SetShape(lookDownL, Mathf.Max(0f, -gy) * 40f); SetShape(lookDownR, Mathf.Max(0f, -gy) * 40f);
 

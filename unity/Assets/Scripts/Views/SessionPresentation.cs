@@ -51,7 +51,7 @@ namespace ProcSense.VR.Views
             if (_visiblePatient != null)
             {
                 _visiblePatient.breathsPerMinute = PatientBreathing.Rate(_host.Observable?.Vitals);
-                _visiblePatient.SetExpression(PatientExpression.For(_host.Observable?.BehaviourMode));
+                _visiblePatient.SetMood(_host.Observable?.BehaviourMode);
             }
             Voice.Heads.Clear();
             var visitingNurse = NurseWristbandController.Instance;

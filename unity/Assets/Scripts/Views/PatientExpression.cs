@@ -29,7 +29,7 @@ namespace ProcSense.VR.Views
             { "ANXIOUS", Build(("BrowInnerUp", 1f), ("BrowOuterUp*", .55f), ("EyeWide*", .6f), ("MouthFrown*", .4f), ("MouthPress*", .45f), ("MouthRollLower", .4f), ("MouthStretch*", .15f)) },
             { "DISTRESSED", Build(("BrowInnerUp", 1f), ("BrowDown*", .4f), ("EyeSquint*", .55f), ("MouthFrown*", 1f), ("MouthStretch*", .5f), ("JawOpen", .15f), ("CheekSquint*", .4f), ("MouthLowerDown*", .4f)) },
             { "CONFUSED", Build(("BrowInnerUp", .6f), ("BrowDownLeft", .8f), ("BrowOuterUpRight", .9f), ("EyeSquintLeft", .5f), ("EyeWideRight", .3f), ("MouthPressLeft", .5f), ("MouthLeft", .5f), ("JawOpen", .05f)) },
-            { "DROWSY", Build((Droop, .7f), ("EyeLookDown*", .25f), ("JawOpen", .08f), ("BrowInnerUp", .1f), ("BrowDown*", .15f)) },
+            { "DROWSY", Build((Droop, .7f), ("JawOpen", .08f), ("BrowInnerUp", .1f), ("BrowDown*", .15f)) },
             { "NAUSEATED", Build(("MouthFrown*", .7f), ("NoseSneer*", .6f), ("MouthShrugLower", .5f), ("CheekPuff", .35f), ("EyeSquint*", .45f), ("BrowDown*", .4f), ("BrowInnerUp", .35f), ("MouthPress*", .5f)) },
             { "UNCOOPERATIVE", Build(("BrowDown*", 1f), ("EyeSquint*", .5f), ("MouthPress*", .9f), ("MouthFrown*", .6f), ("NoseSneer*", .4f), ("JawForward", .3f), ("MouthShrugUpper", .3f)) },
         };
