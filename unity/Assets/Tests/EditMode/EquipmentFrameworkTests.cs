@@ -336,6 +336,49 @@ namespace ProcSense.Tests.EditMode
             Assert.AreEqual("BLANK", m.State);
         }
 
+        // ---- theatre rows (p0-vr-interaction-ui-s07) ----
+
+        private static readonly string[] OtStationItems = { "ot_anaesthetic_machine", "ot_monitor", "ot_suction", "ot_airway_trolley", "ot_lap_tower", "ot_co2_cylinder", "ot_diathermy", "ot_warming_unit" };
+
+        [Test]
+        public void Every_theatre_item_names_a_real_station_and_every_trainee_station_has_an_item()
+        {
+            var s = NewSession(out var content);
+            var named = new List<string>();
+            foreach (var id in OtStationItems)
+            {
+                var t = Items()[id].Transitions.First();
+                Assert.IsNotNull(content.Or.Find(t.Params["station"]), id + ": not a station");
+                named.Add(t.Params["station"]);
+            }
+            var trainee = content.Or.Stations.Where(x => x.Owner == "trainee").Select(x => x.Id);
+            CollectionAssert.AreEquivalent(trainee, named, "the theatre staff's stations are not checked by the trainee");
+        }
+
+        [Test]
+        public void A_station_check_follows_Core_and_a_reported_fault_is_answered_by_Core()
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()["ot_suction"]);
+            Assert.AreEqual(StepResult.Accepted, m.Step(Trigger.Activate, s.Apply));
+            Assert.AreEqual("CHECKED", m.State);
+            Assert.AreEqual("check_station", s.Log.Entries.Last().Verb);
+            Assert.AreEqual(new[] { "report_fault" }, m.PanelNow().Select(p => p.Id).ToArray());
+            var report = m.PanelNow().Single();
+            Assert.IsTrue(s.Apply(Act(report.Verb, "station", report.Params["station"])).Accepted);
+        }
+
+        [Test]
+        public void The_board_declares_through_Core_and_never_shows_ready_by_itself()
+        {
+            var s = Verified();
+            var m = new EquipmentStateMachine(Items()["ot_readiness_board"]);
+            Assert.AreEqual(StepResult.Accepted, m.Step(Trigger.Ui, s.Apply));
+            Assert.AreEqual("declare_or_ready", s.Log.Entries.Last().Verb);
+            Assert.AreEqual("OPEN", m.State);
+            Assert.IsFalse(s.Patient.Clinical.HasFlag("or.ready"), "nothing was checked, so Core did not accept the theatre as ready");
+        }
+
         // ---- panel and faults ----
 
         [Test]

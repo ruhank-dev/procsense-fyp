@@ -197,5 +197,139 @@
     {"from": "ON", "to": "OFF", "trigger": "grab", "visual_only": true, "label": "Take the mask off"}
    ]
   }
+  ,
+  {
+   "id": "ot_anaesthetic_machine",
+   "spec_row": 41,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:anaesthetic_machine:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "anaesthetic_machine"}, "label": "Check the anaesthetic machine and its log"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "anaesthetic_machine"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "anaesthetic_machine"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_monitor",
+   "spec_row": 9,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:monitors:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "monitors"}, "label": "Check the monitors"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "monitors"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "monitors"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_suction",
+   "spec_row": 29,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:suction:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "suction"}, "label": "Test the suction"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "suction"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "suction"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_airway_trolley",
+   "spec_row": 43,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:oxygen_airway:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "oxygen_airway"}, "label": "Check oxygen and airway equipment"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "oxygen_airway"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "oxygen_airway"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_lap_tower",
+   "spec_row": 45,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:lap_tower:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "lap_tower"}, "label": "Check the keyhole tower"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "lap_tower"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "lap_tower"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_co2_cylinder",
+   "spec_row": 46,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:co2_cylinder:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "co2_cylinder"}, "label": "Read the CO2 cylinder gauge"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "co2_cylinder"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "co2_cylinder"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_diathermy",
+   "spec_row": 47,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:diathermy:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "diathermy"}, "label": "Check the diathermy and return pad"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "diathermy"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "diathermy"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_warming_unit",
+   "spec_row": 37,
+   "note": "OT station. The check only shows the station's result; ready or fault comes from Core (station:warming:...), never from this file.",
+   "states": ["UNCHECKED", "CHECKED"],
+   "initial": "UNCHECKED",
+   "transitions": [
+    {"from": "UNCHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "warming"}, "label": "Check the warming device"},
+    {"from": "CHECKED", "to": "CHECKED", "trigger": "activate", "verb": "check_station", "target": "theatre", "params": {"station": "warming"}, "label": "Check again"}
+   ],
+   "panel": [
+    {"id": "report_fault", "label": "Report a fault", "verb": "report_fault", "target": "theatre", "params": {"station": "warming"}, "only_in": ["CHECKED"]}
+   ]
+  }
+  ,
+  {
+   "id": "ot_readiness_board",
+   "spec_row": 51,
+   "note": "The trainee declares the theatre ready, or (emergency cases only) asks for a substitute theatre. Core decides whether the declaration stands (a wrong one is scored), so the board never shows ready by itself; the ready light comes from Core flag or.ready.",
+   "states": ["OPEN"],
+   "initial": "OPEN",
+   "transitions": [
+    {"from": "OPEN", "to": "OPEN", "trigger": "ui", "verb": "declare_or_ready", "target": "theatre", "label": "Declare the theatre ready"}
+   ],
+   "panel": [
+    {"id": "substitute", "label": "Use a substitute theatre", "verb": "use_substitute_theatre", "target": "theatre", "only_in": ["OPEN"]}
+   ]
+  }
  ]
 }
