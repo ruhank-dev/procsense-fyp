@@ -131,7 +131,7 @@ jobs:
           path: ${{ env.PROJECT_PATH }}/Library
           key: unity-lib-android-${{ env.UNITY_VERSION }}-${{ hashFiles('unity/Assets/**/*.meta', 'unity/Packages/packages-lock.json', 'unity/ProjectSettings/**') }}
           restore-keys: unity-lib-android-${{ env.UNITY_VERSION }}-
-      - uses: game-ci/unity-builder@v4
+      - uses: game-ci/unity-builder@v6
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
           UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
