@@ -23,12 +23,12 @@ namespace ProcSense.VR.Views
 
         private static readonly Dictionary<string, PatientPose> Table = new Dictionary<string, PatientPose>(StringComparer.OrdinalIgnoreCase)
         {
-            { "IN_PAIN", new PatientPose(yaw: -10, nod: -6, tilt: 4, gazeY: -.25f, depth: .6f, restless: 1.6f, guard: 1f) },
-            { "ANXIOUS", new PatientPose(nod: 3, dart: .9f, dartSpeed: 2.2f, depth: .8f, restless: 2f) },
+            { "IN_PAIN", new PatientPose(yaw: -14, nod: -10, tilt: 6, gazeY: -.3f, depth: .55f, restless: 2.2f, guard: 1f) },
+            { "ANXIOUS", new PatientPose(nod: 4, tilt: 3, dart: 1f, dartSpeed: 2.6f, depth: .75f, restless: 3f) },
             { "DISTRESSED", new PatientPose(yaw: -14, nod: -4, tilt: 7, gazeY: -.15f, dart: .5f, dartSpeed: 1.6f, depth: .7f, restless: 2.4f, guard: .6f) },
             { "CONFUSED", new PatientPose(yaw: 8, tilt: 9, dart: .45f, dartSpeed: .9f, restless: 1.2f) },
             { "DROWSY", new PatientPose(yaw: 12, nod: -8, tilt: 10, gazeY: -.5f, depth: 1.2f, restless: .25f) },
-            { "NAUSEATED", new PatientPose(yaw: -16, nod: -5, gazeY: -.3f, depth: .7f, restless: 1.2f) },
+            { "NAUSEATED", new PatientPose(yaw: -20, nod: -9, tilt: 4, gazeY: -.35f, depth: .65f, restless: 1.8f) },
             { "UNCOOPERATIVE", new PatientPose(yaw: 26, nod: 2, gazeX: .6f, dart: .15f, restless: 1.5f) },
         };
 

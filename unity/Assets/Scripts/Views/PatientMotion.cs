@@ -28,7 +28,7 @@ namespace ProcSense.VR.Views
         private SkinnedMeshRenderer face; private int blinkL = -1, blinkR = -1, lookInL = -1, lookOutL = -1, lookInR = -1, lookOutR = -1, lookUpL = -1, lookUpR = -1, lookDownL = -1, lookDownR = -1;
         private Transform spine1, spine2, head, neck, footL, footR;
         private Quaternion spine1Rest, spine2Rest, headRest, footLRest, footRRest;
-        private Vector3 spine1Scale, spine2Scale; private int apAxis1, apAxis2; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
+        private Vector3 spine1Scale, spine2Scale, neckScale, neckRestPos; private Quaternion neckRestRot; private int apAxis1, apAxis2, apAxisNeck; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
         private Transform armUpper, armFore, armHand, armLeft, pelvis; private Quaternion armUpperRest, armForeRest;
         private float breathSign = 1f, nextBlink, blinkStart = -10f, seed, nextFoot = 12f, footStart = -10f; private int footSide;
         private readonly Dictionary<Transform, (Quaternion rest, Vector3 euler)> manual = new Dictionary<Transform, (Quaternion, Vector3)>();
@@ -51,7 +51,7 @@ namespace ProcSense.VR.Views
             var thighL = Find(transform, "Bip01 L Thigh"); var thighR = Find(transform, "Bip01 R Thigh");
             if (spine1 == null || spine2 == null || head == null || neck == null) { enabled = false; return; }
             spine1Rest = spine1.localRotation; spine2Rest = spine2.localRotation; headRest = head.localRotation; if (footL) footLRest = footL.localRotation; if (footR) footRRest = footR.localRotation;
-            spine1Scale = spine1.localScale; spine2Scale = spine2.localScale;
+            spine1Scale = spine1.localScale; spine2Scale = spine2.localScale; neckScale = neck.localScale; neckRestPos = neck.localPosition; neckRestRot = neck.localRotation; apAxisNeck = Dominant(neck.InverseTransformDirection(Vector3.up));
             apAxis1 = Dominant(spine1.InverseTransformDirection(Vector3.up)); apAxis2 = Dominant(spine2.InverseTransformDirection(Vector3.up));                  // lying on the back: the body's front-to-back axis is world up
             var lateral = thighL != null && thighR != null ? (thighR.position - thighL.position).normalized : transform.right;
             breathAxis1 = spine1.InverseTransformDirection(lateral); breathAxis2 = spine2.InverseTransformDirection(lateral);
@@ -154,11 +154,16 @@ namespace ProcSense.VR.Views
             poseNow = PatientPose.Lerp(poseNow, poseTarget, 1f - Mathf.Exp(-dt / Mathf.Max(.05f, expressionSeconds * .6f)));
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath
+            spine1.localRotation = spine1Rest; spine1.localScale = spine1Scale; spine2.localRotation = spine2Rest; spine2.localScale = spine2Scale;
+            neck.localPosition = neckRestPos; neck.localRotation = neckRestRot; neck.localScale = neckScale;                // back to rest first: the pin below rewrites the neck each frame and must not build on itself
+            var neckPos = neck.position; var neckRot = neck.rotation;                                                       // where the neck sits at rest: the breath must not carry the head (it would sink into the pillow)
             spine1.localRotation = spine1Rest * Quaternion.AngleAxis(breathSign * breathDegrees * poseNow.Depth * .6f * rise, breathAxis1);
             spine2.localRotation = spine2Rest * Quaternion.AngleAxis(breathSign * breathDegrees * poseNow.Depth * rise, breathAxis2);
 
             var sc1 = spine1Scale; sc1[apAxis1] *= 1f + breathDepth * poseNow.Depth * .6f * rise; spine1.localScale = sc1;                                    // the chest wall rises and falls
             var sc2 = spine2Scale; sc2[apAxis2] *= 1f + breathDepth * poseNow.Depth * rise; spine2.localScale = sc2;
+            neck.SetPositionAndRotation(neckPos, neckRot);
+            var nsc = neckScale; nsc[apAxisNeck] /= sc2[apAxis2] / spine2Scale[apAxis2]; neck.localScale = nsc;                   // and the chest scale must not squash the neck and head
 
             float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f * Mathf.Sqrt(poseNow.Restless)) - .5f) * 2f * headDriftDegrees * poseNow.Restless : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f * Mathf.Sqrt(poseNow.Restless)) - .5f) * headDriftDegrees * .6f * poseNow.Restless : 0f;
             head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
