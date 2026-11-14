@@ -17120,6 +17120,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
       insertIndex: -1
       addedObject: {fileID: 690274351}
+    - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 690274352}
   m_SourcePrefab: {fileID: 100100000, guid: b802c4029e1ecd048825030facefad12, type: 3}
 --- !u!4 &690274345 stripped
 Transform:
@@ -17187,6 +17190,24 @@ MonoBehaviour:
   highlightRenderers: []
   voiceName: patient
   renderersAtRuntime: 0
+--- !u!114 &690274352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690274346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fec92cd08ee5dc040adea9fe4b884bdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Views.PatientSkin
+  pallor: 0
+  flush: 0
+  jaundice: 0
+  cyanosis: 0
+  sweat: 0
+  blendSeconds: 0.6
 --- !u!1 &697808477
 GameObject:
   m_ObjectHideFlags: 0
