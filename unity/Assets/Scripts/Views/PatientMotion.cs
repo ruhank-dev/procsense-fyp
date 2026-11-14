@@ -48,7 +48,7 @@ namespace ProcSense.VR.Views
                 lookUpL = Shape(face, "EyeLookUpLeft"); lookUpR = Shape(face, "EyeLookUpRight"); lookDownL = Shape(face, "EyeLookDownLeft"); lookDownR = Shape(face, "EyeLookDownRight");
             }
             spine1 = Find(transform, "Bip01 Spine1"); spine2 = Find(transform, "Bip01 Spine2"); head = Find(transform, "Bip01 Head"); neck = Find(transform, "Bip01 Neck"); footL = Find(transform, "Bip01 L Foot"); footR = Find(transform, "Bip01 R Foot");
-            var thighL = Find(transform, "Bip01 L Thigh"); var thighR = Find(transform, "Bip01 R Thigh");
+            var thighL = Find(transform, "Bip01 L Thigh"); var thighR = Find(transform, "Bip01 R Thigh"); thighLeft = thighL; thighRight = thighR;
             if (spine1 == null || spine2 == null || head == null || neck == null) { enabled = false; return; }
             spine1Rest = spine1.localRotation; spine2Rest = spine2.localRotation; headRest = head.localRotation; if (footL) footLRest = footL.localRotation; if (footR) footRRest = footR.localRotation;
             spine1Scale = spine1.localScale; spine2Scale = spine2.localScale; neckScale = neck.localScale; neckRestPos = neck.localPosition; neckRestRot = neck.localRotation; apAxisNeck = Dominant(neck.InverseTransformDirection(Vector3.up));
@@ -145,6 +145,25 @@ namespace ProcSense.VR.Views
 
         private void SetShape(int idx, float w) { if (face != null && idx >= 0) CharacterPerfBlend.Set(face, idx, Mathf.Clamp(w, 0f, 100f)); }
 
+        // ---- look at: the eyes turn to the target first, the head follows for the rest (limits in LookAtLimits) ----
+        [Header("Look at")]
+        [Tooltip("Who or what the patient looks at (the player's head when addressed). Empty: no look-at.")] public Transform lookAt;
+        [Range(0f, 1f)] public float lookWeight = 1f;
+        private Vector4 lookNow;                                                          // eye yaw, eye pitch, head yaw, head pitch (degrees)
+        private Transform thighLeft, thighRight;
+
+        private Vector4 LookTarget()
+        {
+            if (lookAt == null || lookWeight <= 0f || thighLeft == null || thighRight == null) return Vector4.zero;
+            var along = (head.position - neck.position).normalized;                          // toward the head
+            var side = (thighRight.position - thighLeft.position).normalized;
+            var face = Vector3.ProjectOnPlane(neck.rotation * (headRest * headAxisTilt), along).normalized;     // the way the face points at rest (the head's own front-to-back axis)
+            if (Vector3.Dot(face, Vector3.up) < 0f) face = -face;                            // lying on the back: the front is the side facing the ceiling
+            var a = LookAtLimits.Angles(face, along, side, lookAt.position - head.position);
+            var s = LookAtLimits.Share(a.x, a.y);
+            return new Vector4(s.EyeYaw, s.EyePitch, s.HeadYaw, s.HeadPitch) * lookWeight;
+        }
+
         private void LateUpdate() => Step(Time.time, Time.deltaTime);
 
         /// <summary>One frame of motion at time t (seconds) after dt seconds. LateUpdate calls it; the review tool calls it to pose the patient outside play mode.</summary>
@@ -165,8 +184,9 @@ namespace ProcSense.VR.Views
             neck.SetPositionAndRotation(neckPos, neckRot);
             var nsc = neckScale; nsc[apAxisNeck] /= sc2[apAxis2] / spine2Scale[apAxis2]; neck.localScale = nsc;                   // and the chest scale must not squash the neck and head
 
+            lookNow = Vector4.Lerp(lookNow, LookTarget(), 1f - Mathf.Exp(-dt / .25f));
             float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f * Mathf.Sqrt(poseNow.Restless)) - .5f) * 2f * headDriftDegrees * poseNow.Restless : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f * Mathf.Sqrt(poseNow.Restless)) - .5f) * headDriftDegrees * .6f * poseNow.Restless : 0f;
-            head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
+            head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw + lookNow.z, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod + lookNow.w, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
             GuardArm(poseNow.Guard);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
@@ -174,7 +194,7 @@ namespace ProcSense.VR.Views
             UpdateExpression(dt);
             b = Mathf.Max(b, blinkHold, droop); SetShape(blinkL, b * 100f); SetShape(blinkR, b * 100f);
 
-            float gx = (autoMotion ? (Mathf.PerlinNoise(seed + 3f, t * .12f) - .5f) * 1.2f : 0f) + gazeOffset.x + poseNow.GazeX, gy = (autoMotion ? (Mathf.PerlinNoise(seed + 5f, t * .1f) - .5f) * .8f : 0f) + gazeOffset.y + poseNow.GazeY;
+            float gx = (autoMotion ? (Mathf.PerlinNoise(seed + 3f, t * .12f) - .5f) * 1.2f : 0f) + gazeOffset.x + poseNow.GazeX + lookNow.x / LookAtLimits.EyeYaw, gy = (autoMotion ? (Mathf.PerlinNoise(seed + 5f, t * .1f) - .5f) * .8f : 0f) + gazeOffset.y + poseNow.GazeY + lookNow.y / LookAtLimits.EyePitch;
             if (autoMotion && poseNow.Dart > .001f) { float ds = t * poseNow.DartSpeed; gx += (Mathf.PerlinNoise(seed + 20f, ds) - .5f) * 2f * poseNow.Dart; gy += (Mathf.PerlinNoise(seed + 30f, ds) - .5f) * 1.2f * poseNow.Dart; }       // the eyes jump about
             SetShape(lookOutL, Mathf.Max(0f, -gx) * 40f); SetShape(lookInL, Mathf.Max(0f, gx) * 40f); SetShape(lookInR, Mathf.Max(0f, -gx) * 40f); SetShape(lookOutR, Mathf.Max(0f, gx) * 40f);
             SetShape(lookUpL, Mathf.Max(0f, gy) * 40f); SetShape(lookUpR, Mathf.Max(0f, gy) * 40f); SetShape(lookDownL, Mathf.Max(0f, -gy) * 40f); SetShape(lookDownR, Mathf.Max(0f, -gy) * 40f);
