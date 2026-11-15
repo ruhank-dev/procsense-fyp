@@ -93,6 +93,24 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void Changes_made_in_the_panel_are_there_after_a_restart()   // P3-SET-08 persistence
+        {
+            _panel.Show(SettingsPanel.Tab.Audio);
+            Slide("Music", .25f);
+            _panel.Show(SettingsPanel.Tab.Display);
+            Flip("Reduce motion");
+            Pick("Panel size", 2);
+            var store = GameSettings.Store;
+            GameSettings.Store = store;   // drops what is in memory: the next read loads the saved record, as a new app start does
+            Assert.AreEqual((.25f, true, 2), (S.musicVolume, S.reduceMotion, S.panelSize));
+            Object.DestroyImmediate(_panel.gameObject);
+            _panel = SettingsPanel.Toggle(null);
+            _panel.Show(SettingsPanel.Tab.Display);
+            Assert.AreEqual(2, _panel.Find<KitSegmented>("Choice Panel size").Selected, "the reopened panel shows the saved value");
+            Assert.IsTrue(_panel.Find<KitToggle>("Toggle Reduce motion").IsOn);
+        }
+
+        [Test]
         public void A_tab_shows_the_saved_values()
         {
             GameSettings.Update(d => { d.subtitleSize = 1; d.subtitles = false; });

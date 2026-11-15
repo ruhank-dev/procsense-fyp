@@ -35,7 +35,7 @@ A single settings model with versioned persistence; the full panel; audio mixer 
 | P3-SET-05 | Comfort: snap/smooth turn, angle, speed, vignette during movement, teleport/continuous, seated height | Sannan | P3-SET-02 | Each option works on the rig in PlayMode | Planned |
 | P3-SET-06 | Accessibility: subtitle on/off, size, background plate, high contrast theme variant, reduce motion (disables non-essential tweens), dominant hand | Moiz | P3-SET-02, P3-UIX-08 | Each option visible in captures | Done |
 | P3-SET-07 | Session tab: Return to main menu and Quit with the confirmations of P3-MNU-09 | Moiz | P3-MNU-09 | Same semantics as the pause menu | Done |
-| P3-SET-08 | Tests: persistence, live application, mode switch invariance | Moiz | P3-SET-04, P3-SET-06 | Green in CI | Planned |
+| P3-SET-08 | Tests: persistence, live application, mode switch invariance | Moiz | P3-SET-04, P3-SET-06 | Green in CI | Done |
 
 ## 7. Dependencies and execution order
 
