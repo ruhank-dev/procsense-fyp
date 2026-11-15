@@ -153,6 +153,7 @@ namespace ProcSense.VR.Views
             Board = go.AddComponent<ProcSense.VR.UI.Training.TrainingBoardView>();
             Board.Guide = _guide;
             Board.Build();
+            new GameObject("Training board summon").AddComponent<ProcSense.VR.UI.Training.BoardSummon>().Init(Board);   // icon at the edge of the view brings the board in front (P3-TRN-04)
         }
 
         private object _boundSession;
