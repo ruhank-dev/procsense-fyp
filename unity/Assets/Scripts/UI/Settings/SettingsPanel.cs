@@ -31,8 +31,8 @@ namespace ProcSense.VR.UI.SettingsUi
         public Tab Current { get; private set; }
         /// <summary>Replaced by tests and by the pause menu: what "Return to main menu" and "Quit" do after their confirmation.</summary>
         /// <summary>P3-SET-07: the same semantics as the pause menu: during a case the attempt ends as abandoned (saved and uploaded; the examination shows its results); on the menu it simply goes back.</summary>
-        public Action ReturnToMenu = () => { var pause = FindAnyObjectByType<PauseMenu>(); if (pause != null && pause.CanPause) pause.ReturnToMenu(); else if (MenuFlow.Current != null) MenuFlow.Current.BackToMenu(); };
-        public Action Quit = () => { var pause = FindAnyObjectByType<PauseMenu>(); if (pause != null) pause.Quit(); else Application.Quit(); };
+        public Action ReturnToMenu = () => { var pause = PauseMenu.Running(); if (pause != null) pause.ReturnToMenu(); else if (MenuFlow.Current != null) MenuFlow.Current.BackToMenu(); };
+        public Action Quit = () => { var pause = PauseMenu.Running(); if (pause != null) pause.Quit(); else Application.Quit(); };
         public event Action Closed;
 
         private RectTransform _content;

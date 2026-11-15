@@ -63,6 +63,26 @@ namespace ProcSense.EditorTools.UI
             finally { ProcSense.VR.Settings.GameSettings.Store = store; }
         }
 
+        /// <summary>P3-MNU-03 capture: the game-flow main menu in the kit's glass style, in the patient bay (artifacts/captures/mnu03_main_menu.png).</summary>
+        [MenuItem("ProcSense/UI/Capture main menu")]
+        public static void CaptureMenu()
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
+            Vector3 eye = new Vector3(0.9f, 1.65f, -0.6f), look = new Vector3(-0.3f, 1.55f, 1.4f);
+            var forward = (look - eye).normalized;
+            var hostGo = new GameObject("capture host");
+            var host = hostGo.AddComponent<ProcSense.VR.Bridge.SimulationHost>();
+            var flow = new ProcSense.VR.Flow.MenuFlow(host, ProcSense.VR.Content.UnityContentReader.ForThisPlatform(), () => 1UL);
+            flow.SignedIn();
+            var go = new GameObject("Menu capture");
+            go.transform.SetPositionAndRotation(eye + forward * ProcSense.VR.Flow.MenuFlowInstaller.Distance, Quaternion.LookRotation(forward, Vector3.up));
+            go.AddComponent<ProcSense.VR.Flow.FlowPanel>().Build(flow, go.transform);
+            Canvas.ForceUpdateCanvases();
+            Render(eye, forward, "mnu03_main_menu.png");
+            Object.DestroyImmediate(go);
+            Object.DestroyImmediate(hostGo);
+        }
+
         private sealed class ScratchStore : ProcSense.VR.Settings.ISettingsStore
         {
             private readonly System.Collections.Generic.Dictionary<string, string> _v = new System.Collections.Generic.Dictionary<string, string>();

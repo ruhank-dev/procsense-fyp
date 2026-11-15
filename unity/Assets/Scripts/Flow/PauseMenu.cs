@@ -61,6 +61,13 @@ namespace ProcSense.VR.Flow
 
         public void Toggle() { if (IsPaused) Resume(); else Pause(); }
 
+        /// <summary>The pause menu of the case that is running now, or null (the settings panel's Session tab leaves through it).</summary>
+        public static PauseMenu Running()
+        {
+            foreach (var p in FindObjectsByType<PauseMenu>(FindObjectsSortMode.None)) if (p.CanPause) return p;
+            return null;
+        }
+
         public bool Pause()
         {
             if (!CanPause || IsPaused) return false;

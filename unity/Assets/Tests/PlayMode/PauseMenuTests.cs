@@ -74,6 +74,9 @@ namespace ProcSense.Tests.PlayMode
         {
             Start(SessionMode.Practice);
             var s = _host.Session;
+            var all = Object.FindObjectsByType<PauseMenu>(FindObjectsSortMode.None);
+            Assert.AreSame(_pause, PauseMenu.Running(), "pause menus alive: " + all.Length + "; running one: " + (PauseMenu.Running() != null ? PauseMenu.Running().name : "none"));
+            if (ProcSense.VR.UI.SettingsUi.SettingsPanel.Open != null) ProcSense.VR.UI.SettingsUi.SettingsPanel.Open.Close();
             var panel = ProcSense.VR.UI.SettingsUi.SettingsPanel.Toggle(null);
             panel.Show(ProcSense.VR.UI.SettingsUi.SettingsPanel.Tab.Session);
             foreach (var b in panel.Canvas.GetComponentsInChildren<Button>(true)) if (b.name == "Button Return to main menu") b.onClick.Invoke();
