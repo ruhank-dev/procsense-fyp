@@ -243,6 +243,14 @@ checks:
     tools: [unity]
     group: unity
     inputs: ["unity/Assets/Scripts/Views/ExteriorVisibility.cs", "unity/Assets/Scripts/Views/RoomVisibility.cs", "unity/Assets/Scripts/Views/QuestExterior.cs", "unity/Assets/Scripts/Views/QuestCullingProfile.cs", "unity/Assets/Scripts/Views/CullCost.cs", "unity/Assets/Scripts/Diagnostics/Perf*.cs", "unity/Assets/Tests/PlayMode/ExteriorVisibilityTests.cs", "unity/Assets/Scenes/**", "unity/Assets/Models/Environment/**", "unity/Assets/Materials/Environment/**", "unity/Assets/Prefabs/Environment/**", *unity_shared]
+  unity_playmode_sunshafts:
+    desc: "Sun shafts stay drawn with the Android room/exterior culling while the player moves and turns (SunShaftVisibilityTests, DT-311)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "SunShaftVisibilityTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Shaders/SunShaft*.shader", "unity/Assets/Textures/Effects/**", "unity/Assets/Scripts/Views/DesktopOnly.cs", "unity/Assets/Scripts/Views/ExteriorVisibility.cs", "unity/Assets/Scripts/Views/RoomVisibility.cs", "unity/Assets/Tests/PlayMode/SunShaftVisibilityTests.cs", "unity/Assets/Scenes/**", "unity/Assets/Materials/Environment/**", *unity_shared]
   unity_playmode_character:
     desc: "Character culler, animation pose, blendshape and wake tests"
     job: unity_tests
@@ -267,6 +275,14 @@ checks:
     tools: [unity]
     group: unity
     inputs: ["unity/Assets/Scripts/Flow/**", "unity/Assets/Scripts/Sync/DebriefRewriteClient.cs", "unity/Assets/Scripts/Auth/**", "unity/Assets/Tests/PlayMode/MenuFlowTests.cs", "unity/Assets/Tests/PlayMode/ExamPresentationTests.cs", *unity_shared]
+  unity_playmode_patient_equipment:
+    desc: "Patient equipment through XRI in the shipped menu flow: select, attach to the patient socket, stay on through idle motion, animator culling and LODs, remove, place again, training and examination; unavailable before a session (SensorAttachmentFlowTests, MpfbPatientTests, EquipmentDropTests)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "SensorAttachmentFlowTests;MpfbPatientTests;EquipmentDropTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/ActionEmitters/**", "unity/Assets/Scripts/Views/CharacterPerfCuller.cs", "unity/Assets/Scripts/Views/PatientIdleView.cs", "unity/Assets/Scripts/Flow/**", "unity/Assets/Scripts/Boot/BootLoader.cs", "unity/Assets/Scripts/Bridge/SimulationHost.cs", "unity/Assets/Prefabs/Equipment/**", "unity/Assets/Scenes/PatientBay.unity", "unity/Assets/Tests/PlayMode/SensorAttachmentFlowTests.cs", "unity/Assets/Tests/PlayMode/MpfbPatientTests.cs", "unity/Assets/Tests/PlayMode/EquipmentDropTests.cs", *unity_shared]
   unity_playmode_clinical_text:
     desc: "Sharp clinical text on Quest 2 (shared dilated SDF material on the EMR tablet, EMR, monitor and menu panels, reading cone, eye-buffer size report) and the readability floor (ClinicalTextTests, AccessibilityTests)"
     job: unity_tests

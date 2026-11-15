@@ -54,6 +54,27 @@ class VerifyQuestConfigTests(unittest.TestCase):
         self.assertEqual(1, code)
         self.assertEqual("FAIL", items["XR performance settings (SustainedHigh hint)"])
 
+    def test_ffr_high_fails(self):
+        p = "unity/Assets/Scripts/Views/QuestPerformanceProfile.cs"
+        code, items = self.run_with({p: ("const float Foveation = 0.5f;", "const float Foveation = 1f;")})
+        self.assertEqual(1, code)
+        self.assertEqual("FAIL", items["FFR on (Medium), subsampled layout"])
+
+    def test_first_overhaul_scale_fails(self):
+        p = "unity/Assets/Scripts/Views/QuestPerformanceProfile.cs"
+        code, items = self.run_with({p: ("const float StartScale = 0.9f;", "const float StartScale = 0.8f;")})
+        self.assertEqual("FAIL", items["eye buffer 1.0 / start 0.9 / dynamic 0.85-1.0, driver installs itself"])
+
+    def test_frame_timing_for_diagnostic_only_warns(self):
+        p = "unity/Assets/Editor/Setup/BuildScript.cs"
+        code, items = self.run_with({p: ("                PlayerSettings.enableFrameTimingStats = true;", "                if (v.Diagnostic) PlayerSettings.enableFrameTimingStats = true;")})
+        self.assertEqual("WARN", items["dynamic resolution GPU time in release and diagnostic APKs"])
+
+    def test_hero_texture_6x6_fails(self):
+        p = "unity/Assets/Textures/Hospital/FinalLook/gown_albedo.png.meta"
+        code, items = self.run_with({p: ("textureFormat: 48", "textureFormat: 50")})
+        self.assertEqual("FAIL", items["close-up textures ASTC 4x4/5x5 (patient, gown, bed, monitor)"])
+
     def test_quest_1_enabled_fails(self):
         p = "unity/Assets/XR/Settings/OpenXR Package Settings.asset"
         code, items = self.run_with({p: ("manifestName: quest\n    enabled: 0", "manifestName: quest\n    enabled: 1")})

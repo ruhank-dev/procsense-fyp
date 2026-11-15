@@ -31,7 +31,9 @@ Shared Unity inputs are listed once (YAML anchors `unity_shared`, `unity_render`
 | Character scripts, prefabs, animation | `unity_compile`, `unity_editmode`, `unity_playmode_character` |
 | City culling or city assets | `unity_compile`, `unity_playmode_exterior`, heavy `unity_walkthrough_diff`, `unity_sweep` |
 | Quest runtime settings or XR | `unity_playmode_runtime_settings` plus the shared Unity checks |
+| Sun shaft shader, noise texture or shaft host | `unity_playmode_sunshafts` (DT-311) plus `unity_editmode` (`SunShaftContractTests`) |
 | Game flow panel (Flow, results rewording client) | `unity_playmode_flow` (MenuFlowTests, ExamPresentationTests) plus the shared Unity checks |
+| Patient equipment (ActionEmitters, sockets, equipment prefabs, character culler, patient idle) | `unity_playmode_patient_equipment` (SensorAttachmentFlowTests, MpfbPatientTests, EquipmentDropTests) plus the shared Unity checks |
 | Clinical text panels (UiKit, Accessibility, monitor, tablet, EMR, menu) | `unity_playmode_clinical_text` (ClinicalTextTests, AccessibilityTests) plus the shared Unity checks |
 | Quest render settings (ProjectSettings, URP/XR assets, scenes, textures, Quest profile scripts) | `quest_config_check` (`tools/unity/verify_quest_config.py`, source level, seconds) plus the Unity checks those paths select |
 | Unity project settings or packages | every Unity check |

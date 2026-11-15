@@ -5,8 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 namespace ProcSense.VR.ActionEmitters
 {
     /// <summary>Non-interactive visual targets; only SensorAttachment can place/send actions.</summary>
-    internal sealed class SensorPlacementGuide
+    public sealed class SensorPlacementGuide
     {
+        public enum TargetState { Hidden, Approach, Ready, Unavailable }
+        public TargetState PatientState { get; private set; } = TargetState.Hidden;
         private readonly GameObject _patient, _home;
         private readonly Renderer[] _patientRenderers, _homeRenderers;
         private readonly MaterialPropertyBlock _properties = new MaterialPropertyBlock();
@@ -63,10 +65,13 @@ namespace ProcSense.VR.ActionEmitters
             return root;
         }
 
-        public void Refresh(bool held, bool patientReady, bool homeReady)
+        /// <param name="available">false while no running session can record the placement: the patient target turns amber and is never shown as ready.</param>
+        public void Refresh(bool held, bool patientReady, bool homeReady, bool available = true)
         {
             if (!held) { Hide(); return; }
-            Paint(_patient, _patientRenderers, patientReady ? new Color(.25f, 1, .55f) : new Color(.1f, .85f, 1));
+            PatientState = !available ? TargetState.Unavailable : patientReady ? TargetState.Ready : TargetState.Approach;
+            Paint(_patient, _patientRenderers, PatientState == TargetState.Unavailable ? new Color(1, .62f, .1f)
+                : PatientState == TargetState.Ready ? new Color(.25f, 1, .55f) : new Color(.1f, .85f, 1));
             Paint(_home, _homeRenderers, homeReady ? new Color(.25f, 1, .55f) : new Color(.4f, .65f, 1));
         }
         private void Paint(GameObject marker, Renderer[] renderers, Color color)
@@ -82,6 +87,7 @@ namespace ProcSense.VR.ActionEmitters
         }
         public void Hide()
         {
+            PatientState = TargetState.Hidden;
             if (_patient != null) _patient.SetActive(false);
             if (_home != null) _home.SetActive(false);
         }

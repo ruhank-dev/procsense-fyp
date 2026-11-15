@@ -1,6 +1,8 @@
 // Cheap sunshaft for Quest (overhaul, Agent B). Same look as "ProcSense/Sun Shaft" without the per-pixel noise maths: the irregular air density comes from ONE sample of a small tileable
-// noise texture (Assets/Textures/Effects/sunshaft_noise.png) projected perpendicular to the sun direction, back faces are culled (about half the additive layers), and everything
-// is half precision. Same property names, so the existing materials switch shader without being re-authored. Stereo safe (instance id and eye index carried).
+// noise texture (Assets/Textures/Effects/sunshaft_noise.png, imported as the RED single channel) projected perpendicular to the sun direction, and everything is half precision.
+// Same property names, so the existing materials switch shader without being re-authored. Stereo safe (instance id and eye index carried); no depth texture, no lights, no ray marching.
+// 15 Nov 2026 regression fix: both faces are drawn again (_Cull default Off, as the original). With Cull Back the beam lost its far wall and vanished completely when the eye stood inside a
+// prism, and the noise was imported as Alpha only so the .r sample read 0 and the density fell to ~0.2: on Quest the shafts disappeared while the dust stayed.
 Shader "ProcSense/Sun Shaft Baked"
 {
     Properties
@@ -13,6 +15,7 @@ Shader "ProcSense/Sun Shaft Baked"
         _FadeStart ("Brightest near the window (0-1)", Range(0, 0.5)) = 0.1
         _ShaftDir ("Sun travel direction", Vector) = (0.88, -0.2, -0.43, 0)
         [NoScaleOffset] _NoiseTex ("Tileable noise (R)", 2D) = "gray" {}
+        [Enum(UnityEngine.Rendering.CullMode)] _Cull ("Cull", Float) = 0
     }
     SubShader
     {
@@ -22,7 +25,7 @@ Shader "ProcSense/Sun Shaft Baked"
             Name "Shaft"
             Blend One One
             ZWrite Off
-            Cull Back
+            Cull [_Cull]
             HLSLPROGRAM
             #pragma vertex vert
             #pragma fragment frag

@@ -28,7 +28,7 @@ namespace ProcSense.EditorTools
             ("Assets/Textures/Hospital/Corridor", 1024, 512, 1024),
             ("Assets/Textures/Hospital/FinalLook", 1024, 512, 1024),
             ("Assets/Textures/Hospital/PatientBayLook", 1024, 512, 1024),
-            ("Assets/Textures/Hospital/Bed", 1024, 512, 512),
+            ("Assets/Textures/Hospital/Bed", 2048, 512, 1024),      // hero close-up (15 Nov 2026 sharpness pass): mattress cover 2048 ASTC 5x5, cover and pillow normals 1024 ASTC 4x4
             ("Assets/Textures/Environment/City", 512, 256, 256),
             ("Assets/Textures/Environment", 1024, 512, 512),
         };

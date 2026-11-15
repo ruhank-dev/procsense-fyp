@@ -4,9 +4,35 @@ using UnityEngine;
 
 namespace ProcSense.Tests.PlayMode
 {
-    /// <summary>The aggressive Quest profile (14 Nov 2026): the dynamic-resolution rule has hysteresis and stays inside 0.7 to 0.9, the profile is inert off Android, and the Android assets carry the intended static values.</summary>
+    /// <summary>The Quest profile (14 Nov 2026, sharpness revision 15 Nov 2026): the dynamic-resolution rule has hysteresis and stays inside 0.85 to 1.0, the profile is inert off Android, and the effective eye
+    /// pixels are the allocated eye texture times the viewport scale.</summary>
     public class QuestPerformanceProfileTests
     {
+        [TearDown]
+        public void RestoreRange() { QuestPerformanceProfile.RangeMin = QuestPerformanceProfile.MinScale; QuestPerformanceProfile.RangeMax = QuestPerformanceProfile.MaxScale; }
+
+        [Test]
+        public void The_sharpness_profile_values_and_the_effective_eye_pixels()
+        {
+            Assert.AreEqual((1f, 0.9f, 0.85f, 1f, 0.5f), (QuestPerformanceProfile.EyeBufferScale, QuestPerformanceProfile.StartScale, QuestPerformanceProfile.MinScale, QuestPerformanceProfile.MaxScale, QuestPerformanceProfile.Foveation));
+            Assert.AreEqual((QuestPerformanceProfile.MinScale, QuestPerformanceProfile.MaxScale), (QuestPerformanceProfile.RangeMin, QuestPerformanceProfile.RangeMax), "production range = the constants");
+            // Quest 2 runtime default 1440 x 1584 per eye: the start scale draws 1296 x 1426; the first overhaul profile drew 0.9 x 0.889 of it = 1152 x 1267 or 1268 depending on rounding.
+            Assert.AreEqual(new Vector2Int(1296, 1426), QuestPerformanceProfile.EffectiveEyePixels(1440, 1584, QuestPerformanceProfile.ViewportFor(QuestPerformanceProfile.StartScale)));
+            Assert.AreEqual(new Vector2Int(1152, 1268), QuestPerformanceProfile.EffectiveEyePixels(1296, 1426, 0.8f / 0.9f));
+            StringAssert.Contains("per eye", QuestPerformanceProfile.Describe(), "the device log line reads the values back from XRSettings");
+        }
+
+        [Test]
+        public void A_diagnostic_range_overrides_the_controller_and_is_restored()
+        {
+            QuestPerformanceProfile.RangeMin = 0.7f; QuestPerformanceProfile.RangeMax = 0.9f;
+            var c = new QuestPerformanceProfile.Controller { Cooldown = 0, OverSamples = 1, UnderSamples = 1 }; float s = 0.8f;
+            for (int i = 0; i < 200; i++) s = c.Step(30f, s, 0.7f);
+            Assert.AreEqual(0.7f, s, 1e-4f);
+            for (int i = 0; i < 200; i++) s = c.Step(5f, s, 0.7f);
+            Assert.AreEqual(0.9f, s, 1e-4f);
+        }
+
         [Test]
         public void Dynamic_resolution_steps_down_only_after_sustained_over_budget_and_up_only_after_a_long_quiet_spell()
         {

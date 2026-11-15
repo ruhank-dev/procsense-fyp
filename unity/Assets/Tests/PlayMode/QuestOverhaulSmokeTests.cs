@@ -99,9 +99,9 @@ namespace ProcSense.Tests.PlayMode
             Assert.NotNull(msaa, "no MSAA member; members: " + members);
             Assert.NotNull(fov, "no foveation member; members: " + members);
             float s = Convert.ToSingle(scale);
-            Assert.That(s, Is.InRange(0.6f, 0.85f), "render scale");
+            Assert.That(s, Is.InRange(0.85f, 1f), "render scale (sharpness revision 15 Nov 2026: start 0.9)");
             Assert.AreEqual(1, Convert.ToInt32(msaa), "MSAA off");
-            Assert.Greater(Convert.ToSingle(fov), 0f, "fixed foveated rendering is on (Medium or High)");
+            Assert.That(Convert.ToSingle(fov), Is.InRange(0.375f, 0.75f), "fixed foveated rendering is on at Medium");
         }
     }
 }
