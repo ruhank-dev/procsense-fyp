@@ -197,20 +197,19 @@ namespace ProcSense.Tests.EditMode
             try
             {
                 var subtitles = ProcSense.VR.Views.UiKit.WorldCanvas("Subtitles", go.transform, new Vector2(700, 150), .0009f);
-                var plate = subtitles.transform.Find("Background").GetComponent<Image>();
-                float alpha = plate.color.a;
+                var plate = subtitles.transform.Find("Glass").GetComponent<Graphic>();
                 var other = ProcSense.VR.Views.UiKit.WorldCanvas("EMR", go.transform, new Vector2(700, 150), .0009f);
                 // in Play Mode each canvas follows the settings' Changed event; Edit Mode runs no Awake, so the test applies the canvases itself after each change
                 void Apply() { subtitles.GetComponent<AccessibleCanvas>().Apply(); other.GetComponent<AccessibleCanvas>().Apply(); }
                 _panel.Show(SettingsPanel.Tab.Subtitles);
                 Flip("Dark plate behind subtitles"); Apply();
-                Assert.AreEqual(0f, plate.color.a, "no plate");
+                Assert.IsFalse(plate.enabled, "no plate");
                 Flip("Subtitles"); Apply();
                 Assert.IsFalse(subtitles.enabled, "subtitles off");
                 Assert.IsTrue(other.enabled, "other panels are not subtitles");
                 Flip("Subtitles"); Flip("Dark plate behind subtitles"); Apply();
                 Assert.IsTrue(subtitles.enabled);
-                Assert.AreEqual(alpha, plate.color.a, 1e-4, "the plate comes back as it was");
+                Assert.IsTrue(plate.enabled, "the plate comes back");
             }
             finally { Object.DestroyImmediate(go); }
         }

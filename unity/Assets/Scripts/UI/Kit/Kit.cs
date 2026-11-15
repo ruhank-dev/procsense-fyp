@@ -79,6 +79,11 @@ namespace ProcSense.VR.UI.Kit
             label.text = text;
             var readable = parent.GetComponentInParent<AccessibleCanvas>(true);
             label.fontSize = readable != null ? Mathf.Max(SizeOf(style), readable.MinFontSize) : SizeOf(style);
+            if (readable != null && readable.Clinical)   // clinical panels share the dilated SDF material, as UiKit labels do (ClinicalText)
+            {
+                var sharp = ClinicalText.SharpMaterial(label.font);
+                if (sharp != null) label.fontSharedMaterial = sharp;
+            }
             label.fontWeight = style == TextStyle.Title ? FontWeight.Bold : style == TextStyle.Heading ? FontWeight.SemiBold : FontWeight.Regular;
             label.color = color ?? T.TextPrimary;
             label.alignment = align;

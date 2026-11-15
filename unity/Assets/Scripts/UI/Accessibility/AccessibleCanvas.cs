@@ -72,6 +72,8 @@ namespace ProcSense.VR.UI.Accessibility
             var s = ProcSense.VR.Settings.GameSettings.Current;
             var canvas = GetComponent<Canvas>();
             if (canvas != null) canvas.enabled = s.subtitles;
+            var glass = transform.Find("Glass");                          // the plate is the glass under the text since P3-UIX-05
+            if (glass != null) { var g = glass.GetComponent<UnityEngine.UI.Graphic>(); if (g != null) g.enabled = s.subtitleBackground; }
             var plate = transform.Find("Background");
             var image = plate != null ? plate.GetComponent<UnityEngine.UI.Image>() : null;
             if (image == null) return;
