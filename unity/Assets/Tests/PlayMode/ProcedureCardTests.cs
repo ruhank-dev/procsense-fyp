@@ -82,6 +82,20 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [Test]
+        public void The_chosen_level_reaches_the_session_header()   // P3-MNU-05
+        {
+            Assert.IsTrue(_panel.Click("TRAINING MODE"));
+            Assert.IsTrue(_panel.Click("Level: Beginner"));
+            Assert.IsTrue(_panel.VisibleButtons().Contains("Level: " + FlowPanel.NextLevel(TrainingLevel.Beginner)));
+            while (_flow.Level != TrainingLevel.Advanced) Assert.IsTrue(_panel.Click("Level: " + _flow.Level));
+            Assert.IsTrue(_panel.Click(_panel.VisibleButtons().First(b => b.StartsWith("Gallbladder removal"))), _flow.Message);
+            Assert.AreEqual(TrainingLevel.Advanced, _host.Session.Level);
+            StringAssert.Contains("\"level\":\"advanced\"", ProcSense.Core.Replay.SessionFile.Write(_host.Session).Split('\n')[0], "in the log header the replay reads");
+            var all = (TrainingLevel[])System.Enum.GetValues(typeof(TrainingLevel));
+            Assert.AreEqual(all[0], FlowPanel.NextLevel(all[all.Length - 1]), "the button cycles");
+        }
+
+        [Test]
         public void Leaving_the_screen_puts_the_buttons_back()
         {
             Assert.IsTrue(_panel.Click("TRAINING MODE"));

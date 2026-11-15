@@ -54,7 +54,7 @@ The player moves through one continuous game: menu → mode → procedure → sc
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-SES-01 | Merge `sannan47/doors-bedside-monitoring` into `main` (Sannan, `task ci` green, PlayMode affected groups green) | Sannan | — | `main` contains the records workstation, panel stations, voice presenter, nurse visit, doors and thermometer; CI green | Planned |
+| P3-SES-01 | Merge `sannan47/doors-bedside-monitoring` into `main` (Sannan, `task ci` green, PlayMode affected groups green) | Sannan | — | `main` contains the records workstation, panel stations, voice presenter, nurse visit, doors and thermometer; CI green | Done |
 | P3-SES-02 | Core `Session.Check(SimAction)`: the same validation as `Apply` without any state change, returning `Accepted` or the reason code; engine version raised; golden hashes unchanged | Ruhan | — | Unit tests prove Check never changes the replay hash and agrees with Apply on every golden log action | In progress |
 | P3-SES-03 | `ActionGateway` in `Scripts/Bridge/`: `Submit(ActionRequest) → ActionOutcome`, request ids, 8 s duplicate window, source tag (menu, tablet, physical, voice), mode gate | Moiz | P3-SES-02 | EditMode tests: duplicate, rejected, accepted, no session, paused | Done |
 | P3-SES-04 | Route the tablet, `UIButtonEmitter`, `XRSelectEmitter`, `ContactActionEmitter`, `SpokenActionRouter` and `SpokenOrderFlow` through the gateway (no direct `SimulationHost.Apply` left outside it) | Moiz | P3-SES-03, P3-SES-01 | A repository check fails on any new direct `SimulationHost.Instance.Apply` call outside the gateway | Planned |

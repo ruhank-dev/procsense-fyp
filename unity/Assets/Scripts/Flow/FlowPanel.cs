@@ -256,7 +256,7 @@ namespace ProcSense.VR.Flow
             _body.text = "You prepare the patient for the operation; you do not perform it. A random valid patient is drawn for the surgery you choose.";
             ProcedureCard(0, "Gallbladder removal", "Laparoscopic cholecystectomy", "cholecystectomy", training);
             ProcedureCard(1, "Appendectomy", "Appendicectomy", "appendicectomy", training);
-            if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(_flow.Level == TrainingLevel.Beginner ? TrainingLevel.Advanced : TrainingLevel.Beginner));
+            if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(NextLevel(_flow.Level)));   // P3-MNU-05: every level Core defines, in order
             Slot(3, "Back", _flow.BackToMenu);
         }
 
@@ -272,6 +272,13 @@ namespace ProcSense.VR.Flow
             Slot(slot, name + " (" + n + " cases)\n<size=20>" + detail + "</size>", () => _flow.ChooseSurgery(procedure, _flow.Level), -1f, n > 0 ? ButtonKind.Primary : ButtonKind.Secondary,
                  new Vector2(32 + slot * 426, 196), new Vector2(410, 160));
             _buttons[slot].interactable = n > 0;
+        }
+
+        /// <summary>The next training level after this one, through every value of Core's <see cref="TrainingLevel"/> (P3-MNU-05), so a level Core adds appears here by itself.</summary>
+        public static TrainingLevel NextLevel(TrainingLevel level)
+        {
+            var all = (TrainingLevel[])System.Enum.GetValues(typeof(TrainingLevel));
+            return all[(System.Array.IndexOf(all, level) + 1) % all.Length];
         }
 
         private void DrawBriefing()
