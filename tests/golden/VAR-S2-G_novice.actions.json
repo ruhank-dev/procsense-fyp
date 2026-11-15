@@ -52,6 +52,7 @@
   {"t": 3782.0, "verb": "sign_consent"},
   {"t": 3783.0, "verb": "check_treatment_timing", "params": {"treatment": "TR-ABX-S2"}},
   {"t": 3785.0, "verb": "request_medication", "params": {"class": "TR-ABX-S2", "indication": "appendicitis"}},
+  {"t": 3935.9, "verb": "document_treatment", "params": {"treatment": "TR-ABX-S2"}},
   {"t": 3937.0, "verb": "decide_ready", "params": {"option": "proceed"}},
   {"t": 3947.0, "verb": "check_station", "params": {"station": "anaesthetic_machine"}},
   {"t": 3948.0, "verb": "check_station", "params": {"station": "monitors"}},

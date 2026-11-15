@@ -2,8 +2,8 @@
   "case": "STK-S2-B",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "ddf1cf7da11495858f189cef022c2f577f16bc37b0a3d6a836378e9f85099ebe",
-  "state_hash": "625761f447550605376e11ab6d73847c760847593b546ba47ed93f72b42933f6",
+  "log_hash": "577150d277449048fdf6adbab027926240198d3f7e331ec0a11c13a81b3773f4",
+  "state_hash": "3d3ed82b470fb28c31ca17d5d2ec2dc2cf93ae4e9f4719be1fb69888314c04db",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -40,8 +40,8 @@
       "consent.signed",
       "endstate.resolved",
       "event.e-fast-breathing.handled",
-      "event.e-fever.missed",
-      "event.e-high-hr.missed",
+      "event.e-fever.handled",
+      "event.e-high-hr.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -66,9 +66,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 14,
+    "credits": 19,
     "minor": ["minor.no_introduction"],
-    "major": ["major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
+    "major": [],
     "critical": []
   }
 }
