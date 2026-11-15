@@ -107,7 +107,7 @@ jobs:
 
       - name: Keep the test results
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: unity-editmode-results
           path: artifacts/**
@@ -144,7 +144,7 @@ jobs:
           androidExportType: androidPackage
           androidKeystoreName: ""   # the project's build method signs; this only proves the player builds
           allowDirtyBuild: true
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: procsense-quest-apk
           path: build/Android
