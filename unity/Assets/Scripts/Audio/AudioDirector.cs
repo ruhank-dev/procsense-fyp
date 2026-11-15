@@ -78,6 +78,15 @@ namespace ProcSense.VR.Audio
             MixGroup.Effects => s.effectsVolume, MixGroup.Ambience => s.ambienceVolume, _ => s.uiVolume,
         };
 
+        /// <summary>Sends a source through one group of the mixer, so the player's volume for that group and the mix state apply to it. Without the director or the mixer the source plays unmixed.</summary>
+        public static void Route(AudioSource source, MixGroup group)
+        {
+            var mixer = Instance != null ? Instance.Mixer : null;
+            if (source == null || mixer == null) return;
+            foreach (var g in mixer.FindMatchingGroups(group.ToString()))
+                if (g.name == group.ToString()) { source.outputAudioMixerGroup = g; return; }
+        }
+
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         private static void Make()
         {

@@ -207,7 +207,16 @@ namespace ProcSense.VR.Voice
         }
 
         private void OnFeedback(VoiceFeedbackLine line) { if (Router != null && Router.Talk != null) Router.Talk.SayFeedback(line); }
-        private void OnRecording(bool on) { if (Speaker != null) Speaker.SetMuted(on); }
+        /// <summary>The cue just played for a recording change (P3-SND-08), for tests.</summary>
+        public AudioClip LastCue { get; private set; }
+        private AudioSource _cues;
+
+        private void OnRecording(bool on)
+        {
+            if (Speaker != null) Speaker.SetMuted(on);
+            if (_cues == null) _cues = VoiceCues.MakeSource(gameObject);   // its own source: the speaker is muted while recording
+            LastCue = VoiceCues.Play(_cues, on);
+        }
         private void OnStatus(string s) { if (_status != null) _status.text = s; if (_caption != null) _caption.text = Talk != null && Talk.Recording ? "Send" : "Talk"; }
 
         public void Toggle()

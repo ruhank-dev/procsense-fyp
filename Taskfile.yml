@@ -127,6 +127,11 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/copy_to_unity.py {{.CLI_ARGS}}
 
+  voice-feedback:
+    desc: Render the voice-feedback phrases (content/ui/voice_feedback.json) and the listening cues into the Unity project (committed, P3-SND-08); --check reports missing or stale clips
+    cmds:
+      - uv run --project tools tools/voice/render_feedback.py {{.CLI_ARGS}}
+
   report-experiments:
     desc: Regenerate the experiments chapter of the report (docs/report/experiments.md) from the phase READMEs
     cmds:

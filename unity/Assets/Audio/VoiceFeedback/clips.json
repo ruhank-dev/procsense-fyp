@@ -1,0 +1,20 @@
+{
+ "clips": {
+  "VF-AMBIGUOUS": "5c7e04a69ea3e664",
+  "VF-AMBIGUOUS-practice": "7a7f485f3d354537",
+  "VF-ASR_FAILED": "c9bee7659eb24afb",
+  "VF-CONTENT_INTEGRITY": "045f755c0c8a10e5",
+  "VF-NOT_UNDERSTOOD": "4ab7afbcbddeec00",
+  "VF-NOT_UNDERSTOOD-practice": "d63901fd05138456",
+  "VF-SCENE_LOAD_FAILED": "d241fc0486f3210a",
+  "VF-SERVICE_OFFLINE": "056965981185d78d",
+  "VF-TIMEOUT": "267aae4b4ebc0bd7",
+  "VF-UNAVAILABLE_NOW": "37ff3a0eb7164cb0",
+  "VF-UNAVAILABLE_NOW-practice": "0aaaee5773c91faa",
+  "VF-WRONG_ADDRESSEE": "ef72f6175e4cf658",
+  "VF-WRONG_ADDRESSEE-practice": "ecfbf616953e2171"
+ },
+ "role": "team",
+ "target_lufs": -16,
+ "voice": "en_GB-cori-high"
+}

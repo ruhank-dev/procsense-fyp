@@ -99,13 +99,18 @@ def voice_feedback_problems() -> list[str]:
         for ph in re.findall(r"\{[a-z_]+\}", o.get("subtitle", "") + o.get("spoken", "")):
             if ph not in PLACEHOLDERS:
                 p.append(f"{where}: unknown placeholder {ph}")
-        if o.get("clip") is not None and not (ROOT / o["clip"]).exists():
-            p.append(f"{where}: clip {o['clip']} does not exist")
+        for key in ("clip", "practice_clip", "assessment_clip"):
+            if o.get(key) is not None and not (ROOT / o[key]).exists():
+                p.append(f"{where}: {key} {o[key]} does not exist")
         if MEASURE.search(json.dumps(o, ensure_ascii=False)):
             p.append(f"{where}: contains a dose or measurement")
     e = next((o for o in v["outcomes"] if o["code"] == "ENGINE_REJECTED"), None)
     if e and (e.get("text_source") != "HintTexts" or "{reason_text}" not in e["subtitle"] or not e.get("fallback")):
         p.append("voice_feedback.ENGINE_REJECTED: must use {reason_text} from HintTexts and have a fallback")
+    sys.path.insert(0, str(ROOT / "tools" / "voice"))
+    import render_feedback  # P3-SND-08: every fixed phrase has its clips and none is stale
+
+    p += ["voice_feedback clips: " + x for x in render_feedback.problems()]
     return p
 
 
