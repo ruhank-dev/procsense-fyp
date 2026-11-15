@@ -28,7 +28,7 @@ A single settings model with versioned persistence; the full panel; audio mixer 
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-SET-01 | `GameSettings` model with versioned JSON persistence and migration of the current accessibility keys | Moiz | — | EditMode tests: defaults, migration, round trip | Planned |
+| P3-SET-01 | `GameSettings` model with versioned JSON persistence and migration of the current accessibility keys | Moiz | — | EditMode tests: defaults, migration, round trip | Done |
 | P3-SET-02 | Settings panel with the six tabs, reachable from menu, pause and wrist | Moiz | P3-SET-01, P3-UIX-04 | Every control changes its value live | Planned |
 | P3-SET-03 | Audio mixer groups (master, voice, music, SFX, ambience, UI) wired to sliders | Moiz | P3-SND-01, P3-SET-02 | Slider changes the group's level (test) | Planned |
 | P3-SET-04 | Interaction-mode switch mid-session (calls `InteractionMode`, P3-VOX-02) with a one-line explanation of what changes | Moiz | P3-VOX-02, P3-SET-02 | State hash unchanged by switching (test) | Planned |

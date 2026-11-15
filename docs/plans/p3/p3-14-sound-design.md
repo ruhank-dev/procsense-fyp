@@ -44,7 +44,7 @@ Mixer and snapshots; asset list and sources; ambience recordings; music; UI set;
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-SND-01 | Mixer asset with groups, snapshots and ducking; `AudioDirector` skeleton | Moiz | — | Snapshots switch with flow states in PlayMode | Planned |
+| P3-SND-01 | Mixer asset with groups, snapshots and ducking; `AudioDirector` skeleton | Moiz | — | Snapshots switch with flow states in PlayMode | Done |
 | P3-SND-02 | Asset sourcing: every sound of the list chosen, downloaded, licence recorded (`docs/research/asset_sources_and_licenses.md`, `docs/ATTRIBUTIONS.md`), manifest source record | Sannan | — | List complete with licences | Planned |
 | P3-SND-03 | Ambience beds per room and the crossfade through `RoomAudio` | Sannan | P3-SND-01, P3-SND-02, p0-voice-audio-s05 | Crossfade at every door | Planned |
 | P3-SND-04 | Menu music and result stings | Moiz | P3-SND-01, P3-SND-02 | Music never plays during a session | Planned |

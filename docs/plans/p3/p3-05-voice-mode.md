@@ -42,7 +42,7 @@ Outcome (gateway or service) ─► VoiceFeedback phrase table ─► subtitle +
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
 | P3-VOX-01 | Owner decisions D2 (network profile for the demonstration) and D3 (voice in the examination) recorded with an ADR amendment to ADR-0028 | Owner | — | Decision rows and ADR text exist | Done |
-| P3-VOX-02 | `InteractionMode` service (Menu, Voice), persisted, switchable mid-session, raising a change event; written to the session header | Moiz | P3-SES-05 | Switching does not change the observable state hash | Planned |
+| P3-VOX-02 | `InteractionMode` service (Menu, Voice), persisted, switchable mid-session, raising a change event; written to the session header | Moiz | P3-SES-05 | Switching does not change the observable state hash | Done |
 | P3-VOX-03 | Voice mode hides persistent menus (tablet, contextual action lists, ward panel buttons) and turns contextual panels into reference cards | Moiz | P3-VOX-02, P3-CTX-04 | PlayMode test: no action button visible except the allowed exceptions | Planned |
 | P3-VOX-04 | Reference card layout: "You can ask…" from the catalogue's voice examples, relevant information, the clickable exceptions (Submit Patient to OT, confirmation Yes/No) | Moiz | P3-VOX-03, P3-CTX-01 | Every entity type shows at least three examples | Planned |
 | P3-VOX-05 | Addressee targeting: selected entity, else gaze cone, else a name in the sentence; sent as `addressee` to the speech routes | Moiz | P3-CTX-02, P3-API-02 | Test: "Nurse, …" while looking at the patient goes to the nurse | Planned |
