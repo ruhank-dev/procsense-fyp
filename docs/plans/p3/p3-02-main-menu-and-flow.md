@@ -38,7 +38,7 @@ Screens are states of `GameFlowDirector` (P3-SES-05). Each screen is a prefab bu
 | P3-MNU-08 | Pause menu on the controller menu button: Resume, Settings, Restart scenario, Return to main menu, Quit | Moiz | P3-SES-08, P3-SET-02 | Pause stops the engine clock (P3-SES-08) | Done |
 | P3-MNU-09 | Confirmation dialogs for restart, return and quit with the consequence (practice saved and uploaded; examination ends as abandoned) | Moiz | P3-MNU-08, P3-EXM-06 | Each path tested in PlayMode | Done |
 | P3-MNU-10 | Menu transitions and audio hooks (open, select, back, music start/stop) | Moiz | P3-SND-04, P3-ANI-09 | Hooks fire once per transition | Planned |
-| P3-MNU-11 | Tests: PlayMode menu → selection → briefing → bay for S1 and S2, both modes | Moiz | P3-MNU-07, P3-MNU-09 | Green in CI | Planned |
+| P3-MNU-11 | Tests: PlayMode menu → selection → briefing → bay for S1 and S2, both modes | Moiz | P3-MNU-07, P3-MNU-09 | Green in CI | Done |
 
 ## 7. Dependencies and execution order
 
