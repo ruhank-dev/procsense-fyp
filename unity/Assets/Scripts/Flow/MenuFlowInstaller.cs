@@ -44,6 +44,8 @@ namespace ProcSense.VR.Flow
                 Panel = _panelRoot.AddComponent<FlowPanel>();
                 Panel.Build(Flow, _panelRoot.transform);
                 Flow.Changed += () => _placedFor = (MenuPhase)(-1);
+                var pause = _panelRoot.AddComponent<PauseMenu>();          // the pause menu on the controller's menu button (P3-MNU-08)
+                pause.Flow = Flow;
                 Flow.SignedIn();                                     // sign-in finished before this object was made; the consent step (if any) comes next
                 Place();
             }

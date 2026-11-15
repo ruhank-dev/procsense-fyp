@@ -35,8 +35,8 @@ Screens are states of `GameFlowDirector` (P3-SES-05). Each screen is a prefab bu
 | P3-MNU-05 | Level selection (training only): beginner, intermediate, advanced mapped to Core `TrainingLevel` | Moiz | P3-MNU-04, P3-SCN-04 | The level reaches the session header | Planned |
 | P3-MNU-06 | Loading screen: fade to a glass card with progress from the async loads, a tip line, never longer than the load itself | Moiz | P3-SES-05, P3-UIX-04 | No black frames longer than 100 ms between fade and first room frame (desktop) | Planned |
 | P3-MNU-07 | Briefing card: patient name, age, setting (ward or emergency department), reason for admission (trainee-visible facts only), the task statement; training adds the objective list, test does not | Moiz | P3-SCN-05 | Briefing never shows a hidden finding (test compares with the observable contract) | Done |
-| P3-MNU-08 | Pause menu on the controller menu button: Resume, Settings, Restart scenario, Return to main menu, Quit | Moiz | P3-SES-08, P3-SET-02 | Pause stops the engine clock (P3-SES-08) | Planned |
-| P3-MNU-09 | Confirmation dialogs for restart, return and quit with the consequence (practice saved and uploaded; examination ends as abandoned) | Moiz | P3-MNU-08, P3-EXM-06 | Each path tested in PlayMode | Planned |
+| P3-MNU-08 | Pause menu on the controller menu button: Resume, Settings, Restart scenario, Return to main menu, Quit | Moiz | P3-SES-08, P3-SET-02 | Pause stops the engine clock (P3-SES-08) | Done |
+| P3-MNU-09 | Confirmation dialogs for restart, return and quit with the consequence (practice saved and uploaded; examination ends as abandoned) | Moiz | P3-MNU-08, P3-EXM-06 | Each path tested in PlayMode | Done |
 | P3-MNU-10 | Menu transitions and audio hooks (open, select, back, music start/stop) | Moiz | P3-SND-04, P3-ANI-09 | Hooks fire once per transition | Planned |
 | P3-MNU-11 | Tests: PlayMode menu → selection → briefing → bay for S1 and S2, both modes | Moiz | P3-MNU-07, P3-MNU-09 | Green in CI | Planned |
 

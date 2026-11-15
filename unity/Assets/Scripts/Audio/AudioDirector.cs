@@ -111,7 +111,9 @@ namespace ProcSense.VR.Audio
         private void Update()
         {
             _duck = Mathf.MoveTowards(_duck, Speaking ? 1f : 0f, Time.unscaledDeltaTime / DuckSeconds);
-            Apply(StateFor(MenuFlow.Current != null ? MenuFlow.Current.Phase : (MenuPhase?)null, SimulationHost.Instance != null && SimulationHost.Instance.Paused));
+            var host = SimulationHost.Instance;
+            bool paused = host != null && (host.Paused || (host.Session != null && host.Session.Paused));   // the pause menu pauses the engine (P3-MNU-08); a Core fault pauses the host
+            Apply(StateFor(MenuFlow.Current != null ? MenuFlow.Current.Phase : (MenuPhase?)null, paused));
         }
 
         /// <summary>Sets every group for the state and moves to its snapshot (only when it changes).</summary>
