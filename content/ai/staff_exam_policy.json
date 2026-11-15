@@ -1,0 +1,43 @@
+{
+ "schema": "procsense.staff_exam_policy/1",
+ "status": "approved_for_examination",
+ "note": "Examination dialogue policy for the staff voices (owner decision D3, final, 15 Nov 2026; ADR-0032). Separate from the practice lines in content/ai/staff_intent_lines.json. In the examination a staff member speaks only when the trainee speaks to them (the interpreter's addressee, or one of the role's address words in the sentence), and then only the examination line of the intent the model chose: a role-appropriate answer, a read-back, or a fact the trainee asked for (the nurse's readings come from the engine's monitor state, never from a model). Never an unsolicited next step, an answer, a score or a checklist item. Practice lines that could hint were reviewed and replaced here by neutral responses (see review); the feature stays on. Dialogue never changes the clinical state, awards credit or bypasses the engine. Validated by tools/content/validate_staff_exam_policy.py.",
+ "roles": {
+  "nurse": {
+   "address_words": ["nurse", "sister", "staff nurse"],
+   "lines": {
+    "ask_clarification": "Sorry, could you say that again so that I get it right?",
+    "confirm_order": "Just to check I have this right, you would like me to go ahead with that?",
+    "report_observation": "I will read you what the monitor shows.",
+    "ask_prep_status": "Yes, I am here. What would you like from me?",
+    "report_patient_request": "I have nothing to add at the moment."
+   }
+  },
+  "anaesthesia": {
+   "address_words": ["anaesthetist", "anesthetist", "anaesthesia", "anesthesia", "anaesthetic doctor", "gas doctor"],
+   "lines": {
+    "ask_fasting_allergy_airway": "Yes, I am listening. What would you like to tell me?",
+    "raise_approved_concern": "I have nothing to add at the moment.",
+    "respond_to_escalation": "I am on my way. Tell me what has changed.",
+    "sign_in_answer": "I am ready when you are."
+   }
+  }
+ },
+ "review": [
+  {"role": "nurse", "intent": "ask_prep_status", "practice_line": "Has the preparation been completed, the consent, the fasting and the checks?", "verdict": "replaced", "reason": "names the consent, fasting and checks the trainee is assessed on (an unsolicited checklist prompt)"},
+  {"role": "nurse", "intent": "report_patient_request", "practice_line": "The patient has asked to speak with you about how they are feeling.", "verdict": "replaced", "reason": "an unsolicited cue to talk to the patient (a next-step suggestion)"},
+  {"role": "anaesthesia", "intent": "ask_fasting_allergy_airway", "practice_line": "Can you tell me about the patient's fasting, allergies and airway?", "verdict": "replaced", "reason": "lists the pre-operative safety items the trainee must raise unprompted (reveals critical checklist items)"},
+  {"role": "anaesthesia", "intent": "raise_approved_concern", "practice_line": "I have a concern about this patient. Can we go through it before we carry on?", "verdict": "replaced", "reason": "signals that something is wrong before the trainee has found it (reveals an answer)"},
+  {"role": "anaesthesia", "intent": "sign_in_answer", "practice_line": "Let us go through the sign in checks together.", "verdict": "replaced", "reason": "tells the trainee the next step (sign in) unprompted"},
+  {"role": "nurse", "intent": "report_observation", "practice_line": "I will check the observations now and tell you what I find.", "verdict": "kept_reworded", "reason": "a requested fact; the readings spoken are the engine's monitor values, so only what the monitor already shows is said"},
+  {"role": "nurse", "intent": "ask_clarification", "practice_line": "Sorry, could you say that again so that I get it right?", "verdict": "kept", "reason": "neutral"},
+  {"role": "nurse", "intent": "confirm_order", "practice_line": "Just to check I have this right, you would like me to go ahead with that?", "verdict": "kept", "reason": "a read-back of the trainee's own request; it starts nothing (orders still need the trainee's confirmation and the engine)"},
+  {"role": "anaesthesia", "intent": "respond_to_escalation", "practice_line": "I am on my way. Tell me what has changed.", "verdict": "kept", "reason": "normal response when the trainee escalates; names no finding"}
+ ],
+ "forbidden_words": ["hint", "score", "points", "mark", "correct", "wrong", "next step", "you should", "you need to", "don't forget", "do not forget", "remember to", "checklist", "consent", "fasting", "allerg", "airway", "sign in", "time out", "concern", "diagnos"],
+ "approval": {
+  "by": "Owner (Ruhan Kamran), decision D3 final, 15 Nov 2026",
+  "scope": "staff voices in the examination with the lines above",
+  "not": "independent clinician validation"
+ }
+}

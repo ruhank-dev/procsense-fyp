@@ -204,22 +204,25 @@ def test_T_AU2_the_table_has_no_column_that_could_hold_a_sentence():
 
 # ---------------------------------------------------------------- T-AU3 overhead
 
-def _median_ms(client, path: str, headers: dict, n: int) -> float:
-    took = []
+def _overhead_ms(client, audited_path: str, plain_path: str, headers: dict, n: int) -> float:
+    """The audit's cost per request: the two routes are called alternately (so a busy machine slows both the same way, not one after the other) and the
+    median of each is compared; a few slow outliers from the scheduler move neither median."""
+    body = {"text": SENTENCE, "outcome": "pass"}
+    took = {audited_path: [], plain_path: []}
     for _ in range(n):
-        t = time.perf_counter()
-        assert client.post(path, json={"text": SENTENCE, "outcome": "pass"}, headers=headers).status_code == 200
-        took.append((time.perf_counter() - t) * 1000)
-    return statistics.median(took)
+        for path in (audited_path, plain_path):
+            t = time.perf_counter()
+            assert client.post(path, json=body, headers=headers).status_code == 200
+            took[path].append((time.perf_counter() - t) * 1000)
+    return statistics.median(took[audited_path]) - statistics.median(took[plain_path])
 
 
 def test_T_AU3_the_logger_adds_under_5_ms_and_a_slow_database_does_not_slow_the_reply(world, monkeypatch):
     headers = world.api.headers(world.p["trainee"])
     audited_path, plain_path = f"/dialogue/organisations/{world.a}/patient", f"/not-ai/organisations/{world.a}"
-    _median_ms(world.api.client, audited_path, headers, 10)    # warm up
-    _median_ms(world.api.client, plain_path, headers, 10)
-    overhead = _median_ms(world.api.client, audited_path, headers, 100) - _median_ms(world.api.client, plain_path, headers, 100)
-    print(f"T-AU3: the audit added {overhead:.2f} ms (median of 100)")
+    _overhead_ms(world.api.client, audited_path, plain_path, headers, 20)    # warm up both routes
+    overhead = _overhead_ms(world.api.client, audited_path, plain_path, headers, 200)
+    print(f"T-AU3: the audit added {overhead:.2f} ms (median of 200 alternating pairs)")
     assert overhead < 5, f"the audit added {overhead:.2f} ms"
 
     def slow_engine():

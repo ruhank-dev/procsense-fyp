@@ -100,3 +100,8 @@ class SessionReport(BaseModel):
     process_score: float | None
     process_score_provisional: bool = WEIGHTS_PROVISIONAL
     facts: dict                          # the debrief facts the engine produced (schema debrief_facts.v1): items with evidence, behaviours, timeline, sources
+    # P3-API-06: from the server's replay of the log, never from the headset's numbers; None for a session verified before these were stored
+    hints_used: int | None = None
+    hints_charged: int | None = None     # hints that cost points (the examination only)
+    verdict: str | None = None
+    verdict_source: Literal["server_replay"] = "server_replay"

@@ -36,11 +36,11 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void T_CL_2_assessment_needs_approved_for_assessment_so_nothing_below_it_is_loaded()
         {
-            var load = ContentMode.Load(Real(), SessionMode.Assessment, true, "VAR-S1-A");
+            var load = ContentMode.Load(Real(), SessionMode.Assessment, false, "VAR-S1-B");    // a draft; the 63 playable cases are approved for assessment (P3-SCN-07)
             Assert.Empty(load.Package.Cases);
             Assert.Empty(load.Package.CaseFiles);
             var left = Assert.Single(load.Excluded);
-            Assert.Equal("APPROVED_FOR_TRAINING", left.Status);
+            Assert.Equal("DRAFT", left.Status);
             Assert.Contains("needs APPROVED_FOR_ASSESSMENT", left.Reason);
         }
 

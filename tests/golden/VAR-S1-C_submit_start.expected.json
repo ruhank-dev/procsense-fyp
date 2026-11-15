@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S1-C",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "3f51c830641f99ef4d10d7cb6524346856cf2ed6f5f5d0a21ea231d7aafbe5b8",
+  "state_hash": "02c8af0be50a382a6bcbbcab217a6f6e2e56e9f052e92400cb918cfd9e8fed88",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["condition.diabetes", "endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

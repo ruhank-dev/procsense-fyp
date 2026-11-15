@@ -37,7 +37,7 @@ namespace ProcSense.Tests.EditMode
             foreach (string point in ((List<object>)spec["points"]).Cast<string>()) Assert.IsTrue(names.Contains(point), id + ": no " + point);
             Assert.That(prefab.GetComponents<BoxCollider>(), Is.Not.Empty);
             Assert.That(prefab.GetComponent<XRGrabInteractable>().attachTransform, Is.Not.Null);
-            Assert.That(prefab.GetComponentsInChildren<MeshRenderer>(true).SelectMany(r => r.sharedMaterials).All(m => m != null && m.name.StartsWith("M_") && m.shader.name == "Universal Render Pipeline/Lit"), Is.True, id + ": materials");
+            Assert.That(prefab.GetComponentsInChildren<MeshRenderer>(true).SelectMany(r => r.sharedMaterials).All(m => m != null && m.name.StartsWith("M_") && (m.shader.name == "Universal Render Pipeline/Lit" || m.shader.name == "Universal Render Pipeline/Simple Lit")), Is.True, id + ": materials");
         }
 
         [Test]

@@ -1,0 +1,191 @@
+{
+ "schema": "procsense.ui_messages/1",
+ "note": "P3-API-07: the message the player sees for every sign-in, LAN, pairing and compatibility error code (the voice outcomes are in voice_feedback.json). Authored text, no clinical value. Codes are the server's `detail` words (routers/pairing.py, routers/device_auth.py, auth/dependencies.py, middleware/lan_pairing.py, lan/compat.py, lan/notices.py: the part before ':') plus the codes the headset makes itself (client_codes). Validated by tools/content/validate_ui_messages.py.",
+ "groups": [
+  "sign_in",
+  "lan",
+  "pairing",
+  "compatibility"
+ ],
+ "client_codes": [
+  "laptop_unreachable",
+  "request_timeout"
+ ],
+ "messages": [
+  {
+   "code": "not_signed_in",
+   "group": "sign_in",
+   "title": "Please sign in",
+   "message": "You are not signed in, or your sign-in has ended.",
+   "action": "Sign in again from the main menu."
+  },
+  {
+   "code": "web_sign_in_required",
+   "group": "sign_in",
+   "title": "Use the website for this",
+   "message": "This step is done from the ProcSense website, not the headset.",
+   "action": "Open the website on a computer and sign in there."
+  },
+  {
+   "code": "authorization_pending",
+   "group": "sign_in",
+   "title": "Waiting for approval",
+   "message": "The sign-in code has not been approved yet.",
+   "action": "Enter the code on the website, then wait here."
+  },
+  {
+   "code": "slow_down",
+   "group": "sign_in",
+   "title": "Please wait",
+   "message": "The headset is checking the code too often.",
+   "action": "Wait a moment; it will check again by itself."
+  },
+  {
+   "code": "access_denied",
+   "group": "sign_in",
+   "title": "Sign-in refused",
+   "message": "The sign-in code was refused on the website.",
+   "action": "Start sign-in again and approve the new code."
+  },
+  {
+   "code": "expired_token",
+   "group": "sign_in",
+   "title": "Code expired",
+   "message": "The sign-in code has run out of time.",
+   "action": "Start sign-in again to get a new code."
+  },
+  {
+   "code": "code_not_found_or_expired",
+   "group": "sign_in",
+   "title": "Code not found",
+   "message": "That code is not known or has run out of time.",
+   "action": "Check the code on the headset and type it again."
+  },
+  {
+   "code": "too_many_requests",
+   "group": "sign_in",
+   "title": "Too many tries",
+   "message": "Too many requests were made in a short time.",
+   "action": "Wait a minute, then try again."
+  },
+  {
+   "code": "not_found",
+   "group": "sign_in",
+   "title": "Not found",
+   "message": "What was asked for does not exist or is not yours.",
+   "action": "Go back and choose it again."
+  },
+  {
+   "code": "platform_admin_only",
+   "group": "sign_in",
+   "title": "Not allowed",
+   "message": "Only a platform administrator can do this.",
+   "action": "Ask the administrator of ProcSense."
+  },
+  {
+   "code": "membership_deactivated",
+   "group": "sign_in",
+   "title": "Account paused",
+   "message": "Your membership of this organisation has been switched off.",
+   "action": "Ask your supervisor or the organisation administrator."
+  },
+  {
+   "code": "role_too_low",
+   "group": "sign_in",
+   "title": "Not allowed",
+   "message": "Your role in this organisation cannot do this.",
+   "action": "Ask a supervisor to do it, or to change your role."
+  },
+  {
+   "code": "laptop_unreachable",
+   "group": "lan",
+   "title": "Laptop not reachable",
+   "message": "The headset cannot reach the demonstration laptop.",
+   "action": "Check that both are on the same Wi-Fi and the laptop server is running. Menu mode still works."
+  },
+  {
+   "code": "request_timeout",
+   "group": "lan",
+   "title": "No answer in time",
+   "message": "The laptop did not answer in time.",
+   "action": "Try again, or carry on with the menu."
+  },
+  {
+   "code": "server_stopping",
+   "group": "lan",
+   "title": "Laptop is shutting down",
+   "message": "The laptop server is stopping.",
+   "action": "Wait until it is started again, then reconnect."
+  },
+  {
+   "code": "laptop_only",
+   "group": "lan",
+   "title": "Laptop only",
+   "message": "This can only be done on the laptop itself.",
+   "action": "Do this step at the laptop."
+  },
+  {
+   "code": "database_not_configured",
+   "group": "lan",
+   "title": "Laptop not set up",
+   "message": "The laptop server has no database, so results cannot be saved.",
+   "action": "Run task demo-laptop-check on the laptop and fix what it reports."
+  },
+  {
+   "code": "pairing_required",
+   "group": "pairing",
+   "title": "Pair this headset",
+   "message": "This headset is not paired with the laptop.",
+   "action": "Scan the QR code or type the pairing code shown by the laptop."
+  },
+  {
+   "code": "pairing_not_enabled",
+   "group": "pairing",
+   "title": "Pairing is off",
+   "message": "The laptop is not in the demonstration profile, so it does not pair headsets.",
+   "action": "Start the laptop with task demo-laptop."
+  },
+  {
+   "code": "wrong_code",
+   "group": "pairing",
+   "title": "Wrong pairing code",
+   "message": "The pairing code does not match the one on the laptop.",
+   "action": "Check the code on the laptop screen and type it again."
+  },
+  {
+   "code": "too_many_wrong_codes",
+   "group": "pairing",
+   "title": "Pairing locked for now",
+   "message": "Too many wrong codes were entered.",
+   "action": "Wait a few minutes, or restart the laptop server for a new code."
+  },
+  {
+   "code": "unknown_device",
+   "group": "pairing",
+   "title": "Headset not known",
+   "message": "The laptop does not know this headset any more.",
+   "action": "Pair the headset again."
+  },
+  {
+   "code": "demo_identity_only",
+   "group": "pairing",
+   "title": "Demonstration only",
+   "message": "This works only for the demonstration user on the laptop.",
+   "action": "Use the demonstration sign-in."
+  },
+  {
+   "code": "engine_version_unsupported",
+   "group": "compatibility",
+   "title": "Update needed",
+   "message": "This headset's simulator version does not match the laptop.",
+   "action": "Install the matching build on the headset or update the laptop."
+  },
+  {
+   "code": "content_version_unsupported",
+   "group": "compatibility",
+   "title": "Content does not match",
+   "message": "The cases on this headset are a different version from the laptop's.",
+   "action": "Install the matching build on the headset or update the laptop."
+  }
+ ]
+}

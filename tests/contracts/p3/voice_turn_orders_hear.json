@@ -1,0 +1,17 @@
+{
+ "name": "voice_turn_orders_hear",
+ "route": "POST /orders/organisations/{id}/hear",
+ "schema": "HearIn",
+ "valid": true,
+ "body": {
+  "text": "order a full blood count",
+  "session_id": "",
+  "context": {
+   "case": "VAR-S1-A"
+  },
+  "addressee": "nurse",
+  "interaction_mode": "voice",
+  "session_mode": "examination",
+  "request_id": "17"
+ }
+}

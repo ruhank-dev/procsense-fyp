@@ -296,33 +296,140 @@ namespace ProcSense.Tests.EditMode
             finally { UnityEngine.Object.DestroyImmediate(go); UnityEngine.Object.DestroyImmediate(host.gameObject); }
         }
 
+        /// <summary>A service answer for the examination: the patient's released fact, and staff lines the model chose that would hint in practice wording (D3 review).</summary>
+        private const string ExamReply = "{\"replies\":[{\"role\":\"patient\",\"text\":\"No fever and my eyes are not yellow.\",\"intent\":\"answer_question\",\"source\":\"model\",\"fact_ids\":[\"h.red_flags\"],\"reasons\":[]}," +
+            "{\"role\":\"nurse\",\"text\":\"Has the preparation been completed, the consent, the fasting and the checks?\",\"intent\":\"ask_prep_status\",\"source\":\"model\",\"fact_ids\":[],\"reasons\":[]}," +
+            "{\"role\":\"anaesthesia\",\"text\":\"I have a concern about this patient. Can we go through it before we carry on?\",\"intent\":\"raise_approved_concern\",\"source\":\"model\",\"fact_ids\":[],\"reasons\":[]}],\"cloud\":true,\"model\":\"gemma4:31b-cloud\",\"ms\":700}";
+
+        private static StaffExamPolicy Policy() => StaffExamPolicy.Parse(File.ReadAllText(Path.Combine(Repo, "content", "ai", "staff_exam_policy.json")));
+
+        private static string Fingerprint(SimulationHost h) =>
+            h.Session.Observable.Hash() + "|" + h.Session.Log.Hash() + "|" + ProcSense.Core.Scoring.Scorer.Score(h.Session, h.Content).Total;
+
         [Test]
-        public void An_assessment_session_gets_no_voices_and_no_request()
+        public void In_the_examination_staff_not_spoken_to_stay_silent_and_the_score_and_state_are_identical_with_dialogue_on_or_off()
         {
             var http = new FakeHttp();
             var auth = SignedIn(http);
-            http.Answer("POST", Base + "/dialogue/organisations/" + Org + "/team", 200, Reply);
-            var host = NewHost();
-            var content = ContentLoader.Load(new FileContentReader(Path.Combine(Repo, "content")), "VAR-S1-A");
-            var assessment = new Session(content.Cases["VAR-S1-A"], 1, SessionMode.Assessment, ProcSense.Core.Workflow.Subsystems.Default(content));
+            http.Answer("POST", Base + "/dialogue/organisations/" + Org + "/team", 200, Reply);     // the service also returns nurse and anaesthesia lines
+            var withTalk = NewHost(SessionMode.Assessment);
+            var without = NewHost(SessionMode.Assessment);
             var go = new GameObject("conversation");
             go.SetActive(false);
             try
             {
-                ModeGate.SessionProvider = () => assessment;
+                Assert.IsFalse(withTalk.Session.PracticeAids);
                 var talk = go.AddComponent<TeamConversation>();
-                talk.Voices = go.AddComponent<TeamVoicesView>(); talk.Auth = () => auth; talk.Host = () => host;
+                talk.Voices = go.AddComponent<TeamVoicesView>(); talk.Auth = () => auth; talk.Host = () => withTalk; talk.SpeakAloud = false; talk.ExamPolicy = Policy();
                 go.SetActive(true);
-                Run(talk.Run("Do you have any allergies?", null));
-                Assert.AreEqual(0, talk.RequestsSent);
-                Assert.IsFalse(http.Urls.Any(u => u.EndsWith("/team")));
-                StringAssert.Contains("off", talk.Status);
+                foreach (var h in new[] { withTalk, without }) { Identify(h); h.Apply(Ask("red_flags")); }
+                Run(talk.Run("Do you have any red flag symptoms?", "red_flags"));
+                Assert.AreEqual(1, talk.RequestsSent);                                                         // the voices are on in the examination (D3)
+                Assert.IsTrue(http.Bodies.Any(b => b != null && b.Contains("\"staff_roles\":[\"nurse\",\"anaesthesia\"]") && b.Contains("\"mode\":\"examination\"")));    // staff asked for, under the examination policy
+                CollectionAssert.AreEqual(new[] { "patient" }, talk.Last.Replies.Select(r => r.Role));       // nobody was spoken to: no unsolicited staff line reaches the examination
+                Assert.IsFalse(http.Bodies.Any(b => b != null && b.Contains("hint")));                         // nothing practice-only is sent
+                Assert.AreEqual(Fingerprint(without), Fingerprint(withTalk));                                  // the dialogue changed no state, logged no action and moved no score
             }
-            finally
+            finally { UnityEngine.Object.DestroyImmediate(go); UnityEngine.Object.DestroyImmediate(withTalk.gameObject); UnityEngine.Object.DestroyImmediate(without.gameObject); }
+        }
+
+        [Test]
+        public void In_the_examination_the_staff_spoken_to_answer_with_neutral_lines_never_a_hint_and_the_score_is_identical_with_dialogue_on_or_off()
+        {
+            var http = new FakeHttp();
+            var auth = SignedIn(http);
+            http.Answer("POST", Base + "/dialogue/organisations/" + Org + "/team", 200, ExamReply);
+            var on = NewHost(SessionMode.Assessment);
+            var off = NewHost(SessionMode.Assessment);
+            var none = NewHost(SessionMode.Assessment);
+            var go = new GameObject("conversation");
+            var go2 = new GameObject("conversation off");
+            go.SetActive(false); go2.SetActive(false);
+            try
             {
-                ModeGate.SessionProvider = () => SimulationHost.Instance != null ? SimulationHost.Instance.Session : null;
-                UnityEngine.Object.DestroyImmediate(go); UnityEngine.Object.DestroyImmediate(host.gameObject);
+                var policy = Policy();
+                var talk = go.AddComponent<TeamConversation>();
+                talk.Voices = go.AddComponent<TeamVoicesView>(); talk.Auth = () => auth; talk.Host = () => on; talk.SpeakAloud = false; talk.ExamPolicy = policy;
+                var quiet = go2.AddComponent<TeamConversation>();
+                quiet.Voices = go2.AddComponent<TeamVoicesView>(); quiet.Auth = () => auth; quiet.Host = () => off; quiet.SpeakAloud = false; quiet.ExamPolicy = policy; quiet.ExamStaffVoices = false;
+                go.SetActive(true); go2.SetActive(true);
+                foreach (var h in new[] { on, off, none }) { Identify(h); h.Apply(Ask("red_flags")); }
+                const string q = "Nurse and anaesthetist, is there anything I can help with?";
+                Run(talk.Run(q, null));
+                Run(quiet.Run(q, null));
+                var said = talk.Last.Replies.ToDictionary(r => r.Role, r => r.Text);
+                CollectionAssert.AreEquivalent(new[] { "patient", "nurse", "anaesthesia" }, said.Keys);        // staff dialogue works in the examination when spoken to
+                Assert.AreEqual(policy.Line("nurse", "ask_prep_status"), said["nurse"]);                        // the reviewed neutral line, not the practice wording
+                Assert.AreEqual(policy.Line("anaesthesia", "raise_approved_concern"), said["anaesthesia"]);
+                foreach (var w in new[] { "consent", "fasting", "concern", "checks", "hint", "score" })
+                    Assert.IsFalse(said["nurse"].ToLowerInvariant().Contains(w) || said["anaesthesia"].ToLowerInvariant().Contains(w), w);   // unsolicited hints are blocked
+                CollectionAssert.AreEqual(new[] { "patient" }, quiet.Last.Replies.Select(r => r.Role));       // dialogue off: the patient alone
+                Assert.AreEqual(Fingerprint(none), Fingerprint(on));                                             // scoring and state hash identical with staff dialogue on,
+                Assert.AreEqual(Fingerprint(none), Fingerprint(off));                                            // off, and with no dialogue at all
             }
+            finally { UnityEngine.Object.DestroyImmediate(go); UnityEngine.Object.DestroyImmediate(go2); foreach (var h in new[] { on, off, none }) UnityEngine.Object.DestroyImmediate(h.gameObject); }
+        }
+
+        [Test]
+        public void In_the_examination_the_nurse_asked_for_the_observations_gives_the_engines_readings_and_the_interpreters_addressee_counts()
+        {
+            var http = new FakeHttp();
+            var auth = SignedIn(http);
+            http.Answer("POST", Base + "/dialogue/organisations/" + Org + "/team", 200, Reply);              // nurse: report_observation, anaesthesia: respond_to_escalation
+            var host = NewHost(SessionMode.Assessment);
+            var go = new GameObject("conversation");
+            go.SetActive(false);
+            try
+            {
+                var talk = go.AddComponent<TeamConversation>();
+                talk.Voices = go.AddComponent<TeamVoicesView>(); talk.Auth = () => auth; talk.Host = () => host; talk.SpeakAloud = false; talk.ExamPolicy = Policy();
+                go.SetActive(true);
+                Identify(host);
+                host.Apply(new SimAction("attach_sensor", "patient", Channel.Vr, new Dictionary<string, string> { ["sensor"] = "spo2" }));
+                host.Tick(5);
+                string before = Fingerprint(host);
+                Run(talk.Run("What does the monitor show now?", null, "nurse"));                              // no address word, but the interpreter heard it addressed to the nurse
+                var nurse = talk.Last.Replies.Single(r => r.Role == "nurse");
+                Assert.AreEqual(ObservationReport.Build(host.Session.Observable), nurse.Text);                 // a permitted, requested fact: the engine's own readings, never a model's numbers
+                Assert.IsFalse(talk.Last.Replies.Any(r => r.Role == "anaesthesia"));                           // not spoken to
+                Assert.IsTrue(http.Bodies.Any(b => b != null && b.Contains("\"addressee\":\"nurse\"")));
+                Assert.AreEqual(before, Fingerprint(host));                                                    // reading it out changed nothing
+            }
+            finally { UnityEngine.Object.DestroyImmediate(go); UnityEngine.Object.DestroyImmediate(host.gameObject); }
+        }
+
+        [Test]
+        public void The_examination_policy_is_read_from_content_and_an_unreadable_policy_keeps_the_staff_silent()
+        {
+            var policy = Policy();
+            CollectionAssert.AreEquivalent(new[] { "nurse", "anaesthesia" }, policy.Roles);
+            Assert.IsTrue(policy.Addressed("nurse", "Sister, can you help?", null));
+            Assert.IsFalse(policy.Addressed("nurse", "Where is the nursery?", null));
+            Assert.IsTrue(policy.Addressed("anaesthesia", "anything", "anaesthesia"));
+            Assert.IsNull(policy.Line("nurse", "prescribe_drug"));
+            var replies = new List<TeamReply> { new TeamReply("patient", "p"), new TeamReply("nurse", "x") { Intent = "prescribe_drug" } };
+            Assert.AreEqual(1, policy.Apply(replies, "Nurse?", null));                                             // an intent with no examination line is dropped
+            var empty = new StaffExamPolicy();
+            var all = new List<TeamReply> { new TeamReply("patient", "p"), new TeamReply("nurse", "x") { Intent = "ask_clarification" } };
+            empty.Apply(all, "Nurse, say again?", "nurse");
+            CollectionAssert.AreEqual(new[] { "patient" }, all.Select(r => r.Role));                                  // the safe fallback
+            Assert.Throws<KeyNotFoundException>(() => StaffExamPolicy.Parse("{\"roles\":{\"nurse\":{}}}"));
+        }
+
+        [Test]
+        public void The_order_interpreter_context_names_the_mode_and_nothing_else_changes()
+        {
+            var host = NewHost();
+            try
+            {
+                var s = host.Session.Observable;
+                string practice = SpokenOrderContext.Build(s, null);
+                string exam = SpokenOrderContext.Build(s, null, false);
+                StringAssert.StartsWith("Practice session. ", practice);
+                StringAssert.StartsWith("Examination session. ", exam);
+                Assert.AreEqual(practice.Substring("Practice session. ".Length), exam.Substring("Examination session. ".Length));
+            }
+            finally { UnityEngine.Object.DestroyImmediate(host.gameObject); }
         }
     }
 }

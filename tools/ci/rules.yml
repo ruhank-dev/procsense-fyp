@@ -55,6 +55,7 @@ anchors:
     - "unity/Assets/XR/**"
     - "unity/Assets/Tests/PlayMode/EditorXRTestEnvironment.cs"
     - "unity/Assets/Tests/PlayMode/QuestWalkthrough.cs"
+    - "unity/Assets/Tests/PlayMode/TestHostHygiene.cs"      # scene/host reset every room-loading fixture uses (DT-307): a change can reorder-break any PlayMode check
     - "tools/unity/run_unity.py"
   unity_render: &unity_render           # what changes the rendered hospital
     - "unity/Assets/Shaders/**"
@@ -77,6 +78,78 @@ checks:
     tools: [uv, python]
     group: python
     inputs: ["docs/**", "**/*.md", "src/ProcSense.Core/**", "content/**", "tools/ci/tool_mentions_baseline.txt", "INSTRUCTIONS.md"]
+  ui_guides_check:
+    desc: "Training guide (P3-TRN-01, goal-inactive reasons P3-TRN-02) and voice feedback table (P3-VOX-07): freshness, coverage of every goal, stage, ward item and outcome code, tests"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/build_training_guide.py", "--check"]
+      - ["uv", "run", "--project", "tools", "tools/content/validate_ui_guides.py"]
+      - ["uv", "run", "--project", "tools", "tools/content/test_ui_guides.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/ui/training_guide.json", "content/ui/voice_feedback.json", "content/workflow/workflow.json", "content/flow/flow_maps.json", "content/ward/ward_checklist.json", "tools/content/build_training_guide.py", "tools/content/validate_ui_guides.py", "tools/content/test_ui_guides.py"]
+  ui_messages_check:
+    desc: "UI message table (P3-API-07): every sign-in, LAN, pairing and compatibility error code the server can give (read from its source) and every client code has a message, tests"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/validate_ui_messages.py"]
+      - ["uv", "run", "--project", "tools", "tools/content/test_ui_messages.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/ui/ui_messages.json", "server/routers/pairing.py", "server/routers/device_auth.py", "server/auth/dependencies.py", "server/middleware/lan_pairing.py", "server/lan/compat.py", "server/lan/notices.py", "tools/content/validate_ui_messages.py", "tools/content/test_ui_messages.py"]
+  demo_laptop_tools_check:
+    desc: "Demonstration laptop helpers (P3-NET-04 address QR code, P3-NET-13 model names, P3-VOX-11 degraded check script): unit tests, no server started"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "server", "tools/ci/test_demo_laptop.py"]
+      - ["uv", "run", "--project", "server", "tools/ci/test_demo_degraded_check.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["tools/setup/demo_laptop.py", "tools/setup/qr_text.py", "tools/setup/demo_degraded_check.py", "tools/ci/test_demo_laptop.py", "tools/ci/test_demo_degraded_check.py", "content/ai/model_routes.json"]
+  grades_check:
+    desc: "Grade table (P3-RES-10, P3-EXM-01): content/scoring/grades.json bands A-D descending within 0-100, pass mark reachable, hint_penalty 0-100, hint_limit 0-10, tests"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/validate_grades.py"]
+      - ["uv", "run", "--project", "tools", "tools/content/test_grades.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/scoring/grades.json", "tools/content/validate_grades.py", "tools/content/test_grades.py"]
+  staff_exam_policy_check:
+    desc: "Examination staff-dialogue policy (D3): every staff intent has an examination-safe line, address words, no hinting words or numbers, every replaced practice line reviewed"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/validate_staff_exam_policy.py"]
+      - ["uv", "run", "--project", "tools", "tools/content/test_staff_exam_policy.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/ai/staff_exam_policy.json", "content/ai/staff_intent_lines.json", "content/ai/intents.json", "tools/content/validate_staff_exam_policy.py", "tools/content/test_staff_exam_policy.py"]
+  case_catalogue_check:
+    desc: "Scenario catalogue (P3-SCN-02, CI row P3-SCN-11): content/ui/case_catalogue.json is exactly what content/case_files give"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/case_catalogue.py", "--check"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/case_files/**", "content/ui/case_catalogue.json", "tools/content/case_catalogue.py"]
+  interactions_check:
+    desc: "Interaction catalogue (P3-CTX-01): content/ui/interactions.json is current, every tablet entry belongs to an entity or the wrist menu, spoken entries are allowed ones, tests"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/content/build_interactions.py", "--check"]
+      - ["uv", "run", "--project", "tools", "tools/content/test_interactions.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["content/ui/tablet.json", "content/ui/interactions.json", "content/ai/spoken_actions.json", "tools/content/build_interactions.py", "tools/content/validate_interactions.py", "tools/content/test_interactions.py"]
+  interaction_matrix_check:
+    desc: "Interaction coverage matrix (P3-INT-01): docs/plans/p3/interaction-matrix.md is what the engine source, the catalogue and the scene emitters give, tests"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/plans/interaction_matrix.py", "--check"]
+      - ["uv", "run", "--project", "tools", "tools/ci/test_interaction_matrix.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["docs/plans/p3/interaction-matrix.md", "content/ui/interactions.json", "src/ProcSense.Core/**/*.cs", "unity/Assets/**/*.unity", "unity/Assets/**/*.prefab", "tools/plans/interaction_matrix.py", "tools/ci/test_interaction_matrix.py"]
   plans_check:
     desc: "Milestones, planning pipeline, P3 plans, planning sync - `task plans-check`"
     job: repo_checks
@@ -97,6 +170,13 @@ checks:
     tools: [uv, python, dotnet]
     group: python
     inputs: ["tools/**", "content/**", "server/validation/**", "tests/golden/**", "tests/golden_generated/**", "docs/research/**", "docs/context/**", "docs/testing/**", "docs/plans/**", "src/**"]
+  quest_config_check:
+    desc: "Approved Quest 2 render optimisations still set in the project files (Vulkan, multiview, MSAA 1, HDR/post/shadows off, baked lighting, probes, ASTC, FFR, perf settings, stripping) - source level, no Unity"
+    job: repo_checks
+    cmds: [["uv", "run", "--project", "tools", "tools/unity/verify_quest_config.py"], ["uv", "run", "--project", "tools", "tools/ci/test_verify_quest_config.py"]]
+    tools: [uv, python]
+    group: python
+    inputs: ["tools/unity/verify_quest_config.py", "tools/ci/test_verify_quest_config.py","unity/ProjectSettings/**", "unity/Assets/Settings/**", "unity/Assets/XR/**", "unity/Assets/UniversalRenderPipelineGlobalSettings.asset", "unity/Assets/Scenes/**", "unity/Assets/Scripts/Views/QuestPerformanceProfile.cs", "unity/Assets/Scripts/Views/QuestRuntimeSettings.cs", "unity/Assets/Scripts/Views/QuestLightingGuard.cs", "unity/Assets/Scripts/XR/QuestRenderTier.cs", "unity/Assets/**/*.png", "unity/Assets/**/*.jpg", "unity/Assets/**/*.tga", "unity/Assets/**/*.exr"]
 
   # ------------------------------------------------------------------ .NET rules engine (GitHub job: engine)
   rules_engine_tests:
@@ -136,7 +216,7 @@ checks:
     cmds: [["uv", "run", "--project", "tools", "tools/ci/server_tests.py"]]
     tools: [uv, python, dotnet, docker]
     group: backend
-    inputs: ["server/**", "src/**", "content/**", "tools/ci/server_tests.py"]
+    inputs: ["server/**", "src/**", "content/**", "tests/contracts/p3/**", "tools/ci/server_tests.py", "tools/setup/demo_laptop.py", "tools/setup/demo_degraded_check.py"]
 
   # ------------------------------------------------------------------ Unity (local only: the free GitHub runners have no Unity licence)
   unity_compile:
@@ -154,7 +234,7 @@ checks:
     unity: {mode: tests, platform: EditMode}
     tools: [unity]
     group: unity
-    inputs: ["unity/Assets/Scripts/**", "unity/Assets/Editor/**", "unity/Assets/Tests/EditMode/**", "unity/Assets/Scenes/**", "unity/Assets/Prefabs/**", "unity/Assets/Resources/**", "unity/Assets/Shaders/**", *unity_shared]
+    inputs: ["unity/Assets/Scripts/**", "unity/Assets/Editor/**", "unity/Assets/Tests/EditMode/**", "tests/contracts/p3/**", "unity/Assets/Scenes/**", "unity/Assets/Prefabs/**", "unity/Assets/Resources/**", "unity/Assets/Shaders/**", *unity_shared]
   unity_playmode_exterior:
     desc: "City visibility, door glass aperture, room culling, fast-path equivalence (ExteriorVisibilityTests, CullingCostTests excluded: benchmark)"
     job: unity_tests
@@ -179,6 +259,22 @@ checks:
     tools: [unity]
     group: unity
     inputs: ["unity/Assets/Scripts/Views/QuestRuntimeSettings.cs", "unity/Assets/Tests/PlayMode/QuestRuntimeSettingsTests.cs", "unity/Assets/XR/**", *unity_shared]
+  unity_playmode_flow:
+    desc: "Game flow panel: menu flow, examination leak test, duplicate submit, reworded results label (MenuFlowTests, ExamPresentationTests)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "MenuFlowTests;ExamPresentationTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/Flow/**", "unity/Assets/Scripts/Sync/DebriefRewriteClient.cs", "unity/Assets/Scripts/Auth/**", "unity/Assets/Tests/PlayMode/MenuFlowTests.cs", "unity/Assets/Tests/PlayMode/ExamPresentationTests.cs", *unity_shared]
+  unity_playmode_clinical_text:
+    desc: "Sharp clinical text on Quest 2 (shared dilated SDF material on the EMR tablet, EMR, monitor and menu panels, reading cone, eye-buffer size report) and the readability floor (ClinicalTextTests, AccessibilityTests)"
+    job: unity_tests
+    kind: unity
+    unity: {mode: tests, platform: PlayMode, filter: "ClinicalTextTests;AccessibilityTests"}
+    tools: [unity]
+    group: unity
+    inputs: ["unity/Assets/Scripts/UI/Accessibility/**", "unity/Assets/Scripts/Views/UiKit.cs", "unity/Assets/Scripts/Views/QuestPerformanceProfile.cs", "unity/Assets/Scripts/Views/MonitorView.cs", "unity/Assets/Scripts/Views/TabletView.cs", "unity/Assets/Scripts/Views/MainMenuController.cs", "unity/Assets/Scripts/Views/EmrPanelView.cs", "unity/Assets/Scripts/Records/Emr/**", "unity/Assets/Scripts/Flow/**", "unity/Assets/TextMesh Pro/**", "unity/Assets/Tests/PlayMode/ClinicalTextTests.cs", "unity/Assets/Tests/PlayMode/AccessibilityTests.cs", *unity_shared]
   unity_shader_visual:
     desc: "Render the bay with the changed shader/material/lighting setup; frames kept for comparison with the previous render (single-eye 960x540, 40 frames)"
     job: unity_tests

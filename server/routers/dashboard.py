@@ -19,6 +19,7 @@ from server.repositories import dashboard as repository
 from server.repositories import privacy as privacy_repository
 from server.repositories.dashboard import Filters
 from server.schemas.dashboard import Progress, SessionPage, SessionReport, Summary
+from server.verification import replay_summary
 
 router = APIRouter(tags=["reports and dashboard"])
 HTML_HEADERS = {
@@ -86,9 +87,10 @@ def _owned_or_supervised(ctx: OrgContext, db: DbSession, session_id: uuid.UUID):
 def session_report(session_id: uuid.UUID, ctx: OrgContext = Depends(require_member), db: DbSession = Depends(db_session)) -> SessionReport:
     """The report the engine produced when the session was verified: the same content as the command-line report (end state, every score item with its evidence, behaviours, timeline, sources)."""
     row, pseudonym = _owned_or_supervised(ctx, db, session_id)
+    replay = replay_summary.read(row.report_json)
     return SessionReport(session_id=row.id, trainee=pseudonym, case_id=row.case_id, mode=row.mode, content_version=row.content_version, engine_version=row.engine_version,
                          verified_at=row.verified_at, result=row.result, end_state=row.end_state, process_score=float(row.process_score) if row.process_score is not None else None,
-                         facts=row.report_json or {})
+                         facts=row.report_json or {}, hints_used=replay.get("hints_used"), hints_charged=replay.get("hints_charged"), verdict=row.result)
 
 
 @router.get("/organisations/{organisation_id}/sessions/{session_id}/report.html")

@@ -53,6 +53,18 @@ PrefabInstance:
       value: RB_Female_Adult_08
       objectReference: {fileID: 0}
     - target: {fileID: 2280443229436904697, guid: 6e74e81180b67564d8643e09a30c409b, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280443229436904697, guid: 6e74e81180b67564d8643e09a30c409b, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280443229436904697, guid: 6e74e81180b67564d8643e09a30c409b, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280443229436904697, guid: 6e74e81180b67564d8643e09a30c409b, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 8ff0a847baeb36640989ec01a0abf49e, type: 2}

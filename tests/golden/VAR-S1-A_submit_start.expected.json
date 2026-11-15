@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S1-A",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "3750c1607b2f1c26d12100114f02dddb154d352dd9dded4d1a4183270236c5f1",
+  "state_hash": "d71f8b366c621b72500cfc524dbae5168de987e4822b107eabcdf2620321f68f",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

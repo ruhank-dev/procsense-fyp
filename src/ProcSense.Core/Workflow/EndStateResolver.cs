@@ -176,6 +176,20 @@ namespace ProcSense.Core.Workflow
             return "SAFETY_FAILURE";                                                                      // the checklist stopped the case (a skipped item, repeatedly)
         }
 
+        /// <summary>
+        /// submit_patient (P3-EXM-05): the trainee sent the patient on before the case had ended. A case that has already ended keeps its end state (submitting a finished case changes nothing); one that
+        /// has not ended is a safety failure, because the patient went on without what the case required (the goals still open were missed just before, so the debrief lists them).
+        /// </summary>
+        internal void ResolveOnSubmit()
+        {
+            if (Resolved.Length > 0) return;
+            const string end = "SAFETY_FAILURE";
+            Resolved = end;
+            _s.Patient.Clinical.SetFlag(DoneFlag);
+            _history.Add(new GraphEvent("end_state:" + end, end, _s.Clock.Steps, Array.Empty<string>()));
+            _s.Events.Publish(new WorkflowEvent(Event, end));
+        }
+
         private void TryResolve()
         {
             if (!Ended()) return;

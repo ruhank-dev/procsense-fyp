@@ -1,0 +1,29 @@
+{
+  "case": "STK-S2-B",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5c9dca4e52d100b452eb5eb4ebb2c55c58d18f1f859e986ad7fbd32bc56071bc",
+  "state_hash": "9f7261c05208a7563e1a528a8779610f6ac40fa65d4b849e195444b97c1c3be8",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": true,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["condition.penicillin_allergy", "endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

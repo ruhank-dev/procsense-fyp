@@ -13,7 +13,11 @@ namespace ProcSense.Core.Observation
     public sealed record ObservedVital(string Name, string Value, string At, string Zone = "", string Quality = "");
 
     /// <summary>One goal as the trainee's "known / pending" panel shows it. State is pending, complete or missed; At is the clock time it finished ("" while pending).</summary>
-    public sealed record GoalStatus(string Id, string Label, string State, string At);
+    public sealed record GoalStatus(string Id, string Label, string State, string At, IReadOnlyList<string>? WaitingFor = null)
+    {
+        /// <summary>For a pending goal, the goals it comes after that are still open (P3-TRN-02); never null.</summary>
+        public IReadOnlyList<string> Waiting => WaitingFor ?? System.Array.Empty<string>();
+    }
 
     /// <summary>One stage of the scenario map as the tablet shows it: state is active, suspended (stopped by an emergency), done or skipped.</summary>
     public sealed record FlowStageStatus(string Id, string Title, string Track, string State);
@@ -68,7 +72,8 @@ namespace ProcSense.Core.Observation
         string ClockTime, string Location, bool IdentityConfirmed, bool AllergiesKnown,
         Wristband? Wristband, NotesIdentifiers? Notes, IReadOnlyList<DisclosedFact> DisclosedFacts, IReadOnlyList<ObservedVital> Vitals, string Nurse, bool AllergyBand, string LastRejection,
         IReadOnlyList<GoalStatus> Goals, IReadOnlyList<DecisionCard> Decisions, string Hint, string BlockMessage, IReadOnlyList<FlowStageStatus> Flow,
-        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null, string? BehaviourMode = null, IReadOnlyList<Events.ObservedCue>? Cues = null)
+        IReadOnlyList<ObservedFinding> Findings, IReadOnlyList<ObservedAirway> Airway, FastingChip Fasting, ObservedRisk Risk, IReadOnlyList<ObservedNews2> News2, string TraineeLocation, ObservedTransport? Transport, IReadOnlyList<ObservedInvestigation> Investigations, ObservedPhone Phone, IReadOnlyList<ObservedOrder>? Orders = null, IReadOnlyList<ObservedOrStation>? OrStations = null, ObservedChecklist? Checklist = null, string? BehaviourMode = null, IReadOnlyList<Events.ObservedCue>? Cues = null,
+        IReadOnlyList<InactiveGoal>? Inactive = null, IReadOnlyList<UnavailableAction>? Unavailable = null)
     {
         /// <summary>Canonical JSON (fixed key order) so its hash is the same on every machine.</summary>
         public string ToJson()
@@ -464,7 +469,9 @@ namespace ProcSense.Core.Observation
                 c.Orders.Select(o => new ObservedOrder(o.Id, o.Treatment, o.Label, o.State, o.Device, o.State == "REQUESTED" ? "" : o.DoseText, o.Lines.ToList())).ToList(),
                 c.OrStations.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(),
                 new ObservedChecklist(c.ChecklistPhases.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList(), c.ChecklistItems.Select(kv => new ObservedOrStation(kv.Key, kv.Value)).ToList()),
-                s.BehaviourStep?.Mode, s.Director?.Cues.ToList());
+                s.BehaviourStep?.Mode, s.Director?.Cues.ToList(),
+                practice ? Availability.Inactive(s) : System.Array.Empty<InactiveGoal>(),          // P3-TRN-02: not needed, and why; practice only (the examination shows no goal list)
+                practice ? Availability.Blocked(s) : System.Array.Empty<UnavailableAction>());
         }
     }
 }

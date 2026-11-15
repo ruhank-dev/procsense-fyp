@@ -15,8 +15,9 @@ namespace ProcSense.Core.Replay
     /// None of it is part of the log hash, so a session replays to the same hash with or without it.</summary>
     public sealed record SessionMeta(string SessionId, string ContentVersion, string ScenarioPackageHash = "");
 
-    /// <summary>The header of a saved session as it was written. The version 2 fields are empty for a session saved without them.</summary>
-    public sealed record SessionHeader(string Case, string Seed, string Mode, string Level, string Variant, bool Noise, string LogHash, string SessionId, string ContentVersion, string EngineVersion, string ScenarioPackageHash)
+    /// <summary>The header of a saved session as it was written. The version 2 fields are empty for a session saved without them.
+    /// Procedure and Source (P3-SES-06) are empty for a session that was not started from a plan.</summary>
+    public sealed record SessionHeader(string Case, string Seed, string Mode, string Level, string Variant, bool Noise, string LogHash, string SessionId, string ContentVersion, string EngineVersion, string ScenarioPackageHash, string Procedure = "", string Source = "")
     {
         public bool IsVersion2 => SessionId.Length > 0 && ContentVersion.Length > 0 && EngineVersion.Length > 0;
     }
@@ -48,6 +49,9 @@ namespace ProcSense.Core.Replay
             if (s.Noise) sb.Append(",\"noise\":true");
             if (s.PulseTrace.Length > 0) { sb.Append(",\"pulse_trace\":"); JsonText.Quote(sb, s.PulseTrace); }
             if (s.PlannedEvents.Length > 0) { sb.Append(",\"planned_events\":"); JsonText.Quote(sb, s.PlannedEvents); }
+            if (s.Procedure.Length > 0) { sb.Append(",\"procedure\":"); JsonText.Quote(sb, s.Procedure); }                                   // P3-SES-06: the request the session was planned from, only when set, so older logs read the same
+            if (s.Source.Length > 0) { sb.Append(",\"source\":"); JsonText.Quote(sb, s.Source); }
+            if (s.HintLimit != ExamControl.DefaultHintLimit) sb.Append(",\"hint_limit\":").Append(s.HintLimit.ToString(CultureInfo.InvariantCulture));   // P3-EXM-01: only when grades.json changes it
             if (meta != null)
             {
                 sb.Append(",\"session_id\":"); JsonText.Quote(sb, meta.SessionId);
@@ -66,7 +70,20 @@ namespace ProcSense.Core.Replay
             var header = new JsonObj(MiniJson.Parse(text.Split('\n')[0]), "").Obj("header");
             string Opt(string key) => header.Has(key) ? header.Str(key) : "";
             return new SessionHeader(header.Str("case"), header.Str("seed"), header.Str("mode"), Opt("level"), Opt("variant"), header.Has("noise") && header.Bool("noise"), header.Str("log_hash"),
-                                     Opt("session_id"), Opt("content_version"), Opt("engine_version"), Opt("scenario_package_hash"));
+                                     Opt("session_id"), Opt("content_version"), Opt("engine_version"), Opt("scenario_package_hash"), Opt("procedure"), Opt("source"));
+        }
+
+        /// <summary>
+        /// The request a saved session was planned from (P3-SES-06): the same mode, procedure, level, source, seed and case, so planning it again (SessionPlanner.Plan) gives the same plan. Null when the
+        /// header has no procedure (a session not started from a plan, or saved before P3-SES-06).
+        /// </summary>
+        public static Flow.SessionRequest? RequestOf(string text)
+        {
+            var h = HeaderOf(text);
+            if (h.Procedure.Length == 0) return null;
+            var level = h.Level.Length > 0 ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), h.Level, true) : TrainingLevel.Beginner;
+            var source = h.Source.Length > 0 ? (Flow.CaseSource)Enum.Parse(typeof(Flow.CaseSource), h.Source, true) : Flow.CaseSource.Authored;
+            return new Flow.SessionRequest((SessionMode)Enum.Parse(typeof(SessionMode), h.Mode, true), h.Procedure, level, source, ulong.Parse(h.Seed, CultureInfo.InvariantCulture), h.Case);
         }
 
         /// <summary>Which case a saved session was recorded on (needed to load content before replaying).</summary>
@@ -80,7 +97,8 @@ namespace ProcSense.Core.Replay
             string caseId = header.Str("case");
             ulong seed = ulong.Parse(header.Str("seed"), CultureInfo.InvariantCulture);
             var mode = (SessionMode)Enum.Parse(typeof(SessionMode), header.Str("mode"), true);
-            var options = new SessionOptions(header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner, header.Has("variant") ? header.Str("variant") : "", header.Has("noise") && header.Bool("noise"), header.Has("pulse_trace") ? header.Str("pulse_trace") : "", header.Has("planned_events") ? header.Str("planned_events") : "");
+            var options = new SessionOptions(header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner, header.Has("variant") ? header.Str("variant") : "", header.Has("noise") && header.Bool("noise"), header.Has("pulse_trace") ? header.Str("pulse_trace") : "", header.Has("planned_events") ? header.Str("planned_events") : "",
+                header.Has("procedure") ? header.Str("procedure") : "", header.Has("source") ? header.Str("source") : "", header.Has("hint_limit") ? (int)header.Int("hint_limit") : ExamControl.DefaultHintLimit);
             string expected = header.Str("log_hash");
 
             if (!content.Cases.TryGetValue(caseId, out var card)) throw new ContentException("case '" + caseId + "' is not loaded");

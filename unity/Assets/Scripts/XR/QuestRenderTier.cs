@@ -9,16 +9,16 @@ namespace ProcSense.VR.XR
     /// The tier itself is the Android quality level's own pipeline asset (Assets/Settings/URP_Quest_Android.asset: renderer with intermediate texture Auto, so URP renders straight into the
     /// OpenXR eye buffer and fixed foveated rendering can apply); desktop keeps URP_Quest unchanged. This class owns the two values a build may set at run time:
     /// the foveation level (0 = off, 1 = strongest; the OpenXR Foveated Rendering feature is enabled for Android) and the eye-texture scale (1.0 = the runtime default, 1440 x 1584 per eye on Quest 2).
-    /// Production defaults change nothing that is visible: foveation stays off and the scale stays 1.0 until DC-13 measurements and the owner's check of edge sharpness decide otherwise.
+    /// Since 14 Nov 2026 the aggressive profile (QuestPerformanceProfile) is the production default: foveation High, eye buffer 0.9 (drawn at 0.8 and adjusted by dynamic resolution).
     /// The diagnostic build (PROCSENSE_PERF_DIAG) changes both while running.
     /// </summary>
     public static class QuestRenderTier
     {
         /// <summary>Production foveation level. Raised only after the headset measurement and the owner's approval of the periphery (text panels stay central).</summary>
-        public const float DefaultFoveation = 0f;
+        public const float DefaultFoveation = 1f;
 
         /// <summary>Production eye-texture scale (the runtime default resolution).</summary>
-        public const float DefaultEyeScale = 1f;
+        public const float DefaultEyeScale = 0.9f;
 
         private static readonly List<XRDisplaySubsystem> Displays = new List<XRDisplaySubsystem>();
 

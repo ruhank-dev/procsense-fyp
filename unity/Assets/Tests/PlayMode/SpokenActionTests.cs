@@ -208,7 +208,7 @@ namespace ProcSense.Tests.PlayMode
         private static IEnumerator Empty() { yield break; }
 
         [UnityTest]
-        public IEnumerator Assessment_gets_no_spoken_actions()
+        public IEnumerator Assessment_keeps_spoken_actions_available_per_D3()
         {
             Rig();
             var content = ProcSense.Core.Content.ContentLoader.Load(new ProcSense.Core.Content.FileContentReader(System.IO.Path.GetFullPath(System.IO.Path.Combine(Application.dataPath, "..", "..", "content"))), "VAR-S1-A");
@@ -219,7 +219,7 @@ namespace ProcSense.Tests.PlayMode
                 int calls = 0;
                 _router.Interpreter = (auth, text, available, turns, done) => { calls++; return Answer(done, new[] { "ask:smoking" }, "patient", true); };
                 yield return Speak("Do you smoke?");
-                Assert.AreEqual(0, calls);
+                Assert.AreEqual(1, calls);                     // P3-VOX-06: speaking is allowed in the examination; the engine decides as for the tablet
             }
             finally { ModeGate.SessionProvider = () => SimulationHost.Instance != null ? SimulationHost.Instance.Session : null; }
         }

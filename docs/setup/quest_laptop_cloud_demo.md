@@ -25,7 +25,7 @@ Install Ollama (https://ollama.com/download). On Windows it lives in `%LOCALAPPD
 Choose **one**:
 
 - **A. Signed-in local Ollama (simplest, used so far):** `ollama signin` once. The server's default `OLLAMA_URL=http://127.0.0.1:11434` then relays cloud models named `<model>-cloud` (the profile uses `gemma4:31b-cloud`). No key is stored by the project.
-- **B. Direct API key:** create a key at https://ollama.com/settings/keys, then put it in the git-ignored `server/.env` (copied from `server/.env.example`) as `SPEECH_EVAL_API_KEY=...` with `SPEECH_EVAL_BASE_URL=https://ollama.com` and `SPEECH_EVAL_MODEL=gemma4:31b` (the API uses the names listed by `https://ollama.com/api/tags`). One key name for every route is P3-NET-13.
+- **B. Direct API key:** create a key at https://ollama.com/settings/keys, then put it in the git-ignored `server/.env` (copied from `server/.env.example`) as `OLLAMA_API_KEY=...` (the older name `SPEECH_EVAL_API_KEY` is still read) with `SPEECH_EVAL_BASE_URL=https://ollama.com` and `SPEECH_EVAL_MODEL=gemma4:31b` (the API uses the names listed by `https://ollama.com/api/tags`). One key name for every route is P3-NET-13. With a Pro or pay-as-you-go key, `CLOUD_CONCURRENCY=3` lets three cloud requests run at once (default 1, the Free plan).
 
 Keys do not expire; revoke a key you no longer use in the same settings page. The headset never receives a key.
 
@@ -48,7 +48,7 @@ task server-demo                              # synthetic demonstration profile,
 
 Then open http://127.0.0.1:8000/health and http://127.0.0.1:8000/ai/health in a browser on the laptop.
 
-**(needs P3-NET-04)** `task demo-laptop` binds the Wi-Fi interface (`0.0.0.0:8000`), prints the laptop's LAN address, a pairing code and a QR code, and runs the checklist (Ollama, cloud model, ASR model, Piper, ffmpeg). Workaround today: `uv run --project server uvicorn server.main:app --host 0.0.0.0 --port 8000` with the demo profile variables set in the terminal.
+`task demo-laptop-check` runs the laptop checklist (an APP_ENV that is not prod, a private LAN address, Ollama, a cloud key or a signed-in Ollama, ffmpeg, the demo profile) and starts nothing. `task demo-laptop` runs the checklist, then the server on `0.0.0.0:8000` with the LAN profile on, and prints the LAN addresses and the **six-digit pairing code** (P3-NET-04, delivered; the QR code and the UDP discovery beacon, P3-NET-06, are still open: type the address, or use `adb reverse tcp:8000 tcp:8000`). In the LAN profile every AI route answers 401 `pairing_required` until the headset has sent the code once to `POST /pairing/exchange` and kept the device token it gets back; five wrong codes lock the exchange for a minute; paired devices are listed and revoked from the laptop only (`GET /pairing/devices`, `DELETE /pairing/devices/{id}`); `/health` reports `api_version`, `engine_versions` and `lan_profile`, and a headset sending an engine version that is not in `content/ai/compat.json` gets 426.Workaround today: `uv run --project server uvicorn server.main:app --host 0.0.0.0 --port 8000` with the demo profile variables set in the terminal.
 
 ## 4. Windows firewall and network
 
@@ -61,7 +61,7 @@ New-NetFirewallRule -DisplayName "ProcSense laptop server" -Direction Inbound -P
 Remove-NetFirewallRule -DisplayName "ProcSense laptop server"
 ```
 
-  **(needs P3-NET-05)** `tools/setup/firewall_rule.ps1` does this and refuses on a Public network.
+  `tools/setup/firewall_rule.ps1` (P3-NET-05, delivered, untested on a clean machine) does this for TCP 8000 and UDP 47800 on the Private profile and refuses on a Public network; `-Remove` takes the rule away.
 - Find the laptop's address: `ipconfig` → "Wireless LAN adapter Wi-Fi" → IPv4 Address (for example `192.168.1.20`). Never give the Quest `localhost` or `127.0.0.1` for the laptop: on the headset that means the headset itself (the only exception is the USB fallback below).
 - Nothing is exposed to the internet: no port forwarding, no public tunnel.
 
@@ -86,7 +86,7 @@ The status chip (P3-UIX-11) shows green "Laptop connected · Cloud AI ready", am
 
 ## 7. Sign in
 
-**(needs P3-NET-11)** In the LAN profile the paired headset plays as the synthetic demonstration user. Today the headset sign-in uses the hosted service (device code approved on the web page); a laptop server can sign a headset in only if its `server/.env` holds the Supabase settings (the owner's secrets; ask the owner, never commit them).
+**(needs P3-NET-11, server side built 14 Nov 2026; headset side not yet verified, DT-292)** In the LAN profile the paired headset plays as the synthetic demonstration user: the device token from pairing is accepted as a Bearer token and resolves to that user (`GET /pairing/demo-identity` tells the headset which user it is). Do not report this as working until a played session has uploaded and verified on the laptop (DC-15). Today the headset sign-in uses the hosted service (device code approved on the web page); a laptop server can sign a headset in only if its `server/.env` holds the Supabase settings (the owner's secrets; ask the owner, never commit them).
 
 ## 8. Play
 

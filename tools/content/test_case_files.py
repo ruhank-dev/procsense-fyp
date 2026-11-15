@@ -114,15 +114,18 @@ class TheFiftyThreeCases(unittest.TestCase):
         for c in CASES.values():
             self.assertTrue(c["synthetic"])
             if c["id"] in COMBINATIONS:                # authored 25 Oct 2026 (DT-220); the owner authorized educational practice use the same day, and nobody claims clinical review
-                self.assertEqual(c["status"], "APPROVED_FOR_TRAINING", c["id"])
-                self.assertIn("educational practice use", c["approval"]["by"])
+                self.assertEqual(c["status"], "APPROVED_FOR_ASSESSMENT", c["id"])   # P3-SCN-07: the owner's ADR-0032 D1 authorisation, no clinician review claimed
+                self.assertIn("ADR-0032", c["approval"]["by"])
                 self.assertIn("No clinician reviewed", c["approval"]["note"])
                 continue
             if c["id"] in pending:                     # changed after the last attestation: stays DRAFT until signed off (docs/research/clinician_signoff.md)
                 self.assertEqual(c["status"], "DRAFT", c["id"])
                 continue
-            self.assertEqual(c["status"], "APPROVED_FOR_TRAINING", c["id"])
+            self.assertEqual(c["status"], "APPROVED_FOR_ASSESSMENT", c["id"])   # P3-SCN-07, ADR-0032 D1: owner-attested, no clinician named or signed
             self.assertIn("Owner", c["approval"]["by"])
+            self.assertIn("ADR-0032", c["approval"]["by"])
+            self.assertIn("no clinician is named and no signature is claimed", c["approval"]["by"])
+            self.assertIn("not a new clinician review", c["approval"]["note"])
         self.assertTrue(pending <= set(CASES))
 
     def test_the_approval_is_tied_to_the_exact_content(self):

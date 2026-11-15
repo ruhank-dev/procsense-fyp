@@ -104,6 +104,7 @@ RULES = [
     (r"^identity_asked_closed$", "b13", "REQUIRED", False),
     (r"^unnecessary_mismatch_report$", "b13", "APPROPRIATENESS", False),
     (r"^no_introduction$", "b06", "COMMUNICATION", False),
+    (r"^hint_used$", "b16", "APPROPRIATENESS", False),          # P3-EXM-01: info severity (0 rubric points); the 5-point hint cost is applied by grades.json in assessment only
 ]
 
 POINTS = {"credit": 1, "info": 0, "minor": -1, "major": -3, "critical": 0}

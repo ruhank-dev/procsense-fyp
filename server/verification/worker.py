@@ -24,6 +24,7 @@ from server.models.accounts import Profile
 from server.models.sessions import ScenarioPackage, Session, SessionBehaviour, SessionScoreItem
 from server.repositories import generation_history as history_table
 from server.repositories import sessions as sessions_repository
+from server.verification import replay_summary
 from server.verification.runner import EngineRunner, RunnerError
 
 log = logging.getLogger("procsense.verification")
@@ -104,7 +105,7 @@ def _store_result(db: DbSession, row: Session, data: dict, log_text: str, html: 
         if c["items"] > 0:
             db.add(SessionBehaviour(session_id=row.id, behaviour=c["behaviour"], credits=c["credits"], penalties=c["penalties"], net=c["net"]))
     row.end_state, row.result, row.process_score = facts["end_state"], facts["result"], data["process_total"]
-    row.report_json = facts
+    row.report_json = {**facts, replay_summary.KEY: replay_summary.summarise(log_text, row.mode, facts)}   # P3-API-06: hints and verdict as the replay found them
     row.report_html_gz = gzip.compress(html, compresslevel=6, mtime=0) if html else None
     _remember(db, row, facts)
 

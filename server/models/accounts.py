@@ -125,4 +125,4 @@ class ConsentRecord(Base):
     granted: Mapped[bool] = mapped_column(Boolean, nullable=False)
     recorded_at: Mapped[dt.datetime] = _created()
     text_sha256: Mapped[str | None] = mapped_column(String(64))                       # the fingerprint of the question and the documents the person was shown when they answered
-    via: Mapped[str] = mapped_column(String(16), nullable=False, server_default=text("'web'"))   # where the answer was given: only the web can give one
+    via: Mapped[str] = mapped_column(String(16), nullable=False, server_default=text("'web'"))   # where the answer was given: "web", or "headset" for the paired LAN demonstration user answering for itself (owner decision D2)

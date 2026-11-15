@@ -61,6 +61,18 @@ PrefabInstance:
       value: RB_Male_Adult_16
       objectReference: {fileID: 0}
     - target: {fileID: 3527638290263403398, guid: bc209ad3fcd3eb9468fbec9d71aac94f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527638290263403398, guid: bc209ad3fcd3eb9468fbec9d71aac94f, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527638290263403398, guid: bc209ad3fcd3eb9468fbec9d71aac94f, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3527638290263403398, guid: bc209ad3fcd3eb9468fbec9d71aac94f, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 2bdd7e001927f864a88dcb01ea68d661, type: 2}

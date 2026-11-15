@@ -2,7 +2,7 @@
   "case": "VAR-S2-PC",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "1e5255d2740420588de4c68e7a148cfc9fe8d51d20cce75589bcb76510081452",
+  "log_hash": "365b4ef74c6e2c70824b5f8033da5a5c9e4c2dd2808b29b5bc851a2a4a650153",
   "state_hash": "2be86f5e794fb7c46b1c75f589a09a40180f9a4cedc9b9c0beff998dabe02f0d",
   "facts": {
     "identity_confirmed": true,
@@ -38,7 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-pain-worse.missed",
+      "event.e-pain-worse.handled",
       "exam.painful_first",
       "exam.permission_asked",
       "exam.started",
@@ -54,6 +54,7 @@
       "summarised",
       "tests.needed_ordered",
       "tests.needed_reviewed",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -68,9 +69,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 13,
-    "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_pain_worse_not_escalated"],
+    "credits": 15,
+    "minor": [],
+    "major": [],
     "critical": []
   }
 }

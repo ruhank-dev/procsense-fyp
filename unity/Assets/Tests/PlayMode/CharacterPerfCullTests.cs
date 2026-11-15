@@ -55,9 +55,12 @@ namespace ProcSense.Tests.PlayMode
             yield return null; float justCulled = hand.localPosition.x;
             for (int i = 0; i < 30; i++) yield return null;
             Assert.AreEqual(justCulled, hand.localPosition.x, 1e-4f, "a culled animator holds its last pose (no drift, no reset to the bind pose)");
-            visible = true; _culler.Tick(3.3f); Assert.AreEqual(AnimatorCullingMode.AlwaysAnimate, animator.cullingMode, "released on the first tick it is visible");
+            visible = true; float wakeAt = Time.realtimeSinceStartup; _culler.Tick(3.3f); Assert.AreEqual(AnimatorCullingMode.AlwaysAnimate, animator.cullingMode, "released on the first tick it is visible");
             yield return null; yield return null;
-            Assert.Less(Mathf.Abs(hand.localPosition.x - justCulled), 0.2f, "no pose snap on the frames after it is seen again (resumes from the held pose)");
+            // the clip moves one metre per real second, so a frame hitch in a busy full run (a long GC or shader frame) legitimately moves the hand: a snap is a jump beyond what the real time
+            // since the wake allows (plus 0.05 m of slack), not a fixed distance that depends on the frame rate
+            float allowed = 0.05f + (Time.realtimeSinceStartup - wakeAt);
+            Assert.Less(Mathf.Abs(hand.localPosition.x - justCulled), allowed, "no pose snap on the frames after it is seen again (resumes from the held pose; the clip moves 1 m per real second)");
             Assert.Greater(hand.localPosition.x, 0.01f, "not reset to the bind pose");
         }
 

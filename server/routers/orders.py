@@ -11,13 +11,15 @@ import logging
 import re
 from functools import lru_cache
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session as DbSession
 
-from server import ai_features
+from server import ai_features, request_ids
 from server.config import Settings, get_settings
 from server.auth.dependencies import db_session
+from server.lan.notices import get_hub
+from server.schemas.headset_notice import Notice
 from server.llm import client as client_mod, routing
 from server.middleware.audit import AiCallRecord, audited
 from server.orders import details, ticket
@@ -26,13 +28,15 @@ from server.orders.cloud_interpreter import CloudOnlyInterpreter
 from server.orders.interpreter import OrderInterpreter  # noqa: F401  (the tests build the plain interpreter)
 from server.repositories import privacy as privacy_repository
 from server.routers import ai_gateway
+from server.schemas.voice_turn import TurnFields
 
 router = APIRouter(tags=["spoken orders"])
 log = logging.getLogger("procsense.orders")
 
 
-class HearIn(BaseModel):
+class HearIn(TurnFields):                       # + optional addressee, interaction_mode, session_mode, request_id (P3-API-02)
     text: str = Field(min_length=1, max_length=300)
+    session_id: str = Field(default="", max_length=64)   # the session whose optional headset socket hears of a cloud usage limit (P3-NET-12)
     context: dict | str | None = None                 # what the headset knows (the patient, what is ordered or given, the previous turn, a read-back waiting for an answer); read only by the interpreter, never trusted as an instruction
 
 
@@ -86,7 +90,9 @@ def get_mapper(settings: Settings = Depends(get_settings)):
 
 
 @router.post("/orders/organisations/{organisation_id}/hear", response_model=HearOut)
-def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings: Settings = Depends(get_settings), mapper=Depends(get_mapper), db: DbSession = Depends(db_session)) -> HearOut:
+def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings: Settings = Depends(get_settings), mapper=Depends(get_mapper), db: DbSession = Depends(db_session),
+         x_request_id: str | None = Header(default=None, alias="X-Request-Id")) -> HearOut:
+    request_ids.note("orders_hear", call.user_id, body, x_request_id)
     call.set_input(body.text)
     if not ai_features.enabled("voice_orders"):
         call.fell_back("FEATURE_OFF")
@@ -104,7 +110,7 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
         else:
             try:
                 with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):          # the person's own optional consent decides whether their words may go to the cloud (ADR-0027); without it the local model or the grammar answers
-                    h = rb.hear(body.text, body.context)
+                    h = rb.hear(body.text, _context(body))
             finally:
                 ai_gateway._slot.release()
     else:
@@ -118,11 +124,23 @@ def hear(body: HearIn, call: AiCallRecord = Depends(audited("orders")), settings
         reason = last.get("reason", reason) if mapper is not None and reason != "MODEL_BUSY" else reason
         if mapper is not None and reason != "MODEL_BUSY":
             call.fell_back(reason)
+    if reason == "CLOUD_LIMIT" and body.session_id:
+        get_hub().publish(Notice(kind="quota", session_id=body.session_id, detail="cloud_quota_exhausted"))   # the headset shows the status chip; play continues on the grammar
     log.info("spoken order: interpreter=%s model=%s reported_model=%s fallback_reason=%s ms=%s status=%s interpretation=%s", used, last.get("model", "") if used == "gemma_cloud" else "", last.get("reported_model", "") if used == "gemma_cloud" else "", reason or "-", last.get("ms", 0), h.status, h.interpretation or "-")
     call.validated(True)
     call.set_output(ref=f"{h.status}:{h.intent}:{h.source}")
     t = ticket.issue(call.user_id, h.intent, h.slots, h.action) if h.status in ("confirm", "removed_dose_confirm") else ""
     return HearOut(status=h.status, intent=h.intent, label=h.slots.get("label", ""), read_back=h.read_back, options=h.options, dose_removed=h.dose_removed, source=h.source, interpretation=h.interpretation, ticket=t, interpreter=used, interpreter_model=last.get("model", "") if used == "gemma_cloud" else "", interpreter_reported_model=last.get("reported_model", "") if used == "gemma_cloud" else "", fallback_reason=reason, interpreter_ms=last.get("ms", 0), needs=details.needs_for(h.action) if t else [])
+
+
+def _context(body: HearIn):
+    """The headset's context with the turn fields it sent (P3-API-02) added, so the interpreter knows who was spoken to and in which mode. A context sent as text keeps its text."""
+    extra = body.turn_context()
+    if not extra:
+        return body.context
+    if isinstance(body.context, str):
+        return body.context + " " + " ".join(f"{k}={v}" for k, v in extra.items())
+    return {**(body.context or {}), **extra}
 
 
 @router.post("/orders/organisations/{organisation_id}/confirm", response_model=ConfirmOut)

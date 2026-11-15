@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 
 from server.config import Settings, get_settings
 from server.database import get_session
+from server.lan import compat
 from server.repositories import health as repository
 from server.schemas.health import DbHealth, Health
 
@@ -25,7 +26,10 @@ def _session_or_none() -> Iterator[Session | None]:
 @router.get("/health", response_model=Health)
 def health(settings: Settings = Depends(get_settings)) -> Health:
     """The service is up. Does not touch the database (a sleeping or paused database must not make the service look dead)."""
-    return Health(status="ok", service="procsense-server", app_env=settings.app_env, git_sha=settings.git_sha)
+    table = compat.load_table()
+    return Health(status="ok", service="procsense-server", app_env=settings.app_env, git_sha=settings.git_sha, api_version=int(table.get("api_version", compat.API_VERSION)),
+                  engine_versions=sorted(set(table.get("engine_versions") or []) | set(settings.supported_engine_versions)),
+                  content_versions=sorted(set(table.get("content_versions") or []) | set(settings.supported_content_versions)), lan_profile=settings.lan_profile)
 
 
 @router.get("/health/db", response_model=DbHealth)

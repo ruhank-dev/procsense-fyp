@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "APPROVED_FOR_ASSESSMENT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -402,8 +402,8 @@
   "plan": "rsi"
  },
  "approval": {
-  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named",
-  "date": "2026-10-10",
-  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use"
+  "by": "Owner (Ruhan Kamran), who states that the clinician approves everything; the clinician is not named | Examination use: owner authorisation of 7 Nov 2026 (ADR-0032 decision D1): the owner states that the clinical reviewer verified the scenario content and authorises its use in the academic examination simulation; no clinician is named and no signature is claimed",
+  "date": "2026-11-07",
+  "note": "Owner-attested clinician approval, 10 October 2026; verified against the guideline claims in docs/research/clinical_verification.md; reconfirm with the named clinician before assessment use | Examination use: owner-attested under ADR-0032 D1 (recorded 14 Nov 2026); this is the owner's statement, not a new clinician review or signature"
  }
 }

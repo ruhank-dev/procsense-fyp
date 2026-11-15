@@ -23,6 +23,15 @@
   {"id": "ask:pregnancy", "verb": "ask", "key": "topic", "value": "pregnancy", "label": "Pregnancy (privately)", "means": "The trainee asks, privately, about pregnancy or the last period."},
   {"id": "summarise", "verb": "summarise", "label": "Summarise", "means": "The trainee sums up what the patient has told them and checks it is right."},
   {"id": "ask_pain_score", "verb": "ask_pain_score", "label": "Ask pain score", "means": "The trainee asks the patient to give their pain a number out of ten."},
-  {"id": "request_wristband", "verb": "request_wristband", "label": "Ask nurse for a wristband", "means": "The trainee asks the nurse to bring or put on an identity wristband for the patient."}
+  {"id": "request_wristband", "verb": "request_wristband", "label": "Ask nurse for a wristband", "means": "The trainee asks the nurse to bring or put on an identity wristband for the patient."},
+  {"id": "consent_discussion:diagnosis", "verb": "consent_discussion", "key": "topic", "value": "diagnosis", "label": "Explain the diagnosis", "means": "For consent, the trainee explains to the patient what the condition or diagnosis is."},
+  {"id": "consent_discussion:operation", "verb": "consent_discussion", "key": "topic", "value": "operation", "label": "Explain the operation", "means": "For consent, the trainee explains what the operation or procedure involves."},
+  {"id": "consent_discussion:benefits", "verb": "consent_discussion", "key": "topic", "value": "benefits", "label": "Explain the benefits", "means": "For consent, the trainee explains the expected benefits of the operation."},
+  {"id": "consent_discussion:risks", "verb": "consent_discussion", "key": "topic", "value": "risks", "label": "Explain the risks", "means": "For consent, the trainee explains the risks or possible complications of the operation."},
+  {"id": "consent_discussion:alternatives", "verb": "consent_discussion", "key": "topic", "value": "alternatives", "label": "Explain the alternatives", "means": "For consent, the trainee explains the other treatment options instead of this operation."},
+  {"id": "consent_discussion:no_treatment", "verb": "consent_discussion", "key": "topic", "value": "no_treatment", "label": "Explain having no treatment", "means": "For consent, the trainee explains what could happen if the patient has no treatment at all."},
+  {"id": "consent_discussion:matters", "verb": "consent_discussion", "key": "topic", "value": "matters", "label": "Ask what matters to the patient", "means": "For consent, the trainee asks what matters most to the patient, their worries or what they want from the treatment."},
+  {"id": "teach_back", "verb": "teach_back", "label": "Check understanding (teach back)", "means": "The trainee asks the patient to explain back in their own words what the operation is and its risks, to check understanding."},
+  {"id": "check_capacity", "verb": "check_capacity", "label": "Check capacity", "means": "The trainee checks the patient can understand, remember and weigh up the information and tell their decision (capacity)."}
  ]
 }

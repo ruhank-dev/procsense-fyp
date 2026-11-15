@@ -1,0 +1,45 @@
+{
+  "case": "VAR-S1-G",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "95c7e25960897c5cdd8b7971d8e92e8e00615dc550d419ed7445a693d5f0026b",
+  "state_hash": "072aa866f9a29f0d05c2d507b866b271a564295a0208ec12116bbbbc5b2f7389",
+  "facts": {
+    "identity_confirmed": true,
+    "allergies_known": true,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [
+      "identity",
+      "allergies",
+      "reason_for_admission",
+      "responsible_adult",
+      "complaint",
+      "last_food",
+      "last_drink"
+    ],
+    "vitals": {},
+    "flags": [
+      "allergy_reaction_asked",
+      "decision.declared",
+      "endstate.resolved",
+      "fasting.breach",
+      "identity_asked_open",
+      "introduced",
+      "pregnancy.status_required"
+    ],
+    "rejections": [],
+    "trust": 1,
+    "anxiety": 4,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFE_BUT_DELAYED"
+  },
+  "score": {
+    "result": "SUCCESS_WITH_DELAY",
+    "credits": 1,
+    "minor": [],
+    "major": ["major.postponed_unnecessarily"],
+    "critical": []
+  }
+}

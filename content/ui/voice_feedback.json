@@ -1,0 +1,119 @@
+{
+ "schema": "procsense.voice_feedback/1",
+ "note": "P3-VOX-07: the phrase the player hears and reads for every voice outcome that is not an accepted action (error taxonomy of p3-15-integration-contracts). Authored text, no clinical value. A subtitle is always present; clip is the pre-rendered audio path once Moiz's P3-SND-08 renders it, null until then (the phrase is then shown as a subtitle and, where available, spoken by the text-to-speech service). Validated by tools/content/validate_ui_guides.py.",
+ "modes": ["practice", "assessment"],
+ "outcomes": [
+  {
+   "code": "NOT_UNDERSTOOD",
+   "meaning": "The speech was heard but matched no action or question",
+   "subtitle": "Sorry, I did not understand that. Could you say it again?",
+   "spoken": "Sorry, I did not understand that. Could you say it again?",
+   "clip": null,
+   "retry": true,
+   "practice_extra": "Try a shorter sentence, or use the tablet.",
+   "assessment_extra": ""
+  },
+  {
+   "code": "AMBIGUOUS",
+   "meaning": "More than one action or topic fits what was said",
+   "subtitle": "I am not sure which one you mean. Could you be more specific?",
+   "spoken": "I am not sure which one you mean. Could you be more specific?",
+   "clip": null,
+   "retry": true,
+   "practice_extra": "Say the name of the test, medicine or body part.",
+   "assessment_extra": ""
+  },
+  {
+   "code": "WRONG_ADDRESSEE",
+   "meaning": "The request was addressed to someone who cannot do it, or to nobody in the room",
+   "subtitle": "That is not something this person can help with.",
+   "spoken": "That is not something I can help with. Perhaps someone else could.",
+   "clip": null,
+   "retry": true,
+   "practice_extra": "Face the person you want to talk to, or say who you are asking.",
+   "assessment_extra": ""
+  },
+  {
+   "code": "UNAVAILABLE_NOW",
+   "meaning": "The request is understood but cannot be done at this moment (for example, nobody is there to answer)",
+   "subtitle": "That is not possible right now.",
+   "spoken": "That is not possible right now.",
+   "clip": null,
+   "retry": false,
+   "practice_extra": "Check whether something else needs to happen first.",
+   "assessment_extra": ""
+  },
+  {
+   "code": "ENGINE_REJECTED",
+   "meaning": "The simulator refused the action; the reason code is mapped to its player text by HintTexts, the same text the menu shows",
+   "subtitle": "{reason_text}",
+   "spoken": "{reason_text}",
+   "clip": null,
+   "retry": false,
+   "text_source": "HintTexts",
+   "fallback": "That cannot be done yet.",
+   "practice_extra": "",
+   "assessment_extra": ""
+  },
+  {
+   "code": "ASR_FAILED",
+   "meaning": "The speech recogniser returned an error or nothing usable",
+   "subtitle": "I could not hear you clearly. Please try again, or use the tablet.",
+   "spoken": "I could not hear you clearly. Please try again.",
+   "clip": null,
+   "retry": true,
+   "practice_extra": "",
+   "assessment_extra": ""
+  },
+  {
+   "code": "TIMEOUT",
+   "meaning": "The voice service did not answer in time",
+   "subtitle": "That took too long. Please try again, or use the tablet.",
+   "spoken": "That took too long. Please try again.",
+   "clip": null,
+   "retry": true,
+   "practice_extra": "",
+   "assessment_extra": ""
+  },
+  {
+   "code": "NEEDS_CONFIRMATION",
+   "meaning": "A significant action is read back and waits for a yes or no (ordering, submitting, hint)",
+   "subtitle": "Please confirm: {action_text}. Say yes to go ahead, or no to cancel.",
+   "spoken": "Please confirm: {action_text}. Say yes to go ahead, or no to cancel.",
+   "clip": null,
+   "retry": false,
+   "practice_extra": "",
+   "assessment_extra": "A hint costs points in the examination."
+  },
+  {
+   "code": "SERVICE_OFFLINE",
+   "meaning": "The voice service cannot be reached; menu mode still works",
+   "subtitle": "Voice is not available right now. You can keep going with the tablet.",
+   "spoken": "Voice is not available right now. You can keep going with the tablet.",
+   "clip": null,
+   "retry": false,
+   "practice_extra": "",
+   "assessment_extra": ""
+  },
+  {
+   "code": "SCENE_LOAD_FAILED",
+   "meaning": "The scene or case could not be loaded",
+   "subtitle": "The scenario could not be loaded. Please go back to the menu and try again.",
+   "spoken": "The scenario could not be loaded. Please go back to the menu and try again.",
+   "clip": null,
+   "retry": false,
+   "practice_extra": "",
+   "assessment_extra": ""
+  },
+  {
+   "code": "CONTENT_INTEGRITY",
+   "meaning": "The content failed its integrity check and the session is not started",
+   "subtitle": "The scenario content did not pass its check, so it cannot be used. Please tell the supervisor.",
+   "spoken": "The scenario content did not pass its check, so it cannot be used. Please tell the supervisor.",
+   "clip": null,
+   "retry": false,
+   "practice_extra": "",
+   "assessment_extra": ""
+  }
+ ]
+}

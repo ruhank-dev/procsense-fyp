@@ -3,6 +3,305 @@
 Every prompt the project owner has given, in chronological order, with the original wording preserved (typos included).
 **Append only** — never overwrite, reorder or delete entries (rule: INSTRUCTIONS.md §8f). New prompts are added at the bottom.
 
+
+## How to use this archive (read this first)
+
+1. Read **CURRENT ACTIVE CONTEXT** below; search the index with grep for your topic (for example `grep -n "Quest" docs/previous_prompt.md`), never print the whole index or file.
+2. Find the prompt IDs for your topic in the index, then read only those sections (search for the anchor or `## <number>.`; each ID is the entry number, `P253` = entry 253).
+3. Newer entries beat older ones; see the superseded table. Never add secrets to this file; append new prompts at the bottom as entries (the project rule keeps this file append-only, and `tools/ci/repo_checks.py` requires entries numbered 1..N after the first separator).
+
+## CURRENT ACTIVE CONTEXT (updated 14 November 2026; detail in docs/qa/overhaul_checkpoint.md)
+
+**Goal.** Playable, aggressively optimised standalone Quest 2 simulation. Real headset baseline: 34 FPS, 96% GPU, 26.47 ms GPU; target stable 72 FPS (GPU under 13.89 ms). Never claim 72 FPS before headset results. Also finish Ruhan-owned P0-P3 work and the Login-to-Debrief flow.
+
+**Git (verified 14 Nov).** Branch `quest-perf/gpu-overhaul`, HEAD `7b446e28` (= origin/main), nothing committed, 601 uncommitted paths. Backup of all changed files: `D:/ProcSenseWork/backup/overhaul_20261114_1744/`. `main` is verified and merged (Sannan, Moiz, optimisation, B58); touch it only with approval.
+
+**State.** Tested: Android profile (MSAA 1, scale 0.8, FFR High, dynamic res, presets B70-B87), all-baked lighting and bake, Impostor exterior, texture budget, character LODs, engine verbs v0.0.18, LAN pairing, MenuFlow (7/7); on 14 Nov smoke 7/7 EditMode and 16/16 PlayMode, targeted EditMode 38/38 and PlayMode 27/27, server tests 25 passing. Server side built: NET-11 demo identity, NET-12 WebSocket (shutdown notice only), NET-15 HTTPS. Core side built: VOX-06/13 spoken equivalents (3 Core tests). Open, not Completed: headset side of NET-11/12/15, NET-14 headset package cache, Postgres path, played-session check, voice/menu equivalence on the headset (DT-292 to DT-296). OpenXR Quest (1) target disabled (Symmetric Projection needs Quest 2 or higher). No APK from this work has been run on a headset; no visual review of baked scenes; visibility sweep not re-run; full CI not run. No agent or Unity process running. **14 Nov 2026 UTC (P260, voice agent):** D3 final, staff voices enabled in the examination under `content/ai/staff_exam_policy.json` (DT-301); VoiceFeedback reader done (DT-298); VOX-06 voice-only examination tests pass in Editor/Core (DT-296, headset open). **14 Nov 2026 UTC (P261, results agent):** P3-RES-07 Unity client + `[Reworded]` results label, P3-EXM-09 examination leak and duplicate-submit PlayMode tests (DT-304, Editor only), DT-297 Completed.
+
+**Owner decision D2 (final, 14 Nov 2026 UTC).** No consent exception for the LAN demo identity: the upload consent skip is removed; the demo user answers the server's consent questions on the headset (Login -> Consent -> Main Menu, `ConsentStep`, recorded via="headset"); missing or declined consent gives 403 consent_required. Tracked as DT-299 (headset check open).
+
+**Next.** Smoke is done (14 Nov). When the APK rebuild finishes: create `D:/ProcSenseWork/overhaul_ready.flag`; `python tools/unity/quest_overhaul_smoke.py final`; commit once; push branch; one `gh workflow run ci.yml`; wait for approval. Headset (Sannan, DC-15): install the APK, pair, play one LAN-profile session, record it in `docs/testing/results/DC-15.md`; only then move DT-292 to DT-296 towards Completed.
+
+**Constraints.** Dynamic agent concurrency, no fixed cap, start ~3 (P256; shared context `docs/agent_context/shared.md`, registry `docs/agent_context/registry.md`), scripts over reasoning, short replies (P254); one Unity process at a time (lock `D:/ProcSenseWork/unity.lock`); background only; no secrets in Git; no AI attribution; preserve Sannan's and Moiz's work; full CI only at final integration.
+
+**Read for common tasks.** Quest/lighting: P253, P246. CI and tests: P237, P249. Merge rules: P243. Tokens and archive: P254, P255.
+
+### Superseded decisions
+
+| Older instruction | Superseded by |
+|--|--|
+| Preserve every visual detail exactly; MSAA 4x, realtime suns, shafts and shadows kept (P234-P251) | P253 (performance is the overriding priority; all baked, MSAA off, render scale about 0.8, FFR) |
+| Optimised (old) exterior as the Android default (P234-P251) | P253 (cheap Impostor exterior; keep Original and Optimised as diagnostic variants) |
+| Seven parallel agents at once (P253) | P254 (at most 2-3 active agents), itself superseded by P256 (dynamic concurrency) |
+| Pause all work (P242) | later 'resume and continue' (same day) |
+| Do not merge to main before APPROVED (P234-P246) | Completed: merged on approval (P246, P252) |
+
+### Instruction index (generated; entries 1-234 are earlier sessions, 235 onward are 10-14 November 2026)
+
+| ID | Category | Topic (first words) | Status | Link | Superseded by |
+|--|--|--|--|--|--|
+| P001 | General | cache agents.md and instruction.md | Completed | [section](#1-08-october-2026-307-pm-utc) |  |
+| P002 | General | use and follow the seperate instruction.md file | Completed | [section](#2-08-october-2026-402-pm-utc) |  |
+| P003 | General | cache agents.md and instructions.md | Completed | [section](#3-09-october-2026-853-am-utc) |  |
+| P004 | General | hi , cache instructions.md and agents.md and use these from now on read these first before anyt | Completed | [section](#4-09-october-2026-855-am-utc) |  |
+| P005 | Docs | now i want u to first read all files in the docs folder first all the plans and everything and  | Completed | [section](#5-09-october-2026-859-am-utc) |  |
+| P006 | Docs | PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> uv run --project tools tools | Completed | [section](#6-09-october-2026-923-am-utc) |  |
+| P007 | General | ah i see approve and install .NET9 and give me all the commit commands too with the message | Completed | [section](#7-09-october-2026-924-am-utc) |  |
+| P008 | Merge | i need to push it in this repo | Completed | [section](#8-09-october-2026-929-am-utc) |  |
+| P009 | General | oh sorry i meant in this repio https://github.com/Myt1x54/procsense-fyp | Completed | [section](#9-09-october-2026-930-am-utc) |  |
+| P010 | General | yeah sure go ahead | Completed | [section](#10-09-october-2026-930-am-utc) |  |
+| P011 | General | give me the git commands too everytime oka along with the commit message from now on | Completed | [section](#11-09-october-2026-935-am-utc) |  |
+| P012 | General | approve | Completed | [section](#12-09-october-2026-935-am-utc) |  |
+| P013 | General | yeah sure go ahead | Completed | [section](#13-09-october-2026-941-am-utc) |  |
+| P014 | General | approved and yeah continue with the next thing | Completed | [section](#14-09-october-2026-949-am-utc) |  |
+| P015 | General | approved | Completed | [section](#15-09-october-2026-1009-am-utc) |  |
+| P016 | Merge | oh wait where u committing and pushing there was a transfer of ownership and now the repo is tr | Completed | [section](#16-09-october-2026-1011-am-utc) |  |
+| P017 | General | https://github.com/ruhank-dev/procsense-fyp | Completed | [section](#17-09-october-2026-1011-am-utc) |  |
+| P018 | General | yes | Completed | [section](#18-09-october-2026-1012-am-utc) |  |
+| P019 | General | approved | Completed | [section](#19-09-october-2026-1041-am-utc) |  |
+| P020 | General | yes | Completed | [section](#20-09-october-2026-1043-am-utc) |  |
+| P021 | Docs | is this not implemented yet or not in the plans at all Nurse replacing incorrect wristband | Completed | [section](#21-09-october-2026-1116-am-utc) |  |
+| P022 | CI | # ProcSense — Planning Updates and Permanent Documentation Instructions Update the project plan | Completed | [section](#22-09-october-2026-1135-am-utc) |  |
+| P023 | Performance | yeah use utc step 6 is approved and also yes my approval statement also closes the 15 hospital  | Completed | [section](#23-09-october-2026-1203-pm-utc) |  |
+| P024 | Performance | okay forget about this line that i said [removed at the owner's request] remove that from previ | Completed | [section](#24-09-october-2026-1213-pm-utc) |  |
+| P025 | General | approved | Completed | [section](#25-09-october-2026-1226-pm-utc) |  |
+| P026 | General | yes | Completed | [section](#26-09-october-2026-1227-pm-utc) |  |
+| P027 | General | approved | Completed | [section](#27-09-october-2026-1246-pm-utc) |  |
+| P028 | General | yep | Completed | [section](#28-09-october-2026-1247-pm-utc) |  |
+| P029 | CI | setup CI//CD on that repo please and do all the required checks and everything for this project | Completed | [section](#29-09-october-2026-105-pm-utc) |  |
+| P030 | CI | i pushed lets setup the ci cd stuff first so my other two teamates dont mess anything up | Completed | [section](#30-09-october-2026-119-pm-utc) |  |
+| P031 | CI | # ProcSense — Finalize Free Git Safeguards and Direct-to-Main Team Workflow Work directly in th | Completed | [section](#31-09-october-2026-216-pm-utc) |  |
+| P032 | General | ok done so whats nexxt | Completed | [section](#32-09-october-2026-242-pm-utc) |  |
+| P033 | Performance | oh yeah approved and sent and do the loose ends first what about the other steps i have unity b | Completed | [section](#33-09-october-2026-244-pm-utc) |  |
+| P034 | General | bro also remove [AI tool] .md from all the commit histories and gitignore that also remove any  | Completed | [section](#34-09-october-2026-247-pm-utc) |  |
+| P035 | General | they havent cloned it yet u may proceed go | Completed | [section](#35-09-october-2026-251-pm-utc) |  |
+| P036 | General | include this in the instructions md too never to have any and all references that [AI tool] was | Completed | [section](#36-09-october-2026-311-pm-utc) |  |
+| P037 | Performance | okay check now close the 9 PRS and s18 and s19 are approved too and so whats next what about th | Completed | [section](#37-09-october-2026-314-pm-utc) |  |
+| P038 | General | yes s19 approved and do steps 10-14 together without stopping and if u need anything from me te | Completed | [section](#38-09-october-2026-329-pm-utc) |  |
+| P039 | Unity | PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> task unity-build task : The  | Completed | [section](#39-09-october-2026-457-pm-utc) |  |
+| P040 | Unity | PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> winget install Task.Task Fou | Completed | [section](#40-09-october-2026-503-pm-utc) |  |
+| P041 | Unity | S C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> [Environment]::SetEnvironment | Completed | [section](#41-09-october-2026-504-pm-utc) |  |
+| P042 | Unity | PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> task unity-test task : The t | Completed | [section](#42-09-october-2026-505-pm-utc) |  |
+| P043 | Unity | okay now what PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> & "C:\Users\RU | Completed | [section](#43-09-october-2026-506-pm-utc) |  |
+| P044 | Unity | i dont get it whats this unity stuff happening right now is it supposed to open a 3d something  | Completed | [section](#44-09-october-2026-509-pm-utc) |  |
+| P045 | General | [image attached] | Completed | [section](#45-09-october-2026-509-pm-utc) |  |
+| P046 | Unity | its connected with our repo current one tho i want to remove the prev one and connect this one  | Completed | [section](#46-09-october-2026-511-pm-utc) |  |
+| P047 | General | [image attached] | Completed | [section](#47-09-october-2026-513-pm-utc) |  |
+| P048 | General | [image attached] | Completed | [section](#48-09-october-2026-515-pm-utc) |  |
+| P049 | General | [image attached] [image attached] | Completed | [section](#49-09-october-2026-519-pm-utc) |  |
+| P050 | Docs | i cant move or do anything its registering but | Completed | [section](#50-09-october-2026-521-pm-utc) |  |
+| P051 | General | [image attached] | Completed | [section](#51-09-october-2026-521-pm-utc) |  |
+| P052 | General | still not doing anything | Completed | [section](#52-09-october-2026-523-pm-utc) |  |
+| P053 | General | [image attached] | Completed | [section](#53-09-october-2026-523-pm-utc) |  |
+| P054 | General | [image attached] [image attached] | Completed | [section](#54-09-october-2026-525-pm-utc) |  |
+| P055 | General | i saw some changes need to be made i dont know why sp02 is room air cuz isnt sp02 SpO2 stands f | Completed | [section](#55-09-october-2026-540-pm-utc) |  |
+| P056 | General | only show % like 98% thats it | Completed | [section](#56-09-october-2026-542-pm-utc) |  |
+| P057 | General | bro write their exacts units they are measured in | Completed | [section](#57-09-october-2026-543-pm-utc) |  |
+| P058 | Merge | oka whats next we need to push this now right | Completed | [section](#58-09-october-2026-547-pm-utc) |  |
+| P059 | General | yes to both and approved also now my name is Ruhan i am Ruhan Kamran so list all the things and | Completed | [section](#59-09-october-2026-551-pm-utc) |  |
+| P060 | General | aight lets start from p0 stuff that i have to do where do we start | Completed | [section](#60-09-october-2026-602-pm-utc) |  |
+| P061 | Merge | i already pushed lets start | Completed | [section](#61-09-october-2026-605-pm-utc) |  |
+| P062 | General | approved | Completed | [section](#62-09-october-2026-609-pm-utc) |  |
+| P063 | General | go | Completed | [section](#63-09-october-2026-612-pm-utc) |  |
+| P064 | General | approved go for next | Completed | [section](#64-09-october-2026-619-pm-utc) |  |
+| P065 | General | approve go next | Completed | [section](#65-09-october-2026-629-pm-utc) |  |
+| P066 | General | approved go next | Completed | [section](#66-09-october-2026-642-pm-utc) |  |
+| P067 | Docs | Can you explain in simple terms exactly what you're currently doing in s02, what it will be use | Completed | [section](#67-09-october-2026-718-pm-utc) |  |
+| P068 | Docs | Switch to [AI tool] 5.5 at medium effort to plan the ultrasound image and report feature specif | Completed | [section](#68-09-october-2026-733-pm-utc) |  |
+| P069 | CI | fix these git ci problems and are u sure 32 pictures are enough and this amount of data is enou | Completed | [section](#69-09-october-2026-1001-pm-utc) |  |
+| P070 | General | [image attached] | Completed | [section](#70-09-october-2026-1001-pm-utc) |  |
+| P071 | Gameplay | Clinician approves everything and also this is for real use we have to show it that way in our  | Completed | [section](#71-09-october-2026-1028-pm-utc) |  |
+| P072 | Gameplay | Shouldnt u generate more photos and cover every single possible scenario as well every single p | Completed | [section](#72-09-october-2026-1106-pm-utc) |  |
+| P073 | Gameplay | Lets not have images for these and have em as results only" Bedside pictures: pregnancy test, u | Completed | [section](#73-09-october-2026-1157-pm-utc) |  |
+| P074 | Merge | push all the data and the datasets for me go | Completed | [section](#74-10-october-2026-1213-am-utc) |  |
+| P075 | Merge | nah do we have in the readme and the scripts and what to run to fetch exactly the data we requi | Completed | [section](#75-10-october-2026-1218-am-utc) |  |
+| P076 | Gameplay | Approved and Fix and close these The Core loader does not read the case files yet (that is p0-c | Completed | [section](#76-10-october-2026-126-am-utc) |  |
+| P077 | CI | Run this and push onto repo git add -A git commit -m "Add 53 case files, Core case-file loader  | Completed | [section](#77-10-october-2026-156-am-utc) |  |
+| P078 | General | https://www.nice.org.uk/guidance/ng253 heres the links man just download it and any other nice  | Completed | [section](#78-10-october-2026-208-am-utc) |  |
+| P079 | Docs | replace the 253 at the end of the ng with the number file u want to go that page bruh and downl | Completed | [section](#79-10-october-2026-703-am-utc) |  |
+| P080 | General | Heres the link for cpoc https://cpoc.org.uk/ | Completed | [section](#80-10-october-2026-706-am-utc) |  |
+| P081 | General | https://periop-handbook.ukclinicalpharmacy.org/ https://www.ukkidney.org/ And for bnf idk try t | Completed | [section](#81-10-october-2026-725-am-utc) |  |
+| P082 | General | https://www.jshbps.jp/modules/en/index.php?content_id=47 here u go tg18 and https://www.wses.or | Completed | [section](#82-10-october-2026-737-am-utc) |  |
+| P083 | General | Bro just research and try to find online forthe open ones | Completed | [section](#83-10-october-2026-749-am-utc) |  |
+| P084 | General | Again research online for the stuff si u can close all of A and the equipment dimensions etc an | Completed | [section](#84-10-october-2026-800-am-utc) |  |
+| P085 | Merge | Those things that are still not verified open dont have a source research em up online and veri | Completed | [section](#85-10-october-2026-855-am-utc) |  |
+| P086 | Merge | Before i push Everything is completed and concluded right | Completed | [section](#86-10-october-2026-930-am-utc) |  |
+| P087 | General | [image attached] [image attached] [image attached] | Completed | [section](#87-10-october-2026-934-am-utc) |  |
+| P088 | General | why still failing even though the new checks were a success | Completed | [section](#88-10-october-2026-944-am-utc) |  |
+| P089 | General | [image attached] [image attached] [image attached] | Completed | [section](#89-10-october-2026-944-am-utc) |  |
+| P090 | General | yup its passing now after ctrl + f5 | Completed | [section](#90-10-october-2026-945-am-utc) |  |
+| P091 | General | aight so lets continue where we left off im ruhan and about what step was i on before we starte | Completed | [section](#91-10-october-2026-1025-am-utc) |  |
+| P092 | CI | lets continue with p0-simulation-workflow go | Completed | [section](#92-10-october-2026-1031-am-utc) |  |
+| P093 | General | approved | Completed | [section](#93-10-october-2026-1054-am-utc) |  |
+| P094 | General | go | Completed | [section](#94-10-october-2026-1113-am-utc) |  |
+| P095 | General | Approved | Completed | [section](#95-10-october-2026-1154-am-utc) |  |
+| P096 | CI | Okay ya push this git add -A git commit -m "Approve p0-simulation-workflow s07" -m "- docs/plan | Completed | [section](#96-10-october-2026-1200-pm-utc) |  |
+| P097 | Merge | For aki rise criterion idk research and find a source row after that the rest of the things are | Completed | [section](#97-10-october-2026-1251-pm-utc) |  |
+| P098 | Merge | Approved and push to repo | Completed | [section](#98-10-october-2026-116-pm-utc) |  |
+| P099 | CI | PS C:\Users\RUHAN\Downloads\procsense-fyp-main\procsense-fyp-main> git diff content/case_files  | Completed | [section](#99-10-october-2026-143-pm-utc) |  |
+| P100 | Docs | Anesthesiast confirms it make the plans and implement them anything not clear or not mentioned  | Completed | [section](#100-10-october-2026-146-pm-utc) |  |
+| P101 | General | whnever we have ea thing that depends on some other component or step we build those first alwa | Completed | [section](#101-10-october-2026-155-pm-utc) |  |
+| P102 | General | approved | Completed | [section](#102-10-october-2026-214-pm-utc) |  |
+| P103 | General | approved | Completed | [section](#103-10-october-2026-235-pm-utc) |  |
+| P104 | General | approved | Completed | [section](#104-10-october-2026-253-pm-utc) |  |
+| P105 | General | approved | Completed | [section](#105-10-october-2026-321-pm-utc) |  |
+| P106 | General | approved | Completed | [section](#106-10-october-2026-357-pm-utc) |  |
+| P107 | General | approved | Completed | [section](#107-10-october-2026-421-pm-utc) |  |
+| P108 | General | approved | Completed | [section](#108-11-october-2026-646-am-utc) |  |
+| P109 | General | go | Completed | [section](#109-11-october-2026-651-am-utc) |  |
+| P110 | Merge | before we continue myt1x54 (abdul moiz) has made a branch and committed his work there please s | Completed | [section](#110-11-october-2026-729-am-utc) |  |
+| P111 | General | [image attached] | Completed | [section](#111-11-october-2026-729-am-utc) |  |
+| P112 | General | oka anything not done correctly or missing from abdul moiz work fix that complete that | Completed | [section](#112-11-october-2026-738-am-utc) |  |
+| P113 | Merge | oka all of these are approved and push em and i guess we have to pull or do something so we can | Completed | [section](#113-11-october-2026-747-am-utc) |  |
+| P114 | CI | okay push everything to repo and then do all the remaining steps in clinical logic things left  | Completed | [section](#114-11-october-2026-757-am-utc) |  |
+| P115 | CI | Audit the entire ProcSense project and complete all outstanding work properly, including every  | Completed | [section](#115-11-october-2026-126-pm-utc) |  |
+| P116 | Merge | oka approved and do the remaining things and then give me the commands to do the final push to  | Completed | [section](#116-11-october-2026-445-pm-utc) |  |
+| P117 | General | continue | Completed | [section](#117-11-october-2026-829-pm-utc) |  |
+| P118 | CI | Update the plans for all the ai features and ProcSense: Complete AI Feature Audit, End-to-End P | Completed | [section](#118-12-october-2026-1040-am-utc) |  |
+| P119 | Performance | 6A. Mandatory expansion: Complete implementation plans for EVERY feature and its AI components  | Completed | [section](#119-12-october-2026-1128-am-utc) |  |
+| P120 | Docs | do we instructions and agents.md for instructions how to create the plans | Completed | [section](#120-12-october-2026-1136-am-utc) |  |
+| P121 | Docs | i meant do see instructions and agents.md for instructions how to create the plans | Completed | [section](#121-12-october-2026-1136-am-utc) |  |
+| P122 | Merge | Audit the changes from the planning task we just completed. Do not implement any features. I ne | Completed | [section](#122-12-october-2026-1200-pm-utc) |  |
+| P123 | General | [AI tool] mcp add --transport http synverk https://synverk.abdulhaque.dev/mcp | Completed | [section](#123-12-october-2026-1210-pm-utc) |  |
+| P124 | Docs | I want you to add the Synverk MCP server to my [AI tool] configuration. Server URL: `https://sy | Completed | [section](#124-12-october-2026-1225-pm-utc) |  |
+| P125 | General | i need the json structure in this { "$schema": "/api/flows/schema", "title": "Ordering a coffee | Completed | [section](#125-12-october-2026-1252-pm-utc) |  |
+| P126 | General | create tasks in the synverk server for the procsense projects all the tasks and everything and  | Completed | [section](#126-12-october-2026-110-pm-utc) |  |
+| P127 | Docs | Diagnose why Synverk is reported as Connected in my setup but its tools aren't available in thi | Completed | [section](#127-12-october-2026-123-pm-utc) |  |
+| P128 | Docs | i want u to create this index.md in the docs folder that says where everything is: the project  | Completed | [section](#128-12-october-2026-151-pm-utc) |  |
+| P129 | Docs | i want only the plan steps leave em unassigned go create the tasks thing again | Completed | [section](#129-12-october-2026-234-pm-utc) |  |
+| P130 | General | also the the tasks or steps that are already done and approved and stuff ya know move them into | Completed | [section](#130-12-october-2026-402-pm-utc) |  |
+| P131 | Merge | those that are approved in repo put them in approved those who are in The other 19 are built an | Completed | [section](#131-12-october-2026-402-pm-utc) |  |
+| P132 | General | hi | Completed | [section](#132-16-october-2026-exact-time-not-captured) |  |
+| P133 | Merge | A lot has changed since our last session—my teammates have merged their repos and made signific | Completed | [section](#133-16-october-2026-exact-time-not-captured) |  |
+| P134 | Merge | Just to confirm, did you pull the latest version of the repository from GitHub and update every | Completed | [section](#134-16-october-2026-exact-time-not-captured) |  |
+| P135 | CI | Now that we've confirmed the repository is fully synced with the latest `main`, I want you to t | Completed | [section](#135-16-october-2026-exact-time-not-captured) |  |
+| P136 | Performance | Re-evaluate our local AI model choices for ProcSense from scratch—don’t assume Qwen is the best | Completed | [section](#136-16-october-2026-exact-time-not-captured) |  |
+| P137 | General | The 2.7gb already being used is cuz i am playing games and other things rn bruh | Completed | [section](#137-16-october-2026-exact-time-not-captured) |  |
+| P138 | Merge | I looked online and • Best Overall Balance (Max Size/Intelligence): • Qwen 3.5 9B (Q4_K_M) – Oc | Completed | [section](#138-16-october-2026-exact-time-not-captured) |  |
+| P139 | Performance | Audit ProcSense's actual AI features, code, feature registry, pipeline JSONs, and implementatio | Completed | [section](#139-16-october-2026-exact-time-not-captured) |  |
+| P140 | Performance | Revisit your model recommendations without restricting the search to Qwen3.5, 4B, or 9B. Those  | Completed | [section](#140-16-october-2026-exact-time-not-captured) |  |
+| P141 | CI | Reassess the model recommendation and produce a **feature-by-feature table in the exact format  | Completed | [section](#141-16-october-2026-exact-time-not-captured) |  |
+| P142 | Performance | ## ProcSense: Final Hardware-Constrained AI Model Selection Before doing anything else, assess  | Completed | [section](#142-16-october-2026-exact-time-not-captured) |  |
+| P143 | Performance | We've made the final decision. We'll use the quantized versions of both Qwen3.5 models for Proc | Completed | [section](#143-16-october-2026-exact-time-not-captured) |  |
+| P144 | General | aight now check | Completed | [section](#144-16-october-2026-exact-time-not-captured) |  |
+| P145 | General | Go ahead lets just do it at the desktop for now | Completed | [section](#145-16-october-2026-exact-time-not-captured) |  |
+| P146 | Docs | Yes to plan and pipeline sync , prompt history and session log and patient dont remember intent | Completed | [section](#146-16-october-2026-exact-time-not-captured) |  |
+| P147 | General | Keep the b3 one noted and we will do the b3 one later sometime oka the other jobs are a yes fro | Completed | [section](#147-16-october-2026-exact-time-not-captured) |  |
+| P148 | Docs | cache "agents.md and instructions.md" and read em and read all the things and plans in the docs | Completed | [section](#148-17-october-2026-925-pm-utc-approx) |  |
+| P149 | CI | oka just this once ProcSense: Remote-First Audit, Complete Remaining P0 Work, Validate, Commit  | Completed | [section](#149-17-october-2026-925-pm-utc-approx) |  |
+| P150 | CI | Also resolve ci/cd issues alongside too i just got another alert something red on the repo c054 | Completed | [section](#150-17-october-2026-exact-time-not-captured) |  |
+| P151 | General | Yeah sure go ahead | Completed | [section](#151-17-october-2026-exact-time-not-captured) |  |
+| P152 | Merge | Aight so like we did before same rules apply same way in a continous flow implement all tge cor | Completed | [section](#152-17-october-2026-exact-time-not-captured) |  |
+| P153 | General | I give u permission to stop em also tell me i dont get it what are you running on em and why ha | Completed | [section](#153-17-october-2026-exact-time-not-captured) |  |
+| P154 | Assets | Which 4b model and performed bad on what exacrly what are u testing Also delete qwen 3 : 4b we  | Completed | [section](#154-17-october-2026-exact-time-not-captured) |  |
+| P155 | Performance | Task: Research and Recommend the Best Communication-Act Classification Approach for ProcSense:  | Completed | [section](#155-17-october-2026-exact-time-not-captured) |  |
+| P156 | Performance | ProcSense: Communication-Act Classifier Benchmark Find the best practical classifier for ProcSe | Completed | [section](#156-17-october-2026-exact-time-not-captured) |  |
+| P157 | Performance | Good audit. Proceed with a reduced benchmark plan, but remain in research/planning mode for now | Completed | [section](#157-17-october-2026-exact-time-not-captured) |  |
+| P158 | Performance | Thanks. My decisions: 1. SBAR_ELEMENT: I agree it needs investigation, but do not change scorin | Completed | [section](#158-17-october-2026-exact-time-not-captured) |  |
+| P159 | Performance | ProcSense: Classifier Safety Fix & Benchmark Inspect the latest repository state first. Minimiz | Completed | [section](#159-17-october-2026-exact-time-not-captured) |  |
+| P160 | Performance | Decisions: 1. Approve the SBAR safety fix in principle, including the regression test and consi | Completed | [section](#160-17-october-2026-exact-time-not-captured) |  |
+| P161 | Performance | Continue from the current state and complete all approved work in one continuous flow. Commit a | Completed | [section](#161-17-october-2026-exact-time-not-captured) |  |
+| P162 | CI | Continue from the latest repository state and complete the remaining work end to end in one con | Completed | [section](#162-17-october-2026-exact-time-not-captured) |  |
+| P163 | Performance | Question: why are all the feature plans in the architecture folder, should they be in the plans | Completed | [section](#163-17-october-2026-exact-time-not-captured) |  |
+| P164 | CI | Continue from the latest repository state, follow INSTRUCTIONS.md, and work continuously until  | Completed | [section](#164-18-october-2026-exact-time-not-captured) |  |
+| P165 | Merge | Yes start on them go (The owner confirmed the work queue of the previous message: safety, the A | Completed | [section](#165-18-october-2026-exact-time-not-captured) |  |
+| P166 | CI | Continue ProcSense implementation; read INSTRUCTIONS.md first, work end to end, commit and push | Completed | [section](#166-18-october-2026-exact-time-not-captured) |  |
+| P167 | CI | cache instructions.md and agents.md and (the owner then pasted the task below) Continue ProcSen | Completed | [section](#167-18-october-2026-exact-time-not-captured) |  |
+| P168 | Docs | Continue with the implementation priorities in the original prompt. Keep progress summaries con | Completed | [section](#168-18-october-2026-exact-time-not-captured) |  |
+| P169 | CI | Continue from the latest pushed commit 9ad90cb (verify origin/main first). Read INSTRUCTIONS.md | Completed | [section](#169-18-october-2026-exact-time-not-captured) |  |
+| P170 | CI | Continue from the actual latest origin/main (0c9f10d and newer). Read INSTRUCTIONS.md, the reco | Completed | [section](#170-19-october-2026-exact-time-not-captured) |  |
+| P171 | CI | Continue from pushed commit 72126e2. Read INSTRUCTIONS.md, inspect the tree and the remote HEAD | Completed | [section](#171-19-october-2026-exact-time-not-captured) |  |
+| P172 | Merge | We are testing Option A for ProcSense: zero-shot NLI using facebook/bart-large-mnli, with NO fi | Completed | [section](#172-19-october-2026-exact-time-not-captured) |  |
+| P173 | CI | Implement the next ProcSense classifier experiment: context-conditioned semantic rubric evaluat | Completed | [section](#173-19-october-2026-exact-time-not-captured) |  |
+| P174 | CI | ProcSense: End-to-End Architecture Planning, Context/Feature-Plan Reconciliation, and Implement | Completed | [section](#174-19-october-2026-454-pm-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P175 | CI | ProcSense - Improve Legitimate Speech Recall Safely. Continue from commit 2f9aa0a; the context- | Completed | [section](#175-20-october-2026-130-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P176 | CI | ProcSense - Comprehensive Unsafe-Speech Safety Hardening. Continue from commit 4a2ed00. Make Pr | Completed | [section](#176-20-october-2026-530-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P177 | CI | Continue from b1726b8 (unsafe-speech hardening). Do not change the safety cap, thresholds or fi | Completed | [section](#177-20-october-2026-930-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P178 | Performance | ProcSense - Complete Ollama Cloud AI Speech Interpretation Implementation. Take the speech inte | Completed | [section](#178-20-october-2026-1230-pm-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P179 | Merge | Before any more model comparisons or threshold changes, audit the failure attribution of the se | Completed | [section](#179-21-october-2026-500-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P180 | CI | Approved for Option 1, steps (i) and (ii), and the bounded Gemma safety-panel experiment. Imple | Completed | [section](#180-21-october-2026-600-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P181 | Gameplay | Update the ProcSense semantic-reader engineering target: legitimate recall >= 90% (126/140), cr | Completed | [section](#181-21-october-2026-630-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P182 | Performance | Proceed with the safe/context improvements and the bounded independent critical-claim-verifier  | Completed | [section](#182-21-october-2026-700-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P183 | CI | Finish the running full CI and report any failure first. Assuming it passes, stop optimising ag | Completed | [section](#183-21-october-2026-730-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P184 | CI | Stage-two result and EX-01 tooling approved. EX-01 phase two: 300 items, balanced and risk-weig | Completed | [section](#184-21-october-2026-830-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P185 | CI | Correction: no deadline pressure; I do not want to spend significant human effort authoring or  | Completed | [section](#185-21-october-2026-930-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P186 | CI | Approved with conditions: the automated synthetic-data-factory architecture; scale targets of 3 | Completed | [section](#186-21-october-2026-1030-am-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P187 | CI | The first pilot showed the generation/checking pipeline is not ready to scale. Fix it and run a | Completed | [section](#187-21-october-2026-1200-pm-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P188 | CI | 200/200 CI is good. I approve the third calibration pilot: about 160 candidates, about 70 calls | Completed | [section](#188-21-october-2026-200-pm-utc-time-of-logging-the-prompt-arrived-shortly-before) |  |
+| P189 | Merge | Before running another calibration, rethink the generation/judging strategy instead of patching | Completed | [section](#189-21-october-2026-afternoon-utc-the-exact-time-was-not-recorded) |  |
+| P190 | Merge | Stop the multi-model synthetic-data factory approach; do not run another pilot or the cloud-gen | Completed | [section](#190-21-october-2026-afternoon-utc-the-exact-time-was-not-recorded) |  |
+| P191 | CI | Also clean up the project from the abandoned factory experiment: remove its code, tests, config | Completed | [section](#191-21-october-2026-afternoon-utc-the-exact-time-was-not-recorded) |  |
+| P192 | CI | Approved: the 500-item coverage matrix, reserving P5 and P7 and the topic groups for the later  | Completed | [section](#192-21-october-2026-evening-utc-the-exact-time-was-not-recorded) |  |
+| P193 | Performance | The direct synthetic development dataset and cleanup are approved. Stop working on dataset gene | Completed | [section](#193-21-october-2026-evening-utc-the-exact-time-was-not-recorded) |  |
+| P194 | Merge | Do not start fixing the current baseline yet. Evaluate our intended gemma4:31b semantic reader  | Completed | [section](#194-21-october-2026-evening-utc-the-exact-time-was-not-recorded) |  |
+| P195 | Merge | I want to test a much simpler ProcSense architecture. Build it as an ISOLATED EXPERIMENT only:  | Completed | [section](#195-21-october-2026-evening-utc-the-exact-time-was-not-recorded) |  |
+| P196 | CI | We are now moving ProcSense to this clean semantic/scoring architecture: ASR -> Gemma semantic  | Completed | [section](#196-21-october-2026-night-utc-the-exact-time-was-not-recorded) |  |
+| P197 | Performance | We are now at final acceptance testing for this feature. Do not redesign or continue tuning the | Completed | [section](#197-21-october-2026-night-utc-the-exact-time-was-not-recorded) |  |
+| P198 | Performance | Choose option 2. Do ONE final prompt-level refinement and then ONE brand-new frozen held-out v2 | Completed | [section](#198-21-october-2026-night-utc-the-exact-time-was-not-recorded) |  |
+| P199 | CI | Choose option 2. The semantic architecture and the gemma-eval-5 prompt are frozen: do NOT modif | Completed | [section](#199-22-october-2026-morning-utc-the-exact-time-was-not-recorded) |  |
+| P200 | CI | Continue execution and finish the entire remaining ProcSense backlog without asking which task  | Completed | [section](#200-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P201 | CI | Explore extending Ollama Cloud inference to the other language-model components instead of rely | Completed | [section](#201-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P202 | CI | The cloud benchmarks and ADR-0026 are done and the selected Ollama Cloud models are approved, i | Completed | [section](#202-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P203 | CI | Decisions on DT-248 / DT-127, DT-251 and DT-252, to be implemented end to end. (1) Cloud proces | Completed | [section](#203-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P204 | CI | Continue from commit 7c1f0918 without repeating finished work; the goal remains zero unfinished | Completed | [section](#204-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P205 | CI | Continue from commit 077220b3 and preserve the zero unfinished steps of the 129-step inventory. | Completed | [section](#205-25-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P206 | CI | Continue from commit 87cad974. (1) Perform a comprehensive, evidence-based AI clinical review o | Completed | [section](#206-26-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P207 | Performance | Continue from the latest main branch. The project owner personally reviewed the spoken-order ev | Completed | [section](#207-26-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P208 | CI | Continue from the latest main. (1) Fully integrate spoken orders into Unity/Quest: inspect the  | Completed | [section](#208-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P209 | General | read and cache agents.md and instructions.md | Completed | [section](#209-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P210 | Performance | We are starting a new session focused on the 3D modeling, visual design, Unity frontend, VR env | Completed | [section](#210-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P211 | Merge | Pull the latest code from the repo, my teammates might have added something like an md which ha | Completed | [section](#211-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P212 | CI | Continue the frontend with the existing Blender to Unity to Meta Quest pipeline. Two reference  | Completed | [section](#212-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P213 | CI | I confirm the hospital bed, mattress, pillow and bedding as our first visual-improvement task.  | Completed | [section](#213-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P214 | CI | Before we proceed: we built a [AI tool] + [AI tool] + Blender + Unity creative production pipel | Completed | [section](#214-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P215 | Performance | DO NOT APPROVE THE CURRENT BED. I authorise a complete quality-improvement pass on this asset.  | Completed | [section](#215-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P216 | Performance | APPROVED. The revised hospital bed is accepted. I also approve the corrected ComfortTests Boot( | Completed | [section](#216-27-october-2026-day-utc-the-exact-time-was-not-recorded) |  |
+| P217 | Merge | CRITICAL — Fix Our 3D Asset Creation Pipeline Before Continuing PatientBay: stop the room overh | Completed | [section](#217-28-29-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P218 | Unity | The Blender Cycles render is much closer to the realism I want, but the Unity version loses mat | Completed | [section](#218-28-29-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P219 | Performance | The HDR reflection fix is a substantial improvement. One more focused visual-quality pass befor | Completed | [section](#219-28-29-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P220 | Performance | We are keeping Unity URP and aiming for the highest photorealism achievable in it. Finish verif | Completed | [section](#220-28-29-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P221 | Performance | I approve the patient monitor as our current visual and technical baseline, with the remaining  | Completed | [section](#221-30-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P222 | Performance | ProcSense PatientBay, Cinematic Golden-Hour Lighting Overhaul: recreate the attached golden-hou | Completed | [section](#222-30-october-2026-utc-the-exact-time-was-not-recorded) |  |
+| P223 | Performance | ProcSense PatientBay, complete visual reconstruction from the owner's FINAL reference image (ne | Completed | [section](#223-31-oct-2026-utc) |  |
+| P224 | Performance | ProcSense AAA-quality realistic human patient: redesign and rebuild the patient to the standard | Completed | [section](#224-31-oct-2026-utc) |  |
+| P225 | CI | CRITICAL CORRECTION: the PatientBay visual quality is not accepted. Repeat the monitor workflow | Completed | [section](#225-31-oct-2026-utc) |  |
+| P226 | Performance | Requested, then cancelled the same day: a non-destructive URP versus enhanced URP versus HDRP v | Completed | [section](#226-31-oct-2026-utc) |  |
+| P227 | CI | FINAL DECISION: HDRP is cancelled. Stop all HDRP work, delete the isolated HDRP experiment and  | Completed | [section](#227-31-oct-2026-utc) |  |
+| P228 | CI | Comprehensive Unity realism research and implementation: research the SpeedTutor YouTube channe | Completed | [section](#228-3-nov-2026-utc) |  |
+| P229 | Performance | Continuation of entry 228. Owner requests in order: (1) replace every generated character (Pati | Completed | [section](#229-2-nov-2026-utc) |  |
+| P230 | CI | Continuation of entry 229. Owner requests in order: (1) volumetric sunlight "stiff and artifici | Completed | [section](#230-3-nov-2026-utc) |  |
+| P231 | Merge | Wdym pushed to overhaul/urp-integration is it not pushed merged with main if not then do so als | Completed | [section](#231-4-nov-2026-utc) |  |
+| P232 | CI | ProcSense — P3 Final Integration, Complete VR Game Planning, and Quest 2 Performance Investigat | Completed | [section](#232-7-november-2026-346-pm-utc) |  |
+| P233 | CI | ProcSense — P3 Decision Approvals, Cloud-Connected Quest Architecture, and Visual-Preserving Pe | Completed | [section](#233-7-november-2026-about-900-pm-utc--approx) |  |
+| P234 | Performance | Continue the Quest 2 optimisation with desktop-only testing (no headset available). The optimis | Completed | [section](#234-9-november-2026-utc-time-not-captured) |  |
+| P235 | Performance | Final optimisation completion and verification. Continue, do not restart: audit every Quest/XR/ | Completed | [section](#235-10-november-2026-utc-time-not-captured) |  |
+| P236 | Workflow | Execute the entire remaining optimisation task using parallel subagents: Agent 1 Quest configur | Completed | [section](#236-10-november-2026-utc-time-not-captured) |  |
+| P237 | CI | Move expensive CI to GitHub Actions and optimise the video QA pipeline (audit the five CI jobs  | Completed | [section](#237-10-november-2026-utc-time-not-captured) |  |
+| P238 | CI | I approve moving the comprehensive CI checks to GitHub Actions and replacing redundant hour-lon | Completed | [section](#238-10-november-2026-utc-time-not-captured) |  |
+| P239 | Performance | Complete performance optimisation audit against every technique and configuration discussed (in | Completed | [section](#239-10-november-2026-utc-time-not-captured) |  |
+| P240 | Performance | Significantly accelerate the remaining audit with parallel agents: one benchmarking agent owns  | Completed | [section](#240-10-november-2026-utc-time-not-captured) |  |
+| P241 | Performance | One final speed optimisation based on the ExteriorVisibility cache bug: assess whether the runn | Completed | [section](#241-10-november-2026-utc-time-not-captured) |  |
+| P242 | Workflow | PAUSE ALL WORK IMMEDIATELY. Once safely stopped, give a brief summary of what is completed and  | Completed | [section](#242-10-november-2026-utc-time-not-captured) |  |
+| P243 | Merge | Requirement for the final ProcSense merge (save for the integration session; wait for approval) | Completed | [section](#243-10-november-2026-utc-time-not-captured) |  |
+| P244 | Performance | Review of the final Quest 2 optimisation audit: B58 looks promising and may be investigated, bu | Completed | [section](#244-10-november-2026-utc-time-not-captured) |  |
+| P245 | Performance | Finish the B58 verification as fast as possible, fast-track: keep the running Unity launch, ana | Completed | [section](#245-10-november-2026-utc-time-not-captured) |  |
+| P246 | Merge | FINAL APPROVAL, proceed with integration, minimise token use, no more research or benchmarks. A | Completed | [section](#246-10-november-2026-utc-time-not-captured) |  |
+| P247 | Merge | Power outage interrupted the push to main. Redo it (check repository state, push the integratio | Completed | [section](#247-10-november-2026-utc-time-not-captured) |  |
+| P248 | CI | URGENT, stop wasting an hour on duplicate local CI. Identify the actual python_tests failure fr | Completed | [section](#248-10-november-2026-utc-time-not-captured) |  |
+| P249 | CI | I explicitly approve Option 1: modify .githooks/pre-push so that when a successful manual full  | Completed | [section](#249-10-november-2026-utc-time-not-captured) |  |
+| P250 | Verification | Post-merge Unity integration verification, token-efficient, parallel where independent: verify  | Completed | [section](#250-11-november-2026-utc-time-not-captured) |  |
+| P251 | Verification | Final targeted QA and fix round: (1) the four Android-target test failures: verify the bone-wei | Completed | [section](#251-11-november-2026-utc-time-not-captured) |  |
+| P252 | Merge | approved (merge the verified fix branch into main). (Summary of the owner's request, not the ve | Completed | [section](#252-11-november-2026-utc-time-not-captured) |  |
+| P253 | Performance | Full Quest 2 performance overhaul plus completing the remaining Ruhan-owned P3 work. New measur | Active | [section](#253-14-november-2026-utc-time-not-captured) |  |
+| P254 | Workflow | Switch to token-efficient parallel execution: I am exhausting my hourly usage limit. At most 2- | Active | [section](#254-14-november-2026-utc-time-not-captured) |  |
+| P256 | Workflow | Dynamic concurrency and shared context caching: no fixed agent cap, start ~3, shared.md + registry.md, right model per task, one heavy Unity op at a time, resume Quest/P3 work. | Active | [section](#256-14-november-2026-utc-time-not-captured) | P254 cap |
+| P257 | Audit | Finish remaining gaps before commit: notice socket+banner in scene, examination AI dialogue, PostgreSQL demo identity, LAN integration test, investigate lightmap deletions; then independent evidence-based audit of all Quest optimisations and P3 requirements, MP4 walkthrough (D:/ProcSenseWork/videos/final), docs/FINAL_QUEST_P3_VERIFICATION.md, fresh APKs, wait for approval before commit/push/CI. | Active | [section](#257-14-november-2026-utc-time-not-captured) |  |
+| P264 | Quest | Quest 2 clinical text: investigate composition layers for EMR tablet, monitor and menu panel (use only if safe, else sharp-text alternative with tests, row stays headset-open); write tools/unity/verify_quest_config.py asserting every approved optimisation, fix regressions, rules.yml row, docs | Active | [section](#264-14-november-2026-1025-pm-utc) |  |
+| P265 | Quest | Final verification and APK build: sync content, full dotnet/Python/server (own PostgreSQL 17)/Unity EditMode+PlayMode, fix genuine defects only, build demo+diag APKs, verify, write the Final build section. | Active | [section](#265-15-november-2026-208-am-utc) |  |
+| P266 | Quest | DT-307: resolve the 7 PlayMode failures from the capture probes cleanly (classify each probe; keep real regression assertions as tests; diagnostics [Explicit] with validated config and a doc line; delete obsolete ones with .meta and references; every retained probe cleans up), fix the 6 order-dependent failures at the root, then full PlayMode and EditMode via the lock; owner authorised the test-selection change. | Active | [section](#266-15-november-2026-656-am-utc) |  |
+| P255 | Workflow | Archive my instructions to reduce token usage: add searchable archive at docs/previous_prompt.m | Active | [section](#255-14-november-2026-utc-time-not-captured) |  |
+
+
 ## 200. 24 October 2026, 1:50 AM UTC
 _Session: fe0a6c20_
 
@@ -4039,4 +4338,262 @@ _Session: 5f6e9808_
 ``````text
 Continue the Quest 2 optimisation with desktop-only testing (no headset available). The optimised exterior is approved (development branch only). Use parallel workers where safe, produce a walkthrough video for my approval, then, after an explicit APPROVED, integrate Sannan's and Moiz's branches and the optimisation branch.
 (This entry is a summary of the owner's request, not the verbatim wording; exact arrival time was not captured. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 235. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Final optimisation completion and verification. Continue, do not restart: audit every Quest/XR/URP setting on the real production Android build (Vulkan, OpenXR/Meta, multiview, Symmetric Projection, Optimize Buffer Discards, Multiview Render Regions, FFR, dynamic foveation, Subsampled Layout, dynamic resolution, render scale, perf levels, 72 Hz, Forward, Render Graph, Intermediate Texture Auto, depth priming, opaque/depth texture, SRP Batcher, instancing, camera stacking, HDR, post-processing, MSAA 2x vs 4x, shadow distance/cascades/resolution, realtime vs baked): record value, compatibility, decision, implement compatible ones, keep alternatives as diagnostic presets. Investigate remaining GPU/CPU opportunities; explain why the optimised build was not faster on desktop (culling CPU cost, character culler, measurement noise) and fix or disable anything that costs more than it saves. Build a better stereo desktop benchmark (warm-up, repeats, statistics; no emulator, no phone). Fix DT-288 theatre clipping and decide the baked-occlusion lighting issue; reassess the character culler without pose snaps. Preserve shafts, dust, lighting, shadows, probes, glass, characters. Use parallel agents with distinct files, one Unity/GPU job at a time; no full CI, no commits/pushes, no merge to main. Deliver an evidence matrix (optimisation | original | final | status | measured | visual | evidence; statuses: implemented and verified / already configured / tested and rejected / unsupported / Quest-only pending), a conditional Quest FPS estimate with uncertainty, walkthrough video, APKs, then STOP and wait for APPROVED.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 236. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Execute the entire remaining optimisation task using parallel subagents: Agent 1 Quest configuration, 2 CPU/culling (B28/B29 regression, culler overhead, allocations), 3 lighting/visual (DT-288, occlusion, shafts, shaders, overdraw), 4 benchmarking (stereo, noise, passes, draw calls), 5 testing/visual QA; coordinator integrates. Launch immediately, non-overlapping files, never competing GPU workloads, reuse prior results, repeat only invalid measurements, B50 optional. Every optimisation gets a verified outcome. Then walkthrough, APKs, comparison, wait for APPROVED before merge, full CI, commit, push.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 237. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Move expensive CI to GitHub Actions and optimise the video QA pipeline (audit the five CI jobs vs local task ci, parallel jobs, caching, cancel obsolete runs, light dev workflow plus comprehensive final workflow, Unity tests where licensing allows, no weakened checks, no repeated full CI locally, ask before changing the mandatory pre-push hook; faster video capture/QA with caching, parallel comparison, hardware encode, quick low-res then one full-res pass, keep all detectors). Also: implement permanent change-aware testing and incremental verification: detect changed files, map to affected tests (shader, animation, culling, backend, docs, UI, renderer settings), transitive dependencies, content-hash caches (results, imports, shader outputs, benchmarks, frames, comparisons) with correct invalidation, change-based job selection and path filters in hooks and GitHub Actions, clear executed/reused/skipped reporting, final integration still runs the full gate without weakening it; make it permanent in the task runner, CI config, scripts and project instructions. No full CI now, no commits or pushes.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 238. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+I approve moving the comprehensive CI checks to GitHub Actions and replacing redundant hour-long local pre-push testing with fast local checks, provided required remote checks must pass before merging. Preserve all mandatory coverage and repository protections. One controlled preview push of the optimisation branch is approved to verify the workflows. Do not merge to main. Fix the branch-protection check-name mismatch. Continue optimising video QA, let the walkthrough finish, run full local Unity/GPU tests only when genuinely necessary. The final merge stays subject to my explicit visual approval.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 239. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Complete performance optimisation audit against every technique and configuration discussed (including docs/qa/quest2_config_matrix.md): per item what it does, original setting, alternatives tested, status, measured effect (frame time, FPS, CPU, triangles, draw calls, memory), visual difference, why chosen. Use parallel agents (Unity/URP config, rendering/lighting, geometry/characters, textures/memory, benchmark verification) with distinct files and coordinated Unity access. Real before/after numbers per feasible optimisation, individually then combined, identical stereo workloads, multiple runs, uncertainty. Covers MSAA, foveation, resolution scale, shadows, additional lights, baked vs realtime, depth/opaque/intermediate textures, SRP Batcher, static batching, instancing, mesh combining, LODs, occlusion, room/character culling, GPU skinning, post-processing, shader variants, ASTC, mipmaps, atlasing, Symmetric Projection, Multiview Render Regions, performance levels. Quest-only items prepared as A/B for Sannan. Do not enable an optimisation just because it cuts triangles if frame time worsens; investigate the optimised city's renderer overhead; keep both exteriors for the headset A/B. Give one consolidated table and the best desktop-tested configuration. Be honest about what desktop can and cannot predict; no invented Quest FPS; no 72 FPS claim. No commit/push/merge.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 240. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Significantly accelerate the remaining audit with parallel agents: one benchmarking agent owns the GPU and runs continuous multi-config Unity sessions (no restarts per config), an analysis agent builds the consolidated table from completed CSVs immediately, a visual QA agent processes existing frames and repairs the clinical-text probe, a rendering agent investigates the theatre anomaly (B28 draws 43 city renderers, B20 none), a configuration agent finishes config checks. Never run competing GPU workloads; CPU-only work in parallel at low priority; screening then finalists; reuse valid results; repeat only invalid ones; do not discard nearly finished jobs; give a short schedule and execute. No full CI, commit or push.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 241. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+One final speed optimisation based on the ExteriorVisibility cache bug: assess whether the running benchmark still gives valid data, stop it only if nothing valuable is lost, run the cache regression test before the screening launch, do not call contaminated results valid or upper bounds, reuse valid results for unaffected configs, keep three-round screening and six-round finalists, exclude clearly inferior configs, mark B50 honestly as deferred, do not skip the clinical-text verification (repaired probe, existing captures), continue analysis and QA in parallel, no competing GPU jobs. When done give actual FPS/frame-time improvement, best configuration, complete table. No videos, APKs, CI, commits or pushes.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 242. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+PAUSE ALL WORK IMMEDIATELY. Once safely stopped, give a brief summary of what is completed and pending and whether I can safely shut down my PC. Wait for my explicit instruction before resuming. (Superseded by the later 'resume and continue'.)
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 243. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Requirement for the final ProcSense merge (save for the integration session; wait for approval): do a proper Unity-aware, object-level integration, not a plain Git merge. Compare Sannan's branch (origin/sannan47/doors-bedside-monitoring), our branch and their ancestor; merge Sannan's first, then ours. Preserve both sets of work: his fixes (duplicate-door removal, door interactions and animations, bedside monitoring, other fixes) and our optimisations (exterior, window/door/room visibility, character culling, shaders, visuals). Never recreate an object he deleted; apply our changes to the surviving object. Check duplicates, overlaps, missing components/references/materials/colliders/animations/scripts, keep GUIDs and .meta references, resolve scene/prefab conflicts semantically, test doors, door/window culling, room transitions, bedside systems, run a targeted walkthrough of affected rooms (doors open and closed, quick turns), document incompatibilities, update docs. Final goal: one build with Sannan's fixes, Moiz's work and our optimisations. Parallel agents allowed but only one agent edits scenes/prefabs at a time. Do not merge, commit, push or run CI until I approve.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 244. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Review of the final Quest 2 optimisation audit: B58 looks promising and may be investigated, but first resolve: (1) benchmark arithmetic (reported percentages do not match displayed ms; explain aggregation, verify intervals and baselines, fix errors without rerunning benchmarks); (2) verify B58 on the real Android production configuration (baked occlusion off): compare original/optimised exterior with Android settings, with and without B58 lighting, equivalent conditions, reuse valid data; (3) verify visual quality of 2 additional lights and hard shadows (monitor text, signs, doors/glass, people, lighting, reflections, theatre, bay), find a selective configuration if degraded; (4) decide the best final configuration (visual realism, clinical text, frame time, CPU submit, APK size); keep both exteriors for the headset A/B; leave posters at 512 unless clearly worth 1024. Use separate agents for numerics, visuals, Android config, docs; no competing GPU benchmarks; update the audit and config docs; final summary of 7 points; no commit/push/merge until approval.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 245. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Finish the B58 verification as fast as possible, fast-track: keep the running Unity launch, analyse visuals and CSVs in parallel now, reuse valid Quest-resolution data, run the second launch only if essential and minimal, update the audit continuously, stop collecting samples once the result is defensible, no videos/APKs/CI, if hard-shadow quality is questionable keep production lighting and report B58 as a candidate requiring visual approval, give the numerical verdict, visual verdict and recommended configuration as soon as evidence supports them. No commit, push or merge.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 246. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+FINAL APPROVAL, proceed with integration, minimise token use, no more research or benchmarks. Adopt the B58 lighting (accept the corridor-light and hard-shadow trade-offs; keep the original lighting revertible), keep the existing optimisations, do not conflict settings, do not downgrade clinical text, do not run B66. Merge Sannan's branch FIRST with a proper Unity-aware merge (preserve duplicate-door removal, door interactions, bedside monitoring, prefab references, GUIDs, materials, colliders; Moiz's work intact), then integrate ours; targeted local checks only; run the required final CI once through GitHub Actions without bypassing safety checks or branch protection; minimum commits; push to main; verify remote contains both and CI is green; no force-push. Final answer: was everything merged, preserved, which optimisations are enabled, did CI pass, is the repo clean and ready for Sannan's Quest testing, any blocker.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 247. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Power outage interrupted the push to main. Redo it (check repository state, push the integration commit through the hook), then continue from there to the final push and merge to main.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 248. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+URGENT, stop wasting an hour on duplicate local CI. Identify the actual python_tests failure from logs without rerunning the suite; verify the existing successful GitHub run against the exact commit SHA and whether the hook accepts it; if the hook requires a manual full run, trigger it remotely for that exact commit; push main normally if remote checks are green; isolate only a genuine local failure; smallest correction if needed; never disable the hook globally, force-push or bypass protection; avoid changing tracked files (new SHA invalidates exact-commit evidence); no benchmarks, Unity, videos or audits; short status.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 249. 10 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+I explicitly approve Option 1: modify .githooks/pre-push so that when a successful manual full GitHub CI run exists for the exact commit SHA the hook runs only task check locally. Keep the exact-SHA verification and all safety checks; if remote CI is missing, failed or mismatched keep the full local verification fallback; update hook tests and docs; commit and push the integration branch; run the full GitHub CI once on the new SHA; when green push to main; no hour-long local CI, no benchmarks; short confirmation with SHA, CI result, main status.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 250. 11 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Post-merge Unity integration verification, token-efficient, parallel where independent: verify the final repository (exact SHA, push CI result, Sannan/Moiz/our changes present, no conflict markers, missing assets, broken .meta, duplicate scene objects; do not repeat full CI), verify Unity (scenes load, compile, references resolve, Android URP configuration active, targeted EditMode/PlayMode tests), verify Sannan's changes survived (duplicate doors stay removed, doors keep our optimisations, open/close/animations/colliders, bedside monitoring, door glass visibility, room transitions), verify our optimisations are active (exterior and its diagnostic alternative, window/door/room culling, character culling, shaders, ASTC, lighting, Android settings), build ONE fresh production APK from merged main (verify, SHA-256, save in D:\ProcSenseWork\apk), fix failures on a separate branch, do not push to main, do not claim headset-only features verified. Final answer: one table (component | passed/failed/not tested | evidence); say READY FOR QUEST TESTING if everything passes.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 251. 11 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Final targeted QA and fix round: (1) the four Android-target test failures: verify the bone-weight explanation, identify the exact tests and meshes, decide test-environment vs Unity configuration vs real runtime defect, fix properly without weakening tests, rerun under Android and Standalone; (2) the uncommitted URP asset soft-shadow prefilter fields: what changed, why Unity rewrote them, does the APK match B58, is the build reproducible, commit the correct configuration on a fix branch; (3) why the APK shrank from 380 MB to 325 MB (scenes, assets, shaders, variants, plugins), restore anything wrongly excluded. Parallel agents for the three, coordinated Unity access, no repeat of the audit/benchmarks/videos; fix, rerun only affected tests, build a fresh APK if source changed, checksum, clean tree; keep main intact, fixes on a separate branch, do not push to main until approved; final table (issue | root cause | fix | verification) and answers. Also run one complete uncached full CI on the final commit through GitHub Actions (plus local Unity Android-target tests), then wait for approval to merge.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 252. 11 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+approved (merge the verified fix branch into main).
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 253. 14 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Full Quest 2 performance overhaul plus completing the remaining Ruhan-owned P3 work. New measured baseline from Moiz's headset: about 34 FPS, 96% GPU, 24% CPU, 26.47 ms GPU, 72 Hz, foveated rendering off, so GPU-bound. Visual-detail preservation is relaxed; performance is the overriding priority (stable 72 FPS, GPU under 13.89 ms, ideally 11-12 ms) while the hospital still looks realistic and clinical text stays readable. Implement, not plan. (1) Absolutely no realtime lighting or shadows: bake everything stationary (ceiling and wall lamps, window sunlight, window-frame and furniture shadows, GI, AO, contact shading), light probes for moving characters, baked reflection probes, no realtime shadow casters (player, hands, staff, patients, moving equipment), doors stay non-static, cheap precomputed sun shafts and dust (unlit shaders, minimal transparency). (2) A dedicated Quest Performance profile as the Android default (desktop profile unchanged): render scale about 0.8 (0.9-0.7 options) plus dynamic resolution, MSAA off (2x fallback), fixed foveation Medium/High, Subsampled Layout, Vulkan, multiview, SRP Batcher, Render Graph, Intermediate Texture Auto, no fullscreen copies, Symmetric Projection, Optimize Buffer Discards, Multiview Render Regions, no expensive post-processing, compositor layers or sharp UI text where supported. (3) Aggressive LODs by screen size for characters, furniture, equipment, plants, decor, exterior, traffic; Android texture overrides (256-1024 by use, monitors/labels sharp), ASTC and mipmaps. (4) Render only what is visible: frustum, room, portal, window, exterior chunk, occlusion, renderer and animation culling, while gameplay state, animations and scenario logic stay correct; no white areas, late walls, popping or missing doors. (5) Rebuild the exterior cheaply (low-poly boxes, facade textures, skyline images, billboards/impostors, simplified traffic, baked reflections); do not keep an optimisation that raises GPU time. (6) Cut shader and transparency cost (Lit to Simple Lit/Unlit, glass, curtains, shafts, dust, vegetation alpha-clip, floors, metals, screens). (7) Investigate upscaling and Application SpaceWarp as an optional fallback only, never claimed as native FPS. (8) Remove other unnecessary GPU work; do not push skinning to the GPU without justification. (9) Complete all Ruhan-owned P0-P3 tasks (verify real status in code): Login, Main Menu, Training/Test selection, Surgery selection, Random scenario, preoperative simulation, Submit to OT, Results/Debrief, retry/new scenario, training and exam modes, cholecystectomy and appendectomy scenarios, voice and menu on the same rules engine, hints, scoring, settings, subtitles, audio, save/session, quest-laptop-cloud architecture with no secrets on the headset and graceful failures; no invented clinician sign-offs. (10) Reuse existing assets and the Blender-to-Unity pipeline. (11) Parallel agents with distinct file ownership, only one heavy Unity/GPU/bake/build at a time, use the D: drive, no focus stealing. (12) No endless testing: targeted checks, change-aware caching, full CI once at final integration, few commits/pushes, work on a dedicated branch while main stays verified. (13) One diagnostic Quest build with presets (old config, aggressive config, foveation levels, render scales, exterior variants, MSAA, shader options, optional SpaceWarp) and a metrics overlay available in diagnostic builds; never claim 72 FPS before headset results. (14) Preserve patient data, scenarios, clinical rules, scoring, interactions, doors, bedside monitoring, Sannan's and Moiz's work. (15) Final summary of 11 points.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 254. 14 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Switch to token-efficient parallel execution: I am exhausting my hourly usage limit. At most 2-3 active agents plus the coordinator, reuse agents, no agent for what a script can do, cheaper models for routine work, stop re-reading the repository, keep one concise checkpoint (status, constraints, completed work, outstanding tasks, paths, agent ownership, dependencies), minimal context per agent (one task, paths, constraints, deliverables, tests) and short returns, prefer deterministic scripts, no repeated CI/APK/screenshots/benchmarks/verification loops, batch related changes, one heavy Unity process at a time, short status lines, prioritise GPU performance, then static lighting, rendering/material work, P3 foundations, polish; keep Sannan's and Moiz's work; keep going with the existing agents and reduce to at most three.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 255. 14 November 2026, UTC (time not captured)
+_Session: 5f6e9808_
+
+``````text
+Archive my instructions to reduce token usage: add searchable archive at docs/previous_prompt.md (my prompts only, no replies, no secrets, chronological, redundant duplicates removed, superseded ones marked), an index table (ID, category, topic, status Active/Completed/Superseded, anchor link, superseding prompt), a small CURRENT ACTIVE CONTEXT section (about 300-500 words: goal, verified branch and working-tree state, tasks, agent roles, next actions, constraints, prompt IDs), load only the relevant sections in future sessions and give subagents only their task plus prompt IDs, newer decisions take precedence (aggressive Quest GPU optimisation, fully baked lighting, token-efficient few-agent execution, targeted tests, full CI only at the end, preserve Sannan's and Moiz's work, background work), verify the archive, then recommend /compact or /clear; do not claim the context is cleared, delete nothing, commit/push nothing without authorisation.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured and the order inside a day is approximate. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 256. 14 November 2026, UTC (time not captured)
+_Session: resume after clear_
+
+``````text
+Resume ProcSense development from docs/previous_prompt.md (CURRENT ACTIVE CONTEXT, P253, P254, checkpoint). Update the subagent strategy: remove the fixed 2-3 agent cap, use dynamic concurrency (start about 3, raise or lower by task independence, hardware and token value), shared context file docs/agent_context/shared.md, minimal per-agent context, cheaper models for routine work and scripts for mechanical work, agent registry, one heavy Unity operation at a time, concise structured reports, task-aware scheduling, change-aware tests, no full CI/commit/push/main merge until final integration, preserve all uncommitted work. Update the checkpoint and continue without restarting completed tasks.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured. Tool names are written as [AI tool] per the project rule.)
+``````
+
+
+## 257. 14 November 2026, UTC (time not captured)
+_Session: resume after clear_
+
+``````text
+Finish the remaining work before the final commit and full CI: connect the notice socket and banner/chip to the Unity scene lifecycle; enable model-generated patient and team dialogue in examination mode under the existing safety gates and deterministic scoring; complete and verify the PostgreSQL demo-identity path; verify the headset-to-laptop LAN flow as far as the desktop allows (TLS pinning, notices, session creation, gameplay requests, reconnection) without claiming physical headset verification; investigate every deleted lightmap/lighting asset and restore or regenerate what is needed. Then run an independent evidence-based audit of every Quest optimisation (rendering, resolution/foveation, lighting/shadows, materials, geometry/LOD/visibility, textures, upscaling) and every P3 requirement (flow, training, examination, scenarios, characters, voice/AI, networking, UI), with a requirements matrix in docs/FINAL_QUEST_P3_VERIFICATION.md; fix confirmed gaps; capture a real MP4 walkthrough from the updated Unity project to D:/ProcSenseWork/videos/final/ProcSense-Quest-Overhaul-Walkthrough.mp4 with a contact sheet, stating the real capture platform; rebuild APKs if inputs changed; prepare one clean commit and wait for approval before committing, pushing or running full CI; do not merge to main; do not claim 72 FPS without headset measurements.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured. Tool names are written as [AI tool] per the project rule.)
+``````
+
+## 258. 15 November 2026, UTC (time not captured)
+_Session: P3 Ruhan tasks, Python/content/CI only_
+
+``````text
+Implement with tests P3-CTX-01 (interaction catalogue generator, validator, rules.yml and CI.md rows), P3-INT-01 (coverage tool writing docs/plans/p3/interaction-matrix.md with --check), P3-SCN-11 (rules.yml and CI.md rows for the catalogue --check) and P3-QA-01 (refresh docs/audit/p3_matrix.md: rows fixed per the final verification page read as fixed with evidence, link DC-13/14/15, keep headset rows open, fabricate nothing). Python, content and CI only; no Unity, server or commit work.
+(Summary of the owner's request, not the verbatim wording; the exact arrival time was not captured.)
+``````
+
+## 259. 14 November 2026, 9:31 PM UTC
+_Session: P3 training board and DT-298_
+
+``````text
+Implement DT-298 in Core (why goals/actions are unavailable, from authoritative simulation state), connect it to gameplay/UI with tests; finish and connect the P3-TRN-03 training board (real progress, objectives, training info, feedback; training mode shows it, examination shows no goal list; reuse existing views, ClinicalPanelsInstaller and content/ui/training_guide.json). Then reconcile docs/audit/p3_matrix.md: fix the implementable non-headset PARTIAL/FAIL/NOT TESTED rows not owned by others (hints/penalties, grading, both pathways, case selection, equipment, results/debrief) and report the rest. Voice, Flow/Login/Auth/Boot/consent and test-timing work belong to other agents. Unity only through the lock, one at a time, hidden. Update docs; UTC; no attribution.
+(Summary of the owner's request, not the verbatim wording. Time is when the work started, from the system clock.)
+``````
+
+## 260. 14 November 2026, 10:01 PM UTC
+_Session: voice agent, D3 examination staff dialogue, VOX-07 reader, VOX-06 tests_
+
+``````text
+Owner decision D3 (final): enable nurse/staff voices in examination mode with a separate examination-safe dialogue policy (role-appropriate answers and requested facts allowed; never unsolicited next-step instructions, answers, scoring or checklist items); review previously rejected staff lines and replace them with neutral exam responses instead of disabling the feature; generated dialogue never changes clinical state, awards credit or bypasses the engine; keep existing safety gates. Also implement the Unity reader for content/ui/voice_feedback.json (fallback when missing/invalid; subtitles/audio in the simulation) and write the VOX-06 voice-only examination tests (identity, allergy, consent by speech, no menu, deterministic scoring). Regression tests: staff dialogue works in exams, permitted facts available, unsolicited hints blocked, scoring/state hash identical with dialogue on/off, exam completable via voice+menu. Own Scripts/Voice, content voice/staff lines and their tests; not Flow/Login/Auth/Boot/Core goals/training board/test timing. Unity through the lock only. Update docs; UTC; no attribution.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+
+## 261. 14 November 2026, 10:03 PM UTC
+_Session: results/examination agent, P3-RES-07 client, P3-EXM-09 tests, DT-297_
+
+``````text
+Implement with tests P3-RES-07 (Unity client for the server's results-rewrite route and a clear "reworded" label on the Results panel in FlowPanel.DrawResults; AI wording never changes score/grade/facts; offline fallback shows the deterministic text; EditMode tests with a fake transport), P3-EXM-09 (new PlayMode test file: examination leak test over the flow panel, briefing and results, with no goal list, no hint text and no checklist; duplicate-submit test at the MenuFlow.Submit arm/confirm level), and close DT-297 (fix the stale comment in ModeGateTests, mark Completed only if verified). FlowPanel/MenuFlow additive edits only; do not edit Voice or FlowVoiceIntents; Unity only through the lock with targeted filters; update the inventory, deferred tasks and this archive. No commit or push; no attribution.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+## 262. 14 November 2026, 10:03 PM UTC
+_Session: integration-contracts agent, P3-API-02/05/06/07/08, P3-NET-13, P3-NET-04, P3-VOX-11_
+
+``````text
+Implement with pytest tests P3-API-02 (interaction_mode, session_mode, request_id on the speech action, orders and dialogue request schemas and routers), P3-API-05 (server logs request ids), P3-API-06 (upload stores hints used and the verdict from the server replay; dashboard schema/router shows them), P3-API-07 (UI message table and validator), P3-API-08 (shared fixtures tests/contracts/p3/*.json plus pytest, and one Unity EditMode test as a new file), P3-NET-13 (OLLAMA_API_KEY alias in server/config.py; reconcile the cloud semaphore 1 against the plan's 3 and document), P3-NET-04 (QR code of the address in tools/setup/demo_laptop.py), P3-VOX-11 (task demo-degraded-check with a script and a test). ORM only, no secrets, targeted pytest on PostgreSQL in Docker; do not touch sessions.py, demo_identity.py or the consent code (another agent). Update rules.yml, CI.md, deferred tasks and this archive. No commit or push; no attribution.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+## 263. 14 November 2026, 10:07 PM UTC
+_Session: session/results agent, P3-SES-02, P3-SES-06, P3-SCN-09, P3-RES-02, P3-RES-10, P3-EXM-01_
+
+``````text
+Implement fully with dotnet tests (no Unity): P3-SES-02 (Session.Check proven against Apply for every golden log), P3-SES-06 (SessionPlan procedure/source written to the log header only when non-default so old logs keep their hash; replay rebuilds the same request), P3-SCN-09 (retried plan replays to the same hash), P3-RES-02 (summary equals Scorer for every golden session), P3-RES-10 (grades.json threshold validator in tools/content, rules.yml row, docs/CI.md row, tests), P3-EXM-01 (hint limit read from content/scoring/grades.json, default 3, same behaviour). Keep Session.cs edits small and additive (lane BOARD edits Core Observation and CaseGraphSubsystem). Update the inventory, deferred tasks, prompt history and context.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+## 264. 14 November 2026, 10:25 PM UTC
+_Session: graphics agent, compositor layers / sharp clinical text and the Quest config verifier_
+
+``````text
+Task 1: investigate compositor layers for clinical text (EMR tablet, monitor, menu panel) on Quest 2 under the current low eye-buffer scale (0.8-0.9); check whether Unity OpenXR / Meta composition-layer support (com.unity.xr.compositionlayers or Meta OpenXR quad layers) is in Packages/manifest.json or available offline and compatible with Unity 6000.5.10f1 + URP + the Android build; use it for suitable text/UI quads only if it can be done safely without breaking pointer interaction/stereo (no new downloads without checking they resolve; keep the app buildable). If not appropriate/available, implement the best supported sharp-text alternative (TMP SDF settings, canvas scale / dynamic pixels, font sizes, contrast, mip/filtering, panel distance) for those three panels with EditMode/PlayMode tests, and document the technical reason in docs/audit/graphics_matrix.md and the verification doc (row stays headset-open; never claim legibility on device). Task 2: write tools/unity/verify_quest_config.py that reads the actual files and asserts every approved optimisation in the matrix rows, prints PASS/FAIL per item, run it, fix genuine regressions caused by later P3 changes (git diff vs pre-P3 values), add a rules.yml row. Unity only via D:/ProcSenseWork/unity.lock, one at a time, hidden, targeted filters. Update docs (matrix, verification doc, deferred-tasks, previous_prompt note).
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+## 265. 15 November 2026, 2:08 AM UTC
+_Session: final verification agent_
+
+``````text
+Final verification: sync content into StreamingAssets and confirm manifest hashes; dotnet full Core suite; python tools tests, repo_checks (EXR hygiene expected until LFS), verify_quest_config; server full suite on an own PostgreSQL 17 container (consent, LAN TLS pinning, WebSocket notices, reconnect); Unity full EditMode + PlayMode via the lock, triage, CharacterPerfCullTests, no missing references, all scenes load; only then quest_overhaul_smoke.py final to build ProcSense-demo.apk and ProcSense-diag.apk and verify them (zip, package, arm64 libs, secret scan, content, lighting, SHA-256, sizes); confirm ProjectSettings.asset has no leaked options; write results into docs/FINAL_QUEST_P3_VERIFICATION.md, deferred-tasks and this archive.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
+``````
+
+## 266. 15 November 2026, 6:56 AM UTC
+_Session: DT-307 test-isolation agent_
+
+``````text
+Owner decision (explicit authorisation, overrides the earlier block on disabling tests): permanently and cleanly resolve the 7 Unity PlayMode failures from B58VisualCapture.cs, BrightnessJumpProbe.cs and TextureCropProbe.cs. For each: decide whether it is a genuine regression test, a diagnostic/screenshot utility or obsolete (references in docs, tools, scripts, rules.yml, tests; git log); fix a regression test so it runs reliably; move a diagnostic to an explicitly invoked category ([Explicit("capture tool: needs ENV")]) consistent with OverhaulVideoCapture, with required configuration checked up front and a doc line on how to run it; delete an obsolete unreferenced one with its .meta and references; every retained probe cleans up the scenes and objects it creates; lose no product regression coverage; fix the root cause of the 6 order-dependent failures (ClinicalTextTests, ExamPresentationTests, NoRealtimeLightingTests). Then full PlayMode and EditMode via D:/ProcSenseWork/unity.lock (hidden), exact counts; run retained diagnostics with proper configuration; update rules.yml/docs/qa notes, DT-307 to Completed only if verified, this archive. No commit, push, stash, reset or clean; no AI attribution.
+(Summary of the owner's request relayed by the coordinator, not the verbatim wording. Time is when the record was written, from the system clock.)
 ``````

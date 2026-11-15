@@ -2,7 +2,7 @@
   "case": "STK-S2-C",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "5f3b0f452a832d36cc873164b8eebe595da7aa52f0587641310fbde88015cc8b",
+  "log_hash": "b21445e9253ee484932c54efdc113cdfa432ed1841a20b60101018dcecb4de4f",
   "state_hash": "7faf1cce60e82a2b43dc8bc17826aafea13d660e47ab7022272928102f0ffa30",
   "facts": {
     "identity_confirmed": true,
@@ -38,7 +38,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-low-oxygen.missed",
+      "event.e-low-oxygen.handled",
       "exam.permission_asked",
       "exam.started",
       "fasting.rsi",
@@ -55,6 +55,7 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -69,9 +70,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 10,
-    "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_low_oxygen_not_escalated"],
+    "credits": 13,
+    "minor": [],
+    "major": [],
     "critical": []
   }
 }

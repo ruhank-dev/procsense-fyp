@@ -40,6 +40,10 @@ namespace ProcSense.Core.Replay
             header.Has("level") ? (TrainingLevel)Enum.Parse(typeof(TrainingLevel), header.Str("level"), true) : TrainingLevel.Beginner,
             header.Has("variant") ? header.Str("variant") : "");
 
+        /// <summary>The score report of a script as it runs today (the credits of a case's correct run: content/scoring/correct_path_credits.json, P3-RES-10).</summary>
+        public static Scoring.ScoreReport Report(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content, SessionOptions? options = null) =>
+            Scoring.Scorer.Score(Run(scriptJson, caseId, seed, mode, content, options), content);
+
         private static Session Run(string scriptJson, string caseId, ulong seed, SessionMode mode, ContentPackage content, SessionOptions? options)
         {
             if (!content.Cases.TryGetValue(caseId, out var card)) throw new ContentException("case '" + caseId + "' is not loaded");

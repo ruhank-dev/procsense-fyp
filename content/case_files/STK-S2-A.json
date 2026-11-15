@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "APPROVED_FOR_ASSESSMENT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -625,8 +625,8 @@
   "plan": "rsi"
  },
  "approval": {
-  "by": "Owner (Abdul Moiz)",
-  "date": "2026-10-17",
-  "note": "Owner approval of the cases as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02), including the 12 Oct 2026 problem types of STK-S1-A; STK-S2-D's top priority to be settled by the clinician (DT-185); reconfirm with the named clinician before assessment use"
+  "by": "Owner (Abdul Moiz) | Examination use: owner authorisation of 7 Nov 2026 (ADR-0032 decision D1): the owner states that the clinical reviewer verified the scenario content and authorises its use in the academic examination simulation; no clinician is named and no signature is claimed",
+  "date": "2026-11-07",
+  "note": "Owner approval of the cases as re-transcribed from Part D on 17 Oct 2026 (p1-case-library-extended-s02), including the 12 Oct 2026 problem types of STK-S1-A; STK-S2-D's top priority to be settled by the clinician (DT-185); reconfirm with the named clinician before assessment use | Examination use: owner-attested under ADR-0032 D1 (recorded 14 Nov 2026); this is the owner's statement, not a new clinician review or signature"
  }
 }

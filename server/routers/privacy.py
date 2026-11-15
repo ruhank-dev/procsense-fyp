@@ -8,7 +8,7 @@ from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session as DbSession
 
 from server import privacy
-from server.auth.dependencies import CurrentUser, OrgContext, current_user, db_session, get_admin, require_org_admin, web_principal
+from server.auth.dependencies import CurrentUser, OrgContext, consent_principal, current_user, db_session, get_admin, require_org_admin, web_principal
 from server.auth.supabase_admin import DeleteUserError, SupabaseAdmin
 from server.auth.tokens import Principal
 from server.config import Settings, get_settings
@@ -20,7 +20,7 @@ log = logging.getLogger("procsense.privacy")
 
 
 def _state(db: DbSession, user: CurrentUser) -> ConsentState:
-    latest = repository.latest_consents(db, user.profile.user_id)
+    latest = repository.latest_consents(db, user.profile.user_id) if db is not None else {}   # no database (LAN demonstration without one): nothing answered
     kinds = []
     for kind, text in privacy.CONSENT_TEXTS.items():
         row = latest.get(kind)
@@ -37,9 +37,12 @@ def read_consent(user: CurrentUser = Depends(current_user), db: DbSession = Depe
 
 
 @router.post("/privacy/consent", response_model=ConsentState)
-def give_consent(body: ConsentIn, user: CurrentUser = Depends(current_user), _web: Principal = Depends(web_principal), db: DbSession = Depends(db_session)) -> ConsentState:
-    """Records an answer (every answer is kept, the latest counts). Only on the web: a headset cannot agree on someone's behalf."""
-    repository.record_consent(db, user.profile.user_id, body.kind, body.granted)
+def give_consent(body: ConsentIn, user: CurrentUser = Depends(current_user), principal: Principal = Depends(consent_principal), db: DbSession = Depends(db_session)) -> ConsentState:
+    """Records an answer (every answer is kept, the latest counts). On the web; a device-code headset cannot agree on someone's behalf. The paired LAN demonstration user answers for itself on its
+    headset (owner decision D2), recorded with via="headset"."""
+    if db is None:
+        raise HTTPException(status_code=503, detail="database_not_configured")   # an answer that cannot be kept is not given
+    repository.record_consent(db, user.profile.user_id, body.kind, body.granted, via="headset" if principal.demo_device_id else "web")
     db.commit()
     return _state(db, user)
 

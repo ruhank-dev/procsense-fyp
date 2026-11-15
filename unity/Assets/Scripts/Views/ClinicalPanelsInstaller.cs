@@ -1,3 +1,4 @@
+using ProcSense.VR.Auth;
 using ProcSense.VR.Bridge;
 using ProcSense.VR.Voice;
 using UnityEngine;
@@ -25,17 +26,56 @@ namespace ProcSense.VR.Views
         public SpokenActionRouter Router { get; private set; }
         public SpokenOrderFlow Orders { get; private set; }
         public OrderPanelView OrderPanel { get; private set; }
+        public ProcSense.VR.UI.Training.TrainingBoardView Board { get; private set; }
+        public static readonly Vector3 BoardDefault = new Vector3(1.4f, 1.45f, 1.2f);
+        private ProcSense.VR.UI.Training.TrainingGuide _guide;
+        private bool _guideFailed;
         public static readonly Vector3 OrderPanelDefault = new Vector3(-0.6f, 1.55f, 1.1f);
         public static readonly Vector3 TalkDefault = new Vector3(-0.6f, 1.2f, 1.1f);
         public static readonly Vector3 SubtitlesDefault = new Vector3(0.6f, 1.9f, 1.4f);
 
-        private void Update() => Install();
+        public HeadsetNoticeSession NoticeSession { get; private set; }
+        public NoticeChipView NoticeChip { get; private set; }
+        public static readonly Vector3 NoticeDefault = new Vector3(0f, 2.45f, 0.6f);
+        private string _noticeSession = "";
+
+        private void Update() { Install(); SyncNotices(); }
+
+        /// <summary>Starts the optional laptop notice socket for the running session (only when paired), restarts it for a new session id and stops it when the session ends. Never throws; play is identical without it.</summary>
+        public void SyncNotices()
+        {
+            try
+            {
+                if (NoticeSession == null) NoticeSession = new HeadsetNoticeSession(() => new ClientWebSocketTransport());
+                var host = SimulationHost.Instance;
+                var id = host != null && host.Session != null ? host.SessionId ?? "" : "";
+                if (id != _noticeSession)
+                {
+                    _noticeSession = id;
+                    if (id == "") NoticeSession.End();
+                    else NoticeSession.Begin(ServiceSettings.Load() != null ? ServiceSettings.Load().BaseUrl : "", id, Time.unscaledTime);
+                }
+                NoticeSession.Tick(Time.unscaledTime);
+                if (NoticeChip == null && id != "")
+                {
+                    var go = Place("Laptop notices", "NoticeChipAnchor", NoticeDefault, Quaternion.identity);
+                    NoticeChip = go.AddComponent<NoticeChipView>();
+                    NoticeChip.Session = NoticeSession;
+                    NoticeChip.Build();
+                }
+            }
+            catch (System.Exception) { }
+        }
+
+        private void OnDestroy() { try { NoticeSession?.End(); } catch (System.Exception) { } }
 
         /// <summary>Creates whatever is missing; returns true when all three panels exist.</summary>
         public bool Install()
         {
             var host = SimulationHost.Instance;
             if (host == null || host.Session == null) return false;
+            if (_boundSession != null && !ReferenceEquals(_boundSession, host.Session)) DropSessionPanels();   // a new session (the menu chose another case): its own data
+            _boundSession = host.Session;
             if (Emr == null)
             {
                 var go = Place("EMR panel", "EmrPanelAnchor", EmrDefault, Quaternion.Euler(0f, 90f, 0f));
@@ -96,7 +136,33 @@ namespace ProcSense.VR.Views
                 OrderPanel.Flow = Orders;
                 go.SetActive(true);
             }
+            if (Board == null) InstallBoard();
             return true;
+        }
+
+        /// <summary>The training board (P3-TRN-03) at TrainingBoardAnchor, or beside the bed. It hides itself in the examination. The guide is read once; if it cannot be read the board is left out (logged), play is unchanged.</summary>
+        private void InstallBoard()
+        {
+            if (_guide == null && !_guideFailed)
+            {
+                try { _guide = ProcSense.VR.UI.Training.TrainingGuide.Load(ProcSense.VR.Content.UnityContentReader.ForThisPlatform()); }
+                catch (System.Exception e) { _guideFailed = true; Debug.LogWarning("Training board left out: " + ProcSense.VR.UI.Training.TrainingGuide.File + " could not be read (" + e.Message + ")"); }
+            }
+            if (_guide == null) return;
+            var go = Place("Training board", "TrainingBoardAnchor", BoardDefault, Quaternion.Euler(0f, 30f, 0f));
+            Board = go.AddComponent<ProcSense.VR.UI.Training.TrainingBoardView>();
+            Board.Guide = _guide;
+            Board.Build();
+        }
+
+        private object _boundSession;
+
+        private void DropSessionPanels()
+        {
+            if (Emr != null) Destroy(Emr.gameObject);
+            if (Cards != null) Destroy(Cards.gameObject);
+            if (Diagnostics != null) Destroy(Diagnostics.gameObject);
+            Emr = null; Cards = null; Diagnostics = null;
         }
 
         private GameObject Place(string name, string anchorName, Vector3 fallback, Quaternion fallbackRotation)

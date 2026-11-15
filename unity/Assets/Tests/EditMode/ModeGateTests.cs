@@ -16,7 +16,7 @@ namespace ProcSense.Tests.EditMode
         private static IContentReader Real() =>
             new CompositeContentReader(new FileContentReader(Path.Combine(Repo, "content")), new FileContentReader(Path.Combine(Repo, "tests", "fixtures")));
 
-        /// <summary>The real content, with the case file raised to APPROVED_FOR_ASSESSMENT as a clinician's sign-off would do (no case is approved for assessment yet), as tests/ProcSense.Core.Tests/AssessmentModeTests.cs does.</summary>
+        /// <summary>The real content, with the case file raised to APPROVED_FOR_ASSESSMENT so the test does not depend on which cases are approved (the owner-attested approvals of ADR-0032 D1 already fill the assessment pool; the raise keeps any training-only case usable here), as tests/ProcSense.Core.Tests/AssessmentModeTests.cs does.</summary>
         private sealed class Raised : IContentReader
         {
             private readonly IContentReader _inner;
@@ -111,7 +111,7 @@ namespace ProcSense.Tests.EditMode
             var host = new GameObject("host").AddComponent<SimulationHost>();
             try
             {
-                Assert.Throws<ContentException>(() => host.StartSession("VAR-S1-A", 42, SessionMode.Assessment, Real()));        // no case is approved for assessment yet
+                Assert.Throws<ContentException>(() => host.StartSession("VAR-S1-B", 42, SessionMode.Assessment, Real()));        // VAR-S1-B is still DRAFT: not approved for assessment
                 Assert.IsFalse(ModeChoice.Locked);
             }
             finally { Object.DestroyImmediate(host.gameObject); ModeChoice.Reset(); }

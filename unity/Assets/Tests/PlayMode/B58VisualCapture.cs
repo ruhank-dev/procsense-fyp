@@ -27,11 +27,27 @@ namespace ProcSense.Tests.PlayMode
     /// B29 with B56, B15-based B63 B64 B65 with B15 or B60): the character culler and room culling legitimately change which characters have animated by the time a pose is reached.
     ///
     /// Environment: B58V_DIR (output root, default %PROCSENSE_WORK%/reports/b58_visual, else D:/ProcSenseWork/reports/b58_visual), B58V_CONFIGS (comma list of preset ids, default B20,B58; an entry like B20@r2 renders preset B20 again into the folder B20_r2, which measures the capture noise floor), B58V_POSES (optional comma list of pose ids).
-    /// Output: <root>/<preset>/<pose id>.png, <root>/poses.csv. Test filter: ProcSense.Tests.PlayMode.B58VisualCapture. Not a regression test: it asserts only that it produced pictures.
+    /// Output: <root>/<preset>/<pose id>.png, <root>/poses.csv. Test filter: ProcSense.Tests.PlayMode.B58VisualCapture. Not a regression test: it asserts only that it produced pictures, so it is [Explicit] (category Diagnostics) and a full run skips it;
+    /// it runs only when named in -testFilter. Its UnityTearDown unloads Boot and the rooms and destroys the persistent rig, host and camera so later fixtures start clean.
     /// </summary>
+    [Category("Diagnostics")]
     public sealed class B58VisualCapture
     {
         private const int W = 1440, H = 1584;
+        private int _authoredQuality = -1;
+
+        /// <summary>Leaves nothing behind for the next fixture: Boot, the rooms, the persistent rig/host/camera, the capture camera, the time scale, capture frame rate, quality level and login override.</summary>
+        [UnityTearDown]
+        public IEnumerator CleanUp()
+        {
+            if (_authoredQuality >= 0) { QualitySettings.SetQualityLevel(_authoredQuality, true); _authoredQuality = -1; }
+            QuestExterior.ResetToDefault();
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+            LogAssert.ignoreFailingMessages = false;
+            var leftover = GameObject.Find("B58Camera"); if (leftover != null) UnityEngine.Object.Destroy(leftover);
+            yield return TestHostHygiene.ResetToEmptyScene();
+            yield return EditorXRTestEnvironment.Cleanup();
+        }
 
         private readonly struct P
         {
@@ -71,7 +87,7 @@ namespace ProcSense.Tests.PlayMode
             new P("bay_reception", "bay",       V(4.5f, 1.6f, -1f),        V(4.5f, 1.4f, -9f)),
         };
 
-        [UnityTest, Timeout(3600000)]
+        [UnityTest, Explicit("capture tool: writes PNGs for tools/unity/b58_visual_report.py; run by name, see docs/qa/audit/benchmark_requests.md"), Timeout(3600000)]
         public IEnumerator Capture_b58_visual()
         {
             string work = Environment.GetEnvironmentVariable("PROCSENSE_WORK"); if (string.IsNullOrEmpty(work)) work = "D:/ProcSenseWork";
@@ -82,7 +98,7 @@ namespace ProcSense.Tests.PlayMode
             var ids = cfgs.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(s => s.Trim()).ToList();
             foreach (var id in ids) Assert.IsTrue(PerfPresets.All.Any(p => p.Id == id.Split('@')[0]), "unknown preset " + id);
 
-            int authored = QualitySettings.GetQualityLevel(); QualitySettings.SetQualityLevel(2, true);
+            int authored = QualitySettings.GetQualityLevel(); _authoredQuality = authored; QualitySettings.SetQualityLevel(2, true);
             LogAssert.ignoreFailingMessages = true;
             ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
             var poses = new List<P>(Fixed); bool peopleAdded = false;

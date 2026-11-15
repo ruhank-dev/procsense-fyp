@@ -32,12 +32,16 @@ def latest_consents(db: DbSession, user_id: uuid.UUID) -> dict[str, ConsentRecor
 
 
 def has_current(db: DbSession, user_id: uuid.UUID, kind: str) -> bool:
+    if db is None:   # no database (the LAN demonstration user without one): no stored answer, so no consent
+        return False
     row = latest_consents(db, user_id).get(kind)
     return row is not None and row.granted and row.text_version == privacy.CONSENT_VERSION
 
 
 def cloud_consent(db: DbSession, user_id: uuid.UUID) -> bool:
     """True only if the person's latest answer to the cloud AI question is yes, given to the current text. No answer, a no, a withdrawal or an older text all mean no."""
+    if db is None:   # the LAN demonstration user has no stored account, so no stored consent (the synthetic deployment declaration releases the routes)
+        return False
     return has_current(db, user_id, "cloud")
 
 

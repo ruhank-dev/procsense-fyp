@@ -17,8 +17,10 @@ from sqlalchemy.orm import Session as DbSession
 from server.auth.dependencies import CurrentUser, current_user, db_session
 from server.config import Settings, get_settings
 from server.generation import history as generation_history
+from server.lan.notices import get_hub
 from server.repositories import generation_history as history_table
 from server.repositories import sessions as repository
+from server.schemas.headset_notice import Notice
 from server.schemas.sessions import PackageOffer, PackageReply, PackageRequest
 
 router = APIRouter(tags=["scenario packages"])
@@ -76,6 +78,12 @@ def _context():
     return _CONTEXT[0]
 
 
+def _tell(body: PackageRequest, progress: float, detail: str) -> None:
+    """Tells the headset socket of this session how live generation goes (no listener, or no session id, means nobody is told; never affects the answer)."""
+    if body.session_id:
+        get_hub().publish(Notice(kind="generation_progress", session_id=body.session_id, progress=progress, detail=detail))
+
+
 @router.post("/scenario-packages/generate", response_model=PackageOffer)
 def generate_package(body: PackageRequest, user: CurrentUser = Depends(current_user), db: DbSession = Depends(db_session), settings: Settings = Depends(get_settings)) -> PackageOffer:
     """A package built on request (DT-199, p1-live-scenario-generation): the person's own history (DT-201) steers the objectives and the novelty check, the deterministic pipeline builds and gates a package, and it is stored by its hash
@@ -84,11 +92,13 @@ def generate_package(body: PackageRequest, user: CurrentUser = Depends(current_u
     if not settings.live_generation:
         raise HTTPException(status_code=503, detail={"code": "generation_off"})
     from server.generation import pipeline
+    _tell(body, 0.1, "generating")
     entries = history_table.entries(db, user.profile.user_id, user.profile.pseudonym)
     fingerprints = generation_history.recent_fingerprints(entries) + list(body.exclude_fingerprints)
     request = {"version": 1, "trainee": user.profile.pseudonym, "mode": "practice", "scenario": body.scenario, "level": body.level}
     result = pipeline.generate(request, generation_history.session_records(entries), generation_history.novelty_history(entries), _context(), recent_fingerprints=fingerprints)
     if result.package is None:
+        _tell(body, 1.0, "pool_fallback")
         raise HTTPException(status_code=404, detail={"code": "pool_fallback", "fallback": result.fallback})
     from server.generation import package as package_module
     raw = package_module.file_text(result.package).encode("utf-8")
@@ -97,6 +107,7 @@ def generate_package(body: PackageRequest, user: CurrentUser = Depends(current_u
     digest = hashlib.sha256(raw).hexdigest()
     repository.store_package(db, digest, raw)
     db.commit()
+    _tell(body, 1.0, "ready")
     return PackageOffer(package_hash=digest, scenario=body.scenario, level=body.level, case_id=result.package["case"]["id"], spine=result.package["provenance"]["spine"])
 
 

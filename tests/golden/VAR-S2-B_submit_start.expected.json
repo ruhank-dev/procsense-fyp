@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S2-B",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5c9dca4e52d100b452eb5eb4ebb2c55c58d18f1f859e986ad7fbd32bc56071bc",
+  "state_hash": "0090ecfee1d608df4a33b48d74c64c7a7d52139cf28334ae2c4d765331e34551",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["condition.pregnancy", "endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

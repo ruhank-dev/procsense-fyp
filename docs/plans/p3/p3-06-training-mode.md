@@ -32,14 +32,16 @@ Objective structure finer than the 16 goals (stages and their steps); "how to" t
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-TRN-01 | `content/ui/training_guide.json` (sections, order, how-to per input mode, explanation, source ids) and its validator in CI | Ruhan | — | Every goal, stage and ward item of S1 and S2 covered; validator green | Planned |
-| P3-TRN-02 | Core: publish goals that became inactive (not needed) with the reason id, and the goal's stage, in practice mode only | Ruhan | — | xUnit: a non-diabetic case lists the glucose step as not needed | Planned |
-| P3-TRN-03 | Bulletin board view: current objective, sections with steps (done, open, not needed, missed), how-to expander for the selected step in the active input mode | Moiz | P3-TRN-01, P3-UIX-05 | Board renders S1 and S2 from data only | Planned |
+| P3-TRN-01 | `content/ui/training_guide.json` (sections, order, how-to per input mode, explanation, source ids) and its validator in CI | Ruhan | — | Every goal, stage and ward item of S1 and S2 covered; validator green | Done |
+| P3-TRN-02 | Core: publish goals that became inactive (not needed) with the reason id, and the goal's stage, in practice mode only | Ruhan | — | xUnit: a non-diabetic case lists the glucose step as not needed | Done |
+| P3-TRN-03 | Bulletin board view: current objective, sections with steps (done, open, not needed, missed), how-to expander for the selected step in the active input mode | Moiz | P3-TRN-01, P3-UIX-05 | Board renders S1 and S2 from data only | In progress |
 | P3-TRN-04 | Summon: upper-right peripheral icon (head-locked at 35° right, 20° up, small) and left-wrist button; board opens world-locked 0.8 m ahead, closes with the same control | Moiz | P3-TRN-03 | Comfort review: no permanent overlay in the centre of view | Planned |
 | P3-TRN-05 | Completion feedback: tick animation, chime, toast when the board is closed, driven by `SimFeedback` goal events | Moiz | P3-SES-10, P3-SND-05, P3-UIX-07 | One tick per engine completion, never more | Planned |
 | P3-TRN-06 | Training hints: board "hint" button and voice "hint" use the hint request (free in practice); wrong attempts show the refusal reason and the how-to | Moiz | P3-EXM-01 | Hint never applies an action (test) | Planned |
 | P3-TRN-07 | Retry comparison: after a retry, results show this attempt beside the previous one (time, missed steps, verdict) | Moiz | P3-RES-06 | Comparison uses saved summaries only | Planned |
 | P3-TRN-08 | Tests: board from data, conditional steps, tick-once, hint-no-action, mode gate (board absent in the examination) | Moiz | P3-TRN-05, P3-TRN-06 | Green in CI | Planned |
+
+Progress 14 November 2026 (UTC): P3-TRN-02 is in Core (`src/ProcSense.Core/Observation/Availability.cs`: `ObservableState.Inactive` lists goals and ward lines that are not needed with the reason id and step; `Unavailable` lists active blockers; `GoalStatus.Waiting` names open prerequisites; practice mode only; xUnit `AvailabilityTests`). P3-TRN-03: `unity/Assets/Scripts/UI/Training/` (guide reader, board model, board view) placed by `ClinicalPanelsInstaller`, hidden in the examination (EditMode `TrainingBoardTests`); the summon icon (TRN-04), tick animation and chime (TRN-05) and the headset review remain.
 
 ## 7. Dependencies and execution order
 

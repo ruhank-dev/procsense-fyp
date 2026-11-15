@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P1",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "APPROVED_FOR_ASSESSMENT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -523,8 +523,8 @@
   "plan": "rsi"
  },
  "approval": {
-  "by": "Owner (Ruhan Kamran), one-time authorization of 24 Oct 2026; recorded by the engineer",
-  "date": "2026-10-24",
-  "note": "Re-recorded after the venous pCO2 result of Part D section 12 was added (DT-186). The value is the book's; the reference range is from SR-4133; no clinician reviewed the addition; the earlier owner-attested approval is unchanged"
+  "by": "Owner (Ruhan Kamran), one-time authorization of 24 Oct 2026; recorded by the engineer | Examination use: owner authorisation of 7 Nov 2026 (ADR-0032 decision D1): the owner states that the clinical reviewer verified the scenario content and authorises its use in the academic examination simulation; no clinician is named and no signature is claimed",
+  "date": "2026-11-07",
+  "note": "Re-recorded after the venous pCO2 result of Part D section 12 was added (DT-186). The value is the book's; the reference range is from SR-4133; no clinician reviewed the addition; the earlier owner-attested approval is unchanged | Examination use: owner-attested under ADR-0032 D1 (recorded 14 Nov 2026); this is the owner's statement, not a new clinician review or signature"
  }
 }

@@ -41,10 +41,32 @@ namespace ProcSense.Core.Tests
         }
 
         [Fact]
+        public void The_shipped_playable_cases_are_owner_attested_for_assessment_and_the_drafts_are_not()
+        {
+            var files = System.IO.Directory.GetFiles(System.IO.Path.Combine(TestCase.ContentRoot, "case_files"), "*.json").Select(p => File_(System.IO.Path.GetFileNameWithoutExtension(p)!)).ToList();
+            Assert.Equal(63, files.Count(f => f.Status == "APPROVED_FOR_ASSESSMENT"));
+            Assert.All(files.Where(f => f.Status == "APPROVED_FOR_ASSESSMENT"), f =>
+            {
+                Assert.Contains("ADR-0032", f.Approval!.By);
+                Assert.Contains("Owner", f.Approval.By);
+                Assert.Contains("no clinician is named and no signature is claimed", f.Approval.By);
+            });
+            Assert.Equal(new[] { "SC-4", "VAR-S1-B" }, files.Where(f => f.Status == "DRAFT").Select(f => f.Id).OrderBy(x => x, System.StringComparer.Ordinal).ToArray());
+        }
+
+        [Fact]
+        public void A_non_P0_case_approved_for_assessment_needs_the_recorded_owner_attestation()
+        {
+            string text = System.IO.File.ReadAllText(System.IO.Path.Combine(TestCase.ContentRoot, "case_files", "SC-1.json"));
+            Assert.NotNull(CaseFileLoader.Load(text, "SC-1"));                                                                       // the approval cites ADR-0032: accepted
+            string stripped = text.Replace("ADR-0032", "ADR-xxxx");
+            Assert.Contains("owner attestation citing ADR-0032", Assert.Throws<ContentException>(() => CaseFileLoader.Load(stripped, "SC-1")).Message);
+        }
+
+        [Fact]
         public void A_training_case_plays_in_practice_but_not_assessment()
         {
-            var f = File_("VAR-S1-A");
-            Assert.Equal("APPROVED_FOR_TRAINING", f.Status);
+            var f = File_("VAR-S1-A") with { Status = "APPROVED_FOR_TRAINING" };   // the shipped case is approved for assessment (P3-SCN-07), so it is lowered here
             ContentGate.Require(f, SessionMode.Practice);
             Assert.Throws<ContentException>(() => ContentGate.Require(f, SessionMode.Assessment));
         }

@@ -235,6 +235,12 @@
    "behaviour": "b06",
    "type": "COMMUNICATION",
    "teaching": false
+  },
+  {
+   "match": "^hint_used$",
+   "behaviour": "b16",
+   "type": "APPROPRIATENESS",
+   "teaching": false
   }
  ],
  "weights": {

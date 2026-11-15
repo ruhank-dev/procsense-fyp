@@ -1,0 +1,21 @@
+{
+ "name": "voice_turn_dialogue_team",
+ "route": "POST /dialogue/organisations/{id}/team",
+ "schema": "TeamIn",
+ "valid": true,
+ "body": {
+  "context": {
+   "case": "VAR-S1-A",
+   "facts": [],
+   "last_turns": []
+  },
+  "question": "Nurse, has he eaten today?",
+  "staff_roles": [
+   "nurse"
+  ],
+  "addressee": "nurse",
+  "interaction_mode": "voice",
+  "session_mode": "assessment",
+  "request_id": "a1b2c3d4"
+ }
+}

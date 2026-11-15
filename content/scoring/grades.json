@@ -1,0 +1,8 @@
+{
+ "schema": "procsense.grades/1",
+ "note": "Owner decision D4 (7 November 2026): letter grade from the 0-100 score; a critical safety failure decides the verdict whatever the number. Configurable data, read by ProcSense.Core.Flow.GradeTable; hint_limit is how many hints a session gives (P3-EXM-01). Thresholds checked by tools/content/validate_grades.py (P3-RES-10).",
+ "bands": { "A": 90, "B": 80, "C": 70, "D": 60 },
+ "pass_mark": 60,
+ "hint_penalty": 5,
+ "hint_limit": 3
+}

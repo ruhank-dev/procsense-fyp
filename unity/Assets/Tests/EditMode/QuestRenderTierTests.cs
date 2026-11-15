@@ -59,8 +59,10 @@ namespace ProcSense.Tests.EditMode
         {
             var a = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Android);
             var d = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Desktop);
-            Assert.AreEqual((d.msaaSampleCount, d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution, d.maxAdditionalLightsCount),
-                (a.msaaSampleCount, a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution, a.maxAdditionalLightsCount));
+            // The settings that must still match the desktop asset; the Android asset intentionally differs in MSAA (1x, aggressive Quest profile 14 Nov 2026) and the per-object light limit (2, owner-approved B58 lighting 10 Nov 2026).
+            Assert.AreEqual((d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution),
+                (a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution));
+            Assert.AreEqual((1, 2), (a.msaaSampleCount, a.maxAdditionalLightsCount), "the Quest profile: MSAA off, two additional lights per object");
         }
 
         [TestCase("Assets/Shaders/SunShaft.shader")]
@@ -88,8 +90,8 @@ namespace ProcSense.Tests.EditMode
             Assert.IsNotNull(feature);
             Assert.IsTrue(feature.enabled, "the OpenXR Foveated Rendering feature is on for Android");
             Assert.IsFalse(new SerializedObject(feature).FindProperty("useEyeTracking").boolValue, "Quest 2 has no eye tracking: no permission request");
-            Assert.AreEqual(0f, QuestRenderTier.DefaultFoveation, "production foveation stays off until measured and approved");
-            Assert.AreEqual(1f, QuestRenderTier.DefaultEyeScale);
+            Assert.AreEqual(1f, QuestRenderTier.DefaultFoveation, "production foveation is High since the aggressive Quest profile (14 Nov 2026)");
+            Assert.AreEqual(0.9f, QuestRenderTier.DefaultEyeScale);
             Assert.AreEqual((0f, 1f, 0.7f, 1.3f), (QuestRenderTier.ClampFoveation(-1f), QuestRenderTier.ClampFoveation(3f), QuestRenderTier.ClampEyeScale(0.1f), QuestRenderTier.ClampEyeScale(5f)));
         }
 
@@ -118,5 +120,23 @@ namespace ProcSense.Tests.EditMode
             Assert.IsFalse(all[0].ChangesLook || all[0].LegacyRenderer, "B0 is the production default");
             Assert.IsTrue(all.Single(p => p.Id == "B1").LegacyRenderer && all.Single(p => p.Id == "B1").ShaftsOff, "B1 reproduces the 7 Nov rendering");
         }
-    }
+    
+        [Test]
+        public void The_aggressive_quest_profile_is_authored_in_the_android_assets()
+        {
+            var urp = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset>("Assets/Settings/URP_Quest_Android.asset");
+            Assert.IsNotNull(urp);
+            Assert.AreEqual(1, urp.msaaSampleCount, "MSAA off on the Quest (14 Nov 2026: the GPU is the bottleneck)");
+            Assert.IsFalse(urp.supportsCameraDepthTexture); Assert.IsFalse(urp.supportsCameraOpaqueTexture); Assert.IsFalse(urp.supportsHDR);
+            var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
+            var fov = new SerializedObject(settings.GetFeature<FoveatedRenderingFeature>());
+            Assert.IsTrue(fov.FindProperty("enableSubsampledLayout").boolValue, "subsampled layout (Vulkan) with foveation");
+            SerializedObject meta = null;
+            foreach (var f in settings.GetFeatures<OpenXRFeature>()) if (f.GetType().Name == "MetaQuestFeature") meta = new SerializedObject(f);
+            Assert.IsNotNull(meta);
+            Assert.IsTrue(meta.FindProperty("m_symmetricProjection").boolValue, "symmetric projection on");
+            Assert.AreEqual(1, meta.FindProperty("m_multiviewRenderRegionsOptimizationMode").intValue, "multiview render regions: final pass");
+            Assert.IsTrue(meta.FindProperty("m_optimizeBufferDiscards").boolValue, "optimize buffer discards stays on");
+        }
+}
 }

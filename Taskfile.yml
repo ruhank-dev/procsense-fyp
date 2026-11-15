@@ -260,6 +260,21 @@ tasks:
     cmds:
       - uv run --project server uvicorn server.main:app --port 8000
 
+  demo-laptop:
+    desc: Networked Quest demonstration (P3-NET-04) - checks the laptop (Ollama, cloud key, ffmpeg, a LAN address), then runs the server on the LAN with pairing on and prints the six-digit code and the address (add -- --tls for HTTPS with a self-signed certificate and its fingerprint)
+    cmds:
+      - uv run --project server tools/setup/demo_laptop.py run {{.CLI_ARGS}}
+
+  demo-laptop-check:
+    desc: The laptop checklist of the networked Quest demonstration (P3-NET-16), nothing is started
+    cmds:
+      - uv run --project server tools/setup/demo_laptop.py check
+
+  demo-degraded-check:
+    desc: The degraded demonstration profile (P3-VOX-11) - with no model host reachable the voice routes answer with their local fallbacks and the headset plays in menu mode without the laptop (add -- --live to also report this laptop's cloud and server)
+    cmds:
+      - uv run --project server tools/setup/demo_degraded_check.py {{.CLI_ARGS}}
+
   demo-orders-check:
     desc: Check with the real Gemma 4 31B Cloud that the demonstration profile routes spoken orders to it, and that consent, an outage and a timeout fall back to the grammar (writes reports/ai/demo-orders-routing.json; needs the signed-in Ollama)
     cmds:
@@ -352,6 +367,7 @@ tasks:
       - uv run --project tools tools/voice/catalogue.py
       - uv run --project tools tools/content/variant_facts.py
       - uv run --project tools tools/content/stacked_partd.py
+      - uv run --project tools tools/content/case_catalogue.py
       - uv run --project tools tools/content/content_manifest.py
       - uv run --project tools tools/content/review_pack.py
 

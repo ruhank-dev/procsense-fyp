@@ -120,18 +120,47 @@ def spoken_orders_status() -> dict:
     return {"preferred": preferred, "active": who, "grammar_fallback_reason": why, "profile": "synthetic_demonstration" if synthetic_deployment() else "standard"}
 
 
-# The free plan allows one cloud request at a time. A task takes the slot without waiting longer than a moment (a live task must not queue behind another: it answers on the local model instead); an offline task may wait.
-_CLOUD_SLOT = threading.Semaphore(1)
+# Cloud requests in flight at once (P3-NET-13): `cloud_concurrency` in the settings, 1 by default because the Free plan the project uses allows one (ADR-0026); a Pro or pay-as-you-go key allows 3 (research R-063)
+# and the operator sets CLOUD_CONCURRENCY=3. A task takes a slot without waiting longer than a moment (a live task must not queue behind another: it answers on the local model instead); an offline task may wait.
+_CLOUD_SLOT: threading.Semaphore | None = None
+_CLOUD_SLOT_LOCK = threading.Lock()
 LIVE_WAIT_SECONDS = 0.25
 BATCH_WAIT_SECONDS = 120.0
 
 
+def cloud_concurrency() -> int:
+    """Read once, when the slot is made. A fresh Settings, not the cached one: building the shared cache here could freeze whatever switches a caller has set for the moment."""
+    try:
+        try:
+            from ..config import Settings
+        except ImportError:
+            from config import Settings
+        return max(1, int(Settings().cloud_concurrency))
+    except Exception:                                          # no settings (a tool without the service's environment): the safe Free-plan value
+        return 1
+
+
+def _cloud_slot() -> threading.Semaphore:
+    global _CLOUD_SLOT
+    with _CLOUD_SLOT_LOCK:
+        if _CLOUD_SLOT is None:
+            _CLOUD_SLOT = threading.Semaphore(cloud_concurrency())
+        return _CLOUD_SLOT
+
+
+def reset_cloud_slot() -> None:
+    """Forget the slot so the next request sizes it from the settings again (tests, a settings reload)."""
+    global _CLOUD_SLOT
+    with _CLOUD_SLOT_LOCK:
+        _CLOUD_SLOT = None
+
+
 def acquire_cloud(role: str) -> bool:
-    return _CLOUD_SLOT.acquire(timeout=LIVE_WAIT_SECONDS if role == "live" else BATCH_WAIT_SECONDS)
+    return _cloud_slot().acquire(timeout=LIVE_WAIT_SECONDS if role == "live" else BATCH_WAIT_SECONDS)
 
 
 def release_cloud() -> None:
-    _CLOUD_SLOT.release()
+    _cloud_slot().release()
 
 
 def cloud_timeout(role: str) -> float:

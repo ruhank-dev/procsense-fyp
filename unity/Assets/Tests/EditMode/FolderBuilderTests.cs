@@ -75,7 +75,7 @@ namespace ProcSense.Tests.EditMode
             Assert.AreEqual(.4f, generated.GetComponent<Rigidbody>().mass);
             var box = generated.GetComponent<BoxCollider>(); var originalBox = authored.GetComponent<BoxCollider>();
             Assert.AreEqual(originalBox.center, box.center); Assert.AreEqual(originalBox.size, box.size);
-            Assert.IsTrue(generated.GetComponentsInChildren<MeshRenderer>().SelectMany(r => r.sharedMaterials).All(m => m != null && m.shader.name == "Universal Render Pipeline/Lit"));
+            Assert.IsTrue(generated.GetComponentsInChildren<MeshRenderer>().SelectMany(r => r.sharedMaterials).All(m => m != null && (m.shader.name == "Universal Render Pipeline/Lit" || m.shader.name == "Universal Render Pipeline/Simple Lit")));
             Assert.AreEqual(guid, AssetDatabase.AssetPathToGUID(Authored));
             CollectionAssert.AreEqual(bytes, File.ReadAllBytes(Authored));
             CollectionAssert.AreEqual(meta, File.ReadAllBytes(Authored + ".meta"));

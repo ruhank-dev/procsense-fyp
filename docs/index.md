@@ -61,6 +61,10 @@ _Last reviewed 12 October 2026 (UTC). Hand-written; `tools/plans/check_planning_
 | [collaborator_setup_message.md](collaborator_setup_message.md) | The WhatsApp message for Sannan and Moiz with the exact steps | Nothing (convenience copy of the guide) |
 | [TEAM_GIT_WORKFLOW.md](TEAM_GIT_WORKFLOW.md) | Branch, merge, `task ci`, direct push to `main` | Team git practice |
 | [previous_prompt.md](previous_prompt.md) | Owner prompt history | What was asked, when |
+| [agent_context/](agent_context/shared.md) | Shared agent context and agent registry | Short state, rules and the dynamic agent policy for parallel work |
+| [FINAL_QUEST_P3_VERIFICATION.md](FINAL_QUEST_P3_VERIFICATION.md) | Final Quest and P3 verification report | Audit findings, fixes, evidence level, remaining headset tests |
+| [audit/](audit/graphics_matrix.md) | Quest graphics and P3 verification matrices | Evidence per requirement (feeds FINAL_QUEST_P3_VERIFICATION.md); P3 matrix refreshed 15 Nov (P3-QA-01) |
+| [plans/p3/interaction-matrix.md](plans/p3/interaction-matrix.md) | Interaction coverage matrix per verb (generated, P3-INT-01) | `tools/plans/interaction_matrix.py --check`; catalogue `content/ui/interactions.json` (P3-CTX-01) |
 | [team/](team/) | Ready-to-send messages for teammates | Nothing (convenience copies) |
 | [setup/](setup/quest_laptop_cloud_demo.md) | Setup guide for the network-connected demonstration: standalone Quest 2 APK, laptop running the ProcSense server, Ollama Cloud (credentials, firewall, LAN address, USB fallback, failures) | How a teammate goes from a fresh clone to a voice reply on the headset (target procedure of p3-18; steps marked where they still need a task) |
 

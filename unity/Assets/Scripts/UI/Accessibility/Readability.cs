@@ -24,6 +24,21 @@ namespace ProcSense.VR.UI.Accessibility
             return Mathf.Atan2(metres, Mathf.Max(.05f, distance)) * Mathf.Rad2Deg * PixelsPerDegree;
         }
 
+        /// <summary>Quest 2 native eye buffer width per eye at render scale 1.0 (QuestPerformanceProfile) and an ASSUMED horizontal field of view per eye. Both are estimates for the
+        /// report below; the real values are logged on the headset in DC-13 (XRSettings.eyeTextureWidth, camera field of view).</summary>
+        public const float Quest2EyeWidth = 1440f, Quest2AssumedHorizontalFov = 90f;
+
+        /// <summary>Estimated eye-buffer pixels per degree at the centre of the view for a render scale (planar projection: half the width over tan of half the field of view).</summary>
+        public static float Quest2EyeBufferPixelsPerDegree(float renderScale) =>
+            Quest2EyeWidth * renderScale * .5f / Mathf.Tan(Quest2AssumedHorizontalFov * .5f * Mathf.Deg2Rad) * Mathf.Deg2Rad;
+
+        /// <summary>The em height of a label in estimated Quest 2 eye-buffer pixels at a distance and render scale (an estimate, not a legibility claim).</summary>
+        public static float Quest2EyeBufferPixels(TMP_Text label, float distance, float renderScale)
+        {
+            float metres = label.fontSize * Mathf.Abs(label.transform.lossyScale.y);
+            return Mathf.Atan2(metres, Mathf.Max(.05f, distance)) * Mathf.Rad2Deg * Quest2EyeBufferPixelsPerDegree(renderScale);
+        }
+
         /// <summary>The WCAG 2 contrast ratio of two opaque colours (1 to 21).</summary>
         public static float Contrast(Color a, Color b)
         {

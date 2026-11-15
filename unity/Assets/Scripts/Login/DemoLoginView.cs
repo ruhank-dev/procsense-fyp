@@ -111,11 +111,20 @@ namespace ProcSense.VR.Login
                     status.text = DemoLoginSettings.OfflineDemoAllowed ? "Incorrect email or password. Use the demo account shown below." : "Sign in with your ProcSense account.";
                     return;
                 }
+                if (PairedDemoSignIn.Applies(address)) { StartCoroutine(SignInPaired()); return; }   // networked demonstration: the laptop gives the demonstration identity
                 AuthService.Current?.SignOut();
                 Finish();
                 return;
             }
             StartCoroutine(SignInOnline(address, password.text));
+        }
+
+        private IEnumerator SignInPaired()
+        {
+            _busy = true;
+            submit.interactable = false;
+            yield return PairedDemoSignIn.Run(AuthService.Factory, DemoLoginSettings.OfflineDemoAllowed, m => status.text = m, () => { _busy = false; Finish(); });
+            if (!Completed) { _busy = false; submit.interactable = true; }
         }
 
         // A real account: the service and the account system decide (p1-backend-s10). The password is passed on once and never stored, shown or logged.
@@ -146,6 +155,7 @@ namespace ProcSense.VR.Login
             status.color = new Color(.10f, .49f, .45f);
             status.text = "Opening your workspace...";
             SessionUploader.Instance?.Kick();   // sessions saved earlier by this person can go now
+            ProcSense.VR.Flow.MenuFlow.Current?.SignedIn();   // the game flow moves on to the main menu (P3-02)
         }
 
         public void TogglePassword()

@@ -24,11 +24,27 @@ namespace ProcSense.Tests.PlayMode
     ///
     /// Environment: TEXPROBE_DIR (output folder), TEXPROBE_TAG (state name), TEXPROBE_SELECT=1 (derive and write the poses; otherwise poses.json must already exist).
     /// Output per state: one PNG per accepted surface, formats.csv (the format and size Unity loaded for each texture), mem.txt. Test filter: ProcSense.Tests.PlayMode.TextureCropProbe.
-    /// Not a regression test: it asserts only that it produced pictures.
+    /// Not a regression test: it asserts only that it produced pictures, so it is [Explicit] (category Diagnostics) and a full run skips it; it runs only when named in -testFilter.
+    /// Its UnityTearDown unloads Boot and the rooms and destroys the persistent rig, host and camera so later fixtures start clean.
     /// </summary>
+    [Category("Diagnostics")]
     public sealed class TextureCropProbe
     {
         private const int W = 1832, H = 1920;
+        private int _authoredQuality = -1;
+
+        /// <summary>Leaves nothing behind for the next fixture: restores any swapped property block, the quality level and login override, then unloads Boot and the rooms and destroys the persistent rig, host and camera.</summary>
+        [UnityTearDown]
+        public IEnumerator CleanUp()
+        {
+            SwapTexture(null, null, null);
+            if (_authoredQuality >= 0) { QualitySettings.SetQualityLevel(_authoredQuality, true); _authoredQuality = -1; }
+            ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = null;
+            LogAssert.ignoreFailingMessages = false;
+            var leftover = GameObject.Find("TexProbeCamera"); if (leftover != null) UnityEngine.Object.Destroy(leftover);
+            yield return TestHostHygiene.ResetToEmptyScene();
+            yield return EditorXRTestEnvironment.Cleanup();
+        }
         private const float EdgeMinDefault = 4f, EdgeMinDarkScreen = 2f;
 
         // Textures that carry small print (checked against the source PNGs). Excluded: poster_07 and print_1..3 (a headline and artwork only) and the wall clock.
@@ -42,10 +58,11 @@ namespace ProcSense.Tests.PlayMode
         [Serializable] private sealed class PoseRow { public string target; public string renderer; public bool valid; public string note; public Vector3 position; public Quaternion rotation; public float x0, y0, x1, y1, edge, edge_min; }
         [Serializable] private sealed class PoseFile { public List<PoseRow> poses = new List<PoseRow>(); }
 
-        [UnityTest, Timeout(1800000)]
+        [UnityTest, Explicit("capture tool: needs TEXPROBE_DIR; run by tools/unity/texture_probe.ps1 or by name"), Timeout(1800000)]
         public IEnumerator Capture_text_crops()
         {
-            string dir = Environment.GetEnvironmentVariable("TEXPROBE_DIR"); Assert.IsFalse(string.IsNullOrEmpty(dir), "set TEXPROBE_DIR");
+            string dir = Environment.GetEnvironmentVariable("TEXPROBE_DIR");
+            if (string.IsNullOrEmpty(dir)) Assert.Fail("TextureCropProbe needs TEXPROBE_DIR (output folder, e.g. D:/ProcSenseWork/reports/texprobe) and, for the first state, TEXPROBE_SELECT=1; run tools/unity/texture_probe.ps1");
             string tag = Environment.GetEnvironmentVariable("TEXPROBE_TAG") ?? "state";
             bool select = Environment.GetEnvironmentVariable("TEXPROBE_SELECT") == "1";
             string outDir = Path.Combine(dir, tag); Directory.CreateDirectory(outDir);
@@ -53,7 +70,7 @@ namespace ProcSense.Tests.PlayMode
             PoseFile poses = new PoseFile();
             if (!select) { Assert.IsTrue(File.Exists(posesPath), "poses.json missing: run state U with TEXPROBE_SELECT=1 first"); poses = JsonUtility.FromJson<PoseFile>(File.ReadAllText(posesPath)); }
 
-            int authored = QualitySettings.GetQualityLevel(); QualitySettings.SetQualityLevel(2, true);
+            int authored = QualitySettings.GetQualityLevel(); _authoredQuality = authored; QualitySettings.SetQualityLevel(2, true);
             LogAssert.ignoreFailingMessages = true;
             ProcSense.VR.Login.DemoLoginSettings.LoginRequiredOverride = false;
             yield return SceneManager.LoadSceneAsync("Boot");
@@ -158,7 +175,7 @@ namespace ProcSense.Tests.PlayMode
             }
             File.WriteAllText(Path.Combine(outDir, "formats.csv"), fmt.ToString());
             File.WriteAllText(Path.Combine(outDir, "mem.txt"), "tag=" + tag + "\ncurrentTextureMemory_bytes=" + Texture.currentTextureMemory + "\ntotalTextureMemory_bytes=" + Texture.totalTextureMemory + "\ndesiredTextureMemory_bytes=" + Texture.desiredTextureMemory + "\n");
-            cam.targetTexture = null; rt.Release(); UnityEngine.Object.Destroy(go); QualitySettings.SetQualityLevel(authored, true);
+            cam.targetTexture = null; rt.Release(); UnityEngine.Object.Destroy(go); _authoredQuality = -1; QualitySettings.SetQualityLevel(authored, true);
             Assert.Greater(shots, 0, "no picture was produced (no surface with readable text in the poses)");
         }
 

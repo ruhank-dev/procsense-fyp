@@ -137,7 +137,7 @@ namespace ProcSense.Core.Tests
         [Fact]
         public void A_training_only_case_is_not_verified_as_an_assessment()
         {
-            var r = Verify(Saved(mode: SessionMode.Assessment));
+            var r = Verify(Saved(mode: SessionMode.Assessment), reader: new TrainingOnlyReader(Reader(), "VAR-S1-A"));   // every playable case is approved for assessment now; this one is lowered in memory
             Assert.Equal(VerifyReason.CaseNotAllowedForMode, r.Reason);
             Assert.Contains("APPROVED_FOR_ASSESSMENT", r.Detail);
         }

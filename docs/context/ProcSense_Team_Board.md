@@ -207,6 +207,8 @@ P1: remaining 10 variants + 6 stacked cases · P2: SC-1..SC-20
 
 ## 📆 W7 9–15 Nov
 
+> 📌 **14 Nov 2026 (UTC): training board.** Core lists goals and checklist lines that are not needed (with the reason) and the blockers stopping an action, in training only (DT-298). The Unity training board (P3-TRN-03) shows objective, progress, steps, how-to (menu or voice) and feedback, and is hidden in the examination. **Moiz:** summon icon (P3-TRN-04) and tick/chime (P3-TRN-05) on top of `Scripts/UI/Training/TrainingBoardView.cs`. **Sannan:** headset readability of the board (it stands beside the bed, anchor `TrainingBoardAnchor`).
+
 > 🚩 CRG-3 Wed 11 Nov: what-ifs, stacked cases, S2 P0 · GATE 5 Fri 13 Nov: all S1 P0 cases
 
 **🟢 Ruhan**

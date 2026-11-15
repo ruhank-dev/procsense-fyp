@@ -46,6 +46,29 @@ namespace ProcSense.Tests.PlayMode
             }
         }
 
+        /// <summary>
+        /// Full reset for fixtures that load Boot or a room (and for fixtures that must not see one): destroys the persistent rig, camera, host and event system, makes a fresh empty scene active and
+        /// unloads every other loaded scene (Boot, Sys_Core, the rooms, DevOnly), so the next fixture's FindObjectsByType sees no canvas, board, light or host left behind. The test runner's own
+        /// scene (InitTestScene*) is kept. Also restores the time and quality settings the capture tools change.
+        /// </summary>
+        public static System.Collections.IEnumerator ResetToEmptyScene()
+        {
+            UnityEngine.Time.timeScale = 1f; UnityEngine.Time.captureFramerate = 0; UnityEngine.Time.captureDeltaTime = 0f;
+            DestroyRoomLeftovers();
+            var empty = UnityEngine.SceneManagement.SceneManager.CreateScene("test clean " + System.Guid.NewGuid().ToString("N").Substring(0, 8));
+            UnityEngine.SceneManagement.SceneManager.SetActiveScene(empty);
+            var unload = new System.Collections.Generic.List<UnityEngine.SceneManagement.Scene>();
+            for (int i = 0; i < UnityEngine.SceneManagement.SceneManager.sceneCount; i++)
+            {
+                var s = UnityEngine.SceneManagement.SceneManager.GetSceneAt(i);
+                if (s == empty || !s.isLoaded || s.name.StartsWith("InitTestScene")) continue;
+                unload.Add(s);
+            }
+            foreach (var s in unload) { var op = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(s); if (op != null) yield return op; }
+            DestroyRoomLeftovers();                                                                          // anything an unloading scene moved to DontDestroyOnLoad on its way out
+            yield return null;
+        }
+
         public static void DestroyRoomLeftovers()
         {
             DestroyLeftoverHost();

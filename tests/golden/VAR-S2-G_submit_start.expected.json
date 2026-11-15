@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S2-G",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5c9dca4e52d100b452eb5eb4ebb2c55c58d18f1f859e986ad7fbd32bc56071bc",
+  "state_hash": "ef560c701d88a1305cb63214263cd13c45efd51787075f9e5f68989cf6edb188",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["condition.dehydration", "condition.kidney_injury", "endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

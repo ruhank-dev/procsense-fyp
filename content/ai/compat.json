@@ -1,0 +1,6 @@
+{
+  "api_version": 1,
+  "engine_versions": ["0.0.17", "0.0.18", "0.0.19"],
+  "content_versions": [],
+  "note": "Engine versions the laptop server accepts from a headset (CoreInfo.Version). Empty content_versions accepts any content version. A test fails when CoreInfo.Version is not listed, so raising the engine version forces this table to be updated (P3-NET-10)."
+}

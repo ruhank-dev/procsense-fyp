@@ -48,6 +48,9 @@ namespace ProcSense.EditorTools
             Variants.FirstOrDefault(v => string.Equals(v.Name, name, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentException("unknown build variant '" + name + "' (dev, demo, study, diag or diag-gpuskin)");
 
         /// <summary>The defines a variant builds with: the project's own, without any other variant's, plus its own.</summary>
+        /// <summary>Whether the player may use plain http: the study build never; a development build in development only; demo and diagnostic builds always (the app itself still only accepts private LAN addresses, ServiceSettings.IsAcceptable).</summary>
+        public static InsecureHttpOption HttpPolicyFor(BuildVariantSpec v) => v.Name == "study" ? InsecureHttpOption.NotAllowed : v.Name == "dev" ? InsecureHttpOption.DevelopmentOnly : InsecureHttpOption.AlwaysAllowed;
+
         public static string[] DefinesFor(BuildVariantSpec v, string[] current) => current.Where(d => !AllDefines.Contains(d)).Concat(new[] { v.Define }).Concat(v.Extra).Distinct().ToArray();
 
         [MenuItem("ProcSense/Build/Dev")] private static void MenuDev() => Build(Variant("dev"), false);
@@ -109,9 +112,11 @@ namespace ProcSense.EditorTools
             var before = PlayerSettings.GetScriptingDefineSymbols(target);
             var skinningBefore = PlayerSettings.meshDeformation;
             bool timingBefore = PlayerSettings.enableFrameTimingStats;
+            var httpBefore = PlayerSettings.insecureHttpOption;
             try
             {
                 PlayerSettings.SetScriptingDefineSymbols(target, string.Join(";", DefinesFor(v, before.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))));
+                PlayerSettings.insecureHttpOption = HttpPolicyFor(v);        // P3-NET-02: plain http to a LAN laptop in dev, demo and diagnostic builds; the study build stays https only
                 if (v.Diagnostic) PlayerSettings.enableFrameTimingStats = true;
                 if (v.GpuSkinning) PlayerSettings.meshDeformation = MeshDeformation.GPU;
                 var options = new BuildPlayerOptions
@@ -134,6 +139,7 @@ namespace ProcSense.EditorTools
                 PlayerSettings.SetScriptingDefineSymbols(target, before);
                 PlayerSettings.meshDeformation = skinningBefore;          // a diagnostic build never leaves the project changed
                 PlayerSettings.enableFrameTimingStats = timingBefore;
+                PlayerSettings.insecureHttpOption = httpBefore;
             }
         }
 

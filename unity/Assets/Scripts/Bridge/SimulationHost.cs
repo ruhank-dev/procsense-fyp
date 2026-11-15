@@ -79,6 +79,9 @@ namespace ProcSense.VR.Bridge
         /// <summary>Test seam: replaces the default subsystem chain (used to prove a Core exception pauses the session).</summary>
         public Func<ContentPackage, IEnumerable<ProcSense.Core.Pipeline.ISubsystem>> SubsystemFactory { get; set; }
 
+        /// <summary>When true (the default, and always in the Editor and tests) a host with a SessionConfig starts that case at once. The shipped player turns it off (BootLoader) so the game flow's menu chooses and starts the session.</summary>
+        public static bool AutoStartFromConfig = true;
+
         private void Awake()
         {
             if (Instance != null && Instance != this)
@@ -89,7 +92,7 @@ namespace ProcSense.VR.Bridge
                 return;
             }
             Instance = this;
-            if (config != null && Session == null) StartSession(config.caseId, (ulong)config.seed, ModeChoice.For(config.mode));
+            if (config != null && Session == null && AutoStartFromConfig) StartSession(config.caseId, (ulong)config.seed, ModeChoice.For(config.mode));
         }
 
         private void OnDestroy()
@@ -117,6 +120,26 @@ namespace ProcSense.VR.Bridge
             Content = content;
             Session = new Session(content.Cases[caseId], seed, mode, (SubsystemFactory ?? Subsystems.Default)(content), options);
             ModeChoice.Lock();                                            // from here to the end of the session the mode cannot be changed from a menu
+            SessionId = Guid.NewGuid().ToString();
+            ContentVersion = VersionOf(reader);
+            _ended = false;
+            Paused = false;
+            PauseReason = "";
+            Refresh();
+        }
+
+        /// <summary>
+        /// Continues a session that was replayed from its saved log (SessionResume): it becomes the running session exactly as it stood when it was interrupted. The caller removes the old log file, because the
+        /// next save writes the whole log again under a new session id.
+        /// </summary>
+        public void ResumeSession(Session session, ContentPackage content, IContentReader reader)
+        {
+            PackageHash = "";
+            TwinHash = "";
+            _twin = null;
+            Content = content;
+            Session = session;
+            ModeChoice.Lock();
             SessionId = Guid.NewGuid().ToString();
             ContentVersion = VersionOf(reader);
             _ended = false;
