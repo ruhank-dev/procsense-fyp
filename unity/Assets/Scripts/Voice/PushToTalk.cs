@@ -196,7 +196,13 @@ namespace ProcSense.VR.Voice
             Talk.FeedbackGiven += OnFeedback;
             if (Health != null) Talk.Offline = () => Health.State.Offline;
             if (Speaker != null) Talk.CharacterSpeaking = () => Speaker.IsPlaying;
+            if (Indicator == null) { Indicator = gameObject.AddComponent<VoiceIndicator>(); Indicator.Init(Talk, Controller); }   // P3-VOX-09
         }
+
+        /// <summary>The listening and processing indicator (P3-VOX-09), made the first time the view is enabled.</summary>
+        public VoiceIndicator Indicator { get; private set; }
+        /// <summary>The controller that carries the small listening ring (set by the headset layer before the view is enabled; none on the desktop).</summary>
+        public Transform Controller;
 
         private void OnDisable()
         {
