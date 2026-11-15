@@ -241,6 +241,18 @@
    "what": "Idle, talking, sitting and walking clips (Quaternius Universal Animation Library)",
    "licence": "CC0 1.0",
    "note": "unity/Assets/Characters/Animations/README.md"
+  },
+  {
+   "kind": "Font",
+   "what": "Inter, the interface typeface (Rasmus Andersson and the Inter Project Authors)",
+   "licence": "SIL OFL 1.1",
+   "note": "unity/Assets/UI/Fonts/Inter/README.md"
+  },
+  {
+   "kind": "Icons",
+   "what": "Interface icons (Lucide, lucide-static 0.460.0)",
+   "licence": "ISC",
+   "note": "unity/Assets/UI/Icons/README.md"
   }
  ],
  "voices_and_sounds": [],

@@ -45,11 +45,11 @@ Design tokens; a Quest-safe glass shader; a component kit; icons; motion presets
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
 | P3-UIX-01 | Tokens: `UiTheme` asset and the tokens page (colours, type, spacing, radii, motion, distances, targets) | Moiz | — | Tokens page reviewed by the owner | Done |
-| P3-UIX-02 | Font: confirm licence (Inter, SIL OFL) and import as TMP SDF with fallback; licence row | Moiz | P3-UIX-01 | Licence recorded; atlas built | Planned |
+| P3-UIX-02 | Font: confirm licence (Inter, SIL OFL) and import as TMP SDF with fallback; licence row | Moiz | P3-UIX-01 | Licence recorded; atlas built | Done |
 | P3-UIX-03 | Glass shader (one pass, stereo-safe, probe-based frost, rim, streak), with EditMode shader compile test and a desktop capture | Moiz | P3-UIX-01, P3-PRF-01 | Renders in both eyes in the multiview test scene of the diagnostic APK | Planned |
 | P3-UIX-04 | Component kit (list in section 5) as prefabs plus `UiKit` factory methods | Moiz | P3-UIX-03, P3-UIX-02 | Kit sample scene shows every component | Planned |
 | P3-UIX-05 | Migrate existing views (tablet, menu, mode chooser, settings tab, results viewer, phone, EMR, debrief, ward and WHO boards, order panel, wait overlay) to the kit without changing their behaviour | Moiz | P3-UIX-04, P3-SES-01 | All existing UI PlayMode tests pass unchanged | Planned |
-| P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Planned |
+| P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Done |
 | P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Planned |
 | P3-UIX-08 | VR readability and comfort rules updated (angular text size, distances, head-locked limits, contrast) and checked by `Readability` in tests | Moiz | p0-vr-interaction-ui-s10 | Every kit component passes the rules | Done |
 | P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Planned |

@@ -61,7 +61,7 @@ Every picture in the app (from `content/images`, `content/ecg`, `content/cxr` an
 | 16 real | AMOS 2022 | CC BY 4.0 | AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata. |
 | 32 synthetic (labelled as such) | ProcSense (generated) | ProcSense generated (CC0 for our own use) | AMOS: a large-scale abdominal multi-organ benchmark, Ji Y. et al., NeurIPS 2022 Datasets and Benchmarks, doi:10.5281/zenodo.7155725, CC BY 4.0. Slice cropped, window-levelled and re-encoded without metadata. |
 
-## 3D character and textures
+## 3D characters, textures, font and icons
 
 | What | Licence | Provenance |
 |---|---|---|
@@ -69,6 +69,8 @@ Every picture in the app (from `content/images`, `content/ecg`, `content/cxr` an
 | Hospital wall and floor surfaces (ambientCG) | CC0 1.0 | `unity/Assets/Textures/Hospital/README.md` |
 | Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars) | MIT | `unity/Assets/Characters/Rocketbox/README.md` |
 | Idle, talking, sitting and walking clips (Quaternius Universal Animation Library) | CC0 1.0 | `unity/Assets/Characters/Animations/README.md` |
+| Inter, the interface typeface (Rasmus Andersson and the Inter Project Authors) | SIL OFL 1.1 | `unity/Assets/UI/Fonts/Inter/README.md` |
+| Interface icons (Lucide, lucide-static 0.460.0) | ISC | `unity/Assets/UI/Icons/README.md` |
 
 ## Voices and sounds
 

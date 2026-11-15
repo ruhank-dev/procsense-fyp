@@ -132,6 +132,11 @@ tasks:
     cmds:
       - uv run --project tools tools/voice/render_feedback.py {{.CLI_ARGS}}
 
+  ui-icons:
+    desc: Build the UI icon atlas (unity/Assets/UI/Icons/Resources/UiIcons.png) from the Lucide SVGs in tools/ui/icons/lucide with headless Edge (P3-UIX-06); --check verifies it
+    cmds:
+      - uv run --project tools tools/ui/build_icon_atlas.py {{.CLI_ARGS}}
+
   report-experiments:
     desc: Regenerate the experiments chapter of the report (docs/report/experiments.md) from the phase READMEs
     cmds:

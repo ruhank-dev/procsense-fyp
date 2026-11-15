@@ -34,7 +34,9 @@ The sizes are canvas units for a panel read from **0.6 m** at **0.0006 m per uni
 
 A panel further away gets a larger scale: `UiTheme.MetresPerUnit(distance) = 0.0006 × distance ÷ 0.6`. Text therefore looks the same size at every distance, and every style keeps at least 24 headset pixels.
 
-Font: Inter (SIL OFL), to be confirmed in P3-UIX-02; until then the TextMeshPro default.
+Font: Inter (SIL OFL 1.1, confirmed in P3-UIX-02): `Inter SDF` is the TextMeshPro default, `Inter SemiBold SDF` and `Inter Bold SDF` are its 600 and 700 weights (the <b> tag), LiberationSans SDF the fallback. Built by `Assets/Editor/UI/UiFontBuilder.cs`; provenance in `unity/Assets/UI/Fonts/Inter/README.md`.
+
+Icons: Lucide outline icons (ISC, P3-UIX-06) in one white atlas, `UiIcons.Get(UiIcons.Hint)`; tint with the colour tokens. Built by `task ui-icons`; provenance in `unity/Assets/UI/Icons/README.md`.
 
 ## Shape, spacing and targets
 
