@@ -169,7 +169,8 @@ namespace ProcSense.VR.UI.Kit
             view.Init(t, track, knob);
             t.isOn = on;
             view.Show(on, false);
-            if (changed != null) t.onValueChanged.AddListener(v => changed(v));
+            bool last = on;   // the Editor re-sends a toggle's value on every canvas rebuild: report real changes only
+            if (changed != null) t.onValueChanged.AddListener(v => { if (v == last) return; last = v; changed(v); });
             return view;
         }
 
@@ -352,11 +353,14 @@ namespace ProcSense.VR.UI.Kit
         public void Init(UnityEngine.UI.Toggle toggle, GlassPanel track, GlassPanel knob)
         {
             Toggle = toggle; _track = track; _knob = knob;
-            toggle.onValueChanged.AddListener(v => Show(v, true));
+            toggle.onValueChanged.AddListener(v => { if (v != _shown) Show(v, true); });
         }
+
+        private bool _shown;
 
         public void Show(bool on, bool animate)
         {
+            _shown = on;
             var t = UiTheme.Current;
             _track.color = on ? t.Action : new Color(1, 1, 1, .2f);
             float from = _knob.rectTransform.anchoredPosition.x, to = on ? 48f : 4f;

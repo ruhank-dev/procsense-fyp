@@ -30,9 +30,40 @@ namespace ProcSense.VR.UI.Theme
         /// <summary>The shared material of a style (from Resources), or null when it is missing; the panel then draws as a plain tinted quad.</summary>
         public static Material MaterialFor(Style style)
         {
-            if (style == Style.Light) return _light != null ? _light : (_light = Resources.Load<Material>(LightMaterial));
-            if (style == Style.Solid) return _solid != null ? _solid : (_solid = Resources.Load<Material>(SolidMaterial));
-            return _dark != null ? _dark : (_dark = Resources.Load<Material>(DarkMaterial));
+            if (style == Style.Light) return _light != null ? _light : (_light = Copy(LightMaterial));
+            if (style == Style.Solid) return _solid != null ? _solid : (_solid = Copy(SolidMaterial));
+            return _dark != null ? _dark : (_dark = Copy(DarkMaterial));
+        }
+
+        private static Color _darkBase, _lightBase, _edgeBase;
+        private static bool _listening;
+
+        /// <summary>A run-time copy of a shared material, so recolouring it (high contrast) never changes the asset; every panel of a style shares the one copy.</summary>
+        private static Material Copy(string resource)
+        {
+            var asset = Resources.Load<Material>(resource);
+            if (asset == null) return null;
+            var m = new Material(asset) { name = asset.name + " (shared)" };
+            if (resource == DarkMaterial) { _darkBase = m.GetColor("_Color"); _edgeBase = m.GetColor("_EdgeColor"); }
+            if (resource == LightMaterial) _lightBase = m.GetColor("_Color");
+            if (!_listening) { _listening = true; ProcSense.VR.Settings.GameSettings.Changed += _ => ApplyContrast(); }
+            ApplyContrast(m, resource);
+            return m;
+        }
+
+        /// <summary>P3-SET-06: high contrast makes the dark glass near-opaque and the rim brighter, live on every open panel.</summary>
+        public static void ApplyContrast()
+        {
+            if (_dark != null) ApplyContrast(_dark, DarkMaterial);
+            if (_light != null) ApplyContrast(_light, LightMaterial);
+        }
+
+        private static void ApplyContrast(Material m, string resource)
+        {
+            bool high = ProcSense.VR.Settings.GameSettings.Current.highContrast;
+            var t = UiTheme.Current;
+            if (resource == DarkMaterial) { m.SetColor("_Color", high ? t.GlassTint : _darkBase); m.SetColor("_EdgeColor", high ? t.Edge : _edgeBase); m.SetFloat("_Frost", high ? .05f : .2f); }
+            else if (resource == LightMaterial) m.SetColor("_Color", high ? t.GlassTintLight : _lightBase);
         }
 
         public static Material Dark => MaterialFor(Style.Dark);

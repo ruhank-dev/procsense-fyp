@@ -33,7 +33,7 @@ A single settings model with versioned persistence; the full panel; audio mixer 
 | P3-SET-03 | Audio mixer groups (master, voice, music, SFX, ambience, UI) wired to sliders | Moiz | P3-SND-01, P3-SET-02 | Slider changes the group's level (test) | Done |
 | P3-SET-04 | Interaction-mode switch mid-session (calls `InteractionMode`, P3-VOX-02) with a one-line explanation of what changes | Moiz | P3-VOX-02, P3-SET-02 | State hash unchanged by switching (test) | Done |
 | P3-SET-05 | Comfort: snap/smooth turn, angle, speed, vignette during movement, teleport/continuous, seated height | Sannan | P3-SET-02 | Each option works on the rig in PlayMode | Planned |
-| P3-SET-06 | Accessibility: subtitle on/off, size, background plate, high contrast theme variant, reduce motion (disables non-essential tweens), dominant hand | Moiz | P3-SET-02, P3-UIX-08 | Each option visible in captures | Planned |
+| P3-SET-06 | Accessibility: subtitle on/off, size, background plate, high contrast theme variant, reduce motion (disables non-essential tweens), dominant hand | Moiz | P3-SET-02, P3-UIX-08 | Each option visible in captures | Done |
 | P3-SET-07 | Session tab: Return to main menu and Quit with the confirmations of P3-MNU-09 | Moiz | P3-MNU-09 | Same semantics as the pause menu | Planned |
 | P3-SET-08 | Tests: persistence, live application, mode switch invariance | Moiz | P3-SET-04, P3-SET-06 | Green in CI | Planned |
 

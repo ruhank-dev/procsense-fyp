@@ -173,6 +173,49 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void Subtitles_and_their_plate_follow_the_settings()   // P3-SET-06
+        {
+            var go = new GameObject("speaker");
+            try
+            {
+                var subtitles = ProcSense.VR.Views.UiKit.WorldCanvas("Subtitles", go.transform, new Vector2(700, 150), .0009f);
+                var plate = subtitles.transform.Find("Background").GetComponent<Image>();
+                float alpha = plate.color.a;
+                var other = ProcSense.VR.Views.UiKit.WorldCanvas("EMR", go.transform, new Vector2(700, 150), .0009f);
+                // in Play Mode each canvas follows the settings' Changed event; Edit Mode runs no Awake, so the test applies the canvases itself after each change
+                void Apply() { subtitles.GetComponent<AccessibleCanvas>().Apply(); other.GetComponent<AccessibleCanvas>().Apply(); }
+                _panel.Show(SettingsPanel.Tab.Subtitles);
+                Flip("Dark plate behind subtitles"); Apply();
+                Assert.AreEqual(0f, plate.color.a, "no plate");
+                Flip("Subtitles"); Apply();
+                Assert.IsFalse(subtitles.enabled, "subtitles off");
+                Assert.IsTrue(other.enabled, "other panels are not subtitles");
+                Flip("Subtitles"); Flip("Dark plate behind subtitles"); Apply();
+                Assert.IsTrue(subtitles.enabled);
+                Assert.AreEqual(alpha, plate.color.a, 1e-4, "the plate comes back as it was");
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test]
+        public void High_contrast_darkens_the_glass_and_lifts_the_text_live()   // P3-SET-06
+        {
+            var normalTint = GlassPanel.Dark.GetColor("_Color");
+            float normalSecondary = UiTheme.Current.TextSecondary.a;
+            _panel.Show(SettingsPanel.Tab.Display);
+            Flip("High contrast");
+            Assert.IsTrue(S.highContrast);
+            Assert.Greater(UiTheme.Current.GlassTint.a, .95f);
+            Assert.Greater(UiTheme.Current.TextSecondary.a, normalSecondary);
+            Assert.Less(Vector4.Distance(UiTheme.Current.GlassTint, GlassPanel.Dark.GetColor("_Color")), 1e-3f, "open panels change at once");
+            Assert.IsTrue(_panel.Find<KitToggle>("Toggle High contrast").IsOn, "the panel was redrawn with the new value");
+            foreach (var fill in new[] { Color.white, Color.black })
+                Assert.GreaterOrEqual(Readability.Contrast(UiTheme.Current.TextSecondary, UiTheme.Over(UiTheme.Current.GlassTint, fill)), 7f, "AAA-level contrast for secondary text");
+            Flip("High contrast");
+            Assert.Less(Vector4.Distance(normalTint, GlassPanel.Dark.GetColor("_Color")), 1e-3f, "and back");
+        }
+
+        [Test]
         public void Every_tab_is_readable_and_its_targets_full_size()
         {
             float min = UiTheme.Current.MinTarget;

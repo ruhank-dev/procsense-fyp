@@ -38,6 +38,65 @@ namespace ProcSense.EditorTools.UI
             Debug.Log("[ProcSense] kit sample scene saved");
         }
 
+        /// <summary>P3-SET-06 captures: the settings panel's Display tab in the patient bay, normal and high contrast (artifacts/captures/set06_normal.png, set06_high_contrast.png).</summary>
+        [MenuItem("ProcSense/UI/Capture settings panel")]
+        public static void CaptureSettings()
+        {
+            var store = ProcSense.VR.Settings.GameSettings.Store;
+            ProcSense.VR.Settings.GameSettings.Store = new ScratchStore();   // never touch the developer's own saved settings
+            try
+            {
+                foreach (var high in new[] { false, true })
+                {
+                    ProcSense.VR.Settings.GameSettings.Update(s => s.highContrast = high);
+                    EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
+                    Vector3 eye = new Vector3(0.9f, 1.65f, -0.6f), look = new Vector3(-0.3f, 1.55f, 1.4f);
+                    var forward = (look - eye).normalized;
+                    var go = new GameObject("Settings capture");
+                    go.transform.SetPositionAndRotation(eye + forward * ProcSense.VR.UI.SettingsUi.SettingsPanel.Distance, Quaternion.LookRotation(forward, Vector3.up));
+                    go.AddComponent<ProcSense.VR.UI.SettingsUi.SettingsPanel>().Build(ProcSense.VR.UI.SettingsUi.SettingsPanel.Tab.Display);
+                    Canvas.ForceUpdateCanvases();
+                    Render(eye, forward, high ? "set06_high_contrast.png" : "set06_normal.png");
+                    Object.DestroyImmediate(go);
+                }
+            }
+            finally { ProcSense.VR.Settings.GameSettings.Store = store; }
+        }
+
+        private sealed class ScratchStore : ProcSense.VR.Settings.ISettingsStore
+        {
+            private readonly System.Collections.Generic.Dictionary<string, string> _v = new System.Collections.Generic.Dictionary<string, string>();
+            public string GetString(string key) => _v.TryGetValue(key, out var s) ? s : "";
+            public bool HasKey(string key) => _v.ContainsKey(key);
+            public int GetInt(string key, int fallback) => fallback;
+            public void SetString(string key, string value) => _v[key] = value;
+            public void DeleteKey(string key) => _v.Remove(key);
+            public void Save() { }
+        }
+
+        private static void Render(Vector3 eye, Vector3 forward, string file)
+        {
+            var camGo = new GameObject("Capture camera", typeof(Camera), typeof(UniversalAdditionalCameraData));
+            var cam = camGo.GetComponent<Camera>();
+            cam.transform.SetPositionAndRotation(eye, Quaternion.LookRotation(forward, Vector3.up));
+            cam.fieldOfView = 70f;
+            cam.nearClipPlane = .05f;
+            var rt = new RenderTexture(1800, 1200, 24, RenderTextureFormat.ARGB32) { antiAliasing = 4 };
+            cam.targetTexture = rt;
+            cam.Render();
+            RenderTexture.active = rt;
+            var tex = new Texture2D(rt.width, rt.height, TextureFormat.RGB24, false);
+            tex.ReadPixels(new Rect(0, 0, rt.width, rt.height), 0, 0);
+            tex.Apply();
+            RenderTexture.active = null;
+            string path = Path.GetFullPath(Path.Combine(Application.dataPath, "..", "..", "artifacts", "captures", file));
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.WriteAllBytes(path, tex.EncodeToPNG());
+            Object.DestroyImmediate(camGo);
+            Object.DestroyImmediate(rt);
+            Debug.Log("[ProcSense] capture written to " + path);
+        }
+
         [MenuItem("ProcSense/UI/Capture kit sample")]
         public static void Capture()
         {

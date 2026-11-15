@@ -127,7 +127,7 @@ namespace ProcSense.VR.UI.SettingsUi
                     break;
                 case Tab.Display:
                     Row(at => Choice("Panel size", new[] { "Normal", "Large", "Largest" }, s.panelSize, at, i => GameSettings.Update(d => d.panelSize = i)));
-                    Row(at => Switch("High contrast", s.highContrast, at, v => GameSettings.Update(d => d.highContrast = v)));
+                    Row(at => Switch("High contrast", s.highContrast, at, v => { GameSettings.Update(d => d.highContrast = v); Redraw(); }));
                     Row(at => Switch("Reduce motion", s.reduceMotion, at, v => GameSettings.Update(d => d.reduceMotion = v)));
                     Row(at => Choice("Dominant hand", new[] { "Right", "Left" }, s.leftHanded ? 1 : 0, at, i => GameSettings.Update(d => d.leftHanded = i == 1)));
                     Row(at => Kit.Kit.Button(_content, "Reset all settings", new Vector2(0, at), new Vector2(w, Kit.Kit.ButtonHeight), ButtonKind.Secondary, UiIcons.Retry,
@@ -141,6 +141,27 @@ namespace ProcSense.VR.UI.SettingsUi
                     break;
             }
         }
+
+        private bool _redrawQueued;
+
+        /// <summary>Rebuilds the panel after a change of high contrast (outside the toggle's own callback), so its text and glass follow at once.</summary>
+        private void Redraw()
+        {
+            if (_redrawQueued) return;
+            _redrawQueued = true;
+            void Rebuild()
+            {
+                _redrawQueued = false;
+                if (this == null) return;
+                var tab = Current;
+                for (int i = transform.childCount - 1; i >= 0; i--) DestroyImmediate(transform.GetChild(i).gameObject);
+                Canvas = null;
+                Build(tab);
+            }
+            if (Application.isPlaying) StartCoroutine(Next(Rebuild)); else Rebuild();
+        }
+
+        private static System.Collections.IEnumerator Next(Action a) { yield return null; a(); }
 
         /// <summary>The open confirmation dialog, if any (tests press its buttons).</summary>
         public KitDialog Dialog { get; private set; }

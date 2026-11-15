@@ -72,8 +72,29 @@ namespace ProcSense.VR.UI.Theme
             {
                 if (_loaded == null) _loaded = Resources.Load<UiTheme>(ResourceName);
                 if (_loaded == null) _loaded = Default();
-                return _loaded;
+                return ProcSense.VR.Settings.GameSettings.Current.highContrast ? HighContrastOf(_loaded) : _loaded;
             }
+        }
+
+        private static UiTheme _contrast, _contrastOf;
+
+        /// <summary>
+        /// The high-contrast variant (P3-SET-06): near-opaque darker glass, a brighter rim, and secondary and disabled text closer to full white. Accent colours stay, so their
+        /// meaning does not change. Built once from the base theme.
+        /// </summary>
+        public static UiTheme HighContrastOf(UiTheme b)
+        {
+            if (_contrast != null && _contrastOf == b) return _contrast;
+            _contrast = Instantiate(b);
+            _contrast.name = b.name + " (high contrast)";
+            _contrast.GlassTint = Hex(0x070C11, .97f);
+            _contrast.GlassTintLight = new Color(1f, 1f, 1f, .26f);
+            _contrast.Edge = new Color(1f, 1f, 1f, .75f);
+            _contrast.EdgeWidth = Mathf.Max(b.EdgeWidth, 3f);
+            _contrast.TextSecondaryAlpha = .92f;
+            _contrast.TextDisabledAlpha = .62f;
+            _contrastOf = b;
+            return _contrast;
         }
 
         public static UiTheme Default() => CreateInstance<UiTheme>();

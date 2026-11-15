@@ -60,6 +60,25 @@ namespace ProcSense.VR.UI.Accessibility
         {
             if (this == null) return;
             transform.localScale = Vector3.one * Scale;
+            if (Subtitle) ApplySubtitleChoices();
+        }
+
+        private float _plateAlpha = -1f;
+
+        /// <summary>P3-SET-06: a subtitle canvas shows only with subtitles on, and its dark plate (the "Background" panel UiKit makes) only with the plate on. Failure phrases of voice
+        /// mode are not subtitles (they show on the push-to-talk panel), so they stay visible either way.</summary>
+        private void ApplySubtitleChoices()
+        {
+            var s = ProcSense.VR.Settings.GameSettings.Current;
+            var canvas = GetComponent<Canvas>();
+            if (canvas != null) canvas.enabled = s.subtitles;
+            var plate = transform.Find("Background");
+            var image = plate != null ? plate.GetComponent<UnityEngine.UI.Image>() : null;
+            if (image == null) return;
+            if (_plateAlpha < 0) _plateAlpha = image.color.a;
+            var c = image.color;
+            c.a = s.subtitleBackground ? _plateAlpha : 0f;
+            image.color = c;
         }
     }
 }
