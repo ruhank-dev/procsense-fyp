@@ -267,7 +267,7 @@ namespace ProcSense.VR.Flow
         private void ProcedureCard(int slot, string name, string operation, string procedure, bool training)
         {
             int n = _flow.CaseCount(_flow.Mode, procedure);
-            string detail = n > 0 ? operation + " · pre-operative preparation · " + n + (n == 1 ? " case" : " cases")
+            string detail = n > 0 ? operation + "\nPre-operative preparation · " + n + (n == 1 ? " case" : " cases")
                                   : training ? "No cases are available for training yet" : "No cases are approved for examination yet";
             Slot(slot, name + " (" + n + " cases)\n<size=20>" + detail + "</size>", () => _flow.ChooseSurgery(procedure, _flow.Level), -1f, n > 0 ? ButtonKind.Primary : ButtonKind.Secondary,
                  new Vector2(32 + slot * 426, 196), new Vector2(410, 160));

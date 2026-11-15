@@ -83,6 +83,69 @@ namespace ProcSense.EditorTools.UI
             Object.DestroyImmediate(hostGo);
         }
 
+        /// <summary>
+        /// P3-UIX-10: review captures of every flow screen from one fixed camera in the patient bay (artifacts/captures/review/NN_name.png): main menu, procedure cards, briefing,
+        /// playing with the hint panel, the examination hint confirmation, the pause menu, the results, and each settings tab. For the owner's approval.
+        /// </summary>
+        [MenuItem("ProcSense/UI/Capture review screens")]
+        public static void CaptureReview()
+        {
+            var store = ProcSense.VR.Settings.GameSettings.Store;
+            ProcSense.VR.Settings.GameSettings.Store = new ScratchStore();
+            try
+            {
+                EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
+                Vector3 eye = new Vector3(0.9f, 1.65f, -0.6f), look = new Vector3(-0.3f, 1.55f, 1.4f);
+                var forward = (look - eye).normalized;
+                var head = new GameObject("Review head", typeof(Camera)).transform;
+                head.SetPositionAndRotation(eye, Quaternion.LookRotation(forward, Vector3.up));
+                var hostGo = new GameObject("review host");
+                var host = hostGo.AddComponent<ProcSense.VR.Bridge.SimulationHost>();
+                host.AutoTick = false;
+                host.SaveLogOnDestroy = false;
+                var reader = ProcSense.VR.Content.UnityContentReader.ForThisPlatform();
+                var flow = new ProcSense.VR.Flow.MenuFlow(host, reader, () => 42UL) { EndSessionOnSubmit = false };
+                var root = new GameObject("Review menu");
+                root.transform.SetPositionAndRotation(eye + forward * ProcSense.VR.Flow.MenuFlowInstaller.Distance, Quaternion.LookRotation(forward, Vector3.up));
+                var panel = root.AddComponent<ProcSense.VR.Flow.FlowPanel>();
+                panel.Build(flow, root.transform);
+                var hintGo = new GameObject("Hint panel");
+                hintGo.transform.SetParent(root.transform, false);
+                hintGo.transform.localPosition = new Vector3(-.95f, 0f, .05f);
+                hintGo.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
+                var hint = hintGo.AddComponent<ProcSense.VR.Flow.HintPanel>();
+                hint.Build(flow, ProcSense.VR.Flow.HintPanel.CostFrom(reader));
+                int n = 0;
+                void Shot(string name) { ProcSense.VR.UI.Theme.UiMotion.Tick(1f); Canvas.ForceUpdateCanvases(); Render(eye, forward, "review/" + (++n).ToString("00") + "_" + name + ".png"); }
+
+                flow.SignedIn(); Shot("main_menu");
+                flow.ChooseMode(ProcSense.Core.SessionMode.Assessment); Shot("procedure_cards_examination");
+                flow.ChooseSurgery("cholecystectomy", ProcSense.Core.TrainingLevel.Beginner); Shot("briefing");
+                flow.Begin(); Shot("playing_with_hint_panel");
+                hint.Press(); Shot("examination_hint_confirmation");
+                hint.Dialog.Confirm.onClick.Invoke(); Shot("hint_card");
+                var pause = root.AddComponent<ProcSense.VR.Flow.PauseMenu>();
+                pause.Flow = flow; pause.Head = head;
+                pause.Pause(); Shot("pause_menu");
+                pause.Resume();
+                flow.Submit(); flow.Submit(); Shot("results");
+                foreach (ProcSense.VR.UI.SettingsUi.SettingsPanel.Tab tab in System.Enum.GetValues(typeof(ProcSense.VR.UI.SettingsUi.SettingsPanel.Tab)))
+                {
+                    var s = new GameObject("Review settings");
+                    s.transform.SetPositionAndRotation(eye + forward * ProcSense.VR.UI.SettingsUi.SettingsPanel.Distance, Quaternion.LookRotation(forward, Vector3.up));
+                    s.AddComponent<ProcSense.VR.UI.SettingsUi.SettingsPanel>().Build(tab);
+                    root.SetActive(false);
+                    Shot("settings_" + tab.ToString().ToLowerInvariant());
+                    Object.DestroyImmediate(s);
+                    root.SetActive(true);
+                }
+                Object.DestroyImmediate(root);
+                Object.DestroyImmediate(hostGo);
+                Object.DestroyImmediate(head.gameObject);
+            }
+            finally { ProcSense.VR.Settings.GameSettings.Store = store; }
+        }
+
         private sealed class ScratchStore : ProcSense.VR.Settings.ISettingsStore
         {
             private readonly System.Collections.Generic.Dictionary<string, string> _v = new System.Collections.Generic.Dictionary<string, string>();

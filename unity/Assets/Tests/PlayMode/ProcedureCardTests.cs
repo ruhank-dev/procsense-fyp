@@ -57,7 +57,7 @@ namespace ProcSense.Tests.PlayMode
                 string text = card.GetComponentInChildren<TMP_Text>().text;
                 int n = _flow.CaseCount(SessionMode.Practice, procedure);
                 Assert.Greater(n, 0, procedure);
-                StringAssert.Contains("pre-operative preparation", text);
+                StringAssert.Contains("Pre-operative preparation", text);
                 StringAssert.Contains(n + " cases", text);
                 Assert.IsTrue(card.interactable);
                 Assert.GreaterOrEqual(((RectTransform)card.transform).rect.height, 150f, "a card, not a row button");

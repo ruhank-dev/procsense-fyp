@@ -152,10 +152,11 @@ namespace ProcSense.VR.Flow
                 root.SetPositionAndRotation(head.position + forward * Distance, Quaternion.LookRotation(forward, Vector3.up));
             }
             Canvas = Kit.Canvas("Pause menu", root, Size, Distance);
+            Others(false);   // the flow menu and the hint panel step aside while paused
             var c = Canvas.transform;
             const float pad = 40, w = 560, h = Kit.ButtonHeight, gap = 88;
             Kit.Panel(c, "Panel", Vector2.zero, Size);
-            Kit.Header(c, "Paused", "The clock is stopped. Nothing happens until you resume.", new Vector2(pad, pad), w, UiIcons.Pause);
+            Kit.Header(c, "Paused", "The clock is stopped until you resume.", new Vector2(pad, pad), w, UiIcons.Pause);
             float y = 200;
             Kit.Button(c, "Resume", new Vector2(pad, y), new Vector2(w, h), ButtonKind.Primary, UiIcons.Play, () => Resume()); y += gap;
             Kit.Button(c, "Settings", new Vector2(pad, y), new Vector2(w, h), ButtonKind.Secondary, UiIcons.Settings, () => SettingsPanel.Toggle(root, 1.1f)); y += gap;
@@ -171,8 +172,23 @@ namespace ProcSense.VR.Flow
             Dialog.Open();
         }
 
+        private readonly System.Collections.Generic.List<Canvas> _hidden = new System.Collections.Generic.List<Canvas>();
+
+        /// <summary>Hides (false) or restores (true) the other world menus of this flow: the flow panel and the hint panel.</summary>
+        private void Others(bool show)
+        {
+            if (!show)
+            {
+                _hidden.Clear();
+                foreach (var p in FindObjectsByType<FlowPanel>(FindObjectsSortMode.None)) if (p.Flow == Flow && p.Canvas != null && p.Canvas.enabled) { p.Canvas.enabled = false; _hidden.Add(p.Canvas); }
+                foreach (var h in FindObjectsByType<HintPanel>(FindObjectsSortMode.None)) if (h.Flow == Flow && h.Canvas != null && h.Canvas.enabled) { h.Canvas.enabled = false; _hidden.Add(h.Canvas); }
+            }
+            else { foreach (var c in _hidden) if (c != null) c.enabled = true; _hidden.Clear(); }
+        }
+
         private void Hide()
         {
+            Others(true);
             Dialog = null;
             if (SettingsPanel.Open != null) SettingsPanel.Open.Close();
             if (Canvas != null) DestroyNow(Canvas.transform.parent.gameObject);

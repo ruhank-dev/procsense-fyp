@@ -44,8 +44,8 @@ namespace ProcSense.VR.Flow
             Lightbulb = Kit.Button(c, null, new Vector2((Size.x - 160) / 2, 88), new Vector2(160, 160), ButtonKind.Icon, UiIcons.Hint, Press);
             Lightbulb.name = "Button Lightbulb";
             foreach (var img in Lightbulb.GetComponentsInChildren<Image>(true)) if (img.name.StartsWith("Icon")) { img.color = t.HintText; img.rectTransform.sizeDelta = new Vector2(96, 96); img.rectTransform.anchoredPosition = new Vector2(32, -32); }
-            Counter = Kit.Text(c, "Counter", "", new Vector2(32, 268), new Vector2(Size.x - 64, 40), TextStyle.Body, t.TextSecondary, TextAlignmentOptions.Center);
-            Card = Kit.Text(c, "Hint text", "", new Vector2(32, 324), new Vector2(Size.x - 64, 210), TextStyle.Body);
+            Counter = Kit.Text(c, "Counter", "", new Vector2(32, 262), new Vector2(Size.x - 64, 68), TextStyle.Body, t.TextSecondary, TextAlignmentOptions.Center);
+            Card = Kit.Text(c, "Hint text", "", new Vector2(32, 344), new Vector2(Size.x - 64, 196), TextStyle.Body);
             if (Wrist != null)
             {
                 transform.SetParent(Wrist, false);
@@ -98,7 +98,7 @@ namespace ProcSense.VR.Flow
             Canvas.gameObject.SetActive(playing);
             if (!playing) return;
             int used = Session.Hints.Count;
-            Counter.text = "Hints used: " + used + " of " + Session.HintLimit + (Examination ? "  ·  " + Cost + " points each" : "  ·  free in training");
+            Counter.text = "Hints used: " + used + " of " + Session.HintLimit + "\n" + (Examination ? Cost + " points each" : "Free in training");
             var last = Session.LastHint;
             if (last != null) Card.text = last.Text;
             else if (used == 0 && string.IsNullOrEmpty(Card.text)) Card.text = Examination ? "Stuck? A hint gives a nudge, not the answer." : "Press the lightbulb for a nudge towards the next step.";

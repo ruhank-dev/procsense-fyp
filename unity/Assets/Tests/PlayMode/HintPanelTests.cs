@@ -77,7 +77,7 @@ namespace ProcSense.Tests.PlayMode
                     Assert.IsNull(_panel.Dialog, "no confirmation in training");
                 }
                 Assert.AreEqual(_host.Session.HintLimit, _host.Session.Hints.Count);
-                StringAssert.Contains("free in training", _panel.Counter.text);
+                StringAssert.Contains("Free in training", _panel.Counter.text);
                 Assert.IsFalse(_panel.Lightbulb.interactable, "at the limit");
                 _panel.Press();
                 StringAssert.Contains("used all", _panel.Card.text);
