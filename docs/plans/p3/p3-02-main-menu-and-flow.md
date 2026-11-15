@@ -28,13 +28,13 @@ Screens are states of `GameFlowDirector` (P3-SES-05). Each screen is a prefab bu
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-MNU-01 | Boot sequence: after login load `MainMenu` instead of the bay; the bay loads only when the director starts a session | Moiz | P3-SES-05 | Fresh launch on desktop and APK lands on the menu | Planned |
+| P3-MNU-01 | Boot sequence: after login load `MainMenu` instead of the bay; the bay loads only when the director starts a session | Moiz | P3-SES-05 | Fresh launch on desktop and APK lands on the menu | Done |
 | P3-MNU-02 | Menu backdrop scene: lightweight lit space (reception-style, reuse corridor assets, own small bake, no characters required) | Sannan | P3-SES-01 | Menu scene renders under 1 ms extra GPU on desktop profiler and has no realtime shadows | Planned |
 | P3-MNU-03 | Main menu screen: Training, Test / Examination, Settings, Quit, "Resume previous session" when one exists | Moiz | P3-UIX-04, P3-SES-05 | All buttons reachable by ray and by poke; keyboard/mouse in the Editor | Planned |
 | P3-MNU-04 | Procedure selection: two cards (S1, S2) with the pre-operative wording, case count available in the chosen mode, disabled card with reason when the pool is empty | Moiz | P3-MNU-03, P3-SCN-02 | With D1 unresolved, Test shows "No cases are approved for examination yet" instead of failing | Planned |
 | P3-MNU-05 | Level selection (training only): beginner, intermediate, advanced mapped to Core `TrainingLevel` | Moiz | P3-MNU-04, P3-SCN-04 | The level reaches the session header | Planned |
 | P3-MNU-06 | Loading screen: fade to a glass card with progress from the async loads, a tip line, never longer than the load itself | Moiz | P3-SES-05, P3-UIX-04 | No black frames longer than 100 ms between fade and first room frame (desktop) | Planned |
-| P3-MNU-07 | Briefing card: patient name, age, setting (ward or emergency department), reason for admission (trainee-visible facts only), the task statement; training adds the objective list, test does not | Moiz | P3-SCN-05 | Briefing never shows a hidden finding (test compares with the observable contract) | Planned |
+| P3-MNU-07 | Briefing card: patient name, age, setting (ward or emergency department), reason for admission (trainee-visible facts only), the task statement; training adds the objective list, test does not | Moiz | P3-SCN-05 | Briefing never shows a hidden finding (test compares with the observable contract) | Done |
 | P3-MNU-08 | Pause menu on the controller menu button: Resume, Settings, Restart scenario, Return to main menu, Quit | Moiz | P3-SES-08, P3-SET-02 | Pause stops the engine clock (P3-SES-08) | Planned |
 | P3-MNU-09 | Confirmation dialogs for restart, return and quit with the consequence (practice saved and uploaded; examination ends as abandoned) | Moiz | P3-MNU-08, P3-EXM-06 | Each path tested in PlayMode | Planned |
 | P3-MNU-10 | Menu transitions and audio hooks (open, select, back, music start/stop) | Moiz | P3-SND-04, P3-ANI-09 | Hooks fire once per transition | Planned |
