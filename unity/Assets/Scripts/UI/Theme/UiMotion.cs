@@ -158,6 +158,14 @@ namespace ProcSense.VR.UI.Theme
             }, () => { toast.anchoredPosition = pos; toast.gameObject.SetActive(false); done?.Invoke(); });
         }
 
+        /// <summary>Error shake (P3-UIX-07): a short sideways shake that dies away (300 ms, 3 swings). Decorative: with reduce motion the error is shown by colour and text only.</summary>
+        public static Tween Shake(RectTransform target, float amplitude = 10f, float seconds = .3f)
+        {
+            var pos = target.anchoredPosition;
+            return Play(target, "shake", seconds, Linear, v => target.anchoredPosition = pos + new Vector2(Mathf.Sin(v * Mathf.PI * 6f) * amplitude * (1f - v), 0f),
+                () => target.anchoredPosition = pos);
+        }
+
         private static void EnsureRunner()
         {
             if (_runner != null || !Application.isPlaying) return;

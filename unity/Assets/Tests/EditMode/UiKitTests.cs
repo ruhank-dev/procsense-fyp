@@ -29,7 +29,8 @@ namespace ProcSense.Tests.EditMode
             Assert.AreEqual(2, c.GetComponentsInChildren<KitToggle>(true).Length);
             Assert.AreEqual(1, c.GetComponentsInChildren<Slider>(true).Length);
             Assert.AreEqual(1, c.GetComponentsInChildren<KitSegmented>(true).Length);
-            Assert.AreEqual(2, c.GetComponentsInChildren<ProgressRing>(true).Length, "the score ring and the open row's ring");
+            Assert.AreEqual(3, c.GetComponentsInChildren<ProgressRing>(true).Length, "the score ring, the open row's ring and the listening ring");
+            Assert.AreEqual(1, c.GetComponentsInChildren<KitListening>(true).Length);
             Assert.AreEqual(1, c.GetComponentsInChildren<KitToast>(true).Length);
             Assert.AreEqual(1, c.GetComponentsInChildren<KitDialog>(true).Length);
             foreach (var name in new[] { "Header", "Tooltip", "Badge PASS", "Card Hint", "Row Confirm the patient's identity" })

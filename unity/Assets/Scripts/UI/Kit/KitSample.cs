@@ -45,7 +45,12 @@ namespace ProcSense.VR.UI.Kit
             Kit.ListRow(root, "Check the consent form", new Vector2(x2, y), col, RowState.Open); y += 76;
             Kit.ListRow(root, "Group and save sample", new Vector2(x2, y), col, RowState.NotNeeded); y += 76;
             Kit.ListRow(root, "Mark the operation site", new Vector2(x2, y), col, RowState.Missed); y += 92;
-            Kit.Card(root, "Hint", "Confirm the patient's identity before anything else.", new Vector2(x2, y), new Vector2(col, 220), UiIcons.Hint, t.HintText);
+            Kit.Card(root, "Hint", "Confirm the patient's identity before anything else.", new Vector2(x2, y), new Vector2(col, 220), UiIcons.Hint, t.HintText); y += 240;
+            // feedback (P3-UIX-07): a drawn tick and the listening ring
+            var tick = KitFeedback.Tick(root, new Vector2(x2, y), 64);
+            tick.fillAmount = 1f;   // drawn, in the still sample
+            KitFeedback.Listening(root, new Vector2(x2 + 96, y), 64).Set(KitListening.Mode.Listening);
+            Kit.Text(root, "Listening label", "Listening...", new Vector2(x2 + 176, y), new Vector2(col - 176, 64), TextStyle.Body, t.TextSecondary).verticalAlignment = TMPro.VerticalAlignmentOptions.Middle;
 
             // column 3: progress, badges, toast and a dialog
             y = 210;

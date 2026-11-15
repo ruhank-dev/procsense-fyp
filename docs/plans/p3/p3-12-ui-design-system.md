@@ -50,7 +50,7 @@ Design tokens; a Quest-safe glass shader; a component kit; icons; motion presets
 | P3-UIX-04 | Component kit (list in section 5) as prefabs plus `UiKit` factory methods | Moiz | P3-UIX-03, P3-UIX-02 | Kit sample scene shows every component | Done |
 | P3-UIX-05 | Migrate existing views (tablet, menu, mode chooser, settings tab, results viewer, phone, EMR, debrief, ward and WHO boards, order panel, wait overlay) to the kit without changing their behaviour | Moiz | P3-UIX-04, P3-SES-01 | All existing UI PlayMode tests pass unchanged | Planned |
 | P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Done |
-| P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Planned |
+| P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Done |
 | P3-UIX-08 | VR readability and comfort rules updated (angular text size, distances, head-locked limits, contrast) and checked by `Readability` in tests | Moiz | p0-vr-interaction-ui-s10 | Every kit component passes the rules | Done |
 | P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Planned |
 | P3-UIX-10 | Visual review captures of every screen (fixed cameras) and owner approval | Moiz | P3-UIX-05 | Owner approval recorded | Planned |
