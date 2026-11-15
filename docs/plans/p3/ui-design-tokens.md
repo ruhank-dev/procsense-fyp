@@ -15,7 +15,7 @@ The values every ProcSense screen is built from. They live in one asset, `UiThem
 | Edge | white at 35 %, 1.5 units | Panel rim, brighter at the top |
 | Action | `#2EC4B6` teal | Primary buttons, links, the selected item |
 | Hint | `#F2B33D` amber | Hints, the lightbulb, warnings |
-| Danger | `#E5484D` red (fill) | Critical buttons and badges |
+| Danger | `#E64A4F` red (fill) | Critical buttons and badges |
 | Danger as text | **`#FF8589`** | Red text on glass |
 | Done | `#3CCB7F` green | Ticks, completed items |
 | Text | `#F4F7FA`, with secondary at 72 % and disabled at 45 % | All text on glass |
@@ -70,6 +70,6 @@ With "reduce motion" on (P3-SET-06), everything except feedback ticks becomes in
 
 1. **Glass at 85 %, not 62 %.** A panel can stand in front of the sunlit window. At 62 %, accent text on the glass fails WCAG AA there: teal reaches 2.3:1, amber 2.7:1 and red 1.3:1, against 4.5:1 needed. At 85 % every text colour passes over white, black, grey and the warm wall colour. The worst case is the lighter red at 4.8:1. The frosted look comes from the probe-sampled sheen and the rim (P3-UIX-03), so it doesn't depend on seeing through the glass.
 2. **The canvas scale grows with distance.** At the plan's fixed 0.0006 m per unit, body text on a menu at 1.2 m is about 17 headset pixels, under the 24-pixel minimum. With the distance scale it stays at 34.
-3. **Red text is lighter than the red fill.** `#E5484D` stays the fill, with dark text on it (4.5:1). On glass, red text uses `#FF8589`.
+3. **Red text is lighter than the red fill.** `#E64A4F` is the fill, with dark text on it (4.57:1; the plan's `#E5484D` measured 4.496:1, just under, so it moved one step lighter in P3-UIX-04). On glass, red text uses `#FF8589`.
 
 All three are checked by `UiThemeTests`. Each check also includes the counter-example, showing the plan's value would fail.

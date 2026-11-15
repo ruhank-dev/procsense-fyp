@@ -21,6 +21,9 @@ namespace ProcSense.VR.Views
         /// <summary>Raised for every canvas made here; the XR layer uses it to add its pointer raycaster.</summary>
         public static event Action<Canvas> CanvasCreated;
 
+        /// <summary>Raises <see cref="CanvasCreated"/> for a canvas made elsewhere (the P3 component kit), so the XR layer adds its pointer raycaster to it too.</summary>
+        public static void Announce(Canvas canvas) => CanvasCreated?.Invoke(canvas);
+
         public static Canvas WorldCanvas(string name, Transform parent, Vector2 sizePixels, float metresPerPixel)
         {
             var go = new GameObject(name, typeof(RectTransform));

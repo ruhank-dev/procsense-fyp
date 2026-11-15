@@ -22,7 +22,7 @@ namespace ProcSense.VR.UI.Theme
         [Header("Accents (fills: buttons, ticks, rings)")]
         public Color Action = Hex(0x2EC4B6);
         public Color Hint = Hex(0xF2B33D);
-        public Color Danger = Hex(0xE5484D);
+        public Color Danger = Hex(0xE64A4F);   // #E5484D gave 4.496:1 under dark labels; one step lighter passes 4.5:1 (P3-UIX-04)
         public Color Done = Hex(0x3CCB7F);
 
         [Header("Text")]

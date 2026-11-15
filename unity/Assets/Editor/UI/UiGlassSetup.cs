@@ -29,6 +29,7 @@ namespace ProcSense.EditorTools.UI
             var t = UiTheme.Current;
             Write(GlassPanel.DarkMaterial, shader, t.GlassTint, DarkFrost, t.Edge);
             Write(GlassPanel.LightMaterial, shader, t.GlassTintLight, .55f, new Color(1, 1, 1, .5f));
+            Write(GlassPanel.SolidMaterial, shader, Color.white, 0f, new Color(1, 1, 1, .25f));   // the fill is the vertex colour
             AssetDatabase.SaveAssets();
             Debug.Log("[ProcSense] glass materials written");
         }

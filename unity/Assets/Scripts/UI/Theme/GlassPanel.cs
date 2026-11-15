@@ -12,9 +12,10 @@ namespace ProcSense.VR.UI.Theme
     public sealed class GlassPanel : MaskableGraphic
     {
         public const string ShaderName = "ProcSense/UI Glass";
-        public const string DarkMaterial = "UiGlass", LightMaterial = "UiGlassLight";
+        public const string DarkMaterial = "UiGlass", LightMaterial = "UiGlassLight", SolidMaterial = "UiGlassSolid";
 
-        public enum Style { Dark, Light }
+        /// <summary>Dark: panels and dialogs. Light: cards and secondary buttons on a panel. Solid: an opaque fill coloured by <c>color</c> (primary and danger buttons, badges), same shape and rim.</summary>
+        public enum Style { Dark, Light, Solid }
 
         [SerializeField] private Style _style = Style.Dark;
         [SerializeField] private float _radius = -1f;   // negative: the theme's radius
@@ -24,17 +25,19 @@ namespace ProcSense.VR.UI.Theme
         /// <summary>The corner radius in canvas units (the theme's radius unless set).</summary>
         public float Radius { get => _radius >= 0 ? _radius : UiTheme.Current.Radius; set { _radius = value; SetVerticesDirty(); } }
 
-        private static Material _dark, _light;
+        private static Material _dark, _light, _solid;
 
         /// <summary>The shared material of a style (from Resources), or null when it is missing; the panel then draws as a plain tinted quad.</summary>
         public static Material MaterialFor(Style style)
         {
             if (style == Style.Light) return _light != null ? _light : (_light = Resources.Load<Material>(LightMaterial));
+            if (style == Style.Solid) return _solid != null ? _solid : (_solid = Resources.Load<Material>(SolidMaterial));
             return _dark != null ? _dark : (_dark = Resources.Load<Material>(DarkMaterial));
         }
 
         public static Material Dark => MaterialFor(Style.Dark);
         public static Material Light => MaterialFor(Style.Light);
+        public static Material Solid => MaterialFor(Style.Solid);
 
         /// <summary>Adds a glass panel under <paramref name="parent"/> (top-left origin, y down, like UiKit).</summary>
         public static GlassPanel Add(Transform parent, string name, Vector2 topLeft, Vector2 size, Style style = Style.Dark)
