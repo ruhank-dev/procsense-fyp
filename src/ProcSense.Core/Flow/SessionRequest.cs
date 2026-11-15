@@ -17,8 +17,12 @@ namespace ProcSense.Core.Flow
         /// SessionFile.RequestOf reads them back, so a replay or a bug report rebuilds the same request and plan.</summary>
         public IReadOnlyDictionary<string, string> Header() => new Dictionary<string, string>
         {
-            ["case"] = CaseId, ["seed"] = Seed.ToString(System.Globalization.CultureInfo.InvariantCulture), ["mode"] = Mode.ToString().ToLowerInvariant(), ["level"] = Options.Level.ToString().ToLowerInvariant(),
-            ["procedure"] = Procedure, ["source"] = Source.ToString().ToLowerInvariant(),
+            ["case"] = CaseId,
+            ["seed"] = Seed.ToString(System.Globalization.CultureInfo.InvariantCulture),
+            ["mode"] = Mode.ToString().ToLowerInvariant(),
+            ["level"] = Options.Level.ToString().ToLowerInvariant(),
+            ["procedure"] = Procedure,
+            ["source"] = Source.ToString().ToLowerInvariant(),
         };
     }
 
