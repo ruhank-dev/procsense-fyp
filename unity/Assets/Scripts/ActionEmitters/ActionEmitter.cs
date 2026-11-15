@@ -74,10 +74,13 @@ namespace ProcSense.VR.ActionEmitters
             DebounceSeconds = debounceSeconds;
             if (Time.unscaledTime - _lastFired < debounceSeconds) return null;
             _lastFired = Time.unscaledTime;
-            var outcome = host.Apply(BuildAction(verbOverride));
+            var outcome = ActionGateway.Apply(host, BuildAction(verbOverride), Source);   // through the one door (P3-SES-04)
             Fired?.Invoke(outcome);
             return outcome;
         }
+
+        /// <summary>Where this emitter's actions come from, for the gateway: a hand on an object unless a subclass is a panel button.</summary>
+        protected virtual ActionSource Source => ActionSource.Physical;
 
         /// <summary>Lets the tablet offer the same action as a button (plan tests T01-5, T03-5).</summary>
         protected void RegisterFallback()

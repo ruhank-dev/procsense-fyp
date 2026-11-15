@@ -52,7 +52,7 @@ namespace ProcSense.VR.Bridge
                 if (_default != null) return _default;
                 _default = new SimFeedback(() => SimulationHost.Instance != null ? SimulationHost.Instance.Session : null,
                                            () => Flow.MenuFlow.Current != null ? Flow.MenuFlow.Current.Phase.ToString() : null);
-                ActionGateway.Default.Outcome += _default.OnGatewayOutcome;
+                ActionGateway.Answered += _default.OnGatewayOutcome;
                 return _default;
             }
         }

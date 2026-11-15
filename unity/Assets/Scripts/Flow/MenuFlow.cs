@@ -145,7 +145,7 @@ namespace ProcSense.VR.Flow
         public ActionOutcome Hint()
         {
             if (Phase != MenuPhase.Playing) return Rejected(NotAllowedNow);
-            var outcome = _host.Apply(new SimAction(ExamControl.RequestHint, "", Channel.Vr));
+            var outcome = ActionGateway.Apply(_host, new SimAction(ExamControl.RequestHint, "", Channel.Vr), ActionSource.Menu);
             Message = outcome.Accepted ? "" : outcome.RejectReason;
             Changed?.Invoke();
             return outcome;
@@ -163,7 +163,7 @@ namespace ProcSense.VR.Flow
             Message = "";
             var p = new Dictionary<string, string>();
             if (abandoned) p[ExamControl.AbandonedParam] = "true";
-            var outcome = _host.Apply(new SimAction(ExamControl.SubmitPatient, "", Channel.Vr, p));
+            var outcome = ActionGateway.Apply(_host, new SimAction(ExamControl.SubmitPatient, "", Channel.Vr, p), ActionSource.Menu);
             if (outcome.Accepted)
             {
                 Summary = ResultSummary.From(_host.Session, _host.Content, _credits.TryGetValue(_host.Session.Case.Id, out var c) ? c : (int?)null, _grades);

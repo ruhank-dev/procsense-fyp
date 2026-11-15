@@ -86,7 +86,7 @@ namespace ProcSense.VR.Flow
 
         private bool Send(string verb)
         {
-            var o = Host.Apply(new SimAction(verb, "", Channel.System));
+            var o = ActionGateway.Apply(Host, new SimAction(verb, "", Channel.System), ActionSource.Menu);
             LastRefusal = o.Accepted ? "" : o.RejectReason;
             return o.Accepted;
         }

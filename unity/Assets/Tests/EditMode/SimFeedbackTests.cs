@@ -105,6 +105,7 @@ namespace ProcSense.Tests.EditMode
             public HostTarget(SimulationHost h) { _h = h; }
             public ActionOutcome Apply(SimAction a) => _h.Apply(a);
             public long Step => _h.Session.Clock.Steps;
+            public object Epoch => _h.Session;
         }
     }
 }

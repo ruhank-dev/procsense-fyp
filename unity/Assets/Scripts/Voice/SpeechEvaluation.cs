@@ -110,7 +110,7 @@ namespace ProcSense.VR.Voice
         {
             if (host == null || host.Session == null || result == null || result.Decision != EvaluateDecision.Evaluated || result.Acts.Length == 0 || string.IsNullOrEmpty(result.UtteranceId)) return 0;
             if (!_applied.Add(result.UtteranceId)) return 0;
-            foreach (var a in result.Acts) host.Apply(ToAction(result.UtteranceId, a, result.ClaimsPhysicalAction));
+            foreach (var a in result.Acts) ActionGateway.Apply(host, ToAction(result.UtteranceId, a, result.ClaimsPhysicalAction), ActionSource.Voice);
             return result.Acts.Length;
         }
     }

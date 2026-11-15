@@ -96,6 +96,14 @@ checks:
     tools: [uv, python]
     group: python
     inputs: ["tools/ui/**", "unity/Assets/UI/Icons/**", "unity/Assets/Scripts/UI/Theme/UiIcons.cs"]
+  action_gateway_check:
+    desc: "P3-SES-04: no Unity script calls SimulationHost.Apply directly; every app action goes through ActionGateway (duplicate window, source tag, mode gate)"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/ci/check_action_gateway.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["unity/Assets/Scripts/**", "tools/ci/check_action_gateway.py"]
   ui_messages_check:
     desc: "UI message table (P3-API-07): every sign-in, LAN, pairing and compatibility error code the server can give (read from its source) and every client code has a message, tests"
     job: repo_checks

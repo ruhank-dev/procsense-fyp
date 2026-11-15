@@ -90,7 +90,7 @@ namespace ProcSense.VR.Views
         private ActionOutcome Apply(SimAction action, string accepted)
         {
             var host = SimulationHost.Instance;
-            var outcome = host != null && host.Session != null ? host.Apply(action) : _session.Apply(action);
+            var outcome = host != null && host.Session != null ? ActionGateway.Apply(host, action, ActionSource.Tablet) : _session.Apply(action);
             if (!outcome.Accepted) { SetStatus(Words.TryGetValue(outcome.RejectReason, out var w) ? w : "Not accepted: " + outcome.RejectReason); return outcome; }
             var asks = outcome.Effects.Where(e => e.StartsWith("recovery_nurse_asks:")).Select(e => Label(e.Substring("recovery_nurse_asks:".Length))).ToList();
             string text = outcome.Effects.Contains("recovery_handover_complete") ? "Handover complete. Thank you." : accepted;

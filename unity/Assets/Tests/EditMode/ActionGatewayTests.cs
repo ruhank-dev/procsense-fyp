@@ -13,6 +13,7 @@ namespace ProcSense.Tests.EditMode
             public readonly List<SimAction> Applied = new List<SimAction>();
             public string RejectWith = "";
             public long Step { get; private set; }
+            public object Epoch => null;
             public ActionOutcome Apply(SimAction action)
             {
                 Applied.Add(action);
@@ -78,6 +79,16 @@ namespace ProcSense.Tests.EditMode
             _now += ActionGateway.DuplicateWindowSeconds;
             Assert.IsTrue(_gateway.Submit(new ActionRequest(Bp(), ActionSource.Tablet)).Accepted, "after the window it is a new order");
             Assert.IsTrue(_gateway.Submit(new ActionRequest(new SimAction("measure", "temperature", Channel.Tablet), ActionSource.Tablet)).Accepted, "a different order is not a duplicate");
+        }
+
+        [Test]
+        public void Two_presses_or_touches_are_not_judged_here()
+        {
+            Assert.IsTrue(_gateway.Submit(new ActionRequest(Bp(), ActionSource.Tablet)).Accepted);
+            Assert.IsTrue(_gateway.Submit(new ActionRequest(Bp(), ActionSource.Tablet)).Accepted, "a panel repeats on purpose (the emitters debounce double presses)");
+            Assert.IsTrue(_gateway.Submit(new ActionRequest(Bp(Channel.Vr), ActionSource.Physical)).Accepted);
+            Assert.AreEqual(3, _target.Applied.Count);
+            Assert.IsTrue(_gateway.Submit(new ActionRequest(Bp(Channel.Vr), ActionSource.Voice)).Duplicate, "but speech right after is the same order");
         }
 
         [Test]

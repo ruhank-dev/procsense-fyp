@@ -46,14 +46,17 @@ namespace ProcSense.VR.Bridge
     {
         ActionOutcome Apply(SimAction action);
         long Step { get; }
+        /// <summary>Changes when a new session starts (the gateway then forgets its duplicate window and answered ids).</summary>
+        object Epoch { get; }
     }
 
     /// <summary>
     /// The one door every action goes through (P3-SES-03, the mediator of p3-01): a menu press, the tablet, a physical emitter and a spoken sentence all become an
     /// <see cref="ActionRequest"/> and meet the same rules here before the engine sees them:
     /// 1. a request id is answered once: the same id again (a double click delivered twice, a retried voice call) gets the first answer back, marked duplicate;
-    /// 2. the same verb, target and parameters from any source within <see cref="DuplicateWindowSeconds"/> after an accepted one is answered DUPLICATE without reaching the engine
-    ///    (the spoken-order rule, generalised);
+    /// 2. the same verb, target and parameters within <see cref="DuplicateWindowSeconds"/> after an accepted one is answered DUPLICATE without reaching the engine when either of the two
+    ///    came from speech (the spoken-order rule, generalised across sources: a sentence repeated by the recogniser, or said and then pressed). Two presses of a panel or two touches
+    ///    of an object are not judged here: they have their own debounce, and the correct paths repeat actions on purpose (a wristband read again, an observation repeated);
     /// 3. a practice-only aid is refused in the examination (<see cref="ModeGate"/>);
     /// 4. everything else goes to the simulation (SimulationHost.Apply: NO_SESSION, SESSION_PAUSED and every clinical rule stay where they are).
     /// One <see cref="Outcome"/> event carries every answer. The engine decides what is allowed; the gateway only removes repeats and routes.
@@ -64,18 +67,53 @@ namespace ProcSense.VR.Bridge
         public const string DuplicateCode = "DUPLICATE", PracticeOnlyCode = "PRACTICE_ONLY", InvalidCode = "INVALID_REQUEST";
         private const int RememberedIds = 128;
 
+        /// <summary>
+        /// Control verbs that are legitimately sent again within seconds and answered by the engine itself: pause and resume, a second hint (it gives the next tier),
+        /// and submission (the engine refuses a second one with its own reason). The duplicate window is for orders and double presses, not for these.
+        /// </summary>
+        public static readonly HashSet<string> Repeatable = new HashSet<string>(StringComparer.Ordinal)
+        { ProcSense.Core.SessionControl.Pause, ProcSense.Core.SessionControl.Resume, ProcSense.Core.ExamControl.RequestHint, ProcSense.Core.ExamControl.SubmitPatient };
+
+        private static readonly Dictionary<SimulationHost, ActionGateway> PerHost = new Dictionary<SimulationHost, ActionGateway>();
+
+        /// <summary>The gateway of a host (one per host, made on first use); the running host's when none is given.</summary>
+        public static ActionGateway For(SimulationHost host = null)
+        {
+            host = host != null ? host : SimulationHost.Instance;
+            if (host == null) return Default;
+            foreach (var dead in new List<SimulationHost>(PerHost.Keys)) if (dead == null) PerHost.Remove(dead);   // hosts of finished scenes and tests
+            if (!PerHost.TryGetValue(host, out var g)) PerHost[host] = g = new ActionGateway(new HostTarget(host), () => UnityEngine.Time.realtimeSinceStartup);
+            return g;
+        }
+
+        /// <summary>
+        /// The drop-in for <c>SimulationHost.Apply</c> (P3-SES-04): sends the action through the host's gateway with its source and returns the engine's outcome, or a refusal with the
+        /// gateway's reason when it never reached the engine (DUPLICATE, PRACTICE_ONLY), so callers keep reading Accepted and RejectReason as before.
+        /// </summary>
+        public static ActionOutcome Apply(SimulationHost host, SimAction action, ActionSource source)
+        {
+            var o = For(host).Submit(new ActionRequest(action, source));
+            if (o.Engine != null) return o.Engine;
+            var refused = new ActionOutcome();
+            refused.Reject(o.ReasonCode);
+            return refused;
+        }
+
         private static ActionGateway _default;
-        /// <summary>The app's gateway, sending to <see cref="SimulationHost.Instance"/>.</summary>
-        public static ActionGateway Default => _default ?? (_default = new ActionGateway(new HostTarget(), () => UnityEngine.Time.realtimeSinceStartup));
+        /// <summary>A gateway for when no host exists yet (every request is answered NO_SESSION).</summary>
+        public static ActionGateway Default => _default ?? (_default = new ActionGateway(new HostTarget(null), () => UnityEngine.Time.realtimeSinceStartup));
 
         public event Action<ActionRequest, GatewayOutcome> Outcome;
+        /// <summary>Every answer of every gateway (the feedback stream listens here).</summary>
+        public static event Action<ActionRequest, GatewayOutcome> Answered;
+        private object _epoch;
 
         private readonly IActionTarget _target;
         private readonly Func<float> _now;
         private readonly Func<bool> _practiceAids;
         private readonly Dictionary<string, GatewayOutcome> _answered = new Dictionary<string, GatewayOutcome>();
         private readonly Queue<string> _answerOrder = new Queue<string>();
-        private readonly Dictionary<string, float> _acceptedAt = new Dictionary<string, float>();
+        private readonly Dictionary<string, (float at, ActionSource source)> _acceptedAt = new Dictionary<string, (float, ActionSource)>();
         private readonly HashSet<string> _inFlight = new HashSet<string>();
 
         public ActionGateway(IActionTarget target, Func<float> now, Func<bool> practiceAids = null)
@@ -90,13 +128,15 @@ namespace ProcSense.VR.Bridge
 
         public GatewayOutcome Submit(ActionRequest request)
         {
+            if (!ReferenceEquals(_target.Epoch, _epoch)) { Reset(); _epoch = _target.Epoch; }   // a new session: nothing from the last one counts as a duplicate
             if (request == null || request.Action == null || string.IsNullOrEmpty(request.Action.Verb)) return Finish(request, Refused(request, InvalidCode), remember: false);
             if (_answered.TryGetValue(request.RequestId, out var earlier)) return Raise(request, Copy(earlier, duplicate: true));
             if (_inFlight.Contains(request.RequestId)) return Raise(request, Duplicate(request));             // re-entered while the same request is being applied
 
             string key = Key(request.Action);
             float now = _now();
-            if (_acceptedAt.TryGetValue(key, out var at) && now - at < DuplicateWindowSeconds) return Finish(request, Duplicate(request));
+            if (!Repeatable.Contains(request.Action.Verb) && _acceptedAt.TryGetValue(key, out var last) && now - last.at < DuplicateWindowSeconds
+                && (request.Source == ActionSource.Voice || last.source == ActionSource.Voice)) return Finish(request, Duplicate(request));
             if (request.PracticeOnly && !_practiceAids()) return Finish(request, Refused(request, PracticeOnlyCode));
 
             _inFlight.Add(request.RequestId);
@@ -105,7 +145,7 @@ namespace ProcSense.VR.Bridge
             finally { _inFlight.Remove(request.RequestId); }
             var o = new GatewayOutcome { RequestId = request.RequestId, Accepted = engine.Accepted, ReasonCode = engine.Accepted ? "" : engine.RejectReason, Engine = engine, EngineStep = _target.Step };
             if (!engine.Accepted) o.HintText = HintTexts.For(engine.RejectReason);
-            else _acceptedAt[key] = now;
+            else _acceptedAt[key] = (now, request.Source);
             return Finish(request, o);
         }
 
@@ -135,21 +175,24 @@ namespace ProcSense.VR.Bridge
             return Raise(r, o);
         }
 
-        private GatewayOutcome Raise(ActionRequest r, GatewayOutcome o) { Outcome?.Invoke(r, o); return o; }
+        private GatewayOutcome Raise(ActionRequest r, GatewayOutcome o) { Outcome?.Invoke(r, o); Answered?.Invoke(r, o); return o; }
 
-        /// <summary>The running simulation of the app.</summary>
+        /// <summary>A simulation host of the app (none: every request is answered NO_SESSION).</summary>
         private sealed class HostTarget : IActionTarget
         {
+            private readonly SimulationHost _host;
+            public HostTarget(SimulationHost host) { _host = host; }
+
             public ActionOutcome Apply(SimAction action)
             {
-                var host = SimulationHost.Instance;
-                if (host != null) return host.Apply(action);
+                if (_host != null) return _host.Apply(action);
                 var o = new ActionOutcome();
                 o.Reject("NO_SESSION");
                 return o;
             }
 
-            public long Step { get { var h = SimulationHost.Instance; return h != null && h.Session != null ? h.Session.Clock.Steps : 0; } }
+            public long Step => _host != null && _host.Session != null ? _host.Session.Clock.Steps : 0;
+            public object Epoch => _host != null ? _host.Session : null;
         }
     }
 }
