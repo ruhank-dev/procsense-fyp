@@ -74,6 +74,8 @@ namespace ProcSense.Tests.PlayMode
         {
             Start(SessionMode.Practice);
             var s = _host.Session;
+            foreach (var other in Object.FindObjectsByType<PauseMenu>(FindObjectsSortMode.None))   // menus left by earlier tests (the installer test keeps its panel); the app has one
+                if (other != _pause) Object.DestroyImmediate(other.gameObject);
             var all = Object.FindObjectsByType<PauseMenu>(FindObjectsSortMode.None);
             Assert.AreSame(_pause, PauseMenu.Running(), "pause menus alive: " + all.Length + "; running one: " + (PauseMenu.Running() != null ? PauseMenu.Running().name : "none"));
             if (ProcSense.VR.UI.SettingsUi.SettingsPanel.Open != null) ProcSense.VR.UI.SettingsUi.SettingsPanel.Open.Close();

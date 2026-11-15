@@ -30,6 +30,7 @@ namespace ProcSense.VR.Flow
         private Canvas _canvas;
         private TMP_Text _title, _body, _status;
         private readonly List<Button> _buttons = new List<Button>();
+        private readonly List<(Vector2 at, Vector2 size)> _home = new List<(Vector2, Vector2)>();
         private RectTransform _settings;
         private bool _showSettings;
         private GameObject _debrief;
@@ -64,7 +65,11 @@ namespace ProcSense.VR.Flow
             _body = Kit.Text(t, "Body", "", new Vector2(32, 96), new Vector2(Width - 64, 268), TextStyle.Body);
             _status = Kit.Text(t, "Status", "", new Vector2(32, 584), new Vector2(Width - 64, 32), TextStyle.Caption, UiTheme.Current.HintText);
             for (int i = 0; i < Pool; i++)
-                _buttons.Add(Kit.Button(t, " ", new Vector2(32 + (i % 2) * 426, 372 + (i / 2) * 72), new Vector2(410, Kit.ButtonHeight - 8), ButtonKind.Secondary));
+            {
+                var b = Kit.Button(t, " ", new Vector2(32 + (i % 2) * 426, 372 + (i / 2) * 72), new Vector2(410, Kit.ButtonHeight - 8), ButtonKind.Secondary);
+                _home.Add((((RectTransform)b.transform).anchoredPosition, ((RectTransform)b.transform).sizeDelta));
+                _buttons.Add(b);
+            }
 
             var go = new GameObject("Settings container", typeof(RectTransform));
             go.transform.SetParent(t, false);
@@ -146,7 +151,7 @@ namespace ProcSense.VR.Flow
         {
             if (_flow == null) return;
             if (_flow.Phase != MenuPhase.Results && _debrief != null) CloseDebrief();
-            foreach (var b in _buttons) b.gameObject.SetActive(false);
+            for (int i = 0; i < _buttons.Count; i++) { _buttons[i].gameObject.SetActive(false); _buttons[i].interactable = true; Resize(_buttons[i], _home[i].at, _home[i].size); }
             _settings.gameObject.SetActive(false);   // the tablet keeps this older tab; the menu opens the full settings panel (P3-SET-02)
             _status.text = Say(_flow.Message);
             _body.enableAutoSizing = false;
@@ -248,11 +253,25 @@ namespace ProcSense.VR.Flow
         {
             bool training = _flow.Mode == SessionMode.Practice;
             _title.text = training ? "Training: choose the surgery" : "Examination: choose the surgery";
-            _body.text = "A random valid patient is drawn for the surgery you choose.";
-            Slot(0, "Gallbladder removal (" + _flow.CaseCount(_flow.Mode, "cholecystectomy") + " cases)", () => _flow.ChooseSurgery("cholecystectomy", _flow.Level));
-            Slot(1, "Appendectomy (" + _flow.CaseCount(_flow.Mode, "appendicectomy") + " cases)", () => _flow.ChooseSurgery("appendicectomy", _flow.Level));
+            _body.text = "You prepare the patient for the operation; you do not perform it. A random valid patient is drawn for the surgery you choose.";
+            ProcedureCard(0, "Gallbladder removal", "Laparoscopic cholecystectomy", "cholecystectomy", training);
+            ProcedureCard(1, "Appendectomy", "Appendicectomy", "appendicectomy", training);
             if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(_flow.Level == TrainingLevel.Beginner ? TrainingLevel.Advanced : TrainingLevel.Beginner));
             Slot(3, "Back", _flow.BackToMenu);
+        }
+
+        /// <summary>
+        /// A procedure card (P3-MNU-04): the plain name, the operation's name and "pre-operative preparation", and how many cases the chosen mode can draw. With none (the examination before any
+        /// case is approved, open decision D1) the card is shown disabled with the reason instead of failing after a press. The label still starts with the plain name.
+        /// </summary>
+        private void ProcedureCard(int slot, string name, string operation, string procedure, bool training)
+        {
+            int n = _flow.CaseCount(_flow.Mode, procedure);
+            string detail = n > 0 ? operation + " · pre-operative preparation · " + n + (n == 1 ? " case" : " cases")
+                                  : training ? "No cases are available for training yet" : "No cases are approved for examination yet";
+            Slot(slot, name + " (" + n + " cases)\n<size=20>" + detail + "</size>", () => _flow.ChooseSurgery(procedure, _flow.Level), -1f, n > 0 ? ButtonKind.Primary : ButtonKind.Secondary,
+                 new Vector2(32 + slot * 426, 196), new Vector2(410, 160));
+            _buttons[slot].interactable = n > 0;
         }
 
         private void DrawBriefing()
@@ -327,9 +346,10 @@ namespace ProcSense.VR.Flow
             _drawingResults = false;
         }
 
-        private void Slot(int slot, string label, UnityAction onClick, float y = -1f, ButtonKind kind = ButtonKind.Secondary)
+        private void Slot(int slot, string label, UnityAction onClick, float y = -1f, ButtonKind kind = ButtonKind.Secondary, Vector2? at = null, Vector2? size = null)
         {
             var b = _buttons[slot];
+            if (at.HasValue || size.HasValue) Resize(b, at.HasValue ? new Vector2(at.Value.x, -at.Value.y) : ((RectTransform)b.transform).anchoredPosition, size ?? ((RectTransform)b.transform).sizeDelta);
             b.gameObject.SetActive(true);
             var text = b.GetComponentInChildren<TMP_Text>();
             text.text = label;
@@ -337,6 +357,15 @@ namespace ProcSense.VR.Flow
             b.onClick.RemoveAllListeners();
             b.onClick.AddListener(onClick);
             if (y >= 0f) { var r = (RectTransform)b.transform; r.anchoredPosition = new Vector2(r.anchoredPosition.x, -y); }
+        }
+
+        private static void Resize(Button b, Vector2 anchored, Vector2 size)
+        {
+            var r = (RectTransform)b.transform;
+            r.anchoredPosition = anchored;
+            r.sizeDelta = size;
+            var label = b.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) label.rectTransform.sizeDelta = new Vector2(size.x - 2 * UiTheme.Current.Spacing[2], size.y);
         }
 
         /// <summary>The look of a pooled button for this slot: teal for the way forward, red for leaving or the irreversible step, light glass otherwise.</summary>
