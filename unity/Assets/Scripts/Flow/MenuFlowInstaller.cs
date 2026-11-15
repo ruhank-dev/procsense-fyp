@@ -47,6 +47,11 @@ namespace ProcSense.VR.Flow
                 var pause = _panelRoot.AddComponent<PauseMenu>();          // the pause menu on the controller's menu button (P3-MNU-08)
                 pause.Flow = Flow;
                 _panelRoot.AddComponent<FlowTransitions>().Attach(Flow, Panel);   // dip to dark on a new case, dim on the results (P3-ANI-10)
+                var hint = new GameObject("Hint panel");                            // the lightbulb (P3-EXM-03), beside the menu while a case is played
+                hint.transform.SetParent(_panelRoot.transform, false);
+                hint.transform.localPosition = new Vector3(-.95f, 0f, .05f);
+                hint.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
+                hint.AddComponent<HintPanel>().Build(Flow, HintPanel.CostFrom(UnityContentReader.ForThisPlatform()));
                 Flow.SignedIn();                                     // sign-in finished before this object was made; the consent step (if any) comes next
                 Place();
             }
