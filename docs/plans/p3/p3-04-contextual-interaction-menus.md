@@ -51,7 +51,7 @@ An interaction catalogue per entity; an `Interactable` component and highlight; 
 | P3-CTX-04 | Contextual panel view: header with name and role, groups as tabs or sections, actions with icon, availability from `Preview`, greyed reason, existing forms for actions with parameters | Moiz | P3-CTX-01, P3-CTX-03, P3-SES-03, P3-UIX-05 | Every tablet form opens from the panel | Planned |
 | P3-CTX-05 | Placement: 0.15 m beside the entity's anchor, turned to the player, clamped to 1.1–1.6 m height and 0.6–1.2 m distance, avoids walls, follows if the player walks more than 1.5 m away | Moiz | P3-CTX-04 | No panel clips into a wall in the three rooms (PlayMode sweep) | Planned |
 | P3-CTX-06 | Feedback: accepted → subtitle/voice reply and animation trigger through `SimFeedback`; rejected → shake and reason | Moiz | P3-SES-10, P3-ANI-04 | Each outcome visibly different | Planned |
-| P3-CTX-07 | Tablet kept as the full list (accessibility, fallback), restyled with the kit and opened from the wrist menu | Moiz | P3-UIX-05 | Tablet and panel send identical requests (test) | Planned |
+| P3-CTX-07 | Tablet kept as the full list (accessibility, fallback), restyled with the kit and opened from the wrist menu | Moiz | P3-UIX-05 | Tablet and panel send identical requests (test) | Done |
 | P3-CTX-08 | Tests: catalogue validator, panel availability equals engine Check, placement sweep, both controllers | Moiz | P3-CTX-05, P3-CTX-06 | Green in CI | Planned |
 
 ## 7. Dependencies and execution order

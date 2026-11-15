@@ -52,6 +52,7 @@ namespace ProcSense.VR.Flow
                 hint.transform.localPosition = new Vector3(-.95f, 0f, .05f);
                 hint.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
                 hint.AddComponent<HintPanel>().Build(Flow, HintPanel.CostFrom(UnityContentReader.ForThisPlatform()));
+                if (FindAnyObjectByType<ProcSense.VR.UI.Kit.WristMenu>() == null) new GameObject("Wrist menu host").AddComponent<ProcSense.VR.UI.Kit.WristMenu>();   // rides on the free hand once the rig exists (P3-CTX-07)
                 Flow.SignedIn();                                     // sign-in finished before this object was made; the consent step (if any) comes next
                 Place();
             }
