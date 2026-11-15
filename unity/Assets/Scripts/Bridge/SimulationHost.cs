@@ -92,6 +92,7 @@ namespace ProcSense.VR.Bridge
                 return;
             }
             Instance = this;
+            SimFeedback.Default.Attach(this);   // the feedback stream (P3-SES-10) reads every action and change of this host
             if (config != null && Session == null && AutoStartFromConfig) StartSession(config.caseId, (ulong)config.seed, ModeChoice.For(config.mode));
         }
 
