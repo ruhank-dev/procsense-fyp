@@ -53,6 +53,12 @@ namespace ProcSense.VR.Flow
                 hint.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
                 hint.AddComponent<HintPanel>().Build(Flow, HintPanel.CostFrom(UnityContentReader.ForThisPlatform()));
                 if (FindAnyObjectByType<ProcSense.VR.UI.Kit.WristMenu>() == null) new GameObject("Wrist menu host").AddComponent<ProcSense.VR.UI.Kit.WristMenu>();   // rides on the free hand once the rig exists (P3-CTX-07)
+                ProcSense.VR.Auth.ServiceStatus.Ensure();                                                 // polls the laptop (P3-NET-08)
+                var chip = new GameObject("Connection chip");                                             // the status chip above the menu (P3-UIX-11)
+                chip.transform.SetParent(_panelRoot.transform, false);
+                chip.transform.localPosition = new Vector3(0f, .43f, 0f);
+                chip.AddComponent<ProcSense.VR.UI.Kit.ConnectionChip>().Build();
+                if (FindAnyObjectByType<ProcSense.VR.Voice.VoiceBanner>() == null) new GameObject("Voice banner host").AddComponent<ProcSense.VR.Voice.VoiceBanner>();   // voice lost: banner with "Use menus" (P3-VOX-10)
                 Flow.SignedIn();                                     // sign-in finished before this object was made; the consent step (if any) comes next
                 Place();
             }

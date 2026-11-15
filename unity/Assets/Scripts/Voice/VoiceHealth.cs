@@ -49,6 +49,12 @@ namespace ProcSense.VR.Voice
 
         private void Update()
         {
+            var status = ProcSense.VR.Auth.ServiceStatus.Instance;   // P3-VOX-10: the 3-second connection model, when the app has it, decides instead of the 30-second check
+            if (status != null && status.Model.Known)
+            {
+                if (State.Offline == status.Model.VoiceAvailable) State.Report(status.Model.VoiceAvailable, Time.realtimeSinceStartup);
+                return;
+            }
             var auth = Auth();
             if (_running || auth == null || !auth.IsSignedIn || !State.Due(Time.realtimeSinceStartup)) return;
             StartCoroutine(Run(auth.BaseUrl));
