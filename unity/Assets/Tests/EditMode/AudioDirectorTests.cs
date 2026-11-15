@@ -41,6 +41,24 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void Ambience_ducks_while_the_microphone_is_open()   // P3-SND-10
+        {
+            Assert.AreEqual(AudioDirector.ListeningDb, AudioDirector.Level(MixGroup.Ambience, 1f, MixState.Play, 0f, true) - AudioDirector.Level(MixGroup.Ambience, 1f, MixState.Play, 0f, false), 1e-4);
+            foreach (var g in new[] { MixGroup.Voice, MixGroup.Effects, MixGroup.UI })
+                Assert.AreEqual(AudioDirector.Level(g, 1f, MixState.Play, 0f), AudioDirector.Level(g, 1f, MixState.Play, 0f, true), g.ToString());
+            var go = new GameObject("director");
+            try
+            {
+                var d = go.AddComponent<AudioDirector>();
+                d.Listen(true);
+                Assert.IsTrue(d.Listening);
+                d.Listen(false);
+                Assert.IsFalse(d.Listening);
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
+
+        [Test]
         public void The_volume_setting_maps_to_decibels_and_zero_is_silent()
         {
             Assert.AreEqual(0f, AudioDirector.ToDb(1f), 1e-4);

@@ -53,7 +53,7 @@ Mixer and snapshots; asset list and sources; ambience recordings; music; UI set;
 | P3-SND-07 | Equipment sounds beyond the existing synthesis | Sannan | P3-SND-02, P3-ANI-08 | Each equipment animation has its sound | Planned |
 | P3-SND-08 | Voice-feedback cues and the spoken failure phrases (pre-rendered with the project's voice tools) | Moiz | P3-VOX-07, P3-SND-01 | Each phrase has a clip and subtitle | Done |
 | P3-SND-09 | Spatial settings, voice limit, compression settings; evaluate the Meta XR Audio spatialiser only if DC-14 reports poor localisation | Moiz | P3-SND-03 | Settings recorded; CPU audio time measured in DC-13 | Planned |
-| P3-SND-10 | Volume settings integration (P3-SET-03) and the Listening snapshot | Moiz | P3-SET-03, P3-VOX-09 | Ambience ducks while talking | Planned |
+| P3-SND-10 | Volume settings integration (P3-SET-03) and the Listening snapshot | Moiz | P3-SET-03, P3-VOX-09 | Ambience ducks while talking | Done |
 | P3-SND-11 | Mix and loudness pass (dialogue around -18 LUFS-S short term in the headset, UI clearly below voice) and tests | Sannan | P3-SND-05, P3-SND-06, P3-SND-07 | Measured levels recorded; tests green | Planned |
 
 ## 7. Dependencies and execution order

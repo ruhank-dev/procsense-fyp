@@ -23,23 +23,26 @@ namespace ProcSense.VR.Audio
     public sealed class AudioDirector : MonoBehaviour
     {
         public const string MixerResource = "ProcSenseMixer";
-        public const float Silent = -80f, DuckDb = -10f, DuckSeconds = .25f;
+        public const float Silent = -80f, DuckDb = -10f, DuckSeconds = .25f, ListeningDb = -8f;
 
         public static AudioDirector Instance { get; private set; }
 
         public AudioMixer Mixer;
         /// <summary>True while a voice line plays (VoicePlayer and the team voices tell the director).</summary>
         public bool Speaking { get; private set; }
+        /// <summary>True while the trainee's microphone is open (push-to-talk): the room ducks so the recogniser hears the trainee (P3-SND-10).</summary>
+        public bool Listening { get; private set; }
         public string Snapshot { get; private set; } = "";
 
         private float _duck;   // 0 to 1, eased
         private int _speakers;
 
         /// <summary>The level in decibels of one group, for a volume setting (0 to 1), a mix state and a duck amount (0 to 1).</summary>
-        public static float Level(MixGroup group, float setting, MixState state, float duck)
+        public static float Level(MixGroup group, float setting, MixState state, float duck, bool listening = false)
         {
             float db = ToDb(setting) + Offset(group, state);
             if (group == MixGroup.Ambience || group == MixGroup.Music) db += DuckDb * Mathf.Clamp01(duck);
+            if (listening && group == MixGroup.Ambience) db += ListeningDb;   // the plan's Listening snapshot: ambience 8 dB down while the microphone is open
             return Mathf.Max(Silent, db);
         }
 
@@ -101,6 +104,9 @@ namespace ProcSense.VR.Audio
         private void Awake() { if (Instance != null && Instance != this) { Destroy(this); return; } Instance = this; }
         private void OnDestroy() { if (Instance == this) Instance = null; }
 
+        /// <summary>The microphone opens or closes (PushToTalkView tells the director).</summary>
+        public void Listen(bool on) => Listening = on;
+
         /// <summary>A voice line starts or stops (counted, so two speakers overlapping keep the duck).</summary>
         public void Speak(bool on)
         {
@@ -122,7 +128,7 @@ namespace ProcSense.VR.Audio
             if (Mixer == null) return;
             var s = GameSettings.Current;
             foreach (MixGroup g in System.Enum.GetValues(typeof(MixGroup)))
-                Mixer.SetFloat(g + "Volume", Level(g, SettingFor(g, s), state, _duck));
+                Mixer.SetFloat(g + "Volume", Level(g, SettingFor(g, s), state, _duck, Listening));
             var snap = SnapshotFor(state);
             if (snap == Snapshot) return;
             var target = Mixer.FindSnapshot(snap);

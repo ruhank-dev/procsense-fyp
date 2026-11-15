@@ -220,6 +220,7 @@ namespace ProcSense.VR.Voice
         private void OnRecording(bool on)
         {
             if (Speaker != null) Speaker.SetMuted(on);
+            if (ProcSense.VR.Audio.AudioDirector.Instance != null) ProcSense.VR.Audio.AudioDirector.Instance.Listen(on);   // the room ducks while the trainee talks (P3-SND-10)
             if (_cues == null) _cues = VoiceCues.MakeSource(gameObject);   // its own source: the speaker is muted while recording
             LastCue = VoiceCues.Play(_cues, on);
         }
