@@ -117,6 +117,22 @@ namespace ProcSense.VR.Flow
             return list;
         }
 
+        /// <summary>Settings from the main menu (P3-SET-02): this panel shows "Settings" with Back, and the full settings panel opens beside it; closing either closes both.</summary>
+        private void OpenSettings()
+        {
+            _showSettings = true;
+            var panel = ProcSense.VR.UI.SettingsUi.SettingsPanel.Open ?? ProcSense.VR.UI.SettingsUi.SettingsPanel.Toggle(transform);
+            if (panel != null) panel.Closed += () => { if (_showSettings) { _showSettings = false; Refresh(); } };
+            Refresh();
+        }
+
+        private void CloseSettings()
+        {
+            _showSettings = false;
+            if (ProcSense.VR.UI.SettingsUi.SettingsPanel.Open != null) ProcSense.VR.UI.SettingsUi.SettingsPanel.Open.Close();
+            Refresh();
+        }
+
         // ------------------------------------------------------------------ drawing
 
         public void Refresh()
@@ -124,15 +140,15 @@ namespace ProcSense.VR.Flow
             if (_flow == null) return;
             if (_flow.Phase != MenuPhase.Results && _debrief != null) CloseDebrief();
             foreach (var b in _buttons) b.gameObject.SetActive(false);
-            _settings.gameObject.SetActive(_showSettings);
+            _settings.gameObject.SetActive(false);   // the tablet keeps this older tab; the menu opens the full settings panel (P3-SET-02)
             _status.text = Say(_flow.Message);
             _body.enableAutoSizing = false;
             _body.fontSize = 24f;
             if (_showSettings)
             {
                 _title.text = "Settings";
-                _body.text = "";
-                Slot(0, "Back", () => { _showSettings = false; Refresh(); }, 560f);
+                _body.text = "The settings are on the panel beside this one. Changes apply at once.";
+                Slot(0, "Back", CloseSettings, 560f);
                 return;
             }
             switch (_flow.Phase)
@@ -212,7 +228,7 @@ namespace ProcSense.VR.Flow
             _body.text = "Choose how you want to practise.\n\nTraining: help, goals and hints are available.\nTest / Examination: no goal list; hints cost points.";
             Slot(0, "TRAINING MODE", () => _flow.ChooseMode(SessionMode.Practice));
             Slot(1, "TEST / EXAMINATION MODE", () => _flow.ChooseMode(SessionMode.Assessment));
-            Slot(2, "Settings", () => { _showSettings = true; Refresh(); });
+            Slot(2, "Settings", OpenSettings);
             Slot(3, "Quit", Application.Quit);
             if (_flow.Interrupted != null)
             {

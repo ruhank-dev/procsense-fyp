@@ -323,9 +323,9 @@ namespace ProcSense.VR.UI.Kit
             Text(bg.transform, "Body", body, new Vector2(pad, pad + 60), new Vector2(size.x - 2 * pad, 150), TextStyle.Body, T.TextSecondary);
             float bw = (size.x - 2 * pad - T.Spacing[1]) / 2, by = size.y - pad - ButtonHeight;
             var d = bg.gameObject.AddComponent<KitDialog>();
-            var no = Button(bg.transform, cancel, new Vector2(pad, by), new Vector2(bw, ButtonHeight), ButtonKind.Secondary, null, () => { onCancel?.Invoke(); d.Close(); });
+            var no = Button(bg.transform, cancel, new Vector2(pad, by), new Vector2(bw, ButtonHeight), ButtonKind.Secondary, null, () => { d.Close(); onCancel?.Invoke(); });
             var yes = Button(bg.transform, confirm, new Vector2(pad + bw + T.Spacing[1], by), new Vector2(bw, ButtonHeight), danger ? ButtonKind.Danger : ButtonKind.Primary, null,
-                             () => { onConfirm?.Invoke(); d.Close(); });
+                             () => { d.Close(); onConfirm?.Invoke(); });
             d.Init(bg.gameObject.AddComponent<CanvasGroup>(), yes, no);
             bg.gameObject.SetActive(false);
             return d;
@@ -417,6 +417,6 @@ namespace ProcSense.VR.UI.Kit
         public bool IsOpen => gameObject.activeSelf;
         public void Init(CanvasGroup group, Button confirm, Button cancel) { _group = group; Confirm = confirm; Cancel = cancel; }
         public void Open() => UiMotion.Open(transform, _group);
-        public void Close() => UiMotion.Close(transform, _group);
+        public void Close() { if (this != null) UiMotion.Close(transform, _group); }   // closes first, so the action may destroy the panel
     }
 }

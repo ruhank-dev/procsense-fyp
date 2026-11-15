@@ -29,9 +29,9 @@ A single settings model with versioned persistence; the full panel; audio mixer 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
 | P3-SET-01 | `GameSettings` model with versioned JSON persistence and migration of the current accessibility keys | Moiz | — | EditMode tests: defaults, migration, round trip | Done |
-| P3-SET-02 | Settings panel with the six tabs, reachable from menu, pause and wrist | Moiz | P3-SET-01, P3-UIX-04 | Every control changes its value live | Planned |
-| P3-SET-03 | Audio mixer groups (master, voice, music, SFX, ambience, UI) wired to sliders | Moiz | P3-SND-01, P3-SET-02 | Slider changes the group's level (test) | Planned |
-| P3-SET-04 | Interaction-mode switch mid-session (calls `InteractionMode`, P3-VOX-02) with a one-line explanation of what changes | Moiz | P3-VOX-02, P3-SET-02 | State hash unchanged by switching (test) | Planned |
+| P3-SET-02 | Settings panel with the six tabs, reachable from menu, pause and wrist | Moiz | P3-SET-01, P3-UIX-04 | Every control changes its value live | Done |
+| P3-SET-03 | Audio mixer groups (master, voice, music, SFX, ambience, UI) wired to sliders | Moiz | P3-SND-01, P3-SET-02 | Slider changes the group's level (test) | Done |
+| P3-SET-04 | Interaction-mode switch mid-session (calls `InteractionMode`, P3-VOX-02) with a one-line explanation of what changes | Moiz | P3-VOX-02, P3-SET-02 | State hash unchanged by switching (test) | Done |
 | P3-SET-05 | Comfort: snap/smooth turn, angle, speed, vignette during movement, teleport/continuous, seated height | Sannan | P3-SET-02 | Each option works on the rig in PlayMode | Planned |
 | P3-SET-06 | Accessibility: subtitle on/off, size, background plate, high contrast theme variant, reduce motion (disables non-essential tweens), dominant hand | Moiz | P3-SET-02, P3-UIX-08 | Each option visible in captures | Planned |
 | P3-SET-07 | Session tab: Return to main menu and Quit with the confirmations of P3-MNU-09 | Moiz | P3-MNU-09 | Same semantics as the pause menu | Planned |
