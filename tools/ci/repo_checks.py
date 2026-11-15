@@ -311,6 +311,13 @@ def check_engine_version() -> list[str]:
     return engine_version.check(engine_version.core_version(), engine_version.golden_digest(), engine_version.read_lock())
 
 
+# --- action-gateway: no Unity script calls SimulationHost.Apply directly (P3-SES-04, P3-SES-11); rule in tools/ci/check_action_gateway.py ---
+def check_action_gateway() -> list[str]:
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    import check_action_gateway
+    return check_action_gateway.problems()
+
+
 CHECKS = {
     "core-rules": check_core_rules,
     "hygiene": check_hygiene,
@@ -322,6 +329,7 @@ CHECKS = {
     "no-tool-attributions": check_no_tool_attributions,
     "engine-version": check_engine_version,
     "english-only": check_english_only,
+    "action-gateway": check_action_gateway,
 }
 
 

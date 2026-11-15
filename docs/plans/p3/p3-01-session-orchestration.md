@@ -64,7 +64,7 @@ The player moves through one continuous game: menu → mode → procedure → sc
 | P3-SES-08 | Pause and resume: pause menu and the headset system menu (focus lost) send the engine `pause`/`resume`; input frozen while paused | Moiz | P3-SES-05 | Clock does not advance while paused; actions are refused with `SESSION_PAUSED` | Done |
 | P3-SES-09 | Interrupted session: the log is flushed to the upload queue on pause/quit; on next launch the menu offers "Resume" (replay of the saved log to the last action) or "Discard" | Ruhan | P3-SES-07 | Kill-and-relaunch test resumes to the same observable state hash | In progress |
 | P3-SES-10 | `SimFeedback` event stream: action accepted/rejected (with hint text), goal completed, score item raised, alarm, end state, phase change | Moiz | P3-SES-03 | Checklist, audio and animation subscribe without polling `ObservableState` every frame | Done |
-| P3-SES-11 | Tests for the flow and the gateway (EditMode and PlayMode) and the repository rule of P3-SES-04 in `tools/ci/repo_checks.py` | Moiz | P3-SES-04, P3-SES-07, P3-SES-08, P3-SES-10 | Tests in CI; `docs/CI.md` row added | Planned |
+| P3-SES-11 | Tests for the flow and the gateway (EditMode and PlayMode) and the repository rule of P3-SES-04 in `tools/ci/repo_checks.py` | Moiz | P3-SES-04, P3-SES-07, P3-SES-08, P3-SES-10 | Tests in CI; `docs/CI.md` row added | Done |
 
 ## 7. Dependencies and execution order
 
