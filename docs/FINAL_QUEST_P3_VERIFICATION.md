@@ -93,7 +93,9 @@ Both APKs: zip test passed, package `com.procsense.fyp`, arm64-v8a only with `li
 
 | APK | Bytes | SHA-256 |
 |--|--|--|
-| `D:/ProcSenseWork/apk/overhaul/ProcSense-demo.apk` | 252,380,179 | `4ffba546932af7a45a05f0b90790178febbdc61bbb89d4097c0cc304cb5ea375` |
-| `D:/ProcSenseWork/apk/overhaul/ProcSense-diag.apk` | 252,429,891 | `695564512410e67182b090bb2fa7ff9263520081e48f1f3c3ebb36a3370d28b5` |
+| `D:/ProcSenseWork/apk/overhaul/ProcSense-demo.apk` | 252,380,183 | `6fe3dcd5975211cbb3262eff52773f04d902c7f65e1b903f427306d9c39d0ea2` |
+| `D:/ProcSenseWork/apk/overhaul/ProcSense-diag.apk` | 252,429,883 | `44c9fab87ea2fcee8acd47b68436b75b18bd5a7e8dd328f3d233f73cf0cf92a7` |
+
+These two APKs were rebuilt from commit 98da6c71 (engine 0.0.20, content hash f6fc71243e1abec1) after the first pair; smoke EditMode 7/7, PlayMode 16/16 before the build; working tree clean after the builds. GitHub CI (full dispatch run) passed on 98da6c71. Not run on a headset.
 
 Previous build (14 Nov 2026, superseded): demo `2c269302...`, diag `b8f0dc10...`.
