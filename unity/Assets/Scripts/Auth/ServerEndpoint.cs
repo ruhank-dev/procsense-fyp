@@ -87,7 +87,7 @@ namespace ProcSense.VR.Auth
             if (t.IndexOf("://", StringComparison.Ordinal) < 0)
             {
                 var host = t.Split(':')[0];
-                t = "http://" + t + (t.Contains(":") ? "" : ServiceSettings.IsPrivateNetwork(host) || host == "localhost" || host == "127.0.0.1" ? ":" + DefaultPort : "");
+                t = "http://" + t + (t.Contains(":") ? "" : ServiceSettings.IsPrivateIPv4(host) || host == "localhost" || host == "127.0.0.1" ? ":" + DefaultPort : "");
             }
             return t;
         }

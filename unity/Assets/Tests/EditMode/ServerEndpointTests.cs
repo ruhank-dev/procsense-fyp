@@ -25,11 +25,15 @@ namespace ProcSense.Tests.EditMode
         private ISettingsStore _store;
         private System.Func<string> _buildTime;
 
+        private bool _privateHttp;
+
         [SetUp]
         public void Swap()
         {
             _store = GameSettings.Store;
             _buildTime = ServerEndpoint.BuildTime;
+            _privateHttp = ServiceSettings.AllowPrivateHttp;
+            ServiceSettings.AllowPrivateHttp = true;   // a demo build: the laptop on the LAN is allowed (P3-NET-02)
             GameSettings.Store = new MemoryStore();
             ServerEndpoint.BuildTime = () => "https://procsense.onrender.com/";
         }
@@ -39,6 +43,7 @@ namespace ProcSense.Tests.EditMode
         {
             GameSettings.Store = _store;
             ServerEndpoint.BuildTime = _buildTime;
+            ServiceSettings.AllowPrivateHttp = _privateHttp;
         }
 
         [Test]
@@ -67,7 +72,7 @@ namespace ProcSense.Tests.EditMode
             ServerEndpoint.Changed += OnChange;
             try
             {
-                Assert.AreEqual("", ServerEndpoint.Enter("192.168.1.20"));   // the Editor is a Dev build
+                Assert.AreEqual("", ServerEndpoint.Enter("192.168.1.20"));
                 Assert.AreEqual("http://192.168.1.20:8000", ServerEndpoint.Current);
                 Assert.AreEqual("entered on this headset", ServerEndpoint.Source);
                 Assert.AreEqual("http://192.168.1.20:8000", heard);
