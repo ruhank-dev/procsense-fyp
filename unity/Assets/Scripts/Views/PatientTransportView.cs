@@ -14,6 +14,7 @@ namespace ProcSense.VR.Views
         public Vector3 BayStart = new Vector3(1.35f,0,-.8f);
         public Vector3 CorridorClear = new Vector3(4.25f,0,-.8f);
         public Transform BedsidePatient;
+        [Tooltip("Rocketbox bodies and controllers for the porter, nurse and doctor who travel with the patient.")] public StaffModels Staff = new StaffModels();
         public Transform[] AdditionalBedsideVisuals = System.Array.Empty<Transform>();
         public TransportPresentation Presentation { get; }=new TransportPresentation();
         public TransportActor Actor { get; private set; }
@@ -76,7 +77,7 @@ namespace ProcSense.VR.Views
             if(!NavMesh.SamplePosition(start,out var hit,.35f,NavMesh.AllAreas)) { Status="Transport route unavailable: no NavMesh at start"; return; }
             var go=new GameObject("M2 Core-driven transport"); go.transform.position=hit.position;
             go.transform.rotation=returning?Quaternion.LookRotation(-_door.transform.forward):Quaternion.Euler(0,90,0);
-            Actor=go.AddComponent<TransportActor>(); Actor.Build(Presentation,returning);
+            Actor=go.AddComponent<TransportActor>(); Actor.Build(Presentation,returning,Staff);
             if(!Actor.Agent.Warp(hit.position))
             { Actor.Agent.enabled=false; Status="Transport route unavailable: no NavMesh at start"; return; }
             go.transform.position=hit.position;
