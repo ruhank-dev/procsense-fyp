@@ -81,6 +81,7 @@ namespace ProcSense.VR.Views
         private IReadOnlyDictionary<string, float> expressionTarget = PatientExpression.Calm;
         private readonly Dictionary<string, float> expressionNow = new Dictionary<string, float>();
         private readonly Dictionary<string, int> expressionIndex = new Dictionary<string, int>();
+        private readonly List<string> expressionKeys = new List<string>();
         private float droop;
 
         /// <summary>How far the face is into its expression right now, by shape ending (0 when not part of it). For tests and review.</summary>
@@ -92,7 +93,8 @@ namespace ProcSense.VR.Views
         {
             float step = dt / Mathf.Max(.05f, expressionSeconds);
             foreach (var kv in expressionTarget) if (!expressionNow.ContainsKey(kv.Key)) expressionNow[kv.Key] = 0f;
-            foreach (var key in new List<string>(expressionNow.Keys))
+            expressionKeys.Clear(); expressionKeys.AddRange(expressionNow.Keys);                                     // a copy, because the loop removes keys; reused so no garbage per frame
+            foreach (var key in expressionKeys)
             {
                 float target = expressionTarget.TryGetValue(key, out var t) ? t : 0f;
                 float now = Mathf.MoveTowards(expressionNow[key], target, step);

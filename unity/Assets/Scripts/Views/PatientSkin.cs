@@ -61,6 +61,8 @@ namespace ProcSense.VR.Views
             block = new MaterialPropertyBlock();
         }
 
+        private float Goal(int sign) { switch (sign) { case 0: return pallor; case 1: return flush; case 2: return jaundice; case 3: return cyanosis; default: return sweat; } }   // no array per frame: this runs on the headset
+
         private void LateUpdate() => Step(Time.deltaTime);
 
         /// <summary>One frame of blending toward the signs; the review tool calls it outside play mode.</summary>
@@ -68,8 +70,7 @@ namespace ProcSense.VR.Views
         {
             if (!found) Find();
             float step = dt / Mathf.Max(.05f, blendSeconds); bool moving = false;
-            var target = new[] { pallor, flush, jaundice, cyanosis, sweat };
-            for (int i = 0; i < 5; i++) { float before = now[i]; now[i] = Mathf.MoveTowards(now[i], target[i], step); moving |= now[i] != before; }
+            for (int i = 0; i < 5; i++) { float before = now[i]; now[i] = Mathf.MoveTowards(now[i], Goal(i), step); moving |= now[i] != before; }
             if (!moving) return;                                                                  // nothing changed this frame: the block already holds the signs
             bool clear = now[0] + now[1] + now[2] + now[3] + now[4] <= 0f;
             var tint = Tint(now[0], now[1], now[2], now[3]);
