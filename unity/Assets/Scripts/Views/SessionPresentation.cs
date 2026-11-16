@@ -52,6 +52,7 @@ namespace ProcSense.VR.Views
             {
                 _visiblePatient.breathsPerMinute = PatientBreathing.Rate(_host.Observable?.Vitals);
                 _visiblePatient.SetMood(_host.Observable?.BehaviourMode);
+                var reactions = _visiblePatient.GetComponent<PatientReactions>(); if (reactions != null) reactions.Attach(Voice);       // the patient looks at the player while speaking
             }
             Voice.Heads.Clear();
             var visitingNurse = NurseWristbandController.Instance;

@@ -14,6 +14,21 @@ namespace ProcSense.VR.Views
         private PatientMotion motion;
         private bool bound;
 
+        private ProcSense.VR.Audio.VoicePlayer voice;
+
+        /// <summary>Follows this voice player: the patient is "speaking" while one of the patient's own lines plays, then listens. Safe to call every frame with the same player.</summary>
+        public void Attach(ProcSense.VR.Audio.VoicePlayer player)
+        {
+            if (voice == player) return;
+            if (voice != null) voice.Started -= OnLine;
+            voice = player;
+            if (voice != null) voice.Started += OnLine;
+        }
+
+        private void OnLine(ProcSense.VR.Audio.VoiceLine line) { if (line.Speaker == "patient") State.StartSpeaking(); }
+
+        private void OnDestroy() { if (voice != null) voice.Started -= OnLine; }
+
         public void Address() => State.Address();
         public void StartSpeaking() => State.StartSpeaking();
         public void EndSpeaking() => State.EndSpeaking();
@@ -41,6 +56,10 @@ namespace ProcSense.VR.Views
             }
         }
 
-        private void Update() => State.Step(Time.deltaTime);
+        private void Update()
+        {
+            if (State.State == CharacterState.Speaking && (voice == null || voice.Current == null || voice.Current.Speaker != "patient")) State.EndSpeaking();     // the patient's line is over
+            State.Step(Time.deltaTime);
+        }
     }
 }
