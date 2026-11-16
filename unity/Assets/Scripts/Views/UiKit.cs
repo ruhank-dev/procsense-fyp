@@ -17,9 +17,14 @@ namespace ProcSense.VR.Views
         public static readonly Color TextColor = new Color(0.93f, 0.95f, 0.98f, 1f);
         public static readonly Color DimTextColor = new Color(0.62f, 0.67f, 0.74f, 1f);
         public static readonly Color WarnColor = new Color(1f, 0.78f, 0.30f, 1f);
+        /// <summary>The colour of the flat background left over the glass (P3-UIX-05): clear.</summary>
+        public static readonly Color Clear = new Color(PanelColor.r, PanelColor.g, PanelColor.b, 0f);
 
         /// <summary>Raised for every canvas made here; the XR layer uses it to add its pointer raycaster.</summary>
         public static event Action<Canvas> CanvasCreated;
+
+        /// <summary>Raises <see cref="CanvasCreated"/> for a canvas made elsewhere (the P3 component kit), so the XR layer adds its pointer raycaster to it too.</summary>
+        public static void Announce(Canvas canvas) => CanvasCreated?.Invoke(canvas);
 
         public static Canvas WorldCanvas(string name, Transform parent, Vector2 sizePixels, float metresPerPixel)
         {
@@ -32,7 +37,11 @@ namespace ProcSense.VR.Views
             rect.localScale = Vector3.one * metresPerPixel;
             go.AddComponent<CanvasScaler>().dynamicPixelsPerUnit = 8f;
             go.AddComponent<GraphicRaycaster>();
-            Panel(go.transform, "Background", Vector2.zero, sizePixels, PanelColor);
+            // P3-UIX-05: every UiKit panel sits on the kit's frosted glass (rounded, rimmed); the old flat "Background" stays on top of it, clear, so views that colour it (the notice chip) still can
+            canvas.additionalShaderChannels |= AdditionalCanvasShaderChannels.TexCoord1;
+            var glass = ProcSense.VR.UI.Theme.GlassPanel.Add(go.transform, "Glass", Vector2.zero, sizePixels);
+            glass.Radius = Mathf.Min(ProcSense.VR.UI.Theme.UiTheme.Current.Radius, Mathf.Min(sizePixels.x, sizePixels.y) / 4f);
+            Panel(go.transform, "Background", Vector2.zero, sizePixels, Clear);
             ProcSense.VR.UI.Accessibility.AccessibleCanvas.Attach(canvas, metresPerPixel);   // the viewer's panel size (p0-vr-interaction-ui-s10)
             CanvasCreated?.Invoke(canvas);
             return canvas;
@@ -79,9 +88,14 @@ namespace ProcSense.VR.Views
             var go = new GameObject("Button - " + label, typeof(RectTransform), typeof(Image), typeof(Button));
             go.transform.SetParent(parent, false);
             var image = go.GetComponent<Image>();
-            image.color = Color.white;
+            image.color = new Color(1f, 1f, 1f, 0f);                     // still the hit area of the button; the look is the glass below (P3-UIX-05)
+            Place((RectTransform)go.transform, topLeft, size);
+            var glass = ProcSense.VR.UI.Theme.GlassPanel.Add(go.transform, "Glass", Vector2.zero, size, ProcSense.VR.UI.Theme.GlassPanel.Style.Solid);
+            glass.Radius = Mathf.Min(14f, size.y / 2f);
+            var stretch = glass.rectTransform;                             // follows the button when a view resizes it
+            stretch.anchorMin = Vector2.zero; stretch.anchorMax = Vector2.one; stretch.pivot = new Vector2(.5f, .5f); stretch.offsetMin = stretch.offsetMax = Vector2.zero;
             var button = go.GetComponent<Button>();
-            button.targetGraphic = image;
+            button.targetGraphic = glass;
             var colors = button.colors;
             colors.normalColor = ButtonColor;
             colors.highlightedColor = ButtonColor * 1.25f;

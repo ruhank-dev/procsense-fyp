@@ -202,7 +202,7 @@ namespace ProcSense.VR.Voice
             if (_recent.TryGetValue(key, out var at) && Time.realtimeSinceStartup - at < DuplicateWindowSeconds) { Set(OrderPhase.Notice, "Already sent a moment ago."); return; }
             _recent[key] = Time.realtimeSinceStartup;
             var action = new SimAction(c.Verb, "patient", Channel.Vr, c.Params.Count == 0 ? null : new Dictionary<string, string>(c.Params));
-            var outcome = host.Apply(action);                                                 // the engine decides: a refusal comes back with its reason and nothing changes
+            var outcome = ActionGateway.Apply(host, action, ActionSource.Voice);              // the engine decides: a refusal comes back with its reason and nothing changes
             string label = shown != null ? shown.Label : c.Verb;
             if (outcome.Accepted)
             {

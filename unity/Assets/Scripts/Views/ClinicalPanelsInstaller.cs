@@ -53,7 +53,7 @@ namespace ProcSense.VR.Views
                 {
                     _noticeSession = id;
                     if (id == "") NoticeSession.End();
-                    else NoticeSession.Begin(ServiceSettings.Load() != null ? ServiceSettings.Load().BaseUrl : "", id, Time.unscaledTime);
+                    else NoticeSession.Begin(ProcSense.VR.Auth.ServerEndpoint.Current, id, Time.unscaledTime);
                 }
                 NoticeSession.Tick(Time.unscaledTime);
                 if (NoticeChip == null && id != "")
@@ -153,6 +153,7 @@ namespace ProcSense.VR.Views
             Board = go.AddComponent<ProcSense.VR.UI.Training.TrainingBoardView>();
             Board.Guide = _guide;
             Board.Build();
+            new GameObject("Training board summon").AddComponent<ProcSense.VR.UI.Training.BoardSummon>().Init(Board);   // icon at the edge of the view brings the board in front (P3-TRN-04)
         }
 
         private object _boundSession;

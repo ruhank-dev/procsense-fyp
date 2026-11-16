@@ -133,6 +133,19 @@ namespace ProcSense.VR.Views
             return true;
         }
 
+        /// <summary>P3-CTX-04: opens the form that makes this verb on its tab, empty, for the trainee to fill (the contextual panel's way into a form). False when the tab has no such form.</summary>
+        public bool OpenFormFor(string tab, string verb)
+        {
+            var item = _items.FirstOrDefault(i => i.Entry != null && i.Entry.IsForm && i.Entry.Verb == verb && _tabIds.IndexOf(tab) == i.Tab) ?? _items.FirstOrDefault(i => i.Entry != null && i.Entry.IsForm && i.Entry.Verb == verb);
+            if (item == null) return false;
+            ShowTab(item.Tab);
+            OpenForm(item.Entry);
+            return true;
+        }
+
+        /// <summary>True while a form is open on the tablet.</summary>
+        public bool FormOpen => _rows.Count > 0;
+
         /// <summary>The buttons by label (layout buttons, form openers and fallbacks), for tests and the fallback check.</summary>
         public IEnumerable<(string label, Button button)> Buttons => _items.Select(i => (i.Label, i.Button));
 

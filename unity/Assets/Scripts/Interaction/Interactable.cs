@@ -1,107 +1,78 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProcSense.VR.Interaction
 {
-    /// <summary>The kinds of thing the contextual menu offers actions for (plan p3-04, entity map). The actions themselves come from the interaction catalogue, never from here.</summary>
-    public enum EntityType { Patient, Nurse, Doctor, Anaesthetist, Receptionist, Porter, Equipment, Records, TheatreTeam }
-
     /// <summary>
-    /// Marks a scene object the trainee can point at to open its contextual menu (P3-CTX-02): who or what it is, where the panel appears, which renderers light up when it is hovered, and the name the voice mode answers to ("nurse", "monitor").
-    /// It holds no clinical rule and sends nothing; selection (P3-CTX-03) and the panel (P3-CTX-04) read it.
+    /// P3-CTX-02: marks something in a room the player can point at to get its contextual actions: the entity type of content/ui/interactions.json (patient, nurse, doctor, anaesthetist,
+    /// porter, monitor, records, theatre_team), an id, the anchor the panel sits beside, the renderers the highlight tints, and the name voice uses for it. Presentation only: it sends no
+    /// actions and holds no clinical state. Every live one is in <see cref="All"/>.
     /// </summary>
-    [ExecuteAlways, DisallowMultipleComponent]
+    [DisallowMultipleComponent]
     public sealed class Interactable : MonoBehaviour
     {
+        /// <summary>The entity types of the catalogue (content/ui/interactions.json "entities").</summary>
+        public static readonly string[] Types = { "patient", "nurse", "doctor", "anaesthetist", "porter", "monitor", "records", "theatre_team" };
+
+        [SerializeField] private string entityId = "";
+        [SerializeField] private string entityType = "";
+        [SerializeField] private Transform panelAnchor;
+        [SerializeField] private string voiceName = "";
+        [SerializeField] private List<Renderer> highlight = new List<Renderer>();
+
+        public string EntityId { get => string.IsNullOrEmpty(entityId) ? name : entityId; set => entityId = value; }
+        public string EntityType { get => entityType; set => entityType = value; }
+        public Transform PanelAnchor { get => panelAnchor != null ? panelAnchor : transform; set => panelAnchor = value; }
+        public string VoiceName { get => string.IsNullOrEmpty(voiceName) ? DefaultVoiceName(entityType) : voiceName; set => voiceName = value; }
+        public List<Renderer> Highlight => highlight;
+
         private static readonly List<Interactable> Live = new List<Interactable>();
+        public static IReadOnlyList<Interactable> All => Live;
 
-        [SerializeField, Tooltip("Unique in the scene, for example patient, nurse_ward, monitor_bay, records_workstation.")] private string entityId = "";
-        [SerializeField] private EntityType entityType = EntityType.Equipment;
-        [SerializeField, Tooltip("Where the contextual panel appears. The object's own transform when empty.")] private Transform panelAnchor;
-        [SerializeField, Tooltip("The renderers that light up on hover. All renderers under the object when empty.")] private Renderer[] highlightRenderers = Array.Empty<Renderer>();
-        [SerializeField, Tooltip("What the trainee says to address it by voice, for example nurse, monitor.")] private string voiceName = "";
+        private void OnEnable() { if (!Live.Contains(this)) Live.Add(this); }
+        private void OnDisable() => Live.Remove(this);
 
-        [SerializeField, Tooltip("Its visible parts are built at runtime (a phone, a screen), so having nothing to highlight in the editor is not a mistake.")] private bool renderersAtRuntime;
-        private Renderer[] cached;
-
-        /// <summary>The entity of the interaction catalogue (content/ui/interactions.json) whose actions this object offers: several objects can share one, for example every records object is "records".</summary>
-        public static string MenuEntityOf(EntityType type)
+        /// <summary>The words a trainee would use for it ("the nurse", "the monitor").</summary>
+        public static string DefaultVoiceName(string type)
         {
             switch (type)
             {
-                case EntityType.Patient: return "patient";
-                case EntityType.Nurse: return "nurse";
-                case EntityType.Doctor: return "doctor";
-                case EntityType.Anaesthetist: return "anaesthetist";
-                case EntityType.Receptionist: case EntityType.Porter: return "porter";
-                case EntityType.Records: return "records";
-                case EntityType.TheatreTeam: return "theatre_team";
-                default: return "monitor";                                                   // bedside equipment
+                case "theatre_team": return "theatre team";
+                case "porter": return "porter";
+                case "records": return "notes";
+                default: return type ?? "";
             }
         }
 
-        public string MenuEntity => MenuEntityOf(entityType);
-        public string EntityId => entityId;
-        public EntityType Type => entityType;
-        public string VoiceName => voiceName;
-        public Transform PanelAnchor => panelAnchor != null ? panelAnchor : transform;
-        public bool Highlighted { get; private set; }
-
-        /// <summary>Raised when the highlight turns on or off, so the highlight view can react without this component owning a material.</summary>
-        public event Action<Interactable, bool> HighlightChanged;
-
-        /// <summary>Every enabled Interactable, in no particular order.</summary>
-        public static IReadOnlyList<Interactable> All => Live;
-
-        public static Interactable Find(string id)
+        /// <summary>Sets it up: type, id, anchor (a "head" bone when there is one, else the top of its bounds), and the renderers under it.</summary>
+        public static Interactable Mark(GameObject go, string type, string id = null)
         {
-            foreach (var i in Live) if (i.entityId == id) return i;
+            var i = go.GetComponent<Interactable>() ?? go.AddComponent<Interactable>();
+            i.entityType = type;
+            if (!string.IsNullOrEmpty(id)) i.entityId = id;
+            i.highlight.Clear();
+            foreach (var r in go.GetComponentsInChildren<Renderer>(true))
+                if (!(r is ParticleSystemRenderer) && !(r is LineRenderer) && r.GetComponentInParent<Canvas>() == null) i.highlight.Add(r);
+            if (i.panelAnchor == null) i.panelAnchor = FindHead(go.transform) ?? TopAnchor(i);
+            return i;
+        }
+
+        private static Transform FindHead(Transform root)
+        {
+            foreach (var t in root.GetComponentsInChildren<Transform>(true))
+                if (t.name == "head" || t.name == "Bip01 Head" || t.name.EndsWith(" head") || t.name == "Head") return t;
             return null;
         }
 
-        public static IEnumerable<Interactable> OfType(EntityType type)
+        private static Transform TopAnchor(Interactable i)
         {
-            foreach (var i in Live) if (i.entityType == type) yield return i;
-        }
-
-        /// <summary>The renderers that light up: the ones given, or every renderer under the object.</summary>
-        public IReadOnlyList<Renderer> HighlightRenderers
-        {
-            get
-            {
-                if (highlightRenderers.Length > 0) return highlightRenderers;
-                if (cached == null || cached.Length == 0) cached = GetComponentsInChildren<Renderer>(true);          // an empty answer is not kept: parts built at runtime appear later
-                return cached;
-            }
-        }
-
-        public void Configure(string id, EntityType type, string voice = "", Transform anchor = null, Renderer[] renderers = null, bool partsBuiltAtRuntime = false)
-        {
-            entityId = id ?? ""; entityType = type; voiceName = voice ?? ""; panelAnchor = anchor; highlightRenderers = renderers ?? Array.Empty<Renderer>(); renderersAtRuntime = partsBuiltAtRuntime; cached = null;
-        }
-
-        public void SetHighlighted(bool on)
-        {
-            if (Highlighted == on) return;
-            Highlighted = on;
-            HighlightChanged?.Invoke(this, on);
-        }
-
-        /// <summary>What is wrong with this one: an empty list means it is usable. Used by the placement tool and by the coverage check.</summary>
-        public IEnumerable<string> Problems()
-        {
-            if (string.IsNullOrWhiteSpace(entityId)) yield return name + ": no entity id";
-            if (HighlightRenderers.Count == 0 && !renderersAtRuntime) yield return name + ": nothing to highlight";
-            if (entityType != EntityType.Equipment && entityType != EntityType.Records && string.IsNullOrWhiteSpace(voiceName)) yield return name + ": a person needs a voice name";
-        }
-
-        private void OnEnable() { if (!Live.Contains(this)) Live.Add(this); }
-
-        private void OnDisable()
-        {
-            Live.Remove(this);
-            if (Highlighted) { Highlighted = false; HighlightChanged?.Invoke(this, false); }
+            if (i.highlight.Count == 0) return i.transform;
+            var b = i.highlight[0].bounds;
+            foreach (var r in i.highlight) b.Encapsulate(r.bounds);
+            var a = new GameObject("Panel anchor").transform;
+            a.SetParent(i.transform, false);
+            a.position = new Vector3(b.center.x, b.max.y, b.center.z);
+            return a;
         }
     }
 }

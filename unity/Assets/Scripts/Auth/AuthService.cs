@@ -26,11 +26,11 @@ namespace ProcSense.VR.Auth
         public static AuthService Current { get; private set; }
         public static Func<AuthService> Factory = CreateDefault;
 
-        public static AuthService CreateDefault()
-        {
-            var settings = ServiceSettings.Load();
-            return new AuthService(LanHttp.Default(), settings != null ? settings.BaseUrl : "", settings != null ? settings.RequestTimeoutSeconds : 100);
-        }
+        /// <summary>The service at the one server address (P3-NET-03): the laptop entered on the headset, else the build's own.</summary>
+        public static AuthService CreateDefault() => new AuthService(LanHttp.Default(), ServerEndpoint.Current, ServerEndpoint.BuildTimeout()) { RemembersGood = true };
+
+        /// <summary>Records the address as the last one that answered (the app's own service only, not the tests' scripted ones).</summary>
+        public bool RemembersGood { get; set; }
 
         public static void Clear() { Current = null; }
 
@@ -75,6 +75,7 @@ namespace ProcSense.VR.Auth
             HttpResult config = default;
             yield return _http.Send("GET", _baseUrl + "/config.json", null, null, _timeout, r => config = r);   // also wakes the free host
             if (config.NetworkError) { done(Fail(SignInOutcome.Unreachable, "Cannot reach the service.")); yield break; }
+            if (RemembersGood && config.Ok) ServerEndpoint.MarkGood(_baseUrl);
             var configDto = config.Ok ? SafeParse<ConfigDto>(config.Body) : null;
             if (configDto == null || string.IsNullOrEmpty(configDto.supabase_url) || string.IsNullOrEmpty(configDto.supabase_publishable_key))
             { done(Fail(SignInOutcome.Failed, "The service did not give its sign-in settings.")); yield break; }

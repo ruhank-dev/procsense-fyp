@@ -79,7 +79,7 @@ checks:
     group: python
     inputs: ["docs/**", "**/*.md", "src/ProcSense.Core/**", "content/**", "tools/ci/tool_mentions_baseline.txt", "INSTRUCTIONS.md"]
   ui_guides_check:
-    desc: "Training guide (P3-TRN-01, goal-inactive reasons P3-TRN-02) and voice feedback table (P3-VOX-07): freshness, coverage of every goal, stage, ward item and outcome code, tests"
+    desc: "Training guide (P3-TRN-01, goal-inactive reasons P3-TRN-02) and voice feedback table (P3-VOX-07) with its pre-rendered clips (P3-SND-08): freshness, coverage of every goal, stage, ward item and outcome code, clips present and current, tests"
     job: repo_checks
     cmds:
       - ["uv", "run", "--project", "tools", "tools/content/build_training_guide.py", "--check"]
@@ -87,7 +87,31 @@ checks:
       - ["uv", "run", "--project", "tools", "tools/content/test_ui_guides.py"]
     tools: [uv, python]
     group: python
-    inputs: ["content/ui/training_guide.json", "content/ui/voice_feedback.json", "content/workflow/workflow.json", "content/flow/flow_maps.json", "content/ward/ward_checklist.json", "tools/content/build_training_guide.py", "tools/content/validate_ui_guides.py", "tools/content/test_ui_guides.py"]
+    inputs: ["content/ui/training_guide.json", "content/ui/voice_feedback.json", "content/workflow/workflow.json", "content/flow/flow_maps.json", "content/ward/ward_checklist.json", "tools/content/build_training_guide.py", "tools/content/validate_ui_guides.py", "tools/content/test_ui_guides.py", "tools/voice/render_feedback.py", "unity/Assets/Audio/VoiceFeedback/**"]
+  sound_list_check:
+    desc: "Sound list (P3-SND-02): every sound of the plan has a row with source and licence, and every synthesised clip matches tools/audio/render_sfx.py"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/audio/render_sfx.py", "--check"]
+    tools: [uv, python]
+    group: python
+    inputs: ["tools/audio/render_sfx.py", "content/audio/sound_list.json", "unity/Assets/Audio/Sfx/**"]
+  ui_icons_check:
+    desc: "UI icon atlas (P3-UIX-06): the atlas lists exactly the Lucide SVGs, its size matches its index, every icon UiIcons.cs names exists, the licence is present"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/ui/build_icon_atlas.py", "--check"]
+    tools: [uv, python]
+    group: python
+    inputs: ["tools/ui/**", "unity/Assets/UI/Icons/**", "unity/Assets/Scripts/UI/Theme/UiIcons.cs"]
+  action_gateway_check:
+    desc: "P3-SES-04: no Unity script calls SimulationHost.Apply directly; every app action goes through ActionGateway (duplicate window, source tag, mode gate)"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/ci/check_action_gateway.py"]
+    tools: [uv, python]
+    group: python
+    inputs: ["unity/Assets/Scripts/**", "tools/ci/check_action_gateway.py"]
   ui_messages_check:
     desc: "UI message table (P3-API-07): every sign-in, LAN, pairing and compatibility error code the server can give (read from its source) and every client code has a message, tests"
     job: repo_checks

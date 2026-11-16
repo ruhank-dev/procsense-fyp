@@ -145,6 +145,7 @@ namespace ProcSense.VR.Voice
         {
             if (line == null) return;
             LastFeedback = line;
+            if (!ProcSense.VR.Settings.GameSettings.Current.voiceFeedback) return;   // P3-SET-06: spoken feedback off; the caller still shows the subtitle
             if (!SpeakAloud || Player == null || string.IsNullOrWhiteSpace(line.Spoken) || !isActiveAndEnabled) return;
             var clip = string.IsNullOrEmpty(line.Clip) ? null : Resources.Load<AudioClip>("Voice/" + System.IO.Path.GetFileNameWithoutExtension(line.Clip));
             if (clip != null && Player is UnityClipPlayer real && real.Source != null) { real.Source.PlayOneShot(clip); return; }

@@ -6,6 +6,8 @@ using ProcSense.VR.Auth;
 using ProcSense.VR.UI.Accessibility;
 using ProcSense.VR.Sync;
 using ProcSense.VR.UI.Debrief;
+using ProcSense.VR.UI.Kit;
+using ProcSense.VR.UI.Theme;
 using ProcSense.VR.Views;
 using TMPro;
 using UnityEngine;
@@ -15,19 +17,20 @@ using UnityEngine.UI;
 namespace ProcSense.VR.Flow
 {
     /// <summary>
-    /// The glass menu of the game flow, built at run time with the UI kit (no scene editing): Main Menu (Training, Test, Settings, Quit), Surgery choice, the briefing card, the simulation bar (Hint,
+    /// The glass menu of the game flow, built at run time with the component kit (P3-UIX-04 look since P3-MNU-03; no scene editing): Main Menu (Training, Test, Settings, Quit), Surgery choice, the briefing card, the simulation bar (Hint,
     /// Submit patient to OT with a confirmation), the results panel (Retry, New scenario) and Settings (the existing readability and subtitle tab). One world-space canvas, one shared UI material,
     /// six pooled buttons and three labels (the Consent step between sign-in and the Main Menu shows the service's own consent questions with Agree and Decline, owner decision D2): no fullscreen transparent layer, no per-frame work (it redraws only when the flow changes). Every button calls MenuFlow, which sends the engine verbs.
     /// </summary>
     public sealed class FlowPanel : MonoBehaviour
     {
-        private const float Width = 900f, Height = 620f;
+        private const float Width = 900f, Height = 620f, Scale = 0.0012f;
         private const int Pool = 6;
 
         private MenuFlow _flow;
         private Canvas _canvas;
         private TMP_Text _title, _body, _status;
         private readonly List<Button> _buttons = new List<Button>();
+        private readonly List<(Vector2 at, Vector2 size)> _home = new List<(Vector2, Vector2)>();
         private RectTransform _settings;
         private bool _showSettings;
         private GameObject _debrief;
@@ -45,19 +48,29 @@ namespace ProcSense.VR.Flow
         public Canvas Canvas => _canvas;
         public MenuFlow Flow => _flow;
         public string TitleText => _title != null ? _title.text : "";
-        public string BodyText => _body != null ? _body.text : "";
+        public string BodyText => _flow != null && _flow.Phase == MenuPhase.Results && !_showSettings ? _resultsText : _body != null ? _body.text : "";
+        private string _resultsText = "";
         public string StatusText => _status != null ? _status.text : "";
 
         public void Build(MenuFlow flow, Transform parent)
         {
             _flow = flow;
-            _canvas = UiKit.WorldCanvas("Game flow", parent, new Vector2(Width, Height), 0.0012f);
+            // P3-MNU-03: the component kit's glass panel, type styles and buttons (P3-UIX-04), at the size and scale the menu had, read from MenuFlowInstaller.Distance
+            _canvas = Kit.Canvas("Game flow", parent, new Vector2(Width, Height), MenuFlowInstaller.Distance);
+            var readable = _canvas.GetComponent<AccessibleCanvas>();
+            readable.BaseScale = Scale;
+            readable.Apply();
             var t = _canvas.transform;
-            _title = UiKit.Label(t, "Title", "", new Vector2(20, 16), new Vector2(860, 50), 34f, TextAlignmentOptions.TopLeft);
-            _body = UiKit.Label(t, "Body", "", new Vector2(20, 76), new Vector2(860, 290), 24f, TextAlignmentOptions.TopLeft);
-            _status = UiKit.Label(t, "Status", "", new Vector2(20, 568), new Vector2(860, 44), 20f, TextAlignmentOptions.TopLeft, UiKit.WarnColor);
+            Kit.Panel(t, "Background", Vector2.zero, new Vector2(Width, Height));
+            _title = Kit.Text(t, "Title", "", new Vector2(32, 24), new Vector2(Width - 64, 64), TextStyle.Title);
+            _body = Kit.Text(t, "Body", "", new Vector2(32, 96), new Vector2(Width - 64, 268), TextStyle.Body);
+            _status = Kit.Text(t, "Status", "", new Vector2(32, 584), new Vector2(Width - 64, 32), TextStyle.Caption, UiTheme.Current.HintText);
             for (int i = 0; i < Pool; i++)
-                _buttons.Add(UiKit.MakeButton(t, "", new Vector2(20 + (i % 2) * 440, 380 + (i / 2) * 62), new Vector2(420, 54), 24f));
+            {
+                var b = Kit.Button(t, " ", new Vector2(32 + (i % 2) * 426, 372 + (i / 2) * 72), new Vector2(410, Kit.ButtonHeight - 8), ButtonKind.Secondary);
+                _home.Add((((RectTransform)b.transform).anchoredPosition, ((RectTransform)b.transform).sizeDelta));
+                _buttons.Add(b);
+            }
 
             var go = new GameObject("Settings container", typeof(RectTransform));
             go.transform.SetParent(t, false);
@@ -117,22 +130,40 @@ namespace ProcSense.VR.Flow
             return list;
         }
 
+        /// <summary>Settings from the main menu (P3-SET-02): this panel shows "Settings" with Back, and the full settings panel opens beside it; closing either closes both.</summary>
+        private void OpenSettings()
+        {
+            _showSettings = true;
+            var panel = ProcSense.VR.UI.SettingsUi.SettingsPanel.Open ?? ProcSense.VR.UI.SettingsUi.SettingsPanel.Toggle(transform);
+            if (panel != null) panel.Closed += () => { if (_showSettings) { _showSettings = false; Refresh(); } };
+            Refresh();
+        }
+
+        private void CloseSettings()
+        {
+            _showSettings = false;
+            if (ProcSense.VR.UI.SettingsUi.SettingsPanel.Open != null) ProcSense.VR.UI.SettingsUi.SettingsPanel.Open.Close();
+            Refresh();
+        }
+
         // ------------------------------------------------------------------ drawing
 
         public void Refresh()
         {
             if (_flow == null) return;
             if (_flow.Phase != MenuPhase.Results && _debrief != null) CloseDebrief();
-            foreach (var b in _buttons) b.gameObject.SetActive(false);
-            _settings.gameObject.SetActive(_showSettings);
+            for (int i = 0; i < _buttons.Count; i++) { _buttons[i].gameObject.SetActive(false); _buttons[i].interactable = true; Resize(_buttons[i], _home[i].at, _home[i].size); }
+            _settings.gameObject.SetActive(false);   // the tablet keeps this older tab; the menu opens the full settings panel (P3-SET-02)
             _status.text = Say(_flow.Message);
             _body.enableAutoSizing = false;
             _body.fontSize = 24f;
+            _body.rectTransform.anchoredPosition = new Vector2(32, -96);
+            if (_card != null && (_flow.Phase != MenuPhase.Results || _showSettings)) _card.Hide();
             if (_showSettings)
             {
                 _title.text = "Settings";
-                _body.text = "";
-                Slot(0, "Back", () => { _showSettings = false; Refresh(); }, 560f);
+                _body.text = "The settings are on the panel beside this one. Changes apply at once.";
+                Slot(0, "Back", CloseSettings, 560f);
                 return;
             }
             switch (_flow.Phase)
@@ -151,7 +182,7 @@ namespace ProcSense.VR.Flow
         {
             _title.text = "Welcome to ProcSense";
             _body.text = "Sign in to continue.";
-            Slot(0, "Continue (signed in)", () => _flow.SignedIn());
+            Slot(0, "Continue (signed in)", () => _flow.SignedIn(), -1f, ButtonKind.Primary);
         }
 
         /// <summary>
@@ -177,7 +208,7 @@ namespace ProcSense.VR.Flow
                     _body.enableAutoSizing = true;
                     _body.fontSizeMin = 12f;
                     _body.fontSizeMax = 24f;
-                    Slot(0, "Agree", () => Run(step.Answer(true, _flow.ConsentUpdated)));
+                    Slot(0, "Agree", () => Run(step.Answer(true, _flow.ConsentUpdated)), -1f, ButtonKind.Primary);
                     Slot(1, "Decline", () => Run(step.Answer(false, _flow.ConsentUpdated)));
                     break;
                 }
@@ -210,13 +241,13 @@ namespace ProcSense.VR.Flow
         {
             _title.text = "ProcSense";
             _body.text = "Choose how you want to practise.\n\nTraining: help, goals and hints are available.\nTest / Examination: no goal list; hints cost points.";
-            Slot(0, "TRAINING MODE", () => _flow.ChooseMode(SessionMode.Practice));
-            Slot(1, "TEST / EXAMINATION MODE", () => _flow.ChooseMode(SessionMode.Assessment));
-            Slot(2, "Settings", () => { _showSettings = true; Refresh(); });
-            Slot(3, "Quit", Application.Quit);
+            Slot(0, "TRAINING MODE", () => _flow.ChooseMode(SessionMode.Practice), -1f, ButtonKind.Primary);
+            Slot(1, "TEST / EXAMINATION MODE", () => _flow.ChooseMode(SessionMode.Assessment), -1f, ButtonKind.Primary);
+            Slot(2, "Settings", OpenSettings);
+            Slot(3, "Quit", Application.Quit, -1f, ButtonKind.Danger);
             if (_flow.Interrupted != null)
             {
-                Slot(4, "Resume interrupted session (" + _flow.Interrupted.CaseId + ", " + _flow.Interrupted.ActionsSaved + " actions)", () => _flow.Resume());
+                Slot(4, "Resume interrupted session (" + _flow.Interrupted.CaseId + ", " + _flow.Interrupted.ActionsSaved + " actions)", () => _flow.Resume(), -1f, ButtonKind.Primary);
                 Slot(5, "Discard it", _flow.Discard);
             }
         }
@@ -225,20 +256,45 @@ namespace ProcSense.VR.Flow
         {
             bool training = _flow.Mode == SessionMode.Practice;
             _title.text = training ? "Training: choose the surgery" : "Examination: choose the surgery";
-            _body.text = "A random valid patient is drawn for the surgery you choose.";
-            Slot(0, "Gallbladder removal (" + _flow.CaseCount(_flow.Mode, "cholecystectomy") + " cases)", () => _flow.ChooseSurgery("cholecystectomy", _flow.Level));
-            Slot(1, "Appendectomy (" + _flow.CaseCount(_flow.Mode, "appendicectomy") + " cases)", () => _flow.ChooseSurgery("appendicectomy", _flow.Level));
-            if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(_flow.Level == TrainingLevel.Beginner ? TrainingLevel.Advanced : TrainingLevel.Beginner));
+            _body.text = "You prepare the patient for the operation; you do not perform it. A random valid patient is drawn for the surgery you choose.";
+            ProcedureCard(0, "Gallbladder removal", "Laparoscopic cholecystectomy", "cholecystectomy", training);
+            ProcedureCard(1, "Appendectomy", "Appendicectomy", "appendicectomy", training);
+            if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(NextLevel(_flow.Level)));   // P3-MNU-05: every level Core defines, in order
+            if (training) Slot(4, _flow.Source == ProcSense.Core.Flow.CaseSource.Generated ? "Cases: generated" : "Cases: authored",   // P3-SCN-06: training may play a generated scenario
+                               () => _flow.SetSource(_flow.Source == ProcSense.Core.Flow.CaseSource.Generated ? ProcSense.Core.Flow.CaseSource.Authored : ProcSense.Core.Flow.CaseSource.Generated));
             Slot(3, "Back", _flow.BackToMenu);
+        }
+
+        /// <summary>
+        /// A procedure card (P3-MNU-04): the plain name, the operation's name and "pre-operative preparation", and how many cases the chosen mode can draw. With none (the examination before any
+        /// case is approved, open decision D1) the card is shown disabled with the reason instead of failing after a press. The label still starts with the plain name.
+        /// </summary>
+        private void ProcedureCard(int slot, string name, string operation, string procedure, bool training)
+        {
+            int n = _flow.CaseCount(_flow.Mode, procedure);
+            string detail = n > 0 ? operation + "\nPre-operative preparation · " + n + (n == 1 ? " case" : " cases")
+                                  : training ? "No cases are available for training yet" : "No cases are approved for examination yet";
+            Slot(slot, name + " (" + n + " cases)\n<size=20>" + detail + "</size>", () => _flow.ChooseSurgery(procedure, _flow.Level), -1f, n > 0 ? ButtonKind.Primary : ButtonKind.Secondary,
+                 new Vector2(32 + slot * 426, 196), new Vector2(410, 160));
+            _buttons[slot].interactable = n > 0;
+        }
+
+        /// <summary>The next training level after this one, through every value of Core's <see cref="TrainingLevel"/> (P3-MNU-05), so a level Core adds appears here by itself.</summary>
+        public static TrainingLevel NextLevel(TrainingLevel level)
+        {
+            var all = (TrainingLevel[])System.Enum.GetValues(typeof(TrainingLevel));
+            return all[(System.Array.IndexOf(all, level) + 1) % all.Length];
         }
 
         private void DrawBriefing()
         {
             var b = _flow.Briefing;
             _title.text = "Briefing";
+            if (_flow.SourceLine.Length == 0 && !_flow.Fetching && _flow.Source == ProcSense.Core.Flow.CaseSource.Generated && isActiveAndEnabled) StartCoroutine(_flow.Generate());   // P3-SCN-06
             _body.text = b.Name + ", " + b.Age + " (" + b.Sex + ")\nSetting: " + b.Setting + "\nReason for admission: " + b.Reason
-                + "\n\nScenario " + _flow.Plan.CaseId + ", seed " + _flow.Plan.Seed + " (shown again on the results).";
-            Slot(0, "Begin", () => _flow.Begin());
+                + "\n\nScenario " + _flow.Plan.CaseId + ", seed " + _flow.Plan.Seed + " (shown again on the results)." + (_flow.SourceLine.Length > 0 ? "\n" + _flow.SourceLine : "");
+            Slot(0, "Begin", () => _flow.Begin(), -1f, ButtonKind.Primary);
+            _buttons[0].interactable = !_flow.Fetching;
             Slot(1, "Back", _flow.BackToMenu);
         }
 
@@ -252,16 +308,24 @@ namespace ProcSense.VR.Flow
             Slot(0, "Hint", () => _flow.Hint());
             if (_flow.SubmitArmed)
             {
-                Slot(1, "Confirm: submit patient to OT", () => _flow.Submit());
+                Slot(1, "Confirm: submit patient to OT", () => _flow.Submit(), -1f, ButtonKind.Danger);
                 Slot(2, "Cancel", _flow.CancelSubmit);
             }
             else Slot(1, "Submit patient to OT", () => _flow.Submit());
         }
 
+        /// <summary>The results card (P3-RES-04) shown on the results; null before the first results.</summary>
+        public ResultsCard Card => _card;
+        private ResultsCard _card;
+
         private void DrawResults()
         {
             var s = _flow.Summary;
             _title.text = s.Headline;
+            RequestRewording(s);
+            bool reworded = _reworded != null && _reworded.Reworded && ReferenceEquals(_rewordFor, s);
+            // the card draws from the engine's summary; AI wording only replaces the recommendation lines, always labelled (P3-RES-07)
+            // the plain-text transcript of the results (what BodyText returns: tests, and one string for a screen reader); the card below is what is drawn
             var sb = new StringBuilder();
             sb.Append("Result: ").Append(s.Result).Append("  |  ").Append(s.EndState).Append('\n');
             if (s.Grade != null) sb.Append("Score ").Append(s.Grade.Score100).Append(" / 100, grade ").Append(s.Grade.Letter).Append(s.Grade.Passed ? " (passed)" : " (not passed)").Append('\n');
@@ -269,17 +333,23 @@ namespace ProcSense.VR.Flow
             sb.Append("Hints used: ").Append(s.HintsUsed).Append(s.HintsCharged > 0 ? " (charged)" : "").Append("  |  Time: ").Append(s.TotalMinutes.ToString("0.#")).Append(" min\n");
             if (s.StageTimes.Count > 0) sb.Append("Stages: ").Append(string.Join(", ", s.StageTimes.Select(t => t.Stage + " " + t.Minutes.ToString("0.#")))).Append(" min\n");
             if (s.MissedGoals.Count > 0 && s.Mode != "assessment") sb.Append("Missed: ").Append(string.Join(", ", s.MissedGoals)).Append('\n');   // the examination shows no goal list (P3-EXM-09 leak test)
-            RequestRewording(s);
-            bool reworded = _reworded != null && _reworded.Reworded && ReferenceEquals(_rewordFor, s);
-            if (reworded) sb.Append(DebriefRewriteClient.LabelLine).Append('\n');                  // P3-RES-07: AI wording is always labelled; the lines above are the engine's
+            if (reworded) sb.Append(DebriefRewriteClient.LabelLine).Append('\n');
             foreach (var r in reworded ? _reworded.Lines : s.Recommendations) sb.Append("- ").Append(r).Append('\n');
             sb.Append("Scenario: ").Append(_flow.Briefing != null ? _flow.Briefing.Name : "");
-            _body.text = sb.ToString();
-            Slot(0, "Retry", () => _flow.Retry());
+            _resultsText = sb.ToString();
+            if (reworded && !ReferenceEquals(_rewordedFrom, s)) { _rewordedFrom = s; _rewordedShown = s with { Recommendations = new List<string>(_reworded.Lines) }; }
+            if (_card == null) _card = ResultsCard.Create(_canvas.transform, new Vector2(32, 96), new Vector2(Width - 64, 268));
+            _card.Show(reworded ? _rewordedShown : s);
+            _body.text = reworded ? DebriefRewriteClient.LabelLine : "";
+            _body.rectTransform.anchoredPosition = new Vector2(32, -96 - 268 + 28);
+            Slot(0, "Retry", () => { _card.RetriedFrom(_card.Shown); _flow.Retry(); }, -1f, ButtonKind.Primary);
             Slot(1, "New scenario", () => _flow.NewScenario());
             Slot(2, "Main menu", _flow.BackToMenu);
-            Slot(3, _debrief != null ? "Hide debrief" : "Debrief", ToggleDebrief);
+            Slot(3, _debrief != null ? "Hide details" : "Review details", ToggleDebrief);
+            Slot(4, "Quit", Application.Quit, -1f, ButtonKind.Danger);   // P3-RES-06
         }
+
+        private ProcSense.Core.Flow.ResultSummary _rewordedFrom, _rewordedShown;
 
         /// <summary>
         /// Asks the service once per result for the optional AI wording (P3-RES-07). Not signed in, not playing or offline: nothing is asked and the engine's deterministic lines stay. The answer
@@ -304,14 +374,37 @@ namespace ProcSense.VR.Flow
             _drawingResults = false;
         }
 
-        private void Slot(int slot, string label, UnityAction onClick, float y = -1f)
+        private void Slot(int slot, string label, UnityAction onClick, float y = -1f, ButtonKind kind = ButtonKind.Secondary, Vector2? at = null, Vector2? size = null)
         {
             var b = _buttons[slot];
+            if (at.HasValue || size.HasValue) Resize(b, at.HasValue ? new Vector2(at.Value.x, -at.Value.y) : ((RectTransform)b.transform).anchoredPosition, size ?? ((RectTransform)b.transform).sizeDelta);
             b.gameObject.SetActive(true);
-            b.GetComponentInChildren<TMP_Text>().text = label;
+            var text = b.GetComponentInChildren<TMP_Text>();
+            text.text = label;
+            Paint(b, text, kind);
             b.onClick.RemoveAllListeners();
             b.onClick.AddListener(onClick);
             if (y >= 0f) { var r = (RectTransform)b.transform; r.anchoredPosition = new Vector2(r.anchoredPosition.x, -y); }
+        }
+
+        private static void Resize(Button b, Vector2 anchored, Vector2 size)
+        {
+            var r = (RectTransform)b.transform;
+            r.anchoredPosition = anchored;
+            r.sizeDelta = size;
+            var label = b.GetComponentInChildren<TMP_Text>(true);
+            if (label != null) label.rectTransform.sizeDelta = new Vector2(size.x - 2 * UiTheme.Current.Spacing[2], size.y);
+        }
+
+        /// <summary>The look of a pooled button for this slot: teal for the way forward, red for leaving or the irreversible step, light glass otherwise.</summary>
+        private static void Paint(Button b, TMP_Text label, ButtonKind kind)
+        {
+            var glass = (GlassPanel)b.targetGraphic;
+            var theme = UiTheme.Current;
+            bool solid = kind == ButtonKind.Primary || kind == ButtonKind.Danger;
+            glass.PanelStyle = solid ? GlassPanel.Style.Solid : GlassPanel.Style.Light;
+            glass.color = kind == ButtonKind.Primary ? theme.Action : kind == ButtonKind.Danger ? theme.Danger : Color.white;
+            label.color = solid ? theme.TextOnAccent : theme.TextPrimary;
         }
 
         private string Say(string code)

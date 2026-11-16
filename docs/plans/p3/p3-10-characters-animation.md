@@ -36,13 +36,13 @@ Animation inventory; a standard controller for staff and patient; look-at; event
 | P3-ANI-01 | Animation inventory: every required clip and state per character type and equipment item, source (UAL CC0, Rocketbox, Mixamo is not used for licence reasons unless the owner agrees, own keyframes) and gaps | Sannan | — | Inventory table in this folder's matrix page | Planned |
 | P3-ANI-02 | Standard Humanoid controller (base, upper-body, additive breathing, face) and `CharacterPresenter` | Sannan | P3-ANI-01 | Applied to patient, nurse and one staff member | Planned |
 | P3-ANI-03 | Look-at player on address and during conversation (limits 60° yaw, 30° pitch, eyes first then head) | Sannan | P3-ANI-02 | No neck flips at extreme angles (test sweep) | Planned |
-| P3-ANI-04 | Event states: addressed, speaking, listening, acknowledge, refuse, busy; driven by `SimFeedback` and voice playback | Sannan | P3-SES-10, P3-ANI-02 | Every accepted panel action targeted at a person gives a visible reaction | Planned |
+| P3-ANI-04 | Event states: addressed, speaking, listening, acknowledge, refuse, busy; driven by `SimFeedback` and voice playback | Sannan | P3-SES-10, P3-ANI-02 | Every accepted panel action targeted at a person gives a visible reaction | Done |
 | P3-ANI-05 | Lip sync on Rocketbox blendshapes for patient and staff lines | Sannan | p0-voice-audio-s04, P3-ANI-02 | Visemes visible within 80 ms of audio | Planned |
 | P3-ANI-06 | Patient reactions: examination flinch (only when the engine's finding says so), pain expressions by score, offer arm, nod for consent, sign form, sit up for examination | Sannan | P3-ANI-02, P3-INT-02 | Reaction never reveals a hidden finding before the examination action | Planned |
 | P3-ANI-07 | Staff actions: walk in/out on NavMesh, hand item, write on clipboard, push bed (porter), escort | Sannan | P3-ANI-02, P3-AST-04 | Used by nurse, porter and doctor flows | Planned |
 | P3-ANI-08 | Equipment: cuff inflate/deflate, monitor screen states, bed back rise, trolley wheels, curtain pull, door swing (exists) | Sannan | P3-INT-07 | Animations follow engine state | Planned |
-| P3-ANI-09 | UI motion utility and presets (open/close, hover, press, tick draw, count-up, toast) | Moiz | P3-UIX-01 | Used by every panel of the kit | Planned |
-| P3-ANI-10 | Scene transitions: fade to dark, loading card, results dim; comfort-safe (no camera motion) | Moiz | P3-ANI-09 | No frame of camera-driven motion in transitions | Planned |
+| P3-ANI-09 | UI motion utility and presets (open/close, hover, press, tick draw, count-up, toast) | Moiz | P3-UIX-01 | Used by every panel of the kit | Done |
+| P3-ANI-10 | Scene transitions: fade to dark, loading card, results dim; comfort-safe (no camera motion) | Moiz | P3-ANI-09 | No frame of camera-driven motion in transitions | Done |
 | P3-ANI-11 | Animation budgets: Animator culling (cull completely off-screen), reduced update rate for distant people, one LOD for corridor crowds | Sannan | P3-PRF-04 | Measured animation CPU time recorded in DC-13 results | Planned |
 | P3-ANI-12 | Tests: presenter state machine (EditMode), look-at limits, reaction gating by engine findings, UI tween timings | Sannan | P3-ANI-04, P3-ANI-06 | Green in CI | Planned |
 

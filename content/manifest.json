@@ -1,14 +1,15 @@
 {
  "schema": 1,
- "content_hash": "d9da1e956608c4b486dc3e473400ba773b7c7f4e86afc8a4de71f980c1c50b1b",
- "files": 766,
- "bytes": 18708415,
+ "content_hash": "da3bb6e27e4df2b4b67bb873b88958f977099bdb6e80d075c952d6e9b927a804",
+ "files": 768,
+ "bytes": 18730609,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
   "ai": 13,
   "assessment": 2,
   "attributions": 1,
+  "audio": 1,
   "availability": 4,
   "behaviour": 3,
   "blocks": 313,
@@ -54,7 +55,7 @@
   "sepsis": 1,
   "sources": 1,
   "templates": 2,
-  "ui": 7,
+  "ui": 8,
   "voice": 4,
   "ward": 1,
   "workflow": 1,
@@ -130,8 +131,12 @@
    "sha256": "dca3e0f87441ee121e684b431cca64d2c63a8d6e15309c3826e4c25668466ca7"
   },
   "attributions/attributions.json": {
-   "bytes": 13975,
-   "sha256": "e44769b4abb14de946b2fd8a73008f53a10a8b221be507562ddee4bf3a078619"
+   "bytes": 14333,
+   "sha256": "e9311261240a701fb837074556cc2b88fcab655346828036fa5b5b0d43380273"
+  },
+  "audio/sound_list.json": {
+   "bytes": 18992,
+   "sha256": "2cc5fbb5d0fc5d70e819d0ebc0b3496a88d914cb68bc04dfd780aed4006ce967"
   },
   "availability/config.json": {
    "bytes": 348,
@@ -2833,9 +2838,13 @@
    "bytes": 6315,
    "sha256": "44fb06493aef0ed7c90b03bb6117f7684969079ea5d023958b109638a04aff6b"
   },
+  "ui/voice_examples.json": {
+   "bytes": 1694,
+   "sha256": "9801ba6be12fffec0162ef9b8707ded9e751dd1a721907a7e49964b916728f10"
+  },
   "ui/voice_feedback.json": {
-   "bytes": 4852,
-   "sha256": "5b5a94eea81c7be1341f9303e94e6c79c022a37a9b1b52d94e4433872bd1d91d"
+   "bytes": 6002,
+   "sha256": "637fa23804188a9dd7925b51e58f451f6763c6cdb878868804cc0ea64b007b2d"
   },
   "ultrasound_findings.csv": {
    "bytes": 4880,

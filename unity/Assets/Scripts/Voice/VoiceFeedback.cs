@@ -5,7 +5,7 @@ using ProcSense.VR.Content;
 
 namespace ProcSense.VR.Voice
 {
-    /// <summary>One phrase the trainee reads and hears for a voice outcome: the subtitle, the words to speak and, once rendered (P3-SND-08), the pre-rendered clip.</summary>
+    /// <summary>One phrase the trainee reads and hears for a voice outcome: the subtitle, the words to speak and the pre-rendered clip of exactly those words (P3-SND-08), or null for live speech.</summary>
     public sealed class VoiceFeedbackLine
     {
         public string Code = "";
@@ -27,7 +27,7 @@ namespace ProcSense.VR.Voice
             AsrFailed = "ASR_FAILED", Timeout = "TIMEOUT", NeedsConfirmation = "NEEDS_CONFIRMATION", ServiceOffline = "SERVICE_OFFLINE", SceneLoadFailed = "SCENE_LOAD_FAILED", ContentIntegrity = "CONTENT_INTEGRITY";
         public static readonly string[] Codes = { NotUnderstood, Ambiguous, WrongAddressee, UnavailableNow, EngineRejected, AsrFailed, Timeout, NeedsConfirmation, ServiceOffline, SceneLoadFailed, ContentIntegrity };
 
-        private sealed class Entry { public string Subtitle, Spoken, Clip, Fallback = "", PracticeExtra = "", AssessmentExtra = ""; public bool Retry; }
+        private sealed class Entry { public string Subtitle, Spoken, Clip, PracticeClip, AssessmentClip, Fallback = "", PracticeExtra = "", AssessmentExtra = ""; public bool Retry; }
 
         private readonly Dictionary<string, Entry> _entries = new Dictionary<string, Entry>();
 
@@ -63,7 +63,7 @@ namespace ProcSense.VR.Voice
                 if (string.IsNullOrWhiteSpace(subtitle)) throw new FormatException(code + " has no subtitle");
                 t._entries[code] = new Entry
                 {
-                    Subtitle = subtitle, Spoken = string.IsNullOrWhiteSpace(Str(d, "spoken")) ? subtitle : Str(d, "spoken"), Clip = string.IsNullOrWhiteSpace(Str(d, "clip")) ? null : Str(d, "clip"),
+                    Subtitle = subtitle, Spoken = string.IsNullOrWhiteSpace(Str(d, "spoken")) ? subtitle : Str(d, "spoken"), Clip = ClipPath(d, "clip"), PracticeClip = ClipPath(d, "practice_clip"), AssessmentClip = ClipPath(d, "assessment_clip"),
                     Retry = d.TryGetValue("retry", out var r) && r is bool b && b, Fallback = Str(d, "fallback"), PracticeExtra = Str(d, "practice_extra"), AssessmentExtra = Str(d, "assessment_extra"),
                 };
             }
@@ -98,8 +98,16 @@ namespace ProcSense.VR.Voice
             string Fill(string s) => s.Replace("{reason_text}", reason).Replace("{action_text}", actionText ?? "");
             string extra = practice ? e.PracticeExtra : e.AssessmentExtra;
             string Plus(string s) => string.IsNullOrWhiteSpace(extra) ? s : s + " " + extra;
-            return new VoiceFeedbackLine { Code = code, Subtitle = Plus(Fill(e.Subtitle)), Spoken = Plus(Fill(e.Spoken)), Clip = e.Clip, Retry = e.Retry };
+            return new VoiceFeedbackLine { Code = code, Subtitle = Plus(Fill(e.Subtitle)), Spoken = Plus(Fill(e.Spoken)), Clip = ClipFor(e, extra, practice), Retry = e.Retry };
         }
+
+        /// <summary>
+        /// The clip whose words equal <see cref="VoiceFeedbackLine.Spoken"/> (P3-SND-08): the phrase alone when the mode adds nothing, otherwise the clip rendered with the mode's extra sentence. Null when that
+        /// clip does not exist, so the words go to live speech instead of a clip that says less than the subtitle.
+        /// </summary>
+        private static string ClipFor(Entry e, string extra, bool practice) => string.IsNullOrWhiteSpace(extra) ? e.Clip : practice ? e.PracticeClip : e.AssessmentClip;
+
+        private static string ClipPath(Dictionary<string, object> d, string key) => string.IsNullOrWhiteSpace(Str(d, key)) ? null : Str(d, key);
 
         /// <summary>The outcome for a failed interpreter call (the reason the client recorded), or null when the call itself did not fail.</summary>
         public static string CodeForReason(string reason)

@@ -37,6 +37,7 @@ namespace ProcSense.VR.Views
                 _root = new GameObject("Session presentation (runtime)"); _root.transform.SetParent(transform, false);
                 var speech = new GameObject("Voice and subtitles"); speech.transform.SetParent(_root.transform, false);
                 Voice = speech.AddComponent<VoicePlayer>(); Voice.RequireSpeakerAnchor = true;
+                Voice.Started += Speaks;
             }
             Voice.Subtitles.Follow = camera.transform;
             Voice.transform.position = camera.transform.position;
@@ -72,6 +73,13 @@ namespace ProcSense.VR.Views
             else if (_host.Observable?.Location == "patient_bay")
                 Head("patient", _visiblePatient != null ? _visiblePatient.Head : _patient != null ? _patient.Head : null);
             if (visitingNurse != null && visitingNurse.Head != null) Head("nurse", visitingNurse.Head);
+        }
+        // P3-ANI-04: the person whose line plays shows they are speaking, for about as long as the line
+        private void Speaks(ProcSense.VR.Audio.VoiceLine line)
+        {
+            if (Voice == null || line == null || !Voice.Heads.TryGetValue(line.Speaker, out var head) || head == null) return;
+            var person = head.GetComponentInParent<Animator>() != null ? (Component)head.GetComponentInParent<Animator>() : head.parent;
+            CharacterReactions.For(person)?.Trigger(CharacterReactions.State.Speaking, Mathf.Clamp(line.Text.Length * .065f, 1.5f, 8f));
         }
         private void Head(string speaker, Transform head) { if (head != null) Voice.Heads[speaker] = head; }
         private void Clear()

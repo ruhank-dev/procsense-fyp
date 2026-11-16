@@ -44,17 +44,25 @@ Mixer and snapshots; asset list and sources; ambience recordings; music; UI set;
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-SND-01 | Mixer asset with groups, snapshots and ducking; `AudioDirector` skeleton | Moiz | — | Snapshots switch with flow states in PlayMode | Planned |
-| P3-SND-02 | Asset sourcing: every sound of the list chosen, downloaded, licence recorded (`docs/research/asset_sources_and_licenses.md`, `docs/ATTRIBUTIONS.md`), manifest source record | Sannan | — | List complete with licences | Planned |
-| P3-SND-03 | Ambience beds per room and the crossfade through `RoomAudio` | Sannan | P3-SND-01, P3-SND-02, p0-voice-audio-s05 | Crossfade at every door | Planned |
-| P3-SND-04 | Menu music and result stings | Moiz | P3-SND-01, P3-SND-02 | Music never plays during a session | Planned |
-| P3-SND-05 | UI, training and examination sounds wired to kit and feedback events | Moiz | P3-SND-01, P3-SND-02, P3-SES-10 | One sound per event (test counts plays) | Planned |
+| P3-SND-01 | Mixer asset with groups, snapshots and ducking; `AudioDirector` skeleton | Moiz | — | Snapshots switch with flow states in PlayMode | Done |
+| P3-SND-02 | Asset sourcing: every sound of the list chosen, downloaded, licence recorded (`docs/research/asset_sources_and_licenses.md`, `docs/ATTRIBUTIONS.md`), manifest source record | Sannan | — | List complete with licences | Done |
+| P3-SND-03 | Ambience beds per room and the crossfade through `RoomAudio` | Sannan | P3-SND-01, P3-SND-02, p0-voice-audio-s05 | Crossfade at every door | Done |
+| P3-SND-04 | Menu music and result stings | Moiz | P3-SND-01, P3-SND-02 | Music never plays during a session | Done |
+| P3-SND-05 | UI, training and examination sounds wired to kit and feedback events | Moiz | P3-SND-01, P3-SND-02, P3-SES-10 | One sound per event (test counts plays) | Done |
 | P3-SND-06 | Foley: footsteps by surface, clothing, paper and pen, band snap | Sannan | P3-SND-02, P3-ANI-07 | Footsteps match walk animations | Planned |
 | P3-SND-07 | Equipment sounds beyond the existing synthesis | Sannan | P3-SND-02, P3-ANI-08 | Each equipment animation has its sound | Planned |
-| P3-SND-08 | Voice-feedback cues and the spoken failure phrases (pre-rendered with the project's voice tools) | Moiz | P3-VOX-07, P3-SND-01 | Each phrase has a clip and subtitle | Planned |
-| P3-SND-09 | Spatial settings, voice limit, compression settings; evaluate the Meta XR Audio spatialiser only if DC-14 reports poor localisation | Moiz | P3-SND-03 | Settings recorded; CPU audio time measured in DC-13 | Planned |
-| P3-SND-10 | Volume settings integration (P3-SET-03) and the Listening snapshot | Moiz | P3-SET-03, P3-VOX-09 | Ambience ducks while talking | Planned |
+| P3-SND-08 | Voice-feedback cues and the spoken failure phrases (pre-rendered with the project's voice tools) | Moiz | P3-VOX-07, P3-SND-01 | Each phrase has a clip and subtitle | Done |
+| P3-SND-09 | Spatial settings, voice limit, compression settings; evaluate the Meta XR Audio spatialiser only if DC-14 reports poor localisation | Moiz | P3-SND-03 | Settings recorded; CPU audio time measured in DC-13 | In progress |
+| P3-SND-10 | Volume settings integration (P3-SET-03) and the Listening snapshot | Moiz | P3-SET-03, P3-VOX-09 | Ambience ducks while talking | Done |
 | P3-SND-11 | Mix and loudness pass (dialogue around -18 LUFS-S short term in the headset, UI clearly below voice) and tests | Sannan | P3-SND-05, P3-SND-06, P3-SND-07 | Measured levels recorded; tests green | Planned |
+
+### Settings as built (P3-SND-09, 16 November 2026)
+
+- **Real voices:** 24 (`ProjectSettings/AudioManager.asset`, was 32); virtual voices 512.
+- **Import (`Assets/Editor/Audio/SfxImport.cs`, every clip under `Assets/Audio/Sfx/`, same override on Android):** ambience, music and the transition loop are Vorbis, quality 0.5, streamed, loaded in the background; stings, UI, cues, equipment and foley are ADPCM, decompressed on load; every clip is forced to mono; the sample rate is kept (22.05 kHz sources from `tools/audio/render_sfx.py`).
+- **Routing:** room beds on the Ambience group (`RoomAudio`, two sources crossfading over 1.5 s), menu music and stings on Music, UI on UI, training and examination sounds on Effects (`SoundPlayer`); the alarm and voice sources keep their own settings (`AlarmAudioView`: logarithmic, min 1 m; `VoicePlayer`: linear).
+- **Spatialiser:** Unity's built-in panning; the Meta XR Audio spatialiser is evaluated only if DC-14 reports poor localisation.
+- **Still to measure:** CPU audio time on the Quest in DC-13 (headset).
 
 ## 7. Dependencies and execution order
 

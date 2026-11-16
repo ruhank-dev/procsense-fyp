@@ -122,9 +122,26 @@ namespace ProcSense.Tests.PlayMode
         public void The_room_sound_follows_where_the_trainee_is()
         {
             Assert.AreEqual("ward", RoomAudio.RoomFor("patient_bay"));
-            Assert.AreEqual("theatre", RoomAudio.RoomFor("theatre_reception"));
+            Assert.AreEqual("ed", RoomAudio.RoomFor("patient_bay", "emergency department"), "the bay sounds like the ED when the case is set there (P3-SND-03)");
+            Assert.AreEqual("corridor", RoomAudio.RoomFor("corridor"));
+            Assert.AreEqual("ot", RoomAudio.RoomFor("theatre_reception"));
             Assert.AreEqual("imaging", RoomAudio.RoomFor("ct"));
             Assert.AreEqual("", RoomAudio.RoomFor(""));
+            foreach (var room in new[] { "ward", "ed", "corridor", "ot" }) Assert.IsTrue(RoomAudio.ClipFor(room).name.StartsWith("amb_"), room + ": the P3-SND-02 bed");
+            Assert.IsNotNull(RoomAudio.ClipFor("imaging"), "imaging keeps the synthesis");
+
+            // a door: the old bed fades out while the new one fades in, never both silent, and the old stops at the end
+            var audio = RoomAudio.Instance != null ? RoomAudio.Instance : new GameObject("room audio test").AddComponent<RoomAudio>();
+            audio.Enter("corridor"); audio.Step(RoomAudio.CrossfadeSeconds);
+            audio.Enter("ward");
+            var from = audio.Outgoing; var to = audio.Bed;
+            Assert.AreNotSame(from, to);
+            audio.Step(RoomAudio.CrossfadeSeconds / 2);
+            Assert.Greater(from.volume, 0f); Assert.Greater(to.volume, 0f);
+            Assert.AreEqual(RoomAudio.BedVolume, from.volume + to.volume, 1e-3f, "constant level through the door");
+            audio.Step(RoomAudio.CrossfadeSeconds);
+            Assert.AreEqual(0f, from.volume, 1e-4f);
+            Assert.AreEqual(RoomAudio.BedVolume, to.volume, 1e-4f);
             var clip = ToneBank.Room("ward");
             Assert.AreSame(clip, ToneBank.Room("ward"), "made once");
             Assert.Greater(clip.length, 5f);

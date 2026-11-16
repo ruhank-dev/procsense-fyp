@@ -196,7 +196,13 @@ namespace ProcSense.VR.Voice
             Talk.FeedbackGiven += OnFeedback;
             if (Health != null) Talk.Offline = () => Health.State.Offline;
             if (Speaker != null) Talk.CharacterSpeaking = () => Speaker.IsPlaying;
+            if (Indicator == null) { Indicator = gameObject.AddComponent<VoiceIndicator>(); Indicator.Init(Talk, Controller); }   // P3-VOX-09
         }
+
+        /// <summary>The listening and processing indicator (P3-VOX-09), made the first time the view is enabled.</summary>
+        public VoiceIndicator Indicator { get; private set; }
+        /// <summary>The controller that carries the small listening ring (set by the headset layer before the view is enabled; none on the desktop).</summary>
+        public Transform Controller;
 
         private void OnDisable()
         {
@@ -207,7 +213,23 @@ namespace ProcSense.VR.Voice
         }
 
         private void OnFeedback(VoiceFeedbackLine line) { if (Router != null && Router.Talk != null) Router.Talk.SayFeedback(line); }
-        private void OnRecording(bool on) { if (Speaker != null) Speaker.SetMuted(on); }
+        /// <summary>The cue just played for a recording change (P3-SND-08), for tests.</summary>
+        public AudioClip LastCue { get; private set; }
+        private AudioSource _cues;
+
+        private void OnRecording(bool on)
+        {
+            if (Speaker != null) Speaker.SetMuted(on);
+            if (ProcSense.VR.Audio.AudioDirector.Instance != null) ProcSense.VR.Audio.AudioDirector.Instance.Listen(on);   // the room ducks while the trainee talks (P3-SND-10)
+            if (on)                                                                              // the person being looked at, or whose panel is open, listens (P3-ANI-04)
+            {
+                var head = Camera.main != null ? Camera.main.transform : null;
+                var who = ProcSense.VR.Interaction.ContextPanel.Open != null ? ProcSense.VR.Interaction.ContextPanel.Open.Entity : ProcSense.VR.Interaction.AddresseeTarget.Gazed(head, ProcSense.VR.Interaction.Interactable.All);
+                if (who != null) ProcSense.VR.Views.CharacterReactions.For(who)?.Trigger(ProcSense.VR.Views.CharacterReactions.State.Listening, 6f);
+            }
+            if (_cues == null) _cues = VoiceCues.MakeSource(gameObject);   // its own source: the speaker is muted while recording
+            LastCue = VoiceCues.Play(_cues, on);
+        }
         private void OnStatus(string s) { if (_status != null) _status.text = s; if (_caption != null) _caption.text = Talk != null && Talk.Recording ? "Send" : "Talk"; }
 
         public void Toggle()

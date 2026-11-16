@@ -1,0 +1,15 @@
+{
+ "schema": "procsense.voice_examples/1",
+ "status": "awaiting_review",
+ "note": "P3-VOX-04: what the voice-mode reference card suggests a trainee may say to each person or thing, after the catalogue's own spoken entries (content/ui/interactions.json). Written by the engineer: general wording, no doses, numbers, diagnoses or case facts. Spoken orders are read by the order interpreter (ADR-0028) and questions by the team dialogue (ADR-0026); nothing here decides anything. Not clinician-reviewed.",
+ "entities": {
+  "patient": ["What is your name and date of birth?", "Do you have any allergies?", "Why have you come in today?"],
+  "nurse": ["Nurse, could you take some bloods, please?", "Nurse, please put a cannula in.", "Nurse, what are the latest observations?", "Nurse, please put on a red allergy band."],
+  "doctor": ["Doctor, I think the patient is ready for theatre.", "Doctor, I have a concern about this patient.", "Doctor, could you review the results?"],
+  "anaesthetist": ["Anaesthetist, could you review the patient?", "Anaesthetist, the patient has an allergy.", "Anaesthetist, when did the patient last eat?"],
+  "porter": ["Porter, the patient is ready to go to theatre.", "Porter, can you take the patient for imaging?", "Porter, please wait a moment."],
+  "monitor": ["Nurse, please do a full set of observations.", "Nurse, please repeat the blood pressure.", "Nurse, what is the oxygen saturation?"],
+  "records": ["Nurse, can I see the notes, please?", "Can I see the latest results?", "Nurse, is the consent form signed?"],
+  "theatre_team": ["Let's do the sign in.", "Is everyone ready for the time out?", "Can we confirm the patient's identity and the site?"]
+ }
+}

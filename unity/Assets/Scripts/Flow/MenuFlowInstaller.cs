@@ -44,6 +44,24 @@ namespace ProcSense.VR.Flow
                 Panel = _panelRoot.AddComponent<FlowPanel>();
                 Panel.Build(Flow, _panelRoot.transform);
                 Flow.Changed += () => _placedFor = (MenuPhase)(-1);
+                var pause = _panelRoot.AddComponent<PauseMenu>();          // the pause menu on the controller's menu button (P3-MNU-08)
+                pause.Flow = Flow;
+                _panelRoot.AddComponent<FlowTransitions>().Attach(Flow, Panel);   // dip to dark on a new case, dim on the results (P3-ANI-10)
+                var hint = new GameObject("Hint panel");                            // the lightbulb (P3-EXM-03), beside the menu while a case is played
+                hint.transform.SetParent(_panelRoot.transform, false);
+                hint.transform.localPosition = new Vector3(-.95f, 0f, .05f);
+                hint.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
+                hint.AddComponent<HintPanel>().Build(Flow, HintPanel.CostFrom(UnityContentReader.ForThisPlatform()));
+                if (FindAnyObjectByType<ProcSense.VR.UI.Kit.WristMenu>() == null) new GameObject("Wrist menu host").AddComponent<ProcSense.VR.UI.Kit.WristMenu>();   // rides on the free hand once the rig exists (P3-CTX-07)
+                if (FindAnyObjectByType<ProcSense.VR.Interaction.InteractableBinder>() == null) { var ib = new GameObject("Interactable binder"); ib.AddComponent<ProcSense.VR.Interaction.InteractableBinder>(); ib.AddComponent<ProcSense.VR.Interaction.InteractableSelector>(); ib.AddComponent<ProcSense.VR.Interaction.VoiceModeMenus>(); }   // selection (P3-CTX-03), voice mode hides the menus (P3-VOX-03)   // people, equipment and records can be pointed at (P3-CTX-02)
+                ProcSense.VR.Audio.SoundPlayer.Ensure();                                                 // music, stings, kit and feedback sounds (P3-SND-04/05, P3-MNU-10)
+                if (FindAnyObjectByType<ProcSense.VR.UI.Training.CompletionFeedback>() == null) new GameObject("Completion feedback").AddComponent<ProcSense.VR.UI.Training.CompletionFeedback>();   // tick or toast per completed goal (P3-TRN-05)
+                ProcSense.VR.Auth.ServiceStatus.Ensure();                                                 // polls the laptop (P3-NET-08)
+                var chip = new GameObject("Connection chip");                                             // the status chip above the menu (P3-UIX-11)
+                chip.transform.SetParent(_panelRoot.transform, false);
+                chip.transform.localPosition = new Vector3(0f, .43f, 0f);
+                chip.AddComponent<ProcSense.VR.UI.Kit.ConnectionChip>().Build();
+                if (FindAnyObjectByType<ProcSense.VR.Voice.VoiceBanner>() == null) new GameObject("Voice banner host").AddComponent<ProcSense.VR.Voice.VoiceBanner>();   // voice lost: banner with "Use menus" (P3-VOX-10)
                 Flow.SignedIn();                                     // sign-in finished before this object was made; the consent step (if any) comes next
                 Place();
             }

@@ -113,5 +113,30 @@ class LfsSizeRule(unittest.TestCase):
         self.assertTrue(any("Supabase secret key" in message for message in repo_checks.check_hygiene()))
 
 
+class ActionGatewayRule(unittest.TestCase):
+    """P3-SES-04/11: a direct SimulationHost.Apply outside the gateway and the host fails; calls through the gateway and Session.Apply do not."""
+
+    def scan(self, files: dict[str, str]) -> list[str]:
+        import check_action_gateway
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for rel, text in files.items():
+                (root / rel).parent.mkdir(parents=True, exist_ok=True)
+                (root / rel).write_text(text, encoding="utf-8")
+            with patch.object(check_action_gateway, "SCRIPTS", root):
+                return check_action_gateway.problems()
+
+    def test_direct_calls_are_caught(self):
+        for line in ("var o = host.Apply(a);", "SimulationHost.Instance.Apply(a);", "_host.Apply(a);", "host?.Apply(a);"):
+            self.assertEqual(1, len(self.scan({"Views/V.cs": line})), line)
+
+    def test_the_gateway_and_sessions_are_allowed(self):
+        self.assertEqual([], self.scan({"Bridge/ActionGateway.cs": "host.Apply(a);", "Bridge/SimulationHost.cs": "host.Apply(a);",
+                                        "Views/V.cs": "ActionGateway.Apply(host, a, ActionSource.Tablet); _session.Apply(a); // host.Apply(a) in a comment"}))
+
+    def test_the_project_follows_the_rule(self):
+        self.assertEqual([], repo_checks.check_action_gateway())
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

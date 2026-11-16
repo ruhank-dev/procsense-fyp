@@ -62,6 +62,10 @@ namespace ProcSense.VR.Bridge
             { "ITEMS_OUTSTANDING", "Some checklist items are still outstanding" },
             { "NOT_ALL_TICKED", "Some ward checklist items are not ticked yet" },
             { "ALREADY_SIGNED", "That is already signed" },
+            // the action gateway's own codes (P3-SES-03)
+            { "DUPLICATE", "Already done a moment ago" },
+            { "PRACTICE_ONLY", "That help is not available in the examination" },
+            { "INVALID_REQUEST", "That request was not understood" },
         };
 
         /// <summary>The hint for a Core rejection reason ("" for none); unknown reasons are shown as the code so they are never hidden.</summary>

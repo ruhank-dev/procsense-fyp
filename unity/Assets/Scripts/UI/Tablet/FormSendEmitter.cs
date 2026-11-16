@@ -8,5 +8,8 @@ namespace ProcSense.VR.UI.Tablet
     /// </summary>
     public sealed class FormSendEmitter : ActionEmitter
     {
+        /// <summary>A panel button: the gateway tags its actions as tablet actions (P3-SES-04).</summary>
+        protected override ProcSense.VR.Bridge.ActionSource Source => ProcSense.VR.Bridge.ActionSource.Tablet;
+
     }
 }

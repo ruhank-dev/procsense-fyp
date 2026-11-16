@@ -15,8 +15,12 @@ namespace ProcSense.Core
 {
     public enum SessionMode { Practice, Assessment }
 
-    /// <summary>Practice level: a beginner has safety nets (the nurse challenges an unsafe request); an advanced trainee sees the consequence. Assessment mode ignores it.</summary>
-    public enum TrainingLevel { Beginner, Advanced }
+    /// <summary>
+    /// Practice level: a beginner has safety nets (the nurse challenges an unsafe request), the easier case pool (no stacked cases) and the automatic practice hint; an advanced trainee gets every
+    /// case, no automatic hint, and sees the consequence of an unsafe request. Intermediate (P3-MNU-05) sits between: every case and no automatic hint, but the nurse still challenges an unsafe
+    /// request. Assessment mode ignores it. Saved as its name ("intermediate"), never as a number, so adding it changed no saved log.
+    /// </summary>
+    public enum TrainingLevel { Beginner, Intermediate, Advanced }
 
     /// <summary>Optional settings of a session that are part of what is replayed: the training level and which variant of the case is played (for example B2 of VAR-S1-B).
     /// Procedure and Source (P3-SES-06) record the request the session was planned from ("" = not from a plan / authored); HintLimit (P3-EXM-01) comes from content/scoring/grades.json "hint_limit".

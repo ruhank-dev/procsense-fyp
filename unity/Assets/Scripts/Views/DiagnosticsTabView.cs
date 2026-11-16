@@ -114,7 +114,7 @@ namespace ProcSense.VR.Views
                 if (Definition == null) return;
                 parameters["test"] = Definition.Id;
             }
-            var outcome = host.Apply(new SimAction(verb, "patient", Channel.Vr, parameters));
+            var outcome = ActionGateway.Apply(host, new SimAction(verb, "patient", Channel.Vr, parameters), ActionSource.Tablet);
             var stop = outcome.Effects.FirstOrDefault(e => e.StartsWith("stopped:", StringComparison.Ordinal));
             _attention = stop != null;
             _feedbackText = !outcome.Accepted ? "Request refused: " + outcome.RejectReason

@@ -46,7 +46,7 @@ Each interaction is a row: **input** (physical gesture, contextual action, voice
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-INT-01 | Coverage tool: generate `docs/plans/p3/interaction-matrix.md` from the verb registry, the catalogue, the emitters in scenes and the voice catalogue; `--check` in CI | Ruhan | P3-CTX-01 | Generated page matches the scenes; CI row | Planned |
+| P3-INT-01 | Coverage tool: generate `docs/plans/p3/interaction-matrix.md` from the verb registry, the catalogue, the emitters in scenes and the voice catalogue; `--check` in CI | Ruhan | P3-CTX-01 | Generated page matches the scenes; CI row | Done |
 | P3-INT-02 | Patient: examination gesture with flinch, count-RR interaction, pain score prompt, preparation props (gown, jewellery) as optional physical steps | Sannan | P3-CTX-02, p0-vr-interaction-ui-s06 | Each sends the same request as the menu | Planned |
 | P3-INT-03 | Nurse: replace greybox with the final character, keep the wristband sequence; add hand-over of items and the preparation tasks | Sannan | P3-SES-01, p0-vr-interaction-ui-s12 | Nurse actions reachable physically and by panel | Planned |
 | P3-INT-04 | Doctor (registrar/surgeon) as an addressable character at the bay or nurses' station for escalation, review and decisions | Sannan | P3-AST-04, P3-CTX-02 | SBAR escalation reachable in both modes | Planned |
@@ -55,7 +55,7 @@ Each interaction is a row: **input** (physical gesture, contextual action, voice
 | P3-INT-07 | Bedside equipment: glucometer, ECG, sample tubes with labels, specimen bag, oxygen mask/cannula, IV pole states, consent clipboard and pen | Sannan | p0-blender-equipment-s07, p0-blender-equipment-s08, p0-blender-equipment-s09 | Each item usable or clearly a prop | Planned |
 | P3-INT-08 | Theatre reception handover point in the corridor/OT entrance where `submit_patient` is presented (patient leaves with the porter) | Sannan | P3-EXM-04, p0-vr-interaction-ui-s07 | Submission has a visible handover | Planned |
 | P3-INT-09 | Non-functional objects: remove highlight or show "Not used in this simulation" on point | Sannan | P3-CTX-03 | No silent highlighted object in the three rooms (PlayMode sweep) | Planned |
-| P3-INT-10 | Coverage check: every verb reachable from a contextual entity or the wrist menu; every goal of S1 and S2 completable by menu only and by voice only (voice per D3) | Ruhan | P3-INT-01, P3-VOX-04 | Check green in CI | Planned |
+| P3-INT-10 | Coverage check: every verb reachable from a contextual entity or the wrist menu; every goal of S1 and S2 completable by menu only and by voice only (voice per D3) | Ruhan | P3-INT-01, P3-VOX-04 | Check green in CI | Done |
 
 ## 7. Dependencies and execution order
 

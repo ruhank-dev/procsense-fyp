@@ -17459,9 +17459,6 @@ PrefabInstance:
       addedObject: {fileID: 690274347}
     - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 690274351}
-    - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 690274352}
     - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
       insertIndex: -1
@@ -17518,24 +17515,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2846092135491210294, guid: b802c4029e1ecd048825030facefad12, type: 3}
   m_PrefabInstance: {fileID: 690274344}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &690274351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 690274346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84768e38dd76344ab99627898c3a73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Interaction.Interactable
-  entityId: patient
-  entityType: 0
-  panelAnchor: {fileID: 0}
-  highlightRenderers: []
-  voiceName: patient
-  renderersAtRuntime: 0
 --- !u!114 &690274352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18152,7 +18131,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739470057}
-  - component: {fileID: 739470058}
   m_Layer: 0
   m_Name: PHONE_CriticalResults
   m_TagString: Untagged
@@ -18175,24 +18153,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1831182908}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &739470058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 739470056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84768e38dd76344ab99627898c3a73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Interaction.Interactable
-  entityId: phone_results
-  entityType: 7
-  panelAnchor: {fileID: 0}
-  highlightRenderers: []
-  voiceName: 
-  renderersAtRuntime: 1
 --- !u!1 &743980453
 GameObject:
   m_ObjectHideFlags: 0
@@ -33573,7 +33533,6 @@ GameObject:
   - component: {fileID: 1549083111}
   - component: {fileID: 1549083110}
   - component: {fileID: 1549083109}
-  - component: {fileID: 1549083112}
   m_Layer: 0
   m_Name: Monitor
   m_TagString: Untagged
@@ -33674,24 +33633,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1549083107}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1549083112
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1549083107}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84768e38dd76344ab99627898c3a73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Interaction.Interactable
-  entityId: monitor_bay
-  entityType: 6
-  panelAnchor: {fileID: 0}
-  highlightRenderers: []
-  voiceName: 
-  renderersAtRuntime: 0
 --- !u!1 &1550889585
 GameObject:
   m_ObjectHideFlags: 0
@@ -38143,7 +38084,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1831182908}
   - component: {fileID: 1831182907}
-  - component: {fileID: 1831182909}
   m_Layer: 0
   m_Name: Records workstation
   m_TagString: Untagged
@@ -38186,24 +38126,6 @@ Transform:
   - {fileID: 1611355562}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1831182909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1831182906}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84768e38dd76344ab99627898c3a73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Interaction.Interactable
-  entityId: records_workstation
-  entityType: 7
-  panelAnchor: {fileID: 0}
-  highlightRenderers: []
-  voiceName: 
-  renderersAtRuntime: 1
 --- !u!1 &1831722372
 GameObject:
   m_ObjectHideFlags: 0
@@ -44778,7 +44700,6 @@ GameObject:
   - component: {fileID: 2112987731}
   - component: {fileID: 2112987730}
   - component: {fileID: 2112987729}
-  - component: {fileID: 2112987734}
   m_Layer: 0
   m_Name: Notes
   m_TagString: Untagged
@@ -44973,24 +44894,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112987727}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2112987734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112987727}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84768e38dd76344ab99627898c3a73b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Interaction.Interactable
-  entityId: notes_folder
-  entityType: 7
-  panelAnchor: {fileID: 0}
-  highlightRenderers: []
-  voiceName: 
-  renderersAtRuntime: 0
 --- !u!1 &2115418445
 GameObject:
   m_ObjectHideFlags: 0

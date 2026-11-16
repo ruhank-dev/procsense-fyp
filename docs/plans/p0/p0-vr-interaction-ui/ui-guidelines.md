@@ -52,3 +52,37 @@ These rules hold for every world-space panel ProcSense makes. They are checked b
 - Try 18, 24 and 32 px text with 3 users, at 1 m and at 0.6 m, in the headset.
 - If the minimum changes, change `Readability.MinHeadsetPixels`; every panel follows.
 - This is part of the UX-P0-VRUI check (`docs/testing/SANNAN_EXTERNAL_TESTING.md`).
+
+## P3 additions (P3-UIX-08, 11 Nov 2026)
+
+These rules extend the ones above for the P3 screens. The checks live in `Readability.cs`; `UiThemeTests` and `HeadLockedRulesTests` run them.
+
+### Text size for the new screens
+
+- **One type scale.** The P3 screens use the type sizes of the design tokens (`docs/plans/p3/ui-design-tokens.md`): title 48, heading 32, body 24 and caption 18. These are canvas units as seen from 0.6 m.
+- **Constant angular size.** A panel placed further away uses a proportionally larger canvas scale, `UiTheme.MetresPerUnit(distance)`. Text then keeps the same angular size at every distance: a caption is about 26 headset pixels whether the panel is on the wrist or 1.6 m away.
+- **Why.** A fixed scale makes body text on a 1.2 m menu about 17 pixels, under the 24-pixel minimum.
+
+### Distances
+
+| Placement | Distance |
+|---|---|
+| Menus | 1.2 to 1.6 m |
+| Contextual panels | 0.6 to 1.2 m |
+| Wrist UI | 0.35 m |
+| Nothing closer than | 0.3 m |
+
+### Content that follows the head
+
+Only small things follow the head: subtitles, toasts, the listening ring and the waiting status. Menus and panels stay in the world. Content that follows the head must be:
+
+- **Far enough:** at least 0.75 m away, so the eyes don't strain to converge on it.
+- **Close to the line of sight:** between 25° below and 15° above it, and within 20° to either side.
+- **Narrow enough:** no wider than 40°, so a line can be read without turning the head.
+
+The subtitle line was 48° wide at 0.95 m, so it was narrowed to 0.63 m (700 units, about 37°) and allowed one more line.
+
+### Contrast on glass
+
+- **The rule.** Every text colour must reach 4.5:1 on the glass panel over each background a room can put behind it: the sunlit window, a dark doorway, the grey floor and the warm wall.
+- **What it takes.** That is why the glass is 85 % opaque and red text uses `#FF8589` (see the tokens page). Labels on accent buttons use the dark text colour.

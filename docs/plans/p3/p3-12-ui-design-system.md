@@ -26,7 +26,7 @@ Design tokens; a Quest-safe glass shader; a component kit; icons; motion presets
 |---|---|
 | Glass tint | deep blue-grey `#0F1A24` at 62 % opacity; light variant `#E8F0F6` at 18 % |
 | Edge | 1.5 px equivalent, white at 35 %, brighter at the top edge |
-| Accent | teal `#2EC4B6` (actions), amber `#F2B33D` (hints), red `#E5484D` (danger/critical), green `#3CCB7F` (done) |
+| Accent | teal `#2EC4B6` (actions), amber `#F2B33D` (hints), red `#E64A4F` (danger/critical; was `#E5484D`, 4.496:1 under dark labels), green `#3CCB7F` (done) |
 | Text | primary `#F4F7FA`, secondary 70 %, disabled 40 % |
 | Type | Inter (SIL OFL) or the TMP default if licensing is not confirmed: title 48, heading 32, body 24, caption 18 (canvas units at 0.0006 m/unit; matches the minimum angular sizes in `Readability.cs`) |
 | Radius / spacing | 24 / 8-16-24-32 |
@@ -44,17 +44,17 @@ Design tokens; a Quest-safe glass shader; a component kit; icons; motion presets
 
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
-| P3-UIX-01 | Tokens: `UiTheme` asset and the tokens page (colours, type, spacing, radii, motion, distances, targets) | Moiz | — | Tokens page reviewed by the owner | Planned |
-| P3-UIX-02 | Font: confirm licence (Inter, SIL OFL) and import as TMP SDF with fallback; licence row | Moiz | P3-UIX-01 | Licence recorded; atlas built | Planned |
-| P3-UIX-03 | Glass shader (one pass, stereo-safe, probe-based frost, rim, streak), with EditMode shader compile test and a desktop capture | Moiz | P3-UIX-01, P3-PRF-01 | Renders in both eyes in the multiview test scene of the diagnostic APK | Planned |
-| P3-UIX-04 | Component kit (list in section 5) as prefabs plus `UiKit` factory methods | Moiz | P3-UIX-03, P3-UIX-02 | Kit sample scene shows every component | Planned |
-| P3-UIX-05 | Migrate existing views (tablet, menu, mode chooser, settings tab, results viewer, phone, EMR, debrief, ward and WHO boards, order panel, wait overlay) to the kit without changing their behaviour | Moiz | P3-UIX-04, P3-SES-01 | All existing UI PlayMode tests pass unchanged | Planned |
-| P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Planned |
-| P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Planned |
-| P3-UIX-08 | VR readability and comfort rules updated (angular text size, distances, head-locked limits, contrast) and checked by `Readability` in tests | Moiz | p0-vr-interaction-ui-s10 | Every kit component passes the rules | Planned |
-| P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Planned |
-| P3-UIX-10 | Visual review captures of every screen (fixed cameras) and owner approval | Moiz | P3-UIX-05 | Owner approval recorded | Planned |
-| P3-UIX-11 | Connection status chip and banners for the networked Quest (D2): chip on the main menu and the wrist (green "Laptop connected · Cloud AI ready", amber "Reconnecting…" or "Cloud AI unavailable · local fallback", red "Laptop not found" with "Play in menu mode"), version-mismatch banner, server settings page with found laptops, keypad and pairing code | Moiz | P3-UIX-04, P3-NET-08 | Every state of `ServiceStatus` has a visual and a one-line reason (PlayMode with a fake server) | Planned |
+| P3-UIX-01 | Tokens: `UiTheme` asset and the tokens page (colours, type, spacing, radii, motion, distances, targets) | Moiz | — | Tokens page reviewed by the owner | Done |
+| P3-UIX-02 | Font: confirm licence (Inter, SIL OFL) and import as TMP SDF with fallback; licence row | Moiz | P3-UIX-01 | Licence recorded; atlas built | Done |
+| P3-UIX-03 | Glass shader (one pass, stereo-safe, probe-based frost, rim, streak), with EditMode shader compile test and a desktop capture | Moiz | P3-UIX-01, P3-PRF-01 | Renders in both eyes in the multiview test scene of the diagnostic APK | In progress |
+| P3-UIX-04 | Component kit (list in section 5) as prefabs plus `UiKit` factory methods | Moiz | P3-UIX-03, P3-UIX-02 | Kit sample scene shows every component | Done |
+| P3-UIX-05 | Migrate existing views (tablet, menu, mode chooser, settings tab, results viewer, phone, EMR, debrief, ward and WHO boards, order panel, wait overlay) to the kit without changing their behaviour | Moiz | P3-UIX-04, P3-SES-01 | All existing UI PlayMode tests pass unchanged | Done |
+| P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Done |
+| P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Done |
+| P3-UIX-08 | VR readability and comfort rules updated (angular text size, distances, head-locked limits, contrast) and checked by `Readability` in tests | Moiz | p0-vr-interaction-ui-s10 | Every kit component passes the rules | Done |
+| P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Done |
+| P3-UIX-10 | Visual review captures of every screen (fixed cameras) and owner approval | Moiz | P3-UIX-05 | Owner approval recorded | In progress |
+| P3-UIX-11 | Connection status chip and banners for the networked Quest (D2): chip on the main menu and the wrist (green "Laptop connected · Cloud AI ready", amber "Reconnecting…" or "Cloud AI unavailable · local fallback", red "Laptop not found" with "Play in menu mode"), version-mismatch banner, server settings page with found laptops, keypad and pairing code | Moiz | P3-UIX-04, P3-NET-08 | Every state of `ServiceStatus` has a visual and a one-line reason (PlayMode with a fake server) | Done |
 
 ## 7. Dependencies and execution order
 

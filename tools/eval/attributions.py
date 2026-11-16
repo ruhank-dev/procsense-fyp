@@ -26,6 +26,8 @@ PROVENANCE = [
     ("Textures", "Hospital wall and floor surfaces (ambientCG)", "unity/Assets/Textures/Hospital/README.md"),
     ("3D characters", "Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars)", "unity/Assets/Characters/Rocketbox/README.md"),
     ("Animation", "Idle, talking, sitting and walking clips (Quaternius Universal Animation Library)", "unity/Assets/Characters/Animations/README.md"),
+    ("Font", "Inter, the interface typeface (Rasmus Andersson and the Inter Project Authors)", "unity/Assets/UI/Fonts/Inter/README.md"),
+    ("Icons", "Interface icons (Lucide, lucide-static 0.460.0)", "unity/Assets/UI/Icons/README.md"),
 ]
 
 
@@ -76,7 +78,7 @@ def collect() -> tuple[dict, list[str]]:
             problems.append(f"{rel}: the provenance note is missing")
             continue
         text = p.read_text(encoding="utf-8")
-        lic = "CC0 1.0" if "CC0" in text else ("MIT" if "MIT" in text else "")
+        lic = "CC0 1.0" if "CC0" in text else "SIL OFL 1.1" if "SIL OFL" in text else "ISC" if "ISC licence" in text else ("MIT" if "MIT" in text else "")
         if not lic:
             problems.append(f"{rel}: the provenance note states no licence")
         assets.append({"kind": kind, "what": what, "licence": lic, "note": rel})
@@ -115,7 +117,7 @@ def markdown(d: dict) -> str:
     L += [f"| {x['name']} | {x['licence']} | {x['use']} | {x['url'] or '-'} |" for x in d["datasets"]]
     L += ["", "## Pictures", "", "Every picture in the app (from `content/images`, `content/ecg`, `content/cxr` and `content/xsec`, each `index.json`).", "", "| Pictures | Source | Licence | Attribution |", "|---|---|---|---|"]
     L += [f"| {g['count']} {'synthetic (labelled as such)' if g['synthetic'] else 'real'} | {g['source'] or '-'} | {g['licence']} | {g['attribution'] or '-'} |" for g in d["pictures"]]
-    L += ["", "## 3D character and textures", "", "| What | Licence | Provenance |", "|---|---|---|"]
+    L += ["", "## 3D characters, textures, font and icons", "", "| What | Licence | Provenance |", "|---|---|---|"]
     L += [f"| {a['what']} | {a['licence']} | `{a['note']}` |" for a in d["assets"]]
     L += ["", "## Voices and sounds", "", "None yet: voices and sounds are added with p0-voice-audio, and each will be listed here from its register.", "",
           "## Software", "", "Libraries (from `docs/research/package_register.csv`).", "", "| Package | Version | Licence | Used for |", "|---|---|---|---|"]

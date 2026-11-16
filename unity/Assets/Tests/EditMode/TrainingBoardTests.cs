@@ -96,6 +96,20 @@ namespace ProcSense.Tests.EditMode
             Assert.AreNotEqual("G-S1-IDENTITY", m.ObjectiveId);
         }
 
+        /// <summary>P3-TRN-08 "hint-no-action": a hint tells, it never does: no goal moves, no step changes on the board, and the patient's state is the same after it.</summary>
+        [Test]
+        public void A_hint_changes_no_step_and_no_goal()
+        {
+            var s = Start(SessionMode.Practice);
+            var guide = Guide();
+            var before = TrainingBoardText.Build(s, guide).AllSteps.Select(r => r.Id + "=" + r.State).ToList();
+            var graph = s.GraphHistory.Count;
+            Assert.IsTrue(_host.Apply(Act("request_hint")).Accepted);
+            Assert.IsNotNull(s.LastHint, "the hint is given");
+            CollectionAssert.AreEqual(before, TrainingBoardText.Build(s, guide).AllSteps.Select(r => r.Id + "=" + r.State).ToList(), "no step done or undone by a hint");
+            Assert.AreEqual(graph, s.GraphHistory.Count, "no goal completed or missed by a hint");
+        }
+
         [Test]
         public void A_refused_action_shows_why_on_the_board()
         {

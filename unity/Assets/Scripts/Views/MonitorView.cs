@@ -159,7 +159,7 @@ namespace ProcSense.VR.Views
             foreach (var vital in _alarms.Acknowledge(Time.unscaledTime))
             {
                 var alarm = _alarms.Active.First(a => a.Vital == vital);
-                host?.Apply(new SimAction("acknowledge_alarm", "monitor", Channel.Vr, new Dictionary<string, string> { ["vital"] = vital, ["priority"] = alarm.Priority.Id }));
+                if (host != null) ActionGateway.Apply(host, new SimAction("acknowledge_alarm", "monitor", Channel.Vr, new Dictionary<string, string> { ["vital"] = vital, ["priority"] = alarm.Priority.Id }), ActionSource.Physical);
             }
             if (Last != null) RefreshAlarms(Last);
         }
