@@ -67,7 +67,14 @@ namespace ProcSense.VR.Interaction
         }
 
         /// <summary>The same, from the game: the open contextual panel and the main camera.</summary>
-        public static string Choose(string utterance) =>
-            Choose(utterance, ContextPanel.Open != null ? ContextPanel.Open.Entity : null, Camera.main != null ? Camera.main.transform : null, Interactable.All);
+        public static string Choose(string utterance)
+        {
+            var who = Choose(utterance, ContextPanel.Open != null ? ContextPanel.Open.Entity : null, Camera.main != null ? Camera.main.transform : null, Interactable.All);
+            if (who != null) Chosen?.Invoke(who);
+            return who;
+        }
+
+        /// <summary>Raised with the speech-route name ("patient", "nurse", "anaesthesia") when a spoken sentence goes out to that person, so they can turn to look at the trainee.</summary>
+        public static event System.Action<string> Chosen;
     }
 }

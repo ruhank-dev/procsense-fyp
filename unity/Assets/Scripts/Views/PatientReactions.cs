@@ -27,7 +27,11 @@ namespace ProcSense.VR.Views
 
         private void OnLine(ProcSense.VR.Audio.VoiceLine line) { if (line.Speaker == "patient") State.StartSpeaking(); }
 
-        private void OnDestroy() { if (voice != null) voice.Started -= OnLine; }
+        private void OnDestroy()
+        {
+            if (voice != null) voice.Started -= OnLine;
+            ProcSense.VR.Interaction.AddresseeTarget.Chosen -= OnAddressee;
+        }
 
         public void Address() => State.Address();
         public void StartSpeaking() => State.StartSpeaking();
@@ -41,7 +45,10 @@ namespace ProcSense.VR.Views
         {
             if (bound) return;
             bound = true; motion = GetComponent<PatientMotion>(); State.Changed += OnChanged;
+            ProcSense.VR.Interaction.AddresseeTarget.Chosen += OnAddressee;
         }
+
+        private void OnAddressee(string route) { if (route == "patient") State.Address(); }
 
         private Transform Target => player != null ? player : (Camera.main != null ? Camera.main.transform : null);
 

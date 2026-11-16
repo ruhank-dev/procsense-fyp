@@ -32,6 +32,16 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void A_sentence_addressed_to_the_patient_makes_them_look_at_the_player_and_one_for_the_nurse_does_not()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.player = player.transform; r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            ProcSense.VR.Interaction.AddresseeTarget.Choose("Nurse, please check the drip");
+            Assert.AreEqual(CharacterState.Idle, r.State.State, "a sentence for the nurse is not for the patient");
+            ProcSense.VR.Interaction.AddresseeTarget.Choose("Patient, how is the pain today");
+            Assert.AreEqual(CharacterState.Addressed, r.State.State); Assert.AreSame(player.transform, motion.lookAt);
+        }
+
+        [Test]
         public void An_accepted_action_gets_a_nod_and_a_refused_one_a_head_shake()
         {
             var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
