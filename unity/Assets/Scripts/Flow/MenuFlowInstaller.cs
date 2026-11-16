@@ -53,6 +53,7 @@ namespace ProcSense.VR.Flow
                 hint.transform.localRotation = Quaternion.Euler(0f, -15f, 0f);
                 hint.AddComponent<HintPanel>().Build(Flow, HintPanel.CostFrom(UnityContentReader.ForThisPlatform()));
                 if (FindAnyObjectByType<ProcSense.VR.UI.Kit.WristMenu>() == null) new GameObject("Wrist menu host").AddComponent<ProcSense.VR.UI.Kit.WristMenu>();   // rides on the free hand once the rig exists (P3-CTX-07)
+                if (FindAnyObjectByType<ProcSense.VR.Interaction.InteractableBinder>() == null) new GameObject("Interactable binder").AddComponent<ProcSense.VR.Interaction.InteractableBinder>();   // people, equipment and records can be pointed at (P3-CTX-02)
                 ProcSense.VR.Auth.ServiceStatus.Ensure();                                                 // polls the laptop (P3-NET-08)
                 var chip = new GameObject("Connection chip");                                             // the status chip above the menu (P3-UIX-11)
                 chip.transform.SetParent(_panelRoot.transform, false);
