@@ -113,6 +113,8 @@ namespace ProcSense.VR.Views
             if (a.GetComponentInParent<CharacterPerfKeepAnimated>(true) != null || a.GetComponentInChildren<CharacterPerfKeepAnimated>(true) != null) return false;
             foreach (var mb in a.GetComponentsInParent<MonoBehaviour>(true)) if (mb != null && ExemptScripts.Contains(mb.GetType().Name)) return false;
             foreach (var mb in a.GetComponentsInChildren<MonoBehaviour>(true)) if (mb != null && ExemptScripts.Contains(mb.GetType().Name)) return false;
+            // Patient attach anchors (XR sockets) ride on this character's bones; the SensorAttachment that reads them lives on the sensor prop, outside this hierarchy, so the name check above never saw it.
+            if (a.GetComponentInChildren<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>(true) != null) return false;
             return true;
         }
 

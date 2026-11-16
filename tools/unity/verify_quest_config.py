@@ -29,6 +29,20 @@ P_PROFILE = "unity/Assets/Scripts/Views/QuestPerformanceProfile.cs"
 P_RUNTIME = "unity/Assets/Scripts/Views/QuestRuntimeSettings.cs"
 P_GUARD = "unity/Assets/Scripts/Views/QuestLightingGuard.cs"
 P_TIER = "unity/Assets/Scripts/XR/QuestRenderTier.cs"
+P_BUILD = "unity/Assets/Editor/Setup/BuildScript.cs"
+# Close-up textures of the sharpness pass (15 Nov 2026): Android ASTC 4x4 (48) or 5x5 (49), never the 6x6/8x8 blocks used elsewhere
+HERO_TEXTURES = (
+    "unity/Assets/Models/Characters/MPFBPatient/Textures/middleage_lightskinned_male_diffuse2.png",
+    "unity/Assets/Characters/Rocketbox/Medical_Male_04/m162_body_color_patient.png",
+    "unity/Assets/Characters/Rocketbox/Medical_Male_04/m162_head_color.jpg",
+    "unity/Assets/Textures/Hospital/FinalLook/gown_albedo.png",
+    "unity/Assets/Textures/Hospital/FinalLook/gown_normal.png",
+    "unity/Assets/Textures/Hospital/Bed/bed_cover_albedo.png",
+    "unity/Assets/Textures/Hospital/Bed/bed_cover_normal.png",
+    "unity/Assets/Textures/Hospital/Bed/bed_pillow_normal.png",
+    "unity/Assets/Textures/Hospital/Monitor/monitor_ui.png",
+    "unity/Assets/Textures/Hospital/Monitor/monitor_labels.png",
+)
 BAKED_SCENES = ("PatientBay", "Corridor", "OT")
 ASTC = set(range(48, 54)) | set(range(66, 72))  # TextureFormat ASTC 4x4..12x12 and ASTC HDR
 
@@ -109,7 +123,7 @@ def main() -> int:
     fov = block(openxr, "FoveatedRenderingFeature Android")
     profile = read(P_PROFILE)
     fov_level = re.search(r"const float Foveation = ([\d.]+)f", profile)
-    check("FFR on (High), subsampled layout", val(fov, "m_enabled") == "1" and val(fov, "enableSubsampledLayout") == "1" and fov_level is not None and float(fov_level.group(1)) >= 0.66,
+    check("FFR on (Medium), subsampled layout", val(fov, "m_enabled") == "1" and val(fov, "enableSubsampledLayout") == "1" and fov_level is not None and 0.375 <= float(fov_level.group(1)) < 0.75,
           f"feature {val(fov, 'm_enabled')}, subsampled {val(fov, 'enableSubsampledLayout')}, level {fov_level.group(1) if fov_level else '?'}", P_OPENXR, "enableSubsampledLayout", "FoveatedRenderingFeature Android")
     perf = block(openxr, "XrPerformanceSettingsFeature Android")
     runtime = read(P_RUNTIME)
@@ -195,19 +209,31 @@ def main() -> int:
                 non_astc.append(f"{meta.relative_to(U)} ({m.group(1)})")
     check("ASTC overrides on Android", overrides >= 400 and len(non_astc) <= 20,
           f"{overrides} of {files} textures override Android; {len(non_astc)} use a non-ASTC format" + (f" e.g. {non_astc[:3]}" if non_astc else ""))
+    hero_bad = []
+    for rel in HERO_TEXTURES:
+        t = read(rel + ".meta")
+        m = re.search(r"buildTarget: Android\s*\n(?:\s+\w+:.*\n)*?\s+textureFormat: (-?\d+)(?:\s*\n\s+\w+:.*)*?\n\s+overridden: (\d)", t)
+        if not m or m.group(2) != "1" or m.group(1) not in ("48", "49"):
+            hero_bad.append(f"{rel.rsplit('/', 1)[-1]} ({m.group(1) if m else '?'})")
+    check("close-up textures ASTC 4x4/5x5 (patient, gown, bed, monitor)", not hero_bad, f"{len(HERO_TEXTURES) - len(hero_bad)} of {len(HERO_TEXTURES)} OK" + (f"; not 4x4/5x5: {hero_bad}" if hero_bad else ""))
     check("project default Android texture compression explicit", None if val(project, "m_BuildTargetDefaultTextureCompressionFormat") == "[]" else True,
           f"m_BuildTargetDefaultTextureCompressionFormat {val(project, 'm_BuildTargetDefaultTextureCompressionFormat')} (unset: Unity 6 defaults to ASTC; matrix action, not a regression)")
 
     # runtime profile
     num = lambda n: (re.search(rf"const float {n} = ([\w.]+?)f?;", profile) or [None, None])[1]
     dyn = re.search(r"public static bool DynamicResolution = (\w+);", profile)
-    check("eye buffer 0.9 / start 0.8 / dynamic 0.7-0.9, driver installs itself",
-          num("EyeBufferScale") == "0.9" and num("StartScale") == "0.8" and num("MinScale") == "0.7" and "MaxScale = EyeBufferScale" in profile and dyn and dyn.group(1) == "true"
+    check("eye buffer 1.0 / start 0.9 / dynamic 0.85-1.0, driver installs itself",
+          num("EyeBufferScale") == "1" and num("StartScale") == "0.9" and num("MinScale") == "0.85" and "MaxScale = EyeBufferScale" in profile and dyn and dyn.group(1) == "true"
           and "RuntimeInitializeOnLoadMethod" in profile and "QuestRenderTier.SetEyeScale(EyeBufferScale)" in profile,
           f"eye {num('EyeBufferScale')}, start {num('StartScale')}, min {num('MinScale')}, dynamic {dyn.group(1) if dyn else '?'}")
-    check("dynamic resolution GPU time in the production APK", None if val(project, "enableFrameTimingStats") == "0" else True,
-          f"enableFrameTimingStats {val(project, 'enableFrameTimingStats')} (BuildScript turns it on for the diagnostic APK only; if FrameTimingManager returns no GPU time in the release APK the scale stays at 0.8: headset DC-13 / owner decision)")
+    build = read(P_BUILD)
+    timing_all = re.search(r"^\s*PlayerSettings\.enableFrameTimingStats = true;", build, re.M) is not None and "if (v.Diagnostic) PlayerSettings.enableFrameTimingStats" not in build
+    timing_restored = "PlayerSettings.enableFrameTimingStats = timingBefore;" in build
+    check("dynamic resolution GPU time in release and diagnostic APKs", True if val(project, "enableFrameTimingStats") == "1" or (timing_all and timing_restored) else None,
+          f"enableFrameTimingStats {val(project, 'enableFrameTimingStats')} in the project; BuildScript sets it for every Android build: {timing_all}, restores it after: {timing_restored} (DT-306; whether FrameTimingManager reports GPU time on Quest Vulkan is headset DC-13)")
     guard, tier = read(P_GUARD), read(P_TIER)
+    check("single source of the run-time scale and foveation", "DefaultFoveation = ProcSense.VR.Views.QuestPerformanceProfile.Foveation" in tier and "DefaultEyeScale = ProcSense.VR.Views.QuestPerformanceProfile.EyeBufferScale" in tier and val(urp, "m_RenderScale") == "1",
+          "QuestRenderTier defaults are the profile constants, URP render scale 1 (no double reduction)")
     check("lighting guard and render tier initialisers present", "RuntimeInitializeOnLoadMethod" in guard and "ShadowCastingMode.Off" in guard and "RuntimeInitializeOnLoadMethod" in tier,
           "QuestLightingGuard (shadow casting off on Android), QuestRenderTier (foveation) install at scene load")
 

@@ -53,6 +53,8 @@ Still open (honest):
 - Fallback profile if the XR display does not start is a logged warning only; Quest 2 is the sole target.
 - LOD groups exist only on Staff (10) and PatientBay (4); Corridor/OT have none (add only if profiling shows vertex cost). 114 textures have no Android override; about 200 are capped at 2048.
 
+**15 Nov 2026 UTC, sharpness revision** (owner: headset footage grainy, blurry, pixelated, jagged after the overhaul; details in [graphics_matrix.md, "Sharpness regression"](audit/graphics_matrix.md)): the first overhaul drew 1152 x 1267 per eye (41% of the panel's pixels, no MSAA, FFR High) and the release APK could never raise it (Frame Timing Stats off, no GPU time). Now: eye buffer 1.0, start 0.9 (1296 x 1426), dynamic 0.85-1.0, FFR Medium, Frame Timing Stats in both APKs, close-up textures ASTC 4x4/5x5, XR Performance Settings re-enabled (it was off in every commit). Statements above that say FFR High, 0.8 or 0.7-0.9 describe the 14 Nov state. FPS, GPU ms and the visual result are **not measured** (DT-309). The two APKs listed under "Final build" predate this change.
+
 ## Remaining P3 gaps (rows in p3_matrix.md)
 
 - Done 14 Nov 2026 UTC (Editor/Core): goals-inactive reasons in Core (DT-298, `Observation/Availability.cs`) and the P3-TRN-03 training board (`Scripts/UI/Training/`, hidden in the examination); both pathways covered by `PathwayCoverageTests`. Reconciliation of every open row: [audit/p3_matrix.md section 11](audit/p3_matrix.md). Done 14 Nov 2026 UTC (voice agent): the `voice_feedback.json` reader and the VOX-06 voice-only identity/allergy/consent examination tests (Core `VoiceOnlyExaminationTests`, PlayMode `SpokenExamVoiceOnlyTests`). Still open: the avatar per case (character assets), the stale FlowPanel refusal text (Flow owner), board summon icon and tick feedback (TRN-04/05).
@@ -65,7 +67,7 @@ Still open (honest):
 ## Remaining real-headset tests
 
 1. Install the diagnostic APK; record GPU ms, FPS, dynamic scale and FFR level (DC-13). Confirm render scale and GPU performance level take effect.
-2. Read text legibility on the EMR tablet, monitor and menu panel at scale 0.8.
+2. Read text legibility on the EMR tablet, monitor and menu panel at scale 0.9 (0.85 minimum since 15 Nov 2026); compare B0, B90 (FFR High), B91 (MSAA 2x) and B95 (first overhaul profile) for sharpness and GPU ms (DT-309).
 3. Menu to scenario to Submit to OT to Results to Retry with controllers; confirm pointer works on the world-space panel.
 4. Pair with the laptop; check certificate pinning (accept pinned, refuse other), notice chip states, offline and reconnect.
 5. Voice: push-to-talk, spoken actions, examination patient dialogue, hint/submit by voice.

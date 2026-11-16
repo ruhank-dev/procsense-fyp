@@ -16,7 +16,7 @@ namespace ProcSense.EditorTools
         public bool Development;
         /// <summary>Extra defines (the diagnostic variants: PROCSENSE_PERF_DIAG, and PROCSENSE_PERF_GPUSKIN for the GPU-skinning one).</summary>
         public string[] Extra = Array.Empty<string>();
-        /// <summary>Diagnostic build (P3-PRF-01): frame-timing statistics on for the build only.</summary>
+        /// <summary>Diagnostic build (P3-PRF-01): PROCSENSE_PERF_DIAG readout and presets. Frame-timing statistics are on for every Android build since 15 Nov 2026 (DT-306).</summary>
         public bool Diagnostic;
         /// <summary>Build with GPU skinning (mesh deformation on the GPU) for the build only, to measure CPU against GPU skinning on the headset.</summary>
         public bool GpuSkinning;
@@ -117,7 +117,9 @@ namespace ProcSense.EditorTools
             {
                 PlayerSettings.SetScriptingDefineSymbols(target, string.Join(";", DefinesFor(v, before.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))));
                 PlayerSettings.insecureHttpOption = HttpPolicyFor(v);        // P3-NET-02: plain http to a LAN laptop in dev, demo and diagnostic builds; the study build stays https only
-                if (v.Diagnostic) PlayerSettings.enableFrameTimingStats = true;
+                // DT-306 (15 Nov 2026 UTC): on for the release AND the diagnostic APKs. QuestPerformanceProfile's dynamic resolution reads the GPU time from FrameTimingManager; without it the
+                // release APK held its start scale. The committed project value is restored in the finally block.
+                PlayerSettings.enableFrameTimingStats = true;
                 if (v.GpuSkinning) PlayerSettings.meshDeformation = MeshDeformation.GPU;
                 var options = new BuildPlayerOptions
                 {

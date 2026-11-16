@@ -66,6 +66,7 @@ namespace ProcSense.Tests.EditMode
         }
 
         [TestCase("Assets/Shaders/SunShaft.shader")]
+        [TestCase("Assets/Shaders/SunShaftBaked.shader")]   // the shader the shaft materials actually use since the overhaul
         [TestCase("Assets/Shaders/SunDustMote.shader")]
         public void Sunlight_effect_shaders_are_stereo_safe(string path)
         {
@@ -90,8 +91,9 @@ namespace ProcSense.Tests.EditMode
             Assert.IsNotNull(feature);
             Assert.IsTrue(feature.enabled, "the OpenXR Foveated Rendering feature is on for Android");
             Assert.IsFalse(new SerializedObject(feature).FindProperty("useEyeTracking").boolValue, "Quest 2 has no eye tracking: no permission request");
-            Assert.AreEqual(1f, QuestRenderTier.DefaultFoveation, "production foveation is High since the aggressive Quest profile (14 Nov 2026)");
-            Assert.AreEqual(0.9f, QuestRenderTier.DefaultEyeScale);
+            Assert.AreEqual(0.5f, QuestRenderTier.DefaultFoveation, "production foveation is Medium since the sharpness revision (15 Nov 2026; High from 14 Nov)");
+            Assert.AreEqual(1f, QuestRenderTier.DefaultEyeScale, "eye buffer allocated at the runtime default; dynamic resolution draws 0.85-1.0 of it");
+            Assert.AreEqual((ProcSense.VR.Views.QuestPerformanceProfile.Foveation, ProcSense.VR.Views.QuestPerformanceProfile.EyeBufferScale), (QuestRenderTier.DefaultFoveation, QuestRenderTier.DefaultEyeScale), "one source of truth");
             Assert.AreEqual((0f, 1f, 0.7f, 1.3f), (QuestRenderTier.ClampFoveation(-1f), QuestRenderTier.ClampFoveation(3f), QuestRenderTier.ClampEyeScale(0.1f), QuestRenderTier.ClampEyeScale(5f)));
         }
 
@@ -119,6 +121,17 @@ namespace ProcSense.Tests.EditMode
             Assert.AreEqual("B0", all[0].Id);
             Assert.IsFalse(all[0].ChangesLook || all[0].LegacyRenderer, "B0 is the production default");
             Assert.IsTrue(all.Single(p => p.Id == "B1").LegacyRenderer && all.Single(p => p.Id == "B1").ShaftsOff, "B1 reproduces the 7 Nov rendering");
+        }
+
+        [Test]
+        public void The_sharpness_comparison_presets_come_right_after_B0()
+        {
+            var ids = PerfPresets.All.Take(7).Select(p => p.Id).ToArray();
+            CollectionAssert.AreEqual(new[] { "B0", "B90", "B91", "B92", "B93", "B94", "B95" }, ids, "FFR High, MSAA 2x, both, fixed 1.0, fixed 0.85, first overhaul profile");
+            var b95 = PerfPresets.All.Single(p => p.Id == "B95");
+            Assert.AreEqual((0.9f, 0.8f, 0.7f, 0.9f, 1f), (b95.EyeAlloc, b95.StartAt, b95.RangeMin, b95.RangeMax, b95.Foveation), "B95 reproduces the first overhaul profile");
+            Assert.AreEqual(2, PerfPresets.All.Single(p => p.Id == "B91").Msaa);
+            Assert.IsTrue(PerfPresets.All.Skip(1).Take(6).All(p => p.ChangesLook), "every sharpness preset is labelled as changing the look");
         }
     
         [Test]

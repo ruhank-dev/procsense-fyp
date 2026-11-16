@@ -6,7 +6,7 @@ namespace ProcSense.VR.UI.Accessibility
 {
     /// <summary>
     /// Sharp-text settings for the panels a trainee reads clinical values from on Quest 2 (EMR tablet, EMR, patient monitor, menu panel), 14 Nov 2026 UTC.
-    /// They are drawn into the eye buffer at 0.8 of the native size (QuestPerformanceProfile), not on an OpenXR quad layer: the XR Composition Layers package
+    /// They are drawn into the eye buffer at the profile scale (0.85-1.0 of the runtime size, QuestPerformanceProfile), not on an OpenXR quad layer: the XR Composition Layers package
     /// (bundled 2.5.0) is not used for them, see docs/audit/graphics_matrix.md "compositor layers for UI". What this class does instead:
     /// 1. every label on these panels shares one SDF material per font with a small face dilation, so thin strokes keep their contrast when the eye buffer is
     ///    resampled (layout, glyph metrics and batching unchanged: one shared material, no per-label instance);
@@ -16,13 +16,13 @@ namespace ProcSense.VR.UI.Accessibility
     public static class ClinicalText
     {
         /// <summary>Canvas names (as UiKit names them) that carry clinical text.</summary>
-        public static readonly HashSet<string> Canvases = new HashSet<string> { "Tablet", "EMR shell", "EMR", "Monitor", "Game flow", "Main menu" };
+        public static readonly HashSet<string> Canvases = new HashSet<string> { "Tablet", "EMR shell", "EMR", "Monitor", "Game flow", "Main menu", "Equipment notice" };
 
         /// <summary>SDF face dilation for those panels (0 = the font's own weight, TMP range -1..1).</summary>
         public const float FaceDilate = 0.1f;
 
-        /// <summary>Lowest effective render scale while such a panel is being read (the profile's start scale; dynamic resolution may otherwise go to 0.7).</summary>
-        public const float FloorScale = 0.8f;
+        /// <summary>Lowest effective render scale while such a panel is being read (the profile's start scale, 0.9 since 15 Nov 2026; dynamic resolution may otherwise go to the profile minimum 0.85).</summary>
+        public const float FloorScale = ProcSense.VR.Views.QuestPerformanceProfile.StartScale;
 
         /// <summary>A panel counts as being read within this distance (m) and this angle (degrees) of the view direction.</summary>
         public const float ReadDistance = 2f, ReadAngle = 30f;

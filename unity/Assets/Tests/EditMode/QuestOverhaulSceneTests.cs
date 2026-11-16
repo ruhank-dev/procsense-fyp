@@ -46,13 +46,15 @@ namespace ProcSense.Tests.EditMode
             var urp = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(QuestAsset);
             Assert.NotNull(urp, QuestAsset);
             Assert.AreEqual(1, urp.msaaSampleCount, "MSAA off (owner decision 14 Nov 2026; a 2x fallback is a runtime option, not the default)");
-            // The asset keeps renderScale 1.0 on purpose: the 0.8 draw scale is applied at runtime by QuestPerformanceProfile (eye buffer 0.9, viewport 0.8), so the two scales must not multiply
-            // twice. What the headset renders is therefore the asset scale times the profile's render scale, and that is what is held to the owner's range.
+            // The asset keeps renderScale 1.0 on purpose: the draw scale is applied at runtime by QuestPerformanceProfile (eye buffer 1.0, viewport 0.9 to start), so the two scales must not multiply
+            // twice. What the headset renders is therefore the asset scale times the profile's render scale, and that is what is held to the owner's range (sharpness revision 15 Nov 2026: 0.85-1.0).
+            Assert.AreEqual(1f, urp.renderScale, "URP render scale stays 1.0: the profile is the single source of the scale");
             float effective = urp.renderScale * ProcSense.VR.Views.QuestPerformanceProfile.RenderScale;
-            Assert.That(ProcSense.VR.Views.QuestPerformanceProfile.RenderScale, Is.InRange(0.6f, 0.85f), "profile render scale: a fixed scale around 0.8, not so low that medical text is unreadable");
-            Assert.That(effective, Is.InRange(0.6f, 0.85f), "effective render scale = asset renderScale x profile RenderScale");
+            Assert.That(ProcSense.VR.Views.QuestPerformanceProfile.RenderScale, Is.InRange(0.85f, 1f), "profile start scale: 0.9 (0.8 looked grainy and blurry on the headset footage)");
+            Assert.That(effective, Is.InRange(0.85f, 1f), "effective render scale = asset renderScale x profile RenderScale");
+            Assert.That(ProcSense.VR.Views.QuestPerformanceProfile.MinScale, Is.GreaterThanOrEqualTo(0.85f), "dynamic resolution never drops below 0.85");
             Assert.AreEqual(1, ProcSense.VR.Views.QuestPerformanceProfile.Msaa, "profile MSAA off");
-            Assert.Greater(ProcSense.VR.Views.QuestPerformanceProfile.Foveation, 0f, "fixed foveated rendering on (Medium or High)");
+            Assert.AreEqual(0.5f, ProcSense.VR.Views.QuestPerformanceProfile.Foveation, "fixed foveated rendering Medium (High looked pixelated in the periphery)");
             Assert.IsFalse(urp.supportsMainLightShadows, "zero realtime shadow maps");
             Assert.IsFalse(urp.supportsAdditionalLightShadows, "zero realtime additional-light shadow maps");
             Assert.IsFalse(urp.supportsHDR, "no HDR render target");

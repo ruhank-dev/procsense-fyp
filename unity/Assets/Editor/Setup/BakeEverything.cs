@@ -145,7 +145,9 @@ namespace ProcSense.EditorTools
         {
             AssetDatabase.ImportAsset(NoisePath, ImportAssetOptions.ForceSynchronousImport);
             var ti = AssetImporter.GetAtPath(NoisePath) as TextureImporter; if (ti == null) return;
-            ti.textureType = TextureImporterType.SingleChannel; ti.sRGBTexture = false; ti.wrapMode = TextureWrapMode.Repeat; ti.mipmapEnabled = true; ti.filterMode = FilterMode.Bilinear;
+            ti.textureType = TextureImporterType.SingleChannel; var ts = new TextureImporterSettings(); ti.ReadTextureSettings(ts);
+            ts.singleChannelComponent = TextureImporterSingleChannelComponent.Red; ti.SetTextureSettings(ts);   // the shader samples .r; the Alpha default left r = 0 (15 Nov 2026 shaft regression)
+            ti.sRGBTexture = false; ti.wrapMode = TextureWrapMode.Repeat; ti.mipmapEnabled = true; ti.filterMode = FilterMode.Bilinear;
             ti.textureCompression = TextureImporterCompression.Compressed;
             ti.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = "Android", overridden = true, maxTextureSize = 128, format = TextureImporterFormat.ASTC_6x6 });
             ti.SaveAndReimport();

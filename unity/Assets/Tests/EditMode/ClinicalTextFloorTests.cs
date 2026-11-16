@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ProcSense.Tests.EditMode
 {
-    /// <summary>Dynamic resolution never draws a clinical text panel below 0.8 while it is read, and the reading cone and eye-buffer estimate are plain geometry (14 Nov 2026 UTC).</summary>
+    /// <summary>Dynamic resolution never draws a clinical text panel below the profile start scale (0.9 since 15 Nov 2026) while it is read, and the reading cone and eye-buffer estimate are plain geometry (14 Nov 2026 UTC).</summary>
     public class ClinicalTextFloorTests
     {
         [Test]
