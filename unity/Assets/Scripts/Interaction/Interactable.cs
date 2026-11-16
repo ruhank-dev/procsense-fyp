@@ -25,6 +25,23 @@ namespace ProcSense.VR.Interaction
         [SerializeField, Tooltip("Its visible parts are built at runtime (a phone, a screen), so having nothing to highlight in the editor is not a mistake.")] private bool renderersAtRuntime;
         private Renderer[] cached;
 
+        /// <summary>The entity of the interaction catalogue (content/ui/interactions.json) whose actions this object offers: several objects can share one, for example every records object is "records".</summary>
+        public static string MenuEntityOf(EntityType type)
+        {
+            switch (type)
+            {
+                case EntityType.Patient: return "patient";
+                case EntityType.Nurse: return "nurse";
+                case EntityType.Doctor: return "doctor";
+                case EntityType.Anaesthetist: return "anaesthetist";
+                case EntityType.Receptionist: case EntityType.Porter: return "porter";
+                case EntityType.Records: return "records";
+                case EntityType.TheatreTeam: return "theatre_team";
+                default: return "monitor";                                                   // bedside equipment
+            }
+        }
+
+        public string MenuEntity => MenuEntityOf(entityType);
         public string EntityId => entityId;
         public EntityType Type => entityType;
         public string VoiceName => voiceName;
