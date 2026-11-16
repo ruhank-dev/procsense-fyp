@@ -28,7 +28,7 @@ namespace ProcSense.VR.Views
         private SkinnedMeshRenderer face; private int blinkL = -1, blinkR = -1, lookInL = -1, lookOutL = -1, lookInR = -1, lookOutR = -1, lookUpL = -1, lookUpR = -1, lookDownL = -1, lookDownR = -1;
         private Transform spine1, spine2, head, neck, footL, footR;
         private Quaternion spine1Rest, spine2Rest, headRest, footLRest, footRRest;
-        private Vector3 spine1Scale, spine2Scale, neckScale, neckRestPos; private Quaternion neckRestRot; private int apAxis1, apAxis2, apAxisNeck; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
+        private Vector3 spine1Scale, spine2Scale, neckScale, neckRestPos, neckWrotePos; private Quaternion neckRestRot, neckWroteRot; private int apAxis1, apAxis2, apAxisNeck; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
         private Transform armUpper, armFore, armHand, armLeft, pelvis; private Quaternion armUpperRest, armForeRest;
         private float breathSign = 1f, nextBlink, blinkStart = -10f, seed, nextFoot = 12f, footStart = -10f; private int footSide;
         private readonly Dictionary<Transform, (Quaternion rest, Vector3 euler)> manual = new Dictionary<Transform, (Quaternion, Vector3)>();
@@ -192,6 +192,7 @@ namespace ProcSense.VR.Views
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath
             spine1.localRotation = spine1Rest; spine1.localScale = spine1Scale; spine2.localRotation = spine2Rest; spine2.localScale = spine2Scale;
+            if (neck.localPosition != neckWrotePos || neck.localRotation != neckWroteRot) { neckRestPos = neck.localPosition; neckRestRot = neck.localRotation; neckScale = neck.localScale; }     // someone else moved the neck (the Animator): that pose is its rest now
             neck.localPosition = neckRestPos; neck.localRotation = neckRestRot; neck.localScale = neckScale;                // back to rest first: the pin below rewrites the neck each frame and must not build on itself
             var neckPos = neck.position; var neckRot = neck.rotation;                                                       // where the neck sits at rest: the breath must not carry the head (it would sink into the pillow)
             spine1.localRotation = spine1Rest * Quaternion.AngleAxis(breathSign * breathDegrees * poseNow.Depth * .6f * rise, breathAxis1);
@@ -201,6 +202,7 @@ namespace ProcSense.VR.Views
             var sc2 = spine2Scale; sc2[apAxis2] *= 1f + breathDepth * poseNow.Depth * rise; spine2.localScale = sc2;
             neck.SetPositionAndRotation(neckPos, neckRot);
             var nsc = neckScale; nsc[apAxisNeck] /= sc2[apAxis2] / spine2Scale[apAxis2]; neck.localScale = nsc;                   // and the chest scale must not squash the neck and head
+            neckWrotePos = neck.localPosition; neckWroteRot = neck.localRotation;
 
             lookNow = Vector4.Lerp(lookNow, LookTarget(), 1f - Mathf.Exp(-dt / .25f));
             if (gesturePending) { gestureStart = t; gesturePending = false; }

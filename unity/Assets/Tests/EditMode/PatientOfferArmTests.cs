@@ -28,5 +28,22 @@ namespace ProcSense.Tests.EditMode
             }
             finally { Object.DestroyImmediate(go); }
         }
+
+        [Test]
+        public void A_neck_pose_set_from_outside_is_kept_as_the_new_rest()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Characters/RB_Medical_Male_04.prefab"); Assert.IsNotNull(prefab);
+            var go = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+            try
+            {
+                var motion = go.AddComponent<PatientMotion>(); motion.autoMotion = false; motion.Prepare();
+                var neck = go.GetComponentsInChildren<Transform>(true).First(t => t.name == "Bip01 Neck");
+                motion.Step(0f, .05f);
+                var moved = neck.localRotation * Quaternion.Euler(0f, 0f, 10f); neck.localRotation = moved;      // what the Animator does each frame
+                motion.Step(.1f, .05f); motion.Step(.2f, .05f);
+                Assert.Less(Quaternion.Angle(neck.localRotation, moved), .1f, "the neck keeps the Animator's pose instead of snapping back to the pose at start-up");
+            }
+            finally { Object.DestroyImmediate(go); }
+        }
     }
 }
