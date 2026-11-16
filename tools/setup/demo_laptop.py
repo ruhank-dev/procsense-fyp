@@ -147,7 +147,13 @@ def main(argv: list[str]) -> int:
         address = f"{scheme}://{ip}:{PORT}"
         print(f"Server address: {address}   (type it, scan the QR code below, or use `adb reverse tcp:{PORT} tcp:{PORT}`)")
         print(address_qr(address))
-    return subprocess.call([sys.executable, "-m", "uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", str(PORT), *extra], cwd=ROOT, env=os.environ.copy())
+    from server.lan.beacon import Beacon, PORT as BEACON_PORT
+    beacon = Beacon([f"{scheme}://{ip}:{PORT}" for ip in lan_addresses()]).start()   # P3-NET-06: headsets on this Wi-Fi list the laptop by themselves
+    print(f"Discovery beacon on UDP {BEACON_PORT} (allow it with tools/setup/firewall_rule.ps1)")
+    try:
+        return subprocess.call([sys.executable, "-m", "uvicorn", "server.main:app", "--host", "0.0.0.0", "--port", str(PORT), *extra], cwd=ROOT, env=os.environ.copy())
+    finally:
+        beacon.stop()
 
 
 if __name__ == "__main__":

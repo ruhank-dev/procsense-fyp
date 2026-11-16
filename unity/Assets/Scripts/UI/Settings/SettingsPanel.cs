@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using ProcSense.VR.Flow;
 using ProcSense.VR.Settings;
@@ -78,7 +79,7 @@ namespace ProcSense.VR.UI.SettingsUi
             if (Application.isPlaying) Destroy(gameObject); else DestroyImmediate(gameObject);
         }
 
-        private void OnDestroy() { if (Open == this) Open = null; }
+        private void OnDestroy() { if (Open == this) Open = null; _discovery.Stop(); }
 
         /// <summary>Shows a tab (the tab bar calls it; tests and other menus may too).</summary>
         public void Show(Tab tab)
@@ -135,12 +136,70 @@ namespace ProcSense.VR.UI.SettingsUi
                                              () => Confirm("Reset all settings?", "Every setting goes back to its default.", "Reset", false, () => { GameSettings.Reset(); Show(Tab.Display); })));
                     break;
                 case Tab.Session:
+                    Row(at => _laptops = Explain(LaptopText(), at));                                    // P3-NET-06: laptops heard on this Wi-Fi
+                    Row(at => _laptopButtons = LaptopButtons(at, w));
                     Row(at => Kit.Kit.Button(_content, "Return to main menu", new Vector2(0, at), new Vector2(w, Kit.Kit.ButtonHeight), ButtonKind.Secondary, UiIcons.Back,
                                              () => Confirm("Return to the main menu?", "The case you are in ends here.", "Return", true, () => { Close(); ReturnToMenu?.Invoke(); })));
                     Row(at => Kit.Kit.Button(_content, "Quit ProcSense", new Vector2(0, at), new Vector2(w, Kit.Kit.ButtonHeight), ButtonKind.Danger, UiIcons.Quit,
                                              () => Confirm("Quit ProcSense?", "Your session is saved before the app closes.", "Quit", true, () => Quit?.Invoke())));
                     break;
             }
+        }
+
+        // ------------------------------------------------------------------ P3-NET-06: the laptop on this Wi-Fi
+
+        private readonly ProcSense.VR.Auth.LaptopDiscovery _discovery = new ProcSense.VR.Auth.LaptopDiscovery();
+        private TMPro.TMP_Text _laptops;
+        private RectTransform _laptopButtons;
+        private string _laptopShown = "";
+        /// <summary>The laptops heard now (the Session tab lists them; tests read it).</summary>
+        public ProcSense.VR.Auth.LaptopDiscovery Discovery => _discovery;
+
+        private string LaptopText()
+        {
+            var list = _discovery.Laptops(Time.realtimeSinceStartup);
+            string now = ProcSense.VR.Auth.ServerEndpoint.Current;
+            string head = "Laptop: " + (string.IsNullOrEmpty(now) ? "none chosen" : now);
+            if (_discovery.Error.Length > 0) return head + "\n" + _discovery.Error;
+            return head + "\n" + (list.Count == 0 ? "Looking for a laptop on this Wi-Fi… (start it with task demo-laptop)" : "Found on this Wi-Fi:");
+        }
+
+        private RectTransform LaptopButtons(float at, float w)
+        {
+            var go = new GameObject("Laptops", typeof(RectTransform));
+            go.transform.SetParent(_content, false);
+            var r = (RectTransform)go.transform;
+            r.anchorMin = r.anchorMax = r.pivot = new Vector2(0, 1);
+            r.anchoredPosition = new Vector2(0, -at);
+            r.sizeDelta = new Vector2(w, Kit.Kit.ButtonHeight);
+            return r;
+        }
+
+        /// <summary>Chooses a laptop: its address is saved and the pairing keypad opens beside the panel.</summary>
+        public void UseLaptop(ProcSense.VR.Auth.FoundLaptop laptop)
+        {
+            if (laptop == null) return;
+            var problem = ProcSense.VR.Auth.ServerEndpoint.Enter(laptop.Url);
+            if (problem.Length > 0) { if (_laptops != null) _laptops.text = problem; return; }
+            ProcSense.VR.Auth.PairingPanel.Open(transform, laptop.Url);
+            _laptopShown = "";
+        }
+
+        private void Update()
+        {
+            bool session = Current == Tab.Session && _laptops != null;
+            if (session && !_discovery.Listening) _discovery.Start();
+            else if (!session && _discovery.Listening) _discovery.Stop();
+            if (!session) return;
+            _discovery.Poll(Time.realtimeSinceStartup);
+            var list = _discovery.Laptops(Time.realtimeSinceStartup);
+            string key = string.Join("|", list.Select(l => l.Url)) + _discovery.Error + ProcSense.VR.Auth.ServerEndpoint.Current;
+            if (key == _laptopShown) return;
+            _laptopShown = key;
+            _laptops.text = LaptopText();
+            for (int i = _laptopButtons.childCount - 1; i >= 0; i--) Destroy(_laptopButtons.GetChild(i).gameObject);
+            float x = 0, bw = list.Count == 0 ? 0 : (_laptopButtons.sizeDelta.x - 16 * (list.Count - 1)) / Mathf.Min(list.Count, 2);
+            foreach (var l in list.Take(2)) { var lap = l; Kit.Kit.Button(_laptopButtons, "Use " + l.Name, new Vector2(x, 0), new Vector2(bw, Kit.Kit.ButtonHeight), ButtonKind.Primary, UiIcons.Records, () => UseLaptop(lap)); x += bw + 16; }
         }
 
         private bool _redrawQueued;
