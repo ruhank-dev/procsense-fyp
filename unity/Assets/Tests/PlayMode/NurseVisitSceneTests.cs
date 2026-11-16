@@ -265,10 +265,12 @@ namespace ProcSense.Tests.PlayMode
             var go = new GameObject("Nurse evidence camera"); var camera = go.AddComponent<Camera>();
             camera.transform.position = new Vector3(0, 1.65f, -.6f);
             camera.transform.LookAt(wristFocus ? _nurse.Wrist.position : _nurse.Actor.transform.position + Vector3.up * .85f); camera.fieldOfView = 65; camera.nearClipPlane = .05f;
+            if (!wristFocus) { var n = _nurse.Actor.transform; camera.transform.position = n.position - n.right * 2.0f + Vector3.up * 1.1f; camera.transform.LookAt(n.position + n.forward * .2f + Vector3.up * .85f); }     // from her side, clear of the panels
             if (wristFocus) { camera.transform.position = _nurse.Wrist.position + new Vector3(.45f,.4f,-.65f); camera.transform.LookAt(_nurse.Wrist.position); camera.fieldOfView = 50; }
             var rt = new RenderTexture(1400, 1100, 24); var old = RenderTexture.active; var image = new Texture2D(1400, 1100, TextureFormat.RGB24, false);
+            var hidden = Object.FindObjectsByType<Canvas>().Where(c => c.enabled && c.renderMode == RenderMode.WorldSpace).ToList(); foreach (var c in hidden) c.enabled = false;     // the picture is of the nurse, not the panels
             try { camera.targetTexture = rt; Canvas.ForceUpdateCanvases(); camera.Render(); RenderTexture.active = rt; image.ReadPixels(new Rect(0,0,1400,1100),0,0); image.Apply(); File.WriteAllBytes(Snapshots.Out(name), image.EncodeToPNG()); }
-            finally { camera.targetTexture = null; RenderTexture.active = old; Object.DestroyImmediate(image); rt.Release(); Object.DestroyImmediate(rt); Object.DestroyImmediate(go); }
+            finally { foreach (var c in hidden) if (c != null) c.enabled = true; camera.targetTexture = null; RenderTexture.active = old; Object.DestroyImmediate(image); rt.Release(); Object.DestroyImmediate(rt); Object.DestroyImmediate(go); }
         }
     }
 }

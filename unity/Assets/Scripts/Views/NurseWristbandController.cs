@@ -20,6 +20,8 @@ namespace ProcSense.VR.Views
         public static NurseWristbandController Instance { get; private set; }
         public Transform Entry, InsideDoor, Bedside, Exit, Wrist;
         public GameObject ClipboardPrefab, BandPrefab, AllergyPrefab;
+        [Tooltip("The nurse's body (a Rocketbox Humanoid prefab) and the idle and walk controllers.")] public GameObject Model;
+        public RuntimeAnimatorController IdleController, WalkController;
         public NurseVisitPhase Phase { get; private set; }
         public NurseVisitActor Actor { get; private set; }
         public Transform Head => Actor != null && PatientPresent ? Actor.Head : null;
@@ -209,7 +211,7 @@ namespace ProcSense.VR.Views
                 {
                     if (!Blocked) Status = Phase == NurseVisitPhase.Leaving ? "Leaving" : CoreStep == "CALLED" ? "Entering" : CoreStep == "AT_BEDSIDE" ? "Checking records" : CoreStep == "REPLACING" ? "Applying band" : "Visit complete";
                     Actor.Pose(Phase == NurseVisitPhase.Leaving ? "EXIT" : CoreStep, _phaseSeconds, Phase == NurseVisitPhase.ReplacingBand ? Mathf.Clamp01(_phaseSeconds / 2f) : 0,
-                        Wrist, (Phase == NurseVisitPhase.Entering || Phase == NurseVisitPhase.Leaving) && Actor.Agent.velocity.sqrMagnitude > .0025f && !Blocked, BandPlaced, Status);
+                        Wrist, (Phase == NurseVisitPhase.Entering || Phase == NurseVisitPhase.Leaving) && Actor.Agent.velocity.sqrMagnitude > .0025f && !Blocked, BandPlaced);
                 }
             }
 
@@ -225,11 +227,12 @@ namespace ProcSense.VR.Views
             if (!_active || !PatientPresent || Actor != null) return;
             if (Entry == null || InsideDoor == null || Bedside == null || Exit == null || Wrist == null)
             { Blocked = true; Status = "Nurse anchors unavailable"; return; }
+            if (Model == null) { Blocked = true; Status = "Nurse model unavailable"; return; }
             if (!NavMesh.SamplePosition(Entry.position, out var hit, .35f, NavMesh.AllAreas))
             { Blocked = true; Status = "Nurse route unavailable"; return; }
-            var go = new GameObject("Nurse wristband visit - PROTOTYPE"); go.transform.SetParent(transform, false); go.transform.position = hit.position;
-            Actor = go.AddComponent<NurseVisitActor>(); Actor.Build(ClipboardPrefab, BandPrefab);
-            Actor.Pose("CALLED", 0, 0, Wrist, false, false, "Called");
+            var go = new GameObject("Nurse wristband visit"); go.transform.SetParent(transform, false); go.transform.position = hit.position;
+            Actor = go.AddComponent<NurseVisitActor>(); Actor.Build(ClipboardPrefab, BandPrefab, Model, IdleController, WalkController);
+            Actor.Pose("CALLED", 0, 0, Wrist, false, false);
             if (!Actor.Agent.Warp(hit.position)) { RemoveActor(); Blocked = true; Status = "Nurse route unavailable"; return; }
             _waypoint = 0; SetPhase(NurseVisitPhase.Entering); SessionPresentation.Instance?.Sync();
         }

@@ -24231,6 +24231,9 @@ MonoBehaviour:
   ClipboardPrefab: {fileID: 5048948312511090484, guid: 52612950f3faf1d4fa3d5e2e559d77c7, type: 3}
   BandPrefab: {fileID: 2941267321977563215, guid: 2c620f316675de04f8b09555d45d088c, type: 3}
   AllergyPrefab: {fileID: 58741521228075856, guid: cfae1e5b3e1120348b6fafd8e9b0e412, type: 3}
+  Model: {fileID: 9186113402276628650, guid: 98869869b8839854391a8d1cd6374dc1, type: 3}
+  IdleController: {fileID: 9100000, guid: eddcfce5802046048a1e894b31aaf83c, type: 2}
+  WalkController: {fileID: 9100000, guid: 70b51b28b917fe642bea73b39efcfb23, type: 2}
 --- !u!4 &819738915
 Transform:
   m_ObjectHideFlags: 0

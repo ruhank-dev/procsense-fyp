@@ -143,15 +143,7 @@ namespace ProcSense.VR.Views
             var toHead = Vector3.ProjectOnPlane(head.position - pelvis.position, Vector3.up).normalized;
             var spot = Vector3.Lerp(guardTarget, offerTarget, offer);
             var target = pelvis.position + lateral * spot.x + toHead * spot.y + Vector3.up * spot.z;
-            var s = armUpper.position; var e0 = armFore.position; var h0 = armHand.position;
-            float a = (e0 - s).magnitude, b = (h0 - e0).magnitude;
-            var line = target - s; float d = Mathf.Clamp(line.magnitude, Mathf.Abs(a - b) + .01f, a + b - .01f); var u = line.normalized;
-            var pole = Vector3.ProjectOnPlane(lateral + Vector3.up * .3f, u).normalized;
-            float x = (a * a - b * b + d * d) / (2f * d), h = Mathf.Sqrt(Mathf.Max(0f, a * a - x * x));
-            var elbow = s + u * x + pole * h;
-            armUpper.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.FromToRotation(e0 - s, elbow - s), w) * armUpper.rotation;
-            var e1 = armFore.position; var h1 = armHand.position;
-            armFore.rotation = Quaternion.Slerp(Quaternion.identity, Quaternion.FromToRotation(h1 - e1, s + u * d - e1), w) * armFore.rotation;
+            TwoBoneArm.Reach(armUpper, armFore, armHand, target, lateral + Vector3.up * .3f, w);
         }
 
         private void SetShape(int idx, float w) { if (face != null && idx >= 0) CharacterPerfBlend.Set(face, idx, Mathf.Clamp(w, 0f, 100f)); }
