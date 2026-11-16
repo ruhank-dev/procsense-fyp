@@ -331,7 +331,7 @@ namespace ProcSense.VR.UI.Kit
             var d = bg.gameObject.AddComponent<KitDialog>();
             var no = Button(bg.transform, cancel, new Vector2(pad, by), new Vector2(bw, ButtonHeight), ButtonKind.Secondary, null, () => { d.Close(); onCancel?.Invoke(); });
             var yes = Button(bg.transform, confirm, new Vector2(pad + bw + T.Spacing[1], by), new Vector2(bw, ButtonHeight), danger ? ButtonKind.Danger : ButtonKind.Primary, null,
-                             () => { d.Close(); onConfirm?.Invoke(); });
+                             () => { d.Close(); KitEvents.Raise(danger ? KitEvents.Submit : KitEvents.Confirm); onConfirm?.Invoke(); });
             d.Init(bg.gameObject.AddComponent<CanvasGroup>(), yes, no);
             bg.gameObject.SetActive(false);
             return d;
@@ -341,9 +341,9 @@ namespace ProcSense.VR.UI.Kit
     /// <summary>Hover lift and press dip of a kit button (UiMotion presets; none with reduce motion).</summary>
     public sealed class KitHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler
     {
-        public void OnPointerEnter(PointerEventData e) { if (Interactable) UiMotion.Hover((RectTransform)transform, true); }
+        public void OnPointerEnter(PointerEventData e) { if (Interactable) { UiMotion.Hover((RectTransform)transform, true); KitEvents.Raise(KitEvents.Hover); } }
         public void OnPointerExit(PointerEventData e) => UiMotion.Hover((RectTransform)transform, false);
-        public void OnPointerDown(PointerEventData e) { if (Interactable) UiMotion.Press(transform); }
+        public void OnPointerDown(PointerEventData e) { if (Interactable) { UiMotion.Press(transform); KitEvents.Raise(KitEvents.Select); } }
         private bool Interactable { get { var s = GetComponent<Selectable>(); return s == null || s.IsInteractable(); } }
     }
 
@@ -358,7 +358,7 @@ namespace ProcSense.VR.UI.Kit
         public void Init(UnityEngine.UI.Toggle toggle, GlassPanel track, GlassPanel knob)
         {
             Toggle = toggle; _track = track; _knob = knob;
-            toggle.onValueChanged.AddListener(v => { if (v != _shown) Show(v, true); });
+            toggle.onValueChanged.AddListener(v => { if (v != _shown) { Show(v, true); KitEvents.Raise(KitEvents.Toggle); } });
         }
 
         private bool _shown;
@@ -412,6 +412,7 @@ namespace ProcSense.VR.UI.Kit
         public void Init(CanvasGroup group, TMP_Text label) { Group = group; Label = label; group.alpha = 0; group.blocksRaycasts = false; }
         public void Show(string text = null, float hold = 2.5f)
         {
+            KitEvents.Raise(KitEvents.Toast);
             if (text != null) Label.text = text;
             UiMotion.Toast((RectTransform)transform, Group, hold);
         }
@@ -425,7 +426,19 @@ namespace ProcSense.VR.UI.Kit
         private CanvasGroup _group;
         public bool IsOpen => gameObject.activeSelf;
         public void Init(CanvasGroup group, Button confirm, Button cancel) { _group = group; Confirm = confirm; Cancel = cancel; }
-        public void Open() => UiMotion.Open(transform, _group);
-        public void Close() { if (this != null) UiMotion.Close(transform, _group); }   // closes first, so the action may destroy the panel
+        public void Open() { UiMotion.Open(transform, _group); KitEvents.Raise(KitEvents.Open); }
+        public void Close() { if (this != null) { UiMotion.Close(transform, _group); KitEvents.Raise(KitEvents.Close); } }   // closes first, so the action may destroy the panel
+    }
+
+    /// <summary>
+    /// P3-SND-05: the sound events of the kit, one per thing that happened (hover, press, a dialog or glass panel opening and closing, confirm, submit, toggle, toast, error, and the training
+    /// board's open and close). The kit raises them; the AudioDirector's sound player turns each into one clip of the sound list (the id is the clip's name). No sound is played here.
+    /// </summary>
+    public static class KitEvents
+    {
+        public const string Hover = "ui_hover", Select = "ui_select", Back = "ui_back", Open = "ui_open", Close = "ui_close", Confirm = "ui_confirm", Submit = "ui_submit",
+                            Toggle = "ui_toggle", Toast = "ui_toast", Error = "ui_error", SliderTick = "ui_slider_tick";
+        public static event Action<string> Sound;
+        public static void Raise(string id) => Sound?.Invoke(id);
     }
 }

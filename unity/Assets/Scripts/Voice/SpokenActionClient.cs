@@ -34,7 +34,7 @@ namespace ProcSense.VR.Voice
     {
         public const string Route = "/speech/organisations/";
 
-        public static string RequestBody(string utterance, IEnumerable<string> available, IReadOnlyList<ContextTurn> turns)
+        public static string RequestBody(string utterance, IEnumerable<string> available, IReadOnlyList<ContextTurn> turns, string addressee = null)
         {
             var sb = new StringBuilder("{\"utterance\":");
             JsonText.Quote(sb, utterance);
@@ -45,7 +45,9 @@ namespace ProcSense.VR.Voice
                 if (i > 0) sb.Append(',');
                 sb.Append("{\"who\":"); JsonText.Quote(sb, kept[i].Speaker); sb.Append(",\"text\":"); JsonText.Quote(sb, kept[i].Text); sb.Append('}');
             }
-            return sb.Append("]}").ToString();
+            sb.Append(']');
+            if (!string.IsNullOrEmpty(addressee)) { sb.Append(",\"addressee\":"); JsonText.Quote(sb, addressee); }   // P3-VOX-05: who the trainee spoke to, when the headset knows
+            return sb.Append('}').ToString();
         }
 
         public static SpokenActionResult Parse(string body)
@@ -64,7 +66,7 @@ namespace ProcSense.VR.Voice
         {
             if (auth == null || !auth.IsSignedIn || string.IsNullOrWhiteSpace(utterance)) { done(new SpokenActionResult { Reason = "NOT_SIGNED_IN" }); yield break; }
             HttpResult answer = default;
-            yield return auth.Authorized("POST", Route + auth.OrganisationId + "/action", RequestBody(utterance, available, turns), r => answer = r);
+            yield return auth.Authorized("POST", Route + auth.OrganisationId + "/action", RequestBody(utterance, available, turns, ProcSense.VR.Interaction.AddresseeTarget.Choose(utterance)), r => answer = r);
             done(answer.Ok ? Parse(answer.Body) : new SpokenActionResult { Reason = answer.NetworkError ? "NO_NETWORK" : "HTTP_" + answer.Status });
         }
     }

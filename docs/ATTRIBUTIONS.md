@@ -74,7 +74,9 @@ Every picture in the app (from `content/images`, `content/ecg`, `content/cxr` an
 
 ## Voices and sounds
 
-None yet: voices and sounds are added with p0-voice-audio, and each will be listed here from its register.
+Voices: the spoken lines are rendered offline with Piper text-to-speech (`tools/voice/`). Sounds:
+
+- **Sound effects, ambience and music placeholders** (`unity/Assets/Audio/Sfx/`, listed in `content/audio/sound_list.json`): synthesised by `tools/audio/render_sfx.py`, own work under the project licence; no third-party audio. A licensed recording replacing a row records its source and licence in that row and here.
 
 ## Software
 

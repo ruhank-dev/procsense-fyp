@@ -30,6 +30,7 @@ namespace ProcSense.VR.UI.Kit
         /// <summary>The error shake of a control or panel, and its text turned to the danger colour when given.</summary>
         public static void Error(RectTransform target, TMPro.TMP_Text message = null)
         {
+            KitEvents.Raise(KitEvents.Error);
             if (message != null) message.color = UiTheme.Current.DangerText;
             UiMotion.Shake(target);
         }

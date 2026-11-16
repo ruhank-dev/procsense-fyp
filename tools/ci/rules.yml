@@ -88,6 +88,14 @@ checks:
     tools: [uv, python]
     group: python
     inputs: ["content/ui/training_guide.json", "content/ui/voice_feedback.json", "content/workflow/workflow.json", "content/flow/flow_maps.json", "content/ward/ward_checklist.json", "tools/content/build_training_guide.py", "tools/content/validate_ui_guides.py", "tools/content/test_ui_guides.py", "tools/voice/render_feedback.py", "unity/Assets/Audio/VoiceFeedback/**"]
+  sound_list_check:
+    desc: "Sound list (P3-SND-02): every sound of the plan has a row with source and licence, and every synthesised clip matches tools/audio/render_sfx.py"
+    job: repo_checks
+    cmds:
+      - ["uv", "run", "--project", "tools", "tools/audio/render_sfx.py", "--check"]
+    tools: [uv, python]
+    group: python
+    inputs: ["tools/audio/render_sfx.py", "content/audio/sound_list.json", "unity/Assets/Audio/Sfx/**"]
   ui_icons_check:
     desc: "UI icon atlas (P3-UIX-06): the atlas lists exactly the Lucide SVGs, its size matches its index, every icon UiIcons.cs names exists, the licence is present"
     job: repo_checks

@@ -73,6 +73,7 @@ namespace ProcSense.VR.UI.Training
                 Summoned = false;
             }
             if (Board.Collapsed) Board.ToggleCollapsed();   // a summoned board is open
+            ProcSense.VR.UI.Kit.KitEvents.Raise(Summoned ? "trn_board_open" : "trn_board_close");   // P3-SND-05
         }
 
         private Transform HeadNow() => Head != null ? Head : (Camera.main != null ? Camera.main.transform : null);

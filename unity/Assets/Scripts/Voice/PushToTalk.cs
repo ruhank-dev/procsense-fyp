@@ -221,6 +221,12 @@ namespace ProcSense.VR.Voice
         {
             if (Speaker != null) Speaker.SetMuted(on);
             if (ProcSense.VR.Audio.AudioDirector.Instance != null) ProcSense.VR.Audio.AudioDirector.Instance.Listen(on);   // the room ducks while the trainee talks (P3-SND-10)
+            if (on)                                                                              // the person being looked at, or whose panel is open, listens (P3-ANI-04)
+            {
+                var head = Camera.main != null ? Camera.main.transform : null;
+                var who = ProcSense.VR.Interaction.ContextPanel.Open != null ? ProcSense.VR.Interaction.ContextPanel.Open.Entity : ProcSense.VR.Interaction.AddresseeTarget.Gazed(head, ProcSense.VR.Interaction.Interactable.All);
+                if (who != null) ProcSense.VR.Views.CharacterReactions.For(who)?.Trigger(ProcSense.VR.Views.CharacterReactions.State.Listening, 6f);
+            }
             if (_cues == null) _cues = VoiceCues.MakeSource(gameObject);   // its own source: the speaker is muted while recording
             LastCue = VoiceCues.Play(_cues, on);
         }
