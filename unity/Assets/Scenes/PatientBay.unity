@@ -17123,6 +17123,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
       insertIndex: -1
       addedObject: {fileID: 690274352}
+    - targetCorrespondingSourceObject: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 690274353}
   m_SourcePrefab: {fileID: 100100000, guid: b802c4029e1ecd048825030facefad12, type: 3}
 --- !u!4 &690274345 stripped
 Transform:
@@ -17157,6 +17160,9 @@ MonoBehaviour:
   expressionSeconds: 0.6
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
+  offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  lookAt: {fileID: 0}
+  lookWeight: 1
 --- !u!4 &690274348 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7908423821115560280, guid: b802c4029e1ecd048825030facefad12, type: 3}
@@ -17208,6 +17214,19 @@ MonoBehaviour:
   cyanosis: 0
   sweat: 0
   blendSeconds: 0.6
+--- !u!114 &690274353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690274346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899f37c87b5a22941a619f238e912149, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ProcSense.VR::ProcSense.VR.Views.PatientReactions
+  player: {fileID: 0}
 --- !u!1 &697808477
 GameObject:
   m_ObjectHideFlags: 0

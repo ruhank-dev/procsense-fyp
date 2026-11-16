@@ -165,6 +165,8 @@ namespace ProcSense.VR.Views
         private HeadGestureKind gestureKind; private float gestureStart = float.NegativeInfinity; private bool gesturePending;
         /// <summary>Starts a nod or a head shake now.</summary>
         public void Gesture(HeadGestureKind kind) { gestureKind = kind; gesturePending = true; }
+        /// <summary>The gesture last started (None before any). For tests and review.</summary>
+        public HeadGestureKind GestureKind => gestureKind;
 
         private Vector4 LookTarget()
         {

@@ -26,6 +26,7 @@ namespace ProcSense.EditorTools
             var patient = GameObject.Find("Rocketbox patient");
             if (patient == null) { Debug.LogWarning("[Skin] no Rocketbox patient in the patient bay"); return; }
             if (patient.GetComponent<PatientSkin>() == null) patient.AddComponent<PatientSkin>();
+            if (patient.GetComponent<PatientReactions>() == null) patient.AddComponent<PatientReactions>();
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
             Debug.Log("[Skin] PatientSkin is on the patient");
         }
