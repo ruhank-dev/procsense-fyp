@@ -74,5 +74,42 @@ namespace ProcSense.Tests.PlayMode
             Assert.AreEqual(0f, _fx.Alpha, .01f);
             Assert.AreEqual(pose, (_head.position, _head.rotation), "no camera motion in any transition");
         }
+
+        [Test]
+        public void The_results_freeze_the_hands_raise_the_panel_and_add_no_camera_or_effect()
+        {
+            var hand = new GameObject("hand", typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor)).GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRRayInteractor>();
+            var socket = new GameObject("socket", typeof(SphereCollider), typeof(UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor)).GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>();
+            socket.GetComponent<SphereCollider>().isTrigger = true;
+            try
+            {
+                var layers = hand.interactionLayers;
+                var sockets = socket.interactionLayers;
+                int cameras = Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).Length;
+                int volumes = Object.FindObjectsByType<UnityEngine.Rendering.Volume>(FindObjectsSortMode.None).Length;
+                var home = _panel.Canvas.transform.localPosition;
+                Assert.IsTrue(_flow.ChooseMode(SessionMode.Practice));
+                Assert.IsTrue(_flow.ChooseSurgery("cholecystectomy", TrainingLevel.Beginner), _flow.Message);
+                Run(1f);
+                Assert.IsTrue(_flow.Begin());
+                Assert.IsFalse(_fx.InputFrozen, "the hands work during the case");
+
+                Assert.IsTrue(_flow.Submit(abandoned: true).Accepted);
+                Assert.IsTrue(_fx.InputFrozen);
+                Assert.AreEqual(0, hand.interactionLayers.value, "no grabbing or teleporting on the results");
+                Assert.AreEqual(sockets.value, socket.interactionLayers.value, "equipment stays in its sockets");
+                Assert.Greater(_fx.RiseLeft, .1f, "the panel starts below its place");
+                Run(FlowTransitions.DimSeconds + .05f);
+                Assert.AreEqual(0f, _fx.RiseLeft, 1e-4f);
+                Assert.AreEqual(home, _panel.Canvas.transform.localPosition, "and rises into it");
+                Assert.AreEqual(cameras, Object.FindObjectsByType<Camera>(FindObjectsSortMode.None).Length, "no extra camera, so no extra render pass");
+                Assert.AreEqual(volumes, Object.FindObjectsByType<UnityEngine.Rendering.Volume>(FindObjectsSortMode.None).Length, "no post-processing volume");
+
+                _flow.BackToMenu();
+                Assert.IsFalse(_fx.InputFrozen);
+                Assert.AreEqual(layers.value, hand.interactionLayers.value, "the hands come back");
+            }
+            finally { Object.DestroyImmediate(hand.gameObject); Object.DestroyImmediate(socket.gameObject); }
+        }
     }
 }

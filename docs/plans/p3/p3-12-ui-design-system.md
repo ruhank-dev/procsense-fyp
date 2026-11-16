@@ -52,7 +52,7 @@ Design tokens; a Quest-safe glass shader; a component kit; icons; motion presets
 | P3-UIX-06 | Icon atlas (modes, procedures, people roles, actions, lightbulb, board, mic, settings) | Moiz | P3-UIX-01 | Atlas and licence row | Done |
 | P3-UIX-07 | Feedback components: toast, tick, error shake, listening ring, progress ring | Moiz | P3-UIX-04, P3-ANI-09 | Used by TRN, VOX, RES | Done |
 | P3-UIX-08 | VR readability and comfort rules updated (angular text size, distances, head-locked limits, contrast) and checked by `Readability` in tests | Moiz | p0-vr-interaction-ui-s10 | Every kit component passes the rules | Done |
-| P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Planned |
+| P3-UIX-09 | Desktop-only extra: real background blur behind panels using the opaque texture on desktop only (never on Android) | Moiz | P3-UIX-03 | Off on Android by build check | Done |
 | P3-UIX-10 | Visual review captures of every screen (fixed cameras) and owner approval | Moiz | P3-UIX-05 | Owner approval recorded | In progress |
 | P3-UIX-11 | Connection status chip and banners for the networked Quest (D2): chip on the main menu and the wrist (green "Laptop connected · Cloud AI ready", amber "Reconnecting…" or "Cloud AI unavailable · local fallback", red "Laptop not found" with "Play in menu mode"), version-mismatch banner, server settings page with found laptops, keypad and pairing code | Moiz | P3-UIX-04, P3-NET-08 | Every state of `ServiceStatus` has a visual and a one-line reason (PlayMode with a fake server) | Done |
 

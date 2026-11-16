@@ -1,7 +1,7 @@
 // P3-UIX-03: the glass of every ProcSense panel. URP, unlit, transparent, one pass, premultiplied alpha.
 // A rounded-rectangle signed distance from the quad's UVs (the panel size and corner radius come from GlassPanel in uv1), a tint, a frosted
 // gradient blended with the environment reflection cube at a high mip (looks blurred, one cube sample), a Fresnel rim brighter at the top,
-// a soft specular streak that moves with the head, and fine noise against banding. No grab pass, no opaque texture, no depth read.
+// a soft specular streak that moves with the head, and fine noise against banding. No grab pass, no depth read, and on the headset no opaque texture (the desktop-only blur variant of P3-UIX-09 reads it).
 // Stereo: instancing and stereo macros for single-pass instanced and multiview. Works under RectMask2D (clip rect) and Mask (stencil) like UI/Default.
 Shader "ProcSense/UI Glass"
 {
@@ -55,9 +55,15 @@ Shader "ProcSense/UI Glass"
             #pragma target 3.0
             #pragma multi_compile_instancing
             #pragma multi_compile_local _ UNITY_UI_CLIP_RECT
+            // P3-UIX-09: desktop only, real blur of what is behind the panel from the camera's opaque texture. GlassBlur turns the keyword on off-Android; the Android
+            // build strips every variant with it (GlassBlurStripper), so the headset never compiles or samples the opaque texture.
+            #pragma multi_compile _ PS_GLASS_BLUR
 
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/ShaderLibrary/EntityLighting.hlsl"
+            #if defined(PS_GLASS_BLUR)
+                #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareOpaqueTexture.hlsl"
+            #endif
 
             struct Attributes
             {
@@ -116,6 +122,19 @@ Shader "ProcSense/UI Glass"
 
             float Hash(float2 p) { return frac(sin(dot(p, float2(12.9898, 78.233))) * 43758.5453); }
 
+            #if defined(PS_GLASS_BLUR)
+            // a 3 x 3 box of taps spread 6 pixels apart over the (half-resolution, bilinear) opaque texture: a soft blur of the room behind the panel
+            half3 BlurBehind(float2 uv)
+            {
+                float2 px = _ScreenSize.zw * 6;
+                half3 s = 0;
+                [unroll] for (int y = -1; y <= 1; y++)
+                    [unroll] for (int x = -1; x <= 1; x++)
+                        s += SampleSceneColor(uv + float2(x, y) * px);
+                return s / 9;
+            }
+            #endif
+
             half4 frag(Varyings i) : SV_Target
             {
                 UNITY_SETUP_STEREO_EYE_INDEX_POST_VERTEX(i);
@@ -154,7 +173,13 @@ Shader "ProcSense/UI Glass"
                 half streak = exp(-pow((frac(streakPos * 0.5) - 0.5) * 14, 2)) * _Streak;   // a narrow band: a highlight that does not grey the panel
                 colour += streak;
 
-                colour += (Hash(i.uv * size + _Time.y) - 0.5) * _Noise;           // breaks gradient banding on the headset's 8-bit swapchain
+                #if defined(PS_GLASS_BLUR)
+                    // the panel draws the blurred room itself, then its glass over it at the same opacity as the plain blend, so the text contrast is unchanged
+                    colour = lerp(BlurBehind(GetNormalizedScreenSpaceUV(i.positionCS)), colour, alpha);
+                    alpha = 1;
+                #endif
+
+                colour += (Hash(i.uv * size + _Time.y) - 0.5) * _Noise;          // breaks gradient banding on the headset's 8-bit swapchain
 
                 half a = saturate(alpha * i.color.a * inside);
                 colour *= i.color.rgb;

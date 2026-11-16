@@ -65,6 +65,20 @@ namespace ProcSense.VR.UI.Kit
             var dialog = Kit.Dialog(root, "Return to the main menu?", "This examination will be submitted as it stands.", "Return", "Keep going", new Vector2(x3, y), true, null, null, col);
             dialog.gameObject.SetActive(true);
             dialog.GetComponent<CanvasGroup>().alpha = 1f;
+
+            // the 3D elements of the kit (P3-AST-07) on a row just under the panel, in metres
+            var row = new GameObject("Kit 3D elements").transform;
+            row.SetParent(canvas.transform.parent, false);
+            row.localPosition = canvas.transform.localPosition + Vector3.down * (Size.y * .5f * canvas.transform.lossyScale.y + .09f);
+            row.localRotation = canvas.transform.localRotation;
+            float x = -.18f;
+            foreach (Icon3D kind in System.Enum.GetValues(typeof(Icon3D)))
+            {
+                var e = Kit3D.Make(kind, row);
+                e.transform.localPosition = new Vector3(x + Kit3D.SizeOf(kind) * .5f, 0f, 0f);
+                e.transform.localRotation = kind == Icon3D.Lightbulb || kind == Icon3D.WristButton ? Quaternion.Euler(kind == Icon3D.WristButton ? -70f : 0f, 0f, 0f) : Quaternion.Euler(0f, 180f, 0f);
+                x += Kit3D.SizeOf(kind) + .05f;
+            }
             return canvas;
         }
     }

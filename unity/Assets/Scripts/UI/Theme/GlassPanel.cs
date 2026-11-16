@@ -56,6 +56,7 @@ namespace ProcSense.VR.UI.Theme
         {
             if (_dark != null) ApplyContrast(_dark, DarkMaterial);
             if (_light != null) ApplyContrast(_light, LightMaterial);
+            if (Application.isPlaying) GlassBlur.Apply();   // high contrast plates need no blur behind them
         }
 
         private static void ApplyContrast(Material m, string resource)
@@ -91,6 +92,7 @@ namespace ProcSense.VR.UI.Theme
             if (material == defaultMaterial || material == null) material = MaterialFor(_style);
             var c = canvas;
             if (c != null) c.additionalShaderChannels |= AdditionalCanvasShaderChannels.TexCoord1;   // the size and radius travel in uv1
+            if (Application.isPlaying) GlassBlur.Apply();   // desktop only: blur of the room behind the glass (P3-UIX-09)
         }
 
         protected override void OnPopulateMesh(VertexHelper vh)
