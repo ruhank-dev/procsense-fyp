@@ -26,11 +26,42 @@ namespace ProcSense.VR.ActionEmitters
         private bool _attached, _syncing, _returnHome;
         private bool _awaitSocketExit;
         private SensorPlacementGuide _guide;
+        private readonly EquipmentNotice _notice = new EquipmentNotice();
+        private static readonly System.Collections.Generic.List<SensorAttachment> Active = new System.Collections.Generic.List<SensorAttachment>();
+        /// <summary>The reason shown above the patient target, or "" when none is shown (plain words; neutral in the examination).</summary>
+        public string NoticeText => _notice.Text;
         public bool canProcess => isActiveAndEnabled;
         public bool Attached => _attached;
         public XRSocketInteractor Destination => destination;
         public bool PlacementGuidesVisible => _guide != null && _guide.Visible;
+        /// <summary>What the patient target shows while the sensor is held: Ready (green, release to attach), Approach (blue), Unavailable (amber: no running session can record it).</summary>
+        public SensorPlacementGuide.TargetState PatientTargetState => _guide != null ? _guide.PatientState : SensorPlacementGuide.TargetState.Hidden;
         public float ReturnRadius => paramValue == "spo2" ? .065f : .09f;
+        /// <summary>
+        /// True only while a running session can take the attach action (a session exists, is not paused, ended or submitted). The shipped player has no session until the menu
+        /// starts one (BootLoader.MenuStartsSession), so before that the patient target is shown as unavailable and the socket refuses the sensor instead of snapping it and bouncing it home.
+        /// </summary>
+        public static bool SessionAcceptsActions
+        {
+            get
+            {
+                var host = SimulationHost.Instance;
+                return host != null && host.Session != null && !host.Paused && !host.Ended && !host.Session.Paused && !host.Session.Submitted;
+            }
+        }
+
+        /// <summary>Why <see cref="SessionAcceptsActions"/> is false ("" when it is true): no scenario yet, paused, or finished.</summary>
+        public static string UnavailableReason
+        {
+            get
+            {
+                var host = SimulationHost.Instance;
+                if (host == null || host.Session == null) return EquipmentRefusalText.NoSessionCode;
+                if (host.Paused || host.Session.Paused) return EquipmentRefusalText.PausedCode;
+                if (host.Ended || host.Session.Submitted) return EquipmentRefusalText.FinishedCode;
+                return "";
+            }
+        }
         public void ConfigurePlacementHighlight(Material material) => placementHighlight = material;
 
         [Serializable] private class Parameters { public string sensor; }
@@ -53,6 +84,7 @@ namespace ProcSense.VR.ActionEmitters
             _grab.selectEntered.AddListener(Entered);
             _grab.selectExited.AddListener(Exited);
             _count = -1;
+            if (!Active.Contains(this)) Active.Add(this);
             RegisterFallback();
         }
 
@@ -62,10 +94,21 @@ namespace ProcSense.VR.ActionEmitters
             _grab.selectFilters.Remove(this);
             _grab.selectExited.RemoveListener(Exited);
             _guide?.Hide();
+            _notice.Hide();
+            Active.Remove(this);
             UnregisterFallback();
         }
 
-        private void OnDestroy() => _guide?.Dispose();
+        private void OnDestroy() { _guide?.Dispose(); _notice.Dispose(); }
+
+        private Vector3 TargetPosition => destination.attachTransform != null ? destination.attachTransform.position : destination.transform.position;
+
+        /// <summary>Says why it did not attach or come off, above the patient target. Never silent: the code is shown when no words are known.</summary>
+        private void Explain(string reason, bool removing = false)
+        {
+            if (destination == null || string.IsNullOrEmpty(reason)) return;
+            _notice.Show(EquipmentRefusalText.For(reason, ModeGate.PracticeAids, removing), TargetPosition);
+        }
 
         private void Entered(SelectEnterEventArgs args)
         {
@@ -73,6 +116,8 @@ namespace ProcSense.VR.ActionEmitters
             var answer = Fire();
             _attached = answer != null && answer.Accepted;
             _returnHome = !_attached;
+            if (!_attached) Explain(answer == null ? UnavailableReason : answer.RejectReason);
+            else _notice.Hide();
         }
 
         private void Exited(SelectExitEventArgs args)
@@ -80,13 +125,22 @@ namespace ProcSense.VR.ActionEmitters
             if (!_syncing && !args.isCanceled && !(args.interactorObject is XRSocketInteractor)
                 && !_attached && restingPlace != null && Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius)
                 _returnHome = true;
+            if (!_syncing && !args.isCanceled && !(args.interactorObject is XRSocketInteractor) && !_attached && destination != null)
+            {
+                // released by the hand at a patient target without attaching: say why
+                if (NearTarget(destination) && !SessionAcceptsActions) Explain(UnavailableReason);
+                else foreach (var other in Active)
+                    if (other != this && other.destination != null && NearTarget(other.destination)) { Explain(EquipmentRefusalText.WrongTargetCode); break; }
+            }
             if (_syncing || args.isCanceled || !ReferenceEquals(args.interactorObject, destination) || !_attached) return;
             var answer = Fire("detach_sensor");
             if (answer != null && answer.Accepted)
             {
                 _attached = false;
                 _awaitSocketExit = true;
+                _notice.Hide();
             }
+            else Explain(answer == null ? UnavailableReason : answer.RejectReason, removing: true);
         }
 
         public bool Process(IXRSelectInteractor interactor, IXRSelectInteractable interactable)
@@ -94,16 +148,19 @@ namespace ProcSense.VR.ActionEmitters
             if (!(interactor is XRSocketInteractor)) return true;
             if (!ReferenceEquals(interactor, destination)) return false;
             if (_syncing && _attached) return true; // Explicit accepted tablet restore.
+            if (!_attached && !SessionAcceptsActions) return false; // nothing can record the placement: never fake a snap
             return !_awaitSocketExit && (_attached || NearSocket());
         }
 
-        private bool NearSocket()
+        private bool NearSocket() => NearTarget(destination);
+
+        private bool NearTarget(XRSocketInteractor socket)
         {
-            var trigger = destination.GetComponent<SphereCollider>();
-            float radius = trigger != null ? trigger.radius * Mathf.Max(destination.transform.lossyScale.x,
-                destination.transform.lossyScale.y, destination.transform.lossyScale.z) : .065f;
-            return Vector3.Distance(_grab.GetAttachTransform(destination).position,
-                destination.attachTransform != null ? destination.attachTransform.position : destination.transform.position) <= radius;
+            var trigger = socket.GetComponent<SphereCollider>();
+            float radius = trigger != null ? trigger.radius * Mathf.Max(socket.transform.lossyScale.x,
+                socket.transform.lossyScale.y, socket.transform.lossyScale.z) : .065f;
+            return Vector3.Distance(_grab.GetAttachTransform(socket).position,
+                socket.attachTransform != null ? socket.attachTransform.position : socket.transform.position) <= radius;
         }
 
         private void LateUpdate() => SyncNow();
@@ -197,8 +254,12 @@ namespace ProcSense.VR.ActionEmitters
             {
                 if (_guide == null) _guide = new SensorPlacementGuide(destination, restingPlace, placementHighlight, ReturnRadius);
                 bool held = _grab.interactorsSelecting.Any(i => !(i is XRSocketInteractor));
-                _guide.Refresh(held, !_awaitSocketExit && NearSocket(), Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius);
+                bool available = _attached || SessionAcceptsActions;
+                bool near = NearSocket();
+                _guide.Refresh(held, available && !_awaitSocketExit && near, Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius, available);
+                if (held && near && !available) Explain(UnavailableReason);   // the amber target says "not now"; the label says why
             }
+            _notice.Tick();
         }
     }
 }

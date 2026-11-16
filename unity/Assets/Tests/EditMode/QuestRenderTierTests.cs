@@ -59,11 +59,14 @@ namespace ProcSense.Tests.EditMode
         {
             var a = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Android);
             var d = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>(Desktop);
-            Assert.AreEqual((d.msaaSampleCount, d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution),   // the extra-light limit and soft shadows differ on purpose (B58 lighting, b628cd283)
-                (a.msaaSampleCount, a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution));
+            // The settings that must still match the desktop asset; the Android asset intentionally differs in MSAA (1x, aggressive Quest profile 14 Nov 2026) and the per-object light limit (2, owner-approved B58 lighting 10 Nov 2026).
+            Assert.AreEqual((d.renderScale, d.supportsHDR, d.shadowDistance, d.mainLightShadowmapResolution),
+                (a.renderScale, a.supportsHDR, a.shadowDistance, a.mainLightShadowmapResolution));
+            Assert.AreEqual((1, 2), (a.msaaSampleCount, a.maxAdditionalLightsCount), "the Quest profile: MSAA off, two additional lights per object");
         }
 
         [TestCase("Assets/Shaders/SunShaft.shader")]
+        [TestCase("Assets/Shaders/SunShaftBaked.shader")]   // the shader the shaft materials actually use since the overhaul
         [TestCase("Assets/Shaders/SunDustMote.shader")]
         public void Sunlight_effect_shaders_are_stereo_safe(string path)
         {
@@ -88,8 +91,9 @@ namespace ProcSense.Tests.EditMode
             Assert.IsNotNull(feature);
             Assert.IsTrue(feature.enabled, "the OpenXR Foveated Rendering feature is on for Android");
             Assert.IsFalse(new SerializedObject(feature).FindProperty("useEyeTracking").boolValue, "Quest 2 has no eye tracking: no permission request");
-            Assert.AreEqual(0f, QuestRenderTier.DefaultFoveation, "production foveation stays off until measured and approved");
-            Assert.AreEqual(1f, QuestRenderTier.DefaultEyeScale);
+            Assert.AreEqual(0.5f, QuestRenderTier.DefaultFoveation, "production foveation is Medium since the sharpness revision (15 Nov 2026; High from 14 Nov)");
+            Assert.AreEqual(1f, QuestRenderTier.DefaultEyeScale, "eye buffer allocated at the runtime default; dynamic resolution draws 0.85-1.0 of it");
+            Assert.AreEqual((ProcSense.VR.Views.QuestPerformanceProfile.Foveation, ProcSense.VR.Views.QuestPerformanceProfile.EyeBufferScale), (QuestRenderTier.DefaultFoveation, QuestRenderTier.DefaultEyeScale), "one source of truth");
             Assert.AreEqual((0f, 1f, 0.7f, 1.3f), (QuestRenderTier.ClampFoveation(-1f), QuestRenderTier.ClampFoveation(3f), QuestRenderTier.ClampEyeScale(0.1f), QuestRenderTier.ClampEyeScale(5f)));
         }
 
@@ -118,5 +122,34 @@ namespace ProcSense.Tests.EditMode
             Assert.IsFalse(all[0].ChangesLook || all[0].LegacyRenderer, "B0 is the production default");
             Assert.IsTrue(all.Single(p => p.Id == "B1").LegacyRenderer && all.Single(p => p.Id == "B1").ShaftsOff, "B1 reproduces the 7 Nov rendering");
         }
-    }
+
+        [Test]
+        public void The_sharpness_comparison_presets_come_right_after_B0()
+        {
+            var ids = PerfPresets.All.Take(7).Select(p => p.Id).ToArray();
+            CollectionAssert.AreEqual(new[] { "B0", "B90", "B91", "B92", "B93", "B94", "B95" }, ids, "FFR High, MSAA 2x, both, fixed 1.0, fixed 0.85, first overhaul profile");
+            var b95 = PerfPresets.All.Single(p => p.Id == "B95");
+            Assert.AreEqual((0.9f, 0.8f, 0.7f, 0.9f, 1f), (b95.EyeAlloc, b95.StartAt, b95.RangeMin, b95.RangeMax, b95.Foveation), "B95 reproduces the first overhaul profile");
+            Assert.AreEqual(2, PerfPresets.All.Single(p => p.Id == "B91").Msaa);
+            Assert.IsTrue(PerfPresets.All.Skip(1).Take(6).All(p => p.ChangesLook), "every sharpness preset is labelled as changing the look");
+        }
+    
+        [Test]
+        public void The_aggressive_quest_profile_is_authored_in_the_android_assets()
+        {
+            var urp = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset>("Assets/Settings/URP_Quest_Android.asset");
+            Assert.IsNotNull(urp);
+            Assert.AreEqual(1, urp.msaaSampleCount, "MSAA off on the Quest (14 Nov 2026: the GPU is the bottleneck)");
+            Assert.IsFalse(urp.supportsCameraDepthTexture); Assert.IsFalse(urp.supportsCameraOpaqueTexture); Assert.IsFalse(urp.supportsHDR);
+            var settings = OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
+            var fov = new SerializedObject(settings.GetFeature<FoveatedRenderingFeature>());
+            Assert.IsTrue(fov.FindProperty("enableSubsampledLayout").boolValue, "subsampled layout (Vulkan) with foveation");
+            SerializedObject meta = null;
+            foreach (var f in settings.GetFeatures<OpenXRFeature>()) if (f.GetType().Name == "MetaQuestFeature") meta = new SerializedObject(f);
+            Assert.IsNotNull(meta);
+            Assert.IsTrue(meta.FindProperty("m_symmetricProjection").boolValue, "symmetric projection on");
+            Assert.AreEqual(1, meta.FindProperty("m_multiviewRenderRegionsOptimizationMode").intValue, "multiview render regions: final pass");
+            Assert.IsTrue(meta.FindProperty("m_optimizeBufferDiscards").boolValue, "optimize buffer discards stays on");
+        }
+}
 }

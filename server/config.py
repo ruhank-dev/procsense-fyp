@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Annotated, Literal
 from urllib.parse import urlsplit
 
-from pydantic import SecretStr, field_validator, model_validator
+from pydantic import AliasChoices, Field, SecretStr, field_validator, model_validator
 from pydantic_settings import BaseSettings, NoDecode, SettingsConfigDict
 
 TRANSACTION_POOLER_PORT = 6543
@@ -26,7 +26,7 @@ def _psycopg_url(value: str, what: str) -> str:
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=Path(__file__).resolve().parent / ".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(env_file=Path(__file__).resolve().parent / ".env", env_file_encoding="utf-8", extra="ignore", populate_by_name=True)
 
     app_env: Literal["dev", "test", "prod"] = "dev"
     git_sha: str = "unknown"
@@ -70,7 +70,8 @@ class Settings(BaseSettings):
     # speech evaluation (p1-ai-language-s22, ADR-0025): gemma4:31b on Ollama Cloud judges what the trainee's speech does (structured output); the engine scores. The route is closed by the `speech_evaluation` evaluation gate until an independent evaluation passes
     speech_eval_model: str = "gemma4:31b-cloud"              # through a signed-in local Ollama use the `-cloud` form; for the direct API use "gemma4:31b" with the base url and key below (https://ollama.com/api/tags lists the names)
     speech_eval_base_url: str = ""                           # empty = the local Ollama (ollama_url), which relays a cloud model when signed in; "https://ollama.com" = the direct API with the key below
-    speech_eval_api_key: SecretStr = SecretStr("")           # direct API only; never logged, never in a request body, never committed (.env or the host's secret store)
+    # P3-NET-13: one documented key name. OLLAMA_API_KEY (the name Ollama documents) is read first; SPEECH_EVAL_API_KEY stays accepted for existing .env files
+    speech_eval_api_key: SecretStr = Field(default=SecretStr(""), validation_alias=AliasChoices("OLLAMA_API_KEY", "SPEECH_EVAL_API_KEY", "speech_eval_api_key"))   # direct API only; never logged, never in a request body, never committed (.env or the host's secret store)
     speech_eval_timeout_seconds: float = 15.0                # one attempt (the measured median is 2.4 s, p95 about 4 s, free plan)
     speech_eval_budget_ms: int = 25000                       # total wall budget for one evaluation including a retry
     speech_eval_max_attempts: int = 2
@@ -78,6 +79,7 @@ class Settings(BaseSettings):
     cloud_routing_enabled: bool = False            # a task whose route names an Ollama Cloud model may use it (free plan; any outage, usage limit or invalid reply falls back to the local model)
     cloud_trainee_data_approved: bool = False      # routes that carry what a trainee said or did may go to the cloud; waits for the privacy decision (DT-248, DT-127)
     cloud_synthetic_deployment: bool = False      # the owner declares this deployment handles synthetic data only (development, demonstrations): it releases the trainee-class routes; never set it where real trainees play
+    cloud_concurrency: int = Field(default=1, ge=1, le=10)  # P3-NET-13: cloud requests in flight at once. 1 = the Free plan (ADR-0026, the account in use); set 3 for a Pro or pay-as-you-go key (research R-063)
     ai_batch_timeout_seconds: float = 600.0
     # privacy (p1-backend-s12): design values to be confirmed with a qualified person (DT-127)
     consent_required_for_upload: bool = True   # a session is accepted only from a person who agreed to the processing of their results (the current text)
@@ -95,6 +97,10 @@ class Settings(BaseSettings):
     device_decide_per_hour: int = 30       # tries to approve a code, per person: guessing a code is not possible in practice, and this makes it slower still
     supported_engine_versions: Annotated[list[str], NoDecode] = []
     supported_content_versions: Annotated[list[str], NoDecode] = []
+    # networked Quest demonstration (P3-NET-07): with lan_profile on, every AI route needs the device token the headset got by pairing; off (default) nothing changes
+    lan_profile: bool = False
+    lan_tls_fingerprint: str = ""       # P3-NET-15: SHA-256 (hex) of the self-signed certificate `task demo-laptop -- --tls` made; empty without TLS
+    lan_pairing_file: str = ""          # where the hashed device tokens are kept (empty: in memory only, pairing is lost on restart)
 
     @field_validator("supported_engine_versions", "supported_content_versions", mode="before")
     @classmethod

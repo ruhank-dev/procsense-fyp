@@ -14,6 +14,10 @@ namespace ProcSense.VR.Auth
         public readonly bool NetworkError;
         public HttpResult(long status, string body, bool networkError = false) { Status = status; Body = body ?? ""; NetworkError = networkError; }
         public bool Ok => !NetworkError && Status >= 200 && Status < 300;
+
+        /// <summary>The request was replaced by a newer one of the same kind (or arrived after the user moved on); the caller must not act on it (P3-NET-09).</summary>
+        public bool Superseded => Status == SupersededStatus;
+        public const long SupersededStatus = -1;
     }
 
     /// <summary>One HTTP request. A small seam so the sign-in and upload code can be tested without a network (a test supplies a scripted one).</summary>
@@ -38,6 +42,7 @@ namespace ProcSense.VR.Auth
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = Math.Max(1, timeoutSeconds);
+                if (TlsPin.AppliesTo(url)) { request.certificateHandler = new PinnedCertificateHandler(); request.disposeCertificateHandlerOnDispose = true; }
                 if (jsonBody != null)
                 {
                     request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(jsonBody));
@@ -56,6 +61,7 @@ namespace ProcSense.VR.Auth
             {
                 request.downloadHandler = new DownloadHandlerBuffer();
                 request.timeout = Math.Max(1, timeoutSeconds);
+                if (TlsPin.AppliesTo(url)) { request.certificateHandler = new PinnedCertificateHandler(); request.disposeCertificateHandlerOnDispose = true; }
                 if (body != null)
                 {
                     request.uploadHandler = new UploadHandlerRaw(body);

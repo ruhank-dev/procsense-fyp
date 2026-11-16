@@ -84,7 +84,7 @@ namespace ProcSense.Core.Tests
             var pool = All.CaseFiles.ToDictionary(kv => kv.Key, kv => kv.Value.Id == "VAR-S1-A" ? kv.Value : kv.Value with { Status = kv.Value.Tier == "P0" ? "DRAFT" : kv.Value.Status });
             var weak = Rate(Rec("VAR-S1-A", ("b11", 0, 3)), Rec("VAR-S1-A", ("b11", 0, 3)), Rec("VAR-S1-A", ("b11", 0, 3)));
             var pick = Selector.Next(weak, new[] { "VAR-S1-A" }, pool, SessionMode.Practice);
-            Assert.Equal("APPROVED_FOR_TRAINING", pool[pick.CaseId].Status);
+            Assert.Equal("APPROVED_FOR_ASSESSMENT", pool[pick.CaseId].Status);   // every playable case is approved for assessment too (P3-SCN-07)
             Assert.Equal("VAR-S1-A", Selector.Next(Rate(), new string[0], pool, SessionMode.Practice).CaseId);
             foreach (var draft in All.CaseFiles.Values.Where(f => f.Status == "DRAFT")) Assert.False(ContentGate.Allows(draft.Status, SessionMode.Practice));
             var every = new HashSet<string>();
@@ -102,8 +102,9 @@ namespace ProcSense.Core.Tests
         public void T_DF3_assessment_mode_never_adapts_and_returns_the_fixed_order_or_nothing_when_nothing_is_approved_for_it()
         {
             var weak = Rate(Rec("VAR-S1-A", ("b11", 0, 3)), Rec("VAR-S1-A", ("b11", 0, 3)), Rec("VAR-S1-A", ("b11", 0, 3)));
-            var none = Selector.Next(weak, new[] { "VAR-S1-A" }, All.CaseFiles, SessionMode.Assessment);
-            Assert.Equal("", none.CaseId);                                       // nothing is approved for assessment yet
+            var training = All.CaseFiles.ToDictionary(kv => kv.Key, kv => kv.Value with { Status = "APPROVED_FOR_TRAINING" });
+            var none = Selector.Next(weak, new[] { "VAR-S1-A" }, training, SessionMode.Assessment);
+            Assert.Equal("", none.CaseId);                                       // nothing below APPROVED_FOR_ASSESSMENT is ever offered
             var pool = All.CaseFiles.ToDictionary(kv => kv.Key, kv => kv.Value.Tier == "P0" ? kv.Value with { Status = "APPROVED_FOR_ASSESSMENT" } : kv.Value);
             var a = Selector.Next(weak, new[] { "VAR-S1-A" }, pool, SessionMode.Assessment);
             var b = Selector.Next(Rate(), new[] { "VAR-S1-A" }, pool, SessionMode.Assessment);

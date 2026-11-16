@@ -31,6 +31,11 @@ Shared Unity inputs are listed once (YAML anchors `unity_shared`, `unity_render`
 | Character scripts, prefabs, animation | `unity_compile`, `unity_editmode`, `unity_playmode_character` |
 | City culling or city assets | `unity_compile`, `unity_playmode_exterior`, heavy `unity_walkthrough_diff`, `unity_sweep` |
 | Quest runtime settings or XR | `unity_playmode_runtime_settings` plus the shared Unity checks |
+| Sun shaft shader, noise texture or shaft host | `unity_playmode_sunshafts` (DT-311) plus `unity_editmode` (`SunShaftContractTests`) |
+| Game flow panel (Flow, results rewording client) | `unity_playmode_flow` (MenuFlowTests, ExamPresentationTests) plus the shared Unity checks |
+| Patient equipment (ActionEmitters, sockets, equipment prefabs, character culler, patient idle) | `unity_playmode_patient_equipment` (SensorAttachmentFlowTests, MpfbPatientTests, EquipmentDropTests) plus the shared Unity checks |
+| Clinical text panels (UiKit, Accessibility, monitor, tablet, EMR, menu) | `unity_playmode_clinical_text` (ClinicalTextTests, AccessibilityTests) plus the shared Unity checks |
+| Quest render settings (ProjectSettings, URP/XR assets, scenes, textures, Quest profile scripts) | `quest_config_check` (`tools/unity/verify_quest_config.py`, source level, seconds) plus the Unity checks those paths select |
 | Unity project settings or packages | every Unity check |
 | Backend (`server/**`) | `backend_tests` |
 | Rules engine (`src/**`, `tests/**`) | `rules_engine_tests`, `dotnet_format`, `backend_tests`, `python_tests` |
@@ -48,6 +53,8 @@ Not cached by this system, listed so nothing is assumed: the imported Unity asse
 
 ## Unity checks
 They run through `tools/ci/unity_check.py`: one Unity at a time (atomic `D:/ProcSenseWork/unity.lock`, waits up to 4 hours), hidden window (never steals focus), temp and Gradle on D:, stale results deleted first. A missing result file, or zero passed tests, is a **failure**. Heavy checks (`unity_walkthrough_diff`, `unity_sweep`, `benchmark_stereo`, `android_build`) are reported as *deferred* unless `--heavy` or `--final`, and are never reported as passed.
+
+**Capture and diagnostic tools are not regression tests** (DT-307, 15 Nov 2026 UTC): PlayMode fixtures that only write pictures or logs (`B58VisualCapture`, `TextureCropProbe`, `OverhaulVideoCapture`, and the other `[Explicit]` capture tools) carry `[Explicit("capture tool: ...")]`, and the two probes also `[Category("Diagnostics")]`, so a full PlayMode run lists them as skipped. Run one by naming it, e.g. `python tools/ci/unity_check.py tests --platform PlayMode --filter ProcSense.Tests.PlayMode.TextureCropProbe --env TEXPROBE_DIR=D:/ProcSenseWork/reports/texprobe --env TEXPROBE_TAG=U --env TEXPROBE_SELECT=1` (or `tools/unity/texture_probe.ps1`; `B58VisualCapture` takes `B58V_DIR`, `B58V_CONFIGS`, `B58V_POSES`, see `docs/qa/audit/benchmark_requests.md`). A missing required variable fails at once with a message naming it. Every fixture that loads Boot or a room cleans up in its `[UnityTearDown]` (or starts with `TestHostHygiene.ResetToEmptyScene()`), which unloads every scene but the runner's and destroys the persistent rig, host, camera and event system, so no fixture depends on the order of the run.
 
 ## What always runs at final integration
 The complete GitHub Actions workflow (all jobs, nothing skipped), `task change-check-final` locally for the Unity gates the free runners cannot run (GitHub-hosted runners have no Unity licence here), and the unchanged mandatory pre-push hook (`task ci`). A reused development result is never the final gate. `docs/qa/ci_hook_proposal.md` describes the one safe way to avoid running the same hour twice; it needs approval and is not applied.

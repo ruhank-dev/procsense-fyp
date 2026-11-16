@@ -53,18 +53,19 @@ namespace ProcSense.Core.Tests
         public void Only_content_approved_for_assessment_is_loaded()
         {
             var load = Load(SessionMode.Assessment, "VAR-S1-A", "VAR-S1-B", "VAR-S1-C");
-            Assert.Equal(new[] { "VAR-S1-A" }, load.Package.CaseFiles.Keys);
-            Assert.Equal(new[] { "VAR-S1-B", "VAR-S1-C" }, load.Excluded.Select(e => e.Id).OrderBy(x => x));       // the draft and the training-only case, each named
+            Assert.Equal(new[] { "VAR-S1-A", "VAR-S1-C" }, load.Package.CaseFiles.Keys.OrderBy(x => x, StringComparer.Ordinal));
+            Assert.Equal(new[] { "VAR-S1-B" }, load.Excluded.Select(e => e.Id).OrderBy(x => x));                  // the draft, named
             Assert.All(load.Excluded, e => Assert.Contains("APPROVED_FOR_ASSESSMENT", e.Reason));
             var s = new Session(load.Package.Cases["VAR-S1-A"], 1, SessionMode.Assessment, Subsystems.Default(load.Package));
             Assert.Equal(new[] { "E-HYPERSENSITIVITY" }, s.Director!.Library.Select(e => e.Id));                 // the other six events are approved for training only
         }
 
         [Fact]
-        public void With_nothing_signed_off_assessment_loads_no_shipped_case_and_no_event()
+        public void Assessment_loads_the_owner_attested_cases_and_drafts_stay_out()
         {
-            var real = ContentMode.Load(new CompositeContentReader(new FileContentReader(TestCase.ContentRoot)), SessionMode.Assessment, false, "VAR-S1-A");
-            Assert.Empty(real.Package.CaseFiles);                                                                  // the lock holds until a clinician approves cases for assessment
+            var real = ContentMode.Load(new CompositeContentReader(new FileContentReader(TestCase.ContentRoot)), SessionMode.Assessment, false, "VAR-S1-A", "VAR-S1-B", "SC-4");
+            Assert.Equal(new[] { "VAR-S1-A" }, real.Package.CaseFiles.Keys);                                      // P3-SCN-07: playable cases are in, DRAFT cases are not
+            Assert.Equal(new[] { "SC-4", "VAR-S1-B" }, real.Excluded.Select(e => e.Id).OrderBy(x => x, StringComparer.Ordinal));
         }
 
         [Fact]

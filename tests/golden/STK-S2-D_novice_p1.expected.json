@@ -2,7 +2,7 @@
   "case": "STK-S2-D",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "a0498d572f069d6b28bc6270e413691d75fd955130befca177c42ff5987b712d",
+  "log_hash": "37476f5c7c5ceccbdd0b089a93bf479f2059a0a644cfd0688b40f94d67ae636e",
   "state_hash": "2ac5ea0cda66aaaa8f6aeeac5a2d60f5159b4f54a746abee9c2d3e02d35434c8",
   "facts": {
     "identity_confirmed": true,
@@ -49,6 +49,7 @@
       "results.any_viewed",
       "risk.asa_proposed",
       "score.stopbang.computed",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -64,7 +65,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 15,
-    "minor": ["minor.no_introduction", "minor.question_unanswered", "minor.treatment_documentation"],
+    "minor": ["minor.no_introduction", "minor.question_unanswered"],
     "major": [],
     "critical": []
   }

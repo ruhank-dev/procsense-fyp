@@ -14,6 +14,8 @@ namespace ProcSense.VR.UI.Accessibility
         /// <summary>How far the panel is meant to be read from: 0.5 m held in the hand, 0.6 m at a desk, 1 m at the bedside, more on a wall.</summary>
         public float ViewingDistance = 1f;
         public bool Subtitle;
+        /// <summary>A panel with clinical text (<see cref="ClinicalText"/>): sharp SDF material, and dynamic resolution held at 0.8 while it is read.</summary>
+        public bool Clinical;
 
         /// <summary>Reading distances by canvas name (a panel not named here is read from 1 m), so the panels need not say it themselves.</summary>
         public static readonly System.Collections.Generic.Dictionary<string, float> Distances = new System.Collections.Generic.Dictionary<string, float>
@@ -24,6 +26,8 @@ namespace ProcSense.VR.UI.Accessibility
             // at a desk or a trolley
             ["EMR shell"] = .6f, ["EMR"] = .6f, ["Results"] = .6f, ["Diagnostics preview"] = .6f, ["Folder page"] = .6f, ["Spoken order"] = .6f, ["Push to talk"] = .6f,
             ["Main menu"] = .6f, ["ModeChooser"] = .6f, ["Diagnostic wait status"] = .6f,
+            // the game-flow menu floats MenuFlowInstaller.Distance (1.5 m) in front of the head (was read as 1 m before 14 Nov 2026 UTC)
+            ["Game flow"] = 1.5f,
             // on a wall
             ["WHO board"] = 1.5f, ["Debrief"] = 1f, ["Door panel"] = 1.2f, ["Diagnostic information"] = 1.5f,
         };
@@ -35,6 +39,8 @@ namespace ProcSense.VR.UI.Accessibility
             a.BaseScale = metresPerPixel;
             a.ViewingDistance = Distances.TryGetValue(canvas.name, out var d) ? d : 1f;
             a.Subtitle = canvas.name.EndsWith("ubtitles") || canvas.name.EndsWith(" subtitle");
+            a.Clinical = ClinicalText.IsClinical(canvas.name);
+            if (a.Clinical && a.isActiveAndEnabled) ClinicalText.Register(a);
             a.Apply();
             return a;
         }
@@ -46,8 +52,9 @@ namespace ProcSense.VR.UI.Accessibility
 
         // subscribed for the canvas's whole life, so a hidden panel (subtitles between lines) is the right size when it next shows
         private void Awake() => AccessibilitySettings.Changed += Apply;
-        private void OnDestroy() => AccessibilitySettings.Changed -= Apply;
-        private void OnEnable() => Apply();
+        private void OnDestroy() { AccessibilitySettings.Changed -= Apply; ClinicalText.Unregister(this); }
+        private void OnEnable() { if (Clinical) ClinicalText.Register(this); Apply(); }
+        private void OnDisable() => ClinicalText.Unregister(this);
 
         public void Apply()
         {

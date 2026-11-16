@@ -117,6 +117,9 @@ namespace ProcSense.Core.Workflow.Steps
 
         private WardTables Tables => _content.Ward;
 
+        /// <summary>Every line of the checklist, needed or not, in content order.</summary>
+        public IReadOnlyList<WardItem> Items => Tables.Items;
+
         public void Init(Session session)
         {
             _s = session;

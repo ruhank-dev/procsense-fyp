@@ -5,7 +5,7 @@
  "scenario": "S2",
  "tier": "P2",
  "synthetic": true,
- "status": "APPROVED_FOR_TRAINING",
+ "status": "APPROVED_FOR_ASSESSMENT",
  "reference_date": "2026-10-10",
  "base_card": null,
  "identity": {
@@ -499,8 +499,8 @@
   "plan": "rsi"
  },
  "approval": {
-  "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026",
-  "date": "2026-10-25",
-  "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open"
+  "by": "Owner (Ruhan Kamran), explicit authorization for educational practice use given in chat on 25 Oct 2026 | Examination use: owner authorisation of 7 Nov 2026 (ADR-0032 decision D1): the owner states that the clinical reviewer verified the scenario content and authorises its use in the academic examination simulation; no clinician is named and no signature is claimed",
+  "date": "2026-11-07",
+  "note": "Synthetic educational practice cases authored by the engineer (DT-220); the owner authorized practice-mode use only. No clinician reviewed them and this is not clinical validation or assessment approval; EX-13 (independent review of the authored values) stays open | Examination use: owner-attested under ADR-0032 D1 (recorded 14 Nov 2026); this is the owner's statement, not a new clinician review or signature"
  }
 }

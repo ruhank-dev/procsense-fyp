@@ -1,0 +1,18 @@
+{
+ "name": "voice_turn_speech_action",
+ "route": "POST /speech/organisations/{id}/action",
+ "schema": "ActionIn",
+ "valid": true,
+ "body": {
+  "utterance": "Nurse, can you check his blood pressure?",
+  "available": [
+   "measure_bp",
+   "measure_spo2"
+  ],
+  "turns": [],
+  "addressee": "nurse",
+  "interaction_mode": "voice",
+  "session_mode": "practice",
+  "request_id": "3f2b8c1e-6a4d-4f7e-9a51-0c2d7e8b9a10"
+ }
+}

@@ -128,6 +128,24 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void A_laptop_address_on_the_private_network_is_accepted_only_where_the_build_allows_plain_http()
+        {
+            var before = ServiceSettings.AllowPrivateHttp;
+            try
+            {
+                ServiceSettings.AllowPrivateHttp = true;
+                foreach (var ok in new[] { "http://192.168.1.20:8000", "http://10.0.0.5:8000", "http://172.16.4.2:8000", "http://172.31.255.1:8000" })
+                    Assert.IsTrue(ServiceSettings.IsAcceptable(ok), ok);
+                foreach (var no in new[] { "http://172.32.0.1:8000", "http://8.8.8.8", "http://192.168.1.20.evil.com", "http://laptop.local:8000", "ftp://192.168.1.20" })
+                    Assert.IsFalse(ServiceSettings.IsAcceptable(no), no);
+                ServiceSettings.AllowPrivateHttp = false;
+                Assert.IsFalse(ServiceSettings.IsAcceptable("http://192.168.1.20:8000"), "the study build refuses plain http to the LAN");
+                Assert.IsTrue(ServiceSettings.IsAcceptable("https://192.168.1.20:8000"));
+            }
+            finally { ServiceSettings.AllowPrivateHttp = before; }
+        }
+
+        [Test]
         public void A_sign_in_address_that_is_not_secure_is_not_trusted_with_a_password()
         {
             var insecure = "{\"supabase_url\":\"http://project.example\",\"supabase_publishable_key\":\"k\"}";

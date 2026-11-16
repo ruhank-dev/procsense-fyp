@@ -326,7 +326,8 @@ namespace ProcSense.Core.Content
             if (f.CreatedBy == "composer" && f.Status != "DRAFT" && f.Status != "GENERATED_PRACTICE_ONLY") throw new ContentException("status: a composed case is a draft or generated practice only; it is never approved by the generator");
             if (f.Spine != null && f.CreatedBy != "composer") throw new ContentException("composition: only a composed case has one");
             if (f.CreatedBy == "ai_draft" && f.Status.StartsWith("APPROVED", StringComparison.Ordinal)) throw new ContentException("status: a case drafted by AI stops at CLINICAL_REVIEW until a person approves it");
-            if (f.Status == "APPROVED_FOR_ASSESSMENT" && f.Tier != "P0") throw new ContentException("status: only a P0 case can be approved for assessment");
+            if (f.Status == "APPROVED_FOR_ASSESSMENT" && (f.Approval == null || string.IsNullOrWhiteSpace(f.Approval.By) || string.IsNullOrWhiteSpace(f.Approval.Note) || !f.Approval.By.Contains("ADR-0032", StringComparison.Ordinal)))
+                throw new ContentException("status: approval for assessment needs a recorded owner attestation citing ADR-0032 (the P0-only rule was lifted by decision D1, P3-SCN-07)");
         }
 
         private static (int, int, int) Date(string where, string text)

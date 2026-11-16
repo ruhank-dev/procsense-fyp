@@ -1,5 +1,6 @@
 [
   {"t": 0.0, "verb": "introduce_self"},
+  {"t": 2.0, "verb": "escalate", "params": {"role": "senior", "s": "the patient has low oxygen", "b": "the observations are outside the safe range", "a": "it may change the pathway", "r": "please review the patient now"}},
   {"t": 4.0, "verb": "ask_identity"},
   {"t": 8.0, "verb": "read_wristband"},
   {"t": 12.0, "verb": "open_notes"},
@@ -55,6 +56,7 @@
   {"t": 3787.0, "verb": "use_emergency_route"},
   {"t": 3788.0, "verb": "check_treatment_timing", "params": {"treatment": "TR-ABX-S2"}},
   {"t": 3790.0, "verb": "request_medication", "params": {"class": "TR-ABX-S2", "indication": "appendicitis"}},
+  {"t": 3940.9, "verb": "document_treatment", "params": {"treatment": "TR-ABX-S2"}},
   {"t": 3942.0, "verb": "decide_ready", "params": {"option": "proceed"}},
   {"t": 3952.0, "verb": "check_station", "params": {"station": "anaesthetic_machine"}},
   {"t": 3953.0, "verb": "check_station", "params": {"station": "monitors"}},

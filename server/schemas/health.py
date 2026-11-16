@@ -7,6 +7,10 @@ class Health(BaseModel):
     service: str
     app_env: str
     git_sha: str
+    api_version: int = 1                       # P3-NET-10: what a headset checks before it trusts the AI routes
+    engine_versions: list[str] = []
+    content_versions: list[str] = []
+    lan_profile: bool = False
 
 
 class DbHealth(BaseModel):

@@ -2,8 +2,8 @@
   "case": "SC-31",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "60788024eded896a09f5ca9a7df22bb29445aa2987d4bfb016ca9b2ffd390db2",
-  "state_hash": "4961d5dec3fdf9cf279ab0732aac1a88cc3a7f9483214a0a3278acc879b62b1b",
+  "log_hash": "d6546be91ca6eb32840b48a6bd0faf2cecd8f6d72a8fa387d0f2f2d9f72ae030",
+  "state_hash": "9a770cf124271af66b86eafa690159940226f17391c84236e373f1cb7d1ab8c5",
   "facts": {
     "identity_confirmed": true,
     "allergies_known": true,
@@ -38,12 +38,11 @@
       "consent.capacity_checked",
       "consent.emergency_route",
       "consent.signed",
-      "critical.unacknowledged",
       "deterioration.treated",
       "endstate.resolved",
       "event.e-fast-breathing.handled",
-      "event.e-fever.missed",
-      "event.e-high-hr.missed",
+      "event.e-fever.handled",
+      "event.e-high-hr.handled",
       "exam.permission_asked",
       "exam.started",
       "finding.rigid_abdomen",
@@ -60,6 +59,7 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -70,13 +70,13 @@
     "anxiety": 5,
     "understanding": 1,
     "last_rejection": "",
-    "end_state": "SAFETY_FAILURE"
+    "end_state": "READY_SAFE"
   },
   "score": {
-    "result": "FAIL",
-    "credits": 15,
-    "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fever_not_escalated", "major.e_high_hr_not_escalated"],
-    "critical": ["critical.ignored_critical_result"]
+    "result": "SUCCESS",
+    "credits": 22,
+    "minor": [],
+    "major": [],
+    "critical": []
   }
 }

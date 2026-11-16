@@ -23,6 +23,7 @@ namespace ProcSense.VR.Diagnostics
         public bool CharCull;                // force the character culler on (the Quest default is on, desktop default off)
         public bool OcclusionOn;             // force the baked occlusion on (the Quest default is off, desktop default on)
         public bool RoomCull;                // room-level portal culling (RoomVisibility): rooms no door or glass can show are not drawn (replaces the baked occlusion for cross-room hiding)
+        public bool ImpostorExterior;        // force the impostor exterior variant (the Android default since the 14 Nov overhaul: cheap unlit facade materials on the optimised geometry)
         public bool OriginalExterior;        // force the untouched original city (the recoverable comparison variant); the production default on Android is the optimised one
         public bool PortalCullOff;           // with the optimised exterior: no per-chunk cone culling through windows (shows what the portal culling saves on top of the reduced meshes)
         public bool ExteriorCullOff;         // the city is always drawn (ExteriorVisibility off); shows what hiding the city behind solid walls saves
@@ -33,7 +34,16 @@ namespace ProcSense.VR.Diagnostics
         public bool AdditionalLightsOff;     // no per-pixel additional lights (measurement only: the corridor fills are realtime points)
         public bool SkinOffscreenOff;        // skinned meshes are not updated while off-screen (SkinnedMeshRenderer.updateWhenOffscreen = false)
         public float EyeScale = 1f;          // XR eye-texture scale
-        public int Msaa = 4;                 // MSAA samples (1 = off)
+        public int Msaa = 4;                 // MSAA samples (1 = off); the default 4 means "as the Quest asset is authored" (1 on Android since the 14 Nov profile)
+        public int ForceMsaa;                // explicit MSAA samples regardless of the asset (0 = not forced)
+        public bool OldProfile;              // the 14 Nov 2026 headset baseline: foveation off, eye scale 1.0, MSAA 4
+        public bool FoveationOff;            // foveation 0 even though the Quest profile uses High
+        public bool DynamicResOff;           // fixed render scale (no dynamic resolution) at the start scale
+        public float FixedScale;             // fixed effective scale drawn inside the profile's eye buffer (viewport), no dynamic resolution; 0 = not fixed
+        public float EyeAlloc;               // eye-buffer allocation scale replacing the profile's (dynamic resolution keeps running inside it); 0 = the profile's
+        public float StartAt;                // dynamic-resolution start scale replacing the profile's; 0 = the profile's
+        public float RangeMin, RangeMax;     // dynamic-resolution range replacing the profile's (0.85-1.0 since 15 Nov 2026); 0 = the profile's
+        public bool SpaceWarpOn;             // Application SpaceWarp (synthesised frames, not native 72 FPS); only works in a build with the OpenXR SpaceWarp feature enabled
         public int ShadowCascades;           // main-light shadow cascades, 0 = as authored (1)
         public bool AdditionalLightsPerVertex; // additional lights shaded per vertex instead of per pixel (the Quest asset is authored per pixel; changes the look of the corridor fills)
         public bool DepthTextureOn;          // the pipeline renders a depth texture (authored off); look-neutral, measures the extra pass
@@ -49,7 +59,7 @@ namespace ProcSense.VR.Diagnostics
         public bool ReflectionProbesOff;    // reflection probes disabled (measurement only: cost of probe sampling; reflections fall back to the skybox)
 
         /// <summary>True when the configuration changes something a player would see (used to label rows "measurement only" in the HUD and the CSV).</summary>
-        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || Msaa != 4 || OptimisedExterior || OriginalExterior || ShadowDistance > 0 || SoftShadowsOff || ShadowMapSize > 0 || MaxAdditionalLights >= 0 || AdditionalLightsOff || ShadowCascades > 0 || AnisoMode > 0 || AnisoMax > 0 || AdditionalLightsPerVertex || HdrOn || ReflectionProbesOff;   // OcclusionOff, DepthTextureOn, OpaqueTextureOn, SrpBatcherOff and DynamicBatchingOn are look-neutral; OcclusionOff is look-neutral by design
+        public bool ChangesLook => ShaftsOff || Foveation > 0 || RealtimeFillsOff || CurrentRoomOnly || CityHidden || CharactersHidden || MainShadowsOff || EyeScale != 1f || FixedScale > 0f || EyeAlloc > 0f || StartAt > 0f || RangeMin > 0f || RangeMax > 0f || FoveationOff || OldProfile || Msaa != 4 || ForceMsaa > 0 || OptimisedExterior || OriginalExterior || ShadowDistance > 0 || SoftShadowsOff || ShadowMapSize > 0 || MaxAdditionalLights >= 0 || AdditionalLightsOff || ShadowCascades > 0 || AnisoMode > 0 || AnisoMax > 0 || AdditionalLightsPerVertex || HdrOn || ReflectionProbesOff;   // OcclusionOff, DepthTextureOn, OpaqueTextureOn, SrpBatcherOff and DynamicBatchingOn are look-neutral; OcclusionOff is look-neutral by design
     }
 
     /// <summary>The fixed list of configurations, in the order the left thumbstick click cycles them and the automatic sweep measures them.</summary>
@@ -57,7 +67,14 @@ namespace ProcSense.VR.Diagnostics
     {
         public static readonly IReadOnlyList<PerfPreset> All = new List<PerfPreset>
         {
-            new PerfPreset { Id = "B0", Label = "Production default (Android: optimised exterior, room and city portal culling, character culler, no baked occlusion; desktop: original exterior, no culling)" },
+            new PerfPreset { Id = "B0", Label = "Production default (Android: sharpness profile FFR Medium, eye buffer 1.0 drawn at 0.9, dynamic resolution 0.85-1.0, MSAA off; impostor exterior, room and city portal culling, character culler, no baked occlusion; desktop: original exterior, no culling)" },
+            // Sharpness set (15 Nov 2026): the first clicks after B0, so the owner's comparison needs no long cycling. Each is a delta against B0.
+            new PerfPreset { Id = "B90", Label = "FFR High (1.0) instead of Medium", Foveation = 1f },
+            new PerfPreset { Id = "B91", Label = "MSAA 2x (unmeasured cost; default stays off)", Msaa = 2 },
+            new PerfPreset { Id = "B92", Label = "MSAA 2x + FFR High", Msaa = 2, Foveation = 1f },
+            new PerfPreset { Id = "B93", Label = "Fixed effective scale 1.0 (no dynamic resolution)", FixedScale = 1f },
+            new PerfPreset { Id = "B94", Label = "Fixed effective scale 0.85 (no dynamic resolution)", FixedScale = 0.85f },
+            new PerfPreset { Id = "B95", Label = "FIRST overhaul profile of 14 Nov (eye buffer 0.9 drawn at 0.8, dynamic resolution 0.7-0.9, FFR High, MSAA off)", EyeAlloc = 0.9f, StartAt = 0.8f, RangeMin = 0.7f, RangeMax = 0.9f, Foveation = 1f },
             new PerfPreset { Id = "B1", Label = "Legacy: 7 Nov rendering (intermediate texture Always, shafts off)", LegacyRenderer = true, ShaftsOff = true },
             new PerfPreset { Id = "B2", Label = "Legacy renderer only (intermediate texture Always)", LegacyRenderer = true },
             new PerfPreset { Id = "B3", Label = "Shafts and dust off", ShaftsOff = true },
@@ -123,6 +140,25 @@ namespace ProcSense.VR.Diagnostics
             new PerfPreset { Id = "B63", Label = "B15 + 3 additional lights per object + hard shadows (selective alternative)", OcclusionOff = true, MaxAdditionalLights = 3, SoftShadowsOff = true },
             new PerfPreset { Id = "B64", Label = "B15 + 2 additional lights per object, soft shadows (B24 on the B15 base)", OcclusionOff = true, MaxAdditionalLights = 2 },
             new PerfPreset { Id = "B65", Label = "B15 + hard shadows only (B22 on the B15 base)", OcclusionOff = true, SoftShadowsOff = true },
+            // Quest performance overhaul (14 Nov 2026). B0 is now the aggressive profile on Android; the older B-presets are deltas against it.
+            new PerfPreset { Id = "B70", Label = "OLD production baseline (14 Nov headset: 4x MSAA, eye scale 1.0, foveation off, no dynamic resolution)", OldProfile = true },
+            new PerfPreset { Id = "B71", Label = "Quest profile, explicit (MSAA 1x, eye buffer 1.0 drawn at 0.9, dynamic resolution 0.85-1.0, foveation Medium)" },
+            new PerfPreset { Id = "B72", Label = "Aggressive profile with foveation OFF", FoveationOff = true },
+            new PerfPreset { Id = "B73", Label = "Aggressive profile with foveation LOW (0.25)", Foveation = 0.25f },
+            new PerfPreset { Id = "B74", Label = "Quest profile with foveation MEDIUM (0.5), explicit (the default since 15 Nov 2026)", Foveation = 0.5f },
+            new PerfPreset { Id = "B75", Label = "Quest profile with foveation HIGH (1.0) (the 14 Nov default)", Foveation = 1f },
+            new PerfPreset { Id = "B76", Label = "Fixed render scale 0.9", EyeScale = 0.9f },
+            new PerfPreset { Id = "B77", Label = "Fixed render scale 0.85", EyeScale = 0.85f },
+            new PerfPreset { Id = "B78", Label = "Fixed render scale 0.8", EyeScale = 0.8f },
+            new PerfPreset { Id = "B79", Label = "Fixed render scale 0.75", EyeScale = 0.75f },
+            new PerfPreset { Id = "B80", Label = "Fixed render scale 0.7", EyeScale = 0.7f },
+            new PerfPreset { Id = "B81", Label = "Aggressive profile with MSAA 2x", Msaa = 2 },
+            new PerfPreset { Id = "B82", Label = "Aggressive profile with MSAA 4x", ForceMsaa = 4 },
+            new PerfPreset { Id = "B83", Label = "Quest profile without dynamic resolution (held at the start scale 0.9)", DynamicResOff = true },
+            new PerfPreset { Id = "B84", Label = "Application SpaceWarp ON (synthesised frames, NOT native 72 FPS; needs a build with the OpenXR SpaceWarp feature enabled, otherwise no effect)", SpaceWarpOn = true },
+            new PerfPreset { Id = "B85", Label = "Exterior: ORIGINAL city (comparison variant)", OriginalExterior = true },
+            new PerfPreset { Id = "B86", Label = "Exterior: OPTIMISED city (reduced geometry, original materials)", OptimisedExterior = true },
+            new PerfPreset { Id = "B87", Label = "Exterior: IMPOSTOR city (optimised geometry, cheap unlit facade materials; the Android default)", ImpostorExterior = true },
             new PerfPreset { Id = "B14", Label = "Candidate set: foveation 0.5, fills off, current room only", Foveation = 0.5f, RealtimeFillsOff = true, CurrentRoomOnly = true },
         };
     }

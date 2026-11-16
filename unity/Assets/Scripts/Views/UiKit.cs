@@ -58,6 +58,13 @@ namespace ProcSense.VR.Views
             // never below the readable floor for where the panel is read (p0-vr-interaction-ui-s10: 24 headset pixels)
             var readable = parent.GetComponentInParent<ProcSense.VR.UI.Accessibility.AccessibleCanvas>(true);
             label.fontSize = readable != null ? Mathf.Max(fontSize, readable.MinFontSize) : fontSize;
+            // clinical panels (EMR tablet, EMR, monitor, menu) share one slightly dilated SDF material so strokes survive the 0.8 eye buffer (ClinicalText)
+            if (readable != null && readable.Clinical)
+            {
+                if (label.font == null) label.font = TMP_Settings.defaultFontAsset;   // a label under an inactive parent has not run Awake yet
+                var sharp = ProcSense.VR.UI.Accessibility.ClinicalText.SharpMaterial(label.font);
+                if (sharp != null) label.fontSharedMaterial = sharp;
+            }
             label.alignment = align;
             label.color = color ?? TextColor;
             label.textWrappingMode = TextWrappingModes.Normal;

@@ -138,7 +138,7 @@ jobs:
 
       - name: Review-status gate refuses an under-approved case
         run: |
-          ! dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-A --seed 42 --mode assessment --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/g1.json"
+          ! dotnet run --no-build -c Release --project src/ProcSense.Cli -- run --case VAR-S1-B --seed 42 --mode assessment --actions tests/golden/skeleton1_correct.actions.json --out "$RUNNER_TEMP/g1.json"
 
       - uses: astral-sh/setup-uv@v7
 

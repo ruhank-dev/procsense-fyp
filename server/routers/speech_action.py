@@ -8,17 +8,18 @@ from __future__ import annotations
 import time
 from functools import lru_cache
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 from pydantic import BaseModel, Field
 from sqlalchemy.orm import Session as DbSession
 
-from server import ai_features
+from server import ai_features, request_ids
 from server.auth.dependencies import db_session
 from server.config import Settings, get_settings
 from server.llm import client as client_mod, routing
 from server.middleware.audit import AiCallRecord, audited
 from server.repositories import privacy as privacy_repository
 from server.routers import ai_gateway
+from server.schemas.voice_turn import TurnFields
 from server.speech_action.service import SpeechActions, catalogue
 
 router = APIRouter(tags=["speech actions"])
@@ -29,7 +30,7 @@ class Turn(BaseModel):
     text: str = Field(max_length=400)
 
 
-class ActionIn(BaseModel):
+class ActionIn(TurnFields):                     # + optional addressee, interaction_mode, session_mode, request_id (P3-API-02)
     utterance: str = Field(min_length=1, max_length=400)
     available: list[str] = Field(default=[], max_length=40)
     turns: list[Turn] = Field(default=[], max_length=6)
@@ -60,7 +61,8 @@ def get_speech_actions() -> SpeechActions:
 
 @router.post("/speech/organisations/{organisation_id}/action", response_model=ActionOut)
 def speech_action(body: ActionIn, call: AiCallRecord = Depends(audited("speech_action")), settings: Settings = Depends(get_settings), sa: SpeechActions = Depends(get_speech_actions),
-                  db: DbSession = Depends(db_session)) -> ActionOut:
+                  db: DbSession = Depends(db_session), x_request_id: str | None = Header(default=None, alias="X-Request-Id")) -> ActionOut:
+    request_ids.note("speech_action", call.user_id, body, x_request_id)
     with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):
         return _interpret(body, call, settings, sa)
 

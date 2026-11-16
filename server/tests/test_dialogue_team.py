@@ -185,3 +185,30 @@ def test_the_health_page_says_what_the_routing_does_without_any_secret(world, cl
     status = world.api.client.get("/ai/health").json()["routing"]
     assert status == {"cloud_routing": True, "synthetic_deployment": True, "trainee_data_approved": False, "trainee_routes_use_cloud": True, "needs_personal_consent": False,
                       "spoken_orders": {"preferred": "gemma4:31b-cloud", "active": "gemma_cloud", "grammar_fallback_reason": "", "profile": "synthetic_demonstration"}}
+
+
+# ---- the examination (owner decision D3): staff speak only when spoken to, and only their examination-safe lines -------------------------------------------------------------------------------------------
+EXAM = json.loads(dialogue_router.exam_policy.POLICY_FILE.read_text(encoding="utf-8"))["roles"]
+
+
+def test_in_the_examination_the_nurse_who_is_spoken_to_answers_with_the_examination_line(world, cloud):
+    seen = []
+    world.use(host(both(staff={"nurse": "report_observation"}), seen))
+    r = world.post({"context": CTX, "question": "Nurse, what does the monitor show?", "mode": "examination"})
+    got = {x["role"]: x for x in r.json()["replies"]}
+    assert sorted(got) == ["nurse", "patient"]                                                         # the anaesthetist was not spoken to: not even offered to the model
+    assert got["nurse"]["text"] == EXAM["nurse"]["lines"]["report_observation"]
+
+
+def test_in_the_examination_a_hinting_intent_gets_the_neutral_line_and_nobody_unaddressed_speaks(world, cloud):
+    world.use(host(both(staff={"nurse": "ask_prep_status", "anaesthesia": "raise_approved_concern"})))
+    r = world.post({"context": CTX, "question": "Nurse and anaesthetist, can you help me?", "mode": "examination"})
+    got = {x["role"]: x for x in r.json()["replies"]}
+    text = " ".join(x["text"] for x in r.json()["replies"]).lower()                                   # the words spoken (the intent names stay internal)
+    assert got["nurse"]["text"] == EXAM["nurse"]["lines"]["ask_prep_status"] and got["anaesthesia"]["text"] == EXAM["anaesthesia"]["lines"]["raise_approved_concern"]
+    assert "consent" not in text and "fasting" not in text and "concern" not in text
+    r = world.post({"context": CTX, "question": "Where is the pain?", "mode": "examination"})
+    assert [x["role"] for x in r.json()["replies"]] == ["patient"]                                    # nobody was spoken to: no unsolicited staff line
+    world.use(host(both(staff={"nurse": "report_observation"})))
+    r = world.post({"context": CTX, "question": "Can you read me the readings?", "mode": "examination", "addressee": "nurse"})
+    assert [x["role"] for x in r.json()["replies"]] == ["patient", "nurse"]                           # the interpreter heard it addressed to the nurse

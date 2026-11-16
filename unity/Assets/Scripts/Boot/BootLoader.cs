@@ -22,10 +22,15 @@ namespace ProcSense.VR.Boot
         public void ConfigureLogin(DemoLoginSettings settings, GameObject view, GameObject rig)
         { loginSettings = settings; loginPrefab = view; loginRigPrefab = rig; }
 
+        /// <summary>True when the menu (MenuFlowInstaller) starts the session instead of the fixed SessionConfig case. Default: the player yes, the Editor and tests no.</summary>
+        public static bool MenuStartsSession = !Application.isEditor;
+
         private IEnumerator Start()
         {
+            ProcSense.VR.Bridge.SimulationHost.AutoStartFromConfig = !MenuStartsSession;
             if (loginSettings != null && loginSettings.ShouldShow()) yield return Login();
             foreach (var scene in scenes) yield return Load(scene);
+            if (GetComponent<ProcSense.VR.Flow.MenuFlowInstaller>() == null) gameObject.AddComponent<ProcSense.VR.Flow.MenuFlowInstaller>();   // Menu -> scenario -> Submit -> Results (P3-02)
             if (Application.isEditor && !Application.isBatchMode && ProcSense.VR.XR.EditorInputSettings.ShouldUseSimulator
                 && !string.IsNullOrEmpty(editorOnlyScene)) yield return Load(editorOnlyScene);
         }

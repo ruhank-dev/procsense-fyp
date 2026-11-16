@@ -75,6 +75,8 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsNotNull(installer.Router);
             Assert.AreSame(installer.Conversation, installer.Router.Talk);
             Assert.GreaterOrEqual(installer.Emr.TabButtons.Count, 7);
+            Assert.IsNotNull(installer.Board, "the training board (P3-TRN-03) is placed with the panels");
+            Assert.AreEqual(ProcSense.VR.Bridge.ModeGate.PracticeAids, installer.Board.Canvas.gameObject.activeSelf, "the board shows in training only");
             var emr = installer.Emr;
             yield return null;
             Assert.AreSame(emr, installer.Emr);                                               // created once

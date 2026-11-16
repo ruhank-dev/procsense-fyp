@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace ProcSense.VR.Auth
 {
-    public enum SignInOutcome { Signed, WrongCredentials, Unreachable, ServiceNotSet, NoOrganisation, ConsentNeeded, Failed }
+    public enum SignInOutcome { Signed, WrongCredentials, Unreachable, ServiceNotSet, NoOrganisation, ConsentNeeded, Failed, NotPaired }
 
     public sealed class SignInResult
     {
@@ -29,7 +29,7 @@ namespace ProcSense.VR.Auth
         public static AuthService CreateDefault()
         {
             var settings = ServiceSettings.Load();
-            return new AuthService(new UnityHttp(), settings != null ? settings.BaseUrl : "", settings != null ? settings.RequestTimeoutSeconds : 100);
+            return new AuthService(LanHttp.Default(), settings != null ? settings.BaseUrl : "", settings != null ? settings.RequestTimeoutSeconds : 100);
         }
 
         public static void Clear() { Current = null; }
@@ -38,6 +38,7 @@ namespace ProcSense.VR.Auth
         [Serializable] private class TokenDto { public string access_token; public string refresh_token; public int expires_in; }
         [Serializable] private class MembershipDto { public string organisation_id; public string organisation_name; public string slug; public string role; public string status; }
         [Serializable] private class MeDto { public string user_id; public string pseudonym; public string display_name; public MembershipDto[] memberships; }
+        [Serializable] private class DemoIdentityDto { public string user_id; public string pseudonym; public string display_name; public string organisation_id; public string organisation_name; public string role; }
         [Serializable] private class ConsentDto { public bool needs_consent; }
         [Serializable] private class CredentialsDto { public string email; public string password; }
         [Serializable] private class RefreshDto { public string refresh_token; }
@@ -117,10 +118,53 @@ namespace ProcSense.VR.Auth
             done(new SignInResult { Outcome = SignInOutcome.Signed, Message = "Signed in." });
         }
 
+        /// <summary>
+        /// The networked demonstration (P3-NET-11): a headset paired with the laptop plays as the synthetic demonstration user. The laptop answers <see cref="DemoIdentityPath"/> for a valid
+        /// device token with the identity (user, organisation); nothing is typed and no account password is involved. The device token stands in for the access token, so the uploads
+        /// and the other calls made through <see cref="Authorized"/> carry it (as the Bearer value; the laptop also reads X-ProcSense-Device). A real account never takes this road.
+        /// </summary>
+        public const string DemoIdentityPath = "/pairing/demo-identity";
+
+        public IEnumerator SignInPairedDevice(Action<SignInResult> done)
+        {
+            if (!ServiceSettings.IsAcceptable(_baseUrl)) { done(Fail(SignInOutcome.ServiceNotSet, "The service address is not set in this build.")); yield break; }
+            string deviceToken = DeviceTokenStore.Get();
+            if (string.IsNullOrEmpty(deviceToken)) { done(Fail(SignInOutcome.NotPaired, "This headset is not paired with the laptop.")); yield break; }
+
+            HttpResult answer = default;
+            yield return _http.Send("GET", _baseUrl + DemoIdentityPath, null, new Dictionary<string, string> { { "X-ProcSense-Device", deviceToken } }, _timeout, r => answer = r);
+            if (answer.NetworkError) { done(Fail(SignInOutcome.Unreachable, "Cannot reach the laptop.")); yield break; }
+            if (answer.Status == 401 || answer.Status == 403)
+            {
+                DeviceTokenStore.Clear();   // the laptop forgot this headset (revoked): pair again
+                done(Fail(SignInOutcome.NotPaired, "The laptop no longer knows this headset. Pair it again."));
+                yield break;
+            }
+            var dto = answer.Ok ? SafeParse<DemoIdentityDto>(answer.Body) : null;
+            if (dto == null || string.IsNullOrEmpty(dto.user_id) || string.IsNullOrEmpty(dto.organisation_id))
+            { done(Fail(SignInOutcome.Failed, answer.Status == 404 ? "The laptop is not in demonstration mode." : "The laptop did not give the demonstration identity.")); yield break; }
+
+            _accessToken = deviceToken;
+            _refreshToken = null;
+            _expiresAt = float.MaxValue;
+            UserId = dto.user_id;
+            Pseudonym = dto.pseudonym ?? "";
+            DisplayName = dto.display_name ?? "";
+            OrganisationId = dto.organisation_id;
+            OrganisationName = dto.organisation_name ?? "";
+            Role = string.IsNullOrEmpty(dto.role) ? "trainee" : dto.role;
+            IsDemoDevice = true;
+            Current = this;
+            done(new SignInResult { Outcome = SignInOutcome.Signed, Message = "Signed in as the demonstration user." });
+        }
+
+        public bool IsDemoDevice { get; private set; }
+
         public void SignOut()
         {
             _accessToken = _refreshToken = null;
             _expiresAt = 0;
+            IsDemoDevice = false;
             if (Current == this) Current = null;
         }
 

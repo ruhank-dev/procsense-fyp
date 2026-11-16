@@ -1,0 +1,10 @@
+{
+ "name": "voice_turn_bad_request_id",
+ "route": "POST /speech/organisations/{id}/action",
+ "schema": "ActionIn",
+ "valid": false,
+ "body": {
+  "utterance": "check his pulse",
+  "request_id": "has spaces; and \"quotes\""
+ }
+}

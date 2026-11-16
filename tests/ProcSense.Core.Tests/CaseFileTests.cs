@@ -34,10 +34,10 @@ namespace ProcSense.Core.Tests
             Assert.Equal(20 + TestCase.CombinationIds.Count, files.Values.Count(f => f.Tier == "P2"));
             Assert.All(files, kv => Assert.Equal(kv.Key, kv.Value.Id));
             var pending = System.Text.Json.Nodes.JsonNode.Parse(System.IO.File.ReadAllText(System.IO.Path.Combine(TestCase.ContentRoot, "case_signoff_pending.json")))!["pending"]!.AsObject().Select(kv => kv.Key).ToList();
-            Assert.All(files.Values.Where(f => !pending.Contains(f.Id) && !TestCase.CombinationIds.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_TRAINING", f.Status));
+            Assert.All(files.Values.Where(f => !pending.Contains(f.Id) && !TestCase.CombinationIds.Contains(f.Id)), f => Assert.Equal("APPROVED_FOR_ASSESSMENT", f.Status));   // P3-SCN-07: owner-attested for the examination too
             Assert.All(TestCase.CombinationIds, id =>
             {
-                Assert.Equal("APPROVED_FOR_TRAINING", files[id].Status);                                       // the owner authorized educational practice use on 25 Oct 2026 (--grant-cases)
+                Assert.Equal("APPROVED_FOR_ASSESSMENT", files[id].Status);                                     // the owner authorized educational practice use on 25 Oct 2026 (--grant-cases)
                 Assert.Contains("educational practice", files[id].Approval!.By);
                 Assert.Contains("No clinician reviewed", files[id].Approval!.Note);                           // the approval never claims clinical review
             });

@@ -61,11 +61,28 @@ namespace ProcSense.VR.Voice
         public Func<bool> CharacterSpeaking = () => false;
         public bool Recording { get; private set; }
         public string Status { get; private set; } = "";
+        /// <summary>The voice feedback table (P3-VOX-07); null uses <see cref="VoiceFeedback.Loaded"/>.</summary>
+        public VoiceFeedback FeedbackTable;
+        /// <summary>The feedback phrase of the last recognition failure (ASR_FAILED, SERVICE_OFFLINE), or null after a usable recognition.</summary>
+        public VoiceFeedbackLine LastFeedback { get; private set; }
+        /// <summary>Raised with the feedback phrase of a recognition failure, so the voice path can speak it.</summary>
+        public event Action<VoiceFeedbackLine> FeedbackGiven;
+        /// <summary>The last status invites the trainee to say it again (shows the say-again button).</summary>
+        public bool CanRetry { get; private set; }
         public float RecordedSeconds { get; private set; }
         private int _rate;
         private float _startedAt;
 
-        private void Set(string status) { Status = status; StatusChanged?.Invoke(status); }
+        private void Set(string status, bool retry = false) { Status = status; CanRetry = retry; StatusChanged?.Invoke(status); }
+
+        private void Feedback(string code)
+        {
+            var host = ProcSense.VR.Bridge.SimulationHost.Instance;
+            bool practice = host == null || host.Session == null || host.Session.PracticeAids;
+            LastFeedback = (FeedbackTable ?? VoiceFeedback.Loaded).Resolve(code, practice);
+            Set(LastFeedback.Subtitle, LastFeedback.Retry);
+            FeedbackGiven?.Invoke(LastFeedback);
+        }
 
         public bool Press()
         {
@@ -95,7 +112,7 @@ namespace ProcSense.VR.Voice
             RecordingChanged?.Invoke(false);
             var samples = Mic.End();
             RecordedSeconds = _rate > 0 ? samples.Length / (float)_rate : 0f;
-            if (!WavEncoder.HasSpeech(samples, _rate)) { Set("I did not hear anything. Hold the button and speak."); return; }
+            if (!WavEncoder.HasSpeech(samples, _rate)) { Set("I did not hear anything. Hold the button and speak.", true); return; }
             StartCoroutine(Send(WavEncoder.Encode(samples, _rate)));
         }
 
@@ -106,8 +123,9 @@ namespace ProcSense.VR.Voice
             Set("Recognising...");
             AsrResult result = null;
             yield return AsrClient.Transcribe(Auth(), wav, r => result = r);
-            if (result.Unavailable) { Set("Speech recognition is not available: use the tablet."); yield break; }
-            if (!result.Usable) { Set("Say that again, please."); yield break; }
+            if (result.Unavailable) { Feedback(VoiceFeedback.ServiceOffline); yield break; }
+            if (!result.Usable) { Feedback(VoiceFeedback.AsrFailed); yield break; }
+            LastFeedback = null;
             Set("Heard: " + result.Text);
             Transcribed?.Invoke(result.Text);
         }
@@ -151,7 +169,7 @@ namespace ProcSense.VR.Voice
             if (SuggestionButtons == null) return;
             if (SayAgainButton != null && Talk != null)
             {
-                bool again = !Talk.Recording && (Talk.Status.StartsWith("Say that again") || Talk.Status.StartsWith("I did not hear"));
+                bool again = !Talk.Recording && Talk.CanRetry;
                 if (SayAgainButton.gameObject.activeSelf != again) SayAgainButton.gameObject.SetActive(again);
             }
             if (_status != null && Talk != null)                                               // what the trainee needs to read: the recogniser, then what was understood, then which model answered
@@ -175,6 +193,7 @@ namespace ProcSense.VR.Voice
             if (Talk == null) return;
             Talk.StatusChanged += OnStatus;
             Talk.RecordingChanged += OnRecording;
+            Talk.FeedbackGiven += OnFeedback;
             if (Health != null) Talk.Offline = () => Health.State.Offline;
             if (Speaker != null) Talk.CharacterSpeaking = () => Speaker.IsPlaying;
         }
@@ -184,8 +203,10 @@ namespace ProcSense.VR.Voice
             if (Talk == null) return;
             Talk.StatusChanged -= OnStatus;
             Talk.RecordingChanged -= OnRecording;
+            Talk.FeedbackGiven -= OnFeedback;
         }
 
+        private void OnFeedback(VoiceFeedbackLine line) { if (Router != null && Router.Talk != null) Router.Talk.SayFeedback(line); }
         private void OnRecording(bool on) { if (Speaker != null) Speaker.SetMuted(on); }
         private void OnStatus(string s) { if (_status != null) _status.text = s; if (_caption != null) _caption.text = Talk != null && Talk.Recording ? "Send" : "Talk"; }
 

@@ -16,7 +16,7 @@ namespace ProcSense.EditorTools
         public bool Development;
         /// <summary>Extra defines (the diagnostic variants: PROCSENSE_PERF_DIAG, and PROCSENSE_PERF_GPUSKIN for the GPU-skinning one).</summary>
         public string[] Extra = Array.Empty<string>();
-        /// <summary>Diagnostic build (P3-PRF-01): frame-timing statistics on for the build only.</summary>
+        /// <summary>Diagnostic build (P3-PRF-01): PROCSENSE_PERF_DIAG readout and presets. Frame-timing statistics are on for every Android build since 15 Nov 2026 (DT-306).</summary>
         public bool Diagnostic;
         /// <summary>Build with GPU skinning (mesh deformation on the GPU) for the build only, to measure CPU against GPU skinning on the headset.</summary>
         public bool GpuSkinning;
@@ -48,6 +48,9 @@ namespace ProcSense.EditorTools
             Variants.FirstOrDefault(v => string.Equals(v.Name, name, StringComparison.OrdinalIgnoreCase)) ?? throw new ArgumentException("unknown build variant '" + name + "' (dev, demo, study, diag or diag-gpuskin)");
 
         /// <summary>The defines a variant builds with: the project's own, without any other variant's, plus its own.</summary>
+        /// <summary>Whether the player may use plain http: the study build never; a development build in development only; demo and diagnostic builds always (the app itself still only accepts private LAN addresses, ServiceSettings.IsAcceptable).</summary>
+        public static InsecureHttpOption HttpPolicyFor(BuildVariantSpec v) => v.Name == "study" ? InsecureHttpOption.NotAllowed : v.Name == "dev" ? InsecureHttpOption.DevelopmentOnly : InsecureHttpOption.AlwaysAllowed;
+
         public static string[] DefinesFor(BuildVariantSpec v, string[] current) => current.Where(d => !AllDefines.Contains(d)).Concat(new[] { v.Define }).Concat(v.Extra).Distinct().ToArray();
 
         [MenuItem("ProcSense/Build/Dev")] private static void MenuDev() => Build(Variant("dev"), false);
@@ -109,10 +112,14 @@ namespace ProcSense.EditorTools
             var before = PlayerSettings.GetScriptingDefineSymbols(target);
             var skinningBefore = PlayerSettings.meshDeformation;
             bool timingBefore = PlayerSettings.enableFrameTimingStats;
+            var httpBefore = PlayerSettings.insecureHttpOption;
             try
             {
                 PlayerSettings.SetScriptingDefineSymbols(target, string.Join(";", DefinesFor(v, before.Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries))));
-                if (v.Diagnostic) PlayerSettings.enableFrameTimingStats = true;
+                PlayerSettings.insecureHttpOption = HttpPolicyFor(v);        // P3-NET-02: plain http to a LAN laptop in dev, demo and diagnostic builds; the study build stays https only
+                // DT-306 (15 Nov 2026 UTC): on for the release AND the diagnostic APKs. QuestPerformanceProfile's dynamic resolution reads the GPU time from FrameTimingManager; without it the
+                // release APK held its start scale. The committed project value is restored in the finally block.
+                PlayerSettings.enableFrameTimingStats = true;
                 if (v.GpuSkinning) PlayerSettings.meshDeformation = MeshDeformation.GPU;
                 var options = new BuildPlayerOptions
                 {
@@ -134,6 +141,7 @@ namespace ProcSense.EditorTools
                 PlayerSettings.SetScriptingDefineSymbols(target, before);
                 PlayerSettings.meshDeformation = skinningBefore;          // a diagnostic build never leaves the project changed
                 PlayerSettings.enableFrameTimingStats = timingBefore;
+                PlayerSettings.insecureHttpOption = httpBefore;
             }
         }
 

@@ -1,0 +1,25 @@
+{
+ "name": "session_report_replay",
+ "route": "GET /organisations/{id}/sessions/{session_id}/report",
+ "schema": "SessionReport",
+ "valid": true,
+ "body": {
+  "session_id": "6a0c1f0e-2b7d-4c1a-9f3e-5d8b7a6c4e21",
+  "trainee": "T-0001",
+  "case_id": "VAR-S1-A",
+  "mode": "assessment",
+  "content_version": "0123456789ab-assessment",
+  "engine_version": "0.0.18",
+  "verified_at": "2026-11-15T10:00:00Z",
+  "result": "SUCCESS",
+  "end_state": "READY_SAFE",
+  "process_score": null,
+  "facts": {
+   "schema": "debrief_facts.v1"
+  },
+  "hints_used": 2,
+  "hints_charged": 2,
+  "verdict": "SUCCESS",
+  "verdict_source": "server_replay"
+ }
+}

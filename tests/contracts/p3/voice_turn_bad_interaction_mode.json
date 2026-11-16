@@ -1,0 +1,10 @@
+{
+ "name": "voice_turn_bad_interaction_mode",
+ "route": "POST /orders/organisations/{id}/hear",
+ "schema": "HearIn",
+ "valid": false,
+ "body": {
+  "text": "order a full blood count",
+  "interaction_mode": "telepathy"
+ }
+}

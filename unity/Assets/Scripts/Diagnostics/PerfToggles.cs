@@ -23,6 +23,8 @@ namespace ProcSense.VR.Diagnostics
         private readonly Dictionary<Animator, bool> _animators = new Dictionary<Animator, bool>();
         private int _sceneCount = -1;
         private int _authoredMsaa = -1;
+        private bool _spaceWarpSet;
+        private PerfPreset _scaleFor;
         private (float dist, bool soft, int size, int maxLights, LightRenderingMode mode, int cascades, bool depth, bool opaque, bool hdr, bool dyn, bool srpb)? _authoredUrp;
         private DepthPrimingMode? _authoredPriming;
         private AnisotropicFiltering? _authoredAniso;
@@ -38,13 +40,31 @@ namespace ProcSense.VR.Diagnostics
         {
             Index();
             DesktopOnly.ShowOnAndroid = !p.ShaftsOff;
-            QuestRenderTier.SetFoveation(p.Foveation);
-            if (Mathf.Abs(UnityEngine.XR.XRSettings.eyeTextureResolutionScale - QuestRenderTier.ClampEyeScale(p.EyeScale)) > 0.001f) QuestRenderTier.SetEyeScale(p.EyeScale);
+            // The Quest performance profile is the production default (QuestPerformanceProfile): a preset that leaves foveation, eye scale, scale range and MSAA at their neutral defaults inherits it on Android;
+            // OldProfile restores the 14 Nov headset baseline (foveation off, scale 1.0, MSAA 4); an explicit EyeScale allocates that buffer and draws all of it (fixed); FixedScale draws a fixed share of the
+            // profile's buffer; DynamicResOff holds the start scale; EyeAlloc / StartAt / RangeMin / RangeMax replace the profile's dynamic-resolution values (B95 = the first overhaul profile).
+            float fov = p.OldProfile || p.FoveationOff ? 0f : p.Foveation > 0f ? p.Foveation : QuestPerformanceProfile.ProfileFoveation;
+            bool allocOnly = p.OldProfile || p.EyeScale != 1f;
+            bool fixedScale = allocOnly || p.DynamicResOff || p.FixedScale > 0f;
+            float alloc = p.OldProfile ? 1f : p.EyeScale != 1f ? p.EyeScale : p.EyeAlloc > 0f ? p.EyeAlloc : QuestPerformanceProfile.ProfileEyeScale;
+            QuestRenderTier.SetFoveation(fov);
+            if (Mathf.Abs(UnityEngine.XR.XRSettings.eyeTextureResolutionScale - QuestRenderTier.ClampEyeScale(alloc)) > 0.001f) QuestRenderTier.SetEyeScale(alloc);
+            QuestPerformanceProfile.RangeMin = p.FixedScale > 0f ? p.FixedScale : p.RangeMin > 0f ? p.RangeMin : QuestPerformanceProfile.MinScale;
+            QuestPerformanceProfile.RangeMax = p.FixedScale > 0f ? p.FixedScale : p.RangeMax > 0f ? p.RangeMax : QuestPerformanceProfile.MaxScale;
+            QuestPerformanceProfile.DynamicResolution = !fixedScale;
+            // The scale is set once per preset change, not on every re-apply: re-applying it twice a second (as before 15 Nov 2026) pinned dynamic resolution at the start scale in the diagnostic build.
+            if (QuestPerformanceProfile.Active && !ReferenceEquals(p, _scaleFor))
+            {
+                _scaleFor = p;
+                if (allocOnly) UnityEngine.XR.XRSettings.renderViewportScale = 1f;
+                else QuestPerformanceProfile.SetScale(p.FixedScale > 0f ? p.FixedScale : p.StartAt > 0f ? p.StartAt : QuestPerformanceProfile.StartScale);
+            }
+            if (p.SpaceWarpOn || _spaceWarpSet) { QuestPerformanceProfile.TrySetSpaceWarp(p.SpaceWarpOn); _spaceWarpSet = p.SpaceWarpOn; }
             bool twoRenderers = false;
             if (GraphicsSettings.currentRenderPipeline is UniversalRenderPipelineAsset urp)
             {
                 if (_authoredMsaa < 0) _authoredMsaa = urp.msaaSampleCount;
-                int want = p.Msaa == 4 ? _authoredMsaa : p.Msaa;
+                int want = p.ForceMsaa > 0 ? p.ForceMsaa : p.Msaa == 4 ? (p.OldProfile ? 4 : _authoredMsaa) : p.Msaa;
                 if (urp.msaaSampleCount != want) urp.msaaSampleCount = want;
                 if (_authoredUrp == null) _authoredUrp = (urp.shadowDistance, urp.supportsSoftShadows, urp.mainLightShadowmapResolution, urp.maxAdditionalLightsCount, urp.additionalLightsRenderingMode, urp.shadowCascadeCount, urp.supportsCameraDepthTexture, urp.supportsCameraOpaqueTexture, urp.supportsHDR, urp.supportsDynamicBatching, GraphicsSettings.useScriptableRenderPipelineBatching);
                 var au = _authoredUrp.Value;
@@ -64,7 +84,7 @@ namespace ProcSense.VR.Diagnostics
                 twoRenderers = urp.name == AndroidPipelineName;    // only the Quest tier lists the legacy renderer as index 1
             }
             ExteriorVisibility.Enabled = !p.ExteriorCullOff; ExteriorVisibility.PortalCullEnabled = !p.PortalCullOff;
-            QuestExterior.Current = p.OptimisedExterior ? QuestExterior.Variant.Optimised : p.OriginalExterior ? QuestExterior.Variant.Original : QuestExterior.DefaultVariant;
+            QuestExterior.Current = p.ImpostorExterior ? QuestExterior.Variant.Impostor : p.OptimisedExterior ? QuestExterior.Variant.Optimised : p.OriginalExterior ? QuestExterior.Variant.Original : QuestExterior.DefaultVariant;
             ExteriorVisibility.ForceHidden = p.CityHidden;
             if (p.RoomCull) RoomVisibility.Enabled = true; else if (p.RoomCullOff) RoomVisibility.Enabled = false; else RoomVisibility.ResetToDefault();
             CharacterPerfCuller.Enabled = p.CharCull || CharacterPerfCuller.DefaultEnabled;

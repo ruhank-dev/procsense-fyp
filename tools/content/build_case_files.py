@@ -130,6 +130,29 @@ def grant_cases(cases: dict[str, dict], ids: list[str], by: str, date: str, why:
     print(f"recorded approval for {len(ids)} cases: {', '.join(ids)}")
 
 
+ASSESSMENT_BY = ("Examination use: owner authorisation of 7 Nov 2026 (ADR-0032 decision D1): the owner states that the clinical reviewer verified the scenario content and authorises its use in "
+                 "the academic examination simulation; no clinician is named and no signature is claimed")
+
+
+def grant_assessment(cases: dict[str, dict], date: str = "2026-11-07") -> int:
+    """P3-SCN-07: raise every playable case (APPROVED_FOR_TRAINING, not composed, not AI-drafted) to APPROVED_FOR_ASSESSMENT on the owner's D1 authorisation, as an honestly labelled owner attestation.
+    DRAFT, CLINICAL_REVIEW and generated cases are never raised. The approval stays tied to the exact content hash."""
+    data = json.loads(APPROVALS.read_text(encoding="utf-8"))
+    n = 0
+    for k, c in cases.items():
+        if c["status"] != "APPROVED_FOR_TRAINING" or c.get("created_by") in ("composer", "ai_draft"):
+            continue
+        old = data["approvals"][k]
+        prior = old["note"].split(" | Examination use:")[0]
+        data["approvals"][k] = {"sha256": content_hash(c), "level": "APPROVED_FOR_ASSESSMENT", "by": old["by"] + " | " + ASSESSMENT_BY, "date": date,
+                                "note": prior + " | Examination use: owner-attested under ADR-0032 D1 (recorded 14 Nov 2026); this is the owner's statement, not a new clinician review or signature"}
+        n += 1
+    data["approvals"] = dict(sorted(data["approvals"].items()))
+    APPROVALS.write_text(json.dumps(data, indent=1, ensure_ascii=False) + chr(10), encoding="utf-8", newline=chr(10))
+    print(f"raised {n} cases to APPROVED_FOR_ASSESSMENT (owner-attested, ADR-0032 D1)")
+    return n
+
+
 def text(c: dict) -> str:
     return json.dumps(c, indent=1, ensure_ascii=False) + "\n"
 
@@ -142,6 +165,9 @@ def main(argv: list[str]) -> int:
         data = {"schema": 1, "approvals": {k: {"sha256": content_hash(c), "level": "APPROVED_FOR_TRAINING", "by": BY, "date": "2026-10-10", "note": NOTE} for k, c in cases.items()}}
         APPROVALS.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"recorded approval for {len(cases)} cases")
+        cases = build()
+    if "--grant-assessment" in argv:
+        grant_assessment(cases)
         cases = build()
     if "--grant-cases" in argv:
         grant_cases(cases, [i.strip() for i in _arg(argv, "--grant-cases").split(",") if i.strip()], _arg(argv, "--by"), _arg(argv, "--date"), _arg(argv, "--why"))

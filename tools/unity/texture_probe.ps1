@@ -9,7 +9,7 @@
  Cache: if the inputs (the 19 textures and their .meta files, both probe sources, the scenes, the quality settings and the Quest URP asset) are unchanged and a complete crop set exists, no Unity is launched.
  Hand-off to the benchmark lane: set -SkipUnityLock when this runs inside a launch sequence that already holds D:\ProcSenseWork\unity.lock.
  Usage: pwsh -File tools/unity/texture_probe.ps1 [-Work D:\ProcSenseWork] [-NoCache] [-SkipUnityLock] [-ReportOnly]
- Test filter (for a caller that builds its own launch): ProcSense.Tests.PlayMode.TextureCropProbe; environment TEXPROBE_DIR, TEXPROBE_TAG (U|A66|A44), TEXPROBE_SELECT=1 (state U only), TEXPROBE_FMT for the Editor method.
+ Test filter (for a caller that builds its own launch): ProcSense.Tests.PlayMode.TextureCropProbe (an [Explicit] test: it runs only when named in the filter); environment TEXPROBE_DIR, TEXPROBE_TAG (U|A66|A44), TEXPROBE_SELECT=1 (state U only), TEXPROBE_FMT for the Editor method.
  Exit code: 0 ok, 1 a step failed, 2 git status of unity/Assets/Textures is not empty afterwards, 3 report invalid.
 #>
 param(

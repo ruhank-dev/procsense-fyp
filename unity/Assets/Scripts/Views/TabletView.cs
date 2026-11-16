@@ -332,7 +332,7 @@ namespace ProcSense.VR.Views
                     break;
                 case "goals":
                     SetText(_sideTitle, "Still to do");
-                    SetText(_side, ModeGate.PracticeAids ? string.Join("\n", s.Goals.Where(g => g.State != "done").Select(g => "- " + g.Label)) : "");
+                    SetText(_side, ModeGate.PracticeAids ? string.Join("\n", s.Goals.Where(g => g.State == "pending").Select(g => "- " + g.Label)) : "");
                     break;
             }
         }

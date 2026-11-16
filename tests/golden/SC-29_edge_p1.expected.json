@@ -2,7 +2,7 @@
   "case": "SC-29",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "bedcda935c572ed89dde2900712f2a2041411dca5d787f9c4c99110097e0db04",
+  "log_hash": "dfd4dcc5b36997fe2218bc4ae54830df449559547e10d2db421df7f79f18f2ce",
   "state_hash": "816872f87926919c08a95328a3a89ca8302f19a119a7d7341e6fb3f2880b13dc",
   "facts": {
     "identity_confirmed": true,
@@ -57,6 +57,7 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -72,7 +73,7 @@
   "score": {
     "result": "SUCCESS",
     "credits": 16,
-    "minor": ["minor.treatment_documentation"],
+    "minor": [],
     "major": [],
     "critical": []
   }

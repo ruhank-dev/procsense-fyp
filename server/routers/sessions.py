@@ -68,7 +68,7 @@ async def upload_session(request: Request, response: Response, background: Backg
                          settings: Settings = Depends(get_settings)) -> UploadReply:
     user_id = ctx.user.profile.user_id
     if settings.consent_required_for_upload and not privacy_repository.has_current(db, user_id, "results"):
-        raise HTTPException(status_code=403, detail={"code": "consent_required"})   # the person has not agreed (to the current text) to their results being stored: the web page asks
+        raise HTTPException(status_code=403, detail={"code": "consent_required"})   # the person has not agreed (to the current text) to their results being stored. No exception for anyone: the LAN demonstration user answers on the headset's consent step (owner decision D2, 15 Nov 2026)
     if not _limiter().allow(user_id):
         raise HTTPException(status_code=429, detail="too_many_uploads", headers={"Retry-After": "600"})
     data = await _read_body(request, settings.max_upload_bytes)

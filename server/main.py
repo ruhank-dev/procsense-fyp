@@ -10,9 +10,11 @@ from fastapi.staticfiles import StaticFiles
 
 from server import database, logging_setup
 from server.config import get_settings
+from server.lan.notices import get_hub
+from server.middleware.lan_pairing import LanPairing
 from server.middleware.audit import AuditMiddleware, get_writer
 from server.middleware.security_headers import SecurityHeaders
-from server.routers import ai_audit, ai_gateway, asr, content, debrief, evaluate, dialogue, orders, speech_action, tts, dashboard, device_auth, export, health, internal, me, organisations, pages, privacy, scenario_packages, sessions
+from server.routers import ai_audit, ai_gateway, asr, content, debrief, evaluate, dialogue, orders, speech_action, tts, dashboard, device_auth, export, headset_ws, health, internal, me, organisations, pairing, pages, privacy, scenario_packages, sessions
 
 
 def _sweep_on_start() -> None:
@@ -30,6 +32,7 @@ def _sweep_on_start() -> None:
 async def lifespan(app: FastAPI):
     threading.Thread(target=_sweep_on_start, name="verify-sweep", daemon=True).start()
     yield
+    get_hub().shutdown()    # a headset with the optional socket open hears that the laptop is stopping (P3-NET-12)
     get_writer().flush(5)   # the AI audit rows still waiting are written before the connection closes
     engine = database.get_engine()
     if engine is not None:
@@ -60,9 +63,12 @@ def create_app() -> FastAPI:
     app.include_router(scenario_packages.router)
     app.include_router(content.router)
     app.include_router(internal.router)
+    app.include_router(pairing.router)
+    app.include_router(headset_ws.router)
     app.include_router(pages.router)
     app.mount("/static", StaticFiles(directory=pages.STATIC), name="static")
     app.add_middleware(AuditMiddleware)
+    app.add_middleware(LanPairing)
     app.add_middleware(SecurityHeaders)
     return app
 

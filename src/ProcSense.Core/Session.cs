@@ -18,8 +18,10 @@ namespace ProcSense.Core
     /// <summary>Practice level: a beginner has safety nets (the nurse challenges an unsafe request); an advanced trainee sees the consequence. Assessment mode ignores it.</summary>
     public enum TrainingLevel { Beginner, Advanced }
 
-    /// <summary>Optional settings of a session that are part of what is replayed: the training level and which variant of the case is played (for example B2 of VAR-S1-B).</summary>
-    public sealed record SessionOptions(TrainingLevel Level = TrainingLevel.Beginner, string Variant = "", bool Noise = false, string PulseTrace = "", string PlannedEvents = "");
+    /// <summary>Optional settings of a session that are part of what is replayed: the training level and which variant of the case is played (for example B2 of VAR-S1-B).
+    /// Procedure and Source (P3-SES-06) record the request the session was planned from ("" = not from a plan / authored); HintLimit (P3-EXM-01) comes from content/scoring/grades.json "hint_limit".
+    /// Each is written to the saved header only when it is not the default, so older logs read the same.</summary>
+    public sealed record SessionOptions(TrainingLevel Level = TrainingLevel.Beginner, string Variant = "", bool Noise = false, string PulseTrace = "", string PlannedEvents = "", string Procedure = "", string Source = "", int HintLimit = ExamControl.DefaultHintLimit);
 
     /// <summary>Verbs and rejection codes the Session itself owns (pause, resume, time-skip). They are logged like any action, so a replay reproduces them.</summary>
     public static class SessionControl
@@ -37,6 +39,37 @@ namespace ProcSense.Core
         public const double MaxSkipMinutes = 24 * 60;
     }
 
+    /// <summary>
+    /// The examination verbs the Session itself owns (P3-EXM-01, P3-EXM-05). They are logged like any action, so a replay reproduces them.
+    /// request_hint: the next pending goal's hint, in two tiers (first request for a goal: what to think about; the next: what to do), at most HintLimit per session. It never changes the clinical state.
+    /// It is recorded as the "info.hint_used" score item in assessment only (the 5-point cost per hint is applied to the 100-point score, never to the engine verdict). submit_patient: ends the case at the trainee's decision (outcome "proceed" by default, or "transfer_request"; abandoned=true when the
+    /// trainee leaves): goals still pending are missed through the existing path and every later action is refused.
+    /// </summary>
+    public static class ExamControl
+    {
+        public const string RequestHint = "request_hint";
+        public const string SubmitPatient = "submit_patient";
+        public const string OutcomeParam = "outcome";
+        public const string AbandonedParam = "abandoned";
+        public const string OutcomeProceed = "proceed";
+        public const string OutcomeTransfer = "transfer_request";
+
+        public const string HintLimitReached = "HINT_LIMIT";
+        public const string NoHintAvailable = "NO_HINT_AVAILABLE";
+        public const string SessionSubmitted = "SESSION_SUBMITTED";
+        public const string BadOutcome = "BAD_OUTCOME";
+        public const string HintScoreItem = "info.hint_used";   // the rubric severity "info" is 0 points: the 5-point cost is applied by ResultGrade (grades.json hint_penalty), once per hint, in assessment only
+
+        /// <summary>The hint limit when content/scoring/grades.json gives none (P3-EXM-01). The session's own limit is Session.HintLimit (SessionOptions.HintLimit, from grades.json "hint_limit").</summary>
+        public const int DefaultHintLimit = 3;
+
+        /// <summary>Kept for older callers: the default limit. Read Session.HintLimit for the limit a session actually applies.</summary>
+        public const int HintLimit = DefaultHintLimit;
+    }
+
+    /// <summary>One hint the trainee asked for: which goal, which tier (1 or 2) and the text shown.</summary>
+    public sealed record HintGiven(string GoalId, int Tier, string Text, long Step);
+
     /// <summary>One training run. Every change goes through Apply (trainee actions) or Tick (time), so it is all logged and replayable. Starts at the case's own clock time.</summary>
     public sealed class Session
     {
@@ -50,6 +83,9 @@ namespace ProcSense.Core
             Noise = options?.Noise ?? false;
             PulseTrace = options?.PulseTrace ?? "";
             PlannedEvents = options?.PlannedEvents ?? "";
+            Procedure = options?.Procedure ?? "";
+            Source = options?.Source ?? "";
+            HintLimit = options?.HintLimit ?? ExamControl.DefaultHintLimit;
             Seed = seed;
             Mode = mode;
             Patient = PatientFactory.Create(card);
@@ -60,6 +96,8 @@ namespace ProcSense.Core
             Verbs.Register(SessionControl.Pause);
             Verbs.Register(SessionControl.Resume);
             Verbs.Register(SessionControl.TimeSkip);
+            Verbs.Register(ExamControl.RequestHint);
+            Verbs.Register(ExamControl.SubmitPatient);
             foreach (var s in _pipeline) s.Init(this);
         }
 
@@ -71,6 +109,13 @@ namespace ProcSense.Core
         public bool PracticeAids => Mode == SessionMode.Practice;
         public TrainingLevel Level { get; }
         public string Variant { get; }
+
+        /// <summary>The procedure and case source of the request the session was planned from (P3-SES-06), "" when it was not started from a plan or the source is authored. Saved in the header when set.</summary>
+        public string Procedure { get; }
+        public string Source { get; }
+
+        /// <summary>How many hints this session gives (P3-EXM-01): content/scoring/grades.json "hint_limit", default 3. Saved in the header when not the default.</summary>
+        public int HintLimit { get; }
 
         /// <summary>Whether the live vital signs carry small seeded flicker (LitePhysio noise); off by default so exact-value tests and the golden runs stay exact.</summary>
         public bool Noise { get; }
@@ -231,8 +276,14 @@ namespace ProcSense.Core
             long startStep = Clock.Steps;   // logged with the step the action started at (a time-skip moves the clock)
             if (!Verbs.IsKnown(action.Verb))
                 outcome.Reject(VerbRegistry.UnknownVerb);
+            else if (Submitted)
+                outcome.Reject(ExamControl.SessionSubmitted);
             else if (Paused && action.Verb != SessionControl.Resume)
                 outcome.Reject(SessionControl.SessionPaused);
+            else if (action.Verb == ExamControl.RequestHint)
+                RunHint(outcome);
+            else if (action.Verb == ExamControl.SubmitPatient)
+                RunSubmit(action, outcome);
             else if (action.Verb == SessionControl.Pause || action.Verb == SessionControl.Resume || action.Verb == SessionControl.TimeSkip)
                 RunControl(action, outcome);
             else
@@ -247,7 +298,7 @@ namespace ProcSense.Core
         /// <summary>Moves time forward and runs every subsystem once per whole step. Does nothing while paused (frames are not logged, the clock simply stands still).</summary>
         public void Tick(double dt)
         {
-            if (Paused) return;
+            if (Paused || Submitted) return;
             int steps = Clock.Advance(dt);
             Clock.Rewind(steps);                                   // each step is run with the clock at that step, so a long tick behaves exactly like many short ones
             for (int n = 0; n < steps; n++) { Clock.StepOnce(); RunStep(); }
@@ -256,6 +307,84 @@ namespace ProcSense.Core
         private void RunStep()
         {
             for (int i = 0; i < _pipeline.Count; i++) _pipeline[i].OnTick();
+        }
+
+        // ---------------------------------------------------------------- Check (P3-SES-02)
+
+        /// <summary>What Check needs to rebuild this session: the content and the subsystems factory it was started with (set by whoever starts the session).</summary>
+        public sealed record CheckSource(Content.ContentPackage Content, Func<IEnumerable<ISubsystem>> Subsystems);
+
+        /// <summary>The answer of Check: accepted, or the reason code Apply would give.</summary>
+        public sealed record CheckResult(bool Accepted, string Reason);
+
+        /// <summary>Set by the starter so that Check works. Without it Check throws.</summary>
+        public CheckSource? Checker { get; set; }
+
+        /// <summary>
+        /// The same validation as Apply, without any state change: the session is rebuilt from its own log in a throw-away copy, brought to the same time, and the action is applied to the copy. This session,
+        /// its log and its replay hash are never touched. The cost grows with the length of the log, so it is for greying out a button or a read-back, not for every frame.
+        /// </summary>
+        public CheckResult Check(SimAction action)
+        {
+            if (Checker == null) throw new InvalidOperationException("Check needs Session.Checker (content and a subsystems factory); the starter sets it.");
+            var copy = Replay.SessionFile.Replay(Replay.SessionFile.Write(this), Checker.Content, Checker.Subsystems).Session;
+            double dt = Clock.SimSeconds - copy.Clock.SimSeconds;
+            if (dt > 0) copy.Tick(dt);
+            var outcome = copy.Apply(action);
+            return new CheckResult(outcome.Accepted, outcome.RejectReason);
+        }
+
+        // ---------------------------------------------------------------- examination verbs (P3-EXM-01, P3-EXM-05)
+
+        private readonly List<HintGiven> _hints = new List<HintGiven>();
+
+        /// <summary>True once the patient has been submitted: the case is closed, time stands still and every action is refused (SESSION_SUBMITTED).</summary>
+        public bool Submitted { get; private set; }
+
+        /// <summary>The outcome the trainee chose on submission ("proceed" or "transfer_request"), or "" before submission.</summary>
+        public string SubmitOutcome { get; private set; } = "";
+
+        /// <summary>True when the trainee left the session instead of finishing it (the results say "not completed").</summary>
+        public bool Abandoned { get; private set; }
+
+        /// <summary>The sim step the patient was submitted at, or -1.</summary>
+        public long SubmittedAtStep { get; private set; } = -1;
+
+        /// <summary>The goals still pending when the patient was submitted (they were missed at that step).</summary>
+        public int MissedAtSubmit { get; private set; }
+
+        /// <summary>Every hint given so far, in order.</summary>
+        public IReadOnlyList<HintGiven> Hints => _hints;
+
+        /// <summary>The newest hint, or null.</summary>
+        public HintGiven? LastHint => _hints.Count == 0 ? null : _hints[_hints.Count - 1];
+
+        private void RunHint(ActionOutcome outcome)
+        {
+            if (_hints.Count >= HintLimit) { outcome.Reject(ExamControl.HintLimitReached); return; }
+            var next = Tracker?.NextGoalHint();
+            if (next == null) { outcome.Reject(ExamControl.NoHintAvailable); return; }
+            int tier = _hints.Any(h => h.GoalId == next.Value.Id) ? 2 : 1;
+            string text = tier == 1 && next.Value.Hint.Length > 0 ? next.Value.Hint : next.Value.Label;
+            _hints.Add(new HintGiven(next.Value.Id, tier, text, Clock.Steps));
+            outcome.Effects.Add("hint:" + next.Value.Id + ":tier" + tier.ToString(CultureInfo.InvariantCulture) + ":" + _hints.Count.ToString(CultureInfo.InvariantCulture));
+            if (Mode == SessionMode.Assessment) outcome.Effects.Add("score:" + ExamControl.HintScoreItem);     // the examination charges for a hint; practice does not
+        }
+
+        private void RunSubmit(SimAction action, ActionOutcome outcome)
+        {
+            string result = action.Params.TryGetValue(ExamControl.OutcomeParam, out var o) && o.Length > 0 ? o : ExamControl.OutcomeProceed;
+            if (result != ExamControl.OutcomeProceed && result != ExamControl.OutcomeTransfer) { outcome.Reject(ExamControl.BadOutcome); return; }
+            bool abandoned = action.Params.TryGetValue(ExamControl.AbandonedParam, out var a) && a == "true";
+            MissedAtSubmit = Tracker?.MissPending() ?? 0;
+            EndStateStep?.ResolveOnSubmit();
+            Submitted = true;
+            SubmitOutcome = result;
+            Abandoned = abandoned;
+            SubmittedAtStep = Clock.Steps;
+            outcome.Effects.Add("submitted:" + result);
+            outcome.Effects.Add("missed_at_submit:" + MissedAtSubmit.ToString(CultureInfo.InvariantCulture));
+            if (abandoned) outcome.Effects.Add("abandoned");
         }
 
         private void RunControl(SimAction action, ActionOutcome outcome)

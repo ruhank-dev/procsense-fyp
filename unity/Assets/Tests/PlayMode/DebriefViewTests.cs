@@ -20,7 +20,7 @@ namespace ProcSense.Tests.PlayMode
         private readonly List<GameObject> _made = new List<GameObject>();
         private SimulationHost _host;
 
-        /// <summary>The real content with the case files raised to APPROVED_FOR_ASSESSMENT in memory only (no case is approved for assessment yet), as the tablet tests do.</summary>
+        /// <summary>The real content with the case files raised to APPROVED_FOR_ASSESSMENT in memory only (a no-op while the case is already approved; kept harmless).</summary>
         private sealed class Raised : IContentReader
         {
             private readonly IContentReader _inner = ProcSense.VR.Content.UnityContentReader.ForThisPlatform();
@@ -100,7 +100,7 @@ namespace ProcSense.Tests.PlayMode
         [Test]
         public void Minor_items_are_collapsed_until_asked_for_and_assessment_suggests_no_next_case()
         {
-            var d = Played(SessionMode.Assessment, "VAR-S1-A");          // only a P0 case can be raised to assessment
+            var d = Played(SessionMode.Assessment, "VAR-S1-A");          // VAR-S1-A is approved for assessment (ADR-0032 D1)
             int minors = d.Facts.Lines.Count(DebriefText.Collapsed);
             Assert.IsFalse(d.ShownLines.Any(DebriefText.Collapsed), "minor items collapsed by default");
             d.ShowMinor(true);

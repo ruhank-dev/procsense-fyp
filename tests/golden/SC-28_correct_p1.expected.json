@@ -2,7 +2,7 @@
   "case": "SC-28",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "043f4ea9aebae55bde53f7b5aa2e27490ad2e43fe0d91301f5841d7630658b73",
+  "log_hash": "fb4ef14267d087ad4acbb24907ab715389b3c02aba0dcf70a41f8bba51c0ed8f",
   "state_hash": "30e5d190fdeb5258b127d6df615db169fa1a91f13e001b6eb38b823e218b5068",
   "facts": {
     "identity_confirmed": true,
@@ -42,7 +42,7 @@
       "consent.signed",
       "deterioration.treated",
       "endstate.resolved",
-      "event.e-fast-breathing.missed",
+      "event.e-fast-breathing.handled",
       "exam.permission_asked",
       "exam.started",
       "identity_asked_open",
@@ -58,6 +58,7 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -72,9 +73,9 @@
   },
   "score": {
     "result": "SUCCESS",
-    "credits": 10,
-    "minor": ["minor.treatment_documentation"],
-    "major": ["major.e_fast_breathing_not_escalated"],
+    "credits": 13,
+    "minor": [],
+    "major": [],
     "critical": []
   }
 }

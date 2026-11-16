@@ -36,7 +36,7 @@ namespace ProcSense.VR.Voice
     public sealed class VoiceHealth : MonoBehaviour
     {
         public VoiceHealthState State { get; } = new VoiceHealthState();
-        public Func<IHttp> Http = () => new UnityHttp();
+        public Func<IHttp> Http = LanHttp.Default;
         public Func<AuthService> Auth = () => AuthService.Current;
         private bool _running;
 

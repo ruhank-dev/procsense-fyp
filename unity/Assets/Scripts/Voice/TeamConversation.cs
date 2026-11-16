@@ -22,7 +22,8 @@ namespace ProcSense.VR.Voice
     /// One trainee turn from the question to the voices (plan p2-ai-advanced-simulation-s03, ADR-0026): the question (typed on the tablet, chosen from the history menu, or the words the recogniser heard) goes to the dialogue
     /// service once; the patient's and the staff's replies are shown as subtitles by <see cref="TeamVoicesView"/> one after another, and each line is spoken by the voice service while the next waits for it. The engine decides
     /// what the patient may say (<see cref="TeamDialogueClient"/> sends only what it released); this class applies no action, credits nothing, and never blocks a frame: every request is a coroutine, a slow or failed call
-    /// leaves the patient's authored line or "I am not sure", and a new question drops the one before. Practice only: an assessment session uses its approved authored lines and this class stays silent.
+    /// leaves the patient's authored line or "I am not sure", and a new question drops the one before. Works in practice and in the examination (D3, final 15 Nov 2026): in the examination the patient answers from released facts and
+    /// the staff answer only when spoken to, with the examination-safe lines of <see cref="StaffExamPolicy"/> (no unsolicited next step, answer, score or checklist item); no hint text is sent or shown.
     /// </summary>
     public sealed class TeamConversation : MonoBehaviour
     {
@@ -37,6 +38,11 @@ namespace ProcSense.VR.Voice
         public bool AnswerMenuQuestions = true;
         /// <summary>Set by <see cref="SpokenActionRouter"/> while it starts a spoken action, so the tablet-style reaction below does not answer a second time.</summary>
         public bool SuppressAuto;
+
+        /// <summary>The examination staff policy; null uses <see cref="StaffExamPolicy.Loaded"/>. Replaced by tests.</summary>
+        public StaffExamPolicy ExamPolicy;
+        /// <summary>Staff voices in the examination (D3). Off: the patient alone answers, as before the owner's decision; the score and the state are the same either way.</summary>
+        public bool ExamStaffVoices = true;
 
         public IReadOnlyList<ContextTurn> Turns => _turns;
         public TeamAnswer Last { get; private set; }
@@ -62,7 +68,7 @@ namespace ProcSense.VR.Voice
         /// <summary>The engine released a history fact because the trainee asked about the topic: the patient answers aloud.</summary>
         public void OnApplied(SimAction action, ActionOutcome outcome)
         {
-            if (SuppressAuto || !AnswerMenuQuestions || action == null || outcome == null || action.Verb != "ask" || !outcome.Accepted || !ModeGate.PracticeAids) return;
+            if (SuppressAuto || !AnswerMenuQuestions || action == null || outcome == null || action.Verb != "ask" || !outcome.Accepted) return;
             string topic = outcome.Effects.Where(e => e.StartsWith("answered:")).Select(e => e.Substring("answered:".Length)).FirstOrDefault();
             if (topic == null) return;
             Ask(QuestionFor(topic), topic);
@@ -70,25 +76,37 @@ namespace ProcSense.VR.Voice
 
         public static string QuestionFor(string topic) => "Can you tell me about your " + topic.Replace('_', ' ') + "?";
 
-        /// <summary>Starts a turn. <paramref name="askedTopic"/> is the history topic the engine released for the question, or null.</summary>
-        public void Ask(string question, string askedTopic)
+        /// <summary>Starts a turn. <paramref name="askedTopic"/> is the history topic the engine released for the question, or null; <paramref name="addressee"/> is who the interpreter heard spoken to, or null.</summary>
+        public void Ask(string question, string askedTopic, string addressee = null)
         {
             if (string.IsNullOrWhiteSpace(question)) return;
-            StartCoroutine(Run(question.Trim(), askedTopic));
+            StartCoroutine(Run(question.Trim(), askedTopic, addressee));
         }
 
-        public IEnumerator Run(string question, string askedTopic)
+        public IEnumerator Run(string question, string askedTopic, string addressee = null)
         {
             var host = Host();
-            if (host == null || host.Session == null || !ModeGate.PracticeAids) { Status = "The voices are off in this session."; yield break; }
+            if (host == null || host.Session == null) { Status = "The voices are off in this session."; yield break; }
+            // D3 (ADR-0032, final 15 Nov 2026): the patient answers by voice in the examination too, from the facts the engine released only; the staff answer when spoken to, with examination-safe
+            // lines (StaffExamPolicy, applied by the service and again here). Nothing practice-only is asked of the service; the reply never changes the simulation, the score or the state.
+            bool practice = host.Session.PracticeAids;
+            var policy = ExamPolicy ?? StaffExamPolicy.Loaded;
+            var examRoles = ExamStaffVoices ? TeamDialogueClient.StaffRoles.Where(r => policy.Roles.Contains(r)).ToArray() : new string[0];
             int mine = ++_generation;                                        // a newer question makes this one stale
             Status = "Asking...";
             RequestsSent++;
             var turns = _turns.ToList();
             _turns.Add(new ContextTurn("trainee", question));
             TeamAnswer answer = null;
-            yield return TeamDialogueClient.Ask(Auth(), host, question, askedTopic, turns, a => answer = a);
+            yield return TeamDialogueClient.Ask(Auth(), host, question, askedTopic, turns, a => answer = a, practice ? null : examRoles, !practice, addressee);
             if (mine != _generation) yield break;                            // the trainee has already said something else
+            if (!practice)
+            {
+                if (ExamStaffVoices) policy.Apply(answer.Replies, question, addressee);           // only a role spoken to, only its examination line, whatever the service sent
+                else answer.Replies.RemoveAll(r => r.Role != "patient");
+                answer.Replies.RemoveAll(r => r.Role != "patient" && !examRoles.Contains(r.Role));
+            }
+            if (!practice && answer.Replies.Count == 0) answer.Replies.Add(new TeamReply("patient", TeamDialogueClient.NotSure) { Intent = "answer_question", Source = "fallback" });
             Last = answer;
             foreach (var r in answer.Replies)
                 if (r.Role == "nurse" && r.Intent == "report_observation") r.Text = ObservationReport.Build(host.Session.Observable);        // the nurse's numbers are the engine's, never a model's
@@ -114,6 +132,23 @@ namespace ProcSense.VR.Voice
             if (string.IsNullOrWhiteSpace(text)) return;
             _turns.Add(new ContextTurn(speaker, text));
             while (_turns.Count > 12) _turns.RemoveAt(0);
+        }
+
+        /// <summary>The last voice feedback phrase spoken (P3-VOX-07), or null.</summary>
+        public VoiceFeedbackLine LastFeedback { get; private set; }
+
+        /// <summary>
+        /// Speaks a voice feedback phrase (P3-VOX-07): its pre-rendered clip from Resources/Voice once P3-SND-08 renders it, otherwise the words through the voice service in the team voice. The subtitle is shown by
+        /// the caller (<see cref="SpokenActionRouter.Status"/>, the push-to-talk panel). Not a turn of the conversation: nothing is remembered or sent to the dialogue service.
+        /// </summary>
+        public void SayFeedback(VoiceFeedbackLine line)
+        {
+            if (line == null) return;
+            LastFeedback = line;
+            if (!SpeakAloud || Player == null || string.IsNullOrWhiteSpace(line.Spoken) || !isActiveAndEnabled) return;
+            var clip = string.IsNullOrEmpty(line.Clip) ? null : Resources.Load<AudioClip>("Voice/" + System.IO.Path.GetFileNameWithoutExtension(line.Clip));
+            if (clip != null && Player is UnityClipPlayer real && real.Source != null) { real.Source.PlayOneShot(clip); return; }
+            StartCoroutine(SpeakLine("team", line.Spoken));
         }
 
         private void OnSpoke(string role, string text, string voice)

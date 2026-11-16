@@ -1,0 +1,9 @@
+{
+ "name": "voice_turn_legacy_client",
+ "route": "POST /orders/organisations/{id}/hear",
+ "schema": "HearIn",
+ "valid": true,
+ "body": {
+  "text": "order a full blood count"
+ }
+}

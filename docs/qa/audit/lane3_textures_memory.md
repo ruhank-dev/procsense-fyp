@@ -86,4 +86,4 @@ Dropped surfaces: reception_screen (dropped: no view shows this texture with tex
 
 * Survey: `python tex_survey.py` then `tex_an.py` (scratchpad copies in `D:\ProcSenseWork\reports\lane3`).
 * Build report: `artifacts/unity/build-demo.log`, section "Used Assets and files from the Resources folder".
-* Crop probe: `tools/unity/texture_probe.ps1` runs `unity/Assets/Editor/Setup/TextureQualityProbe.cs` (Standalone-only import override, restored byte for byte afterwards) and `unity/Assets/Tests/PlayMode/TextureCropProbe.cs` (renders each text texture at a Quest eye), then `tools/unity/texture_probe_report.py` compares the crops offline.
+* Crop probe: `tools/unity/texture_probe.ps1` runs `unity/Assets/Editor/Setup/TextureQualityProbe.cs` (Standalone-only import override, restored byte for byte afterwards) and `unity/Assets/Tests/PlayMode/TextureCropProbe.cs` (renders each text texture at a Quest eye), then `tools/unity/texture_probe_report.py` compares the crops offline. The probe is `[Explicit]` (category Diagnostics, DT-307): a full PlayMode run skips it, and without `TEXPROBE_DIR` it fails at once with a message naming the variable.

@@ -1,0 +1,29 @@
+{
+  "case": "VAR-S2-PD",
+  "seed": "42",
+  "mode": "practice",
+  "log_hash": "5c9dca4e52d100b452eb5eb4ebb2c55c58d18f1f859e986ad7fbd32bc56071bc",
+  "state_hash": "75886945b24871b5683747fd0a06d5643a8b28bf3e3104614ad19d34bd3be043",
+  "facts": {
+    "identity_confirmed": false,
+    "allergies_known": false,
+    "nurse": "",
+    "allergy_band": false,
+    "disclosed_topics": [],
+    "vitals": {},
+    "flags": ["endstate.resolved"],
+    "rejections": [],
+    "trust": 0,
+    "anxiety": 0,
+    "understanding": 0,
+    "last_rejection": "",
+    "end_state": "SAFETY_FAILURE"
+  },
+  "score": {
+    "result": "FAIL",
+    "credits": 0,
+    "minor": [],
+    "major": [],
+    "critical": []
+  }
+}

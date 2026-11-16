@@ -39,7 +39,9 @@ namespace ProcSense.VR.Voice
         public static readonly string[] StaffRoles = { "nurse", "anaesthesia" };
 
         /// <summary>The request body. <paramref name="askedTopic"/> is the history topic the engine released for this question (null for small talk and for a question the engine did not match to a topic).</summary>
-        public static string RequestBody(SimulationHost host, string question, string askedTopic, IReadOnlyList<ContextTurn> turns, IEnumerable<string> staffRoles = null)
+        /// <param name="examination">The examination (D3): the service applies content/ai/staff_exam_policy.json to the staff (only a role spoken to answers, with its examination line).</param>
+        /// <param name="addressee">Who the spoken-action interpreter heard the sentence addressed to, or null.</param>
+        public static string RequestBody(SimulationHost host, string question, string askedTopic, IReadOnlyList<ContextTurn> turns, IEnumerable<string> staffRoles = null, bool examination = false, string addressee = null)
         {
             var session = host.Session;
             var built = ContextBuilder.Build(session, host.Content, "patient", askedTopic, turns ?? new List<ContextTurn>());
@@ -74,6 +76,8 @@ namespace ProcSense.VR.Voice
             if (asked != null && built.Validation.Facts.Any(x => x.Id == "h." + askedTopic && (x.DisclosableNow || x.Disclosed))) Str(sb, "h." + askedTopic, asked.Answer);
             sb.Append('}');
             if (askedTopic != null) { sb.Append(','); Str(sb, "asked_fact", "h." + askedTopic); }
+            if (examination) { sb.Append(','); Str(sb, "mode", "examination"); }
+            if (!string.IsNullOrEmpty(addressee) && addressee != "nobody") { sb.Append(','); Str(sb, "addressee", addressee); }
             return sb.Append('}').ToString();
         }
 
@@ -104,11 +108,11 @@ namespace ProcSense.VR.Voice
             return new TeamAnswer { Replies = { new TeamReply("patient", text) { Intent = "answer_question", Source = "fallback" } }, Reason = why };
         }
 
-        public static IEnumerator Ask(AuthService auth, SimulationHost host, string question, string askedTopic, IReadOnlyList<ContextTurn> turns, Action<TeamAnswer> done)
+        public static IEnumerator Ask(AuthService auth, SimulationHost host, string question, string askedTopic, IReadOnlyList<ContextTurn> turns, Action<TeamAnswer> done, IEnumerable<string> staffRoles = null, bool examination = false, string addressee = null)
         {
             if (auth == null || !auth.IsSignedIn || host == null || host.Session == null || host.Content == null) { done(Offline(host, askedTopic, "NOT_SIGNED_IN")); yield break; }
             HttpResult answer = default;
-            yield return auth.Authorized("POST", Route + auth.OrganisationId + "/team", RequestBody(host, question, askedTopic, turns), r => answer = r);
+            yield return auth.Authorized("POST", Route + auth.OrganisationId + "/team", RequestBody(host, question, askedTopic, turns, staffRoles, examination, addressee), r => answer = r);
             var parsed = answer.Ok ? Parse(answer.Body) : null;
             done(parsed ?? Offline(host, askedTopic, answer.NetworkError ? "NO_NETWORK" : answer.Ok ? "UNREADABLE" : "HTTP_" + answer.Status));
         }

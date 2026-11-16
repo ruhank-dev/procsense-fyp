@@ -4,6 +4,7 @@ using System.Collections;
 using System.Globalization;
 using System.IO;
 using ProcSense.VR.Boot;
+using ProcSense.VR.Views;
 using ProcSense.VR.XR;
 using TMPro;
 using Unity.XR.CoreUtils;
@@ -61,7 +62,7 @@ namespace ProcSense.VR.Diagnostics
             _csv = Path.Combine(dir, "diag_" + stamp + ".csv");
             _sweepCsv = Path.Combine(dir, "sweep_" + stamp + ".csv");
             string about = "# ProcSense diagnostic build " + Application.version + ", device " + SystemInfo.deviceModel + ", " + SystemInfo.graphicsDeviceType + ", gpu skinning " + SystemInfo.supportsComputeShaders + "/" + GpuSkinningLabel + ", started " + stamp;
-            File.WriteAllText(_csv, about + "\nutc,config,view,room,eye_scale,foveation," + PerfSummary.CsvHeader + "\n");
+            File.WriteAllText(_csv, about + "\nutc,config,view,room,eye_scale,foveation," + PerfSummary.CsvHeader + ",eye_px,effective_scale,msaa\n");
             File.WriteAllText(_sweepCsv, about + "\nutc,config,label,changes_look,view,room," + PerfSummary.CsvHeader + "\n");
             FrameTimingManager.CaptureFrameTimings();
         }
@@ -87,7 +88,7 @@ namespace ProcSense.VR.Diagnostics
             {
                 _nextRow = Time.unscaledTime + 1f;
                 var s = _second.Summarise(); _second.Clear();
-                File.AppendAllText(_csv, Utc() + "," + PerfPresets.All[_preset].Id + "," + ViewId() + "," + Room() + "," + F(XRSettings.eyeTextureResolutionScale) + "," + F(QuestRenderTier.Foveation) + "," + s.Csv() + "\n");
+                File.AppendAllText(_csv, Utc() + "," + PerfPresets.All[_preset].Id + "," + ViewId() + "," + Room() + "," + F(XRSettings.eyeTextureResolutionScale) + "," + F(QuestRenderTier.Foveation) + "," + s.Csv() + "," + EyePixels() + "," + F2(QuestPerformanceProfile.CurrentScale) + "," + Msaa() + "\n");
                 if (_rolling.Count > 400) { _last = _rolling.Summarise(); _rolling.Clear(); }
                 UpdateHud();
             }
@@ -158,9 +159,17 @@ namespace ProcSense.VR.Diagnostics
             _hud.text = p.Id + (p.ChangesLook ? " (measurement only)" : "") + "\n" + p.Label + "\n" + ViewId() + " · " + Room()
                 + "\nFPS " + F(_last.AvgFps) + "  1% low " + F(_last.OnePercentLowFps)
                 + "\nCPU " + (_last.HasCpu ? F(_last.AvgCpuMs) + " ms" : "n/a") + "  GPU " + (_last.HasGpu ? F(_last.AvgGpuMs) + " ms" : "n/a")
-                + "\nfov " + F(QuestRenderTier.Foveation) + "  scale " + F(XRSettings.eyeTextureResolutionScale) + "  skin " + GpuSkinningLabel
+                + "\nFFR " + FoveationName(QuestRenderTier.Foveation) + "  MSAA " + Msaa() + "  skin " + GpuSkinningLabel
+                + "\nper eye " + EyePixels() + "  scale " + F2(QuestPerformanceProfile.CurrentScale) + " (" + F2(QuestPerformanceProfile.RangeMin) + "-" + F2(QuestPerformanceProfile.RangeMax)
+                + (QuestPerformanceProfile.DynamicResolution ? " dynamic" : " fixed") + ")  buffer " + F2(XRSettings.eyeTextureResolutionScale)
                 + "\n" + _status;
         }
+
+        /// <summary>Pixels per eye actually drawn, read back from XRSettings (allocated eye texture x viewport scale).</summary>
+        private static string EyePixels() { var px = QuestPerformanceProfile.EffectiveEyePixels(); return px.x + "x" + px.y; }
+        private static string FoveationName(float f) => f <= 0f ? "off" : f < 0.375f ? "low " + F2(f) : f < 0.75f ? "medium " + F2(f) : "high " + F2(f);
+        private static int Msaa() => UnityEngine.Rendering.GraphicsSettings.currentRenderPipeline is UnityEngine.Rendering.Universal.UniversalRenderPipelineAsset u ? u.msaaSampleCount : QualitySettings.antiAliasing;
+        private static string F2(double v) => v.ToString("0.00", CultureInfo.InvariantCulture);
 
         private string ViewId() => _view < 0 ? "free" : Views[_view].id.Substring(0, 2);
         private static string Room() { var r = FindAnyObjectByType<RoomLoader>(); return r != null ? r.CurrentRoom : "?"; }

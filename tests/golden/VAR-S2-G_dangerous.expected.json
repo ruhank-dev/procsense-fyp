@@ -2,7 +2,7 @@
   "case": "VAR-S2-G",
   "seed": "42",
   "mode": "practice",
-  "log_hash": "0732ff70dab1f7b0bde81579b000895dfa264765e15c7ea5ff220b1fca89f404",
+  "log_hash": "2fe85d600a77ff6f7057b6719bccb22560fe670aea024348a40c6e4d55181e76",
   "state_hash": "d111f4ce6d374822c8996508a9996fc62217153b2eb7f65741f461439a14b6e7",
   "facts": {
     "identity_confirmed": true,
@@ -52,6 +52,7 @@
       "risk.asa_proposed",
       "score.stopbang.computed",
       "summarised",
+      "treatment.TR-ABX-S2.documented",
       "treatment.TR-ABX-S2.given",
       "treatment.TR-ABX-S2.timing_checked",
       "treatment.antibiotic_given",
@@ -67,7 +68,7 @@
   "score": {
     "result": "FAIL",
     "credits": 19,
-    "minor": ["minor.treatment_documentation"],
+    "minor": [],
     "major": [],
     "critical": ["critical.action_before_identity"]
   }

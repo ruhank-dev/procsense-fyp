@@ -7,8 +7,8 @@ using UnityEngine;
 namespace ProcSense.Tests.EditMode
 {
     /// <summary>
-    /// Guards PatientBay's neutral-daylight look (the owner's final reference, replacing the earlier golden-hour direction): a soft neutral Mixed sun whose shadows fall on the dynamic patient,
-    /// baked (not realtime) room lights, exactly one shadow-casting light, a neutral trilight ambient, a clear window with the city skyline, the bake-only patient shadow proxy switched off at
+    /// Guards PatientBay's neutral-daylight look (the owner's final reference, replacing the earlier golden-hour direction): a neutral baked sun,
+    /// all lights baked (P253, 14 Nov 2026), no realtime shadow casters, a neutral trilight ambient, a clear window with the city skyline, the bake-only patient shadow proxy switched off at
     /// runtime, and the shipping bake quality (so look-development preview settings can never be left in the asset).
     /// </summary>
     public class NeutralDaylightContractTests
@@ -28,33 +28,40 @@ namespace ProcSense.Tests.EditMode
         Light Named(string n) => _lights.Single(l => l.name == n);
 
         [Test]
-        public void Sun_is_a_soft_neutral_mixed_directional_so_the_patient_casts_real_shadows()
+        public void Sun_is_a_neutral_baked_directional_with_no_realtime_shadow()
         {
+            // P253 (14 Nov 2026) superseded the mixed-sun look-development contract: everything is baked for Quest.
             var sun = Named("Sun through window");
             Assert.That(sun.type, Is.EqualTo(LightType.Directional));
-            Assert.That(sun.lightmapBakeType, Is.EqualTo(LightmapBakeType.Mixed), "static GI is baked; dynamic objects (patient, gown) receive its realtime shadow");
-            Assert.That(sun.transform.eulerAngles.x, Is.InRange(20f, 60f), "daytime elevation (3 Nov 2026: lowered to 24 degrees for the long window-frame streaks across the floor, owner approved)");
+            Assert.That(sun.lightmapBakeType, Is.EqualTo(LightmapBakeType.Baked), "static GI only; no realtime sun");
+            Assert.That(sun.transform.eulerAngles.x, Is.InRange(20f, 60f), "daytime elevation (lowered to 24 degrees for the window-frame streaks, owner approved)");
             Assert.That(sun.color.b / sun.color.r, Is.InRange(.8f, 1.1f), "neutral daylight, no orange");
-            Assert.That(sun.shadows, Is.Not.EqualTo(LightShadows.None));
-            Assert.That(sun.shadowAngle, Is.GreaterThanOrEqualTo(1.5f), "soft but readable penumbra (3 Nov 2026: owner asked for visible sun patches and window-frame shadows, so the 5 degree floor was lowered)");
-            Assert.That(sun.intensity, Is.InRange(.2f, 3.5f), "direct sun visible on floors and walls (3 Nov 2026 owner request), still well below an HDR hot spot");
+            Assert.That(sun.shadowAngle, Is.GreaterThanOrEqualTo(1.5f), "soft but readable baked penumbra");
+            Assert.That(sun.intensity, Is.InRange(.2f, 3.5f), "direct sun visible on floors and walls, still well below an HDR hot spot");
             var dir = sun.transform.forward;
             Assert.That(dir.y, Is.LessThan(0f)); Assert.That(dir.x, Is.GreaterThan(0f), "travels from the -X window into the room");
         }
 
         [Test]
-        public void Room_lights_are_baked_and_exactly_one_light_casts_shadows()
+        public void All_lights_are_baked_and_none_casts_a_realtime_shadow()
         {
-            foreach (var l in _lights.Where(l => l.enabled && l.gameObject.activeInHierarchy && l.name != "Soft clinical key" && l.name != "Sun through window"))
-                Assert.That(l.lightmapBakeType, Is.Not.EqualTo(LightmapBakeType.Realtime), l.name + " must be baked on Quest");
-            var key = Named("Soft clinical key");
-            Assert.That(key.lightmapBakeType, Is.EqualTo(LightmapBakeType.Realtime));
-            Assert.That(key.intensity, Is.LessThanOrEqualTo(.4f), "the key only gives dynamic objects form");
-            Assert.That(key.shadows, Is.EqualTo(LightShadows.None), "the key must never cast shadows");
-            var casters = _lights.Where(l => l.enabled && l.gameObject.activeInHierarchy && l.shadows != LightShadows.None && l.lightmapBakeType != LightmapBakeType.Baked).ToArray();
-            Assert.That(casters.Length, Is.LessThanOrEqualTo(1), "Quest budget: one realtime shadow caster at most, got " + string.Join(", ", casters.Select(c => c.name)));
+            var live = _lights.Where(l => l.enabled && l.gameObject.activeInHierarchy).ToArray();
+            foreach (var l in live)
+                Assert.That(l.lightmapBakeType, Is.EqualTo(LightmapBakeType.Baked), l.name + " must be baked on Quest");
+            var casters = live.Where(l => l.shadows != LightShadows.None && l.lightmapBakeType != LightmapBakeType.Baked).ToArray();
+            Assert.That(casters, Is.Empty, "no realtime shadow casters, got " + string.Join(", ", casters.Select(c => c.name)));
+            var key = _lights.SingleOrDefault(l => l.name == "Soft clinical key");
+            if (key != null) { Assert.That(key.lightmapBakeType, Is.EqualTo(LightmapBakeType.Baked)); Assert.That(key.shadows, Is.EqualTo(LightShadows.None)); }
             foreach (var p in _lights.Where(l => l.name.StartsWith("Baked ceiling panel")))
             { Assert.That(p.color.r / p.color.b, Is.InRange(.9f, 1.25f), "neutral ceiling light"); Assert.That(p.lightmapBakeType, Is.EqualTo(LightmapBakeType.Baked)); }
+        }
+
+        [Test]
+        public void The_shared_bake_has_lightmaps()
+        {
+            var maps = AssetDatabase.FindAssets("Lightmap- t:Texture2D", new[] { "Assets/Scenes/PatientBay" });
+            Assert.That(maps.Length, Is.GreaterThan(0), "baked lightmaps present");
+            Assert.That(AssetDatabase.LoadAssetAtPath<LightingDataAsset>("Assets/Scenes/PatientBay/LightingData.asset"), Is.Not.Null);
         }
 
         [Test]
@@ -94,7 +101,7 @@ namespace ProcSense.Tests.EditMode
         {
             var s = AssetDatabase.LoadAssetAtPath<LightingSettings>("Assets/Settings/HospitalLighting/PatientBay.lighting");
             var so = new SerializedObject(s);
-            Assert.That(so.FindProperty("m_LightmapsBakeMode").intValue, Is.EqualTo(1), "directional lightmaps");
+            Assert.That(so.FindProperty("m_LightmapsBakeMode").intValue, Is.EqualTo(0), "non-directional lightmaps (P253: one texture fetch less per pixel)");
             Assert.That(so.FindProperty("m_BakeResolution").floatValue, Is.GreaterThanOrEqualTo(64f));
             Assert.That(so.FindProperty("m_PVRBounces").intValue, Is.GreaterThanOrEqualTo(4));
             Assert.That(so.FindProperty("m_PVRSampleCount").intValue, Is.GreaterThanOrEqualTo(512));

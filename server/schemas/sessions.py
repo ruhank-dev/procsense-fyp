@@ -5,7 +5,7 @@ import datetime as dt
 import uuid
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class SessionStatus(BaseModel):
@@ -33,6 +33,7 @@ class PackageRequest(BaseModel):
     level: Literal["beginner", "advanced"]
     exclude_spines: list[str] = []
     exclude_fingerprints: list[str] = []
+    session_id: str = Field(default="", max_length=64)   # the session whose optional headset socket is told how generation goes (P3-NET-12); empty = nobody is told
 
 
 class PackageOffer(BaseModel):

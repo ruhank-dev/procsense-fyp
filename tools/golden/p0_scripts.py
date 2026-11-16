@@ -8,6 +8,7 @@ A script is the walkthrough's correct path for one case, built from small segmen
 """
 from __future__ import annotations
 
+import calendar
 import json
 import subprocess
 import sys
@@ -53,6 +54,13 @@ class Script:
     def wait(self, seconds: float) -> "Script":
         self.t += seconds
         return self
+
+    def insert(self, t: float, verb: str, **params: str) -> None:
+        """A row at time t (after the rows already at or before t) that does not move the rows after it: an answer to an engine event that fires mid-gap."""
+        row = {"t": round(t, 1), "verb": verb}
+        if params:
+            row["params"] = {k: str(v) for k, v in params.items()}
+        self.rows.insert(next((i for i, r in enumerate(self.rows) if r["t"] > row["t"]), len(self.rows)), row)
 
     def json(self) -> str:
         return "[\n" + ",\n".join("  " + json.dumps(r, ensure_ascii=False) for r in self.rows) + "\n]\n"
@@ -185,19 +193,39 @@ def emergency_consent(s: Script, c: dict) -> None:
 def antibiotics(s: Script) -> None:
     s.add("check_treatment_timing", 2, treatment="TR-ABX-S2")
     s.add("request_medication", 2, **{"class": "TR-ABX-S2", "indication": "appendicitis"})
-    s.wait(150)
+    s.wait(148.9)
+    s.add("document_treatment", 1.1, treatment="TR-ABX-S2")       # clears minor.treatment_documentation (DT-303, 15 Nov 2026)
+
+
+def vital_sbar(what: str) -> dict:
+    """The SBAR call a vital-sign event (e_fever, e_high_hr, e_fast_breathing, e_low_oxygen, e_pain_worse) expects within its 300 s window (DT-303)."""
+    return {"role": "senior", "s": f"the patient has {what}", "b": "the observations are outside the safe range", "a": "it may change the pathway", "r": "please review the patient now"}
 
 
 # ---------------------------------------------------------------- the cases
 
-def planned_ready(c: dict, emergency: bool = False, antibiotic: bool = False, repeat: list[str] | None = None) -> Script:
+def planned_ready(c: dict, emergency: bool = False, antibiotic: bool = False, repeat: list[str] | None = None, vitals: list[tuple[float, str]] | None = None,
+                  split: tuple[int, int, str] | None = None, phone: tuple[str, str, str] | None = None) -> Script:
+    """vitals: (time, event) SBAR calls inserted where a vital event fires; split: the 60 min skip cut in two around an SBAR for an event that fires during it;
+    phone: (test, read-back values, note) for the laboratory's critical-result call, answered after the skip (DT-303, 15 Nov 2026)."""
     s = Script()
     identity(s); temperature_alert(s, c); history(s)
     tests = tests_for(c)
     order_tests(s, tests)
     readings(s); examination(s, c); risk(s, c)
-    s.skip(60)
+    if split:
+        s.skip(split[0]); s.add("escalate", 2, **vital_sbar(split[2])); s.skip(split[1]); s.wait(7)
+    else:
+        s.skip(60)
+    if phone:
+        dob = c["identity"]["dob"].split("-")
+        s.add("answer_phone", 1).add("confirm_patient_on_call", 1, name=c["identity"]["full_name"], dob=f"{int(dob[2])} {calendar.month_name[int(dob[1])]} {dob[0]}").add("read_back", 6, values=phone[1])
     view_tests(s, tests)
+    if phone:
+        seen = next(r["t"] for r in s.rows if r["verb"] == "view_result" and r["params"]["test"] == phone[0])
+        s.insert(seen + 0.3, "acknowledge_result", test=phone[0], action="escalate_senior", note=phone[2])
+    for t, what in vitals or []:
+        s.insert(t, "escalate", **vital_sbar(what))
     for t in repeat or []:                                # a repeat after the first result (for example a haemolysed potassium)
         test = next(x for x in tests if x["id"] == t)
         s.add("order_investigation", 2, test=t)
@@ -316,19 +344,20 @@ def decided(c: dict) -> Script:
 BUILDERS = {
     # the twelve combination cases (DT-220): the six planned ones end postponed or redirected, the emergency ones are played to ready (SC-32 is delayed after resuscitation)
     "SC-21": decided, "SC-22": decided, "SC-23": decided, "SC-24": decided, "SC-25": decided, "SC-26": decided, "SC-32": decided,
-    "SC-27": with_options(emergency=True, antibiotic=True), "SC-28": with_options(emergency=True, antibiotic=True), "SC-29": with_options(emergency=True, antibiotic=True),
-    "SC-30": with_options(emergency=True, antibiotic=True), "SC-31": with_options(emergency=True, antibiotic=True),
+    "SC-27": with_options(emergency=True, antibiotic=True), "SC-28": with_options(emergency=True, antibiotic=True, vitals=[(2.0, "fast breathing")]), "SC-29": with_options(emergency=True, antibiotic=True),
+    "SC-30": with_options(emergency=True, antibiotic=True), "SC-31": with_options(emergency=True, antibiotic=True, vitals=[(38.0, "fever")], split=(30, 30, "high hr"),
+                          phone=("u_and_e", "potassium=6.7", "Potassium 6.7 phoned by the laboratory; senior surgeon and anaesthetist told")),
     "VAR-S1-G": decided, "VAR-S1-H": decided, "VAR-S1-PB": decided, "VAR-S1-E": decided, "STK-S1-D": decided, "VAR-S2-B": decided, "VAR-S2-D": decided,
     # the P1 cases (p1-case-library-extended-s03, EXP-CASE-3): the same segments play all sixteen to their expected end state with nothing refused, so no engine addition is needed for them
     "VAR-S1-I": planned_ready, "VAR-S1-M": planned_ready, "VAR-S1-K": decided, "VAR-S1-L": decided, "VAR-S2-E": decided,
     "VAR-S2-H": with_options(antibiotic=True), "VAR-S2-I": with_options(antibiotic=True), "VAR-S2-J": with_options(antibiotic=True), "VAR-S2-K": with_options(antibiotic=True), "VAR-S2-L": with_options(antibiotic=True),
-    "STK-S1-A": decided, "STK-S1-B": decided, "STK-S1-C": decided, "STK-S2-A": with_options(antibiotic=True), "STK-S2-C": with_options(emergency=True, antibiotic=True), "STK-S2-D": with_options(antibiotic=True),
+    "STK-S1-A": decided, "STK-S1-B": decided, "STK-S1-C": decided, "STK-S2-A": with_options(antibiotic=True), "STK-S2-C": with_options(emergency=True, antibiotic=True, vitals=[(2.0, "low oxygen")]), "STK-S2-D": with_options(antibiotic=True),
     "VAR-S1-A": planned_ready,
     "VAR-S1-B": planned_ready,
     "VAR-S1-C": planned_ready,
     "VAR-S1-D": planned_ready,
     "VAR-S1-J": with_options(repeat=["u_and_e"]),
-    "VAR-S2-F": with_options(antibiotic=True), "VAR-S2-G": with_options(antibiotic=True), "VAR-S2-PC": with_options(emergency=True, antibiotic=True), "VAR-S2-PD": with_options(antibiotic=True), "STK-S2-B": with_options(emergency=True),
+    "VAR-S2-F": with_options(antibiotic=True), "VAR-S2-G": with_options(antibiotic=True), "VAR-S2-PC": with_options(emergency=True, antibiotic=True, vitals=[(146.0, "pain worse")]), "VAR-S2-PD": with_options(antibiotic=True), "STK-S2-B": with_options(emergency=True, vitals=[(38.0, "fever")], split=(29, 31, "high hr")),
 }
 
 

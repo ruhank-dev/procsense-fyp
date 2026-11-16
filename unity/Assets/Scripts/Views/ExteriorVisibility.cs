@@ -134,7 +134,7 @@ namespace ProcSense.VR.Views
             if (_city.Count == 0) return;
             if (FastPath && (_dirtyAll || ++_sinceSync >= ResyncEvery)) Resync();
             bool hide = ForceHidden || (Enabled && CityCannotBeSeen(cam));
-            bool portal = !hide && Enabled && PortalCullEnabled && _chunk.Count > 0 && QuestExterior.Current == QuestExterior.Variant.Optimised;
+            bool portal = !hide && Enabled && PortalCullEnabled && _chunk.Count > 0 && QuestExterior.Current != QuestExterior.Variant.Original;
             Apply(hide, portal);
             if (portal) { long t1 = CullCost.Begin(); PortalCull(cam); CullCost.End(CullCost.ExtPortal, t1); }
         }

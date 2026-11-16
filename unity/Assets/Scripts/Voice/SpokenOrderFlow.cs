@@ -17,9 +17,9 @@ namespace ProcSense.VR.Voice
     {
         public const int MaxChars = 900;
 
-        public static string Build(ObservableState s, IReadOnlyList<ContextTurn> turns)
+        public static string Build(ObservableState s, IReadOnlyList<ContextTurn> turns, bool practice = true)
         {
-            var sb = new StringBuilder("Practice session. ");
+            var sb = new StringBuilder(practice ? "Practice session. " : "Examination session. ");     // a label only: the interpreter prompt does not branch on it
             if (s != null)
             {
                 sb.Append("Location: ").Append(s.Location).Append(". Identity ").Append(s.IdentityConfirmed ? "confirmed" : "not confirmed").Append(". Allergies ").Append(s.AllergiesKnown ? "known" : "not yet asked").Append(". ");
@@ -44,7 +44,7 @@ namespace ProcSense.VR.Voice
     /// a proposal waits for the trainee's own yes (a button or the spoken word, <see cref="Confirm"/>, <see cref="AnswerBySpeech"/>), a missing detail is chosen from the closed list the content allows (<see cref="Choose"/>), a clarifying question is answered by
     /// saying more or picking an option (<see cref="PickOption"/>). Only a yes that the route accepts releases the action named by the signed single-use ticket; it is then applied with <see cref="SimulationHost.Apply"/>, the one way Unity changes the
     /// simulation, so the engine validates and scores a spoken order exactly as any other action and its refusal is shown to the trainee. Nothing is sent to the engine on a hearing, an expired or used ticket releases nothing, and the same order is not applied twice
-    /// within <see cref="DuplicateWindowSeconds"/>. Practice only. Applies no credit.
+    /// within <see cref="DuplicateWindowSeconds"/>. Works in practice and in the examination (D3). Applies no credit.
     /// </summary>
     public sealed class SpokenOrderFlow : MonoBehaviour
     {
@@ -102,10 +102,10 @@ namespace ProcSense.VR.Voice
         public IEnumerator Offer(string text, Action<bool> handled)
         {
             var host = Host();
-            if (host == null || host.Session == null || !ModeGate.PracticeAids || string.IsNullOrWhiteSpace(text)) { handled(false); yield break; }
+            if (host == null || host.Session == null || !SpokenExamRules.Allowed(host.Session) || string.IsNullOrWhiteSpace(text)) { handled(false); yield break; }
             Heard++;
             OrderHearing h = null;
-            string context = SpokenOrderContext.Build(host.Session.Observable, Talk != null ? Talk.Turns : null);
+            string context = SpokenOrderContext.Build(host.Session.Observable, Talk != null ? Talk.Turns : null, host.Session.PracticeAids);
             yield return Hearer(Auth(), text.Trim(), context, r => h = r);
             if (h == null || !h.FromService)
             {
@@ -213,7 +213,7 @@ namespace ProcSense.VR.Voice
             else
             {
                 _recent.Remove(key);                                                          // a refused order may be tried again
-                Set(OrderPhase.Notice, "The simulator did not take it: " + HintTexts.For(outcome.RejectReason) + ".");
+                Set(OrderPhase.Notice, "The simulator did not take it: " + SpokenExamRules.RefusalText(host.Session, outcome.RejectReason) + ".");
             }
         }
     }

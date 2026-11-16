@@ -151,6 +151,7 @@ namespace ProcSense.Core.Workflow
 
         private readonly CaseGraph _graph;
         private readonly List<GoalRun> _goals = new List<GoalRun>();
+        private readonly List<GoalDef> _notApplicable = new List<GoalDef>();   // goals whose applies_if failed for this case: listed as not needed (P3-TRN-02)
         private readonly List<GoalRun> _withDeadline = new List<GoalRun>();
         private readonly List<PointRun> _points = new List<PointRun>();
         private readonly List<GraphEvent> _history = new List<GraphEvent>();
@@ -173,7 +174,7 @@ namespace ProcSense.Core.Workflow
             var state = RuleState.Build(session);
             foreach (var def in _graph.Goals)
             {
-                if (!def.AppliesIf.Test(state)) continue;
+                if (!def.AppliesIf.Test(state)) { _notApplicable.Add(def); continue; }
                 var run = new GoalRun { Def = def, Active = def.ActiveIf.Test(state) };
                 if (def.DeadlineMinutes.HasValue)
                 {
@@ -210,9 +211,24 @@ namespace ProcSense.Core.Workflow
             var list = new List<Observation.GoalStatus>(_goals.Count);
             foreach (var g in _goals)
                 if (g.Active) list.Add(new Observation.GoalStatus(g.Def.Id, g.Def.Label, g.State.ToString().ToLowerInvariant(),
-                    g.AtStep < 0 ? "" : Observation.ObservableBuilder.Hms(_session!.Clock.Start + TimeSpan.FromSeconds(g.AtStep * Time.SimClock.Step))));
+                    g.AtStep < 0 ? "" : Observation.ObservableBuilder.Hms(_session!.Clock.Start + TimeSpan.FromSeconds(g.AtStep * Time.SimClock.Step)), WaitingFor(g)));
             return list;
         }
+
+        /// <summary>For a pending goal: the goals it comes after that are not complete yet (why it cannot complete now). Empty otherwise.</summary>
+        private IReadOnlyList<string> WaitingFor(GoalRun g)
+        {
+            if (g.State != GoalState.Pending || g.Def.After.Count == 0) return Array.Empty<string>();
+            var list = new List<string>();
+            foreach (var a in g.Def.After)
+                foreach (var other in _goals)
+                    if (other.Def.Id == a && other.State != GoalState.Complete) list.Add(a);
+            return list;
+        }
+
+        /// <summary>Goals that do not apply to this case (their applies_if failed at the start), with the reason id and the goal's step (P3-TRN-02).</summary>
+        internal IReadOnlyList<Observation.InactiveGoal> NotApplicable() =>
+            _notApplicable.Select(d => new Observation.InactiveGoal(d.Id, "goal", Observation.Availability.ReasonFor(d.Id, Observation.Availability.NotApplicable), d.Step)).ToList();
 
         internal IReadOnlyList<Observation.DecisionCard> OpenCards()
         {
@@ -229,6 +245,23 @@ namespace ProcSense.Core.Workflow
             foreach (var g in _goals)
                 if (g.Active && g.State == GoalState.Pending && PrerequisitesDone(g)) return g.Def.Hint;
             return "";
+        }
+
+        /// <summary>The next goal the active hint (request_hint, P3-EXM-01) is about: id, the first-tier text (what to think about) and the label (the second tier: what to do). Null when nothing is pending.</summary>
+        internal (string Id, string Hint, string Label)? NextGoalHint()
+        {
+            foreach (var g in _goals)
+                if (g.Active && g.State == GoalState.Pending && PrerequisitesDone(g)) return (g.Def.Id, g.Def.Hint, g.Def.Label);
+            return null;
+        }
+
+        /// <summary>Submission (submit_patient, P3-EXM-05): every active goal still pending is missed now, through the same path as a missed deadline, so the existing scoring items apply. Returns how many.</summary>
+        internal int MissPending()
+        {
+            int n = 0;
+            foreach (var g in _goals)
+                if (g.Active && g.State == GoalState.Pending) { Miss(g); n++; }
+            return n;
         }
 
         // ---------------------------------------------------------------- evaluation

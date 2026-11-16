@@ -9,12 +9,14 @@ import json
 import time
 from functools import lru_cache
 from pathlib import Path
+from typing import Literal
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException
 from pydantic import BaseModel, Field
 
-from server import ai_features
+from server import ai_features, request_ids
 from server.config import Settings, get_settings
+from server.dialogue import exam_policy
 from server.dialogue.dialogue import Dialogue
 from server.llm import client as client_mod, routing
 from server.auth.dependencies import db_session
@@ -22,11 +24,12 @@ from server.repositories import privacy as privacy_repository
 from sqlalchemy.orm import Session as DbSession
 from server.middleware.audit import AiCallRecord, audited
 from server.routers import ai_gateway
+from server.schemas.voice_turn import TurnFields
 
 router = APIRouter(tags=["dialogue"])
 
 
-class DialogueIn(BaseModel):
+class DialogueIn(TurnFields):                   # + optional addressee, interaction_mode, session_mode, request_id (P3-API-02)
     context: dict
     question: str = Field(min_length=1, max_length=400)
     style: str = Field(default="plain", max_length=120)
@@ -88,12 +91,16 @@ def _run_inner(body: DialogueIn, role: str, call: AiCallRecord, settings: Settin
 
 
 @router.post("/dialogue/organisations/{organisation_id}/patient", response_model=DialogueOut)
-def patient(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_patient")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> DialogueOut:
+def patient(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_patient")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session),
+            x_request_id: str | None = Header(default=None, alias="X-Request-Id")) -> DialogueOut:
+    request_ids.note("dialogue_patient", call.user_id, body, x_request_id)
     return _run(body, "patient", call, settings, d, db)
 
 
 @router.post("/dialogue/organisations/{organisation_id}/staff", response_model=DialogueOut)
-def staff(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_staff")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> DialogueOut:
+def staff(body: DialogueIn, call: AiCallRecord = Depends(audited("dialogue_staff")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session),
+          x_request_id: str | None = Header(default=None, alias="X-Request-Id")) -> DialogueOut:
+    request_ids.note("dialogue_staff", call.user_id, body, x_request_id)
     return _run(body, "staff", call, settings, d, db)
 
 
@@ -113,7 +120,7 @@ def _staff_lines() -> dict:
     return json.loads(STAFF_LINES_FILE.read_text(encoding="utf-8"))["roles"]
 
 
-class TeamIn(BaseModel):
+class TeamIn(TurnFields):                       # + optional interaction_mode, session_mode, request_id (P3-API-02); addressee as before
     context: dict                                         # the patient's context from the Core's builder: facts with the Core's decision on each, the recent turns
     staff_roles: list[str] = Field(default=["nurse", "anaesthesia"], min_length=0, max_length=4)
     question: str = Field(min_length=1, max_length=400)
@@ -122,6 +129,8 @@ class TeamIn(BaseModel):
     sex: str = Field(default="M", pattern="^[MF]$")
     authored: dict[str, str] = {}
     asked_fact: str | None = None
+    mode: Literal["practice", "examination"] = "practice"   # the examination uses content/ai/staff_exam_policy.json: staff speak only when spoken to, with examination-safe lines (D3)
+    # addressee (from TurnFields): who the spoken-action interpreter heard the sentence addressed to, when it was asked
 
 
 class RoleReply(BaseModel):
@@ -141,7 +150,9 @@ class TeamOut(BaseModel):
 
 
 @router.post("/dialogue/organisations/{organisation_id}/team", response_model=TeamOut)
-def team(body: TeamIn, call: AiCallRecord = Depends(audited("dialogue_team")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session)) -> TeamOut:
+def team(body: TeamIn, call: AiCallRecord = Depends(audited("dialogue_team")), settings: Settings = Depends(get_settings), d: Dialogue = Depends(get_dialogue), db: DbSession = Depends(db_session),
+         x_request_id: str | None = Header(default=None, alias="X-Request-Id")) -> TeamOut:
+    request_ids.note("dialogue_team", call.user_id, body, x_request_id)
     with routing.consent(privacy_repository.cloud_consent(db, call.user_id)):
         return _team(body, call, settings, d)
 
@@ -150,6 +161,9 @@ def _team(body: TeamIn, call: AiCallRecord, settings: Settings, d: Dialogue) -> 
     """The staff's allowed intents and their approved lines come from the server's own content, not from the request: a client cannot widen the closed lists or choose the words a staff member says."""
     intents, lines = _intents(), _staff_lines()
     roles = [r for r in dict.fromkeys(body.staff_roles) if r in intents and r != "patient" and r in lines]
+    if body.mode == "examination" or ("mode" not in body.model_fields_set and body.is_examination()):     # D3 (P3-API-02: a session_mode of the examination counts when mode was not sent): only roles the trainee spoke to, and their examination lines instead of the practice ones
+        roles = [r for r in exam_policy.roles(roles) if (r == body.addressee or exam_policy.addressed(r, body.question))]
+        lines = {**lines, **{r: exam_policy.lines(r) for r in roles}}
     ctx = dict(body.context)
     if not isinstance(ctx.get("facts"), list):
         raise HTTPException(status_code=422, detail="context_needs_facts")

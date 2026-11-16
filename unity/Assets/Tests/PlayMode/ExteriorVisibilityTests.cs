@@ -32,6 +32,25 @@ namespace ProcSense.Tests.PlayMode
 
         [TearDown] public void RestoreVariant() { QuestExterior.ResetToDefault(); ExteriorVisibility.PortalCullEnabled = true; }
 
+        /// <summary>Overhaul 14 Nov 2026: the Impostor variant (Android default) draws the optimised geometry with the one-sample unlit exterior material and the small LDR sky; selecting another variant restores the original Lit materials and sky exactly.</summary>
+        [UnityTest]
+        public IEnumerator Impostor_variant_swaps_to_the_cheap_materials_and_back()
+        {
+            yield return Boot();
+            var q = Object.FindAnyObjectByType<QuestExterior>(); Assert.IsNotNull(q); Assert.IsTrue(q.HasImpostor, "the impostor material sets are configured");
+            int Count(string shader) { int n = 0; foreach (var r in q.GetComponentsInChildren<Renderer>(true)) foreach (var m in r.sharedMaterials) if (m != null && m.shader != null && m.shader.name == shader) n++; return n; }
+            int litBefore = Count("Universal Render Pipeline/Lit"); var skyBefore = RenderSettings.skybox;
+            Assert.AreEqual(0, Count("ProcSense/Exterior Unlit"), "the default on desktop is the untouched original");
+            QuestExterior.Current = QuestExterior.Variant.Impostor;
+            Assert.Greater(Count("ProcSense/Exterior Unlit"), 0, "impostor surfaces use the unlit exterior material");
+            Assert.Less(Count("Universal Render Pipeline/Lit"), litBefore, "fewer Lit materials remain in the exterior");
+            Assert.AreEqual("Sky city LDR", RenderSettings.skybox.name, "the small LDR sky");
+            QuestExterior.Current = QuestExterior.Variant.Original;
+            Assert.AreEqual(litBefore, Count("Universal Render Pipeline/Lit"), "the original Lit materials are back");
+            Assert.AreEqual(0, Count("ProcSense/Exterior Unlit"));
+            Assert.AreEqual(skyBefore, RenderSettings.skybox, "the original sky is back");
+        }
+
         /// <summary>P3-EXT-04/08: the original city is the default everywhere, the Quest variant sits beside it switched off, either can be shown, and every original renderer is still present.</summary>
         [UnityTest]
         public IEnumerator Quest_variant_is_isolated_and_reversible()

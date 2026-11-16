@@ -53,6 +53,18 @@ PrefabInstance:
       value: RB_Medical_Female_02
       objectReference: {fileID: 0}
     - target: {fileID: 1042659815581740473, guid: 4e1ad7c1c77fc3e47be3fa5314d2affe, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042659815581740473, guid: 4e1ad7c1c77fc3e47be3fa5314d2affe, type: 3}
+      propertyPath: m_ReceiveShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042659815581740473, guid: 4e1ad7c1c77fc3e47be3fa5314d2affe, type: 3}
+      propertyPath: m_ReflectionProbeUsage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1042659815581740473, guid: 4e1ad7c1c77fc3e47be3fa5314d2affe, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c4a6035833079a64bab02a3624cbd5e3, type: 2}

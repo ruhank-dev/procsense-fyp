@@ -32,7 +32,7 @@ namespace ProcSense.Tests.EditMode
             Assert.IsFalse(prefab.GetComponent<Rigidbody>().isKinematic);
             Assert.That(prefab.GetComponents<BoxCollider>().All(c => c.size.x > 0 && c.size.y > 0 && c.size.z > 0), Is.True);
             Assert.That(prefab.GetComponentsInChildren<EquipmentSurfaceView>().Length, Is.EqualTo(EquipmentPrefabBuilder.Pilots.Contains(id) ? 1 : 0));
-            Assert.That(renderers.SelectMany(r => r.sharedMaterials).All(m => m != null && m.shader.name == "Universal Render Pipeline/Lit"), Is.True);
+            Assert.That(renderers.SelectMany(r => r.sharedMaterials).All(m => m != null && (m.shader.name == "Universal Render Pipeline/Lit" || m.shader.name == "Universal Render Pipeline/Simple Lit")), Is.True);
             var hooks = prefab.GetComponentsInChildren<XRSocketInteractor>();
             Assert.That(hooks.Length, Is.EqualTo(sockets));
             Assert.That(hooks.All(h => h.interactionLayers.value == 1 << 8), Is.True);

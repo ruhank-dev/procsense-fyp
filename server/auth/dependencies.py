@@ -11,7 +11,7 @@ from collections.abc import Iterator
 from dataclasses import dataclass
 from functools import lru_cache
 
-from fastapi import Depends, HTTPException
+from fastapi import Depends, HTTPException, Request
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 
@@ -20,6 +20,7 @@ from server.auth.supabase_admin import SupabaseAdmin
 from server.auth.tokens import Principal, TokenError, TokenVerifier
 from server.config import Settings, get_settings
 from server.database import get_session
+from server.lan import demo_identity
 from server.repositories import devices
 from server.models.accounts import Membership, Organisation, Profile
 from server.repositories import accounts
@@ -39,14 +40,17 @@ def get_admin() -> SupabaseAdmin:
     return SupabaseAdmin.from_settings(get_settings())
 
 
-def db_session() -> Iterator[Session]:
-    """A database session for one request; the service answers 503 when no database is configured."""
+def db_session(request: Request, settings: Settings = Depends(get_settings)) -> Iterator[Session | None]:
+    """A database session for one request; the service answers 503 when no database is configured (the LAN demonstration user gets None instead: it needs no stored account)."""
     # only opening the session can mean "no database": an error raised later by the route is the route's own and must not be reported as a missing database
     gen = get_session()
     try:
         session = next(gen)
     except RuntimeError:
-        raise HTTPException(status_code=503, detail="database_not_configured") from None
+        if demo_identity.device_for(request, settings) is None:
+            raise HTTPException(status_code=503, detail="database_not_configured") from None
+        yield None
+        return
     try:
         yield session
     finally:
@@ -70,8 +74,13 @@ def _device_principal(token: str) -> Principal:
         gen.close()
 
 
-def current_principal(credentials: HTTPAuthorizationCredentials | None = Depends(_bearer), verifier: TokenVerifier = Depends(get_verifier)) -> Principal:
-    """Either kind of login: the account system's token (the web) or a headset's own token (prefix psd_). The rest of the service does not care which."""
+def current_principal(request: Request, credentials: HTTPAuthorizationCredentials | None = Depends(_bearer), verifier: TokenVerifier = Depends(get_verifier),
+                      settings: Settings = Depends(get_settings)) -> Principal:
+    """Either kind of login: the account system's token (the web) or a headset's own token (prefix psd_). The rest of the service does not care which.
+    In the LAN profile a paired headset with no real sign-in is the synthetic demonstration user (P3-NET-11)."""
+    demo = demo_identity.device_for(request, settings)
+    if demo is not None:
+        return Principal(user_id=demo_identity.user_id_for(demo), email="", claims={}, demo_device_id=demo)
     if credentials is None or credentials.scheme.lower() != "bearer":
         raise HTTPException(status_code=401, detail="not_signed_in", headers={"WWW-Authenticate": "Bearer"})
     if credentials.credentials.startswith(device_tokens.ACCESS_PREFIX):
@@ -84,7 +93,15 @@ def current_principal(credentials: HTTPAuthorizationCredentials | None = Depends
 
 
 def web_principal(principal: Principal = Depends(current_principal)) -> Principal:
-    """Only a person signed in on the web (the account system's token). A headset's token cannot approve another headset, list devices or change the account."""
+    """Only a person signed in on the web (the account system's token). A headset's token (a device-code sign-in or the paired LAN demonstration user) cannot approve another headset, list devices or change the account."""
+    if principal.device_session_id is not None or principal.demo_device_id:
+        raise HTTPException(status_code=403, detail="web_sign_in_required")
+    return principal
+
+
+def consent_principal(principal: Principal = Depends(current_principal)) -> Principal:
+    """Who may record a consent answer: a person signed in on the web, or the paired LAN demonstration user on its own headset (owner decision D2: the demonstration identity follows the normal
+    consent workflow and answers for itself, through the same route and the same texts). A device-code headset still cannot answer for the real person behind the account."""
     if principal.device_session_id is not None:
         raise HTTPException(status_code=403, detail="web_sign_in_required")
     return principal
@@ -100,8 +117,13 @@ class CurrentUser:
         return next((m for m in self.memberships if m.organisation_id == organisation_id), None)
 
 
-def current_user(principal: Principal = Depends(current_principal), session: Session = Depends(db_session)) -> CurrentUser:
+def current_user(principal: Principal = Depends(current_principal), session: Session | None = Depends(db_session)) -> CurrentUser:
     """The signed-in person. First sign-in makes the profile; any pending invitations for the address in the token are applied (and the address is cleared from them)."""
+    if principal.demo_device_id:
+        if session is None:
+            return CurrentUser(principal, demo_identity.transient(principal.demo_device_id)[0], [])
+        profile, _, memberships = demo_identity.ensure_rows(session, principal.demo_device_id)
+        return CurrentUser(principal, profile, memberships)
     profile = accounts.ensure_profile(session, principal.user_id)
     for invitation in accounts.pending_invitations_for(session, principal.email):
         accounts.accept_invitation(session, invitation, principal.user_id)
@@ -124,7 +146,13 @@ class OrgContext:
 
 
 def _org_context(minimum: str):
-    def dependency(organisation_id: uuid.UUID, user: CurrentUser = Depends(current_user), session: Session = Depends(db_session)) -> OrgContext:
+    def dependency(organisation_id: uuid.UUID, user: CurrentUser = Depends(current_user), session: Session | None = Depends(db_session)) -> OrgContext:
+        if user.principal.demo_device_id:   # the synthetic demonstration user: its one organisation, as a trainee, never an administrator
+            if organisation_id != demo_identity.ORG_ID:
+                raise HTTPException(status_code=404, detail="not_found")
+            if minimum != "trainee":
+                raise HTTPException(status_code=403, detail="web_sign_in_required")
+            return OrgContext(user, demo_identity.transient(user.principal.demo_device_id)[1] if session is None else accounts.get_organisation(session, organisation_id), demo_identity.ROLE)
         organisation = accounts.get_organisation(session, organisation_id)
         if organisation is None or not organisation.active:
             raise HTTPException(status_code=404, detail="not_found")

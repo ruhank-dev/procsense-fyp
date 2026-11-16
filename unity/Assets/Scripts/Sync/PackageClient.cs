@@ -19,6 +19,8 @@ namespace ProcSense.VR.Sync
         public string Error = "";
         /// <summary>True when the trainee can simply play an authored case: no network, no pool, nothing left in the pool. False for an answer that is a fault (a package that does not match its hash).</summary>
         public bool PlayAuthoredInstead;
+        /// <summary>True when the package came from the device's cache (P3-NET-14); <see cref="Error"/> then holds the message to show.</summary>
+        public bool Cached;
     }
 
     /// <summary>
@@ -36,6 +38,19 @@ namespace ProcSense.VR.Sync
                 foreach (var b in hash) sb.Append(b.ToString("x2"));
                 return sb.ToString();
             }
+        }
+
+        /// <summary>P3-NET-14: asks the laptop for the next package and caches a good one; when the laptop cannot supply one (offline, no pool, none left) the cached last good package for this family and level is used, else the caller plays an authored case (PlayAuthoredInstead). A fault (hash mismatch) is never papered over with the cache.</summary>
+        public static IEnumerator FetchNextCached(AuthService auth, PackageCache cache, string scenario, string level, Action<FetchedPackage> done)
+        {
+            FetchedPackage fetched = null;
+            yield return FetchNext(auth, scenario, level, r => fetched = r);
+            if (cache != null)
+            {
+                if (fetched.Ok) cache.Save(scenario, level, fetched.Hash, fetched.Text);
+                else if (fetched.PlayAuthoredInstead) { var old = cache.Load(scenario, level); if (old != null) fetched = old; }
+            }
+            done(fetched);
         }
 
         public static IEnumerator FetchNext(AuthService auth, string scenario, string level, Action<FetchedPackage> done)

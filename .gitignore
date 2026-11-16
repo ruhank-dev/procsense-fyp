@@ -100,3 +100,7 @@ Thumbs.db
 
 # change-aware testing result cache (fallback location; the default is D:\ProcSenseWork\ci_cache)
 tools/ci/cache/
+
+# laptop-local demonstration secrets (pairing tokens, self-signed key)
+server/.demo-pairing.json
+server/.demo-tls/
