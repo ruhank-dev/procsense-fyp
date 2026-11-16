@@ -47,7 +47,7 @@ A P3 acceptance matrix; automated end-to-end playthroughs (both procedures, both
 | P3-QA-03 | Fresh-clone rehearsal: restore script, Unity import, all tests, APK build, recorded in `docs/qa/` | Ruhan | P3-AST-09 | Report written with commit hash | Planned |
 | P3-QA-04 | Headset items: DC-13 (Quest 2 performance benchmark with the diagnostic APKs), DC-14 (P3 end-to-end on the headset) and DC-15 (Quest ⇄ laptop ⇄ cloud network test) in `docs/testing/external_testing.json` | Ruhan | — | Items generated in `SANNAN_EXTERNAL_TESTING.md` | Done |
 | P3-QA-05 | Visual regression: fixed cameras for every P3 screen and the three rooms; compare against approved captures in CI-independent review | Ruhan | P3-UIX-10 | Comparison sheet in `docs/qa/` | Planned |
-| P3-QA-06 | Release candidate: Demo APK from a tagged commit, checksum, release notes listing tested and untested items | Moiz | P3-QA-02, P3-PRF-14, p0-evaluation-performance-s08 | Tag and artefact exist | Planned |
+| P3-QA-06 | Release candidate: Demo APK from a tagged commit, checksum, release notes listing tested and untested items | Moiz | P3-QA-02, P3-PRF-14, p0-evaluation-performance-s08 | Tag and artefact exist | In progress |
 | P3-QA-07 | Usability session with at least five participants (think-aloud, tasks from the matrix), findings fixed or registered | Team | P3-QA-06, p0-evaluation-performance-s05 | Findings report and fixes | Planned |
 | P3-QA-08 | Release readiness review by the owner against section 15 | Owner | P3-QA-03, P3-QA-07 | Decision recorded | Planned |
 
