@@ -14,7 +14,8 @@ namespace ProcSense.Tests.EditMode
     /// </summary>
     public class ContextInteractionTests
     {
-        private static InteractionCatalogue Catalogue => InteractionCatalogue.Parse(File.ReadAllText(Path.Combine(Application.dataPath, "..", "..", "content", "ui", "interactions.json")));
+        private static InteractionCatalogue Catalogue => InteractionCatalogue.Parse(File.ReadAllText(Path.Combine(Application.dataPath, "..", "..", "content", "ui", "interactions.json")))
+            .WithExamples(File.ReadAllText(Path.Combine(Application.dataPath, "..", "..", "content", "ui", "voice_examples.json")));
 
         [Test]
         public void The_catalogue_reads_every_entity_and_every_group_entry_exists()
@@ -29,19 +30,18 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
-        public void Every_person_has_at_least_three_things_to_say()
+        public void Every_entity_type_shows_at_least_three_things_to_say()
         {
             var c = Catalogue;
-            var report = new List<string>();
             foreach (var type in Interactable.Types)
             {
-                int n = c.EntriesOf(type).Where(x => x.Spoken).SelectMany(x => x.VoiceExamples.Take(1)).Distinct().Count();
-                report.Add(type + ": " + n);
+                var examples = c.EntriesOf(type).Where(x => x.Spoken).SelectMany(x => x.VoiceExamples.Take(1))
+                                .Concat(c.VoiceExamples.TryGetValue(type, out var more) ? more : new List<string>()).Distinct().ToList();
+                Assert.GreaterOrEqual(examples.Count, 3, type + " reference card (P3-VOX-04)");
+                foreach (var x in examples) Assert.IsFalse(System.Text.RegularExpressions.Regex.IsMatch(x, @"\d"), type + ": no numbers or doses in an example: " + x);
             }
-            TestContext.WriteLine(string.Join("\n", report));
-            // the patient's card meets P3-VOX-04 now; the staff have as many as content/ai/spoken_actions.json allows by voice (the nurse one, at 16 Nov 2026), which is a content decision
-            Assert.GreaterOrEqual(c.EntriesOf("patient").Count(x => x.Spoken), 3, string.Join("\n", report));
-            Assert.Pass("staff reference cards are limited by the content, see the counts:\n" + string.Join("\n", report));
+            foreach (var x in c.VoiceExamples["nurse"]) Assert.AreEqual("nurse", AddresseeTarget.Named(x), "a nurse example is addressed to the nurse: " + x);
+            foreach (var x in c.VoiceExamples["anaesthetist"]) Assert.AreEqual("anaesthesia", AddresseeTarget.Named(x), x);
         }
 
         [Test]

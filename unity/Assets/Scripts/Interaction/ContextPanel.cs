@@ -188,8 +188,9 @@ namespace ProcSense.VR.Interaction
             var t = UiTheme.Current;
             foreach (var entry in _catalogue.EntriesOf(Entity.EntityType).Where(x => x.Spoken))
                 foreach (var ex in entry.VoiceExamples.Take(1)) if (!_examples.Contains(ex)) _examples.Add(ex);
+            if (_catalogue.VoiceExamples.TryGetValue(Entity.EntityType, out var more)) foreach (var ex in more) if (!_examples.Contains(ex)) _examples.Add(ex);   // P3-VOX-04: the staff's ways to be spoken to
             var name = Entity.VoiceName;
-            var lines = _examples.Take(7).Select(x => "“" + (Entity.EntityType == "patient" ? x : Cap(name) + ", " + Lower(x)) + "”");
+            var lines = _examples.Take(7).Select(x => "“" + (Entity.EntityType == "patient" || AddresseeTarget.Named(x) != null || x.Contains(",") ? x : Cap(name) + ", " + Lower(x)) + "”");
             Kit.Text(_body, "Ask", "You can ask…", new Vector2(24, y), new Vector2(Width - 48, 36), TextStyle.Heading);
             string body = _examples.Count > 0 ? string.Join("\n", lines)
                 : "Nothing here can be started by voice yet. You can still talk to " + (AddresseeTarget.RouteName(Entity.EntityType) != null ? "them" : "the team") + "; to act on it, switch to menu mode in Settings.";

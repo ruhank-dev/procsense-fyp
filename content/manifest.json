@@ -1,14 +1,15 @@
 {
  "schema": 1,
- "content_hash": "b2bf29c27492ec5357fddb43b3185122c9a9ba976e876bb03245ef13f0d8b329",
- "files": 765,
- "bytes": 18692161,
+ "content_hash": "fccec0727cb675a758ae01710c5baf8fc0343ab5706c5ebf9bbf7d67c42ca656",
+ "files": 767,
+ "bytes": 18712847,
  "per_folder": {
   "(root)": 65,
   "adversarial": 1,
   "ai": 13,
   "assessment": 2,
   "attributions": 1,
+  "audio": 1,
   "availability": 4,
   "behaviour": 3,
   "blocks": 313,
@@ -53,7 +54,7 @@
   "sepsis": 1,
   "sources": 1,
   "templates": 2,
-  "ui": 7,
+  "ui": 8,
   "voice": 4,
   "ward": 1,
   "workflow": 1,
@@ -131,6 +132,10 @@
   "attributions/attributions.json": {
    "bytes": 14333,
    "sha256": "e9311261240a701fb837074556cc2b88fcab655346828036fa5b5b0d43380273"
+  },
+  "audio/sound_list.json": {
+   "bytes": 18992,
+   "sha256": "2cc5fbb5d0fc5d70e819d0ebc0b3496a88d914cb68bc04dfd780aed4006ce967"
   },
   "availability/config.json": {
    "bytes": 348,
@@ -2827,6 +2832,10 @@
   "ui/ui_messages.json": {
    "bytes": 6315,
    "sha256": "44fb06493aef0ed7c90b03bb6117f7684969079ea5d023958b109638a04aff6b"
+  },
+  "ui/voice_examples.json": {
+   "bytes": 1694,
+   "sha256": "9801ba6be12fffec0162ef9b8707ded9e751dd1a721907a7e49964b916728f10"
   },
   "ui/voice_feedback.json": {
    "bytes": 6002,

@@ -32,7 +32,7 @@ class Header(BaseModel):
     mode: Literal["practice", "assessment"]
     log_hash: str = Field(pattern=HEX64)
     # written only when they are not the default (training level, case variant, noise on the vitals): they change how the session replays, so the verifier needs them
-    level: Literal["beginner", "advanced"] | None = None
+    level: Literal["beginner", "intermediate", "advanced"] | None = None   # intermediate: P3-MNU-05
     variant: str | None = Field(default=None, max_length=16, pattern=r"^[A-Za-z0-9._-]*$")
     noise: StrictBool | None = None
     # version 2 (p1-backend-s09): given by the host, outside the replay hash

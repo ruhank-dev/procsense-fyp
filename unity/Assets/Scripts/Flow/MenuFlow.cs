@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -124,6 +125,54 @@ namespace ProcSense.VR.Flow
         }
 
         public void SetLevel(TrainingLevel level) { Level = level; Changed?.Invoke(); }
+
+        // ------------------------------------------------------------------ generated scenarios (P3-SCN-06)
+
+        /// <summary>Where the next case comes from in training: the authored pool, or a generated scenario package from the service. The examination always plays approved authored cases.</summary>
+        public CaseSource Source { get; private set; } = CaseSource.Authored;
+        /// <summary>What the briefing says about where its case came from ("Authored case", "Generated scenario X", or why the authored case is playing instead).</summary>
+        public string SourceLine { get; private set; } = "";
+        /// <summary>True while a generated scenario is being fetched (the briefing waits).</summary>
+        public bool Fetching { get; private set; }
+        /// <summary>The package fetch (PackageSessionStarter.Run in the app; tests replace it): (scenario family, level, seed, done).</summary>
+        public Func<string, string, ulong, Action<ProcSense.VR.Sync.PackageStart>, IEnumerator> Fetch;
+
+        public void SetSource(CaseSource source)
+        {
+            Source = Mode == SessionMode.Practice ? source : CaseSource.Authored;
+            Changed?.Invoke();
+        }
+
+        /// <summary>The scenario family of a procedure (S1 cholecystectomy, S2 appendicectomy).</summary>
+        public static string FamilyOf(string procedure) => procedure == "appendicectomy" ? "S2" : "S1";
+
+        /// <summary>
+        /// After the authored case was drawn and briefed, asks for a generated scenario of the same family and level and, if one starts, briefs it instead (the trainee has done nothing yet, so
+        /// nothing is lost). Any failure keeps the authored case and says why on the briefing. Training only.
+        /// </summary>
+        public IEnumerator Generate()
+        {
+            if (Phase != MenuPhase.Briefing || Mode != SessionMode.Practice || Source != CaseSource.Generated) yield break;
+            Fetching = true;
+            SourceLine = "Fetching a generated scenario…";
+            Changed?.Invoke();
+            ProcSense.VR.Sync.PackageStart result = null;
+            ulong seed = _drawSeed();
+            var fetch = Fetch ?? ((family, level, s, done) => ProcSense.VR.Sync.PackageSessionStarter.Run(ProcSense.VR.Auth.AuthService.Current ?? ProcSense.VR.Auth.AuthService.Factory(), _host, family, level, s, SessionMode.Practice, done, _reader));
+            yield return fetch(FamilyOf(Procedure), Level == TrainingLevel.Beginner ? "beginner" : "advanced", seed, r => result = r);   // the pool is generated at two levels; intermediate plays the full (advanced) packages
+            Fetching = false;
+            if (Phase != MenuPhase.Briefing) yield break;                                       // the trainee went back meanwhile
+            if (result != null && result.Started && _host.Session != null)
+            {
+                var content = _host.Content;
+                _host.Session.Checker = new Session.CheckSource(content, () => (_host.SubsystemFactory ?? Subsystems.Default)(content));
+                Plan = new SessionPlan(_host.Session.Case.Id, _host.Session.Seed, SessionMode.Practice, new SessionOptions(_host.Session.Level, _host.Session.Variant, _host.Session.Noise, _host.Session.PulseTrace, _host.Session.PlannedEvents), Procedure, CaseSource.Generated, null);
+                if (content.CaseFiles.TryGetValue(Plan.CaseId, out var file)) Briefing = BriefingFacts.From(file);
+                SourceLine = "Generated scenario " + result.CaseId + (string.IsNullOrEmpty(result.Message) ? "" : " (" + result.Message + ")");
+            }
+            else SourceLine = (result == null ? "No answer from the scenario service." : string.IsNullOrEmpty(result.Message) ? "The generated scenario could not start." : result.Message) + " The authored case is playing.";
+            Changed?.Invoke();
+        }
 
         /// <summary>Draws a random valid scenario for the procedure and loads it; on success the briefing is shown.</summary>
         public bool ChooseSurgery(string procedure, TrainingLevel level)
@@ -287,6 +336,7 @@ namespace ProcSense.VR.Flow
             Summary = null;
             _submitPending = false;
             Message = result.Substitutions.Count > 0 ? "Another case was started: " + result.Substitutions[0].CaseId + " could not be used." : "";
+            SourceLine = Source == CaseSource.Generated && Mode == SessionMode.Practice ? "" : "Authored case";
             Go(MenuPhase.Briefing);
             return true;
         }

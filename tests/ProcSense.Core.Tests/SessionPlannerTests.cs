@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using ProcSense.Core.Content;
 using ProcSense.Core.Flow;
 using ProcSense.Core.Replay;
@@ -125,6 +126,32 @@ namespace ProcSense.Core.Tests
 
             var drawn = SessionPlanner.Plan(Catalogue, new SessionRequest(SessionMode.Practice, CaseCatalogue.Appendicectomy, TrainingLevel.Advanced), null, () => 77).Plan!;
             Assert.Equal(drawn with { Relaxed = null }, SessionPlanner.Plan(Catalogue, SessionPlanner.Retry(drawn, drawn.Options.Level), null, () => 1).Plan);
+        }
+
+        /// <summary>P3-MNU-05: the intermediate level reaches the session header and replays; it draws from the whole pool (stacked cases too) like advanced, and gives no automatic practice hint.</summary>
+        [Fact]
+        public void The_intermediate_level_reaches_the_header_and_draws_from_the_whole_pool()
+        {
+            var request = new SessionRequest(SessionMode.Practice, CaseCatalogue.Cholecystectomy, TrainingLevel.Intermediate, Seed: 42, CaseId: "VAR-S1-A");
+            var plan = SessionPlanner.Plan(Catalogue, request, null, Draw).Plan!;
+            Assert.Equal(TrainingLevel.Intermediate, plan.Options.Level);
+            Assert.Equal("intermediate", plan.Header()["level"]);
+            var content = Content(plan.CaseId);
+            var s = Play(plan, content);
+            string text = SessionFile.Write(s);
+            Assert.Contains("\"level\":\"intermediate\"", text.Split('\n')[0]);
+            Assert.Equal(request, SessionFile.RequestOf(text));
+            Assert.True(SessionFile.Replay(text, content, () => Subsystems.Default(content)).Match);
+            Assert.Equal("", s.Observable.Hint);                                                               // no automatic practice hint above beginner
+
+            var stacked = new HashSet<string>(Catalogue.Entries.Where(e => e.Stacked && e.Procedure == CaseCatalogue.Cholecystectomy).Select(e => e.Id));
+            bool beginnerDrew = false, intermediateDrew = false;
+            for (ulong seed = 1; seed <= 400; seed++)
+            {
+                beginnerDrew |= stacked.Contains(ScenarioPicker.Pick(Catalogue, SessionMode.Practice, CaseCatalogue.Cholecystectomy, TrainingLevel.Beginner, seed)!.CaseId);
+                intermediateDrew |= stacked.Contains(ScenarioPicker.Pick(Catalogue, SessionMode.Practice, CaseCatalogue.Cholecystectomy, TrainingLevel.Intermediate, seed)!.CaseId);
+            }
+            if (stacked.Count > 0) { Assert.False(beginnerDrew, "beginner keeps the easier pool"); Assert.True(intermediateDrew, "intermediate draws stacked cases too"); }
         }
     }
 }

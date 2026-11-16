@@ -36,9 +36,31 @@ namespace ProcSense.VR.Interaction
         public readonly Dictionary<string, CatalogueEntity> Entities = new Dictionary<string, CatalogueEntity>();
         public readonly Dictionary<string, CatalogueEntry> Entries = new Dictionary<string, CatalogueEntry>();
         public readonly List<string> Global = new List<string>();
+        /// <summary>P3-VOX-04: the reference card's extra examples per entity type (content/ui/voice_examples.json), used after the catalogue's own spoken entries.</summary>
+        public readonly Dictionary<string, List<string>> VoiceExamples = new Dictionary<string, List<string>>();
+        public const string ExamplesFile = "ui/voice_examples.json";
+
+        /// <summary>Reads the extra examples; a missing file leaves the catalogue's own.</summary>
+        public InteractionCatalogue WithExamples(string json)
+        {
+            if (string.IsNullOrEmpty(json)) return this;
+            if (MiniJson.Parse(json) is Dictionary<string, object> root && root.TryGetValue("entities", out var e) && e is Dictionary<string, object> map)
+                foreach (var kv in map) if (kv.Value is List<object> list) VoiceExamples[kv.Key] = list.Select(x => (string)x).ToList();
+            return this;
+        }
 
         private static InteractionCatalogue _current;
-        public static InteractionCatalogue Current => _current ??= Parse(UnityContentReader.ForThisPlatform().ReadText(File));
+        public static InteractionCatalogue Current
+        {
+            get
+            {
+                if (_current != null) return _current;
+                var reader = UnityContentReader.ForThisPlatform();
+                string examples = null;
+                try { examples = reader.ReadText(ExamplesFile); } catch (System.Exception) { }
+                return _current = Parse(reader.ReadText(File)).WithExamples(examples);
+            }
+        }
 
         public IEnumerable<CatalogueEntry> EntriesOf(string entityType) =>
             Entities.TryGetValue(entityType ?? "", out var e) ? e.Groups.SelectMany(g => g.Entries).Where(Entries.ContainsKey).Select(id => Entries[id]) : Enumerable.Empty<CatalogueEntry>();

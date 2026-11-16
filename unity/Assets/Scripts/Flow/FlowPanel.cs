@@ -260,6 +260,8 @@ namespace ProcSense.VR.Flow
             ProcedureCard(0, "Gallbladder removal", "Laparoscopic cholecystectomy", "cholecystectomy", training);
             ProcedureCard(1, "Appendectomy", "Appendicectomy", "appendicectomy", training);
             if (training) Slot(2, "Level: " + _flow.Level, () => _flow.SetLevel(NextLevel(_flow.Level)));   // P3-MNU-05: every level Core defines, in order
+            if (training) Slot(4, _flow.Source == ProcSense.Core.Flow.CaseSource.Generated ? "Cases: generated" : "Cases: authored",   // P3-SCN-06: training may play a generated scenario
+                               () => _flow.SetSource(_flow.Source == ProcSense.Core.Flow.CaseSource.Generated ? ProcSense.Core.Flow.CaseSource.Authored : ProcSense.Core.Flow.CaseSource.Generated));
             Slot(3, "Back", _flow.BackToMenu);
         }
 
@@ -288,9 +290,11 @@ namespace ProcSense.VR.Flow
         {
             var b = _flow.Briefing;
             _title.text = "Briefing";
+            if (_flow.SourceLine.Length == 0 && !_flow.Fetching && _flow.Source == ProcSense.Core.Flow.CaseSource.Generated && isActiveAndEnabled) StartCoroutine(_flow.Generate());   // P3-SCN-06
             _body.text = b.Name + ", " + b.Age + " (" + b.Sex + ")\nSetting: " + b.Setting + "\nReason for admission: " + b.Reason
-                + "\n\nScenario " + _flow.Plan.CaseId + ", seed " + _flow.Plan.Seed + " (shown again on the results).";
+                + "\n\nScenario " + _flow.Plan.CaseId + ", seed " + _flow.Plan.Seed + " (shown again on the results)." + (_flow.SourceLine.Length > 0 ? "\n" + _flow.SourceLine : "");
             Slot(0, "Begin", () => _flow.Begin(), -1f, ButtonKind.Primary);
+            _buttons[0].interactable = !_flow.Fetching;
             Slot(1, "Back", _flow.BackToMenu);
         }
 

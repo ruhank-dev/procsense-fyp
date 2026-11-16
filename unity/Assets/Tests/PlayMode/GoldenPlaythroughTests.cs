@@ -1,8 +1,10 @@
 using System.IO;
+using System.Linq;
 using NUnit.Framework;
 using ProcSense.Core;
 using ProcSense.Core.Content;
 using ProcSense.Core.Replay;
+using ProcSense.Core.Workflow;
 using ProcSense.VR.Bridge;
 using UnityEngine;
 
@@ -38,6 +40,17 @@ namespace ProcSense.Tests.PlayMode
             SimulationHost.SessionsDirectoryOverride = null;
         }
 
+
+        /// <summary>P3-INT-10: the goals a pure Core run of the script completes (the reference the app's run must equal).</summary>
+        internal static System.Collections.Generic.List<string> CoreGoals(string script, string caseId, ulong seed, SessionMode mode, ProcSense.Core.Content.ContentPackage content, SessionOptions options)
+        {
+            var s = new Session(content.Cases[caseId], seed, mode, Subsystems.Default(content), options);
+            SessionFile.Play(s, ActionScript.Parse(script));
+            return s.GraphHistory.Where(e => e.Kind == "goal_complete").Select(e => e.Id).OrderBy(x => x).ToList();
+        }
+
+        internal static System.Collections.Generic.List<string> Goals(Session s) => s.GraphHistory.Where(e => e.Kind == "goal_complete").Select(e => e.Id).OrderBy(x => x).ToList();
+
         private Session Play(string script, string caseId, ulong seed, SessionMode mode, SessionOptions options)
         {
             _host.StartSession(caseId, seed, mode, Reader(), options);
@@ -68,6 +81,9 @@ namespace ProcSense.Tests.PlayMode
             var app = ProcSense.Core.Scoring.Scorer.Score(session, _host.Content);
             Assert.AreEqual(core.Result, app.Result, golden + ": the verdict");
             Assert.AreEqual(core.EndState, app.EndState, golden + ": the end state");
+            var goals = CoreGoals(script, caseId, seed, mode, _host.Content, options);
+            CollectionAssert.AreEqual(goals, Goals(session), golden + ": every goal the engine completes is completed by menu (P3-INT-10)");
+            Assert.IsNotEmpty(goals);
             if (modeOverride == null)
             {
                 Assert.AreEqual((string)header["log_hash"], session.Log.Hash(), golden + ": the same log as the Core golden");

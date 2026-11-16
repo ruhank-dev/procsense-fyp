@@ -26,6 +26,7 @@ namespace ProcSense.Tests.PlayMode
         {
             ModeChoice.Reset();
             SimulationHost.SessionsDirectoryOverride = Path.Combine(Application.temporaryCachePath, "sound_tests");
+            TestHostHygiene.DestroyLeftoverHost();                         // another test's host must not decide the mode
             _host = new GameObject("sound host").AddComponent<SimulationHost>();
             _host.AutoTick = false;
             _host.SaveLogOnDestroy = false;
@@ -33,12 +34,14 @@ namespace ProcSense.Tests.PlayMode
             if (SoundPlayer.Instance != null) Object.DestroyImmediate(SoundPlayer.Instance.gameObject);
             _sound = new GameObject("sound player").AddComponent<SoundPlayer>();
             _sound.FlowSource = () => _flow;
+            ModeGate.SessionProvider = () => _host.Session;
         }
 
         [TearDown]
         public void TearDown()
         {
             Object.DestroyImmediate(_sound.gameObject);
+            ModeGate.SessionProvider = () => SimulationHost.Instance != null ? SimulationHost.Instance.Session : null;
             Object.DestroyImmediate(_host.gameObject);
             ModeChoice.Reset();
             SimulationHost.SessionsDirectoryOverride = null;
