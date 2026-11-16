@@ -48,7 +48,8 @@ namespace ProcSense.VR.Flow
         public Canvas Canvas => _canvas;
         public MenuFlow Flow => _flow;
         public string TitleText => _title != null ? _title.text : "";
-        public string BodyText => _body != null ? _body.text : "";
+        public string BodyText => _flow != null && _flow.Phase == MenuPhase.Results && !_showSettings ? _resultsText : _body != null ? _body.text : "";
+        private string _resultsText = "";
         public string StatusText => _status != null ? _status.text : "";
 
         public void Build(MenuFlow flow, Transform parent)
@@ -156,6 +157,8 @@ namespace ProcSense.VR.Flow
             _status.text = Say(_flow.Message);
             _body.enableAutoSizing = false;
             _body.fontSize = 24f;
+            _body.rectTransform.anchoredPosition = new Vector2(32, -96);
+            if (_card != null && (_flow.Phase != MenuPhase.Results || _showSettings)) _card.Hide();
             if (_showSettings)
             {
                 _title.text = "Settings";
@@ -307,10 +310,18 @@ namespace ProcSense.VR.Flow
             else Slot(1, "Submit patient to OT", () => _flow.Submit());
         }
 
+        /// <summary>The results card (P3-RES-04) shown on the results; null before the first results.</summary>
+        public ResultsCard Card => _card;
+        private ResultsCard _card;
+
         private void DrawResults()
         {
             var s = _flow.Summary;
             _title.text = s.Headline;
+            RequestRewording(s);
+            bool reworded = _reworded != null && _reworded.Reworded && ReferenceEquals(_rewordFor, s);
+            // the card draws from the engine's summary; AI wording only replaces the recommendation lines, always labelled (P3-RES-07)
+            // the plain-text transcript of the results (what BodyText returns: tests, and one string for a screen reader); the card below is what is drawn
             var sb = new StringBuilder();
             sb.Append("Result: ").Append(s.Result).Append("  |  ").Append(s.EndState).Append('\n');
             if (s.Grade != null) sb.Append("Score ").Append(s.Grade.Score100).Append(" / 100, grade ").Append(s.Grade.Letter).Append(s.Grade.Passed ? " (passed)" : " (not passed)").Append('\n');
@@ -318,17 +329,23 @@ namespace ProcSense.VR.Flow
             sb.Append("Hints used: ").Append(s.HintsUsed).Append(s.HintsCharged > 0 ? " (charged)" : "").Append("  |  Time: ").Append(s.TotalMinutes.ToString("0.#")).Append(" min\n");
             if (s.StageTimes.Count > 0) sb.Append("Stages: ").Append(string.Join(", ", s.StageTimes.Select(t => t.Stage + " " + t.Minutes.ToString("0.#")))).Append(" min\n");
             if (s.MissedGoals.Count > 0 && s.Mode != "assessment") sb.Append("Missed: ").Append(string.Join(", ", s.MissedGoals)).Append('\n');   // the examination shows no goal list (P3-EXM-09 leak test)
-            RequestRewording(s);
-            bool reworded = _reworded != null && _reworded.Reworded && ReferenceEquals(_rewordFor, s);
-            if (reworded) sb.Append(DebriefRewriteClient.LabelLine).Append('\n');                  // P3-RES-07: AI wording is always labelled; the lines above are the engine's
+            if (reworded) sb.Append(DebriefRewriteClient.LabelLine).Append('\n');
             foreach (var r in reworded ? _reworded.Lines : s.Recommendations) sb.Append("- ").Append(r).Append('\n');
             sb.Append("Scenario: ").Append(_flow.Briefing != null ? _flow.Briefing.Name : "");
-            _body.text = sb.ToString();
-            Slot(0, "Retry", () => _flow.Retry(), -1f, ButtonKind.Primary);
+            _resultsText = sb.ToString();
+            if (reworded && !ReferenceEquals(_rewordedFrom, s)) { _rewordedFrom = s; _rewordedShown = s with { Recommendations = new List<string>(_reworded.Lines) }; }
+            if (_card == null) _card = ResultsCard.Create(_canvas.transform, new Vector2(32, 96), new Vector2(Width - 64, 268));
+            _card.Show(reworded ? _rewordedShown : s);
+            _body.text = reworded ? DebriefRewriteClient.LabelLine : "";
+            _body.rectTransform.anchoredPosition = new Vector2(32, -96 - 268 + 28);
+            Slot(0, "Retry", () => { _card.RetriedFrom(_card.Shown); _flow.Retry(); }, -1f, ButtonKind.Primary);
             Slot(1, "New scenario", () => _flow.NewScenario());
             Slot(2, "Main menu", _flow.BackToMenu);
-            Slot(3, _debrief != null ? "Hide debrief" : "Debrief", ToggleDebrief);
+            Slot(3, _debrief != null ? "Hide details" : "Review details", ToggleDebrief);
+            Slot(4, "Quit", Application.Quit, -1f, ButtonKind.Danger);   // P3-RES-06
         }
+
+        private ProcSense.Core.Flow.ResultSummary _rewordedFrom, _rewordedShown;
 
         /// <summary>
         /// Asks the service once per result for the optional AI wording (P3-RES-07). Not signed in, not playing or offline: nothing is asked and the engine's deterministic lines stay. The answer

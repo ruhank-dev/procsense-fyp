@@ -55,7 +55,7 @@ namespace ProcSense.Tests.PlayMode
             Assert.IsTrue(panel.Click("Submit patient to OT"));
             Assert.IsTrue(panel.Click("Confirm: submit patient to OT"));
             Assert.AreEqual(MenuPhase.Results, flow.Phase);
-            Assert.IsTrue(panel.Click("Debrief"));
+            Assert.IsTrue(panel.Click("Review details"));   // P3-RES-05
             Assert.IsTrue(panel.DebriefOpen);
             Assert.IsTrue(panel.Click("Retry"));
             Assert.AreEqual(MenuPhase.Briefing, flow.Phase);
