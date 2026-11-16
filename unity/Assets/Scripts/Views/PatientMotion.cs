@@ -152,6 +152,11 @@ namespace ProcSense.VR.Views
         private Vector4 lookNow;                                                          // eye yaw, eye pitch, head yaw, head pitch (degrees)
         private Transform thighLeft, thighRight;
 
+        // ---- head gesture: a nod or a head shake on top of the pose (acknowledge, consent, refuse) ----
+        private HeadGestureKind gestureKind; private float gestureStart = float.NegativeInfinity; private bool gesturePending;
+        /// <summary>Starts a nod or a head shake now.</summary>
+        public void Gesture(HeadGestureKind kind) { gestureKind = kind; gesturePending = true; }
+
         private Vector4 LookTarget()
         {
             if (lookAt == null || lookWeight <= 0f || thighLeft == null || thighRight == null) return Vector4.zero;
@@ -185,8 +190,10 @@ namespace ProcSense.VR.Views
             var nsc = neckScale; nsc[apAxisNeck] /= sc2[apAxis2] / spine2Scale[apAxis2]; neck.localScale = nsc;                   // and the chest scale must not squash the neck and head
 
             lookNow = Vector4.Lerp(lookNow, LookTarget(), 1f - Mathf.Exp(-dt / .25f));
+            if (gesturePending) { gestureStart = t; gesturePending = false; }
+            var gest = HeadGesture.At(gestureKind, t - gestureStart);
             float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f * Mathf.Sqrt(poseNow.Restless)) - .5f) * 2f * headDriftDegrees * poseNow.Restless : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f * Mathf.Sqrt(poseNow.Restless)) - .5f) * headDriftDegrees * .6f * poseNow.Restless : 0f;
-            head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw + lookNow.z, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod + lookNow.w, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
+            head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw + lookNow.z + gest.y, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod + lookNow.w + gest.x, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
             GuardArm(poseNow.Guard);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
