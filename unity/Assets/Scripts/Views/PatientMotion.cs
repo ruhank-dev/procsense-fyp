@@ -124,14 +124,23 @@ namespace ProcSense.VR.Views
         public PatientPose Pose => poseNow;
 
         // The right hand comes to the lower right abdomen: the forearm bends at the elbow (two-bone solve), blended in by the pose's Guard weight.
-        private void GuardArm(float w)
+        // The same solve brings the arm out to the side when the trainee asks for it (offer 0 to 1 moves the target from the abdomen to offerTarget).
+        [Tooltip("Where the right hand goes when the arm is offered for the cuff (metres from the pelvis, same axes as the guard target).")] public Vector3 offerTarget = new Vector3(.36f, .2f, .06f);
+        private float offerNow, offerGoal;
+        /// <summary>Holds the right arm out to the side (true) or lets it come back (false), e.g. for the blood pressure cuff.</summary>
+        public void OfferArm(bool offer) => offerGoal = offer ? 1f : 0f;
+        /// <summary>How far the arm is out, 0 to 1. For tests and review.</summary>
+        public float Offer => offerNow;
+
+        private void GuardArm(float w, float offer = 0f)
         {
             if (armUpper == null || armFore == null || armHand == null || pelvis == null || armLeft == null) return;
             armUpper.localRotation = armUpperRest; armFore.localRotation = armForeRest;
             if (w < .001f) return;
             var lateral = Vector3.ProjectOnPlane(armUpper.position - armLeft.position, Vector3.up).normalized;
             var toHead = Vector3.ProjectOnPlane(head.position - pelvis.position, Vector3.up).normalized;
-            var target = pelvis.position + lateral * guardTarget.x + toHead * guardTarget.y + Vector3.up * guardTarget.z;
+            var spot = Vector3.Lerp(guardTarget, offerTarget, offer);
+            var target = pelvis.position + lateral * spot.x + toHead * spot.y + Vector3.up * spot.z;
             var s = armUpper.position; var e0 = armFore.position; var h0 = armHand.position;
             float a = (e0 - s).magnitude, b = (h0 - e0).magnitude;
             var line = target - s; float d = Mathf.Clamp(line.magnitude, Mathf.Abs(a - b) + .01f, a + b - .01f); var u = line.normalized;
@@ -194,7 +203,9 @@ namespace ProcSense.VR.Views
             var gest = HeadGesture.At(gestureKind, t - gestureStart);
             float yaw = autoMotion ? (Mathf.PerlinNoise(seed, t * .05f * Mathf.Sqrt(poseNow.Restless)) - .5f) * 2f * headDriftDegrees * poseNow.Restless : 0f, roll = autoMotion ? (Mathf.PerlinNoise(seed + 9f, t * .04f * Mathf.Sqrt(poseNow.Restless)) - .5f) * headDriftDegrees * .6f * poseNow.Restless : 0f;
             head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw + lookNow.z + gest.y, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod + lookNow.w + gest.x, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
-            GuardArm(poseNow.Guard);
+            offerNow = Mathf.MoveTowards(offerNow, offerGoal, dt / .7f);
+            float offerEase = offerNow * offerNow * (3f - 2f * offerNow);
+            GuardArm(Mathf.Max(poseNow.Guard, offerEase), offerEase);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
             float b = 0f; float k = t - blinkStart; if (k >= 0f && k < .18f) b = k < .06f ? k / .06f : 1f - (k - .06f) / .12f;

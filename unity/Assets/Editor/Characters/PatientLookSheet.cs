@@ -41,6 +41,27 @@ namespace ProcSense.EditorTools
             Debug.Log("[Look] written Logs/patient_gesture.png (top rest | shake peak | side rest | nod peak)");
         }
 
+        /// <summary>Logs/patient_offer.png: the patient from above at rest and with the right arm offered for the cuff.</summary>
+        public static void Offer()
+        {
+            EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
+            var patient = GameObject.Find("Rocketbox patient"); var motion = patient.GetComponent<PatientMotion>(); motion.autoMotion = false; motion.Prepare(); motion.Step(0f, .05f);
+            var all = patient.GetComponentsInChildren<Transform>(true); var focus = Vector3.Lerp(all.First(t => t.name == "Bip01 Pelvis").position, motion.Head.position, .55f);
+            var camGo = new GameObject("cam"); var cam = camGo.AddComponent<Camera>(); cam.nearClipPlane = .05f; cam.clearFlags = CameraClearFlags.SolidColor; cam.backgroundColor = new Color(.18f, .2f, .22f); cam.fieldOfView = 45f;
+            var light = new GameObject("light").AddComponent<Light>(); light.type = LightType.Directional; light.intensity = 1.1f; light.transform.rotation = Quaternion.Euler(70, 20, 0);
+            camGo.transform.position = focus + Vector3.up * 1.6f; camGo.transform.LookAt(focus, (motion.Head.position - focus).normalized);
+            var rt = new RenderTexture(Size, Size, 24); cam.targetTexture = rt; var sheet = new Texture2D(2 * Size, Size, TextureFormat.RGB24, false); float clock = 0f;
+            for (int i = 0; i < 2; i++)
+            {
+                motion.OfferArm(i == 1); for (int k = 0; k < 40; k++) { clock += .05f; motion.Step(clock, .05f); }
+                foreach (var r in patient.GetComponentsInChildren<SkinnedMeshRenderer>(true)) { r.enabled = false; r.enabled = true; r.updateWhenOffscreen = true; }
+                cam.Render(); cam.Render(); RenderTexture.active = rt;
+                var tile = new Texture2D(Size, Size, TextureFormat.RGB24, false); tile.ReadPixels(new Rect(0, 0, Size, Size), 0, 0); tile.Apply(); sheet.SetPixels(i * Size, 0, Size, Size, tile.GetPixels());
+            }
+            Directory.CreateDirectory("Logs"); File.WriteAllBytes("Logs/patient_offer.png", sheet.EncodeToPNG());
+            Debug.Log("[Look] written Logs/patient_offer.png (rest | arm offered)");
+        }
+
         public static void Run()
         {
             EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
