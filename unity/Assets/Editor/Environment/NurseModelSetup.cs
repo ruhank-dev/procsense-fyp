@@ -29,11 +29,12 @@ namespace ProcSense.EditorTools
             GameObject Body(string n) => AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Characters/" + n + ".prefab");
             view.Staff = new StaffModels
             {
-                Porter = Body("RB_Male_Adult_08"), Nurse = Body("RB_Medical_Female_02"), Doctor = Body("RB_Medical_Male_03"),
+                Patient = Body("RB_Medical_Male_04"), Porter = Body("RB_Male_Adult_08"), Nurse = Body("RB_Medical_Female_02"), Doctor = Body("RB_Medical_Male_03"),
                 Idle = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Characters/RB_Idle_Loop.controller"),
                 Walk = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Characters/RB_Walk_Loop.controller"),
+                Sit = AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>("Assets/Animations/Characters/RB_Sitting_Idle_Loop.controller"),
             };
-            Debug.Assert(view.Staff.Porter != null && view.Staff.Nurse != null && view.Staff.Doctor != null && view.Staff.Idle != null && view.Staff.Walk != null, "staff assets missing");
+            Debug.Assert(view.Staff.Porter != null && view.Staff.Nurse != null && view.Staff.Doctor != null && view.Staff.Idle != null && view.Staff.Walk != null && view.Staff.Sit != null && view.Staff.Patient != null, "staff assets missing");
             EditorUtility.SetDirty(view); EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
         }
     }

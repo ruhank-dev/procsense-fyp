@@ -77,7 +77,7 @@ namespace ProcSense.VR.Views
             if(!NavMesh.SamplePosition(start,out var hit,.35f,NavMesh.AllAreas)) { Status="Transport route unavailable: no NavMesh at start"; return; }
             var go=new GameObject("M2 Core-driven transport"); go.transform.position=hit.position;
             go.transform.rotation=returning?Quaternion.LookRotation(-_door.transform.forward):Quaternion.Euler(0,90,0);
-            Actor=go.AddComponent<TransportActor>(); Actor.Build(Presentation,returning,Staff);
+            Actor=go.AddComponent<TransportActor>(); Actor.Build(Presentation,returning,Staff,FindAnyObjectByType<PatientMotion>()?.transform);
             if(!Actor.Agent.Warp(hit.position))
             { Actor.Agent.enabled=false; Status="Transport route unavailable: no NavMesh at start"; return; }
             go.transform.position=hit.position;
@@ -123,7 +123,7 @@ namespace ProcSense.VR.Views
                 agent.nextPosition=Actor.transform.position; agent.isStopped=true;
                 Status="Transport route blocked by "+BlockingObject+"; waiting for obstacle removal"; return;
             }
-            Actor.transform.SetPositionAndRotation(next,rotation); Actor.Animate(delta.magnitude);
+            Actor.transform.SetPositionAndRotation(next,rotation);
             agent.speed=Presentation.Behaviour=="IN_PAIN"?.7f:1.1f;
             Status=_phase==TransportVisualPhase.Returning?"Returning to bedside":"Travelling to "+_destination;
             if(Vector3.Distance(Actor.transform.position,_goal)>.13f)return;

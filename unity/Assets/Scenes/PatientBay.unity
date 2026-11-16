@@ -41984,11 +41984,13 @@ MonoBehaviour:
   CorridorClear: {x: 4.25, y: 0, z: -0.8}
   BedsidePatient: {fileID: 2071650337}
   Staff:
+    Patient: {fileID: 6529730661627309443, guid: b802c4029e1ecd048825030facefad12, type: 3}
     Porter: {fileID: 4452341158148257524, guid: cb38d34c81fafcb4cb043eb221ecc6c3, type: 3}
     Nurse: {fileID: 1637448675119706520, guid: 81106361322d5aa47a1054eddab8890a, type: 3}
     Doctor: {fileID: 72344538419746929, guid: b67ff6198546a46488f67cfb1f55532e, type: 3}
     Idle: {fileID: 9100000, guid: eddcfce5802046048a1e894b31aaf83c, type: 2}
     Walk: {fileID: 9100000, guid: 70b51b28b917fe642bea73b39efcfb23, type: 2}
+    Sit: {fileID: 9100000, guid: 62fde146ea099034e81bb36ed589e8e7, type: 2}
   AdditionalBedsideVisuals:
   - {fileID: 690274345}
 --- !u!1 &2036133545

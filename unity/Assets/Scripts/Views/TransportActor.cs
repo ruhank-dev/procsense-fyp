@@ -6,7 +6,7 @@ namespace ProcSense.VR.Views
 {
     /// <summary>The bodies and animation controllers for the people who come with the patient (Rocketbox Humanoids).</summary>
     [System.Serializable]
-    public sealed class StaffModels { public GameObject Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk; }
+    public sealed class StaffModels { public GameObject Patient, Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk, Sit; }
 
     /// <summary>Marked M2 geometry, replaceable with approved character/equipment prefabs.</summary>
     public sealed class TransportActor : MonoBehaviour
@@ -19,19 +19,16 @@ namespace ProcSense.VR.Views
         public NavMeshAgent NurseAgent { get; private set; }
         public Vector3 HalfSize { get; private set; }
         private readonly List<Material> _materials = new List<Material>();
-        private Transform _leftLeg, _rightLeg, _label;
-        private float _gait;
+        private Transform _label;
         private Vector3 _nurseLast;
-        public void Build(TransportPresentation state, bool returning=false, StaffModels staff=null)
+        public void Build(TransportPresentation state, bool returning=false, StaffModels staff=null, Transform dressedLike=null)
         {
             Mode = state.Mode;
             HalfSize = new Vector3(.31f, .8f, Mode == "trolley" ? .92f : Mode == "wheelchair" ? .49f : .24f);
-            var patient = new Color(.48f,.69f,.76f);
+            Patient(staff,dressedLike);
             if (Mode == "trolley")
             {
                 Box("Prototype stretcher mattress", new Vector3(0,.78f,0), new Vector3(.60f,.10f,1.8f), Color.gray);
-                Part("Patient lying", PrimitiveType.Capsule, new Vector3(0,.99f,-.08f), new Vector3(.33f,.62f,.25f), patient, new Vector3(90,0,0));
-                Part("Patient head", PrimitiveType.Sphere, new Vector3(0,1.01f,.70f), Vector3.one*.26f, patient);
                 Box("Prototype stretcher frame",new Vector3(0,.28f,0),new Vector3(.55f,.10f,1.55f),Color.gray);
                 for(int side=-1;side<=1;side+=2)for(int end=-1;end<=1;end+=2)Box("Prototype stretcher support",new Vector3(.23f*side,.52f,.69f*end),new Vector3(.04f,.45f,.04f),Color.gray);
                 Wheels(.23f,.69f,.12f);
@@ -39,11 +36,6 @@ namespace ProcSense.VR.Views
             else
             {
                 bool seated = Mode == "wheelchair";
-                Part("Patient head", PrimitiveType.Sphere, new Vector3(0,seated?1.35f:1.60f,0), Vector3.one*.26f, patient);
-                Part("Patient torso", PrimitiveType.Capsule, new Vector3(0,seated?1.02f:1.15f,0), new Vector3(.34f,seated?.23f:.32f,.25f), patient);
-                _leftLeg = Box("Patient left leg", new Vector3(-.1f,seated?.39f:.40f,seated?.25f:0),new Vector3(.13f,.65f,.15f),patient);
-                _rightLeg = Box("Patient right leg", new Vector3(.1f,seated?.39f:.40f,seated?.25f:0),new Vector3(.13f,.65f,.15f),patient);
-                Box("Patient hips",new Vector3(0,seated?.75f:.78f,seated?.08f:0),new Vector3(.3f,.2f,.25f),patient);
                 if(seated)
                 {
                     Box("Prototype wheelchair seat",new Vector3(0,.62f,0),new Vector3(.58f,.08f,.55f),Color.gray);
@@ -103,11 +95,51 @@ namespace ProcSense.VR.Views
             { Nurse.position=_nurseLast; NurseAgent.nextPosition=_nurseLast; }
             else _nurseLast=point;
         }
-        public void Animate(float distance)
+        private const float MattressTop = .83f;
+        // the patient: lying on the trolley, sitting in the wheelchair, or walking (Walk_Loop while moving)
+        private void Patient(StaffModels set, Transform dressedLike)
         {
-            _gait+=distance*7;
-            if(Mode=="walk"&&_leftLeg!=null)
-            { _leftLeg.localRotation=Quaternion.Euler(Mathf.Sin(_gait)*18,0,0); _rightLeg.localRotation=Quaternion.Euler(-Mathf.Sin(_gait)*18,0,0); }
+            var head = new GameObject("Patient head").transform; head.SetParent(transform, false);                 // where the voice comes from
+            head.localPosition = Mode == "trolley" ? new Vector3(0, 1.05f, .65f) : new Vector3(0, Mode == "wheelchair" ? 1.35f : 1.60f, 0);
+            if (set == null || set.Patient == null) return;
+            var body = Instantiate(set.Patient, transform, false); body.name = "Patient body";
+            foreach (var c in body.GetComponentsInChildren<Collider>(true)) c.enabled = false;
+            foreach (var b in body.GetComponentsInChildren<MonoBehaviour>(true)) b.enabled = false;
+            if (dressedLike != null)                                                                                    // the same gown as in the bay
+                foreach (var r in body.GetComponentsInChildren<SkinnedMeshRenderer>(true))
+                    foreach (var o in dressedLike.GetComponentsInChildren<SkinnedMeshRenderer>(true)) if (o.name == r.name) { r.sharedMaterials = o.sharedMaterials; break; }
+            var anim = body.GetComponent<Animator>() ?? body.AddComponent<Animator>();
+            anim.applyRootMotion = false; anim.cullingMode = AnimatorCullingMode.AlwaysAnimate;
+            anim.runtimeAnimatorController = Mode == "wheelchair" ? set.Sit : set.Idle;
+            if (Mode == "walk") { _crew.Add(new Walker { Root = body.transform, Anim = anim, Last = body.transform.position, Idle = set.Idle, Walk = set.Walk }); return; }
+            anim.Update(0f);
+            Transform B(HumanBodyBones bone) => anim.GetBoneTransform(bone);
+            if (Mode == "wheelchair") { body.transform.position += transform.TransformPoint(new Vector3(0, .74f, .04f)) - B(HumanBodyBones.Hips).position; return; }
+            LieDown(body.transform, anim);
+        }
+        // on the back on the mattress, head toward +z, legs together, arms by the sides; the pose is set once and the Animator stays off so it keeps
+        private void LieDown(Transform body, Animator anim)
+        {
+            Transform B(HumanBodyBones bone) => anim.GetBoneTransform(bone);
+            var up = (B(HumanBodyBones.Head).position - B(HumanBodyBones.Hips).position).normalized;
+            var right = (B(HumanBodyBones.RightUpperLeg).position - B(HumanBodyBones.LeftUpperLeg).position).normalized;
+            var face = Vector3.Cross(right, up).normalized;                                                         // Unity is left-handed: right x up = forward
+            body.rotation = Quaternion.LookRotation(transform.up, transform.forward) * Quaternion.Inverse(Quaternion.LookRotation(face, up)) * body.rotation;
+            body.position += transform.TransformPoint(new Vector3(0, MattressTop + .10f, -.05f)) - B(HumanBodyBones.Hips).position;
+            Vector3 Local(Transform t) => transform.InverseTransformPoint(t.position);
+            float hipsZ = Local(B(HumanBodyBones.Hips)).z;
+            foreach (var (upper, foot) in new[] { (HumanBodyBones.LeftUpperLeg, HumanBodyBones.LeftFoot), (HumanBodyBones.RightUpperLeg, HumanBodyBones.RightFoot) })
+            {
+                var u = B(upper); var f = B(foot); float len = (f.position - u.position).magnitude; float side = Local(f).x >= 0 ? 1 : -1;
+                u.rotation = Quaternion.FromToRotation(f.position - u.position, transform.TransformPoint(new Vector3(side * .10f, MattressTop + .045f, hipsZ - len * .98f)) - u.position) * u.rotation;
+            }
+            foreach (var (upper, lower, hand) in new[] { (HumanBodyBones.LeftUpperArm, HumanBodyBones.LeftLowerArm, HumanBodyBones.LeftHand), (HumanBodyBones.RightUpperArm, HumanBodyBones.RightLowerArm, HumanBodyBones.RightHand) })
+            {
+                var u = B(upper); var e = B(lower); var h = B(hand); float lenU = (e.position - u.position).magnitude, lenF = (h.position - e.position).magnitude; float side = Local(u).x >= 0 ? 1 : -1;
+                u.rotation = Quaternion.FromToRotation(e.position - u.position, transform.TransformPoint(new Vector3(side * .24f, MattressTop + .05f, Local(u).z - lenU * .96f)) - u.position) * u.rotation;
+                e.rotation = Quaternion.FromToRotation(h.position - e.position, transform.TransformPoint(new Vector3(side * .21f, MattressTop + .05f, Local(e).z - lenF * .98f)) - e.position) * e.rotation;
+            }
+            anim.enabled = false;
         }
         private sealed class Walker { public Transform Root; public Animator Anim; public Vector3 Last; public bool Walking; public RuntimeAnimatorController Idle, Walk; }
         private readonly List<Walker> _crew = new List<Walker>();
