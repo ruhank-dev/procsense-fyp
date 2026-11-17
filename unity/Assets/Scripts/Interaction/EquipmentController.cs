@@ -68,8 +68,10 @@ namespace ProcSense.VR.Interaction
         public ActionOutcome Pressed(PanelEntry entry)
         {
             var host = Bridge.SimulationHost.Instance;
-            return host == null ? null : host.Apply(new SimAction(entry.Verb, entry.Target, Channel.Vr, entry.Params));
+            return host == null ? null : Bridge.ActionGateway.Apply(host, new SimAction(entry.Verb, entry.Target, Channel.Vr, entry.Params), Bridge.ActionSource.Physical);
         }
+
+        private static ActionOutcome Send(SimAction a) { var host = Bridge.SimulationHost.Instance; return host == null ? null : Bridge.ActionGateway.Apply(host, a, Bridge.ActionSource.Physical); }
 
         private void Run(Trigger trigger, string socket = "")
         {
@@ -79,7 +81,7 @@ namespace ProcSense.VR.Interaction
             _stepping = true;
             try
             {
-                End(_machine.Step(trigger, a => _emitters.TryGetValue(t, out var e) ? e.Fire() : Bridge.SimulationHost.Instance?.Apply(a), socket));
+                End(_machine.Step(trigger, a => _emitters.TryGetValue(t, out var e) ? e.Fire() : Send(a), socket));
             }
             finally { _stepping = false; }
         }
