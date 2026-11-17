@@ -156,6 +156,7 @@ namespace ProcSense.VR.Views
             var anim=body.GetComponent<Animator>()??body.AddComponent<Animator>();
             anim.applyRootMotion=false; anim.cullingMode=AnimatorCullingMode.AlwaysAnimate; anim.runtimeAnimatorController=set.Idle;
             _crew.Add(new Walker{Root=root,Anim=anim,Last=root.position,Idle=set.Idle,Walk=set.Walk});
+            root.gameObject.AddComponent<CharacterPresenter>().Setup(name.Split(' ')[0].ToLowerInvariant(), Bone(body.transform,"Bip01 Head"));      // "Porter prototype" is the porter
             return root;
         }
         // the porter's hands on the push handles
