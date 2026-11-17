@@ -21,7 +21,15 @@ namespace ProcSense.VR.Views
         private bool bound;
 
         /// <summary>Names the character and its head bone, and starts listening for addressee events (Awake does the second part too; a test can call it directly).</summary>
-        public void Setup(string who, Transform head) { this.who = who; this.head = head; Bind(); }
+        public void Setup(string who, Transform head)
+        {
+            this.who = who; this.head = head; Bind();
+            if (GetComponent<PatientSpeechFace>() != null) return;
+            var faces = new System.Collections.Generic.List<SkinnedMeshRenderer>();      // lip sync (P3-ANI-05): the jaw and visemes follow the audio while this person speaks
+            foreach (var r in GetComponentsInChildren<SkinnedMeshRenderer>(true)) if (PatientSpeechFace.HasMouth(r.sharedMesh)) faces.Add(r);
+            if (faces.Count == 0) return;
+            var mouth = gameObject.AddComponent<PatientSpeechFace>(); mouth.Configure(faces.ToArray()); mouth.Gate = () => State.State == CharacterState.Speaking;
+        }
 
         public void Bind()
         {

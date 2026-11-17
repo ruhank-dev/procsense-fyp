@@ -32,6 +32,8 @@ namespace ProcSense.VR.Views
         private float _lastLevel, _plosive, _scan, _poolUntil;
         private AudioSource[] _pool;
 
+        /// <summary>Optional: the mouth only moves while this says true (staff: while it is their own line, so a line from someone else does not move their lips).</summary>
+        public Func<bool> Gate { get; set; }
         public PresentationAlertness Alertness { get => alertness; set => alertness = value; }
         public float Level { get; private set; }
         public bool Speaking { get; private set; }
@@ -48,9 +50,22 @@ namespace ProcSense.VR.Views
             for (int f = 0; f < faces.Length; f++)
             {
                 _index[f] = new int[Shapes.Length];
-                for (int i = 0; i < Shapes.Length; i++) _index[f][i] = faces[f] != null && faces[f].sharedMesh != null ? faces[f].sharedMesh.GetBlendShapeIndex(Shapes[i]) : -1;
+                for (int i = 0; i < Shapes.Length; i++) _index[f][i] = faces[f] != null && faces[f].sharedMesh != null ? ShapeIndex(faces[f].sharedMesh, i) : -1;
             }
         }
+
+        // the Rocketbox characters name the same shapes "blendShape1.AK_25_JawOpen" and "blendShape1.AA_VI_10_aa": found by their ending
+        private static readonly string[] RocketboxEnds = { "AK_25_JawOpen", "AA_VI_10_aa", "AA_VI_13_O", "AA_VI_14_U", "AA_VI_11_E", "AA_VI_12_I", "AA_VI_07_SS", "AA_VI_01_PP", "AK_27_MouthClose", "AK_32_MouthFunnel", "AK_38_MouthPucker", "AK_03_BrowInnerUp", "AK_44_MouthSmileLeft", "AK_45_MouthSmileRight" };
+
+        private static int ShapeIndex(Mesh mesh, int shape)
+        {
+            int i = mesh.GetBlendShapeIndex(Shapes[shape]); if (i >= 0) return i;
+            for (i = 0; i < mesh.blendShapeCount; i++) if (mesh.GetBlendShapeName(i).EndsWith(RocketboxEnds[shape], StringComparison.Ordinal)) return i;
+            return -1;
+        }
+
+        /// <summary>True when the mesh carries a jaw shape (under either naming), so a mouth can be driven on it.</summary>
+        public static bool HasMouth(Mesh mesh) => mesh != null && ShapeIndex(mesh, 0) >= 0;
 
         private AudioSource Find()
         {
@@ -83,7 +98,7 @@ namespace ProcSense.VR.Views
         private void LateUpdate()
         {
             Array.Clear(_target, 0, _target.Length);
-            var s = alertness == PresentationAlertness.Unresponsive ? null : Find();
+            var s = alertness == PresentationAlertness.Unresponsive || (Gate != null && !Gate()) ? null : Find();
             Speaking = s != null && s.isPlaying;
             if (Speaking)
             {

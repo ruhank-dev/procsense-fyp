@@ -42,6 +42,18 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void A_Rocketbox_staff_member_gets_a_mouth_that_follows_their_own_speech_only()
+        {
+            var prefab = UnityEditor.AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Prefabs/Characters/RB_Medical_Female_01.prefab"); Assert.IsNotNull(prefab);
+            var model = (GameObject)UnityEditor.PrefabUtility.InstantiatePrefab(prefab, body.transform);
+            var nurse = body.AddComponent<CharacterPresenter>(); nurse.Setup("nurse", null);
+            var mouth = body.GetComponent<PatientSpeechFace>();
+            Assert.IsNotNull(mouth); Assert.Greater(mouth.ShapesFound, 0, "jaw and viseme shapes found on the Rocketbox face");
+            Assert.IsFalse(mouth.Gate(), "silent until their own line plays");
+            nurse.State.StartSpeaking(); Assert.IsTrue(mouth.Gate());
+        }
+
+        [Test]
         public void Busy_staff_do_not_turn_to_the_player()
         {
             var nurse = body.AddComponent<CharacterPresenter>(); nurse.Setup("nurse", head.transform);
