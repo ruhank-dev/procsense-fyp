@@ -50,10 +50,17 @@ namespace ProcSense.VR.Interaction
                 // the anaesthetist inside the theatre group is marked on her own first, so the group is "the rest of the team"
                 if (type == "theatre_team") foreach (Transform c in t) Walk(c, found);   // only a group holds people of their own type; a prefab's inner mesh of the same name is the same thing
                 // an empty holder (the visiting nurse, filled during a session) has nothing to point at yet: BindRuntime marks the actor when it appears
-                if (t.GetComponentInChildren<Renderer>(true) != null) found.Add(Interactable.Mark(t.gameObject, type));
+                if (t.GetComponentInChildren<Renderer>(true) != null) { found.Add(Interactable.Mark(t.gameObject, type)); GivePresenter(t.gameObject, type); }
                 return;
             }
             foreach (Transform c in t) Walk(c, found);
+        }
+
+        /// <summary>A person in a room (the anaesthetist, a corridor nurse) gets the shared conversation layer: they turn to the player when addressed and their mouth follows their own lines. Play mode only.</summary>
+        private static void GivePresenter(GameObject person, string type)
+        {
+            if (!Application.isPlaying || person.GetComponent<ProcSense.VR.Views.CharacterPresenter>() != null) return;
+            if (type == "nurse" || type == "doctor" || type == "anaesthetist" || type == "porter") person.AddComponent<ProcSense.VR.Views.CharacterPresenter>().Setup(type, null);
         }
 
         private float _next;

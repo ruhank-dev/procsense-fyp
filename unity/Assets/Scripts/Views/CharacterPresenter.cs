@@ -48,8 +48,9 @@ namespace ProcSense.VR.Views
             if (voice != null) voice.Started += OnLine;
         }
 
-        private void OnLine(ProcSense.VR.Audio.VoiceLine line) { if (line.Speaker == who) State.StartSpeaking(); }
-        private void OnAddressee(string route) { if (route == who) State.Address(); }
+        private bool IsMyLine(string speaker) => speaker == who || who == "doctor" && speaker == "clinician";       // the catalogue calls the escalation doctor "clinician"
+        private void OnLine(ProcSense.VR.Audio.VoiceLine line) { if (IsMyLine(line.Speaker)) State.StartSpeaking(); }
+        private void OnAddressee(string route) { if (route == (ProcSense.VR.Interaction.AddresseeTarget.RouteName(who) ?? who)) State.Address(); }     // the anaesthetist's speech route is "anaesthesia"
 
         public void Address() => State.Address();
         public void SetBusy(bool busy) => State.SetBusy(busy);
@@ -74,7 +75,7 @@ namespace ProcSense.VR.Views
         private void Update()
         {
             var session = SessionPresentation.Instance; if (session != null && session.Voice != null) Attach(session.Voice);     // follows the session's voice player, also after it is rebuilt
-            if (State.State == CharacterState.Speaking && (voice == null || voice.Current == null || voice.Current.Speaker != who)) State.EndSpeaking();     // their line is over
+            if (State.State == CharacterState.Speaking && (voice == null || voice.Current == null || !IsMyLine(voice.Current.Speaker))) State.EndSpeaking();     // their line is over
             State.Step(Time.deltaTime);
         }
 

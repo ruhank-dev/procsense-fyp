@@ -57,7 +57,7 @@ namespace ProcSense.EditorTools
             var scene = EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
             var patient = GameObject.Find("MPFB patient");
             var existing = patient.GetComponent<PatientSpeechFace>(); if (existing != null) Object.DestroyImmediate(existing);
-            var faces = patient.GetComponentsInChildren<SkinnedMeshRenderer>(true).Where(r => r.sharedMesh != null && r.sharedMesh.GetBlendShapeIndex("jawOpen") >= 0).ToArray();
+            var faces = patient.GetComponentsInChildren<SkinnedMeshRenderer>(true).Where(r => r.sharedMesh != null && PatientSpeechFace.HasMouth(r.sharedMesh)).ToArray();
             if (faces.Length == 0) Debug.LogWarning("[PatientFace] no surface carries jawOpen; the speech face stays inactive until the full facial shapes are present");
             var comp = patient.AddComponent<PatientSpeechFace>(); comp.Configure(faces);
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);

@@ -54,6 +54,14 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void A_sentence_for_the_anaesthetist_reaches_them_under_their_speech_route()
+        {
+            var a = body.AddComponent<CharacterPresenter>(); a.Setup("anaesthetist", head.transform);
+            ProcSense.VR.Interaction.AddresseeTarget.Choose("Anaesthetist, please review the patient");
+            Assert.AreEqual(CharacterState.Addressed, a.State.State);
+        }
+
+        [Test]
         public void Busy_staff_do_not_turn_to_the_player()
         {
             var nurse = body.AddComponent<CharacterPresenter>(); nurse.Setup("nurse", head.transform);
