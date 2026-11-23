@@ -49,5 +49,35 @@ namespace ProcSense.Tests.EditMode
             r.State.Step(CharacterEventState.GestureSeconds + .1f);
             r.Reply(false); Assert.AreEqual(HeadGestureKind.Shake, motion.GestureKind);
         }
+
+        private static ProcSense.Core.Actions.ActionOutcome Outcome(params string[] effects) { var o = new ProcSense.Core.Actions.ActionOutcome(); o.Effects.AddRange(effects); return o; }
+
+        [Test]
+        public void A_finding_that_hurts_makes_the_patient_flinch_and_the_session_mood_comes_back()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            motion.SetMood("CONFUSED"); motion.Step(10f, .05f);
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("examine"), Outcome("finding:abdomen", "reaction:winces and tenses"));
+            Assert.IsTrue(motion.Flinching, "the engine's reaction effect starts the flinch");
+            motion.Step(10.05f, .05f); Assert.IsTrue(motion.Flinching);
+            motion.Step(13f, .05f); Assert.IsFalse(motion.Flinching, "the flinch ends");
+        }
+
+        [Test]
+        public void An_ordinary_finding_shows_no_flinch_so_it_gives_nothing_away()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("examine"), Outcome("finding:abdomen"));
+            Assert.IsFalse(motion.Flinching);
+        }
+
+        [Test]
+        public void An_accepted_permission_gets_a_nod_and_a_refused_one_does_not()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            var refused = Outcome(); refused.Reject("NOT_NOW");
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("ask_exam_permission"), refused); Assert.AreEqual(HeadGestureKind.None, motion.GestureKind);
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("ask_exam_permission"), Outcome("permission_asked")); Assert.AreEqual(HeadGestureKind.Nod, motion.GestureKind);
+        }
     }
 }

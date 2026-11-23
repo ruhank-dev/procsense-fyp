@@ -118,8 +118,22 @@ namespace ProcSense.VR.Views
         public void SetMood(string mode, bool force = false)
         {
             if (!force && previewMode.Length > 0) return;
-            expressionTarget = PatientExpression.For(mode);
-            poseTarget = PatientPose.For(mode);
+            lastMode = mode ?? "";
+            var shown = flinching || flinchSeconds > 0f ? "IN_PAIN" : mode;                // a flinch shows the pain mood on top of whatever the session says, until it is over
+            expressionTarget = PatientExpression.For(shown);
+            poseTarget = PatientPose.For(shown);
+        }
+
+        // ---- flinch: an examination that hurts (P3-ANI-06). Only the engine's finding starts it, through PatientReactions; the mood underneath comes back afterwards ----
+        private bool flinching; private float flinchSeconds, flinchUntil; private string lastMode = "";
+        /// <summary>True from the moment a flinch is asked for until it ends.</summary>
+        public bool Flinching => flinching || flinchSeconds > 0f;
+        /// <summary>The patient winces for this long: the face and guarding hand of the pain mood, then back to the session's mood.</summary>
+        public void Flinch(float seconds = 1.8f) { flinchSeconds = Mathf.Max(.1f, seconds); SetMood(lastMode); }
+        private void StepFlinch(float t)
+        {
+            if (flinchSeconds > 0f) { flinchUntil = t + flinchSeconds; flinchSeconds = 0f; flinching = true; }
+            if (flinching && t >= flinchUntil) { flinching = false; SetMood(lastMode); }
         }
 
         /// <summary>How far into the mood's pose the patient is right now. For tests and review.</summary>
@@ -180,6 +194,7 @@ namespace ProcSense.VR.Views
         public void Step(float t, float dt)
         {
             if (previewMode.Length > 0 && previewMode != appliedPreview) { appliedPreview = previewMode; SetMood(previewMode, true); }
+            StepFlinch(t);
             poseNow = PatientPose.Lerp(poseNow, poseTarget, 1f - Mathf.Exp(-dt / Mathf.Max(.05f, expressionSeconds * .6f)));
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath

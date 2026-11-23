@@ -30,6 +30,7 @@ namespace ProcSense.VR.Views
         private void OnDestroy()
         {
             if (voice != null) voice.Started -= OnLine;
+            if (hostSeen != null) hostSeen.Applied -= OnApplied;
             ProcSense.VR.Interaction.AddresseeTarget.Chosen -= OnAddressee;
         }
 
@@ -63,8 +64,28 @@ namespace ProcSense.VR.Views
             }
         }
 
+        private ProcSense.VR.Bridge.SimulationHost hostSeen;
+
+        /// <summary>What the engine answered to an action (P3-ANI-06): a finding that hurts (the engine's own "reaction:" effect) makes the patient flinch, and an accepted permission or consent gets a nod. Nothing is shown before the engine says so,
+        /// so a reaction never gives away a finding the trainee has not examined for. Public for tests; the host's Applied event calls it.</summary>
+        public void OnApplied(ProcSense.Core.Actions.SimAction action, ProcSense.Core.Actions.ActionOutcome outcome)
+        {
+            if (outcome == null || motion == null) return;
+            if (System.Linq.Enumerable.Any(outcome.Effects, e => e.StartsWith("reaction:", System.StringComparison.Ordinal))) motion.Flinch();
+            else if (outcome.Accepted && (action.Verb == "ask_exam_permission" || action.Verb == "sign_consent")) State.Reply(true);
+        }
+
+        private void AttachHost()
+        {
+            var host = ProcSense.VR.Bridge.SimulationHost.Instance;
+            if (ReferenceEquals(host, hostSeen)) return;
+            if (hostSeen != null) hostSeen.Applied -= OnApplied;
+            hostSeen = host; if (host != null) host.Applied += OnApplied;
+        }
+
         private void Update()
         {
+            AttachHost();
             if (State.State == CharacterState.Speaking && (voice == null || voice.Current == null || voice.Current.Speaker != "patient")) State.EndSpeaking();     // the patient's line is over
             State.Step(Time.deltaTime);
         }
