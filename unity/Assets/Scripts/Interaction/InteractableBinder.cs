@@ -14,7 +14,7 @@ namespace ProcSense.VR.Interaction
         /// <summary>(exact name or name prefix ending in '*', entity type). First match wins; a match's children are not searched again.</summary>
         public static readonly (string name, string type)[] Rules =
         {
-            ("Rocketbox patient", "patient"), ("mpfb_patient", "patient"),
+            ("Rocketbox patient*", "patient"), ("mpfb_patient", "patient"),     // one body per profile: "Rocketbox patient (female older)" and so on
             ("Nurse*", "nurse"), ("Staff nurse*", "nurse"),
             ("Staff receptionist", "porter"), ("Porter*", "porter"),
             ("Doctor*", "doctor"),

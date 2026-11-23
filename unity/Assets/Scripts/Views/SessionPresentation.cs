@@ -46,7 +46,7 @@ namespace ProcSense.VR.Views
         private void BindHeads()
         {
             if (_patient == null) _patient = Object.FindAnyObjectByType<PatientIdleView>();
-            if (_visiblePatient == null) _visiblePatient = Object.FindAnyObjectByType<PatientMotion>();
+            if (_visiblePatient == null || !_visiblePatient.isActiveAndEnabled) _visiblePatient = Object.FindAnyObjectByType<PatientMotion>();     // the patient body changes with the case (PatientProfiles)
             if (_transport == null) _transport = Object.FindAnyObjectByType<PatientTransportView>();
             if (_records == null) _records = Object.FindAnyObjectByType<RecordsWorkstation>();
             if (_visiblePatient != null)

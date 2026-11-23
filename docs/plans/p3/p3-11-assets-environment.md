@@ -52,13 +52,13 @@ The patient on the bed looks like the patient in the case (a 42-year-old woman f
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
 | P3-AST-01 | Maintain the gap register above as a checked table (asset, owner, source, licence, status) | Sannan | — | Table current; every row has a licence entry or "own script" | Planned |
-| P3-AST-02 | Patient avatars: female adult, older female, older male, young female (plus the existing male adult), clothed, Humanoid, blendshapes kept, placed on the mattress like the male patient | Sannan | P3-SCN-10 | Five profiles render in the bay, no clipping, chest moves | Planned |
-| P3-AST-03 | Runtime patient swap by profile at session start, preserving all bindings (sensors, band, nurse wrist target, speech face, transport visibility) | Sannan | P3-AST-02, P3-SES-01 | Existing nurse, transport and sensor PlayMode tests pass for every profile | Planned |
+| P3-AST-02 | Patient avatars: female adult, older female, older male, young female (plus the existing male adult), clothed, Humanoid, blendshapes kept, placed on the mattress like the male patient | Sannan | P3-SCN-10 | Five profiles render in the bay, no clipping, chest moves | Done |
+| P3-AST-03 | Runtime patient swap by profile at session start, preserving all bindings (sensors, band, nurse wrist target, speech face, transport visibility) | Sannan | P3-AST-02, P3-SES-01 | Existing nurse, transport and sensor PlayMode tests pass for every profile | Done |
 | P3-AST-04 | Staff set: final nurse, doctor, anaesthetist, receptionist, porter (Rocketbox), placed with interaction anchors | Sannan | P3-ANI-02 | Each addressable and animated | Planned |
 | P3-AST-05 | Bedside equipment of the gap register through the open Blender equipment steps | Sannan | p0-blender-equipment-s07, p0-blender-equipment-s08, p0-blender-equipment-s09 | Each item imported with prefab, collider and licence/provenance | Planned |
 | P3-AST-06 | Menu backdrop scene (with P3-MNU-02) | Sannan | P3-MNU-02 | Owner approves capture | Planned |
 | P3-AST-07 | UI 3D elements and icon meshes (lightbulb, board icon, wrist button, submit button) | Moiz | P3-UIX-03 | In the kit | Done |
-| P3-AST-08 | ED bay variant for S2 cases (set dressing switch, signage) | Sannan | p0-environment-rooms-s05 | S2 sessions show the ED variant | Planned |
+| P3-AST-08 | ED bay variant for S2 cases (set dressing switch, signage) | Sannan | p0-environment-rooms-s05 | S2 sessions show the ED variant | Done |
 | P3-AST-09 | Manifest, licence documents and restore script updated for every new asset; fresh-clone restore re-run | Sannan | P3-AST-02, P3-AST-04, P3-AST-05 | `restore_environment.ps1` verifies all files on a fresh clone | Planned |
 | P3-AST-10 | Quest budgets per new asset (triangles, materials, texture size ASTC, LOD) recorded and within P3-PRF limits | Sannan | P3-PRF-04 | Budget table filled with measured numbers | Planned |
 
