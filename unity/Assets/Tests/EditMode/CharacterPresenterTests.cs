@@ -62,6 +62,14 @@ namespace ProcSense.Tests.EditMode
         }
 
         [Test]
+        public void A_sentence_for_the_doctor_turns_him_although_the_service_has_no_doctor_route()
+        {
+            var d = body.AddComponent<CharacterPresenter>(); d.Setup("doctor", head.transform);
+            Assert.IsNull(ProcSense.VR.Interaction.AddresseeTarget.Choose("Doctor, please review the patient"), "nothing is sent to the service for him");
+            Assert.AreEqual(CharacterState.Addressed, d.State.State);
+        }
+
+        [Test]
         public void Busy_staff_do_not_turn_to_the_player()
         {
             var nurse = body.AddComponent<CharacterPresenter>(); nurse.Setup("nurse", head.transform);

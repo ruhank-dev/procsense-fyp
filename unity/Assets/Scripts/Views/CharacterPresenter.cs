@@ -13,6 +13,7 @@ namespace ProcSense.VR.Views
         [Tooltip("Who this is, as the voice catalogue and the speech routes name them: nurse, porter, doctor, anaesthesia.")] public string who = "";
         [Tooltip("The head bone. Empty: the Humanoid head, then 'Bip01 Head'.")] public Transform head;
         [Tooltip("Who to look at: the player's head. Empty: the main camera.")] public Transform player;
+        [Tooltip("Off for a character whose head another script already drives (the visiting nurse looks at the records and the wrist): two scripts turning one head folds the neck into the shoulder.")] public bool turnsHead = true;
         public CharacterEventState State { get; } = new CharacterEventState();
         /// <summary>The head turn being applied now, in degrees (yaw, pitch) from the character's forward.</summary>
         public Vector2 Turn { get; private set; }
@@ -61,7 +62,15 @@ namespace ProcSense.VR.Views
             ProcSense.VR.Interaction.AddresseeTarget.Chosen -= OnAddressee;
         }
 
-        private Transform Target => player != null ? player : (Camera.main != null ? Camera.main.transform : null);
+        private Transform Target => player != null ? player : PlayerHead();
+
+        /// <summary>The player's head: the main camera, else the first enabled camera that renders to the screen (an XR rig whose camera is not tagged MainCamera).</summary>
+        private static Transform PlayerHead()
+        {
+            if (Camera.main != null) return Camera.main.transform;
+            foreach (var c in Camera.allCameras) if (c.enabled && c.targetTexture == null) return c.transform;
+            return null;
+        }
         private bool Attending => State.State == CharacterState.Addressed || State.State == CharacterState.Speaking || State.State == CharacterState.Listening;
 
         /// <summary>The yaw and pitch (degrees) that turn a head at <paramref name="from"/> toward <paramref name="to"/>, measured from the body frame and limited to what <see cref="LookAtLimits"/> allows.</summary>
@@ -81,6 +90,7 @@ namespace ProcSense.VR.Views
 
         private void LateUpdate()
         {
+            if (!turnsHead) return;
             if (head == null) head = FindHead();
             if (head == null) return;
             var target = Attending ? Target : null;

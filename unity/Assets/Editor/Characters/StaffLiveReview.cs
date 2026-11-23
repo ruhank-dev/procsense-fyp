@@ -31,6 +31,19 @@ namespace ProcSense.EditorTools
             EditorPrefs.SetBool(Key, true); EditorApplication.EnterPlaymode();
         }
 
+        // Saying a line needs the microphone, the backend and a sign-in; these two send the same sentence the recogniser would, so the head turn can be watched without them.
+        [MenuItem("ProcSense/Review/Say 'Doctor, please review the patient'")] public static void SayDoctor() => Say("Doctor, please review the patient");
+        [MenuItem("ProcSense/Review/Say 'Nurse, please check the drip'")] public static void SayNurse() => Say("Nurse, please check the drip");
+        private static void Say(string line) { if (!EditorApplication.isPlaying) { Debug.LogWarning("[StaffLiveReview] press Play first"); return; } ProcSense.VR.Interaction.AddresseeTarget.Choose(line); Debug.Log("[StaffLiveReview] said: " + line + " | " + Report()); }
+
+        /// <summary>What each presenter in the scene is doing now, and whether there is a camera to turn toward, so a silent test says why.</summary>
+        private static string Report()
+        {
+            var all = Object.FindObjectsByType<ProcSense.VR.Views.CharacterPresenter>(FindObjectsSortMode.None);
+            var cam = Camera.main != null ? "main camera ok" : "NO main camera (using the first screen camera)";
+            return $"{cam}; {all.Length} presenter(s): " + string.Join(", ", all.Select(p => $"{p.name}[{p.who}] {p.State.State} turn {p.Turn} turnsHead={p.turnsHead}"));
+        }
+
         private static void Tick()
         {
             if (!EditorApplication.isPlaying) { EditorApplication.update -= Tick; return; }

@@ -36,7 +36,7 @@ namespace ProcSense.VR.Views
             _leftThigh = Find(body.transform, "Bip01 L Thigh"); _leftCalf = Find(body.transform, "Bip01 L Calf"); _leftFoot = Find(body.transform, "Bip01 L Foot");
             _rightThigh = Find(body.transform, "Bip01 R Thigh"); _rightCalf = Find(body.transform, "Bip01 R Calf"); _rightFoot = Find(body.transform, "Bip01 R Foot");
             _rightUpper = Find(body.transform, "Bip01 R UpperArm"); _rightFore = Find(body.transform, "Bip01 R Forearm"); RightHand = Find(body.transform, "Bip01 R Hand");
-            gameObject.AddComponent<CharacterPresenter>().Setup("nurse", Head);
+            var presenter = gameObject.AddComponent<CharacterPresenter>(); presenter.turnsHead = false; presenter.Setup("nurse", Head);      // this actor already turns her head in LateUpdate
             _clipboard = ModelOnly(clipboard, "Held records", transform);
             _band = ModelOnly(band, "Replacement band", RightHand);
             if (_band != null) { _band.localPosition = Vector3.zero; _band.localRotation = Quaternion.identity; _band.localScale = new Vector3(.5f, 1, 1); }

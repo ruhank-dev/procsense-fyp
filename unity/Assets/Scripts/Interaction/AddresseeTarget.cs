@@ -39,6 +39,13 @@ namespace ProcSense.VR.Interaction
             return null;
         }
 
+        private static bool StartsWithWord(string utterance, string word)
+        {
+            if (string.IsNullOrEmpty(utterance)) return false;
+            var s = utterance.TrimStart().ToLowerInvariant();
+            return s.StartsWith(word) && (s.Length == word.Length || !char.IsLetter(s[word.Length]));
+        }
+
         /// <summary>The person nearest the centre of the gaze, within the cone and range, or null.</summary>
         public static Interactable Gazed(Transform head, IEnumerable<Interactable> all)
         {
@@ -70,7 +77,9 @@ namespace ProcSense.VR.Interaction
         public static string Choose(string utterance)
         {
             var who = Choose(utterance, ContextPanel.Open != null ? ContextPanel.Open.Entity : null, Camera.main != null ? Camera.main.transform : null, Interactable.All);
-            if (who != null) Chosen?.Invoke(who);
+            // the doctor has no speech route (the service does not know him) but still turns to the trainee who names him
+            var turnTo = who ?? (Named(utterance) == null && StartsWithWord(utterance, "doctor") ? "doctor" : null);
+            if (turnTo != null) Chosen?.Invoke(turnTo);
             return who;
         }
 
