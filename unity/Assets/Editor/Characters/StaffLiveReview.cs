@@ -56,6 +56,8 @@ namespace ProcSense.EditorTools
             host.StartSession("TEST-ID-MISSING-BAND", 42, SessionMode.Practice, reader);
             foreach (var verb in new[] { "ask_identity", "open_notes" })
                 ActionGateway.Apply(host, new SimAction(verb, "patient", Channel.Vr, new System.Collections.Generic.Dictionary<string, string>()), ActionSource.Menu);
+            // The binder that gives staff their conversation layer is created by the menu flow; pressing Play on PatientBay directly has no flow, so without this nobody would react.
+            if (Object.FindAnyObjectByType<ProcSense.VR.Interaction.InteractableBinder>() == null) new GameObject("Interactable binder (review)").AddComponent<ProcSense.VR.Interaction.InteractableBinder>();
             var doctor = GameObject.Find("Doctor at the bay");
             if (doctor != null)
             {

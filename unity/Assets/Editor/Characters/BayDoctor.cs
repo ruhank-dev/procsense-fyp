@@ -29,7 +29,7 @@ namespace ProcSense.EditorTools
             // The bay is about 5 m by 4 m (x -2.5..2.5, z -2.0..2.0, the charting counter against the south wall); the walls have no collider, so a ring search once put him outside the room.
             // These spots were read off the top-down map (BayMap): open floor beside the bed, clear of the curtain, bin and plants. Take the first one that is clear of furniture.
             Vector3? spot = null;
-            foreach (var p in new[] { new Vector3(1.95f, 0, 0.1f), new Vector3(1.95f, 0, 0.6f), new Vector3(-1.9f, 0, -1.3f) })
+            foreach (var p in new[] { new Vector3(-1.85f, 0, -1.35f), new Vector3(-1.85f, 0, -1.5f) })
             {
                 var hits = Physics.OverlapCapsule(p + Vector3.up * .3f, p + Vector3.up * 1.6f, .35f, ~0, QueryTriggerInteraction.Ignore).Where(h => h.name != "Floor" && h.name != "Patient room exposure trim").ToArray();   // the floor and the lighting trim span the room; they are not furniture
                 Debug.Log($"[BayDoctor] spot {p:F2}: {(hits.Length == 0 ? "clear" : string.Join(", ", hits.Select(h => h.name)))}");
