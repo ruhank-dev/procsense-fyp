@@ -15705,64 +15705,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3000853004164369235, guid: 2e6293a237251fd4392bf75cdacbf51a, type: 3}
   m_PrefabInstance: {fileID: 368062939}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &657531733
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.8098578
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2.5931003
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9729081
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.23119238
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4049031216628112408, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_Name
-      value: Doctor at the bay
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2325521242510671498, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
 --- !u!1 &673054099
 GameObject:
   m_ObjectHideFlags: 0
@@ -24435,6 +24377,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881394027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &824415958
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.95
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.889721
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.45650476
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049031216628112408, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_Name
+      value: Doctor at the bay
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2325521242510671498, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
 --- !u!1001 &838845075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -45342,4 +45342,4 @@ SceneRoots:
   - {fileID: 2054212656}
   - {fileID: 819738915}
   - {fileID: 838845075}
-  - {fileID: 657531733}
+  - {fileID: 824415958}
