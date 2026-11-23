@@ -238,6 +238,7 @@ namespace ProcSense.VR.ActionEmitters
                 if (wrappedVisual != null)
                 {
                     wrappedVisual.SetActive(_attached);
+                    if (paramValue != "spo2" && wrappedVisual.GetComponent<ProcSense.VR.Views.CuffInflate>() == null) wrappedVisual.AddComponent<ProcSense.VR.Views.CuffInflate>();
                     foreach (var visual in looseVisuals ?? Array.Empty<GameObject>()) if (visual != null) visual.SetActive(!_attached);
                     var collider = GetComponent<BoxCollider>();
                     if (collider != null)
