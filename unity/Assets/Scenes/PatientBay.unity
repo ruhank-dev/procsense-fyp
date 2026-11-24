@@ -8528,6 +8528,7 @@ MonoBehaviour:
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
   offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  signTarget: {x: 0.12, y: 0.3, z: 0.22}
   lookAt: {fileID: 0}
   lookWeight: 1
 --- !u!1 &428020517
@@ -19610,6 +19611,7 @@ MonoBehaviour:
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
   offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  signTarget: {x: 0.12, y: 0.3, z: 0.22}
   lookAt: {fileID: 0}
   lookWeight: 1
 --- !u!4 &690274348 stripped
@@ -21516,6 +21518,7 @@ MonoBehaviour:
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
   offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  signTarget: {x: 0.12, y: 0.3, z: 0.22}
   lookAt: {fileID: 0}
   lookWeight: 1
 --- !u!1 &718314734
@@ -28293,64 +28296,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881394027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &824415958
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.945
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.327
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4049031216628112408, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-      propertyPath: m_Name
-      value: Doctor at the bay
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2325521242510671498, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
 --- !u!1001 &825746951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29903,6 +29848,7 @@ MonoBehaviour:
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
   offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  signTarget: {x: 0.12, y: 0.3, z: 0.22}
   lookAt: {fileID: 0}
   lookWeight: 1
 --- !u!1001 &838845075
@@ -35645,6 +35591,7 @@ MonoBehaviour:
   previewMode: 
   guardTarget: {x: 0.17, y: 0.06, z: 0.18}
   offerTarget: {x: 0.36, y: 0.2, z: 0.06}
+  signTarget: {x: 0.12, y: 0.3, z: 0.22}
   lookAt: {fileID: 0}
   lookWeight: 1
 --- !u!1 &1083377711
@@ -41342,6 +41289,64 @@ Transform:
   m_Children: []
   m_Father: {fileID: 881394027}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1530558708
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990177
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.044313435
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3709520083985778338, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4049031216628112408, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+      propertyPath: m_Name
+      value: Doctor at the bay
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2325521242510671498, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff0a05f333abb24fac13a168955c903, type: 3}
 --- !u!1 &1534702767
 GameObject:
   m_ObjectHideFlags: 0
@@ -53774,8 +53779,8 @@ SceneRoots:
   - {fileID: 2054212656}
   - {fileID: 819738915}
   - {fileID: 838845075}
-  - {fileID: 824415958}
   - {fileID: 1551187968}
   - {fileID: 761267124}
   - {fileID: 1091722622}
   - {fileID: 687332648}
+  - {fileID: 1530558708}
