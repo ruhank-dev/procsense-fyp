@@ -50627,6 +50627,9 @@ MonoBehaviour:
     Idle: {fileID: 9100000, guid: eddcfce5802046048a1e894b31aaf83c, type: 2}
     Walk: {fileID: 9100000, guid: 70b51b28b917fe642bea73b39efcfb23, type: 2}
     Sit: {fileID: 9100000, guid: 62fde146ea099034e81bb36ed589e8e7, type: 2}
+    Trolley: {fileID: 919132149155446097, guid: 7f65165e7a3e3ef43b8015f49b5aaf28, type: 3}
+    Wheelchair: {fileID: 919132149155446097, guid: fb7658d91a618ff4884d2723be9d06de, type: 3}
+    Cylinder: {fileID: 919132149155446097, guid: 34eea5861547e5649b1c1c9881c38962, type: 3}
   AdditionalBedsideVisuals:
   - {fileID: 690274345}
 --- !u!1 &2036133545

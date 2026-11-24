@@ -6,7 +6,7 @@ namespace ProcSense.VR.Views
 {
     /// <summary>The bodies and animation controllers for the people who come with the patient (Rocketbox Humanoids).</summary>
     [System.Serializable]
-    public sealed class StaffModels { public GameObject Patient, Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk, Sit; }
+    public sealed class StaffModels { public GameObject Patient, Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk, Sit; [Tooltip("Finished models (Blender, facing the other way round): when set they replace the grey boxes.")] public GameObject Trolley, Wheelchair, Cylinder; }
 
     /// <summary>Marked M2 geometry, replaceable with approved character/equipment prefabs.</summary>
     public sealed class TransportActor : MonoBehaviour
@@ -25,8 +25,10 @@ namespace ProcSense.VR.Views
         {
             Mode = state.Mode;
             HalfSize = new Vector3(.31f, .8f, Mode == "trolley" ? .92f : Mode == "wheelchair" ? .49f : .24f);
+            _seatHips = Mode == "wheelchair" && staff?.Wheelchair != null ? .62f : .74f;   // the finished chair's seat is lower than the grey box
             Patient(staff,dressedLike);
-            if (Mode == "trolley")
+            if (Mode == "trolley" && staff?.Trolley != null) Furniture(staff.Trolley, Vector3.zero);
+            else if (Mode == "trolley")
             {
                 Box("Prototype stretcher mattress", new Vector3(0,.78f,0), new Vector3(.60f,.10f,1.8f), Color.gray);
                 Box("Prototype stretcher frame",new Vector3(0,.28f,0),new Vector3(.55f,.10f,1.55f),Color.gray);
@@ -36,7 +38,8 @@ namespace ProcSense.VR.Views
             else
             {
                 bool seated = Mode == "wheelchair";
-                if(seated)
+                if (seated && staff?.Wheelchair != null) Furniture(staff.Wheelchair, Vector3.zero);
+                else if(seated)
                 {
                     Box("Prototype wheelchair seat",new Vector3(0,.62f,0),new Vector3(.58f,.08f,.55f),Color.gray);
                     Box("Prototype wheelchair back",new Vector3(0,.88f,-.25f),new Vector3(.58f,.48f,.06f),Color.gray);
@@ -73,14 +76,30 @@ namespace ProcSense.VR.Views
                 Box("Monitoring support",new Vector3(-.28f,1.05f,-.55f),new Vector3(.025f,.55f,.025f),Color.gray);
                 Box("Monitoring proxy - "+state.MonitoringLevel+" - no invented readings",new Vector3(-.28f,1.38f,-.55f),new Vector3(.2f,.20f,.10f),new Color(.12f,.22f,.24f));
             }
-            if (state.Oxygen) Part("Oxygen cylinder proxy",PrimitiveType.Capsule,new Vector3(.22f,.42f,-.5f),new Vector3(.13f,.29f,.13f),new Color(.20f,.50f,.40f));
+            if (state.Oxygen && staff?.Cylinder != null) Furniture(staff.Cylinder, Mode == "wheelchair" ? new Vector3(0, .30f, -.34f) : new Vector3(0, .12f, -.4f));   // hung behind the chair, or under the trolley between the rails
+            else if (state.Oxygen) Part("Oxygen cylinder proxy",PrimitiveType.Capsule,new Vector3(.22f,.42f,-.5f),new Vector3(.13f,.29f,.13f),new Color(.20f,.50f,.40f));
+            if (_furniture) { Agent = SetUpAgent(); return; }   // finished models: no floating prototype label
             var label=new GameObject("M2 prototype label",typeof(TextMesh)).GetComponent<TextMesh>();
             _label=label.transform;
             label.transform.SetParent(transform,false); label.transform.localPosition=new Vector3(0,1.95f,0);
             label.text="M2 TRANSPORT PROTOTYPE\n"+Mode; label.anchor=TextAnchor.MiddleCenter; label.characterSize=.02f; label.fontSize=40;
-            Agent=gameObject.AddComponent<NavMeshAgent>(); Agent.radius=.34f; Agent.height=1.75f; Agent.speed=1.1f;
-            Agent.acceleration=3; Agent.angularSpeed=180; Agent.stoppingDistance=.06f; Agent.updatePosition=false; Agent.updateRotation=false;
-            Agent.obstacleAvoidanceType=ObstacleAvoidanceType.HighQualityObstacleAvoidance; Agent.avoidancePriority=35;
+            Agent = SetUpAgent();
+        }
+        private NavMeshAgent SetUpAgent()
+        {
+            var a=gameObject.AddComponent<NavMeshAgent>(); a.radius=.34f; a.height=1.75f; a.speed=1.1f;
+            a.acceleration=3; a.angularSpeed=180; a.stoppingDistance=.06f; a.updatePosition=false; a.updateRotation=false;
+            a.obstacleAvoidanceType=ObstacleAvoidanceType.HighQualityObstacleAvoidance; a.avoidancePriority=35;
+            return a;
+        }
+        private bool _furniture;
+        private float _seatHips = .74f;
+        /// <summary>A finished model as a pure visual: turned round (the Blender export faces the other way), colliders removed.</summary>
+        private void Furniture(GameObject model, Vector3 at)
+        {
+            var g = Instantiate(model, transform); g.name = model.name; g.transform.localPosition = at; g.transform.localRotation = Quaternion.Euler(0, 180, 0);
+            foreach (var c in g.GetComponentsInChildren<Collider>(true)) Destroy(c);
+            _furniture = true;
         }
         private void LateUpdate() { Crew(); if(_label!=null && Camera.main!=null) { var facing=Vector3.ProjectOnPlane(_label.position-Camera.main.transform.position,Vector3.up); if(facing.sqrMagnitude>.000001f)_label.rotation=Quaternion.LookRotation(facing,Vector3.up); }
             if(DoctorAgent!=null && DoctorAgent.isOnNavMesh)
@@ -114,7 +133,7 @@ namespace ProcSense.VR.Views
             if (Mode == "walk") { _crew.Add(new Walker { Root = body.transform, Anim = anim, Last = body.transform.position, Idle = set.Idle, Walk = set.Walk }); return; }
             anim.Update(0f);
             Transform B(HumanBodyBones bone) => anim.GetBoneTransform(bone);
-            if (Mode == "wheelchair") { body.transform.position += transform.TransformPoint(new Vector3(0, .74f, .04f)) - B(HumanBodyBones.Hips).position; return; }
+            if (Mode == "wheelchair") { body.transform.position += transform.TransformPoint(new Vector3(0, _seatHips, .04f)) - B(HumanBodyBones.Hips).position; return; }
             LieDown(body.transform, anim);
         }
         // on the back on the mattress, head toward +z, legs together, arms by the sides; the pose is set once and the Animator stays off so it keeps

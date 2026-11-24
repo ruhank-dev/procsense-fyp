@@ -444,5 +444,47 @@
       "SCREEN_Flow",
       "GRAB_Flowmeter"
     ]
+  },
+  "transport_trolley": {
+    "script": "transport/transport_trolley.py",
+    "body": [
+      0.62,
+      1.85,
+      0.1
+    ],
+    "triangles": 12000,
+    "materials": 6,
+    "points": [
+      "GRAB_Trolley",
+      "ATTACH_Pole"
+    ]
+  },
+  "wheelchair": {
+    "script": "transport/wheelchair.py",
+    "body": [
+      0.46,
+      0.46,
+      0.08
+    ],
+    "triangles": 9000,
+    "materials": 5,
+    "points": [
+      "SOCKET_Seat",
+      "GRAB_Wheelchair"
+    ]
+  },
+  "oxygen_cylinder": {
+    "script": "transport/oxygen_cylinder.py",
+    "body": [
+      0.14,
+      0.14,
+      0.44
+    ],
+    "triangles": 3000,
+    "materials": 5,
+    "points": [
+      "ATTACH_O2",
+      "GRAB_Cylinder"
+    ]
   }
 }

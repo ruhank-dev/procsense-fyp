@@ -25,6 +25,8 @@ namespace ProcSense.EditorTools
         };
         /// <summary>Oxygen delivery (p0-blender-equipment-s09): masks, cannula and the wall flowmeter, with their face and supply points.</summary>
         public static readonly string[] Oxygen = { "simple_mask", "nonrebreather_mask", "nasal_cannula", "o2_flowmeter" };
+        /// <summary>Patient transport furniture (p0-blender-equipment-s10): imported as models and materials only; the transport actor instances them as pure visuals, so no grabbable prefab is made.</summary>
+        public static readonly string[] Transport = { "transport_trolley", "wheelchair", "oxygen_cylinder" };
         [Serializable] private class Anchor { public string name; public Vector3 size; }
         [Serializable] private class Metadata { public Anchor[] anchors; }
 
@@ -47,6 +49,9 @@ namespace ProcSense.EditorTools
 
         [MenuItem("ProcSense/Equipment/Import Notes Folder")]
         public static void ImportDocuments() => ImportAssets(Documents);
+
+        [MenuItem("ProcSense/Equipment/Import Transport Furniture")]
+        public static void ImportTransport() => ImportAssets(Transport);
 
         [MenuItem("ProcSense/Equipment/Import Oxygen Props")]
         public static void ImportOxygen() => ImportAssets(Oxygen);
