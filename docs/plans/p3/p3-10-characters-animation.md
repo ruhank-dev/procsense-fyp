@@ -39,7 +39,7 @@ Animation inventory; a standard controller for staff and patient; look-at; event
 | P3-ANI-04 | Event states: addressed, speaking, listening, acknowledge, refuse, busy; driven by `SimFeedback` and voice playback | Sannan | P3-SES-10, P3-ANI-02 | Every accepted panel action targeted at a person gives a visible reaction | Done |
 | P3-ANI-05 | Lip sync on Rocketbox blendshapes for patient and staff lines | Sannan | p0-voice-audio-s04, P3-ANI-02 | Visemes visible within 80 ms of audio | Done |
 | P3-ANI-06 | Patient reactions: examination flinch (only when the engine's finding says so), pain expressions by score, offer arm, nod for consent, sign form, sit up for examination | Sannan | P3-ANI-02, P3-INT-02 | Reaction never reveals a hidden finding before the examination action | In progress |
-| P3-ANI-07 | Staff actions: walk in/out on NavMesh, hand item, write on clipboard, push bed (porter), escort | Sannan | P3-ANI-02, P3-AST-04 | Used by nurse, porter and doctor flows | Planned |
+| P3-ANI-07 | Staff actions: walk in/out on NavMesh, hand item, write on clipboard, push bed (porter), escort | Sannan | P3-ANI-02, P3-AST-04 | Used by nurse, porter and doctor flows | In progress |
 | P3-ANI-08 | Equipment: cuff inflate/deflate, monitor screen states, bed back rise, trolley wheels, curtain pull, door swing (exists) | Sannan | P3-INT-07 | Animations follow engine state | In progress |
 | P3-ANI-09 | UI motion utility and presets (open/close, hover, press, tick draw, count-up, toast) | Moiz | P3-UIX-01 | Used by every panel of the kit | Done |
 | P3-ANI-10 | Scene transitions: fade to dark, loading card, results dim; comfort-safe (no camera motion) | Moiz | P3-ANI-09 | No frame of camera-driven motion in transitions | Done |
