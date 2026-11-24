@@ -29,7 +29,7 @@ Screens are states of `GameFlowDirector` (P3-SES-05). Each screen is a prefab bu
 | ID | Task | Owner | Depends on | Done when | Status |
 |---|---|---|---|---|---|
 | P3-MNU-01 | Boot sequence: after login load `MainMenu` instead of the bay; the bay loads only when the director starts a session | Moiz | P3-SES-05 | Fresh launch on desktop and APK lands on the menu | Done |
-| P3-MNU-02 | Menu backdrop scene: lightweight lit space (reception-style, reuse corridor assets, own small bake, no characters required) | Sannan | P3-SES-01 | Menu scene renders under 1 ms extra GPU on desktop profiler and has no realtime shadows | Planned |
+| P3-MNU-02 | Menu backdrop scene: lightweight lit space (reception-style, reuse corridor assets, own small bake, no characters required) | Sannan | P3-SES-01 | Menu scene renders under 1 ms extra GPU on desktop profiler and has no realtime shadows | In progress |
 | P3-MNU-03 | Main menu screen: Training, Test / Examination, Settings, Quit, "Resume previous session" when one exists | Moiz | P3-UIX-04, P3-SES-05 | All buttons reachable by ray and by poke; keyboard/mouse in the Editor | Done |
 | P3-MNU-04 | Procedure selection: two cards (S1, S2) with the pre-operative wording, case count available in the chosen mode, disabled card with reason when the pool is empty | Moiz | P3-MNU-03, P3-SCN-02 | With D1 unresolved, Test shows "No cases are approved for examination yet" instead of failing | Done |
 | P3-MNU-05 | Level selection (training only): beginner, intermediate, advanced mapped to Core `TrainingLevel` | Moiz | P3-MNU-04, P3-SCN-04 | The level reaches the session header | Done |
