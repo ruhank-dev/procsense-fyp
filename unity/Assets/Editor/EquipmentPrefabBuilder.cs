@@ -23,6 +23,8 @@ namespace ProcSense.EditorTools
             "tympanic_thermometer", "ecg_machine", "stethoscope", "glucose_meter",
             "blood_collection_set", "specimen_tube_rack", "blood_culture_bottles", "urine_kit", "sharps_bin", "tube_station",
         };
+        /// <summary>Oxygen delivery (p0-blender-equipment-s09): masks, cannula and the wall flowmeter, with their face and supply points.</summary>
+        public static readonly string[] Oxygen = { "simple_mask", "nonrebreather_mask", "nasal_cannula", "o2_flowmeter" };
         [Serializable] private class Anchor { public string name; public Vector3 size; }
         [Serializable] private class Metadata { public Anchor[] anchors; }
 
@@ -45,6 +47,9 @@ namespace ProcSense.EditorTools
 
         [MenuItem("ProcSense/Equipment/Import Notes Folder")]
         public static void ImportDocuments() => ImportAssets(Documents);
+
+        [MenuItem("ProcSense/Equipment/Import Oxygen Props")]
+        public static void ImportOxygen() => ImportAssets(Oxygen);
 
         [MenuItem("ProcSense/Equipment/Import Documents, Monitoring and Sampling Props")]
         public static void ImportProps() => ImportAssets(Props);
@@ -122,7 +127,7 @@ namespace ProcSense.EditorTools
         public static void CreateIfMissing(string modelPath, string prefabPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
-            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id) && !Props.Contains(id)) return;
+            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id) && !Props.Contains(id) && !Oxygen.Contains(id)) return;
             if (!prefabPath.StartsWith("Assets/", StringComparison.Ordinal) || !prefabPath.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) || prefabPath.Contains(".."))
                 throw new ArgumentException("Prefab destination must stay under Assets and end in .prefab", nameof(prefabPath));
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.
@@ -157,7 +162,7 @@ namespace ProcSense.EditorTools
                 grab.attachTransform = transforms.First(t => t.name.StartsWith("GRAB_", StringComparison.Ordinal));
                 grab.movementType = XRBaseInteractable.MovementType.Kinematic;
                 grab.throwOnDetach = false;
-                if (id == "tube_station") { body.isKinematic = true; body.useGravity = false; grab.enabled = false; }   // fixed to the wall; its carrier is handled with the sample dispatch
+                if (id == "tube_station" || id == "o2_flowmeter") { body.isKinematic = true; body.useGravity = false; grab.enabled = false; }   // fixed to the wall; its carrier is handled with the sample dispatch
                 foreach (var anchor in transforms.Where(t => t.name == "SCREEN_Main" || t.name == "SCREEN_Pump" || t.name == "LABEL_Identity"))
                 {
                     bool identity = anchor.name == "LABEL_Identity";
