@@ -61,6 +61,11 @@ namespace ProcSense.VR.Interaction
         {
             if (!Application.isPlaying || person.GetComponent<ProcSense.VR.Views.CharacterPresenter>() != null) return;
             if (type == "nurse" || type == "doctor" || type == "anaesthetist" || type == "porter") person.AddComponent<ProcSense.VR.Views.CharacterPresenter>().Setup(type, null);
+            if (type == "doctor" || type == "porter")    // the doctor writes up an escalation, the receptionist writes down a transport request
+            {
+                var g = person.GetComponent<ProcSense.VR.Views.StaffArmGesture>() ?? person.AddComponent<ProcSense.VR.Views.StaffArmGesture>();
+                g.writeOn = type == "doctor" ? "escalate" : "request_transport"; g.seated = person.GetComponentInChildren<ProcSense.VR.Views.SeatedPerson>() != null || person.GetComponentInParent<ProcSense.VR.Views.SeatedPerson>() != null;
+            }
         }
 
         private float _next;
