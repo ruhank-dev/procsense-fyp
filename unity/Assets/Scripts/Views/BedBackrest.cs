@@ -26,7 +26,9 @@ namespace ProcSense.VR.Views
                 if (patient == null) return;
             }
             float angle = Angle(patient.Sitting, patient.sitUpDegrees);
-            panel.gameObject.SetActive(angle > .5f);
+            bool up = angle > .5f;
+            if (up != panel.gameObject.activeSelf) ProcSense.VR.Audio.SoundPlayer.Instance?.Play("eq_bed_motor");   // the bed back starts to rise or has come down
+            panel.gameObject.SetActive(up);
             transform.localRotation = Quaternion.Euler(-angle, 0, 0);
         }
     }

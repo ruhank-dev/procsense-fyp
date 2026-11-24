@@ -486,5 +486,19 @@
       "ATTACH_O2",
       "GRAB_Cylinder"
     ]
+  },
+  "transport_monitor": {
+    "script": "transport/transport_monitor.py",
+    "body": [
+      0.24,
+      0.1,
+      0.18
+    ],
+    "triangles": 4000,
+    "materials": 6,
+    "points": [
+      "SCREEN_Transport",
+      "ATTACH_Pole"
+    ]
   }
 }

@@ -29,6 +29,7 @@ namespace ProcSense.VR.Views
             foreach (var c in body.GetComponentsInChildren<Collider>(true)) c.enabled = false;
             foreach (var b in body.GetComponentsInChildren<MonoBehaviour>(true)) b.enabled = false;
             _idle = idle; _walk = walk;
+            ProcSense.VR.Audio.MovingSound.Attach(gameObject, "foley_steps_vinyl", .4f);
             _animator = body.GetComponent<Animator>() ?? body.AddComponent<Animator>();
             _animator.applyRootMotion = false; _animator.cullingMode = AnimatorCullingMode.AlwaysAnimate; _animator.runtimeAnimatorController = idle;
             _spine = Find(body.transform, "Bip01 Spine"); _spine1 = Find(body.transform, "Bip01 Spine1"); _spine2 = Find(body.transform, "Bip01 Spine2"); Head = Find(body.transform, "Bip01 Head");
@@ -53,6 +54,7 @@ namespace ProcSense.VR.Views
         /// <summary>Says what the nurse is doing; the bones follow in LateUpdate (after the Animator).</summary>
         public void Pose(string step, float seconds, float progress, Transform wrist, bool walking, bool bandPlaced)
         {
+            if (bandPlaced && !_bandPlaced) ProcSense.VR.Audio.SoundPlayer.Instance?.Play("foley_wristband_snap");   // the new band is fastened
             _step = step; _seconds = seconds; _progress = progress; _wrist = wrist; _walking = walking; _bandPlaced = bandPlaced;
             var want = walking ? _walk : _idle;
             if (_animator != null && _animator.runtimeAnimatorController != want) _animator.runtimeAnimatorController = want;

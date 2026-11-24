@@ -36,6 +36,7 @@ namespace ProcSense.EditorTools
                 Trolley = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Models/Equipment/transport_trolley.fbx"),
                 Wheelchair = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Models/Equipment/wheelchair.fbx"),
                 Cylinder = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Models/Equipment/oxygen_cylinder.fbx"),
+                Monitor = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Models/Equipment/transport_monitor.fbx"),
             };
             Debug.Assert(view.Staff.Porter != null && view.Staff.Nurse != null && view.Staff.Doctor != null && view.Staff.Idle != null && view.Staff.Walk != null && view.Staff.Sit != null && view.Staff.Patient != null, "staff assets missing");
             EditorUtility.SetDirty(view); EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);

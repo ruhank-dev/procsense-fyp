@@ -49,8 +49,8 @@ Mixer and snapshots; asset list and sources; ambience recordings; music; UI set;
 | P3-SND-03 | Ambience beds per room and the crossfade through `RoomAudio` | Sannan | P3-SND-01, P3-SND-02, p0-voice-audio-s05 | Crossfade at every door | Done |
 | P3-SND-04 | Menu music and result stings | Moiz | P3-SND-01, P3-SND-02 | Music never plays during a session | Done |
 | P3-SND-05 | UI, training and examination sounds wired to kit and feedback events | Moiz | P3-SND-01, P3-SND-02, P3-SES-10 | One sound per event (test counts plays) | Done |
-| P3-SND-06 | Foley: footsteps by surface, clothing, paper and pen, band snap | Sannan | P3-SND-02, P3-ANI-07 | Footsteps match walk animations | Planned |
-| P3-SND-07 | Equipment sounds beyond the existing synthesis | Sannan | P3-SND-02, P3-ANI-08 | Each equipment animation has its sound | Planned |
+| P3-SND-06 | Foley: footsteps by surface, clothing, paper and pen, band snap | Sannan | P3-SND-02, P3-ANI-07 | Footsteps match walk animations | In progress |
+| P3-SND-07 | Equipment sounds beyond the existing synthesis | Sannan | P3-SND-02, P3-ANI-08 | Each equipment animation has its sound | In progress |
 | P3-SND-08 | Voice-feedback cues and the spoken failure phrases (pre-rendered with the project's voice tools) | Moiz | P3-VOX-07, P3-SND-01 | Each phrase has a clip and subtitle | Done |
 | P3-SND-09 | Spatial settings, voice limit, compression settings; evaluate the Meta XR Audio spatialiser only if DC-14 reports poor localisation | Moiz | P3-SND-03 | Settings recorded; CPU audio time measured in DC-13 | In progress |
 | P3-SND-10 | Volume settings integration (P3-SET-03) and the Listening snapshot | Moiz | P3-SET-03, P3-VOX-09 | Ambience ducks while talking | Done |

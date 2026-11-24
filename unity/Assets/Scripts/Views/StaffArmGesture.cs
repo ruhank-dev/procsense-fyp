@@ -24,7 +24,7 @@ namespace ProcSense.VR.Views
 
         public void HandOver(float seconds = 2.5f) => Begin(Kind.HandOver, seconds);
         public void Write(float seconds = 3f) => Begin(Kind.Write, seconds);
-        private void Begin(Kind k, float seconds) { kind = k; length = Mathf.Max(.5f, seconds); clock = 0; }
+        private void Begin(Kind k, float seconds) { kind = k; length = Mathf.Max(.5f, seconds); clock = 0; ProcSense.VR.Audio.SoundPlayer.Instance?.Play(k == Kind.Write ? "foley_pen_sign" : "foley_paper"); }
 
         /// <summary>How far into the gesture the arm is, 0 to 1: eases in over half a second, holds, eases out over the last half second.</summary>
         public static float Weight(float clock, float length)

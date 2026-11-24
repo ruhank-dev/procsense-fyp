@@ -87,6 +87,8 @@ namespace ProcSense.VR.Audio
                 case FeedbackKind.ActionAccepted:
                     if (e.Id == "request_hint") Play("exm_hint_reveal");
                     else if (e.Id == "submit_patient") Play("exm_submit_confirm");
+                    else if (e.Id == "sign_consent") Play("foley_pen_sign");
+                    else if (e.Id == "open_notes") Play("foley_paper");
                     break;
                 case FeedbackKind.EndState:
                     if (!ModeGate.PracticeAids) Play("exm_end");

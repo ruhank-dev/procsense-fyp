@@ -6,7 +6,7 @@ namespace ProcSense.VR.Views
 {
     /// <summary>The bodies and animation controllers for the people who come with the patient (Rocketbox Humanoids).</summary>
     [System.Serializable]
-    public sealed class StaffModels { public GameObject Patient, Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk, Sit; [Tooltip("Finished models (Blender, facing the other way round): when set they replace the grey boxes.")] public GameObject Trolley, Wheelchair, Cylinder; }
+    public sealed class StaffModels { public GameObject Patient, Porter, Nurse, Doctor; public RuntimeAnimatorController Idle, Walk, Sit; [Tooltip("Finished models (Blender, facing the other way round): when set they replace the grey boxes.")] public GameObject Trolley, Wheelchair, Cylinder, Monitor; }
 
     /// <summary>Marked M2 geometry, replaceable with approved character/equipment prefabs.</summary>
     public sealed class TransportActor : MonoBehaviour
@@ -70,7 +70,8 @@ namespace ProcSense.VR.Views
                 Doctor.SetParent(null,true); if(returning)Doctor.position=transform.position+transform.right*.4f; _doctorLast=Doctor.position;
                 DoctorAgent=Doctor.gameObject.AddComponent<NavMeshAgent>(); DoctorAgent.radius=.2f; DoctorAgent.height=1.75f; DoctorAgent.speed=1.2f; DoctorAgent.stoppingDistance=.2f; DoctorAgent.avoidancePriority=60;
             }
-            if (state.Monitor)
+            if (state.Monitor && staff?.Monitor != null) { HalfSize=new Vector3(.4f,HalfSize.y,HalfSize.z); Furniture(staff.Monitor, new Vector3(-.28f,.76f,-.55f)); }   // no readings drawn: Core shows none
+            else if (state.Monitor)
             {
                 HalfSize=new Vector3(.4f,HalfSize.y,HalfSize.z);
                 Box("Monitoring support",new Vector3(-.28f,1.05f,-.55f),new Vector3(.025f,.55f,.025f),Color.gray);
@@ -78,6 +79,8 @@ namespace ProcSense.VR.Views
             }
             if (state.Oxygen && staff?.Cylinder != null) Furniture(staff.Cylinder, Mode == "wheelchair" ? new Vector3(0, .30f, -.34f) : new Vector3(0, .12f, -.4f));   // hung behind the chair, or under the trolley between the rails
             else if (state.Oxygen) Part("Oxygen cylinder proxy",PrimitiveType.Capsule,new Vector3(.22f,.42f,-.5f),new Vector3(.13f,.29f,.13f),new Color(.20f,.50f,.40f));
+            if (Mode == "trolley" || Mode == "wheelchair") ProcSense.VR.Audio.MovingSound.Attach(gameObject, "eq_trolley_wheels", .5f);
+            if (Porter != null) ProcSense.VR.Audio.MovingSound.Attach(Porter.gameObject, "foley_steps_tile", .4f);
             if (_furniture) { Agent = SetUpAgent(); return; }   // finished models: no floating prototype label
             var label=new GameObject("M2 prototype label",typeof(TextMesh)).GetComponent<TextMesh>();
             _label=label.transform;
