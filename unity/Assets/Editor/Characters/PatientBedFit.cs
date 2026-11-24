@@ -26,6 +26,19 @@ namespace ProcSense.EditorTools
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
         }
 
+        /// <summary>Only the arms: lays each hand on the mattress beside the body, from wherever the shoulders are now. Safe to run again.</summary>
+        [MenuItem("ProcSense/Characters/Rest patients' hands on the bed")]
+        public static void HandsOnly()
+        {
+            var scene = EditorSceneManager.OpenScene("Assets/Scenes/PatientBay.unity", OpenSceneMode.Single);
+            var m = Object.FindObjectsByType<MeshRenderer>(FindObjectsInactive.Include, FindObjectsSortMode.None).First(r => r.gameObject.activeInHierarchy && r.name == "Soft mattress").bounds;
+            foreach (var go in Object.FindObjectsByType<ProcSense.VR.Views.PatientMotion>(FindObjectsInactive.Include, FindObjectsSortMode.None).Select(x => x.gameObject).Distinct())
+            {
+                AimArms(go, m.max.y, m.center.x); EditorUtility.SetDirty(go); Debug.Log("[PatientBedFit] hands rested: " + go.name);
+            }
+            EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
+        }
+
         [MenuItem("ProcSense/Characters/Fit patients to the bed")]
         public static void Run()
         {
@@ -157,7 +170,23 @@ namespace ProcSense.EditorTools
         }
 
         /// <summary>Legs together and arms along the sides, their joints a limb-radius above the mattress, from wherever the hips are now.</summary>
-        private static void Aim(GameObject go, float top, float cx)
+        private static void Aim(GameObject go, float top, float cx) { AimLegs(go, top, cx); AimArms(go, top, cx); }
+
+        private static void AimArms(GameObject go, float top, float cx)
+        {
+            foreach (var s in new[] { "L", "R" })
+            {
+                var up = Bone(go, $"Bip01 {s} UpperArm"); var fore = Bone(go, $"Bip01 {s} Forearm"); var hand = Bone(go, $"Bip01 {s} Hand");
+                if (up != null && fore != null && hand != null)
+                {
+                    float lenU = (fore.position - up.position).magnitude, lenF = (hand.position - fore.position).magnitude, side = up.position.x >= cx ? 1f : -1f;
+                    var tEl = new Vector3(cx + side * .30f, top + .04f, up.position.z - lenU * .96f); up.rotation = Quaternion.FromToRotation(fore.position - up.position, tEl - up.position) * up.rotation;
+                    var tHa = new Vector3(cx + side * .27f, top + .04f, fore.position.z - lenF * .98f); fore.rotation = Quaternion.FromToRotation(hand.position - fore.position, tHa - fore.position) * fore.rotation;
+                }
+            }
+        }
+
+        private static void AimLegs(GameObject go, float top, float cx)
         {
             var pelvis = Bone(go, "Bip01 Pelvis");
             foreach (var s in new[] { "L", "R" })
@@ -168,13 +197,6 @@ namespace ProcSense.EditorTools
                     float len = (foot.position - thigh.position).magnitude, side = foot.position.x >= pelvis.position.x ? 1f : -1f;
                     var target = new Vector3(cx + side * .10f, top + .085f, pelvis.position.z - len * .98f);   // the ankle joint sits a heel's depth above the surface
                     thigh.rotation = Quaternion.FromToRotation(foot.position - thigh.position, target - thigh.position) * thigh.rotation;
-                }
-                var up = Bone(go, $"Bip01 {s} UpperArm"); var fore = Bone(go, $"Bip01 {s} Forearm"); var hand = Bone(go, $"Bip01 {s} Hand");
-                if (up != null && fore != null && hand != null)
-                {
-                    float lenU = (fore.position - up.position).magnitude, lenF = (hand.position - fore.position).magnitude, side = up.position.x >= cx ? 1f : -1f;
-                    var tEl = new Vector3(cx + side * .30f, top + .04f, up.position.z - lenU * .96f); up.rotation = Quaternion.FromToRotation(fore.position - up.position, tEl - up.position) * up.rotation;
-                    var tHa = new Vector3(cx + side * .27f, top + .04f, fore.position.z - lenF * .98f); fore.rotation = Quaternion.FromToRotation(hand.position - fore.position, tHa - fore.position) * fore.rotation;
                 }
             }
         }
