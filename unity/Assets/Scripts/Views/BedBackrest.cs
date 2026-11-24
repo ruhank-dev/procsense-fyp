@@ -9,7 +9,9 @@ namespace ProcSense.VR.Views
     public sealed class BedBackrest : MonoBehaviour
     {
         [SerializeField, Tooltip("The cushion, a child of this hinge. Hidden while the patient lies flat.")] private Transform panel;
+        [SerializeField, Tooltip("The pillow under the lying patient's head: hidden while the back is raised.")] private Transform pillow;
         private PatientMotion patient; private float nextLook;
+        public Transform Pillow { get => pillow; set => pillow = value; }
         public Transform Panel { get => panel; set => panel = value; }
 
         /// <summary>Hinge angle for how far up the patient is (0 to 1) and how far the patient's trunk turns (degrees). Public for tests.</summary>
@@ -29,6 +31,7 @@ namespace ProcSense.VR.Views
             bool up = angle > .5f;
             if (up != panel.gameObject.activeSelf) ProcSense.VR.Audio.SoundPlayer.Instance?.Play("eq_bed_motor");   // the bed back starts to rise or has come down
             panel.gameObject.SetActive(up);
+            if (pillow != null) pillow.gameObject.SetActive(!up);
             transform.localRotation = Quaternion.Euler(-angle, 0, 0);
         }
     }
