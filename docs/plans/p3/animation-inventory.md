@@ -23,11 +23,11 @@ Every clip or state each character type and equipment item needs, where it comes
 | Skin signs: pallor, flush, jaundice, cyanosis, sweat | material property block | done; rash mask not done; not tested on darker skin tones; Core does not report these signs yet |
 | Look at the player | procedural | component hook done; nothing sets the target yet |
 | Speaking (jaw and visemes) | `PatientSpeechFace` | exists |
-| Examination flinch and wince | procedural head, face and hand | missing (P3-ANI-06); must only play when the engine's finding says so |
-| Offer arm for the cuff | procedural two-bone solve (reuse the guarding hand solve) | missing |
-| Nod for consent | procedural head nod | missing |
-| Sign the form | own keyframes or procedural hand and arm | missing |
-| Sit up for examination | own keyframes (lying to sitting and back) | missing |
+| Examination flinch and wince | procedural head, face and hand | done: plays only when the engine's reaction effect says so |
+| Offer arm for the cuff | procedural two-bone solve (reuse the guarding hand solve) | done: held out while the cuff is attached; not seen live |
+| Nod for consent | procedural head nod | done |
+| Sign the form | own keyframes or procedural hand and arm | done: the hand comes over the chest for 3 s after an accepted consent; not seen live |
+| Sit up for examination | own keyframes (lying to sitting and back) | missing: the neck pin and bed contact in `PatientMotion` fight a trunk lift, so it needs its own pass |
 
 ## 3. Gestures UAL does not cover (the gaps)
 
