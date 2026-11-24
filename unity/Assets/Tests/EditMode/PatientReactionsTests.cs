@@ -90,5 +90,14 @@ namespace ProcSense.Tests.EditMode
             r.OnApplied(new ProcSense.Core.Actions.SimAction("detach_sensor", "patient", ProcSense.Core.Actions.Channel.Vr, p), Outcome());
             motion.Step(2f, 1f); Assert.AreEqual(0f, motion.Offer, 1e-3f);
         }
+
+        [Test]
+        public void Signing_consent_brings_the_hand_up_for_a_few_seconds_and_then_back()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("sign_consent"), Outcome());
+            motion.Step(1f, 1f); Assert.AreEqual(1f, motion.Signing, 1e-3f);
+            motion.Step(6f, 1f); motion.Step(7f, 1f); Assert.AreEqual(0f, motion.Signing, 1e-3f);
+        }
     }
 }

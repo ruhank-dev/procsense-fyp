@@ -148,6 +148,12 @@ namespace ProcSense.VR.Views
         /// <summary>How far the arm is out, 0 to 1. For tests and review.</summary>
         public float Offer => offerNow;
 
+        [Tooltip("Where the right hand goes while the patient signs a form (metres from the pelvis, same axes): up over the chest.")] public Vector3 signTarget = new Vector3(.12f, .3f, .22f);
+        private float signNow, signSeconds;
+        /// <summary>The patient signs for a few seconds: the right hand comes up over the chest and back (P3-ANI-06).</summary>
+        public void Sign(float seconds = 3f) => signSeconds = Mathf.Max(.1f, seconds);
+        public float Signing => signNow;
+
         private void GuardArm(float w, float offer = 0f)
         {
             if (armUpper == null || armFore == null || armHand == null || pelvis == null || armLeft == null) return;
@@ -155,7 +161,7 @@ namespace ProcSense.VR.Views
             if (w < .001f) return;
             var lateral = Vector3.ProjectOnPlane(armUpper.position - armLeft.position, Vector3.up).normalized;
             var toHead = Vector3.ProjectOnPlane(head.position - pelvis.position, Vector3.up).normalized;
-            var spot = Vector3.Lerp(guardTarget, offerTarget, offer);
+            var spot = Vector3.Lerp(Vector3.Lerp(guardTarget, offerTarget, offer), signTarget, signNow);
             var target = pelvis.position + lateral * spot.x + toHead * spot.y + Vector3.up * spot.z;
             TwoBoneArm.Reach(armUpper, armFore, armHand, target, lateral + Vector3.up * .3f, w);
         }
@@ -218,7 +224,9 @@ namespace ProcSense.VR.Views
             head.localRotation = headRest * Quaternion.AngleAxis(yaw + poseNow.Yaw + lookNow.z + gest.y, headAxisYaw) * Quaternion.AngleAxis(roll + poseNow.Nod + lookNow.w + gest.x, headAxisRoll) * Quaternion.AngleAxis(poseNow.Tilt, headAxisTilt) * Quaternion.Euler(headEuler);
             offerNow = Mathf.MoveTowards(offerNow, offerGoal, dt / .7f);
             float offerEase = offerNow * offerNow * (3f - 2f * offerNow);
-            GuardArm(Mathf.Max(poseNow.Guard, offerEase), offerEase);
+            signSeconds = Mathf.Max(0f, signSeconds - dt); signNow = Mathf.MoveTowards(signNow, signSeconds > 0f ? 1f : 0f, dt / .5f);
+            float signEase = signNow * signNow * (3f - 2f * signNow);
+            GuardArm(Mathf.Max(poseNow.Guard, offerEase, signEase), offerEase);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
             float b = 0f; float k = t - blinkStart; if (k >= 0f && k < .18f) b = k < .06f ? k / .06f : 1f - (k - .06f) / .12f;
