@@ -27,7 +27,7 @@ Every clip or state each character type and equipment item needs, where it comes
 | Offer arm for the cuff | procedural two-bone solve (reuse the guarding hand solve) | done: held out while the cuff is attached; not seen live |
 | Nod for consent | procedural head nod | done |
 | Sign the form | own keyframes or procedural hand and arm | done: the hand comes over the chest for 3 s after an accepted consent; not seen live |
-| Sit up for examination | own keyframes (lying to sitting and back) | missing: the neck pin and bed contact in `PatientMotion` fight a trunk lift, so it needs its own pass |
+| Sit up for examination | procedural: the trunk rises from the lower spine (`PatientMotion.SitUp`), the bed backrest (`BedBackrest`) rises with it | done: starts on an accepted examination of the chest, back, lungs or heart, 12 s, then lies back; seen live on the female adult profile only |
 
 ## 3. Gestures UAL does not cover (the gaps)
 
