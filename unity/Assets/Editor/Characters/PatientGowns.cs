@@ -48,18 +48,18 @@ namespace ProcSense.EditorTools
 
         private static Material GownMaterial()
         {
-            const string tex = Folder + "/gown_print.png", mat = "Assets/Materials/Characters/PatientGown.mat";
+            const string tex = Folder + "/scrubs.png", mat = "Assets/Materials/Characters/PatientGown.mat";
             if (AssetDatabase.LoadAssetAtPath<Texture2D>(tex) == null)
             {
                 var t = new Texture2D(64, 64, TextureFormat.RGBA32, false);
-                var baseCol = new Color(.62f, .78f, .86f); var dot = new Color(.50f, .68f, .78f);
+                var shirt = new Color(.46f, .74f, .92f); var trousers = new Color(.26f, .48f, .74f);   // plain scrubs: a lighter blue top, a deeper blue bottom
                 for (int y = 0; y < 64; y++)
                     for (int x = 0; x < 64; x++)
                     {
-                        int dx = (x % 16) - 8, dy = (y % 16) - 8, ex = ((x + 8) % 16) - 8, ey = ((y + 8) % 16) - 8;
-                        bool d = dx * dx + dy * dy < 5 || ex * ex + ey * ey < 3;
-                        float weave = (x + y) % 2 == 0 ? .012f : 0f;
-                        t.SetPixel(x, y, (d ? dot : baseCol) - new Color(weave, weave, weave, 0));
+                        float weave = ((x + y) % 2 == 0 ? .012f : 0f) + ((x % 4 == 0 || y % 4 == 0) ? .008f : 0f);
+                        var c = (y >= 32 ? shirt : trousers) - new Color(weave, weave, weave, 0);
+                        if (y == 31 || y == 32) c *= .88f;   // the waistline
+                        t.SetPixel(x, y, c);
                     }
                 System.IO.File.WriteAllBytes(tex, t.EncodeToPNG()); Object.DestroyImmediate(t); AssetDatabase.ImportAsset(tex);
                 var imp = (TextureImporter)AssetImporter.GetAtPath(tex); imp.wrapMode = TextureWrapMode.Repeat; imp.mipmapEnabled = true; imp.SaveAndReimport();
@@ -67,7 +67,7 @@ namespace ProcSense.EditorTools
             if (!AssetDatabase.IsValidFolder("Assets/Materials/Characters")) AssetDatabase.CreateFolder("Assets/Materials", "Characters");
             var m = AssetDatabase.LoadAssetAtPath<Material>(mat);
             if (m == null) { m = new Material(Shader.Find("Universal Render Pipeline/Lit")); AssetDatabase.CreateAsset(m, mat); }
-            m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(tex)); m.SetColor("_BaseColor", Color.white); m.SetFloat("_Smoothness", .12f);
+            m.SetTexture("_BaseMap", AssetDatabase.LoadAssetAtPath<Texture2D>(tex)); m.SetColor("_BaseColor", Color.white); m.SetFloat("_Smoothness", .15f);
             EditorUtility.SetDirty(m); return m;
         }
 
@@ -120,7 +120,7 @@ namespace ProcSense.EditorTools
                 if (!map.TryGetValue(t, out int k))
                 {
                     k = nv.Count; map[t] = k; nv.Add(verts[t] + normals[t].normalized * Push); nn.Add(normals[t]); nw.Add(weights[t]);
-                    uv.Add(new Vector2(verts[t].x, verts[t].y) * 5.5f + new Vector2(verts[t].z, 0) * .7f);
+                    uv.Add(new Vector2(verts[t].x * 3f, verts[t].y >= .93f ? .75f + verts[t].y * .01f : .25f - (.93f - verts[t].y) * .01f));   // the top half of the texture is the shirt, the bottom half the trousers; the split is at the waist (0.93 m)
                 }
                 nt.Add(k);
             }
