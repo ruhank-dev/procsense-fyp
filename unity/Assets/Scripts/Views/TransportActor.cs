@@ -99,6 +99,7 @@ namespace ProcSense.VR.Views
         {
             var g = Instantiate(model, transform); g.name = model.name; g.transform.localPosition = at; g.transform.localRotation = Quaternion.Euler(0, 180, 0);
             foreach (var c in g.GetComponentsInChildren<Collider>(true)) Destroy(c);
+            foreach (var r in g.GetComponentsInChildren<Renderer>(true)) { r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off; r.receiveShadows = false; }   // it moves: Quest has no realtime shadows
             _furniture = true;
         }
         private void LateUpdate() { Crew(); if(_label!=null && Camera.main!=null) { var facing=Vector3.ProjectOnPlane(_label.position-Camera.main.transform.position,Vector3.up); if(facing.sqrMagnitude>.000001f)_label.rotation=Quaternion.LookRotation(facing,Vector3.up); }
