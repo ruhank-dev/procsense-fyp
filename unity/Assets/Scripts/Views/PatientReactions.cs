@@ -72,8 +72,17 @@ namespace ProcSense.VR.Views
         {
             if (outcome == null || motion == null) return;
             if (outcome.Accepted && (action.Verb == "attach_sensor" || action.Verb == "detach_sensor") && action.Params.TryGetValue("sensor", out var sensor) && sensor == "nibp_cuff") motion.OfferArm(action.Verb == "attach_sensor");   // the arm is held out while the cuff is on it
+            if (outcome.Accepted && action.Verb == "examine" && action.Params.TryGetValue("region", out var region) && NeedsSittingUp(region)) motion.SitUp();   // the chest and back are examined sitting
             if (System.Linq.Enumerable.Any(outcome.Effects, e => e.StartsWith("reaction:", System.StringComparison.Ordinal))) motion.Flinch();
             else if (outcome.Accepted && (action.Verb == "ask_exam_permission" || action.Verb == "sign_consent")) { State.Reply(true); if (action.Verb == "sign_consent") motion.Sign(); }
+        }
+
+        /// <summary>Regions the patient is examined for sitting up (chest, back, lungs, heart). Public for tests.</summary>
+        public static bool NeedsSittingUp(string region)
+        {
+            region = (region ?? "").ToLowerInvariant();
+            foreach (var key in new[] { "chest", "back", "lung", "resp", "heart", "cardio", "thorax" }) if (region.Contains(key)) return true;
+            return false;
         }
 
         private void AttachHost()

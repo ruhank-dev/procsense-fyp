@@ -57,6 +57,12 @@ namespace ProcSense.VR.Views
             breathAxis1 = spine1.InverseTransformDirection(lateral); breathAxis2 = spine2.InverseTransformDirection(lateral);
             // which way is "chest up"? rotate the upper body by +1 degree about the lateral axis and see whether the head goes up or down (world +y)
             float y0 = head.position.y; spine1.localRotation = spine1Rest * Quaternion.AngleAxis(1f, breathAxis1); float y1 = head.position.y; spine1.localRotation = spine1Rest; breathSign = y1 >= y0 ? 1f : -1f;
+            spineBase = Find(transform, "Bip01 Spine");
+            if (spineBase != null)
+            {
+                spineBaseRest = spineBase.localRotation; sitAxis = spineBase.InverseTransformDirection(lateral);
+                float h0 = head.position.y; spineBase.localRotation = spineBaseRest * Quaternion.AngleAxis(1f, sitAxis); float h1 = head.position.y; spineBase.localRotation = spineBaseRest; sitSign = h1 >= h0 ? 1f : -1f;
+            }
             headAxisYaw = head.InverseTransformDirection((head.position - neck.position).normalized); headAxisRoll = head.InverseTransformDirection(lateral);
             footAxis = footL != null ? footL.InverseTransformDirection(lateral) : Vector3.right;
             headAxisTilt = Vector3.Cross(headAxisYaw, headAxisRoll).normalized;
@@ -150,6 +156,12 @@ namespace ProcSense.VR.Views
 
         [Tooltip("Where the right hand goes while the patient signs a form (metres from the pelvis, same axes): up over the chest.")] public Vector3 signTarget = new Vector3(.12f, .3f, .22f);
         private float signNow, signSeconds;
+        [Tooltip("How far the trunk rises when the patient sits up for an examination (degrees at the lower spine).")] public float sitUpDegrees = 55f;
+        private Transform spineBase; private Quaternion spineBaseRest; private Vector3 sitAxis; private float sitSign = 1f, sitNow, sitSeconds;
+        /// <summary>The patient sits up for a few seconds (the trunk rises from the lower spine) and then lies back (P3-ANI-06).</summary>
+        public void SitUp(float seconds = 12f) => sitSeconds = Mathf.Max(.1f, seconds);
+        /// <summary>How far up the patient is, 0 (lying) to 1 (sitting). The bed backrest follows it.</summary>
+        public float Sitting => sitNow;
         /// <summary>The patient signs for a few seconds: the right hand comes up over the chest and back (P3-ANI-06).</summary>
         public void Sign(float seconds = 3f) => signSeconds = Mathf.Max(.1f, seconds);
         public float Signing => signNow;
@@ -204,6 +216,8 @@ namespace ProcSense.VR.Views
             poseNow = PatientPose.Lerp(poseNow, poseTarget, 1f - Mathf.Exp(-dt / Mathf.Max(.05f, expressionSeconds * .6f)));
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath
+            sitSeconds = Mathf.Max(0f, sitSeconds - dt); sitNow = Mathf.MoveTowards(sitNow, sitSeconds > 0f ? 1f : 0f, dt / 1.4f);
+            if (spineBase != null) spineBase.localRotation = spineBaseRest * Quaternion.AngleAxis(sitSign * sitUpDegrees * sitNow * sitNow * (3f - 2f * sitNow), sitAxis);
             spine1.localRotation = spine1Rest; spine1.localScale = spine1Scale; spine2.localRotation = spine2Rest; spine2.localScale = spine2Scale;
             if (neck.localPosition != neckWrotePos || neck.localRotation != neckWroteRot) { neckRestPos = neck.localPosition; neckRestRot = neck.localRotation; neckScale = neck.localScale; }     // someone else moved the neck (the Animator): that pose is its rest now
             neck.localPosition = neckRestPos; neck.localRotation = neckRestRot; neck.localScale = neckScale;                // back to rest first: the pin below rewrites the neck each frame and must not build on itself

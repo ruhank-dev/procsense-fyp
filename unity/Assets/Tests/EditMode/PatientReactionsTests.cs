@@ -99,5 +99,18 @@ namespace ProcSense.Tests.EditMode
             motion.Step(1f, 1f); Assert.AreEqual(1f, motion.Signing, 1e-3f);
             motion.Step(6f, 1f); motion.Step(7f, 1f); Assert.AreEqual(0f, motion.Signing, 1e-3f);
         }
+
+        [Test]
+        public void Examining_the_chest_sits_the_patient_up_and_the_abdomen_does_not()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            var abdomen = new System.Collections.Generic.Dictionary<string, string> { ["region"] = "abdomen" };
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("examine", "patient", ProcSense.Core.Actions.Channel.Vr, abdomen), Outcome());
+            motion.Step(1f, 2f); Assert.AreEqual(0f, motion.Sitting, 1e-3f);
+            var chest = new System.Collections.Generic.Dictionary<string, string> { ["region"] = "chest" };
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("examine", "patient", ProcSense.Core.Actions.Channel.Vr, chest), Outcome());
+            motion.Step(2f, 2f); Assert.AreEqual(1f, motion.Sitting, 1e-3f);
+            motion.Step(20f, 20f); motion.Step(25f, 5f); Assert.AreEqual(0f, motion.Sitting, 1e-3f, "lies back afterwards");
+        }
     }
 }
