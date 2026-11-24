@@ -172,7 +172,7 @@ namespace ProcSense.Tests.PlayMode
             Until("IN_TRANSIT");Assert.IsNotNull(_view.Actor);Assert.IsNull(_view.Actor.Porter);
             Assert.IsNotNull(_view.Actor.Nurse);Assert.IsNotNull(_view.Actor.Doctor);
             Assert.IsTrue(_view.Presentation.Doctor);Assert.AreEqual("full",_view.Presentation.MonitoringLevel);
-            Assert.IsNotNull(_view.Actor.GetComponentsInChildren<Transform>().FirstOrDefault(t=>t.name.StartsWith("Monitoring proxy - full")));
+            Assert.IsNotNull(_view.Actor.GetComponentsInChildren<Transform>().FirstOrDefault(t=>t.name.StartsWith("Monitoring proxy - full")||t.name.StartsWith("transport_monitor")));   // the finished transfer monitor replaces the grey proxy box
             string hash=_host.Session.Log.Hash(); float deadline=Time.realtimeSinceStartup+30;
             var corridor=Object.FindObjectsByType<RoomLayout>().Single(r=>r.gameObject.scene.name=="Corridor");
             while((!_view.AtDoor||!corridor.Contains(_view.Actor.Doctor.position,0)||!corridor.Contains(_view.Actor.Nurse.position,0))&&Time.realtimeSinceStartup<deadline)yield return null;
