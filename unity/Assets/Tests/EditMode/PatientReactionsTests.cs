@@ -79,5 +79,16 @@ namespace ProcSense.Tests.EditMode
             r.OnApplied(new ProcSense.Core.Actions.SimAction("ask_exam_permission"), refused); Assert.AreEqual(HeadGestureKind.None, motion.GestureKind);
             r.OnApplied(new ProcSense.Core.Actions.SimAction("ask_exam_permission"), Outcome("permission_asked")); Assert.AreEqual(HeadGestureKind.Nod, motion.GestureKind);
         }
+
+        [Test]
+        public void The_arm_is_held_out_while_the_cuff_is_attached_and_comes_back_when_it_is_removed()
+        {
+            var r = patient.AddComponent<PatientReactions>(); r.Bind(); var motion = patient.GetComponent<PatientMotion>();
+            var p = new System.Collections.Generic.Dictionary<string, string> { ["sensor"] = "nibp_cuff" };
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("attach_sensor", "patient", ProcSense.Core.Actions.Channel.Vr, p), Outcome());
+            motion.Step(1f, 1f); Assert.AreEqual(1f, motion.Offer, 1e-3f);
+            r.OnApplied(new ProcSense.Core.Actions.SimAction("detach_sensor", "patient", ProcSense.Core.Actions.Channel.Vr, p), Outcome());
+            motion.Step(2f, 1f); Assert.AreEqual(0f, motion.Offer, 1e-3f);
+        }
     }
 }
