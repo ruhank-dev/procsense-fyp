@@ -60,7 +60,7 @@ The patient on the bed looks like the patient in the case (a 42-year-old woman f
 | P3-AST-07 | UI 3D elements and icon meshes (lightbulb, board icon, wrist button, submit button) | Moiz | P3-UIX-03 | In the kit | Done |
 | P3-AST-08 | ED bay variant for S2 cases (set dressing switch, signage) | Sannan | p0-environment-rooms-s05 | S2 sessions show the ED variant | Done |
 | P3-AST-09 | Manifest, licence documents and restore script updated for every new asset; fresh-clone restore re-run | Sannan | P3-AST-02, P3-AST-04, P3-AST-05 | `restore_environment.ps1` verifies all files on a fresh clone | Planned |
-| P3-AST-10 | Quest budgets per new asset (triangles, materials, texture size ASTC, LOD) recorded and within P3-PRF limits | Sannan | P3-PRF-04 | Budget table filled with measured numbers | Planned |
+| P3-AST-10 | Quest budgets per new asset (triangles, materials, texture size ASTC, LOD) recorded and within P3-PRF limits | Sannan | P3-PRF-04 | Budget table filled with measured numbers | Done |
 
 ## 7. Dependencies and execution order
 

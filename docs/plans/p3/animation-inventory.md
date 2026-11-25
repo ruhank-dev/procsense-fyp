@@ -56,10 +56,10 @@ One standard look-at for every character: eyes first (up to 25 degrees yaw and 1
 
 | Item | Needed | Source | Status |
 |---|---|---|---|
-| BP cuff | inflate and deflate | own keyframes or scale driven by the monitor | missing |
+| BP cuff | inflate and deflate | `CuffInflate` | exists |
 | Monitor | screen states, alarm | screen rendering | exists (`MonitorView`) |
-| Bed | back rise (head up) | needs a Core verb and a rigged bed | blocked (see the handoff open list) |
-| Trolley | wheels turn | procedural from movement | missing |
+| Bed | back rise (head up) | `BedBackrest`, rises with the patient's sit-up | exists (a trainee-driven head-up verb still needs Core) |
+| Trolley and wheelchair | wheels turn | procedural from movement (`WheelSpin`) | exists |
 | Curtain | pull | `CurtainCloth` | exists |
 | Doors | swing | door scripts | exists |
 
