@@ -24,7 +24,7 @@ PICTURE_INDEXES = ["images", "ecg", "cxr", "xsec"]       # ultrasound, ECG strip
 PROVENANCE = [
     ("3D character", "Patient (MPFB, MakeHuman assets)", "unity/Assets/Models/Characters/MPFBPatient/README.md"),
     ("Textures", "Hospital wall and floor surfaces (ambientCG)", "unity/Assets/Textures/Hospital/README.md"),
-    ("3D characters", "Waiting-area people, medical staff and receptionist (Microsoft Rocketbox avatars)", "unity/Assets/Characters/Rocketbox/README.md"),
+    ("3D characters", "Waiting-area people, medical staff, receptionist and the five patient bodies (Microsoft Rocketbox avatars)", "unity/Assets/Characters/Rocketbox/README.md"),
     ("Animation", "Idle, talking, sitting and walking clips (Quaternius Universal Animation Library)", "unity/Assets/Characters/Animations/README.md"),
     ("Font", "Inter, the interface typeface (Rasmus Andersson and the Inter Project Authors)", "unity/Assets/UI/Fonts/Inter/README.md"),
     ("Icons", "Interface icons (Lucide, lucide-static 0.460.0)", "unity/Assets/UI/Icons/README.md"),
