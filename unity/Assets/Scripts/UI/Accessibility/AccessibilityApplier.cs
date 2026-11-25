@@ -21,8 +21,15 @@ namespace ProcSense.VR.UI.Accessibility
             go.AddComponent<AccessibilityApplier>();
         }
 
-        private void OnEnable() { _leftHanded = AccessibilitySettings.LeftHanded; AccessibilitySettings.Changed += OnChanged; }
-        private void OnDisable() => AccessibilitySettings.Changed -= OnChanged;
+        private void OnEnable() { _leftHanded = AccessibilitySettings.LeftHanded; AccessibilitySettings.Changed += OnChanged; ProcSense.VR.Settings.GameSettings.Changed += OnComfort; }
+        private void OnDisable() { AccessibilitySettings.Changed -= OnChanged; ProcSense.VR.Settings.GameSettings.Changed -= OnComfort; }
+
+        /// <summary>A comfort choice changed (P3-SET-05): turn style, angle, speed, walking, vignette reach every rig that is playing (not the login room).</summary>
+        private static void OnComfort(ProcSense.VR.Settings.SettingsData s)
+        {
+            foreach (var rig in FindObjectsByType<XROrigin>(FindObjectsSortMode.None))
+                if (rig.GetComponentInParent<ProcSense.VR.Boot.BootLoader>() == null) RigLocomotionSettings.ApplyComfort(rig, s, true);
+        }
 
         private void OnChanged()
         {

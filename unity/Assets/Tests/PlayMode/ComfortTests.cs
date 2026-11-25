@@ -174,6 +174,26 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [UnityTest]
+        public IEnumerator Saved_comfort_choices_reach_the_rig()
+        {
+            yield return Boot();
+            var rig = Object.FindAnyObjectByType<XROrigin>();
+            var snap = rig.GetComponentInChildren<SnapTurnProvider>(true);
+            var smooth = rig.GetComponentInChildren<ContinuousTurnProvider>(true);
+            var before = ProcSense.VR.Settings.GameSettings.Current;
+            try
+            {
+                ProcSense.VR.Settings.GameSettings.Update(s => { s.turnStyle = ProcSense.VR.Settings.TurnStyle.Smooth; s.turnSpeed = 120f; s.snapAngle = 30f; });
+                Assert.IsTrue(smooth.enabled && !snap.enabled, "smooth turning replaces snap turning");
+                Assert.AreEqual(120f, smooth.turnSpeed);
+                Assert.AreEqual(30f, snap.turnAmount);
+                ProcSense.VR.Settings.GameSettings.Update(s => s.turnStyle = ProcSense.VR.Settings.TurnStyle.Snap);
+                Assert.IsTrue(snap.enabled && !smooth.enabled);
+            }
+            finally { ProcSense.VR.Settings.GameSettings.Update(s => { s.turnStyle = before.turnStyle; s.turnSpeed = before.turnSpeed; s.snapAngle = before.snapAngle; }); }
+        }
+
+        [UnityTest]
         public IEnumerator Seated_calibration_is_reversible_and_snap_turn_is_45_or_30_degrees()
         {
             yield return Boot();

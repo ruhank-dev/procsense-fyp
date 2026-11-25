@@ -40,6 +40,25 @@ namespace ProcSense.VR.XR
                 turn.enableTurnAround = false;
                 turn.enabled = !login;
             }
+            if (!login) ApplyComfort(rig, ProcSense.VR.Settings.GameSettings.Current, false);
+        }
+
+        /// <summary>
+        /// The trainee's saved comfort choices (P3-SET-05) on the rig: smooth turning at the chosen speed instead of snap turning, continuous walking in addition to teleport,
+        /// the snap angle (only when <paramref name="withAngle"/>, so a rig re-wire keeps an angle picked on the rig), and the vignette. Defaults change nothing.
+        /// </summary>
+        public static void ApplyComfort(XROrigin rig, ProcSense.VR.Settings.SettingsData s, bool withAngle)
+        {
+            bool smooth = s.turnStyle == ProcSense.VR.Settings.TurnStyle.Smooth;
+            bool leftHanded = ProcSense.VR.UI.Accessibility.AccessibilitySettings.LeftHanded;
+            foreach (var manager in rig.GetComponentsInChildren<ControllerInputActionManager>(true))
+            {
+                manager.smoothTurnEnabled = smooth;
+                if (s.moveStyle == ProcSense.VR.Settings.MoveStyle.Continuous && manager.name == (leftHanded ? "Right Controller" : "Left Controller")) manager.smoothMotionEnabled = true;
+            }
+            foreach (var turn in rig.GetComponentsInChildren<ContinuousTurnProvider>(true)) { turn.turnSpeed = s.turnSpeed; turn.enabled = smooth; }
+            foreach (var turn in rig.GetComponentsInChildren<SnapTurnProvider>(true)) { if (withAngle) turn.turnAmount = s.snapAngle; turn.enabled = !smooth; }
+            foreach (var vignette in rig.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Locomotion.Comfort.TunnelingVignetteController>(true)) vignette.gameObject.SetActive(s.comfortVignette);
         }
     }
 }
