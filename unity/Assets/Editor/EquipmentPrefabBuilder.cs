@@ -24,6 +24,8 @@ namespace ProcSense.EditorTools
             "blood_collection_set", "specimen_tube_rack", "blood_culture_bottles", "urine_kit", "sharps_bin", "tube_station",
         };
         /// <summary>Oxygen delivery (p0-blender-equipment-s09): masks, cannula and the wall flowmeter, with their face and supply points.</summary>
+        /// <summary>IV access and injection (p0-blender-equipment-s09): the cannula kit the trainee uses at the arm, and a syringe prop.</summary>
+        public static readonly string[] Iv = { "iv_cannula_kit", "syringe" };
         public static readonly string[] Oxygen = { "simple_mask", "nonrebreather_mask", "nasal_cannula", "o2_flowmeter" };
         /// <summary>Patient transport furniture (p0-blender-equipment-s10): imported as models and materials only; the transport actor instances them as pure visuals, so no grabbable prefab is made.</summary>
         public static readonly string[] Transport = { "transport_trolley", "wheelchair", "oxygen_cylinder", "transport_monitor" };
@@ -52,6 +54,9 @@ namespace ProcSense.EditorTools
 
         [MenuItem("ProcSense/Equipment/Import Transport Furniture")]
         public static void ImportTransport() => ImportAssets(Transport);
+
+        [MenuItem("ProcSense/Equipment/Import IV Props")]
+        public static void ImportIv() => ImportAssets(Iv);
 
         [MenuItem("ProcSense/Equipment/Import Oxygen Props")]
         public static void ImportOxygen() => ImportAssets(Oxygen);
@@ -132,7 +137,7 @@ namespace ProcSense.EditorTools
         public static void CreateIfMissing(string modelPath, string prefabPath)
         {
             string id = Path.GetFileNameWithoutExtension(modelPath);
-            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id) && !Props.Contains(id) && !Oxygen.Contains(id)) return;
+            if (!Pilots.Contains(id) && !Sensors.Contains(id) && !Documents.Contains(id) && !Props.Contains(id) && !Oxygen.Contains(id) && !Iv.Contains(id)) return;
             if (!prefabPath.StartsWith("Assets/", StringComparison.Ordinal) || !prefabPath.EndsWith(".prefab", StringComparison.OrdinalIgnoreCase) || prefabPath.Contains(".."))
                 throw new ArgumentException("Prefab destination must stay under Assets and end in .prefab", nameof(prefabPath));
             // Nested model instances refresh on reimport. Never overwrite authored component overrides.

@@ -500,5 +500,33 @@
       "SCREEN_Transport",
       "ATTACH_Pole"
     ]
+  },
+  "iv_cannula_kit": {
+    "script": "iv/iv_cannula_kit.py",
+    "body": [
+      0.22,
+      0.14,
+      0.02
+    ],
+    "triangles": 6000,
+    "materials": 6,
+    "points": [
+      "GRAB_Kit",
+      "ATTACH_Arm"
+    ]
+  },
+  "syringe": {
+    "script": "iv/syringe.py",
+    "body": [
+      0.075,
+      0.017,
+      0.017
+    ],
+    "triangles": 4000,
+    "materials": 6,
+    "points": [
+      "GRAB_Syringe",
+      "ATTACH_Needle"
+    ]
   }
 }
