@@ -92,6 +92,15 @@ namespace ProcSense.Tests.PlayMode
         }
 
         [Test]
+        public void Staff_and_clothing_actions_play_their_foley()
+        {
+            _sound.OnFeedback(new SimFeedbackEvent(FeedbackKind.ActionAccepted, new[] { "tell_anaesthetist", "patient" }, "", 1));
+            _sound.OnFeedback(new SimFeedbackEvent(FeedbackKind.ActionAccepted, new[] { "prepare", "patient" }, "", 2));
+            Assert.AreEqual(1, _sound.Count("foley_rustle_coat"));
+            Assert.AreEqual(1, _sound.Count("foley_rustle_scrubs"));
+        }
+
+        [Test]
         public void A_completed_goal_chimes_and_ticks_once_in_training_and_not_in_the_examination()
         {
             _flow.SignedIn();

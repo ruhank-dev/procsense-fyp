@@ -131,6 +131,9 @@ namespace ProcSense.Tests.EditMode
                 view.Build();
                 view.Refresh();
                 Assert.IsTrue(view.Canvas.gameObject.activeSelf);
+                var content = (RectTransform)view.Canvas.transform.Find("Content");
+                Assert.AreEqual(new Vector2(0, 1), content.anchorMin, "the content starts at the panel's top-left corner, not its centre");
+                Assert.AreEqual(Vector2.zero, content.anchoredPosition);
                 StringAssert.Contains("Identity confirmed", view.ObjectiveText);
                 StringAssert.Contains("Admission tab", view.HowText);
                 view.ToggleInputMode();

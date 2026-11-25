@@ -44,6 +44,7 @@ namespace ProcSense.VR.UI.Training
             hide.onClick.AddListener(ToggleCollapsed);
             _content = new GameObject("Content", typeof(RectTransform));
             _content.transform.SetParent(root, false);
+            Kit.Kit.Place((RectTransform)_content.transform, Vector2.zero, new Vector2(900, 1180));   // top-left like the canvas, so the children's positions start at the panel's corner
             var c = _content.transform;
             _objective = UiKit.Label(c, "Objective", "", new Vector2(24, 70), new Vector2(852, 80), 28, color: UiKit.WarnColor);
             _progress = UiKit.Label(c, "Progress", "", new Vector2(24, 150), new Vector2(852, 36), 24, color: UiKit.DimTextColor);

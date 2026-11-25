@@ -92,6 +92,8 @@ namespace ProcSense.VR.Audio
                     else if (e.Id == "measure_temperature") Play("eq_thermometer_beep");
                     else if (e.Id == "perform_bedside_test") Play("eq_glucometer_beep");
                     else if (e.Id == "record_procedure" || e.Id == "escalate") Play("foley_clipboard");
+                    else if (e.Id == "request_anaesthetic_review" || e.Id == "tell_anaesthetist") Play("foley_rustle_coat");   // the doctor comes in
+                    else if (e.Id == "prepare" || e.Id == "handover" || e.Id == "finish_handover") Play("foley_rustle_scrubs"); // the nurse or porter handles the patient's clothes and bed
                     break;
                 case FeedbackKind.EndState:
                     if (!ModeGate.PracticeAids) Play("exm_end");
