@@ -17,7 +17,7 @@ namespace ProcSense.EditorTools
         public const string GownName = "Patient gown";
         private const string Folder = "Assets/Characters/PatientGowns";
         private static readonly string[] Cover = { "Pelvis", "Spine", "Clavicle", "UpperArm", "Forearm", "Thigh", "Calf", "Foot", "Toe" };
-        private const float Push = .012f;
+        private const float Push = .012f, FootPush = .036f;   // around the feet the gown stands further out, so it wraps the shoes instead of leaving black soles showing
 
         [MenuItem("ProcSense/Characters/Dress patients in gowns")]
         public static void Run()
@@ -34,7 +34,6 @@ namespace ProcSense.EditorTools
                 var original = PrefabUtility.GetCorrespondingObjectFromSource(body) is SkinnedMeshRenderer prefabBody ? prefabBody.sharedMesh : body.sharedMesh;   // always dress from the untouched mesh
                 body.sharedMesh = original;
                 var mesh = Build(body, root.name); if (mesh == null) continue;
-                body.sharedMesh = TakeShoesOff(body, root.name);
                 var go = new GameObject(GownName); go.transform.SetParent(body.transform.parent, false);
                 go.transform.localPosition = body.transform.localPosition; go.transform.localRotation = body.transform.localRotation; go.transform.localScale = body.transform.localScale;
                 var sk = go.AddComponent<SkinnedMeshRenderer>(); sk.sharedMesh = mesh; sk.bones = body.bones; sk.rootBone = body.rootBone; sk.sharedMaterials = materials;
@@ -44,12 +43,6 @@ namespace ProcSense.EditorTools
             }
             EditorSceneManager.MarkSceneDirty(scene); EditorSceneManager.SaveScene(scene);
             AssetDatabase.SaveAssets();
-        }
-
-        /// <summary>Two cloth materials, each with its own tileable woven texture (a twill weave, a fine rib and a soft mottle, all periodic over 64 pixels so it repeats without a seam).</summary>
-        private static Material[] GownMaterials()
-        {
-            return new[] { Cloth("scrubs_top", new Color(.46f, .74f, .92f), "PatientScrubsTop", 3), Cloth("scrubs_trousers", new Color(.26f, .48f, .74f), "PatientScrubsTrousers", 7) };
         }
 
         private static Material Cloth(string texName, Color baseColour, string matName, int phase)
@@ -76,27 +69,20 @@ namespace ProcSense.EditorTools
             EditorUtility.SetDirty(m); return m;
         }
 
-        private static Mesh TakeShoesOff(SkinnedMeshRenderer body, string label)
+        /// <summary>Two cloth materials, a lighter blue top and deeper blue trousers, each with its own tileable woven texture.</summary>
+        private static Material[] GownMaterials()
         {
-            var src = body.sharedMesh; var bones = body.bones; var w = src.boneWeights; var copy = Object.Instantiate(src); copy.name = "Body " + label;
-            System.Func<int, bool> foot = i => { var b = w[i]; return (b.weight0 >= .5f && IsFoot(bones[b.boneIndex0].name)) || (b.weight1 >= .5f && IsFoot(bones[b.boneIndex1].name)); };
-            var tr = src.GetTriangles(0); var kept = new List<int>();
-            for (int i = 0; i < tr.Length; i += 3) if (!(foot(tr[i]) && foot(tr[i + 1]) && foot(tr[i + 2]))) { kept.Add(tr[i]); kept.Add(tr[i + 1]); kept.Add(tr[i + 2]); }
-            copy.SetTriangles(kept, 0);
-            var path = $"{Folder}/Body {label}.asset"; AssetDatabase.DeleteAsset(path); AssetDatabase.CreateAsset(copy, path);
-            return copy;
+            return new[] { Cloth("scrubs_top", new Color(.46f, .74f, .92f), "PatientScrubsTop", 3), Cloth("scrubs_trousers", new Color(.26f, .48f, .74f), "PatientScrubsTrousers", 7) };
         }
 
         private static bool IsHand(string bone) => bone.Contains("Hand") || bone.Contains("Finger");
-
-        private static bool IsFoot(string bone) => bone.Contains("Foot") || bone.Contains("Toe");
 
         private static bool IsCover(string bone) => Cover.Any(n => bone.Contains(n)) && !bone.Contains("Hand") && !bone.Contains("Finger");
 
         private static Mesh Build(SkinnedMeshRenderer body, string label)
         {
             var src = body.sharedMesh; var bones = body.bones; var weights = src.boneWeights; var verts = src.vertices; var normals = src.normals;
-            var covered = new bool[verts.Length]; var hand = new bool[verts.Length];
+            var covered = new bool[verts.Length]; var hand = new bool[verts.Length]; var foot = new bool[verts.Length];
             for (int i = 0; i < verts.Length; i++)
             {
                 var w = weights[i]; float c = 0;
@@ -111,6 +97,10 @@ namespace ProcSense.EditorTools
                 if (w.weight2 > 0 && IsHand(bones[w.boneIndex2].name)) h += w.weight2;
                 if (w.weight3 > 0 && IsHand(bones[w.boneIndex3].name)) h += w.weight3;
                 hand[i] = h > .15f; if (hand[i]) covered[i] = false;
+                float f = 0;
+                if (w.weight0 > 0 && (bones[w.boneIndex0].name.Contains("Foot") || bones[w.boneIndex0].name.Contains("Toe"))) f += w.weight0;
+                if (w.weight1 > 0 && (bones[w.boneIndex1].name.Contains("Foot") || bones[w.boneIndex1].name.Contains("Toe"))) f += w.weight1;
+                foot[i] = f > .12f;
             }
             var tr = src.GetTriangles(0); var tris = new List<int>();
             for (int i = 0; i < tr.Length; i += 3) if ((covered[tr[i]] ? 1 : 0) + (covered[tr[i + 1]] ? 1 : 0) + (covered[tr[i + 2]] ? 1 : 0) >= 2 && !hand[tr[i]] && !hand[tr[i + 1]] && !hand[tr[i + 2]])
@@ -127,7 +117,7 @@ namespace ProcSense.EditorTools
                     int t = tris[i + c];
                     if (!map.TryGetValue(t, out int k))
                     {
-                        k = nv.Count; map[t] = k; nv.Add(verts[t] + normals[t].normalized * Push); nn.Add(normals[t]); nw.Add(weights[t]);
+                        k = nv.Count; map[t] = k; nv.Add(verts[t] + normals[t].normalized * (foot[t] ? FootPush : Push)); nn.Add(normals[t]); nw.Add(weights[t]);
                         uv.Add(new Vector2(verts[t].x * 7f + verts[t].z * 3f, verts[t].y * 7f));   // about 14 cm per repeat of the weave pattern
                     }
                     list.Add(k);
