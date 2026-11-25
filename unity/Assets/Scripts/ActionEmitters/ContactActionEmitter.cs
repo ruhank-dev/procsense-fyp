@@ -36,6 +36,7 @@ namespace ProcSense.VR.ActionEmitters
         private void OnDisable()
         {
             _grab.activated.RemoveListener(Activate);
+            _guide?.Hide();
             UnregisterFallback();
         }
 
@@ -55,12 +56,23 @@ namespace ProcSense.VR.ActionEmitters
         private bool Near => contactPoint != null && contactTarget != null && contactTarget.gameObject.activeInHierarchy &&
             Vector3.Distance(contactPoint.position, contactTarget.position) <= contactRadius;
 
+        [SerializeField] private Material placementHighlight;
+        private SensorPlacementGuide _guide;
+        public void ConfigurePlacementHighlight(Material material) => placementHighlight = material;
+
+        private void OnDestroy() => _guide?.Dispose();
+
         private void Update()
         {
             if (!PatientAvailable) Hint = "UNAVAILABLE";
             else if (!Held) Hint = "HOLD AT EAR";
             else Hint = Near ? "ACTIVATE" : "TIP TO EAR";
             if (instruction != null && instruction.text != Hint) instruction.text = Hint;
+            if (placementHighlight != null && contactTarget != null)
+            {
+                if (_guide == null) _guide = new SensorPlacementGuide(contactTarget, contactRadius, null, placementHighlight, 0f);   // the blue bubble at the ear, green once the tip is inside it
+                _guide.Refresh(Held, Near, false, PatientAvailable);
+            }
         }
 
         private void Activate(ActivateEventArgs args)

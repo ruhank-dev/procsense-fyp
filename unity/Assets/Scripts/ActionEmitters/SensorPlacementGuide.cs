@@ -15,13 +15,15 @@ namespace ProcSense.VR.ActionEmitters
         public bool Visible => _patient != null && _patient.activeSelf;
 
         public SensorPlacementGuide(XRSocketInteractor socket, Transform home, Material material, float returnRadius)
+            : this(socket.attachTransform != null ? socket.attachTransform : socket.transform, socket.GetComponent<SphereCollider>() != null ? socket.GetComponent<SphereCollider>().radius : .065f, home, material, returnRadius) { }
+
+        /// <summary>A guide for a held item with no socket: a bubble of <paramref name="radius"/> metres at <paramref name="target"/> (blue while approaching, green once the item is inside) and, when <paramref name="home"/> is set, one where it goes back.</summary>
+        public SensorPlacementGuide(Transform target, float radius, Transform home, Material material, float returnRadius)
         {
-            var trigger = socket.GetComponent<SphereCollider>();
-            float radius = trigger != null ? trigger.radius : .065f;
-            _patient = Make("Patient placement bubble", socket.attachTransform != null ? socket.attachTransform : socket.transform, radius, material);
-            _home = Make("Tray return bubble", home, returnRadius, material);
+            _patient = Make("Patient placement bubble", target, radius, material);
+            _home = home != null ? Make("Tray return bubble", home, returnRadius, material) : null;
             _patientRenderers = _patient.GetComponentsInChildren<Renderer>();
-            _homeRenderers = _home.GetComponentsInChildren<Renderer>();
+            _homeRenderers = _home != null ? _home.GetComponentsInChildren<Renderer>() : System.Array.Empty<Renderer>();
             Hide();
         }
 

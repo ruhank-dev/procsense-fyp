@@ -29,7 +29,7 @@ namespace ProcSense.VR.Views
         private Transform spine1, spine2, head, neck, footL, footR;
         private Quaternion spine1Rest, spine2Rest, headRest, footLRest, footRRest;
         private Vector3 spine1Scale, spine2Scale, neckScale, neckRestPos, neckWrotePos; private Quaternion neckRestRot, neckWroteRot; private int apAxis1, apAxis2, apAxisNeck; private Vector3 breathAxis1, breathAxis2, headAxisYaw, headAxisRoll, headAxisTilt, footAxis;
-        private Transform armUpper, armFore, armHand, armLeft, pelvis; private Quaternion armUpperRest, armForeRest;
+        private Transform armUpper, armFore, armHand, armLeft, armForeL, armHandL, pelvis; private Quaternion armUpperRest, armForeRest, armLeftRest, armForeLRest;
         private float breathSign = 1f, nextBlink, blinkStart = -10f, seed, nextFoot = 12f, footStart = -10f; private int footSide;
         private readonly Dictionary<Transform, (Quaternion rest, Vector3 euler)> manual = new Dictionary<Transform, (Quaternion, Vector3)>();
 
@@ -68,6 +68,8 @@ namespace ProcSense.VR.Views
             headAxisTilt = Vector3.Cross(headAxisYaw, headAxisRoll).normalized;
             armUpper = Find(transform, "Bip01 R UpperArm"); armFore = Find(transform, "Bip01 R Forearm"); armHand = Find(transform, "Bip01 R Hand"); pelvis = Find(transform, "Bip01 Pelvis"); armLeft = Find(transform, "Bip01 L UpperArm");
             if (armUpper != null && armFore != null && armHand != null) { armUpperRest = armUpper.localRotation; armForeRest = armFore.localRotation; }
+            armForeL = Find(transform, "Bip01 L Forearm"); armHandL = Find(transform, "Bip01 L Hand");
+            if (armLeft != null && armForeL != null && armHandL != null) { armLeftRest = armLeft.localRotation; armForeLRest = armForeL.localRotation; }
             nextBlink = Time.time + Random.Range(1.5f, 4f);
         }
 
@@ -148,9 +150,29 @@ namespace ProcSense.VR.Views
         // The right hand comes to the lower right abdomen: the forearm bends at the elbow (two-bone solve), blended in by the pose's Guard weight.
         // The same solve brings the arm out to the side when the trainee asks for it (offer 0 to 1 moves the target from the abdomen to offerTarget).
         [Tooltip("Where the right hand goes when the arm is offered for the cuff (metres from the pelvis, same axes as the guard target).")] public Vector3 offerTarget = new Vector3(.36f, .2f, .06f);
-        private float offerNow, offerGoal;
-        /// <summary>Holds the right arm out to the side (true) or lets it come back (false), e.g. for the blood pressure cuff.</summary>
-        public void OfferArm(bool offer) => offerGoal = offer ? 1f : 0f;
+        private float offerNow, offerGoal; private bool offerLeft;
+        [Tooltip("Where the offered arm is wanted (the cuff's patient target): the arm whose shoulder is nearest to it comes out. Empty: the right arm.")] public Transform offerNear;
+        /// <summary>The side an offered arm comes from: true for the left arm, the one nearer <see cref="offerNear"/>. Public for tests.</summary>
+        public static bool NearerLeft(Vector3 near, Vector3 leftShoulder, Vector3 rightShoulder) => (near - leftShoulder).sqrMagnitude < (near - rightShoulder).sqrMagnitude;
+        /// <summary>Holds an arm out to the side (true) or lets it come back (false), e.g. for the blood pressure cuff. The arm is the one nearer <see cref="offerNear"/> (the cuff goes on the left arm), else the right.</summary>
+        public void OfferArm(bool offer)
+        {
+            if (offer && offerNear != null && armLeft != null && armUpper != null) offerLeft = NearerLeft(offerNear.position, armLeft.position, armUpper.position);
+            offerGoal = offer ? 1f : 0f;
+        }
+        public bool OfferingLeft => offerLeft;
+
+        // The left arm's share of the offer: the same solve as the right arm, mirrored (its outward direction points the other way).
+        private void OfferLeftArm(float w)
+        {
+            if (armLeft == null || armForeL == null || armHandL == null || armUpper == null || pelvis == null || head == null) return;
+            armLeft.localRotation = armLeftRest; armForeL.localRotation = armForeLRest;
+            if (w < .001f) return;
+            var lateral = Vector3.ProjectOnPlane(armLeft.position - armUpper.position, Vector3.up).normalized;
+            var toHead = Vector3.ProjectOnPlane(head.position - pelvis.position, Vector3.up).normalized;
+            var target = pelvis.position + lateral * offerTarget.x + toHead * offerTarget.y + Vector3.up * offerTarget.z;
+            TwoBoneArm.Reach(armLeft, armForeL, armHandL, target, lateral + Vector3.up * .3f, w);
+        }
         /// <summary>How far the arm is out, 0 to 1. For tests and review.</summary>
         public float Offer => offerNow;
 
@@ -248,7 +270,8 @@ namespace ProcSense.VR.Views
             float offerEase = offerNow * offerNow * (3f - 2f * offerNow);
             signSeconds = Mathf.Max(0f, signSeconds - dt); signNow = Mathf.MoveTowards(signNow, signSeconds > 0f ? 1f : 0f, dt / .5f);
             float signEase = signNow * signNow * (3f - 2f * signNow);
-            GuardArm(Mathf.Max(poseNow.Guard, offerEase, signEase), offerEase);
+            GuardArm(Mathf.Max(poseNow.Guard, offerLeft ? 0f : offerEase, signEase), offerLeft ? 0f : offerEase);
+            OfferLeftArm(offerLeft ? offerEase : 0f);
 
             if (autoMotion && t >= nextBlink) { blinkStart = t; nextBlink = t + Random.Range(2.2f, 6.5f); if (Random.value < .15f) nextBlink = t + .35f; }       // now and then a quick double blink
             float b = 0f; float k = t - blinkStart; if (k >= 0f && k < .18f) b = k < .06f ? k / .06f : 1f - (k - .06f) / .12f;

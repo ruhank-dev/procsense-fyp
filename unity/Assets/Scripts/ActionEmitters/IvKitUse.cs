@@ -30,8 +30,8 @@ namespace ProcSense.VR.ActionEmitters
             if (!homeSet) { home = new Pose(transform.position, transform.rotation); homeSet = true; }
         }
 
-        private void OnDisable() { grab.selectExited.RemoveListener(Released); UnregisterFallback(); notice.Hide(); }
-        private void OnDestroy() { notice.Dispose(); if (onArm != null) Destroy(onArm); }
+        private void OnDisable() { grab.selectExited.RemoveListener(Released); UnregisterFallback(); notice.Hide(); guide?.Hide(); }
+        private void OnDestroy() { notice.Dispose(); guide?.Dispose(); if (onArm != null) Destroy(onArm); }
 
         private static Transform Forearm() =>
             FindObjectsByType<ProcSense.VR.Views.PatientMotion>(FindObjectsInactive.Exclude).Where(m => m.isActiveAndEnabled)
@@ -79,9 +79,20 @@ namespace ProcSense.VR.ActionEmitters
             transform.SetPositionAndRotation(home.position, home.rotation);
         }
 
+        /// <summary>The bubble on the forearm is this big and turns green inside it. The order is still accepted out to <see cref="Reach"/>; green means certainly close enough.</summary>
+        public const float GuideRadius = .12f;
+        [SerializeField] private Material placementHighlight;
+        private SensorPlacementGuide guide; private Transform guideArm; private float nextArmLook;
+        public void ConfigurePlacementHighlight(Material material) => placementHighlight = material;
+
         private void Update()
         {
             if (onArm != null && !ReferenceEquals(sessionShown, SimulationHostSession())) { Destroy(onArm); onArm = null; }   // a new session: the arm is bare again
+            if (placementHighlight == null) return;
+            if (guideArm == null && Time.time >= nextArmLook) { nextArmLook = Time.time + 1f; guideArm = Forearm(); if (guideArm != null) guide = new SensorPlacementGuide(guideArm, GuideRadius, null, placementHighlight, 0f); }
+            if (guide == null) return;
+            var host = SimulationHost.Instance;
+            guide.Refresh(grab.isSelected, (transform.position - guideArm.position).sqrMagnitude <= GuideRadius * GuideRadius, false, host != null && host.Session != null && !host.Paused && !host.Ended);   // blue while approaching, green inside, amber when nothing can take the order
         }
     }
 }

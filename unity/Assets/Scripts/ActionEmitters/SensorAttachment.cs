@@ -260,7 +260,23 @@ namespace ProcSense.VR.ActionEmitters
                 _guide.Refresh(held, available && !_awaitSocketExit && near, Vector3.Distance(transform.position, restingPlace.position) <= ReturnRadius, available);
                 if (held && near && !available) Explain(UnavailableReason);   // the amber target says "not now"; the label says why
             }
+            OfferPatientArm();
             _notice.Tick();
+        }
+
+        private bool _offered;
+
+        /// <summary>The cuff: the patient holds out the arm it goes on (the one nearest the cuff's patient target) from the moment the trainee picks the cuff up until it is back on the tray, and keeps it out while the cuff is on.</summary>
+        private void OfferPatientArm()
+        {
+            if (paramValue != "nibp_cuff" || _grab == null || destination == null) return;
+            bool want = _attached || _grab.interactorsSelecting.Any(i => !(i is XRSocketInteractor));
+            if (want == _offered) return;
+            var patient = FindObjectsByType<ProcSense.VR.Views.PatientMotion>(FindObjectsInactive.Exclude).FirstOrDefault(p => p.isActiveAndEnabled);
+            if (patient == null) return;
+            _offered = want;
+            patient.offerNear = destination.attachTransform != null ? destination.attachTransform : destination.transform;
+            patient.OfferArm(want);
         }
     }
 }
