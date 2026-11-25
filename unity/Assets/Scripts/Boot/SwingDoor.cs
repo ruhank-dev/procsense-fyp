@@ -114,7 +114,10 @@ namespace ProcSense.VR.Boot
             }
             _body.MoveRotation((transform.parent != null ? transform.parent.rotation : Quaternion.identity)
                 * _closed * Quaternion.Euler(0, Angle, 0));
+            bool open = Mathf.Abs(Angle) > 8f;
+            if (open != _wasOpen) { _wasOpen = open; ProcSense.VR.Audio.SoundPlayer.Instance?.Play(open ? "eq_door_open" : "eq_door_close"); }
         }
+        private bool _wasOpen;
 
         private void OnDisable() { _hand = null; _npcOwners.Clear(); _legacyNpcPassage = _npcPassage = false; _target = Angle; }
         private void OnDestroy()

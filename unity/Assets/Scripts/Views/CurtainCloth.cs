@@ -38,7 +38,16 @@ namespace ProcSense.VR.Views
         [SerializeField, Min(0f)] private float accordion = .085f;                // metres each fold swings out of the track line when gathered
 
         public Node[] Nodes => nodes;
-        public float Open { get => open; set => open = Mathf.Clamp01(value); }
+        public float Open
+        {
+            get => open;
+            set
+            {
+                value = Mathf.Clamp01(value);
+                if (Application.isPlaying && (open < .5f) != (value < .5f)) ProcSense.VR.Audio.SoundPlayer.Instance?.Play("eq_curtain_pull");   // the curtain is drawn open or shut
+                open = value;
+            }
+        }
         public Mesh OriginalMesh => originalMesh;
         public float GatherFraction { get => gatherFraction; set => gatherFraction = Mathf.Clamp(value, 0f, .97f); }
         public float Accordion { get => accordion; set => accordion = Mathf.Max(0f, value); }

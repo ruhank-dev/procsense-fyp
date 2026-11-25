@@ -46,7 +46,7 @@ namespace ProcSense.VR.Interaction
             if (_machine != null) _machine.StateChanged -= ShowState;
             foreach (var e in _emitters.Values) if (e != null) Destroy(e);
             _emitters.Clear();
-            _machine = new EquipmentStateMachine(definition);
+            _machine = new EquipmentStateMachine(definition); _itemId = definition.Id;
             _machine.StateChanged += ShowState;
             foreach (var t in definition.Transitions.Where(t => !t.VisualOnly))
             {
@@ -88,8 +88,11 @@ namespace ProcSense.VR.Interaction
 
         private void End(StepResult result) => StepEnded?.Invoke(result);
 
+        private string _itemId = "";
+
         private void ShowState(string from, string to)
         {
+            if (from != null && _itemId == "ecg_machine" && to == "RECORDED") ProcSense.VR.Audio.SoundPlayer.Instance?.Play("eq_ecg_print");   // the trace prints
             foreach (var v in visuals)
                 foreach (var go in v.show)
                     if (go != null) go.SetActive(v.state == to);

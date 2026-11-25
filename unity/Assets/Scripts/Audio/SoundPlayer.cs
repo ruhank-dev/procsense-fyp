@@ -89,6 +89,9 @@ namespace ProcSense.VR.Audio
                     else if (e.Id == "submit_patient") Play("exm_submit_confirm");
                     else if (e.Id == "sign_consent") Play("foley_pen_sign");
                     else if (e.Id == "open_notes") Play("foley_paper");
+                    else if (e.Id == "measure_temperature") Play("eq_thermometer_beep");
+                    else if (e.Id == "perform_bedside_test") Play("eq_glucometer_beep");
+                    else if (e.Id == "record_procedure" || e.Id == "escalate") Play("foley_clipboard");
                     break;
                 case FeedbackKind.EndState:
                     if (!ModeGate.PracticeAids) Play("exm_end");
