@@ -160,6 +160,14 @@ namespace ProcSense.VR.Views
         private Transform spineBase; private Quaternion spineBaseRest; private Vector3 sitAxis; private float sitSign = 1f, sitNow, sitSeconds;
         /// <summary>The patient sits up for a few seconds (the trunk rises from the lower spine) and then lies back (P3-ANI-06).</summary>
         public void SitUp(float seconds = 12f) => sitSeconds = Mathf.Max(.1f, seconds);
+        /// <summary>How far the trunk rises while the trainee holds the bed head-up (a share of the full sit-up).</summary>
+        public const float HeadUpShare = .55f;
+        private bool headUpHeld;
+        /// <summary>The trainee raises the bed's head section (true) or lays it flat (false); the patient lies on it. Cosmetic: the engine decides nothing here.</summary>
+        public void SetHeadUp(bool up) => headUpHeld = up;
+        public bool HeadUp => headUpHeld;
+        /// <summary>How far up the patient is aiming: fully up while sitting for an examination, else the head-up share while the bed is raised, else flat.</summary>
+        public static float SitGoal(float sitSecondsLeft, bool headUp) => sitSecondsLeft > 0f ? 1f : headUp ? HeadUpShare : 0f;
         /// <summary>How far up the patient is, 0 (lying) to 1 (sitting). The bed backrest follows it.</summary>
         public float Sitting => sitNow;
         /// <summary>The patient signs for a few seconds: the right hand comes up over the chest and back (P3-ANI-06).</summary>
@@ -216,7 +224,7 @@ namespace ProcSense.VR.Views
             poseNow = PatientPose.Lerp(poseNow, poseTarget, 1f - Mathf.Exp(-dt / Mathf.Max(.05f, expressionSeconds * .6f)));
             float breath = autoMotion ? Mathf.Sin(t * breathsPerMinute / 60f * Mathf.PI * 2f) : 0f;
             float rise = breath * (.75f + .25f * Mathf.Sin(t * .31f + seed));                                              // depth varies a little from breath to breath
-            sitSeconds = Mathf.Max(0f, sitSeconds - dt); sitNow = Mathf.MoveTowards(sitNow, sitSeconds > 0f ? 1f : 0f, dt / 1.4f);
+            sitSeconds = Mathf.Max(0f, sitSeconds - dt); sitNow = Mathf.MoveTowards(sitNow, SitGoal(sitSeconds, headUpHeld), dt / 1.4f);
             if (spineBase != null) spineBase.localRotation = spineBaseRest * Quaternion.AngleAxis(sitSign * sitUpDegrees * sitNow * sitNow * (3f - 2f * sitNow), sitAxis);
             spine1.localRotation = spine1Rest; spine1.localScale = spine1Scale; spine2.localRotation = spine2Rest; spine2.localScale = spine2Scale;
             if (neck.localPosition != neckWrotePos || neck.localRotation != neckWroteRot) { neckRestPos = neck.localPosition; neckRestRot = neck.localRotation; neckScale = neck.localScale; }     // someone else moved the neck (the Animator): that pose is its rest now

@@ -17,7 +17,7 @@ namespace ProcSense.Tests.EditMode
             try
             {
                 var silent = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<XRBaseInteractable>(true))
-                    .Where(i => !i.GetType().Name.StartsWith("SafeTeleport") && i.name != "Grabbable hinged door" && i.GetComponent<ProcSense.VR.Interaction.TheatreHandoverPoint>() == null
+                    .Where(i => !i.GetType().Name.StartsWith("SafeTeleport") && i.name != "Grabbable hinged door" && i.GetComponent<ProcSense.VR.Interaction.TheatreHandoverPoint>() == null && i.GetComponent<ProcSense.VR.Interaction.BedControl>() == null
                                 && i.GetComponentsInParent<ActionEmitter>(true).Length + i.GetComponentsInChildren<ActionEmitter>(true).Length == 0)
                     .Select(i => i.name).ToList();
                 Assert.IsEmpty(silent, "highlighted but silent in " + path + ": " + string.Join(", ", silent));
